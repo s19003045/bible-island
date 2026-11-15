@@ -5,6 +5,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { createHistoricalScene } from './historical-scenes.js';
 import { historicalScenes } from './historical-data.js';
 import { peopleByIsland } from './people-data.js';
+import {createWalkControls} from './walk-controls.js';
 
 const TOP = 0.62;
 const C = { sand: '#d4bd93', stone: '#ddcfac', white: '#f1e6cb', dark: '#706451', wood: '#80634b',
@@ -289,7 +290,7 @@ function makeScene(theme, root, scene, boats) {
   return roofGroup;
 }
 
-export function createWorld(container, { onSelect, onStop, onActor, onReady, onError, icon }) {
+export function createWorld(container, { onSelect, onStop, onActor,onInspect,onWalkUpdate,onWalkMessage,audio,onReady,onError,icon }) {
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' }); }
   catch (error) { onError(error); return null; }
@@ -308,6 +309,8 @@ export function createWorld(container, { onSelect, onStop, onActor, onReady, onE
   controls.enableDamping = !reduced.matches; controls.dampingFactor = .065; controls.maxPolarAngle = Math.PI / 2.25;
   controls.minDistance = 4; controls.maxDistance = 220; controls.target.set(5, 0, 6);
   camera.position.set(51, 63, 82); controls.update();
+  let walkSnapshot=null,walkObjective=null,autoGoal=null,lastWalkUI=0,lastRepath=0;
+  const walk=createWalkControls(camera,renderer.domElement,{onInteract:interactWalk,onStep:p=>audio?.footstep(p),onMessage:onWalkMessage});
   const ambient = new THREE.HemisphereLight('#fff3dc', '#557879', 2.6); scene.add(ambient);
   const sun = new THREE.DirectionalLight('#fff0cf', 4); sun.position.set(-18, 40, 24); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); sun.shadow.camera.left = -45; sun.shadow.camera.right = 45; sun.shadow.camera.top = 45; sun.shadow.camera.bottom = -45;
@@ -364,7 +367,8 @@ export function createWorld(container, { onSelect, onStop, onActor, onReady, onE
     for (const obj of [...connectionGroup.children]) { obj.geometry.dispose(); obj.material.dispose(); connectionGroup.remove(obj); }
   }
   function select(id) {
-    activeHistorical?.converse(null); conversationId=null;actorMarkers=[];
+    if(walk.active)exitWalk();
+    activeHistorical?.converse(null);activeHistorical?.attend(null);conversationId=null;actorMarkers=[];
     selected = id ? themeById.get(id) : null; selectedStop = null;
     hotspotLayer.replaceChildren(); hotspots = []; clearConnections();
     for (const [id, roof] of roofs) roof.visible = !(cutaway && selected?.id === id);
@@ -435,6 +439,7 @@ export function createWorld(container, { onSelect, onStop, onActor, onReady, onE
     const distance = camera.position.distanceTo(item.pos);
     const allowed = (isHotspot && (!activeHistorical || showLabels)) || (!isHotspot && showLabels && visibleIds.has(item.id) && (themeById.get(item.id).number <= 8 || distance < 45 || !selected));
     item.el.hidden = !inView || !allowed || (isHotspot && distance > (activeHistorical ? activeHistorical.config.extent * 3 : 28) * Math.max(1, .95 / camera.aspect));
+    if(walk.active){if(!item.actor||distance>4)item.el.hidden=true;}
     if (!item.el.hidden) {
       item.el.style.transform = `translate(-50%, -50%) translate(${(v.x * .5 + .5) * width}px,${(-v.y * .5 + .5) * height}px)`;
       item.el.style.zIndex = String(item.id === selected?.id ? 2000 : Math.max(1, Math.round(1000 - distance)));
@@ -459,7 +464,7 @@ export function createWorld(container, { onSelect, onStop, onActor, onReady, onE
     const width = container.clientWidth, height = container.clientHeight;
     if (!width || !height) return;
     const oldFactor = Math.max(1, .95 / camera.aspect), nextFactor = Math.max(1, .95 / (width / height));
-    if (oldFactor !== nextFactor && !fly) {
+    if (oldFactor !== nextFactor && !fly && !walk.active) {
       const off = camera.position.clone().sub(controls.target).multiplyScalar(nextFactor / oldFactor);
       if (activeHistorical && ['human','person'].includes(activeView)) off.y = camera.position.y - controls.target.y;
       camera.position.copy(controls.target).add(off);
@@ -470,7 +475,9 @@ export function createWorld(container, { onSelect, onStop, onActor, onReady, onE
   const onDown = e => { down = { x: e.clientX, y: e.clientY }; fly = null; };
   const onUp = e => {
     if (!down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) { down = null; return; } down = null;
+    if(walk.active&&walk.dragged)return;
     const rect = renderer.domElement.getBoundingClientRect(); pointer.set((e.clientX - rect.left) / rect.width * 2 - 1, -(e.clientY - rect.top) / rect.height * 2 + 1);
+    if(walk.active&&document.pointerLockElement===renderer.domElement)pointer.set(0,0);
     ray.setFromCamera(pointer, camera);
     if(activeHistorical) {
       // Use the rendered geometry itself; a wall in front of a person blocks the hit.
@@ -478,6 +485,13 @@ export function createWorld(container, { onSelect, onStop, onActor, onReady, onE
       const meshes=[];activeHistorical.scene.traverseVisible(o=>{if(o.isMesh)meshes.push(o);});
       const hit=ray.intersectObjects(meshes,false)[0];
       const actorId=hit?.object.userData.actorInstances?.[hit.instanceId];
+      if(walk.active) {
+        if(conversationId||document.querySelector('dialog[open]'))return;
+        if(actorId){if(canTalk(actorId))onActor?.(actorId);else onWalkMessage?.('再靠近角色一些，就能交談。');}
+        else if(hit?.object.userData.objectId){const id=hit.object.userData.objectId;if(canInspect(id))onInspect?.(id);else onWalkMessage?.('走到器皿旁，就能拿起來觀察。');}
+        else if(hit&&activeHistorical.walkModel.valid(hit.point.x,hit.point.z)&&Math.abs(hit.point.y-activeHistorical.walkModel.heightAt(hit.point.x,hit.point.z))<.45){autoGoal=null;walk.navigate(hit.point.toArray());}
+        dirty=true;return;
+      }
       if(actorId)onActor?.(actorId);
       return;
     }
@@ -494,13 +508,51 @@ export function createWorld(container, { onSelect, onStop, onActor, onReady, onE
     }
   };
   const onKey = e => {
+    if(walk.active)return;
     const angles = { ArrowLeft: .13, ArrowRight: -.13 }; if (!(e.key in angles)) return;
     e.preventDefault(); fly = null; const off = camera.position.clone().sub(controls.target).applyAxisAngle(new THREE.Vector3(0,1,0), angles[e.key]); camera.position.copy(controls.target).add(off); controls.update(); dirty = true;
   };
   renderer.domElement.addEventListener('pointerdown', onDown); renderer.domElement.addEventListener('pointerup', onUp); renderer.domElement.addEventListener('keydown', onKey);
   controls.addEventListener('change', () => dirty = true);
-  const onVisibility = () => { hidden = document.hidden; last = performance.now(); dirty = true; };
+  const onVisibility = () => { hidden = document.hidden;audio?.setHidden(hidden);last = performance.now();dirty = true; };
   document.addEventListener('visibilitychange', onVisibility);
+  function startWalk() {
+    if(!activeHistorical?.walkModel)return false;
+    walkSnapshot={position:camera.position.clone(),target:controls.target.clone(),roof:activeHistorical.roof.visible};activeHistorical.roof.visible=true;renderer.shadowMap.needsUpdate=true;fly=null;conversationId=null;
+    activeHistorical.converse(null);controls.enabled=false;activeView='walk';camera.fov=62;camera.updateProjectionMatrix();walk.start(activeHistorical.walkModel);dirty=true;return true;
+  }
+  function exitWalk() {
+    if(!walk.active)return;walk.stop();activeHistorical?.attend(null);autoGoal=null;controls.enabled=true;activeView='overview';camera.fov=48;camera.updateProjectionMatrix();
+    if(walkSnapshot){camera.position.copy(walkSnapshot.position);controls.target.copy(walkSnapshot.target);activeHistorical.roof.visible=walkSnapshot.roof;renderer.shadowMap.needsUpdate=true;}controls.update();dirty=true;
+  }
+  function goalPosition(target) {
+    if(!target||!activeHistorical)return null;
+    if(target.type==='person')return activeHistorical.people.find(p=>p.id===target.id)?.state.position||target.position;
+    return target.position||activeHistorical.objects.find(o=>o.id===target.id)?.position;
+  }
+  function sightClear(position) {
+    const target=new THREE.Vector3(...position),offset=target.sub(camera.position),length=offset.length();
+    if(length<.01)return true;
+    const check=new THREE.Raycaster(camera.position,offset.normalize(),.05,Math.max(.05,length-.4));
+    const meshes=activeHistorical.occluders.filter(o=>{let p=o;while(p){if(!p.visible)return false;p=p.parent;}return true;});
+    return !check.intersectObjects(meshes,false).length;
+  }
+  function canTalk(id) {
+    if(!walk.active)return true;const p=activeHistorical?.people.find(a=>a.id===id)?.state.position;if(!p)return false;
+    return Math.hypot(p[0]-walk.position[0],p[2]-walk.position[2])<=3.6&&sightClear([p[0],p[1]+1.45,p[2]]);
+  }
+  function canInspect(id) {
+    if(!walk.active)return false;const p=activeHistorical?.objects.find(o=>o.id===id)?.position;if(!p)return false;
+    return Math.hypot(p[0]-walk.position[0],p[2]-walk.position[2])<=3.2&&sightClear([p[0],p[1]+.2,p[2]]);
+  }
+  function nearby() {
+    if(!walk.active||conversationId||document.querySelector('dialog[open]'))return null;
+    const candidates=[];
+    for(const p of activeHistorical.people)if(canTalk(p.id))candidates.push({type:'person',id:p.id,name:peopleByIsland.jerusalem.find(a=>a.id===p.id).name,distance:Math.hypot(p.state.position[0]-walk.position[0],p.state.position[2]-walk.position[2])});
+    for(const o of activeHistorical.objects)if(canInspect(o.id))candidates.push({type:'object',id:o.id,name:o.name,distance:Math.hypot(o.position[0]-walk.position[0],o.position[2]-walk.position[2])});
+    candidates.sort((a,b)=>{const priority=p=>p.id===walkObjective?.id?-1:0;return priority(a)-priority(b)||a.distance-b.distance;});return candidates[0]||null;
+  }
+  function interactWalk() {const n=nearby();if(!n)return;if(n.type==='person')onActor?.(n.id);else onInspect?.(n.id);}
   function animate(now) {
     raf = requestAnimationFrame(animate); if (hidden) return;
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
@@ -513,8 +565,17 @@ export function createWorld(container, { onSelect, onStop, onActor, onReady, onE
       const t = fly.duration ? Math.min(1, (now - fly.start) / fly.duration) : 1, ease = 1 - (1 - t) ** 3;
       camera.position.lerpVectors(fly.from, fly.to, ease); controls.target.lerpVectors(fly.old, fly.target, ease); if (t === 1) fly = null; dirty = true;
     }
-    controls.update();
-    if(activeHistorical) { const floor=activeHistorical.groundHeight(camera.position.x,camera.position.z)+.3; if(camera.position.y<floor) {camera.position.y=floor;dirty=true;} }
+    if(walk.active) {
+      if(walk.update(dt))dirty=true;
+      if(autoGoal && now-lastRepath>900) {
+        lastRepath=now;const target=goalPosition(autoGoal);
+        if(target&&Math.hypot(target[0]-walk.position[0],target[2]-walk.position[2])<(autoGoal.type==='person'?3.0:.4)){walk.cancelRoute();walk.lookAt([target[0],target[1]+1.3,target[2]]);autoGoal=null;dirty=true;}
+        else if(target&&autoGoal.type==='person')walk.navigate(target);
+      }
+      if(now-lastWalkUI>220){lastWalkUI=now;const target=goalPosition(walkObjective),p=walk.position;const close=nearby();activeHistorical.attend(close?.type==='person'?close.id:null);onWalkUpdate?.({position:p,nearby:close,navigating:walk.navigating,distance:target?Math.hypot(target[0]-p[0],target[2]-p[2]):null});}
+    } else controls.update();
+    if(selected?.id==='jerusalem')audio?.update(camera,activeHistorical?.people||[],now);
+    if(activeHistorical && !walk.active) { const floor=activeHistorical.groundHeight(camera.position.x,camera.position.z)+.3; if(camera.position.y<floor) {camera.position.y=floor;dirty=true;} }
     // Lower DPR only after sustained slow frames. No promise of a particular frame rate.
     if (dt > 0 && now > 6000) { frameSum += dt * 1000; frameCount++; }
     if (now - lastAdapt > 3500 && frameCount > 30) {
@@ -532,9 +593,19 @@ export function createWorld(container, { onSelect, onStop, onActor, onReady, onE
   raf = requestAnimationFrame(animate); onReady();
   return {
     select, focusStop,
+    startWalk,exitWalk,canTalk,canInspect,
+    personPosition(id){return activeHistorical?.people.find(p=>p.id===id)?.state.position;},
+    setWalkObjective(target){walkObjective=target;},
+    guideWalk(target){if(!walk.active)return;autoGoal=target;const p=goalPosition(target);if(p&&!walk.navigate(p))autoGoal=null;dirty=true;},
+    interactWalk,
+    stopWalkRoute(){autoGoal=null;walk.cancelRoute();},
+    blockWalk(value){if(value)autoGoal=null;walk.block(value);},
+    walkAxis(x,z){autoGoal=null;walk.setAxis(x,z);},walkTurn(value){walk.setTurn(value);},
+    lockWalk(){walk.lock();},
     converse(id) {
       if(!activeHistorical)return;
       activeHistorical.converse(id);conversationId=id;
+      if(walk.active){autoGoal=null;walk.block(!!id||!!document.querySelector('dialog[open]'));const p=activeHistorical.people.find(a=>a.id===id)?.state.position;if(p)walk.lookAt([p[0],p[1]+1.45,p[2]]);dirty=true;return;}
       const a=activeHistorical.people.find(a=>a.id===id);if(!a){dirty=true;return;}
       selectedStop=null;activeView='person';controls.maxPolarAngle=Math.PI*.6;
       const [x,y,z]=a.state.position;
@@ -563,6 +634,6 @@ export function createWorld(container, { onSelect, onStop, onActor, onReady, onE
     zoom(amount) { fly = null; const off = camera.position.clone().sub(controls.target); const distance = THREE.MathUtils.clamp(off.length() * amount, controls.minDistance, controls.maxDistance); camera.position.copy(controls.target).add(off.setLength(distance)); controls.update(); dirty = true; },
     topView() { if (activeHistorical) { activeView='plan'; controls.maxPolarAngle=Math.PI/2-.018; const c = activeHistorical.config; focus(new THREE.Vector3(...c.target),new THREE.Vector3(.1,c.plan,.1)); return; } const target = selected ? new THREE.Vector3(selected.position[0], .2, selected.position[1]) : new THREE.Vector3(3,0,5); focus(target, new THREE.Vector3(.1, selected ? 18 : 95, 4)); },
     getStats() { return { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, pixelRatio, selected: selected?.id, stop: selectedStop, historical: !!activeHistorical }; },
-    dispose() { cancelAnimationFrame(raf); observer.disconnect(); controls.dispose(); document.removeEventListener('visibilitychange', onVisibility); historicalCache.forEach(s => s.dispose()); environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
+    dispose() { cancelAnimationFrame(raf);walk.dispose();observer.disconnect();controls.dispose(); document.removeEventListener('visibilitychange', onVisibility); historicalCache.forEach(s => s.dispose()); environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
   };
 }

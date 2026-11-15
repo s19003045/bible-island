@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import { dimensions, historicalScenes, HUMAN_HEIGHT } from './historical-data.js';
 import { peopleByIsland } from './people-data.js';
 import { createMotion, advanceMotion } from './people-motion.js';
+import { walkSurfaces,walkFloor,vesselDefinitions } from './walk-data.js';
+import { createVessel } from './vessels.js';
+import { createWalkModel } from './walk-model.js';
 
 // Detailed scenes use one Three unit per metre. Geometry is batched by material, not by building.
 const G = {
@@ -47,8 +50,8 @@ function palette() {
     terra: material('earthenware', '#9c6650'), leaf: material('olive-foliage', '#4c5540'), trunk: material('olive-bark', '#635b4a','wood'), reed: material('dry-grass', '#8c8256'), black: material('door-shadow', '#2e2a23'), water: new THREE.MeshPhysicalMaterial({ color: '#416d6c', roughness: .26, metalness: .22, clearcoat: .7 }),
   };
 }
-function builder(parent, p, seed = 31) {
-  const actors = []; let actor = null, bone = null;
+function builder(parent, p, seed = 31, collectCollision = false) {
+  const actors = [], collisionBoxes = []; let actor = null, bone = null;
   const batches = new Map(), rand = seeded(seed), dummy = new THREE.Object3D();
   function part(kind, mat, x, y, z, w, h, d, rx = 0, ry = 0, rz = 0) {
     const key = `${kind}/${mat}${actor ? "/people" : ""}`;
@@ -100,6 +103,7 @@ function builder(parent, p, seed = 31) {
       pp('sphere',`robe${style%4}`,side*.195,1.265,0,.155,.16,.17);
       const shoulder = loc(side*.22,1.27,0), elbow = loc(side*.25,1.02,.04), hand = loc(side*.23,.83,.13);
       beam(`robe${style%4}`,shoulder,elbow,.065*s);bone=side<0?'forearmL':'forearmR';beam('skin',elbow,hand,.042*s);ball('skin',...hand,.075*s,.12*s,.065*s);
+      if(side===1&&options.id==='water-carrier'){pp('bowl','terra',.31,.65,.14,.29,.32,.29);pp('column','terra',.31,.83,.14,.095,.08,.095);}
     }
     bone=null;pp('robe',style%2?'linen':'hide',0,1.27,0,.48,.15,.34);
     bone='head';pp('sphere','skin',0,1.56,.102,.036,.054,.045);
@@ -175,6 +179,10 @@ function builder(parent, p, seed = 31) {
       if(dynamic) {mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);mesh.frustumCulled=false;mesh.userData.people=true;}
       parts.forEach((v,i) => {
         dummy.position.set(v.x,v.y,v.z); dummy.rotation.set(v.rx,v.ry,v.rz); dummy.scale.set(v.w,v.h,v.d); dummy.updateMatrix();
+        if(collectCollision && !v.actor && ['box','column','bowl'].includes(kind) && v.h>.28 && !['water','black','linen','wool','hide','reed'].includes(mat)) {
+          if(!G[kind].boundingBox)G[kind].computeBoundingBox();const bounds=G[kind].boundingBox.clone().applyMatrix4(dummy.matrix);
+          collisionBoxes.push({min:bounds.min.toArray(),max:bounds.max.toArray()});
+        }
         mesh.setMatrixAt(i,dummy.matrix);mesh.setColorAt(i,new THREE.Color(v.tone,v.tone,v.tone));
         if(v.actor) {
           root.makeRotationY(v.actor.state.yaw);root.setPosition(...v.actor.state.position);inverse.copy(root).invert();
@@ -218,7 +226,7 @@ function builder(parent, p, seed = 31) {
     }
     touched.forEach(mesh=>{mesh.instanceMatrix.needsUpdate=true;});
   }
-  return { part,box,cyl,ball,beam,wall,paving,person,jar,olive,tent,house,finish,rand,actors,animate };
+  return { part,box,cyl,ball,beam,wall,paving,person,jar,olive,tent,house,finish,rand,actors,animate,collisionBoxes };
 
 }
 function terrain(scene,p,extent,kind,flatRadius = 70) {
@@ -498,6 +506,14 @@ function exodus(k,roof,height,scene,p) {
   for(let i=0;i<70;i++) {const x=-90+k.rand()*110,z=-65-k.rand()*25;for(let q=0;q<3;q++)k.beam('reed',[x,0,z],[x+(k.rand()-.5)*.6,1+k.rand(),z+.2],.018);}
 }
 function jerusalem(k,roof,height) {
+  // Fill the selected public alleys with visible, continuous walking surfaces.
+  for(const s of walkSurfaces.filter(s=>!['street','courtyard'].includes(s.id))) {
+    const alongX=s.x2-s.x1>s.z2-s.z1,len=alongX?s.x2-s.x1:s.z2-s.z1,count=Math.ceil(len/.8);
+    for(let i=0;i<count;i++) {
+      const a=(i+.5)/count,x=alongX?s.x1+a*len:(s.x1+s.x2)/2,z=alongX?(s.z1+s.z2)/2:s.z1+a*len;
+      k.box('path',x,walkFloor(x,z)-.045,z,alongX?len/count-.015:s.x2-s.x1,.08,alongX?s.z2-s.z1:len/count-.015);
+    }
+  }
   // Typological first-century hill-town sector: measured humans and homes, illustrative street plan.
   const pads=[];
   for(let row=0;row<5;row++) for(let col=0;col<5;col++) {
@@ -580,7 +596,7 @@ export function createHistoricalScene(id, environment) {
   const range=config.shadow;Object.assign(sun.shadow.camera,{left:-range,right:range,top:range,bottom:-range,near:1,far:450});
   sun.shadow.mapSize.set(2048,2048);sun.shadow.normalBias=.035;sun.shadow.bias=-.00013;scene.add(sun);
   const roofGroup=new THREE.Group();scene.add(roofGroup);
-  const k=builder(scene,p,id.length*113), roof=builder(roofGroup,p,83);
+  const k=builder(scene,p,id.length*113,id==='jerusalem'), roof=builder(roofGroup,p,83,id==='jerusalem');
   const height=terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id));
   if(id==='tabernacle')tabernacle(k,roof);
   else if(id==='solomon')solomon(k,roof,height);
@@ -590,6 +606,15 @@ export function createHistoricalScene(id, environment) {
   for(const person of peopleByIsland[id]) k.person(...person.position,person.style,0,HUMAN_HEIGHT,person);
   k.finish();roof.finish();
   const people=k.actors.filter(a=>a.id);
+  let walkModel=null;const objects=[];
+  if(id==='jerusalem') {
+    k.collisionBoxes.push(...roof.collisionBoxes);
+    for(const definition of vesselDefinitions){const root=createVessel(definition.id);root.position.fromArray(definition.position);scene.add(root);objects.push({...definition,root});}
+    const table=new THREE.Mesh(new THREE.BoxGeometry(1.1,.08,.6),p.wood);table.position.set(-33.4,10.92,25.6);table.castShadow=true;scene.add(table);
+    for(const x of [-33.85,-32.95]) {const leg=new THREE.Mesh(new THREE.BoxGeometry(.07,.7,.45),p.wood);leg.position.set(x,10.56,25.6);scene.add(leg);}
+    k.collisionBoxes.push({min:[-33.98,10.21,25.27],max:[-32.82,11.5,25.93]});
+    walkModel=createWalkModel(k.collisionBoxes);
+  }
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);
   const occluders=[];scene.updateMatrixWorld(true);scene.traverseVisible(o=>{if(o.isMesh&&!o.userData.people)occluders.push(o);});
@@ -608,9 +633,10 @@ export function createHistoricalScene(id, environment) {
     return best;
   }
   return {
-    scene,roof:roofGroup,config,people,conversationOffset,
+    scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,
     animate(dt,cameraPosition) { k.animate(dt,cameraPosition); },
     converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },
+    attend(personId) {people.forEach(a=>a.state.attending=a.id===personId);},
     groundHeight(x,z) { return Math.max(height(x,z),id==='herod' && Math.abs(x)<121 && Math.abs(z)<101 ? 8 : -.14); },
     setTime(night) {ambient.intensity=night?.55:1.1;sun.intensity=night?.75:2.65;sun.color.set(night?'#a9bdd5':'#fff0d9');scene.background.set(night?'#394650':sky);scene.fog.color.copy(scene.background);},
     dispose() {scene.traverse(o=>{if(o.isInstancedMesh)o.dispose();if(o.geometry&&!Object.values(G).includes(o.geometry))o.geometry.dispose();});sun.shadow.dispose();},

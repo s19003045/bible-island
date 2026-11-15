@@ -4,7 +4,13 @@ import { dirname, resolve } from 'node:path';
 
 // A self-contained local review artifact: no CDN, server, API key or downloaded 3D assets.
 const output = resolve(process.argv[2] || '.qa/five-islands-review.html');
-const result = await build({ entryPoints: ['src/main.js'], bundle: true, format: 'iife', minify: true, write: false, outfile: 'review.js', legalComments: 'inline', target: 'es2022' });
+const result = await build({ entryPoints: ['src/main.js'], bundle: true, format: 'iife', minify: true, write: false, outfile: 'review.js', legalComments: 'inline', target: 'es2022',
+  plugins:[{name:'inline-review-voices',setup(builder){builder.onLoad({filter:/voice-manifest\.json$/},async({path})=>{
+    const manifest=JSON.parse(await readFile(path,'utf8'));
+    for(const entry of Object.values(manifest))entry.src=`data:audio/mpeg;base64,${(await readFile(resolve('public',entry.src))).toString('base64')}`;
+    return {contents:JSON.stringify(manifest),loader:'json'};
+  });}}],
+});
 const js = result.outputFiles.find(f=>f.path.endsWith('.js')).text.replace(/<\/script/gi,'<\\/script');
 const css = result.outputFiles.find(f=>f.path.endsWith('.css')).text;
 const threeLicense = (await readFile('node_modules/three/LICENSE','utf8')).replace(/-->/g,'-- >');

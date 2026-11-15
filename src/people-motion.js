@@ -30,7 +30,7 @@ export function advanceMotion(m,dt,cameraPosition) {
   if(dt<=0) return m;
   m.time+=dt;
   let targetYaw=m.yaw;
-  if(m.talking) {
+  if(m.talking||m.attending) {
     m.stride=Math.max(0,m.stride-dt*4);
     if(cameraPosition) targetYaw=Math.atan2(cameraPosition[0]-m.position[0],cameraPosition[2]-m.position[2]);
   } else if(m.route) {

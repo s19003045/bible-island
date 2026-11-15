@@ -5,13 +5,19 @@ import { icon } from './icons.js';
 import { historicalScenes } from './historical-data.js';
 import { personById } from './people-data.js';
 import { peopleMarkup } from './people-ui.js';
+import {walkEntry,walkMarkup} from './walk-ui.js';
+import {freshMission,missionEvent,missionStage,missionSteps,vesselDefinitions} from './walk-data.js';
+import {createSceneAudio} from './scene-audio.js';
 
 let storage; try { storage = window.localStorage; } catch { storage = null; }
 const state = { selected: null, stop: null, query: '', era: 'all', testament: 'all', mode: 'general',
   cutaway: false, labels: true, connections: true, paused: matchMedia('(prefers-reduced-motion: reduce)').matches,
   night: false, tour: false, visitedOnly: false, progress: readProgress(storage), worldReady: false };
-state.actor=null;state.dialogue=[];
-let world = null, restoreFocus = null, toastTimer;
+state.actor=null;state.dialogue=[];state.walking=false;state.soundEnabled=false;
+state.mission=freshMission();
+try{const saved=JSON.parse(storage?.getItem('bible-island:jerusalem-walk:v1')||'null');if(saved){state.mission={listen:saved.listen===true,observed:Array.isArray(saved.observed)?[...new Set(saved.observed.filter(id=>vesselDefinitions.some(v=>v.id===id)))]:[],ask:saved.ask===true,complete:false};state.mission.complete=saved.complete===true&&missionStage(state.mission)===3;}}catch{}
+let world = null, restoreFocus = null, toastTimer,modalCleanup=null,feedbackTimer;
+const sceneAudio=createSceneAudio(updateSoundState);
 const $ = s => document.querySelector(s);
 const number = n => String(n).padStart(2, '0');
 const modes = { child: '親子探索', general: '一般閱讀', study: '深入研讀' };
@@ -44,7 +50,7 @@ $('#app').innerHTML = `
       <div class="timeline" id="timeline" hidden><div><span class="eyebrow">FOLLOW THE STORY</span><p>沿著時代，找到故事的位置。</p></div><div class="era-buttons">${eras.map(e => `<button data-era="${e.id}" class="${e.id === 'all' ? 'active' : ''}" aria-pressed="${e.id === 'all'}"><i></i>${e.name}</button>`).join('')}</div></div>
       <div class="journey-card" id="journey-card"><span class="journey-art">${icon('archive', 25)}</span><div><span class="eyebrow">YOUR FIRST ISLAND</span><strong>從一座會幕，開始探索</strong><small>5 個探索點 · 出埃及記 25–40 章</small></div><button id="first-island" aria-label="探索摩西會幕">${icon('arrow', 21)}</button></div>
       <div class="map-footer"><span><i></i>${themes.length} 座主題島 <b>·</b> ${themes.reduce((n,t) => n + t.stops.length, 0)} 個探索點</span><span class="gesture-hint">拖曳旋轉 <b>·</b> 滾輪縮放 <b>·</b> 點選探索</span><button id="map-sources">經文與復原說明 ${icon('external', 12)}</button></div>
-      <aside class="detail-panel" id="detail" aria-label="主題詳情" hidden></aside>
+      <div id="walk-interface" hidden></div><aside class="detail-panel" id="detail" aria-label="主題詳情" hidden></aside>
     </section>
   </main>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -55,7 +61,7 @@ function persist() { writeProgress(storage, state.progress); updateProgressCount
 function updateProgressCount() { $('#progress-count').textContent = state.progress.visited.length; }
 function toast(text) { $('#toast').textContent = text; $('#toast').classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('#toast').classList.remove('show'), 3000); }
 const mobileLayout = matchMedia('(max-width: 760px)');
-function setAtlasOpen(open) { $('#scene-menu')?.setAttribute('aria-expanded',open); $('#atlas').classList.toggle('open', open); $('#menu').setAttribute('aria-expanded', open); $('#atlas').inert = (mobileLayout.matches || !!historicalScenes[state.selected]) && !open; }
+function setAtlasOpen(open) { $('#scene-menu')?.setAttribute('aria-expanded',open); $('#atlas').classList.toggle('open', open); $('#menu').setAttribute('aria-expanded', open); $('#atlas').inert = (mobileLayout.matches || !!historicalScenes[state.selected]) && !open;if(state.walking)world?.blockWalk(open||!!state.actor||!!$('#modal').open); }
 function closeAtlas() { setAtlasOpen(false); }
 mobileLayout.addEventListener('change', () => { $('#atlas').inert = (mobileLayout.matches || !!historicalScenes[state.selected]) && !$('#atlas').classList.contains('open'); });
 closeAtlas();
@@ -83,7 +89,7 @@ function updateFilters() {
 function selectTheme(id, { updateHash = true } = {}) {
   const t = themeById.get(id); if (!t) return;
   if (!filterThemes(state).some(x => x.id === id) || state.visitedOnly) resetFilters();
-  endConversation(false);state.selected = id; state.stop = null; state.tour = false;
+  if(state.walking)exitWalk(false);endConversation(false);state.selected = id; state.stop = null; state.tour = false;
   const sceneInfo = historicalScenes[id];
   document.body.classList.toggle('historical-view', !!sceneInfo);
   $('#scene-caption').hidden = !sceneInfo; $('#scene-views').hidden = !sceneInfo; $('#scene-menu').hidden = !sceneInfo;
@@ -103,7 +109,7 @@ function selectTheme(id, { updateHash = true } = {}) {
   document.title = `${t.name} — 讀聖經順起來`;
 }
 function overview() {
-  endConversation(false);state.selected = null; state.stop = null; state.tour = false;
+  if(state.walking)exitWalk(false);endConversation(false);state.selected = null; state.stop = null; state.tour = false;
   document.body.classList.remove('historical-view'); $('#scene-caption').hidden = true; $('#scene-views').hidden = true; $('#scene-menu').hidden = true;
   $('#connections-button').hidden = false; $('#pause-button').hidden = false;
   $('#labels-button').setAttribute('aria-label','顯示島嶼名稱'); $('#labels-button').title='島嶼名稱'; $('.compass-rose').hidden = false; $('.map-note').textContent = '主題位置示意 · 非實際地圖';
@@ -112,6 +118,7 @@ function overview() {
 }
 function selectStop(id, { focus = true } = {}) {
   const t = themeById.get(state.selected), s = t?.stops.find(s => s.id === id); if (!s) return;
+  if(state.walking)exitWalk(false);
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',false));
   endConversation(false);state.stop = id; state.progress = markStop(state.progress, t.id, id); persist(); renderDetail(); listThemes();
   world?.focusStop(id);
@@ -133,19 +140,20 @@ function renderDetail() {
   const sceneInfo = historicalScenes[t.id];
   const index = current ? t.stops.indexOf(current) : -1;
   $('#detail').innerHTML = `
-    <div class="detail-sticky"><div class="detail-top"><span class="eyebrow">ISLAND ${number(t.number)} <i>/</i> ${oldNew(t)}</span><div><button class="icon-button ${saved ? 'saved' : ''}" id="save-theme" aria-label="${saved ? '取消收藏' : '收藏主題'}" aria-pressed="${saved}">${icon('bookmark', 18)}</button><button class="icon-button" id="close-detail" aria-label="返回群島全景">${icon('close', 20)}</button></div></div>
+    <div class="detail-sticky"><div class="detail-top"><span class="eyebrow">ISLAND ${number(t.number)} <i>/</i> ${oldNew(t)}</span><div><button class="icon-button ${saved ? 'saved' : ''}" id="save-theme" aria-label="${saved ? '取消收藏' : '收藏主題'}" aria-pressed="${saved}">${icon('bookmark', 18)}</button><button class="icon-button" id="close-detail" aria-label="${state.walking?'結束交談':'返回群島全景'}">${icon('close', 20)}</button></div></div>
     <p class="detail-english">${t.english}</p><h2>${t.name}</h2><p class="detail-subtitle">${t.subtitle}</p><div class="detail-meta"><span>${icon('clock', 13)}${t.period}</span><span>${icon('compass', 13)}${t.stops.length} 個探索點</span></div></div>
-    <div class="detail-scroll">${peopleMarkup(state)}${sceneInfo ? `<section class="reconstruction-card"><span>五座場景 · 復原預覽</span><strong>${sceneInfo.scale}</strong><button id="scene-evidence">查看尺度與復原取捨 ${icon('arrow',13)}</button></section>` : ''}<p class="detail-intro">${t.intro}</p><a class="scripture-link" href="${scriptureUrl(t.book)}" target="_blank" rel="noopener noreferrer">${icon('book', 17)}<span>${t.reference}<small>開啟經文，與場景一起閱讀</small></span>${icon('external', 14)}</a>
+    <div class="detail-scroll">${t.id==='jerusalem'&&!state.walking?walkEntry(state.worldReady):''}${peopleMarkup(state)}${sceneInfo ? `<section class="reconstruction-card"><span>五座場景 · 復原預覽</span><strong>${sceneInfo.scale}</strong><button id="scene-evidence">查看尺度與復原取捨 ${icon('arrow',13)}</button></section>` : ''}<p class="detail-intro">${t.intro}</p><a class="scripture-link" href="${scriptureUrl(t.book)}" target="_blank" rel="noopener noreferrer">${icon('book', 17)}<span>${t.reference}<small>開啟經文，與場景一起閱讀</small></span>${icon('external', 14)}</a>
     <div class="detail-actions"><button class="primary-button" id="start-tour">${icon(state.tour ? 'compass' : 'play', 15)}${state.tour ? '重新開始導覽' : '跟著導覽走一趟'}<small>約 ${t.stops.length} 分鐘</small></button>${canCut ? '<button class="secondary-button" id="cutaway-button" aria-pressed="false"></button>' : ''}</div>
     ${current ? `<section class="stop-card" aria-labelledby="stop-heading"><div class="stop-card-top"><span>${state.tour ? '跟著導覽' : '正在探索'} ${number(index + 1)} / ${number(t.stops.length)}</span><button id="close-stop" aria-label="收合探索點">${icon('close', 15)}</button></div><h3 id="stop-heading" tabindex="-1">${icon(current.icon, 21)}${current.name}</h3><p class="stop-question">${current.question}</p><p>${state.mode === 'child' ? current.child : current.summary}</p>${state.mode === 'study' ? `<div class="study-note"><span>進一步觀察</span><p>${current.study}</p></div>` : ''}<a href="${scriptureUrl(current.reference)}" target="_blank" rel="noopener noreferrer" class="stop-reference">${icon('book', 14)}${current.reference}${icon('external', 12)}</a><button class="evidence-chip" id="stop-evidence">${icon('info', 12)}${evidenceLabels[current.evidence]}</button><div class="tour-navigation"><button id="previous-stop" ${index === 0 ? 'disabled' : ''}>上一站</button><span>${index + 1} / ${t.stops.length}</span><button id="next-stop">${index === t.stops.length - 1 ? '完成探索' : '下一站'}${icon(index === t.stops.length - 1 ? 'check' : 'arrow', 15)}</button></div></section>` : `<div class="guiding-question"><span>帶著一個問題出發</span><p>${t.question}</p></div>`}
     <div class="section-heading"><h3>這座島的探索點</h3><span>${done} / ${t.stops.length}</span></div><div class="stop-progress"><i style="width:${done / t.stops.length * 100}%"></i></div><div class="stop-list">${t.stops.map((s,i) => `<button data-stop="${s.id}" class="stop-row ${s.id === state.stop ? 'active' : ''}"><span>${state.progress.stops.includes(`${t.id}/${s.id}`) ? icon('check', 13) : number(i+1)}</span><strong>${s.name}<small>${s.reference}</small></strong>${icon('chevron', 14)}</button>`).join('')}</div>
     <div class="section-heading related-heading"><h3>從這裡，繼續閱讀</h3>${icon('route', 16)}</div><div class="related-list">${t.connections.map(c => { const other = themeById.get(c.id); return `<button class="related-row" data-related="${c.id}"><span class="related-number">${number(other.number)}</span><span><small>${c.type}</small><strong>${other.name}</strong></span>${icon('arrow', 16)}</button>`; }).join('')}</div>
     <button class="context-button" id="context-button">${icon('info', 15)}這個場景如何復原？${icon('chevron', 13)}</button><p class="detail-footnote">觀察場景 · 回到經文 · 連起故事</p></div>`;
   bindPeople();
+  $('#enter-walk-sound')?.addEventListener('click',()=>startWalk(true));$('#enter-walk-quiet')?.addEventListener('click',()=>startWalk(false));
   updateCutawayButton();
   $('#scene-evidence')?.addEventListener('click',()=>openContext(t));
   $('#save-theme').onclick = () => { state.progress.saved = saved ? state.progress.saved.filter(id => id !== t.id) : [...state.progress.saved, t.id]; persist(); renderDetail(); toast(saved ? '已取消收藏' : `已收藏「${t.name}」`); };
-  $('#close-detail').onclick = overview;
+  $('#close-detail').onclick = ()=>state.walking?endConversation():overview();
   $('#start-tour').onclick = () => { state.tour = true; selectStop(t.stops[0].id); };
   $('#cutaway-button')?.addEventListener('click', () => { state.cutaway = !state.cutaway; world?.setCutaway(state.cutaway); updateCutawayButton(); });
   document.querySelectorAll('[data-stop]').forEach(b => b.onclick = () => selectStop(b.dataset.stop));
@@ -167,14 +175,16 @@ function renderDetail() {
 
 function selectActor(id) {
   if(!personById(state.selected,id))return;
+  if(state.walking&&!world?.canTalk(id)){walkFeedback('再靠近角色一些，就能開始交談。');return;}
   state.actor=id;state.dialogue=[];state.stop=null;state.tour=false;
   document.body.classList.add('in-conversation');
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',false));
   renderDetail();world?.converse(id);$('#conversation-heading')?.focus({preventScroll:true});
+  if(state.selected==='jerusalem')playVoice('greeting');
 }
 function endConversation(render=true) {
-  const previous=state.actor;state.actor=null;state.dialogue=[];document.body.classList.remove('in-conversation');world?.converse(null);
-  if(render&&state.selected){renderDetail();document.querySelector(`[data-person="${previous}"]`)?.focus({preventScroll:true});}
+  sceneAudio.stopVoice();const previous=state.actor;state.actor=null;state.dialogue=[];document.body.classList.remove('in-conversation');world?.converse(null);
+  if(render&&state.selected){renderDetail();if(state.walking)$('#stage canvas')?.focus({preventScroll:true});else document.querySelector(`[data-person="${previous}"]`)?.focus({preventScroll:true});}
 }
 function bindPeople() {
   document.querySelectorAll('[data-person]').forEach(b=>b.onclick=()=>selectActor(b.dataset.person));
@@ -184,19 +194,101 @@ function bindPeople() {
     const line=followup?topic.followup:topic;if(!line)return;
     state.dialogue.push({...topic,...line,topic:topicId,isFollowup:followup});
     state.dialogue=state.dialogue.slice(-8);
+    recordMission({type:'answer',person:actor.id,topic:topicId,followup});
     const panel=$('.people-panel');panel.outerHTML=peopleMarkup(state);bindPeople();
     $('#latest-answer')?.focus({preventScroll:true});const log=$('.conversation-log');log.scrollTop=log.scrollHeight;
     // Keep the question controls in reach, including on short phone screens.
     $('.people-panel').closest('.detail-scroll').scrollTop=0;
+    if(state.selected==='jerusalem')playVoice(topicId+(followup?'-followup':''));
   }
   document.querySelectorAll('[data-question]').forEach(b=>b.onclick=()=>answer(b.dataset.question));
   document.querySelectorAll('[data-followup]').forEach(b=>b.onclick=()=>answer(b.dataset.followup,true));
   document.querySelector('[data-dialogue-stop]')?.addEventListener('click',e=>selectStop(e.currentTarget.dataset.dialogueStop));
   $('#end-conversation').onclick=()=>endConversation();$('#choose-person').onclick=()=>endConversation();
-  $('#restart-conversation').onclick=()=>{state.dialogue=[];renderDetail();$('#conversation-heading')?.focus({preventScroll:true});};
+  $('#restart-conversation').onclick=()=>{state.dialogue=[];renderDetail();$('#conversation-heading')?.focus({preventScroll:true});if(state.selected==='jerusalem')playVoice('greeting');};
+  $('#replay-voice')?.addEventListener('click',async()=>{if(!sceneAudio.enabled)await sceneAudio.enable();const last=state.dialogue.at(-1);playVoice(last?last.topic+(last.isFollowup?'-followup':''):'greeting');});
+  $('#stop-voice')?.addEventListener('click',()=>sceneAudio.stopVoice());
+}
+
+function walkFeedback(text) {
+  const el=$('#walk-feedback');if(!el){if(text)toast(text);return;}el.textContent=text;el.classList.add('show');clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>el.classList.remove('show'),4000);
+}
+function updateSoundState(info) {
+  state.soundEnabled=info.enabled;state.audioVolumes=info.volume;
+  const button=$('#walk-audio-toggle');if(button){button.setAttribute('aria-pressed',info.enabled);button.setAttribute('aria-label',info.enabled?'關閉聲音':'開啟聲音');button.innerHTML=`${icon('volume',16)}<span>${info.enabled?'聲音開啟':'開啟聲音'}</span>`;}
+  const subtitle=$('#walk-subtitle');if(subtitle){subtitle.hidden=info.status!=='playing';subtitle.textContent=info.status==='playing'?info.text:'';}
+  const label=$('#voice-status');if(label)label.textContent=info.status==='playing'?'語音播放中':info.status==='loading'?'正在載入語音…':info.status==='unavailable'?info.text:'中文情境配音 · 可重播';
+  const stop=$('#stop-voice');if(stop)stop.hidden=!['playing','loading'].includes(info.status);
+  if(info.status==='unavailable')walkFeedback(info.text);
+}
+function playVoice(key) {
+  if(state.selected!=='jerusalem'||!state.actor)return;
+  sceneAudio.speak(state.actor,key,world?.personPosition(state.actor)||personById('jerusalem',state.actor).position);
+}
+function recordMission(event) {
+  if(!state.walking)return;const before=missionStage(state.mission);state.mission=missionEvent(state.mission,event);
+  try{storage?.setItem('bible-island:jerusalem-walk:v1',JSON.stringify(state.mission));}catch{}
+  if(missionStage(state.mission)!==before){renderWalk();walkFeedback(missionStage(state.mission)===4?'旅程完成，閱讀札記已保存在這個瀏覽器。':'已記下觀察，下一段旅程已更新。');}
+}
+function startWalk(sound) {
+  if(state.selected!=='jerusalem'||!world)return;
+  endConversation(false);state.stop=null;state.tour=false;
+  if(!world.startWalk())return;
+  state.walking=true;state.walkCompact=matchMedia('(max-width:760px)').matches;document.body.classList.add('walking');renderDetail();renderWalk();sceneAudio.setActive(true);sceneAudio.enable(sound);
+  $('#stage canvas')?.focus({preventScroll:true});
+}
+function exitWalk(render=true) {
+  if(!state.walking)return;
+  endConversation(false);state.walking=false;sceneAudio.setActive(false);world?.exitWalk();document.body.classList.remove('walking');$('#walk-interface').hidden=true;
+  if(render){renderDetail();$('#enter-walk-quiet')?.focus({preventScroll:true});}
+}
+function renderWalk() {
+  if(!state.walking)return;const root=$('#walk-interface');root.hidden=false;root.innerHTML=walkMarkup(state);
+  const step=missionSteps[missionStage(state.mission)];world?.setWalkObjective(step?.target||null);
+  $('#walk-exit').onclick=()=>exitWalk();$('#walk-look').onclick=()=>world?.lockWalk();
+  $('#walk-audio-toggle').onclick=()=>sceneAudio.enable(!sceneAudio.enabled);
+  $('#environment-volume').value=(state.audioVolumes?.environment??.6)*100;$('#voice-volume').value=(state.audioVolumes?.voice??.9)*100;
+  $('#environment-volume').oninput=e=>sceneAudio.setVolume('environment',Number(e.target.value)/100);$('#voice-volume').oninput=e=>sceneAudio.setVolume('voice',Number(e.target.value)/100);
+  $('#walk-interact').onclick=()=>world?.interactWalk();$('#walk-stop').onclick=()=>world?.stopWalkRoute();
+  $('#walk-guide')?.addEventListener('click',()=>{if(!step?.target)return;world?.guideWalk(step.target);$('#stage canvas')?.focus({preventScroll:true});});
+  $('#walk-reflect')?.addEventListener('click',showReflection);$('#walk-journal')?.addEventListener('click',showWalkJournal);
+  $('#walk-restart')?.addEventListener('click',()=>{state.mission=freshMission();try{storage?.setItem('bible-island:jerusalem-walk:v1',JSON.stringify(state.mission));}catch{}renderWalk();});
+  $('#mission-toggle').onclick=()=>{const open=$('#mission-body').hidden;$('#mission-body').hidden=!open;state.walkCompact=!open;$('#mission-toggle').setAttribute('aria-expanded',open);};
+  function hold(button,start,stop) {
+    button.onpointerdown=e=>{e.preventDefault();button.setPointerCapture(e.pointerId);start();};button.onpointerup=stop;button.onpointercancel=stop;button.onlostpointercapture=stop;
+    button.onkeydown=e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();start();}};button.onkeyup=stop;button.onblur=stop;
+  }
+  root.querySelectorAll('[data-walk-move]').forEach(b=>hold(b,()=>world?.walkAxis(...b.dataset.walkMove.split(',').map(Number)),()=>world?.walkAxis(0,0)));
+  root.querySelectorAll('[data-walk-turn]').forEach(b=>hold(b,()=>world?.walkTurn(Number(b.dataset.walkTurn)),()=>world?.walkTurn(0)));
+}
+function updateWalkHUD(info) {
+  if(!state.walking)return;
+  $('#walk-interface').dataset.position=info.position.map(n=>n.toFixed(3)).join(',');
+  const action=$('#walk-interact');if(action){action.disabled=!info.nearby;action.querySelector('span').textContent=info.nearby?(info.nearby.type==='person'?`與${info.nearby.name}交談`:`拿起${info.nearby.name}`):'走近人物或器皿，開始互動';}
+  if($('#walk-distance'))$('#walk-distance').textContent=info.distance!==null?`約 ${Math.round(info.distance)} 公尺`:'';
+  if($('#walk-region'))$('#walk-region').textContent=info.position[2]>21?'院落與南巷':info.position[2]<-8?'北側巷弄':'主街';
+  if($('#walk-stop'))$('#walk-stop').hidden=!info.navigating;
+  if($('#walk-nav-state'))$('#walk-nav-state').textContent=info.navigating?'沿路行走中 · 按 WASD 或「停止」可接手':'WASD 移動 · 拖曳環顧 · 點地沿路前往';
+}
+async function openVessel(id) {
+  const definition=vesselDefinitions.find(v=>v.id===id);if(!definition||!state.walking||!world?.canInspect(id))return;
+  recordMission({type:'inspect',id});
+  openModal(`<h2 id="modal-title">${definition.name}<span>拿在手中，慢慢觀察</span></h2><div class="vessel-tabs" role="group" aria-label="比較器皿">${vesselDefinitions.map(v=>`<button data-vessel="${v.id}" aria-pressed="${v.id===id}">${v.name}</button>`).join('')}</div><div id="vessel-viewer" class="vessel-viewer"></div><div class="vessel-controls"><button id="vessel-left" aria-label="向左旋轉器皿">↶ 向左轉</button><span>拖曳或使用方向鍵</span><button id="vessel-right" aria-label="向右旋轉器皿">向右轉 ↷</button></div><p>${definition.description}</p><div class="source-note"><strong>帶著問題觀察</strong><p>${definition.observation}</p></div><p class="modal-small">類型復原 · 未認定特定出土原物。石器的歷史解釋仍需對照研究。</p><a class="source-item" href="https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period" target="_blank" rel="noopener noreferrer">查閱上城住居與器皿發掘資料 ${icon('external',13)}</a>`);
+  document.querySelectorAll('[data-vessel]').forEach(b=>b.onclick=()=>openVessel(b.dataset.vessel));
+  const container=$('#vessel-viewer');try {const {mountVesselViewer}=await import('./vessels.js');if(!container.isConnected||!$('#modal').open)return;const view=mountVesselViewer(container,id);modalCleanup=()=>view.dispose();$('#vessel-left').onclick=()=>view.rotate(.25);$('#vessel-right').onclick=()=>view.rotate(-.25);}catch{$('#vessel-viewer').textContent='此裝置無法開啟器物近景；仍可比較上方器物說明。';}
+}
+function showReflection() {
+  if(missionStage(state.mission)!==3)return;
+  openModal(`<h2 id="modal-title">把觀察留成一個問題<span>山城的一段路 · 最後一站</span></h2><p>看過這座院落與器皿後，哪一個說法較恰當？</p><div class="reflection-choices"><button data-reflection="no">這一棟院落可以代表第一世紀耶路撒冷每個家庭。</button><button data-reflection="yes">住居受財力與街區影響，一棟房屋不能代表所有家庭。</button></div><p id="reflection-feedback" role="status"></p><p class="modal-small">提示：想想住戶剛才提到的上城住居與家庭差異。</p>`);
+  document.querySelectorAll('[data-reflection]').forEach(b=>b.onclick=()=>{if(b.dataset.reflection==='yes'){recordMission({type:'reflect',correct:true});showWalkJournal();}else $('#reflection-feedback').textContent='再想一想：畫面選了一種家屋類型。不同財力與街區的家庭，生活空間會完全一樣嗎？';});
+}
+function showWalkJournal() {
+  if(!state.mission.complete)return;
+  openModal(`<h2 id="modal-title">山城的一段路<span>你的閱讀札記</span></h2><p>你已聆聽居民、觀察陶器與石器，並向住戶追問家屋的差異。</p><div class="source-note"><strong>這趟旅程留下的三個觀察</strong><p>山城的高低影響行走；器皿提供生活與材質線索；一棟院落不能代表所有家庭。</p></div><p>場景與角色是教學復原。這段路不是精確的第一世紀地圖，對白與中文配音也不是古人留下的逐字記錄。</p><a class="source-item" href="https://www.biblegateway.com/passage/?search=John%2018%3A1%3BLuke%2019%3A29-37&version=CUV" target="_blank" rel="noopener noreferrer">經文：城、谷地與山坡 ${icon('external',13)}</a><a class="source-item" href="https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period" target="_blank" rel="noopener noreferrer">研究：上城住居與石製器皿 ${icon('external',13)}</a><p class="modal-small">完成紀錄只保存在目前瀏覽器。可以關閉札記，繼續自由探索。</p>`);
 }
 
 function openModal(content) {
+  modalCleanup?.();modalCleanup=null;sceneAudio.stopVoice();world?.blockWalk(true);
   restoreFocus = document.activeElement; $('#modal-content').innerHTML = content;
   if (!$('#modal').open) $('#modal').showModal(); $('#modal-close').focus();
 }
@@ -214,7 +306,7 @@ function showHelp() {
 
 $('#scene-menu').onclick = () => setAtlasOpen(!$('#atlas').classList.contains('open'));
 document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => {
-  if(state.actor)endConversation();world?.sceneView(b.dataset.view);
+  if(state.walking)exitWalk(false);if(state.actor)endConversation();world?.sceneView(b.dataset.view);
   document.querySelectorAll('[data-view]').forEach(other=>other.setAttribute('aria-pressed',other===b));
 });
 $('#theme-list').onclick = e => { const b = e.target.closest('[data-theme]'); if (b) selectTheme(b.dataset.theme); };
@@ -236,11 +328,12 @@ $('#explore-nav').onclick = () => { resetFilters(); closeAtlas(); };
 $('#menu').onclick = () => setAtlasOpen(!$('#atlas').classList.contains('open'));
 $('#about-nav').onclick = showAbout; $('#help').onclick = showHelp; $('#sources-button').onclick = showSources; $('#map-sources').onclick = showSources;
 $('#modal-close').onclick = closeModal; $('#modal').addEventListener('click', e => { if (e.target === $('#modal')) { const r = $('#modal').getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeModal(); } });
+$('#modal').addEventListener('close',()=>{modalCleanup?.();modalCleanup=null;world?.blockWalk(!!state.actor);restoreFocus?.focus?.();});
 $('#modal').addEventListener('cancel', () => restoreFocus?.focus?.());
 document.addEventListener('keydown', e => {
   const typing = /INPUT|SELECT|TEXTAREA/.test(document.activeElement?.tagName);
   if (e.key === '/' && !typing && !$('#modal').open) { e.preventDefault(); setAtlasOpen(true); $('#search').focus(); }
-  if (e.key === 'Escape' && !$('#modal').open) { if ($('#atlas').classList.contains('open')) closeAtlas(); else if(state.actor)endConversation(); else if (state.stop) { state.stop = null; state.tour = false; renderDetail(); world?.select(state.selected); } else if (state.selected) overview(); }
+  if (e.key === 'Escape' && !$('#modal').open) { if ($('#atlas').classList.contains('open')) closeAtlas(); else if(state.actor)endConversation(); else if(state.walking)exitWalk(); else if (state.stop) { state.stop = null; state.tour = false; renderDetail(); world?.select(state.selected); } else if (state.selected) overview(); }
 });
 window.addEventListener('hashchange', () => { const id = new URLSearchParams(location.hash.slice(1)).get('island'); if (themeById.has(id)) selectTheme(id, { updateHash: false }); else overview(); });
 
@@ -254,7 +347,7 @@ function worldError() {
 // Content is available before WebGL loads, so a GPU/import failure never removes the reading experience.
 import('./world.js').then(({ createWorld }) => {
   world = createWorld($('#stage'), {
-    onSelect: selectTheme, onStop: selectStop, onActor: selectActor, icon,
+    onSelect: selectTheme, onStop: selectStop, onActor: selectActor, onInspect:openVessel,onWalkUpdate:updateWalkHUD,onWalkMessage:walkFeedback,audio:sceneAudio,icon,
     onReady() { state.worldReady = true; $('#loading').classList.add('loaded'); setTimeout(() => $('#loading')?.remove(), 550); }, onError: worldError,
   });
   if (!world) return;
