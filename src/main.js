@@ -2,6 +2,7 @@ import './style.css';
 import { themes, themeById, eras, sources, evidenceLabels, filterThemes, scriptureUrl } from './content.js';
 import { readProgress, writeProgress, markStop, getTourStep } from './progress.js';
 import { icon } from './icons.js';
+import { historicalScenes } from './historical-data.js';
 
 let storage; try { storage = window.localStorage; } catch { storage = null; }
 const state = { selected: null, stop: null, query: '', era: 'all', testament: 'all', mode: 'general',
@@ -31,9 +32,9 @@ $('#app').innerHTML = `
     </aside>
     <section class="map-layout" id="map-layout" aria-label="互動主題群島">
       <div id="stage"><div class="loading" id="loading"><span class="loading-book">${icon('book', 34)}</span><p>讓經文中的世界，慢慢浮現。</p><small>正在建立主題群島…</small></div></div>
-      <div class="map-topbar"><div class="map-view-tabs"><button class="active" id="overview">${icon('compass', 16)}群島全景</button><button id="timeline-toggle" aria-pressed="false">${icon('clock', 16)}時代脈絡</button></div><span class="map-note">主題位置示意 · 非實際地圖</span></div>
+      <div class="map-topbar"><button id="scene-menu" class="scene-menu" aria-label="開啟主題清單" aria-expanded="false" hidden>${icon('menu',16)} 主題清單</button><div class="map-view-tabs"><button class="active" id="overview">${icon('compass', 16)}群島全景</button><button id="timeline-toggle" aria-pressed="false">${icon('clock', 16)}時代脈絡</button></div><span class="map-note">主題位置示意 · 非實際地圖</span></div>
       <div class="map-intro" id="map-intro"><div class="eyebrow"><span></span> WALK INTO THE WORD</div><h2>跨越時空，<br>走進經文<span>。</span></h2><p>從曠野的一座帳幕，<br>到地中海的一葉帆船。<br>讓聖經的故事，在眼前展開。</p><button class="text-button" id="start-exploring">從摩西會幕出發 ${icon('arrow', 19)}</button></div>
-      <div class="selected-breadcrumb" id="breadcrumb" hidden><button id="back-overview">群島全景</button><span>/</span><strong></strong></div>
+      <div id="scene-caption" class="scene-caption" hidden></div><div id="scene-views" class="scene-views" role="group" aria-label="歷史場景視角" hidden><button data-view="overview" aria-pressed="true">場景全景</button><button data-view="human" aria-pressed="false">人物尺度</button><button data-view="plan" aria-pressed="false">俯視配置</button></div><div class="selected-breadcrumb" id="breadcrumb" hidden><button id="back-overview">群島全景</button><span>/</span><strong></strong></div>
       <div class="world-tools" role="toolbar" aria-label="場景控制"><button id="time-button" aria-label="切換夜晚" title="切換夜晚">${icon('sun')}</button><span></span><button id="labels-button" aria-label="顯示島嶼名稱" aria-pressed="true" title="島嶼名稱">${icon('eye')}</button><button id="connections-button" aria-label="顯示主題連線" aria-pressed="true" title="主題連線">${icon('route')}</button><button id="pause-button" aria-label="暫停環境動畫" aria-pressed="${state.paused}" title="暫停動畫">${icon(state.paused ? 'play' : 'pause')}</button><span></span><button id="top-button" aria-label="切換鳥瞰視角" title="鳥瞰視角">${icon('layers')}</button></div>
       <div class="zoom-tools"><button id="zoom-in" aria-label="放大">${icon('plus')}</button><button id="zoom-out" aria-label="縮小">${icon('minus')}</button><span></span><button id="home-button" aria-label="回到群島全景">${icon('home', 18)}</button></div>
       <div class="compass-rose" aria-hidden="true"><span>N</span><svg viewBox="0 0 50 50"><path d="m25 5 6 20-6 20-6-20Z" fill="currentColor"/><path d="m5 25 20-6 20 6-20 6Z" fill="currentColor" opacity=".4"/></svg><small>EXPLORE</small></div>
@@ -51,16 +52,16 @@ function persist() { writeProgress(storage, state.progress); updateProgressCount
 function updateProgressCount() { $('#progress-count').textContent = state.progress.visited.length; }
 function toast(text) { $('#toast').textContent = text; $('#toast').classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('#toast').classList.remove('show'), 3000); }
 const mobileLayout = matchMedia('(max-width: 760px)');
-function setAtlasOpen(open) { $('#atlas').classList.toggle('open', open); $('#menu').setAttribute('aria-expanded', open); $('#atlas').inert = mobileLayout.matches && !open; }
+function setAtlasOpen(open) { $('#scene-menu')?.setAttribute('aria-expanded',open); $('#atlas').classList.toggle('open', open); $('#menu').setAttribute('aria-expanded', open); $('#atlas').inert = (mobileLayout.matches || !!historicalScenes[state.selected]) && !open; }
 function closeAtlas() { setAtlasOpen(false); }
-mobileLayout.addEventListener('change', () => { $('#atlas').inert = mobileLayout.matches && !$('#atlas').classList.contains('open'); });
+mobileLayout.addEventListener('change', () => { $('#atlas').inert = (mobileLayout.matches || !!historicalScenes[state.selected]) && !$('#atlas').classList.contains('open'); });
 closeAtlas();
 function listThemes() {
   let list = filterThemes(state); if (state.visitedOnly) list = list.filter(t => state.progress.visited.includes(t.id) || state.progress.saved.includes(t.id));
   $('#result-count').textContent = `${list.length} 座島嶼`; $('#list-caption').textContent = state.visitedOnly ? '走過與收藏的島嶼' : state.query ? '搜尋結果' : state.era === 'all' ? '主題群島' : eras.find(e => e.id === state.era).name;
   $('#theme-list').innerHTML = list.length ? list.map(t => {
     const done = t.stops.filter(s => state.progress.stops.includes(`${t.id}/${s.id}`)).length;
-    return `<button class="theme-row ${state.selected === t.id ? 'selected' : ''}" data-theme="${t.id}" aria-pressed="${state.selected === t.id}"><span class="theme-number">${number(t.number)}</span><span class="theme-row-copy"><strong>${t.name}</strong><small>${t.subtitle}</small></span><span class="theme-row-end">${done ? `<small>${done}/${t.stops.length}</small>` : `<i class="testament-dot ${t.testament}"></i>`}${icon('chevron', 13)}</span></button>`;
+    return `<button class="theme-row ${state.selected === t.id ? 'selected' : ''}" data-theme="${t.id}" aria-pressed="${state.selected === t.id}"><span class="theme-number">${number(t.number)}</span><span class="theme-row-copy"><strong>${t.name}</strong><small>${t.subtitle}</small></span><span class="theme-row-end">${historicalScenes[t.id] ? '<span class="preview-tag">新版</span>' : ''}${done ? `<small>${done}/${t.stops.length}</small>` : `<i class="testament-dot ${t.testament}"></i>`}${icon('chevron', 13)}</span></button>`;
   }).join('') : `<div class="empty-state">${icon(state.visitedOnly ? 'footprints' : 'search', 30)}<strong>${state.visitedOnly ? '每段旅程，都從第一步開始。' : '還沒有找到這座島。'}</strong><p>${state.visitedOnly ? '探索一座島或收藏主題，就會在這裡留下足跡。' : '試試「會幕」「漁船」或「出埃及記」。'}</p><button id="reset-filters">${state.visitedOnly ? '開始探索' : '清除篩選'}</button></div>`;
   $('#reset-filters')?.addEventListener('click', resetFilters);
   world?.setVisible(list.map(t => t.id));
@@ -80,6 +81,16 @@ function selectTheme(id, { updateHash = true } = {}) {
   const t = themeById.get(id); if (!t) return;
   if (!filterThemes(state).some(x => x.id === id) || state.visitedOnly) resetFilters();
   state.selected = id; state.stop = null; state.tour = false;
+  const sceneInfo = historicalScenes[id];
+  document.body.classList.toggle('historical-view', !!sceneInfo);
+  $('#scene-caption').hidden = !sceneInfo; $('#scene-views').hidden = !sceneInfo; $('#scene-menu').hidden = !sceneInfo;
+  $('.map-note').textContent = sceneInfo ? '五座場景改版 · 復原預覽' : '主題位置示意 · 非實際地圖';
+  if (sceneInfo) $('#scene-caption').innerHTML = `<span>HISTORICAL SCENE / ${number(t.number)}</span><strong>${sceneInfo.edition}</strong><small>${sceneInfo.category}</small>`;
+  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.view==='overview'));
+  $('#labels-button').setAttribute('aria-label', sceneInfo ? '顯示探索點名稱' : '顯示島嶼名稱');
+  $('#connections-button').hidden = !!sceneInfo; $('#pause-button').hidden = !!sceneInfo;
+  $('#labels-button').title = sceneInfo ? '探索點名稱' : '島嶼名稱';
+  $('.compass-rose').hidden = !!sceneInfo;
   state.progress.visited = [...new Set([...state.progress.visited, id])]; persist();
   $('#map-layout').classList.add('has-selection'); $('#map-intro').hidden = true; $('#journey-card').hidden = true;
   $('#breadcrumb').hidden = false; $('#breadcrumb strong').textContent = t.name;
@@ -90,14 +101,19 @@ function selectTheme(id, { updateHash = true } = {}) {
 }
 function overview() {
   state.selected = null; state.stop = null; state.tour = false;
+  document.body.classList.remove('historical-view'); $('#scene-caption').hidden = true; $('#scene-views').hidden = true; $('#scene-menu').hidden = true;
+  $('#connections-button').hidden = false; $('#pause-button').hidden = false;
+  $('#labels-button').setAttribute('aria-label','顯示島嶼名稱'); $('#labels-button').title='島嶼名稱'; $('.compass-rose').hidden = false; $('.map-note').textContent = '主題位置示意 · 非實際地圖';
   $('#map-layout').classList.remove('has-selection'); $('#map-intro').hidden = false; $('#journey-card').hidden = false; $('#breadcrumb').hidden = true; $('#detail').hidden = true;
   resetFilters(); world?.home(); history.replaceState(null, '', location.pathname + location.search); document.title = '讀聖經順起來 — Bible Island';
 }
 function selectStop(id, { focus = true } = {}) {
   const t = themeById.get(state.selected), s = t?.stops.find(s => s.id === id); if (!s) return;
+  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',false));
   state.stop = id; state.progress = markStop(state.progress, t.id, id); persist(); renderDetail(); listThemes();
   world?.focusStop(id);
-  if (['tabernacle', 'solomon', 'herod'].includes(t.id) && ['lampstand', 'incense', 'ark', 'sanctuary', 'temple'].includes(id) && !state.cutaway) {
+  const interior = ['tabernacle', 'solomon', 'herod'].includes(t.id) && ['lampstand', 'incense', 'ark', 'sanctuary', 'temple'].includes(id) || t.id==='exodus' && id==='passover' || t.id==='jerusalem' && id==='house';
+  if (interior && !state.cutaway) {
     state.cutaway = true; world?.setCutaway(true); updateCutawayButton();
   }
   if (focus) $('#stop-heading')?.focus({ preventScroll: true });
@@ -110,18 +126,20 @@ function renderDetail() {
   const t = themeById.get(state.selected); if (!t) return;
   const current = t.stops.find(s => s.id === state.stop), saved = state.progress.saved.includes(t.id);
   const done = t.stops.filter(s => state.progress.stops.includes(`${t.id}/${s.id}`)).length;
-  const canCut = ['tabernacle', 'solomon', 'herod'].includes(t.id);
+  const canCut = ['tabernacle', 'solomon', 'herod', 'exodus', 'jerusalem'].includes(t.id);
+  const sceneInfo = historicalScenes[t.id];
   const index = current ? t.stops.indexOf(current) : -1;
   $('#detail').innerHTML = `
     <div class="detail-sticky"><div class="detail-top"><span class="eyebrow">ISLAND ${number(t.number)} <i>/</i> ${oldNew(t)}</span><div><button class="icon-button ${saved ? 'saved' : ''}" id="save-theme" aria-label="${saved ? '取消收藏' : '收藏主題'}" aria-pressed="${saved}">${icon('bookmark', 18)}</button><button class="icon-button" id="close-detail" aria-label="返回群島全景">${icon('close', 20)}</button></div></div>
     <p class="detail-english">${t.english}</p><h2>${t.name}</h2><p class="detail-subtitle">${t.subtitle}</p><div class="detail-meta"><span>${icon('clock', 13)}${t.period}</span><span>${icon('compass', 13)}${t.stops.length} 個探索點</span></div></div>
-    <div class="detail-scroll"><p class="detail-intro">${t.intro}</p><a class="scripture-link" href="${scriptureUrl(t.book)}" target="_blank" rel="noopener noreferrer">${icon('book', 17)}<span>${t.reference}<small>開啟經文，與場景一起閱讀</small></span>${icon('external', 14)}</a>
+    <div class="detail-scroll">${sceneInfo ? `<section class="reconstruction-card"><span>五座場景 · 復原預覽</span><strong>${sceneInfo.scale}</strong><button id="scene-evidence">查看尺度與復原取捨 ${icon('arrow',13)}</button></section>` : ''}<p class="detail-intro">${t.intro}</p><a class="scripture-link" href="${scriptureUrl(t.book)}" target="_blank" rel="noopener noreferrer">${icon('book', 17)}<span>${t.reference}<small>開啟經文，與場景一起閱讀</small></span>${icon('external', 14)}</a>
     <div class="detail-actions"><button class="primary-button" id="start-tour">${icon(state.tour ? 'compass' : 'play', 15)}${state.tour ? '重新開始導覽' : '跟著導覽走一趟'}<small>約 ${t.stops.length} 分鐘</small></button>${canCut ? '<button class="secondary-button" id="cutaway-button" aria-pressed="false"></button>' : ''}</div>
     ${current ? `<section class="stop-card" aria-labelledby="stop-heading"><div class="stop-card-top"><span>${state.tour ? '跟著導覽' : '正在探索'} ${number(index + 1)} / ${number(t.stops.length)}</span><button id="close-stop" aria-label="收合探索點">${icon('close', 15)}</button></div><h3 id="stop-heading" tabindex="-1">${icon(current.icon, 21)}${current.name}</h3><p class="stop-question">${current.question}</p><p>${state.mode === 'child' ? current.child : current.summary}</p>${state.mode === 'study' ? `<div class="study-note"><span>進一步觀察</span><p>${current.study}</p></div>` : ''}<a href="${scriptureUrl(current.reference)}" target="_blank" rel="noopener noreferrer" class="stop-reference">${icon('book', 14)}${current.reference}${icon('external', 12)}</a><button class="evidence-chip" id="stop-evidence">${icon('info', 12)}${evidenceLabels[current.evidence]}</button><div class="tour-navigation"><button id="previous-stop" ${index === 0 ? 'disabled' : ''}>上一站</button><span>${index + 1} / ${t.stops.length}</span><button id="next-stop">${index === t.stops.length - 1 ? '完成探索' : '下一站'}${icon(index === t.stops.length - 1 ? 'check' : 'arrow', 15)}</button></div></section>` : `<div class="guiding-question"><span>帶著一個問題出發</span><p>${t.question}</p></div>`}
     <div class="section-heading"><h3>這座島的探索點</h3><span>${done} / ${t.stops.length}</span></div><div class="stop-progress"><i style="width:${done / t.stops.length * 100}%"></i></div><div class="stop-list">${t.stops.map((s,i) => `<button data-stop="${s.id}" class="stop-row ${s.id === state.stop ? 'active' : ''}"><span>${state.progress.stops.includes(`${t.id}/${s.id}`) ? icon('check', 13) : number(i+1)}</span><strong>${s.name}<small>${s.reference}</small></strong>${icon('chevron', 14)}</button>`).join('')}</div>
     <div class="section-heading related-heading"><h3>從這裡，繼續閱讀</h3>${icon('route', 16)}</div><div class="related-list">${t.connections.map(c => { const other = themeById.get(c.id); return `<button class="related-row" data-related="${c.id}"><span class="related-number">${number(other.number)}</span><span><small>${c.type}</small><strong>${other.name}</strong></span>${icon('arrow', 16)}</button>`; }).join('')}</div>
     <button class="context-button" id="context-button">${icon('info', 15)}這個場景如何復原？${icon('chevron', 13)}</button><p class="detail-footnote">觀察場景 · 回到經文 · 連起故事</p></div>`;
   updateCutawayButton();
+  $('#scene-evidence')?.addEventListener('click',()=>openContext(t));
   $('#save-theme').onclick = () => { state.progress.saved = saved ? state.progress.saved.filter(id => id !== t.id) : [...state.progress.saved, t.id]; persist(); renderDetail(); toast(saved ? '已取消收藏' : `已收藏「${t.name}」`); };
   $('#close-detail').onclick = overview;
   $('#start-tour').onclick = () => { state.tour = true; selectStop(t.stops[0].id); };
@@ -148,7 +166,7 @@ function openModal(content) {
 }
 function closeModal() { $('#modal').close(); restoreFocus?.focus?.(); }
 function openContext(t, stop) {
-  openModal(`<h2 id="modal-title">${stop ? stop.name : t.name}<span>經文與復原說明</span></h2><p>${t.context}</p>${stop ? `<div class="source-note"><strong>${evidenceLabels[stop.evidence]} · ${stop.reference}</strong><p>${stop.study}</p></div>` : ''}<div class="evidence-legend">${Object.entries(evidenceLabels).map(([key,label]) => `<span class="evidence-${key}">${label}</span>`).join('')}</div><p class="modal-small">經文描述、考古參考、視覺復原與詮釋是不同層次的依據。模型用於協助閱讀，重要細節仍應對照經文與研究。</p><h3>延伸查閱</h3>${sources.map(s => `<a class="source-item" href="${s.url}" target="_blank" rel="noopener noreferrer"><strong>${s.title}${icon('external', 13)}</strong><p>${s.note}</p></a>`).join('')}`);
+  openModal(`<h2 id="modal-title">${stop ? stop.name : t.name}<span>經文與復原說明</span></h2><p>${historicalScenes[t.id] ? historicalScenes[t.id].category+'。這是五座重點場景的復原預覽，尺度與資料依據如下。' : t.context}</p>${historicalScenes[t.id] ? `<section class="historical-evidence"><h3>這一版的尺度依據</h3><ul>${historicalScenes[t.id].facts.map(f=>`<li>${f}</li>`).join('')}</ul><div class="source-note"><strong>復原取捨與尚未確定的部分</strong><p>${historicalScenes[t.id].limits}</p></div></section>` : ''}${stop ? `<div class="source-note"><strong>${evidenceLabels[stop.evidence]} · ${stop.reference}</strong><p>${stop.study}</p></div>` : ''}<div class="evidence-legend">${Object.entries(evidenceLabels).map(([key,label]) => `<span class="evidence-${key}">${label}</span>`).join('')}</div><p class="modal-small">經文描述、考古參考、視覺復原與詮釋是不同層次的依據。模型用於協助閱讀，重要細節仍應對照經文與研究。</p><h3>延伸查閱</h3>${(historicalScenes[t.id]?.sources || sources).map(s => `<a class="source-item" href="${s.url}" target="_blank" rel="noopener noreferrer"><strong>${s.title}${icon('external', 13)}</strong><p>${s.note}</p></a>`).join('')}`);
 }
 function showSources() { openContext(themeById.get(state.selected || 'tabernacle')); }
 function showAbout() {
@@ -158,6 +176,11 @@ function showHelp() {
   openModal(`<h2 id="modal-title">準備好，出發吧。<span>讓我們一起走進經文</span></h2><ol class="help-steps"><li><span>01</span><div><strong>選一座主題島</strong><p>點地圖上的名稱或左側清單。也可以搜尋器物，例如「燈臺」。</p></div></li><li><span>02</span><div><strong>走近，看看細節</strong><p>拖曳旋轉、滾輪或雙指縮放。點數字探索點，鏡頭會帶你走近。建築可切換剖面。</p></div></li><li><span>03</span><div><strong>帶著問題回到經文</strong><p>使用導覽逐站探索，點經文連結閱讀全文，再從相關主題走向下一座島。</p></div></li></ol><div class="source-note"><strong>鍵盤也可以探索</strong><p>Tab 選擇控制項，Enter 啟動；按 / 搜尋、Esc 收合視窗或回到全景。在 3D 畫面聚焦時，左右方向鍵可旋轉。</p></div><p class="modal-small">不支援 3D 的裝置仍可透過清單閱讀全部主題。夜晚模式只改變場景光線，不代表某段事件發生的實際時間。</p>`);
 }
 
+$('#scene-menu').onclick = () => setAtlasOpen(!$('#atlas').classList.contains('open'));
+document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => {
+  world?.sceneView(b.dataset.view);
+  document.querySelectorAll('[data-view]').forEach(other=>other.setAttribute('aria-pressed',other===b));
+});
 $('#theme-list').onclick = e => { const b = e.target.closest('[data-theme]'); if (b) selectTheme(b.dataset.theme); };
 $('#search').oninput = e => { state.query = e.target.value; listThemes(); };
 document.querySelectorAll('[data-testament]').forEach(b => b.onclick = () => { state.testament = b.dataset.testament; updateFilters(); listThemes(); });

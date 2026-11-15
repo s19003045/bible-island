@@ -62,3 +62,9 @@ Sites 專案識別與靜態產物設定保存在 `.openai/hosting.json`；`.site
 - [The Israel Museum — Collection Galleries / Jerusalem Model](https://www.imj.org.il/ar/node/104)
 - [Bible Gateway — Exodus route](https://www.biblegateway.com/learn/topics-themes/commentaries/exodus-route-from-egypt/)
 - 各探索點列示的聖經書卷與章節。
+
+## 五座歷史場景試閱
+
+會幕、所羅門聖殿、新約聖殿、出埃及與耶路撒冷新增公尺尺度的詳細場景與三種視角。其餘主題保留原版。復原依據、取捨與驗證記錄見 [試閱說明](docs/review/HISTORICAL-FIVE.md)。
+
+執行 `npm run review:bundle` 可產生不依賴本機伺服器的單檔互動試閱版；預設輸出為 `.qa/five-islands-review.html`。

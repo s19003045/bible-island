@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { themes, themeById } from './content.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { createHistoricalScene } from './historical-scenes.js';
+import { historicalScenes } from './historical-data.js';
 
 const TOP = 0.62;
 const C = { sand: '#d4bd93', stone: '#ddcfac', white: '#f1e6cb', dark: '#706451', wood: '#80634b',
@@ -291,7 +294,8 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
   catch (error) { onError(error); return null; }
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#94b2a9'); scene.fog = new THREE.FogExp2('#94b2a9', .0027);
-  const camera = new THREE.PerspectiveCamera(39, 1, .1, 450);
+  const camera = new THREE.PerspectiveCamera(39, 1, .1, 1800);
+  const historicalCache = new Map(); let activeHistorical = null, environment = null, nightMode = false, activeView = 'overview';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 800 ? 1.35 : 1.75));
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -347,9 +351,10 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
   let visibleIds = new Set(themes.map(t => t.id)), fly = null, raf, elapsed = 0, last = 0, dirty = true, hidden = false;
   let frameSum = 0, frameCount = 0, lastAdapt = 0, pixelRatio = renderer.getPixelRatio();
   const v = new THREE.Vector3(), ray = new THREE.Raycaster(), pointer = new THREE.Vector2(); let down = null;
-  function focus(target, offset, duration = 1050) {
+  function focus(target, offset, duration = 1050, preserveHeight = false) {
     resize();
     const framedOffset = offset.clone().multiplyScalar(Math.max(1, .95 / camera.aspect));
+    if (preserveHeight) framedOffset.y = offset.y;
     fly = { from: camera.position.clone(), to: target.clone().add(framedOffset), old: controls.target.clone(), target: target.clone(), start: performance.now(), duration: reduced.matches ? 0 : duration };
     dirty = true;
   }
@@ -361,16 +366,37 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
     hotspotLayer.replaceChildren(); hotspots = []; clearConnections();
     for (const [id, roof] of roofs) roof.visible = !(cutaway && selected?.id === id);
     labels.forEach(l => l.el.classList.toggle('selected', l.id === id));
-    selectedRing.visible = !!selected;
+    activeHistorical = null; activeView = 'overview';
+    if (historicalScenes[id]) {
+      if (!environment) {
+        const pmrem = new THREE.PMREMGenerator(renderer), room = new RoomEnvironment();
+        environment = pmrem.fromScene(room, .04).texture; room.dispose(); pmrem.dispose();
+      }
+      if (!historicalCache.has(id)) historicalCache.set(id, createHistoricalScene(id, environment));
+      activeHistorical = historicalCache.get(id); activeHistorical.roof.visible = !cutaway; activeHistorical.setTime(nightMode);
+    }
+    camera.fov = activeHistorical ? 48 : 39; camera.updateProjectionMatrix();
+    controls.minDistance = activeHistorical ? 2 : 4; controls.maxDistance = activeHistorical ? activeHistorical.config.extent * 2 : 220;
+    controls.maxPolarAngle = activeHistorical ? Math.PI / 2 - .018 : Math.PI / 2.25;
+    renderer.toneMappingExposure = activeHistorical ? 1.02 : 1.35;
+    renderer.shadowMap.needsUpdate = true;
+    labelsLayer.hidden = !!activeHistorical;
+    selectedRing.visible = !!selected && !activeHistorical;
     if (!selected) { focus(new THREE.Vector3(5, 0, 6), new THREE.Vector3(48, 63, 77)); return; }
     const [x,z] = selected.position;
     selectedRing.position.set(x, TOP + .02, z); selectedRing.scale.setScalar(selected.radius + .45);
-    focus(new THREE.Vector3(x, .3, z), new THREE.Vector3(7.5, 10, 12));
+    if (activeHistorical) {
+      const c = activeHistorical.config;
+      // Change scenes immediately, then animate only within the same metre-scale coordinate space.
+      controls.target.fromArray(c.target); camera.position.copy(controls.target).add(new THREE.Vector3(...c.overview));
+      focus(new THREE.Vector3(...c.target), new THREE.Vector3(...c.overview), 450);
+    } else focus(new THREE.Vector3(x, .3, z), new THREE.Vector3(7.5, 10, 12));
     selected.stops.forEach((s, index) => {
       const el = document.createElement('button'); el.className = 'hotspot'; el.innerHTML = `<span>${index + 1}</span><b>${s.name}</b>`;
       el.setAttribute('aria-label', `探索${s.name}`); el.onclick = () => onStop(s.id); hotspotLayer.appendChild(el);
-      hotspots.push({ el, id: s.id, pos: new THREE.Vector3(x + s.position[0], TOP + s.position[1], z + s.position[2]) });
+      hotspots.push({ el, id: s.id, pos: activeHistorical ? new THREE.Vector3(...activeHistorical.config.stops[s.id]) : new THREE.Vector3(x + s.position[0], TOP + s.position[1], z + s.position[2]) });
     });
+    if (activeHistorical) { dirty = true; return; }
     for (const connection of selected.connections) {
       const other = themeById.get(connection.id); if (!other) continue;
       const start = new THREE.Vector3(x, .7, z), end = new THREE.Vector3(other.position[0], .7, other.position[1]);
@@ -383,16 +409,19 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
   }
   function focusStop(id) {
     if (!selected) return; const s = selected.stops.find(s => s.id === id); if (!s) return;
-    selectedStop = id; const [x,z] = selected.position;
+    selectedStop = id; activeView = 'stop'; if(activeHistorical) controls.maxPolarAngle = Math.PI/2-.018; const [x,z] = selected.position;
     hotspots.forEach(h => h.el.classList.toggle('active', h.id === id));
+    if (activeHistorical) {
+      focus(new THREE.Vector3(...activeHistorical.config.stops[id]), new THREE.Vector3(...activeHistorical.config.close), 800); return;
+    }
     focus(new THREE.Vector3(x + s.position[0], .6 + s.position[1] * .35, z + s.position[2]), new THREE.Vector3(4.6, 5.4, 6.8), 800);
   }
   function project(item, width, height, isHotspot = false) {
     v.copy(item.pos).project(camera);
     const inView = v.z < 1 && v.z > -1 && Math.abs(v.x) < 1.1 && Math.abs(v.y) < 1.1;
     const distance = camera.position.distanceTo(item.pos);
-    const allowed = isHotspot || (showLabels && visibleIds.has(item.id) && (themeById.get(item.id).number <= 8 || distance < 45 || !selected));
-    item.el.hidden = !inView || !allowed || (isHotspot && distance > 28 * Math.max(1, .95 / camera.aspect));
+    const allowed = (isHotspot && (!activeHistorical || showLabels)) || (!isHotspot && showLabels && visibleIds.has(item.id) && (themeById.get(item.id).number <= 8 || distance < 45 || !selected));
+    item.el.hidden = !inView || !allowed || (isHotspot && distance > (activeHistorical ? activeHistorical.config.extent * 3 : 28) * Math.max(1, .95 / camera.aspect));
     if (!item.el.hidden) {
       item.el.style.transform = `translate(-50%, -50%) translate(${(v.x * .5 + .5) * width}px,${(-v.y * .5 + .5) * height}px)`;
       item.el.style.zIndex = String(item.id === selected?.id ? 2000 : Math.max(1, Math.round(1000 - distance)));
@@ -419,6 +448,7 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
     const oldFactor = Math.max(1, .95 / camera.aspect), nextFactor = Math.max(1, .95 / (width / height));
     if (oldFactor !== nextFactor && !fly) {
       const off = camera.position.clone().sub(controls.target).multiplyScalar(nextFactor / oldFactor);
+      if (activeHistorical && activeView === 'human') off.y = camera.position.y - controls.target.y;
       camera.position.copy(controls.target).add(off);
     }
     renderer.setSize(width, height, false); camera.aspect = width / height; camera.updateProjectionMatrix(); dirty = true;
@@ -427,6 +457,7 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
   const onDown = e => { down = { x: e.clientX, y: e.clientY }; fly = null; };
   const onUp = e => {
     if (!down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) { down = null; return; } down = null;
+    if (activeHistorical) return;
     const rect = renderer.domElement.getBoundingClientRect(); pointer.set((e.clientX - rect.left) / rect.width * 2 - 1, -(e.clientY - rect.top) / rect.height * 2 + 1);
     ray.setFromCamera(pointer, camera);
     const hit = ray.intersectObjects([...roots.values()], true).find(h => {
@@ -452,12 +483,13 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
   function animate(now) {
     raf = requestAnimationFrame(animate); if (hidden) return;
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
-    if (!paused) { elapsed += dt; waterMaterial.uniforms.uTime.value = elapsed; dirty = true; boats.forEach((b,i) => { b.rotation.z = Math.sin(elapsed * .8 + i) * .025; b.rotation.x = Math.cos(elapsed * .6 + i) * .02; }); }
+    if (!paused && !activeHistorical) { elapsed += dt; waterMaterial.uniforms.uTime.value = elapsed; dirty = true; boats.forEach((b,i) => { b.rotation.z = Math.sin(elapsed * .8 + i) * .025; b.rotation.x = Math.cos(elapsed * .6 + i) * .02; }); }
     if (fly) {
       const t = fly.duration ? Math.min(1, (now - fly.start) / fly.duration) : 1, ease = 1 - (1 - t) ** 3;
       camera.position.lerpVectors(fly.from, fly.to, ease); controls.target.lerpVectors(fly.old, fly.target, ease); if (t === 1) fly = null; dirty = true;
     }
     controls.update();
+    if(activeHistorical) { const floor=activeHistorical.groundHeight(camera.position.x,camera.position.z)+.3; if(camera.position.y<floor) {camera.position.y=floor;dirty=true;} }
     // Lower DPR only after sustained slow frames. No promise of a particular frame rate.
     if (dt > 0 && now > 6000) { frameSum += dt * 1000; frameCount++; }
     if (now - lastAdapt > 3500 && frameCount > 30) {
@@ -465,29 +497,37 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
       frameSum = 0; frameCount = 0; lastAdapt = now;
     }
     if (dirty) {
-      renderer.render(scene, camera);
+      renderer.render(activeHistorical?.scene || scene, camera);
       const w = container.clientWidth, h = container.clientHeight;
-      labels.forEach(l => project(l, w, h)); hotspots.forEach(l => project(l, w, h, true));
+      if (!activeHistorical) labels.forEach(l => project(l, w, h)); hotspots.forEach(l => project(l, w, h, true));
       avoidLabelOverlap(labels, selected?.id); avoidLabelOverlap(hotspots, selectedStop); dirty = false;
     }
   }
   raf = requestAnimationFrame(animate); onReady();
   return {
     select, focusStop,
+    sceneView(view) {
+      if (!activeHistorical) return; const c = activeHistorical.config;
+      activeView = view; controls.maxPolarAngle = view==='human' ? Math.PI*.6 : Math.PI/2-.018; selectedStop = null; hotspots.forEach(h => h.el.classList.remove('active'));
+      if (view === 'human') focus(new THREE.Vector3(...c.human.target), new THREE.Vector3(...c.human.offset), 850, true);
+      else if (view === 'plan') focus(new THREE.Vector3(...c.target), new THREE.Vector3(.1,c.plan,.1),850);
+      else focus(new THREE.Vector3(...c.target), new THREE.Vector3(...c.overview),850);
+    },
     home() { select(null); },
-    setCutaway(value) { cutaway = value; for (const [id, roof] of roofs) roof.visible = !(cutaway && selected?.id === id); renderer.shadowMap.needsUpdate = true; dirty = true; },
+    setCutaway(value) { cutaway = value; if (activeHistorical) activeHistorical.roof.visible = !value; for (const [id, roof] of roofs) roof.visible = !(cutaway && selected?.id === id); renderer.shadowMap.needsUpdate = true; dirty = true; },
     setLabels(value) { showLabels = value; dirty = true; },
     setConnections(value) { showConnections = value; connectionGroup.visible = value; dirty = true; },
     setPaused(value) { paused = value; dirty = true; },
     setTime(night) {
+      nightMode = night; activeHistorical?.setTime(night);
       ambient.intensity = night ? 1.35 : 2.6; sun.intensity = night ? 1.2 : 4;
       sun.color.set(night ? '#a3b9e2' : '#fff0cf'); scene.background.set(night ? '#3c5d64' : '#94b2a9'); scene.fog.color.copy(scene.background);
       waterMaterial.uniforms.uDark.value = night ? 1 : 0; renderer.shadowMap.needsUpdate = true; dirty = true;
     },
     setVisible(ids) { visibleIds = new Set(ids); for (const [id, root] of roots) root.visible = visibleIds.has(id); boats.forEach(b => { const id = b.children.find(c => c.userData.themeId)?.userData.themeId; b.visible = !id || visibleIds.has(id); }); dirty = true; },
     zoom(amount) { fly = null; const off = camera.position.clone().sub(controls.target); const distance = THREE.MathUtils.clamp(off.length() * amount, controls.minDistance, controls.maxDistance); camera.position.copy(controls.target).add(off.setLength(distance)); controls.update(); dirty = true; },
-    topView() { const target = selected ? new THREE.Vector3(selected.position[0], .2, selected.position[1]) : new THREE.Vector3(3,0,5); focus(target, new THREE.Vector3(.1, selected ? 18 : 95, 4)); },
-    getStats() { return { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, pixelRatio, selected: selected?.id, stop: selectedStop }; },
-    dispose() { cancelAnimationFrame(raf); observer.disconnect(); controls.dispose(); document.removeEventListener('visibilitychange', onVisibility); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
+    topView() { if (activeHistorical) { activeView='plan'; controls.maxPolarAngle=Math.PI/2-.018; const c = activeHistorical.config; focus(new THREE.Vector3(...c.target),new THREE.Vector3(.1,c.plan,.1)); return; } const target = selected ? new THREE.Vector3(selected.position[0], .2, selected.position[1]) : new THREE.Vector3(3,0,5); focus(target, new THREE.Vector3(.1, selected ? 18 : 95, 4)); },
+    getStats() { return { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, pixelRatio, selected: selected?.id, stop: selectedStop, historical: !!activeHistorical }; },
+    dispose() { cancelAnimationFrame(raf); observer.disconnect(); controls.dispose(); document.removeEventListener('visibilitychange', onVisibility); historicalCache.forEach(s => s.dispose()); environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
   };
 }
