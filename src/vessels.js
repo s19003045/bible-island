@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 export function createVessel(id) {
+  if(['herod-stone','herod-boundary','herod-capital'].includes(id))return createHerodObject(id);
   if(['pillar-capital','solomon-sea','temple-masonry'].includes(id))return createSolomonObject(id);
   if(['woven-sample','board-joint','tabernacle-basin'].includes(id))return createCraftObject(id);
   const clay=id==='clay-vessel',group=new THREE.Group();
@@ -10,6 +11,29 @@ export function createVessel(id) {
   // Fine horizontal tooling marks, shared with the inspectable object rather than a second representation.
   for(let i=0;i<6;i++){const radius=clay?.218-Math.abs(i-2)*.004:.15;const mark=new THREE.Mesh(new THREE.TorusGeometry(radius,.0013,3,40),new THREE.MeshStandardMaterial({color:clay?'#805237':'#b2aa94',roughness:1}));mark.rotation.x=Math.PI/2;mark.position.y=clay?.16+i*.023:.08+i*.035;group.add(mark);}
   group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});group.userData.objectId=id;return group;
+}
+function createHerodObject(id){
+ const g=new THREE.Group(),stone=new THREE.MeshStandardMaterial({color:'#c5baa2',roughness:.94}),shade=new THREE.MeshStandardMaterial({color:'#a59b86',roughness:1});
+ const box=(w,h,d,x,y,z,mat=stone)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);g.add(m);return m;};
+ if(id==='herod-stone'){
+  for(let i=0;i<2;i++){
+   const x=(i-.5)*.46;box(.45,.4,.38,x,.2,0,shade);box(.37,.32,.015,x,.2,.198);
+   for(let j=0;j<16;j++){const line=box(.0015,.27,.001,x-.155+j*.021,.2,.207,shade);line.rotation.z=.07;}
+  }
+  box(.92,.035,.42,0,.018,0);
+ }else if(id==='herod-boundary'){
+  box(.94,.04,.64,0,.02,0);for(let i=0;i<6;i++)box(.025,.23,.025,-.42+i*.168,.155,.22);
+  for(const y of [.07,.25])box(.9,.025,.03,0,y,.22);
+  for(const x of [-.31,.31])box(.29,.43,.07,x,.255,-.13);box(.21,.13,.07,0,.405,-.13);
+  for(let i=0;i<3;i++)box(.15,.025,.06,0,.045+i*.025,.1-i*.06);
+ }else{
+  const add=(geo,x,y,z)=>{const m=new THREE.Mesh(geo,stone);m.position.set(x,y,z);g.add(m);return m;};
+  add(new THREE.CylinderGeometry(.11,.125,.3,32),0,.15,0);
+  add(new THREE.LatheGeometry([[.11,.3],[.14,.33],[.18,.43],[.22,.55]].map(p=>new THREE.Vector2(...p)),48),0,0,0);
+  for(let i=0;i<12;i++){const a=i*Math.PI/6,leaf=add(new THREE.SphereGeometry(1,12,8),Math.cos(a)*.17,.43,Math.sin(a)*.17);leaf.scale.set(.035,.12,.055);leaf.rotation.y=-a;}
+  box(.48,.07,.48,0,.58,0);box(.58,.06,.58,0,.65,0);
+ }
+ g.traverse(o=>{if(o.isMesh){o.castShadow=o.receiveShadow=true;o.userData.objectId=id;}});g.userData.objectId=id;return g;
 }
 function createSolomonObject(id) {
   const group=new THREE.Group(),bronze=new THREE.MeshStandardMaterial({color:'#89724f',metalness:.7,roughness:.43}),stone=new THREE.MeshStandardMaterial({color:'#bcb097',roughness:.96}),cedar=new THREE.MeshStandardMaterial({color:'#725039',roughness:.88});

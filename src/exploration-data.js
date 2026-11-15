@@ -1,6 +1,7 @@
 import {walkSpawn,vesselDefinitions} from './walk-data.js';
 import {tabernacleSpawn,tabernacleObjects} from './tabernacle-exploration.js';
 import {solomonSpawn,solomonObjects} from './solomon-exploration.js';
+import {herodSpawn,herodObjects} from './herod-exploration.js';
 export const explorationByIsland = {
   jerusalem:{title:'走進山城的一天',shortTitle:'山城的一段路',era:'JERUSALEM / 第一世紀',spawn:walkSpawn,objects:vesselDefinitions,
     intro:'自由行走、聆聽角色，走到院落觀察器皿。',enter:'開啟聲音，走進街區',hint:'場景、路線與中文配音皆為教學設計。',
@@ -9,6 +10,10 @@ export const explorationByIsland = {
     intro:'走近工位、與人物交談，觀察織物、板架與洗濯盆，再回到經文。',enter:'開啟聲音，走進營地',
     hint:'教學觀察模式 · 指定營地與外院區域。內部請用剖面；此路線不代表古代任何身分皆可自由進入。',
     region:p=>p[0]<22?'外院教學觀察區':p[0]<25?'院幕入口':p[2]>2?'織作與營地':p[2]<-3?'家用器物與營地':'營地通道'},
+  herod:{title:'走進第二聖殿的公共院區',shortTitle:'階梯、院界與柱廊',heading:'沿階梯上行，在柱廊停下',destinations:true,recordedChild:true,teachingInspection:true,era:'HEROD / 第一世紀聖殿背景',spawn:herodSpawn,startLookAt:[68,7.5,105],objects:herodObjects,
+    intro:'從階梯走到公共觀察區，比較院界、石材與柱廊，向朝聖者、石作角色及聆聽者提問。',enter:'開啟聲音，走進外院',
+    hint:'教學觀察路線 · 階梯入口與外院配置為選擇性復原，不是胡爾大門測繪。內院及殿宇不開放步行；柱廊中的不同經文不表示同日發生。',
+    region:p=>p[2]>102?'上行階梯教學區':p[2]>45?'南側公共觀察區':p[0]>109&&p[2]>-53?'東側觀察通道':p[2]>-78?'石作解說區':'北側柱廊教學區'},
   solomon:{title:'走進所羅門聖殿的院中',shortTitle:'從帳幕到固定殿宇',heading:'抬頭看柱，繞看銅海',destinations:true,recordedChild:true,teachingInspection:true,
     era:'SOLOMON / 第一聖殿敘事',spawn:solomonSpawn,objects:solomonObjects,
     intro:'走過高差、繞看銅海與牛座，聽人物解說，再與會幕對讀。',enter:'開啟聲音，走進院中',

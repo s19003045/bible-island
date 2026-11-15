@@ -542,7 +542,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     if(!spawn){onWalkMessage?.('入口有人通過，請稍後再進入探索區。');return false;}
     interactionTarget=null;
     walkSnapshot={position:camera.position.clone(),target:controls.target.clone(),roof:activeHistorical.roof.visible};activeHistorical.roof.visible=true;renderer.shadowMap.needsUpdate=true;fly=null;conversationId=null;
-    activeHistorical.converse(null);controls.enabled=false;activeView='walk';camera.fov=62;camera.updateProjectionMatrix();walk.start(activeHistorical.walkModel,spawn);dirty=true;return true;
+    activeHistorical.converse(null);controls.enabled=false;activeView='walk';camera.fov=62;camera.updateProjectionMatrix();walk.start(activeHistorical.walkModel,spawn);if(activeHistorical.exploration?.startLookAt)walk.lookAt(activeHistorical.exploration.startLookAt);dirty=true;return true;
   }
   function exitWalk() {
     if(!walk.active)return;walk.stop();activeHistorical?.attend(null);autoGoal=null;interactionTarget=null;controls.enabled=true;activeView='overview';camera.fov=48;camera.updateProjectionMatrix();

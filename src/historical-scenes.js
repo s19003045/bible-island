@@ -8,6 +8,7 @@ import { createWalkModel } from './walk-model.js';
 import {createNPCSystem} from './npc-system.js';
 import {jerusalemPOIs} from './npc-pois.js';
 import {tabernacleSurfaces,tabernacleFloor,tabernaclePOIs,tabernacleAllowed,tabernacleSpawnCandidates,tabernacleObjects} from './tabernacle-exploration.js';
+import {herodSurfaces,herodFloor,herodProxies,herodPOIs,herodAllowed,herodSpawnCandidates,herodObjects,herodSpawn} from './herod-exploration.js';
 import {solomonSurfaces,solomonFloor,solomonProxies,solomonPOIs,solomonAllowed,solomonSpawnCandidates,solomonObjects,solomonSpawn} from './solomon-exploration.js';
 import {explorationFor} from './exploration-data.js';
 
@@ -457,14 +458,18 @@ function herod(k,roof) {
   menorah(k,-20,base+.3,2.8,1.3); k.box('gold',-20,base+1,-2.8,1.3,.12,.65); altar(k,-30,base,0,.6,1.3,.6,'gold');
   altar(k,27,upper,0,14.4,4.5,14.4,'light');
   for(let i=0;i<22;i++) k.box('light',27,upper+(i+1)*.2/2,17-i*.43,5,(i+1)*.2,.46);
-  for(let i=0;i<150;i++) {
-    let x=-100+k.rand()*200,z=-78+k.rand()*156;
-    if(x>-60&&x<59&&Math.abs(z)<38||x>56&&x<109&&Math.abs(z)<33)continue;
-    k.person(x,deck,z,i,k.rand()*6.28);
-    if(i%13===0) k.person(x+.8,deck,z+.7,i+1,.4,1.15);
+  // Actual autonomous people stay in the bounded, connected public route.
+  for(let i=0;i<24;i++) k.person(57+(i%6)*8,deck,52+Math.floor(i/6)*11,i,0,HUMAN_HEIGHT,{role:'south-visitor'});
+  for(let i=0;i<7;i++){const z=108+i*3;k.person(58+(i%3)*4,herodFloor(60,z),z,i,Math.PI,HUMAN_HEIGHT,{role:'south-visitor'});}
+  for(let i=0;i<8;i++) k.person(112+(i%2)*4,deck,35-i*11,i,Math.PI,HUMAN_HEIGHT,{role:'east-visitor'});
+  for(let i=0;i<9;i++) k.person(23+i*9,deck,-82-(i%2)*8,i,0,HUMAN_HEIGHT,{role:'north-visitor'});
+  // A flush teaching landing connects the old illustrative stair to the outer platform.
+  k.box('light',68,7.91,101.75,32,.24,2.3);
+  for(const x of [51.6,84.4]){k.box('light',x,8.55,101.5,.32,1.1,2.7);}
+  // Matching teaching display tables are deliberately separate from sacred furnishings.
+  for(const [x,z] of [[94,-60],[81,46.5],[31,-88]]){
+    k.box('wood',x,8.86,z,1.35,.1,.8);for(const dx of [-.53,.53])k.box('wood',x+dx,8.44,z,.09,.78,.65);
   }
-  for(let i=0;i<12;i++) {const z=112+(i%3)*2; k.person(68+(i%4)*2,(Math.floor((129-z)/.95)+1)*deck/28,z,i,Math.PI);}
-  for(let i=0;i<7;i++) k.person(35+k.rand()*12,upper,-24+k.rand()*10,1,0);
   for(let i=0;i<9;i++) {k.jar(100,deck,-45+i*.9,.75);k.box('wood',97,deck+.8,-45+i*2.2,1.7,.1,1);}
   // South-side stepped immersion pools are contextual types, not an excavation plan.
   for(const x of [-20,0,20]) {
@@ -604,14 +609,14 @@ export function createHistoricalScene(id, environment) {
   const range=config.shadow;Object.assign(sun.shadow.camera,{left:-range,right:range,top:range,bottom:-range,near:1,far:450});
   sun.shadow.mapSize.set(2048,2048);sun.shadow.normalBias=.035;sun.shadow.bias=-.00013;scene.add(sun);
   const roofGroup=new THREE.Group();scene.add(roofGroup);
-  const k=builder(scene,p,id.length*113,['jerusalem','tabernacle','solomon'].includes(id)), roof=builder(roofGroup,p,83,['jerusalem','tabernacle','solomon'].includes(id));
+  const k=builder(scene,p,id.length*113,['jerusalem','tabernacle','solomon','herod'].includes(id)), roof=builder(roofGroup,p,83,['jerusalem','tabernacle','solomon','herod'].includes(id));
   const height=terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id));
   if(id==='tabernacle')tabernacle(k,roof);
   else if(id==='solomon')solomon(k,roof,height);
   else if(id==='herod')herod(k,roof);
   else if(id==='exodus')exodus(k,roof,height,scene,p);
   else jerusalem(k,roof,height);
-  const roles=id==='tabernacle'?{weaver:'weaver',priest:'priest','camp-parent':'parent'}:id==='solomon'?{'bronze-worker':'bronze-worker',singer:'singer','temple-visitor':'visitor'}:{};
+  const roles=id==='tabernacle'?{weaver:'weaver',priest:'priest','camp-parent':'parent'}:id==='solomon'?{'bronze-worker':'bronze-worker',singer:'singer','temple-visitor':'visitor'}:id==='herod'?{pilgrim:'pilgrim','stone-worker':'stone-worker',listener:'listener'}:{};
   for(const person of peopleByIsland[id]) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:roles[person.id]});
   k.finish();roof.finish();
   const people=k.actors.filter(a=>a.id);
@@ -668,7 +673,16 @@ export function createHistoricalScene(id, environment) {
     walkModel=createWalkModel(k.collisionBoxes,solomonSurfaces,solomonFloor,{proxies:solomonProxies});
     for(const definition of solomonObjects){let root=null;if(!definition.sceneOnly){root=createVessel(definition.id);root.position.fromArray(definition.position);scene.add(root);}objects.push({...definition,root});}
   }
-  const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:null;
+  if(id==='herod'){
+    k.collisionBoxes.push(...roof.collisionBoxes);
+    // Rendered risers do not compete with the continuous stair collision proxy.
+    const keep=k.collisionBoxes.filter(b=>!(b.min[0]>=51.99&&b.max[0]<=84.01&&b.min[2]>=102.8&&b.max[2]<=129.51));k.collisionBoxes.splice(0,k.collisionBoxes.length,...keep);
+    // Cutaway visibility never permits crossing the inner sacred precinct.
+    k.collisionBoxes.push({min:[-68,8,-43.4],max:[109,60,43.4]});
+    for(const d of herodObjects){const root=createVessel(d.id);root.position.fromArray(d.position);scene.add(root);objects.push({...d,root});k.collisionBoxes.push({min:[d.position[0]-.73,8,d.position[2]-.46],max:[d.position[0]+.73,10,d.position[2]+.46]});}
+    walkModel=createWalkModel(k.collisionBoxes,herodSurfaces,herodFloor,{proxies:herodProxies,navigationStep:.8});
+  }
+  const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
   const npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);

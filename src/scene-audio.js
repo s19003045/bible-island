@@ -6,7 +6,7 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
   let ctx=null,master=null,ambient=null,speech=null,music=null,musicGain=null,enabled=false,active=false,hidden=false,token=0,source=null,voicePosition=null,playing=null,lastEffect=0;
   const buffers=new Map(),pending=new Map();const volume={environment:.6,voice:.9,music:.16};let noise=null,island='jerusalem',ambientNodes=[];
   for(const key of Object.keys(volume))if(Number.isFinite(preferences[key]))volume[key]=Math.max(0,Math.min(1,preferences[key]));
-  const profiles={jerusalem:{cloth:[-48,14,5],bird:[-11,13,9],tone:1100,ground:'stone'},tabernacle:{cloth:[31,1.4,6],bird:[43,3,-12],tone:680,ground:'earth'},solomon:{cloth:[32,1.4,-12],bird:[45,6,18],tone:900,ground:'stone'}};
+  const profiles={herod:{cloth:[78,10,54],bird:[112,18,-25],tone:960,ground:'stone'},jerusalem:{cloth:[-48,14,5],bird:[-11,13,9],tone:1100,ground:'stone'},tabernacle:{cloth:[31,1.4,6],bird:[43,3,-12],tone:680,ground:'earth'},solomon:{cloth:[32,1.4,-12],bird:[45,6,18],tone:900,ground:'stone'}};
   const report=(status,text='')=>onState({enabled,status,text,volume:{...volume}});
   function panner(position,bus) {
     const p=ctx.createPanner();p.panningModel='HRTF';p.distanceModel='inverse';p.refDistance=4;p.maxDistance=55;p.rolloffFactor=1.2;
@@ -80,7 +80,7 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
     },
     footstep(position) {
       if(!ctx||!enabled||!active||hidden||!volume.environment||ctx.state!=='running')return;
-      const s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain(),t=ctx.currentTime;s.buffer=noise;f.type='lowpass';f.frequency.value=((profiles[island]||profiles.jerusalem).ground==='earth'?480:island==='solomon'||Math.abs(position[2])<2.3?1500:600)+Math.random()*300;g.gain.setValueAtTime(.55,t);g.gain.exponentialRampToValueAtTime(.0001,t+.13);s.connect(f);f.connect(g);g.connect(ambient);s.start(0,Math.random(),.14);s.onended=()=>{f.disconnect();g.disconnect();};
+      const s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain(),t=ctx.currentTime;s.buffer=noise;f.type='lowpass';f.frequency.value=((profiles[island]||profiles.jerusalem).ground==='earth'?480:['solomon','herod'].includes(island)||Math.abs(position[2])<2.3?1500:600)+Math.random()*300;g.gain.setValueAtTime(.55,t);g.gain.exponentialRampToValueAtTime(.0001,t+.13);s.connect(f);f.connect(g);g.connect(ambient);s.start(0,Math.random(),.14);s.onended=()=>{f.disconnect();g.disconnect();};
       const o=ctx.createOscillator(),thud=ctx.createGain();o.frequency.setValueAtTime(130,t);o.frequency.exponentialRampToValueAtTime(65,t+.08);thud.gain.setValueAtTime(.08,t);thud.gain.exponentialRampToValueAtTime(.0001,t+.1);o.connect(thud);thud.connect(ambient);o.start();o.stop(t+.11);o.onended=()=>thud.disconnect();
     },
     dispose(){stopVoice();for(const n of ambientNodes){try{n.stop?.();}catch{}n.disconnect();}music?.stop();ctx?.close();},

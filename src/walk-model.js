@@ -3,7 +3,7 @@ import {characterDefaults} from './character-controller.js';
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const key=(x,z)=>`${x},${z}`;
 export function createWalkModel(boxes=[],surfaces=walkSurfaces,floor=walkFloor,options={}) {
-  const config={...characterDefaults,...options},radius=options.radius??.24,cell=4,grid=new Map(),step=.4;
+  const config={...characterDefaults,...options},radius=options.radius??.24,cell=4,grid=new Map(),step=options.navigationStep??.4;
   const proxies=options.proxies||(floor===walkFloor?stairCollisionProxies:[]);
   for(const b of boxes)for(let x=Math.floor(b.min[0]/cell);x<=Math.floor(b.max[0]/cell);x++)for(let z=Math.floor(b.min[2]/cell);z<=Math.floor(b.max[2]/cell);z++) {
     const k=key(x,z);if(!grid.has(k))grid.set(k,[]);grid.get(k).push(b);
