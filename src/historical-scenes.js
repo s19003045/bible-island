@@ -7,6 +7,8 @@ import { createVessel } from './vessels.js';
 import { createWalkModel } from './walk-model.js';
 import {createNPCSystem} from './npc-system.js';
 import {jerusalemPOIs} from './npc-pois.js';
+import {tabernacleSurfaces,tabernacleFloor,tabernaclePOIs,tabernacleAllowed,tabernacleSpawnCandidates,tabernacleObjects} from './tabernacle-exploration.js';
+import {explorationFor} from './exploration-data.js';
 
 // Detailed scenes use one Three unit per metre. Geometry is batched by material, not by building.
 const G = {
@@ -87,7 +89,7 @@ function builder(parent, p, seed = 31, collectCollision = false) {
     }
   }
   function person(x,y,z,style = 0,yaw = 0,height = HUMAN_HEIGHT,options = {}) {
-    actor = {id:options.id, motion:options.motion || "idle", state:createMotion([x,y,z],yaw,options.route,actors.length,options.routeMode), parts:[], scale:height/HUMAN_HEIGHT};
+    actor = {id:options.id, role:options.role,motion:options.motion || "idle", state:createMotion([x,y,z],yaw,options.route,actors.length,options.routeMode), parts:[], scale:height/HUMAN_HEIGHT};
     actors.push(actor);
     const s = height / HUMAN_HEIGHT;
     const loc = (a,b,c) => [x+(a*Math.cos(yaw)+c*Math.sin(yaw))*s, y+b*s,z+(-a*Math.sin(yaw)+c*Math.cos(yaw))*s];
@@ -297,8 +299,8 @@ function tabernacle(k,roof) {
   k.box('linen',-l/2,h/2,0,.045,h,w);
   for(let i=0;i<10;i++) k.cyl('bronze',-l/2,h/2,-w/2+i*w/10,.045,h+.1);
   for(const side of [-1,1]) k.box('linen',l/2,h/2,side*(w/2+4.5)/2,.045,h,w/2-4.5);
-  for(let i=0;i<10;i++) k.cyl('bronze',l/2,h/2,-w/2+i*w/10,.045,h+.1);
-  for(let i=0;i<12;i++) k.box(['red','blue','purple','linen'][i%4],l/2+.04,h/2,-4.5+(i+.5)*.75,.04,h,.74);
+  for(let i=0;i<10;i++){const z=-w/2+i*w/10;if(Math.abs(z)>1.65)k.cyl('bronze',l/2,h/2,z,.045,h+.1);}
+  for(const side of [-1,1])for(let i=0;i<6;i++)k.box(['red','blue','purple','linen'][i%4],l/2+.04,h/2,side*(1.65+(i+.5)*.475),.04,h,.465);
   // Twenty boards per long side, silver sockets and five continuous bars.
   for(const side of [-1,1]) for(let i=0;i<20;i++) {
     const x=-15+(i+.5)*.675,z=side*2.25;
@@ -326,10 +328,17 @@ function tabernacle(k,roof) {
   altar(k,-10,0,0,.45,.9,.45,'gold'); ark(k,-12.75,0,0);
   for(let i=0;i<46;i++) {
     const a=i/46*Math.PI*2,r=36+(i%3)*10,x=Math.cos(a)*r,z=Math.sin(a)*r*.8;
-    k.tent(x,0,z,.8+(i%4)*.1); if(i%2===0) k.person(x+3,0,z+3,i,.5);
+    if(!(x>24&&x<45&&Math.abs(z)<12))k.tent(x,0,z,.8+(i%4)*.1); if(i%2===0) k.person(x+3,0,z+3,i,.5);
   }
   for(const [x,z,s] of [[29,3,1],[30,4,1],[27,-2,1],[11,4,0],[3,-4,1]]) k.person(x,0,z,s,Math.PI/2);
   for(let i=0;i<10;i++) k.jar(26+(i%3)*.55,0,-4-Math.floor(i/3)*.7,.5);
+  // Beaten-earth teaching paths and two craft tables, with open approaches.
+  k.box('path',39,-.015,0,32,.07,6);k.box('path',31,-.015,0,10,.07,23);
+  for(const z of [6,-6]){k.box('wood',31,.78,z,2.3,.12,1.1);for(const x of [30.1,31.9])k.box('wood',x,.39,z,.09,.78,.85);}
+  for(let i=0;i<5;i++)k.jar(34+i*.65,0,10,.35+(i%2)*.12);
+  for(const z of [-18,18]){k.tent(38,0,z,1.1);k.collisionBoxes.push({min:[34.6,-.05,z-2.3],max:[41.4,2.6,z+2.3]});}
+  // Thin fabric is excluded from automatic solid boxes; the navigation area handles the screen boundary.
+
 }
 function solomon(k,roof,height) {
   const dim=dimensions.solomon,[l,h,w]=dim.house;
@@ -599,14 +608,14 @@ export function createHistoricalScene(id, environment) {
   const range=config.shadow;Object.assign(sun.shadow.camera,{left:-range,right:range,top:range,bottom:-range,near:1,far:450});
   sun.shadow.mapSize.set(2048,2048);sun.shadow.normalBias=.035;sun.shadow.bias=-.00013;scene.add(sun);
   const roofGroup=new THREE.Group();scene.add(roofGroup);
-  const k=builder(scene,p,id.length*113,id==='jerusalem'), roof=builder(roofGroup,p,83,id==='jerusalem');
+  const k=builder(scene,p,id.length*113,['jerusalem','tabernacle'].includes(id)), roof=builder(roofGroup,p,83,['jerusalem','tabernacle'].includes(id));
   const height=terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id));
   if(id==='tabernacle')tabernacle(k,roof);
   else if(id==='solomon')solomon(k,roof,height);
   else if(id==='herod')herod(k,roof);
   else if(id==='exodus')exodus(k,roof,height,scene,p);
   else jerusalem(k,roof,height);
-  for(const person of peopleByIsland[id]) k.person(...person.position,person.style,0,HUMAN_HEIGHT,person);
+  for(const person of peopleByIsland[id]) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:id==='tabernacle'?({weaver:'weaver',priest:'priest','camp-parent':'parent'}[person.id]):undefined});
   k.finish();roof.finish();
   const people=k.actors.filter(a=>a.id);
   let walkModel=null;const objects=[];
@@ -629,7 +638,24 @@ export function createHistoricalScene(id, environment) {
     k.collisionBoxes.push({min:[-33.98,10.21,25.27],max:[-32.82,11.5,25.93]});
     walkModel=createWalkModel(k.collisionBoxes);
   }
-  const npcSystem=id==='jerusalem'?createNPCSystem({actors:k.actors,pois:jerusalemPOIs,model:walkModel}):null;
+  if(id==='tabernacle') {
+    // Solid tent footprints and court screens are navigation obstacles even when fabric is thin.
+    k.collisionBoxes.push(...roof.collisionBoxes);
+    for(const z of [6,-6])k.collisionBoxes.push({min:[29.85,0,z-.55],max:[32.15,1.55,z+.55]});
+    for(let i=0;i<46;i++) {
+      const a=i/46*Math.PI*2,r=36+(i%3)*10,x=Math.cos(a)*r,z=Math.sin(a)*r*.8,s=.8+(i%4)*.1;
+      if(x>24&&x<45&&Math.abs(z)<12)continue;
+      k.collisionBoxes.push({min:[x-3*s,-.05,z-2*s],max:[x+3*s,2.3*s,z+2*s]});
+    }
+    k.collisionBoxes.push({min:[-16,-.05,-5],max:[0,5,5]});
+    walkModel=createWalkModel(k.collisionBoxes,tabernacleSurfaces,tabernacleFloor,{proxies:[]});
+    for(const definition of tabernacleObjects){
+      let root=null;
+      if(!definition.sceneOnly){root=createVessel(definition.id);root.position.fromArray(definition.position);scene.add(root);}
+      objects.push({...definition,root});
+    }
+  }
+  const npcSystem=id==='jerusalem'?createNPCSystem({actors:k.actors,pois:jerusalemPOIs,model:walkModel}):id==='tabernacle'?createNPCSystem({actors:k.actors,pois:tabernaclePOIs,model:walkModel,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);
   const occluders=[];scene.updateMatrixWorld(true);scene.traverseVisible(o=>{if(o.isMesh&&!o.userData.people)occluders.push(o);});
@@ -648,7 +674,7 @@ export function createHistoricalScene(id, environment) {
     return best;
   }
   return {
-    scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,npcSystem,
+    scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,npcSystem,exploration:explorationFor(id),
     animate(dt,cameraPosition,playerPosition=null) {npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition});k.animate(dt,cameraPosition);},
     converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },
     attend(personId) {people.forEach(a=>a.state.attending=a.id===personId);},

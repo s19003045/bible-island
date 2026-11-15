@@ -310,8 +310,8 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   controls.enableDamping = !reduced.matches; controls.dampingFactor = .065; controls.maxPolarAngle = Math.PI / 2.25;
   controls.minDistance = 4; controls.maxDistance = 220; controls.target.set(5, 0, 6);
   camera.position.set(51, 63, 82); controls.update();
-  let walkSnapshot=null,walkObjective=null,autoGoal=null,lastWalkUI=0,lastRepath=0;
-  const walk=createWalkControls(camera,renderer.domElement,{onInteract:interactWalk,onStep:p=>audio?.footstep(p),onMessage:onWalkMessage,constrainMove:(from,to)=>activeHistorical?.npcSystem?.constrainPlayer(from,to)||to});
+  let walkSnapshot=null,walkObjective=null,interactionTarget=null,autoGoal=null,lastWalkUI=0,lastRepath=0;
+  const walk=createWalkControls(camera,renderer.domElement,{onInteract:interactWalk,onStep:p=>audio?.footstep(p),onMessage:onWalkMessage,onManualInput:()=>{autoGoal=null;interactionTarget=null;},constrainMove:(from,to)=>activeHistorical?.npcSystem?.constrainPlayer(from,to)||to});
   const ambient = new THREE.HemisphereLight('#fff3dc', '#557879', 2.6); scene.add(ambient);
   const sun = new THREE.DirectionalLight('#fff0cf', 4); sun.position.set(-18, 40, 24); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); sun.shadow.camera.left = -45; sun.shadow.camera.right = 45; sun.shadow.camera.top = 45; sun.shadow.camera.bottom = -45;
@@ -369,6 +369,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   }
   function select(id) {
     if(walk.active)exitWalk();
+    activeHistorical?.npcSystem?.suspend();
     activeHistorical?.converse(null);activeHistorical?.attend(null);conversationId=null;actorMarkers=[];emotes=[];
     selected = id ? themeById.get(id) : null; selectedStop = null;
     hotspotLayer.replaceChildren(); hotspots = []; clearConnections();
@@ -523,13 +524,15 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   document.addEventListener('visibilitychange', onVisibility);
   function startWalk() {
     if(!activeHistorical?.walkModel)return false;
-    const spawn=activeHistorical.npcSystem?activeHistorical.npcSystem.safePlayerSpawn(walkSpawn):walkSpawn;
-    if(!spawn){onWalkMessage?.('入口有人通過，請稍後再進入街區。');return false;}
+    const origin=activeHistorical.exploration?.spawn||walkSpawn;
+    const spawn=activeHistorical.npcSystem?activeHistorical.npcSystem.safePlayerSpawn(origin):origin;
+    if(!spawn){onWalkMessage?.('入口有人通過，請稍後再進入探索區。');return false;}
+    interactionTarget=null;
     walkSnapshot={position:camera.position.clone(),target:controls.target.clone(),roof:activeHistorical.roof.visible};activeHistorical.roof.visible=true;renderer.shadowMap.needsUpdate=true;fly=null;conversationId=null;
     activeHistorical.converse(null);controls.enabled=false;activeView='walk';camera.fov=62;camera.updateProjectionMatrix();walk.start(activeHistorical.walkModel,spawn);dirty=true;return true;
   }
   function exitWalk() {
-    if(!walk.active)return;walk.stop();activeHistorical?.attend(null);autoGoal=null;controls.enabled=true;activeView='overview';camera.fov=48;camera.updateProjectionMatrix();
+    if(!walk.active)return;walk.stop();activeHistorical?.attend(null);autoGoal=null;interactionTarget=null;controls.enabled=true;activeView='overview';camera.fov=48;camera.updateProjectionMatrix();
     if(walkSnapshot){camera.position.copy(walkSnapshot.position);controls.target.copy(walkSnapshot.target);activeHistorical.roof.visible=walkSnapshot.roof;renderer.shadowMap.needsUpdate=true;}controls.update();dirty=true;
   }
   function goalPosition(target) {
@@ -549,17 +552,17 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
     return Math.hypot(p[0]-walk.position[0],p[2]-walk.position[2])<=3.6&&sightClear([p[0],p[1]+1.45,p[2]]);
   }
   function canInspect(id) {
-    if(!walk.active)return false;const p=activeHistorical?.objects.find(o=>o.id===id)?.position;if(!p)return false;
-    return Math.hypot(p[0]-walk.position[0],p[2]-walk.position[2])<=3.2&&sightClear([p[0],p[1]+.2,p[2]]);
+    if(!walk.active)return false;const object=activeHistorical?.objects.find(o=>o.id===id),p=object?.position;if(!p)return false;
+    return Math.hypot(p[0]-walk.position[0],p[2]-walk.position[2])<=3.2&&sightClear(object.lookAt||[p[0],p[1]+.2,p[2]]);
   }
   function nearby() {
     if(!walk.active||conversationId||document.querySelector('dialog[open]'))return null;
     const candidates=[];
-    for(const p of activeHistorical.people)if(canTalk(p.id))candidates.push({type:'person',id:p.id,name:peopleByIsland.jerusalem.find(a=>a.id===p.id).name,distance:Math.hypot(p.state.position[0]-walk.position[0],p.state.position[2]-walk.position[2])});
+    for(const p of activeHistorical.people)if(canTalk(p.id))candidates.push({type:'person',id:p.id,name:peopleByIsland[selected.id].find(a=>a.id===p.id).name,distance:Math.hypot(p.state.position[0]-walk.position[0],p.state.position[2]-walk.position[2])});
     for(const o of activeHistorical.objects)if(canInspect(o.id))candidates.push({type:'object',id:o.id,name:o.name,distance:Math.hypot(o.position[0]-walk.position[0],o.position[2]-walk.position[2])});
-    candidates.sort((a,b)=>{const priority=p=>p.id===walkObjective?.id?-1:0;return priority(a)-priority(b)||a.distance-b.distance;});return candidates[0]||null;
+    candidates.sort((a,b)=>{const priority=p=>p.id===(interactionTarget?.id||walkObjective?.id)?-1:0;return priority(a)-priority(b)||a.distance-b.distance;});return candidates[0]||null;
   }
-  function interactWalk() {const n=nearby();if(!n)return;if(n.type==='person')onActor?.(n.id);else onInspect?.(n.id);}
+  function interactWalk() {const n=nearby();if(!n)return;interactionTarget=null;if(n.type==='person')onActor?.(n.id);else onInspect?.(n.id);}
   function animate(now) {
     raf = requestAnimationFrame(animate); if (hidden) return;
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
@@ -575,12 +578,12 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
       if(walk.update(dt))dirty=true;
       if(autoGoal && now-lastRepath>900) {
         lastRepath=now;const target=goalPosition(autoGoal);
-        if(target&&Math.hypot(target[0]-walk.position[0],target[2]-walk.position[2])<(autoGoal.type==='person'?3.0:.4)){walk.cancelRoute();walk.lookAt([target[0],target[1]+1.3,target[2]]);autoGoal=null;dirty=true;}
+        if(target&&Math.hypot(target[0]-walk.position[0],target[2]-walk.position[2])<(autoGoal.type==='person'?2.6:.4)&&(autoGoal.type!=='person'||canTalk(autoGoal.id))){walk.cancelRoute();walk.lookAt([target[0],target[1]+1.3,target[2]]);if(autoGoal.type!=='person')autoGoal=null;dirty=true;}
         else if(target&&autoGoal.type==='person')walk.navigate(target);
       }
       if(now-lastWalkUI>220){lastWalkUI=now;const target=goalPosition(walkObjective),p=walk.position;const close=nearby();activeHistorical.attend(close?.type==='person'?close.id:null);onWalkUpdate?.({position:p,locomotion:walk.groundState,nearby:close,navigating:walk.navigating,distance:target?Math.hypot(target[0]-p[0],target[2]-p[2]):null});}
     } else controls.update();
-    if(selected?.id==='jerusalem')audio?.update(camera,activeHistorical?.people||[],now);
+    if(activeHistorical?.exploration)audio?.update(camera,activeHistorical?.people||[],now);
     if(activeHistorical && !walk.active) { const floor=activeHistorical.groundHeight(camera.position.x,camera.position.z)+.3; if(camera.position.y<floor) {camera.position.y=floor;dirty=true;} }
     // Lower DPR only after sustained slow frames. No promise of a particular frame rate.
     if (dt > 0 && now > 6000) { frameSum += dt * 1000; frameCount++; }
@@ -607,7 +610,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
     startWalk,exitWalk,canTalk,canInspect,
     personPosition(id){return activeHistorical?.people.find(p=>p.id===id)?.state.position;},
     setWalkObjective(target){walkObjective=target;},
-    guideWalk(target){if(!walk.active)return;autoGoal=target;const p=goalPosition(target);if(p&&!walk.navigate(p))autoGoal=null;dirty=true;},
+    guideWalk(target){if(!walk.active)return;interactionTarget=target;autoGoal=target;const p=goalPosition(target);if(p&&!walk.navigate(p))autoGoal=null;dirty=true;},
     interactWalk,
     stopWalkRoute(){autoGoal=null;walk.cancelRoute();},
     blockWalk(value){if(value)autoGoal=null;walk.block(value);},

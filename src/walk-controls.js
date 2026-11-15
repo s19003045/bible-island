@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {walkSpawn} from './walk-data.js';
 import {createCharacterController} from './character-controller.js';
-export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{},onMessage=()=>{},constrainMove=(from,to)=>to}={}) {
+export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{},onMessage=()=>{},onManualInput=()=>{},constrainMove=(from,to)=>to}={}) {
   const keys=new Set();let model=null,motor=null,active=false,blocked=false,position=[...walkSpawn],yaw=Math.PI/2,pitch=0,route=[],distance=0,drag=null,moved=false,axis=[0,0],turn=0;
   const apply=()=>{camera.position.set(position[0],(motor?.visualPosition[1]??position[1])+1.65,position[2]);camera.rotation.set(pitch,yaw,0,'YXZ');};
   function clear(){keys.clear();axis=[0,0];turn=0;drag=null;}
@@ -10,7 +10,7 @@ export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{
   function keydown(e) {
     if(!active||blocked||typing()||e.ctrlKey||e.metaKey||e.altKey)return;
     if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','KeyE'].includes(e.code)) {
-      e.preventDefault();if(e.code==='KeyE'){if(!e.repeat)onInteract();return;}keys.add(e.code);route=[];
+      e.preventDefault();if(e.code==='KeyE'){if(!e.repeat)onInteract();return;}keys.add(e.code);route=[];onManualInput();
     }
   }
   const keyup=e=>keys.delete(e.code);

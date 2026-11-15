@@ -1,0 +1,5374 @@
+{
+  "generatedAt": "2026-11-15",
+  "provider": "HeyGen Voice",
+  "model": "server-selected (omitted)",
+  "language": "zh",
+  "locale": "zh-CN (catalogue)",
+  "speed": 1,
+  "review": "Returned character alignment matches submitted scripts. Full human listening and pronunciation review pending.",
+  "voices": [
+    {
+      "person": "weaver",
+      "voiceId": "6c364011f30747c9a0a89eec3787cadc",
+      "sourceURL": "https://resource2.heygen.ai/text_to_speech/e960072c8abb455896232ed310ed9bb3/6c364011f30747c9a0a89eec3787cadc/id=b3aee5d69287446b9c0a636c5e3cdc99.mp3",
+      "duration": 65.36861678004534,
+      "submittedText": "先在營地這邊歇歇吧。看看帳幕的織物、木板和繩索；要在曠野安營，許多人的手藝都派得上用場。\n\n會眾有人獻材料，也有人紡線、織作。建造帳幕不是只靠一個人；金屬、木作、織物各有需要的手藝。\n\n是的，經文分別提到奉獻、紡線和各樣巧工。你可以先辨認布、木、金屬，再想想需要哪些不同的工序。\n\n它不是固定的石屋。板、座、槓與織物可以分開搬運；民數記還把帳幕、器具及架構的搬運責任分配給不同群體。\n\n經文提到藍色、紫色、朱紅色線與細麻，也提到基路伯。但你眼前的染色深淺、織紋與每一處細節，是模型的復原選擇。\n\n一起看看「金燈臺」吧。先找物件，再說說你發現了什麼。\n\n打開剖面，從聖所裡的燈臺中央往兩邊看；一盞一盞數，不要把底座算成燈。\n\n數一數燈臺上的燈，找找它對面的桌子。 看過之後，回到觀察任務試著回答。",
+      "clips": {
+        "greeting": {
+          "start": 0.23600000000000002,
+          "end": 8.591000000000001,
+          "text": "先在營地這邊歇歇吧。看看帳幕的織物、木板和繩索；要在曠野安營，許多人的手藝都派得上用場。"
+        },
+        "materials": {
+          "start": 8.599,
+          "end": 17.628,
+          "text": "會眾有人獻材料，也有人紡線、織作。建造帳幕不是只靠一個人；金屬、木作、織物各有需要的手藝。"
+        },
+        "materials-followup": {
+          "start": 17.636,
+          "end": 26.916,
+          "text": "是的，經文分別提到奉獻、紡線和各樣巧工。你可以先辨認布、木、金屬，再想想需要哪些不同的工序。"
+        },
+        "portable": {
+          "start": 26.924,
+          "end": 37.437,
+          "text": "它不是固定的石屋。板、座、槓與織物可以分開搬運；民數記還把帳幕、器具及架構的搬運責任分配給不同群體。"
+        },
+        "colors": {
+          "start": 37.464,
+          "end": 48.507,
+          "text": "經文提到藍色、紫色、朱紅色線與細麻，也提到基路伯。但你眼前的染色深淺、織紋與每一處細節，是模型的復原選擇。"
+        },
+        "child-greeting": {
+          "start": 48.532999999999994,
+          "end": 52.579,
+          "text": "一起看看「金燈臺」吧。先找物件，再說說你發現了什麼。"
+        },
+        "child-observe-lampstand": {
+          "start": 52.586,
+          "end": 59.022,
+          "text": "打開剖面，從聖所裡的燈臺中央往兩邊看；一盞一盞數，不要把底座算成燈。"
+        },
+        "child-observe-lampstand-followup": {
+          "start": 59.010999999999996,
+          "end": 65.18361678004536,
+          "text": "數一數燈臺上的燈，找找它對面的桌子。 看過之後，回到觀察任務試著回答。"
+        }
+      },
+      "characterTimings": [
+        {
+          "text": "先",
+          "start_time": 0.256,
+          "end_time": 0.427
+        },
+        {
+          "text": "在",
+          "start_time": 0.427,
+          "end_time": 0.597
+        },
+        {
+          "text": "營",
+          "start_time": 0.597,
+          "end_time": 0.725
+        },
+        {
+          "text": "地",
+          "start_time": 0.725,
+          "end_time": 0.896
+        },
+        {
+          "text": "這",
+          "start_time": 0.896,
+          "end_time": 1.024
+        },
+        {
+          "text": "邊",
+          "start_time": 1.024,
+          "end_time": 1.152
+        },
+        {
+          "text": "歇",
+          "start_time": 1.152,
+          "end_time": 1.323
+        },
+        {
+          "text": "歇",
+          "start_time": 1.323,
+          "end_time": 1.451
+        },
+        {
+          "text": "吧",
+          "start_time": 1.451,
+          "end_time": 1.579
+        },
+        {
+          "text": "。",
+          "start_time": 1.579,
+          "end_time": 1.963
+        },
+        {
+          "text": "看",
+          "start_time": 1.963,
+          "end_time": 2.347
+        },
+        {
+          "text": "看",
+          "start_time": 2.347,
+          "end_time": 2.475
+        },
+        {
+          "text": "帳",
+          "start_time": 2.475,
+          "end_time": 2.645
+        },
+        {
+          "text": "幕",
+          "start_time": 2.645,
+          "end_time": 2.773
+        },
+        {
+          "text": "的",
+          "start_time": 2.773,
+          "end_time": 2.859
+        },
+        {
+          "text": "織",
+          "start_time": 2.859,
+          "end_time": 3.157
+        },
+        {
+          "text": "物",
+          "start_time": 3.157,
+          "end_time": 3.413
+        },
+        {
+          "text": "、",
+          "start_time": 3.413,
+          "end_time": 3.627
+        },
+        {
+          "text": "木",
+          "start_time": 3.627,
+          "end_time": 3.797
+        },
+        {
+          "text": "板",
+          "start_time": 3.797,
+          "end_time": 3.968
+        },
+        {
+          "text": "和",
+          "start_time": 3.968,
+          "end_time": 4.139
+        },
+        {
+          "text": "繩",
+          "start_time": 4.139,
+          "end_time": 4.309
+        },
+        {
+          "text": "索",
+          "start_time": 4.309,
+          "end_time": 4.565
+        },
+        {
+          "text": "；",
+          "start_time": 4.565,
+          "end_time": 4.907
+        },
+        {
+          "text": "要",
+          "start_time": 4.907,
+          "end_time": 5.163
+        },
+        {
+          "text": "在",
+          "start_time": 5.163,
+          "end_time": 5.291
+        },
+        {
+          "text": "曠",
+          "start_time": 5.291,
+          "end_time": 5.504
+        },
+        {
+          "text": "野",
+          "start_time": 5.504,
+          "end_time": 5.675
+        },
+        {
+          "text": "安",
+          "start_time": 5.675,
+          "end_time": 5.803
+        },
+        {
+          "text": "營",
+          "start_time": 5.803,
+          "end_time": 6.016
+        },
+        {
+          "text": "，",
+          "start_time": 6.016,
+          "end_time": 6.272
+        },
+        {
+          "text": "許",
+          "start_time": 6.272,
+          "end_time": 6.571
+        },
+        {
+          "text": "多",
+          "start_time": 6.571,
+          "end_time": 6.699
+        },
+        {
+          "text": "人",
+          "start_time": 6.699,
+          "end_time": 6.827
+        },
+        {
+          "text": "的",
+          "start_time": 6.827,
+          "end_time": 6.912
+        },
+        {
+          "text": "手",
+          "start_time": 6.912,
+          "end_time": 7.125
+        },
+        {
+          "text": "藝",
+          "start_time": 7.125,
+          "end_time": 7.339
+        },
+        {
+          "text": "都",
+          "start_time": 7.339,
+          "end_time": 7.467
+        },
+        {
+          "text": "派",
+          "start_time": 7.467,
+          "end_time": 7.637
+        },
+        {
+          "text": "得",
+          "start_time": 7.637,
+          "end_time": 7.723
+        },
+        {
+          "text": "上",
+          "start_time": 7.723,
+          "end_time": 7.808
+        },
+        {
+          "text": "用",
+          "start_time": 7.808,
+          "end_time": 8.021
+        },
+        {
+          "text": "場",
+          "start_time": 8.021,
+          "end_time": 8.192
+        },
+        {
+          "text": "。",
+          "start_time": 8.192,
+          "end_time": 8.576
+        },
+        {
+          "text": "\n",
+          "start_time": 8.576,
+          "end_time": 8.597
+        },
+        {
+          "text": "\n",
+          "start_time": 8.597,
+          "end_time": 8.619
+        },
+        {
+          "text": "會",
+          "start_time": 8.619,
+          "end_time": 8.832
+        },
+        {
+          "text": "眾",
+          "start_time": 8.832,
+          "end_time": 8.96
+        },
+        {
+          "text": "有",
+          "start_time": 8.96,
+          "end_time": 9.131
+        },
+        {
+          "text": "人",
+          "start_time": 9.131,
+          "end_time": 9.259
+        },
+        {
+          "text": "獻",
+          "start_time": 9.259,
+          "end_time": 9.429
+        },
+        {
+          "text": "材",
+          "start_time": 9.429,
+          "end_time": 9.685
+        },
+        {
+          "text": "料",
+          "start_time": 9.685,
+          "end_time": 9.899
+        },
+        {
+          "text": "，",
+          "start_time": 9.899,
+          "end_time": 10.155
+        },
+        {
+          "text": "也",
+          "start_time": 10.155,
+          "end_time": 10.283
+        },
+        {
+          "text": "有",
+          "start_time": 10.283,
+          "end_time": 10.411
+        },
+        {
+          "text": "人",
+          "start_time": 10.411,
+          "end_time": 10.539
+        },
+        {
+          "text": "紡",
+          "start_time": 10.539,
+          "end_time": 10.795
+        },
+        {
+          "text": "線",
+          "start_time": 10.795,
+          "end_time": 11.008
+        },
+        {
+          "text": "、",
+          "start_time": 11.008,
+          "end_time": 11.264
+        },
+        {
+          "text": "織",
+          "start_time": 11.264,
+          "end_time": 11.477
+        },
+        {
+          "text": "作",
+          "start_time": 11.477,
+          "end_time": 11.648
+        },
+        {
+          "text": "。",
+          "start_time": 11.648,
+          "end_time": 11.989
+        },
+        {
+          "text": "建",
+          "start_time": 11.989,
+          "end_time": 12.109
+        },
+        {
+          "text": "造",
+          "start_time": 12.109,
+          "end_time": 12.28
+        },
+        {
+          "text": "帳",
+          "start_time": 12.28,
+          "end_time": 12.493
+        },
+        {
+          "text": "幕",
+          "start_time": 12.493,
+          "end_time": 12.664
+        },
+        {
+          "text": "不",
+          "start_time": 12.664,
+          "end_time": 12.92
+        },
+        {
+          "text": "是",
+          "start_time": 12.92,
+          "end_time": 13.005
+        },
+        {
+          "text": "只",
+          "start_time": 13.005,
+          "end_time": 13.176
+        },
+        {
+          "text": "靠",
+          "start_time": 13.176,
+          "end_time": 13.346
+        },
+        {
+          "text": "一",
+          "start_time": 13.346,
+          "end_time": 13.517
+        },
+        {
+          "text": "個",
+          "start_time": 13.517,
+          "end_time": 13.645
+        },
+        {
+          "text": "人",
+          "start_time": 13.645,
+          "end_time": 13.773
+        },
+        {
+          "text": "；",
+          "start_time": 13.773,
+          "end_time": 14.157
+        },
+        {
+          "text": "金",
+          "start_time": 14.157,
+          "end_time": 14.413
+        },
+        {
+          "text": "屬",
+          "start_time": 14.413,
+          "end_time": 14.669
+        },
+        {
+          "text": "、",
+          "start_time": 14.669,
+          "end_time": 14.925
+        },
+        {
+          "text": "木",
+          "start_time": 14.925,
+          "end_time": 15.096
+        },
+        {
+          "text": "作",
+          "start_time": 15.096,
+          "end_time": 15.352
+        },
+        {
+          "text": "、",
+          "start_time": 15.352,
+          "end_time": 15.608
+        },
+        {
+          "text": "織",
+          "start_time": 15.608,
+          "end_time": 15.864
+        },
+        {
+          "text": "物",
+          "start_time": 15.864,
+          "end_time": 16.077
+        },
+        {
+          "text": "各",
+          "start_time": 16.077,
+          "end_time": 16.29
+        },
+        {
+          "text": "有",
+          "start_time": 16.29,
+          "end_time": 16.418
+        },
+        {
+          "text": "需",
+          "start_time": 16.418,
+          "end_time": 16.632
+        },
+        {
+          "text": "要",
+          "start_time": 16.632,
+          "end_time": 16.717
+        },
+        {
+          "text": "的",
+          "start_time": 16.717,
+          "end_time": 16.802
+        },
+        {
+          "text": "手",
+          "start_time": 16.802,
+          "end_time": 17.016
+        },
+        {
+          "text": "藝",
+          "start_time": 17.016,
+          "end_time": 17.186
+        },
+        {
+          "text": "。",
+          "start_time": 17.186,
+          "end_time": 17.613
+        },
+        {
+          "text": "\n",
+          "start_time": 17.613,
+          "end_time": 17.634
+        },
+        {
+          "text": "\n",
+          "start_time": 17.634,
+          "end_time": 17.656
+        },
+        {
+          "text": "是",
+          "start_time": 17.656,
+          "end_time": 17.869
+        },
+        {
+          "text": "的",
+          "start_time": 17.869,
+          "end_time": 17.997
+        },
+        {
+          "text": "，",
+          "start_time": 17.997,
+          "end_time": 18.296
+        },
+        {
+          "text": "經",
+          "start_time": 18.296,
+          "end_time": 18.509
+        },
+        {
+          "text": "文",
+          "start_time": 18.509,
+          "end_time": 18.637
+        },
+        {
+          "text": "分",
+          "start_time": 18.637,
+          "end_time": 18.808
+        },
+        {
+          "text": "別",
+          "start_time": 18.808,
+          "end_time": 18.936
+        },
+        {
+          "text": "提",
+          "start_time": 18.936,
+          "end_time": 19.106
+        },
+        {
+          "text": "到",
+          "start_time": 19.106,
+          "end_time": 19.234
+        },
+        {
+          "text": "奉",
+          "start_time": 19.234,
+          "end_time": 19.405
+        },
+        {
+          "text": "獻",
+          "start_time": 19.405,
+          "end_time": 19.704
+        },
+        {
+          "text": "、",
+          "start_time": 19.704,
+          "end_time": 19.874
+        },
+        {
+          "text": "紡",
+          "start_time": 19.874,
+          "end_time": 20.088
+        },
+        {
+          "text": "線",
+          "start_time": 20.088,
+          "end_time": 20.344
+        },
+        {
+          "text": "和",
+          "start_time": 20.344,
+          "end_time": 20.557
+        },
+        {
+          "text": "各",
+          "start_time": 20.557,
+          "end_time": 20.685
+        },
+        {
+          "text": "樣",
+          "start_time": 20.685,
+          "end_time": 20.813
+        },
+        {
+          "text": "巧",
+          "start_time": 20.813,
+          "end_time": 21.026
+        },
+        {
+          "text": "工",
+          "start_time": 21.026,
+          "end_time": 21.24
+        },
+        {
+          "text": "。",
+          "start_time": 21.24,
+          "end_time": 21.538
+        },
+        {
+          "text": "你",
+          "start_time": 21.568,
+          "end_time": 21.781
+        },
+        {
+          "text": "可",
+          "start_time": 21.781,
+          "end_time": 21.909
+        },
+        {
+          "text": "以",
+          "start_time": 21.909,
+          "end_time": 21.952
+        },
+        {
+          "text": "先",
+          "start_time": 21.952,
+          "end_time": 22.122
+        },
+        {
+          "text": "辨",
+          "start_time": 22.122,
+          "end_time": 22.293
+        },
+        {
+          "text": "認",
+          "start_time": 22.293,
+          "end_time": 22.506
+        },
+        {
+          "text": "布",
+          "start_time": 22.506,
+          "end_time": 22.677
+        },
+        {
+          "text": "、",
+          "start_time": 22.677,
+          "end_time": 23.018
+        },
+        {
+          "text": "木",
+          "start_time": 23.018,
+          "end_time": 23.232
+        },
+        {
+          "text": "、",
+          "start_time": 23.232,
+          "end_time": 23.488
+        },
+        {
+          "text": "金",
+          "start_time": 23.488,
+          "end_time": 23.701
+        },
+        {
+          "text": "屬",
+          "start_time": 23.701,
+          "end_time": 23.957
+        },
+        {
+          "text": "，",
+          "start_time": 23.957,
+          "end_time": 24.256
+        },
+        {
+          "text": "再",
+          "start_time": 24.256,
+          "end_time": 24.555
+        },
+        {
+          "text": "想",
+          "start_time": 24.555,
+          "end_time": 24.683
+        },
+        {
+          "text": "想",
+          "start_time": 24.683,
+          "end_time": 25.024
+        },
+        {
+          "text": "需",
+          "start_time": 25.024,
+          "end_time": 25.152
+        },
+        {
+          "text": "要",
+          "start_time": 25.152,
+          "end_time": 25.28
+        },
+        {
+          "text": "哪",
+          "start_time": 25.28,
+          "end_time": 25.408
+        },
+        {
+          "text": "些",
+          "start_time": 25.408,
+          "end_time": 25.578
+        },
+        {
+          "text": "不",
+          "start_time": 25.578,
+          "end_time": 25.706
+        },
+        {
+          "text": "同",
+          "start_time": 25.706,
+          "end_time": 25.834
+        },
+        {
+          "text": "的",
+          "start_time": 25.834,
+          "end_time": 25.92
+        },
+        {
+          "text": "工",
+          "start_time": 25.92,
+          "end_time": 26.09
+        },
+        {
+          "text": "序",
+          "start_time": 26.09,
+          "end_time": 26.346
+        },
+        {
+          "text": "。",
+          "start_time": 26.346,
+          "end_time": 26.901
+        },
+        {
+          "text": "\n",
+          "start_time": 26.901,
+          "end_time": 26.923
+        },
+        {
+          "text": "\n",
+          "start_time": 26.923,
+          "end_time": 26.944
+        },
+        {
+          "text": "它",
+          "start_time": 26.944,
+          "end_time": 27.072
+        },
+        {
+          "text": "不",
+          "start_time": 27.072,
+          "end_time": 27.242
+        },
+        {
+          "text": "是",
+          "start_time": 27.242,
+          "end_time": 27.37
+        },
+        {
+          "text": "固",
+          "start_time": 27.37,
+          "end_time": 27.541
+        },
+        {
+          "text": "定",
+          "start_time": 27.541,
+          "end_time": 27.669
+        },
+        {
+          "text": "的",
+          "start_time": 27.669,
+          "end_time": 27.755
+        },
+        {
+          "text": "石",
+          "start_time": 27.755,
+          "end_time": 27.968
+        },
+        {
+          "text": "屋",
+          "start_time": 27.968,
+          "end_time": 28.181
+        },
+        {
+          "text": "。",
+          "start_time": 28.181,
+          "end_time": 28.48
+        },
+        {
+          "text": "板",
+          "start_time": 28.59,
+          "end_time": 28.76
+        },
+        {
+          "text": "、",
+          "start_time": 28.76,
+          "end_time": 29.102
+        },
+        {
+          "text": "座",
+          "start_time": 29.102,
+          "end_time": 29.358
+        },
+        {
+          "text": "、",
+          "start_time": 29.358,
+          "end_time": 29.613
+        },
+        {
+          "text": "槓",
+          "start_time": 29.613,
+          "end_time": 29.741
+        },
+        {
+          "text": "與",
+          "start_time": 29.741,
+          "end_time": 30.04
+        },
+        {
+          "text": "織",
+          "start_time": 30.04,
+          "end_time": 30.595
+        },
+        {
+          "text": "物",
+          "start_time": 30.595,
+          "end_time": 30.851
+        },
+        {
+          "text": "可",
+          "start_time": 30.851,
+          "end_time": 31.021
+        },
+        {
+          "text": "以",
+          "start_time": 31.021,
+          "end_time": 31.107
+        },
+        {
+          "text": "分",
+          "start_time": 31.107,
+          "end_time": 31.235
+        },
+        {
+          "text": "開",
+          "start_time": 31.235,
+          "end_time": 31.405
+        },
+        {
+          "text": "搬",
+          "start_time": 31.405,
+          "end_time": 31.576
+        },
+        {
+          "text": "運",
+          "start_time": 31.576,
+          "end_time": 31.747
+        },
+        {
+          "text": "；",
+          "start_time": 31.747,
+          "end_time": 32.216
+        },
+        {
+          "text": "民",
+          "start_time": 32.216,
+          "end_time": 32.387
+        },
+        {
+          "text": "數",
+          "start_time": 32.387,
+          "end_time": 32.6
+        },
+        {
+          "text": "記",
+          "start_time": 32.6,
+          "end_time": 32.856
+        },
+        {
+          "text": "還",
+          "start_time": 32.856,
+          "end_time": 33.027
+        },
+        {
+          "text": "把",
+          "start_time": 33.027,
+          "end_time": 33.155
+        },
+        {
+          "text": "帳",
+          "start_time": 33.155,
+          "end_time": 33.368
+        },
+        {
+          "text": "幕",
+          "start_time": 33.368,
+          "end_time": 33.624
+        },
+        {
+          "text": "、",
+          "start_time": 33.624,
+          "end_time": 33.837
+        },
+        {
+          "text": "器",
+          "start_time": 33.837,
+          "end_time": 34.136
+        },
+        {
+          "text": "具",
+          "start_time": 34.136,
+          "end_time": 34.392
+        },
+        {
+          "text": "及",
+          "start_time": 34.392,
+          "end_time": 34.605
+        },
+        {
+          "text": "架",
+          "start_time": 34.605,
+          "end_time": 34.819
+        },
+        {
+          "text": "構",
+          "start_time": 34.819,
+          "end_time": 34.989
+        },
+        {
+          "text": "的",
+          "start_time": 34.989,
+          "end_time": 35.075
+        },
+        {
+          "text": "搬",
+          "start_time": 35.075,
+          "end_time": 35.245
+        },
+        {
+          "text": "運",
+          "start_time": 35.245,
+          "end_time": 35.373
+        },
+        {
+          "text": "責",
+          "start_time": 35.373,
+          "end_time": 35.587
+        },
+        {
+          "text": "任",
+          "start_time": 35.587,
+          "end_time": 35.758
+        },
+        {
+          "text": "分",
+          "start_time": 35.758,
+          "end_time": 36.014
+        },
+        {
+          "text": "配",
+          "start_time": 36.014,
+          "end_time": 36.184
+        },
+        {
+          "text": "給",
+          "start_time": 36.184,
+          "end_time": 36.312
+        },
+        {
+          "text": "不",
+          "start_time": 36.312,
+          "end_time": 36.44
+        },
+        {
+          "text": "同",
+          "start_time": 36.44,
+          "end_time": 36.611
+        },
+        {
+          "text": "群",
+          "start_time": 36.611,
+          "end_time": 36.782
+        },
+        {
+          "text": "體",
+          "start_time": 36.782,
+          "end_time": 37.08
+        },
+        {
+          "text": "。",
+          "start_time": 37.08,
+          "end_time": 37.422
+        },
+        {
+          "text": "\n",
+          "start_time": 37.422,
+          "end_time": 37.453
+        },
+        {
+          "text": "\n",
+          "start_time": 37.453,
+          "end_time": 37.484
+        },
+        {
+          "text": "經",
+          "start_time": 37.484,
+          "end_time": 37.654
+        },
+        {
+          "text": "文",
+          "start_time": 37.654,
+          "end_time": 37.782
+        },
+        {
+          "text": "提",
+          "start_time": 37.782,
+          "end_time": 37.996
+        },
+        {
+          "text": "到",
+          "start_time": 37.996,
+          "end_time": 38.124
+        },
+        {
+          "text": "藍",
+          "start_time": 38.124,
+          "end_time": 38.38
+        },
+        {
+          "text": "色",
+          "start_time": 38.38,
+          "end_time": 38.636
+        },
+        {
+          "text": "、",
+          "start_time": 38.636,
+          "end_time": 38.892
+        },
+        {
+          "text": "紫",
+          "start_time": 38.892,
+          "end_time": 39.148
+        },
+        {
+          "text": "色",
+          "start_time": 39.148,
+          "end_time": 39.446
+        },
+        {
+          "text": "、",
+          "start_time": 39.446,
+          "end_time": 39.702
+        },
+        {
+          "text": "朱",
+          "start_time": 39.702,
+          "end_time": 39.916
+        },
+        {
+          "text": "紅",
+          "start_time": 39.916,
+          "end_time": 40.086
+        },
+        {
+          "text": "色",
+          "start_time": 40.086,
+          "end_time": 40.385
+        },
+        {
+          "text": "線",
+          "start_time": 40.385,
+          "end_time": 40.598
+        },
+        {
+          "text": "與",
+          "start_time": 40.598,
+          "end_time": 40.726
+        },
+        {
+          "text": "細",
+          "start_time": 40.726,
+          "end_time": 40.982
+        },
+        {
+          "text": "麻",
+          "start_time": 40.982,
+          "end_time": 41.153
+        },
+        {
+          "text": "，",
+          "start_time": 41.153,
+          "end_time": 41.452
+        },
+        {
+          "text": "也",
+          "start_time": 41.452,
+          "end_time": 41.665
+        },
+        {
+          "text": "提",
+          "start_time": 41.665,
+          "end_time": 41.793
+        },
+        {
+          "text": "到",
+          "start_time": 41.793,
+          "end_time": 41.921
+        },
+        {
+          "text": "基",
+          "start_time": 41.921,
+          "end_time": 42.134
+        },
+        {
+          "text": "路",
+          "start_time": 42.134,
+          "end_time": 42.262
+        },
+        {
+          "text": "伯",
+          "start_time": 42.262,
+          "end_time": 42.476
+        },
+        {
+          "text": "。",
+          "start_time": 42.476,
+          "end_time": 43.073
+        },
+        {
+          "text": "但",
+          "start_time": 43.073,
+          "end_time": 43.244
+        },
+        {
+          "text": "你",
+          "start_time": 43.244,
+          "end_time": 43.329
+        },
+        {
+          "text": "眼",
+          "start_time": 43.329,
+          "end_time": 43.5
+        },
+        {
+          "text": "前",
+          "start_time": 43.5,
+          "end_time": 43.67
+        },
+        {
+          "text": "的",
+          "start_time": 43.67,
+          "end_time": 43.756
+        },
+        {
+          "text": "染",
+          "start_time": 43.756,
+          "end_time": 43.926
+        },
+        {
+          "text": "色",
+          "start_time": 43.926,
+          "end_time": 44.097
+        },
+        {
+          "text": "深",
+          "start_time": 44.097,
+          "end_time": 44.31
+        },
+        {
+          "text": "淺",
+          "start_time": 44.31,
+          "end_time": 44.566
+        },
+        {
+          "text": "、",
+          "start_time": 44.566,
+          "end_time": 44.865
+        },
+        {
+          "text": "織",
+          "start_time": 44.865,
+          "end_time": 45.121
+        },
+        {
+          "text": "紋",
+          "start_time": 45.121,
+          "end_time": 45.334
+        },
+        {
+          "text": "與",
+          "start_time": 45.334,
+          "end_time": 45.718
+        },
+        {
+          "text": "每",
+          "start_time": 45.718,
+          "end_time": 45.889
+        },
+        {
+          "text": "一",
+          "start_time": 45.889,
+          "end_time": 46.017
+        },
+        {
+          "text": "處",
+          "start_time": 46.017,
+          "end_time": 46.188
+        },
+        {
+          "text": "細",
+          "start_time": 46.188,
+          "end_time": 46.358
+        },
+        {
+          "text": "節",
+          "start_time": 46.358,
+          "end_time": 46.657
+        },
+        {
+          "text": "，",
+          "start_time": 46.657,
+          "end_time": 46.87
+        },
+        {
+          "text": "是",
+          "start_time": 46.87,
+          "end_time": 46.998
+        },
+        {
+          "text": "模",
+          "start_time": 46.998,
+          "end_time": 47.212
+        },
+        {
+          "text": "型",
+          "start_time": 47.212,
+          "end_time": 47.34
+        },
+        {
+          "text": "的",
+          "start_time": 47.34,
+          "end_time": 47.425
+        },
+        {
+          "text": "復",
+          "start_time": 47.425,
+          "end_time": 47.638
+        },
+        {
+          "text": "原",
+          "start_time": 47.638,
+          "end_time": 47.766
+        },
+        {
+          "text": "選",
+          "start_time": 47.766,
+          "end_time": 47.98
+        },
+        {
+          "text": "擇",
+          "start_time": 47.98,
+          "end_time": 48.15
+        },
+        {
+          "text": "。",
+          "start_time": 48.15,
+          "end_time": 48.492
+        },
+        {
+          "text": "\n",
+          "start_time": 48.492,
+          "end_time": 48.522
+        },
+        {
+          "text": "\n",
+          "start_time": 48.522,
+          "end_time": 48.553
+        },
+        {
+          "text": "一",
+          "start_time": 48.553,
+          "end_time": 48.724
+        },
+        {
+          "text": "起",
+          "start_time": 48.724,
+          "end_time": 48.852
+        },
+        {
+          "text": "看",
+          "start_time": 48.852,
+          "end_time": 48.98
+        },
+        {
+          "text": "看",
+          "start_time": 48.98,
+          "end_time": 49.065
+        },
+        {
+          "text": "「",
+          "start_time": 49.065,
+          "end_time": 49.108
+        },
+        {
+          "text": "金",
+          "start_time": 49.108,
+          "end_time": 49.236
+        },
+        {
+          "text": "燈",
+          "start_time": 49.236,
+          "end_time": 49.407
+        },
+        {
+          "text": "臺",
+          "start_time": 49.407,
+          "end_time": 49.577
+        },
+        {
+          "text": "」",
+          "start_time": 49.577,
+          "end_time": 49.62
+        },
+        {
+          "text": "吧",
+          "start_time": 49.62,
+          "end_time": 49.748
+        },
+        {
+          "text": "。",
+          "start_time": 49.748,
+          "end_time": 50.089
+        },
+        {
+          "text": "先",
+          "start_time": 50.089,
+          "end_time": 50.388
+        },
+        {
+          "text": "找",
+          "start_time": 50.388,
+          "end_time": 50.559
+        },
+        {
+          "text": "物",
+          "start_time": 50.559,
+          "end_time": 50.687
+        },
+        {
+          "text": "件",
+          "start_time": 50.687,
+          "end_time": 50.857
+        },
+        {
+          "text": "，",
+          "start_time": 50.857,
+          "end_time": 51.113
+        },
+        {
+          "text": "再",
+          "start_time": 51.113,
+          "end_time": 51.241
+        },
+        {
+          "text": "說",
+          "start_time": 51.241,
+          "end_time": 51.412
+        },
+        {
+          "text": "說",
+          "start_time": 51.412,
+          "end_time": 51.497
+        },
+        {
+          "text": "你",
+          "start_time": 51.497,
+          "end_time": 51.625
+        },
+        {
+          "text": "發",
+          "start_time": 51.625,
+          "end_time": 51.796
+        },
+        {
+          "text": "現",
+          "start_time": 51.796,
+          "end_time": 51.924
+        },
+        {
+          "text": "了",
+          "start_time": 51.924,
+          "end_time": 52.052
+        },
+        {
+          "text": "什",
+          "start_time": 52.052,
+          "end_time": 52.137
+        },
+        {
+          "text": "麼",
+          "start_time": 52.137,
+          "end_time": 52.308
+        },
+        {
+          "text": "。",
+          "start_time": 52.308,
+          "end_time": 52.564
+        },
+        {
+          "text": "\n",
+          "start_time": 52.564,
+          "end_time": 52.585
+        },
+        {
+          "text": "\n",
+          "start_time": 52.585,
+          "end_time": 52.606
+        },
+        {
+          "text": "打",
+          "start_time": 52.606,
+          "end_time": 52.734
+        },
+        {
+          "text": "開",
+          "start_time": 52.734,
+          "end_time": 52.905
+        },
+        {
+          "text": "剖",
+          "start_time": 52.905,
+          "end_time": 53.076
+        },
+        {
+          "text": "面",
+          "start_time": 53.076,
+          "end_time": 53.246
+        },
+        {
+          "text": "，",
+          "start_time": 53.246,
+          "end_time": 53.545
+        },
+        {
+          "text": "從",
+          "start_time": 53.545,
+          "end_time": 53.844
+        },
+        {
+          "text": "聖",
+          "start_time": 53.844,
+          "end_time": 54.057
+        },
+        {
+          "text": "所",
+          "start_time": 54.057,
+          "end_time": 54.228
+        },
+        {
+          "text": "裡",
+          "start_time": 54.228,
+          "end_time": 54.356
+        },
+        {
+          "text": "的",
+          "start_time": 54.356,
+          "end_time": 54.441
+        },
+        {
+          "text": "燈",
+          "start_time": 54.441,
+          "end_time": 54.569
+        },
+        {
+          "text": "臺",
+          "start_time": 54.569,
+          "end_time": 54.782
+        },
+        {
+          "text": "中",
+          "start_time": 54.782,
+          "end_time": 54.91
+        },
+        {
+          "text": "央",
+          "start_time": 54.91,
+          "end_time": 55.124
+        },
+        {
+          "text": "往",
+          "start_time": 55.124,
+          "end_time": 55.337
+        },
+        {
+          "text": "兩",
+          "start_time": 55.337,
+          "end_time": 55.508
+        },
+        {
+          "text": "邊",
+          "start_time": 55.508,
+          "end_time": 55.678
+        },
+        {
+          "text": "看",
+          "start_time": 55.678,
+          "end_time": 55.892
+        },
+        {
+          "text": "；",
+          "start_time": 55.892,
+          "end_time": 56.191
+        },
+        {
+          "text": "一",
+          "start_time": 56.191,
+          "end_time": 56.361
+        },
+        {
+          "text": "盞",
+          "start_time": 56.361,
+          "end_time": 56.532
+        },
+        {
+          "text": "一",
+          "start_time": 56.532,
+          "end_time": 56.66
+        },
+        {
+          "text": "盞",
+          "start_time": 56.66,
+          "end_time": 56.831
+        },
+        {
+          "text": "數",
+          "start_time": 56.831,
+          "end_time": 57.087
+        },
+        {
+          "text": "，",
+          "start_time": 57.087,
+          "end_time": 57.385
+        },
+        {
+          "text": "不",
+          "start_time": 57.385,
+          "end_time": 57.513
+        },
+        {
+          "text": "要",
+          "start_time": 57.513,
+          "end_time": 57.599
+        },
+        {
+          "text": "把",
+          "start_time": 57.599,
+          "end_time": 57.727
+        },
+        {
+          "text": "底",
+          "start_time": 57.727,
+          "end_time": 57.897
+        },
+        {
+          "text": "座",
+          "start_time": 57.897,
+          "end_time": 58.068
+        },
+        {
+          "text": "算",
+          "start_time": 58.068,
+          "end_time": 58.196
+        },
+        {
+          "text": "成",
+          "start_time": 58.196,
+          "end_time": 58.367
+        },
+        {
+          "text": "燈",
+          "start_time": 58.367,
+          "end_time": 58.537
+        },
+        {
+          "text": "。",
+          "start_time": 58.537,
+          "end_time": 59.007
+        },
+        {
+          "text": "\n",
+          "start_time": 59.007,
+          "end_time": 59.019
+        },
+        {
+          "text": "\n",
+          "start_time": 59.019,
+          "end_time": 59.031
+        },
+        {
+          "text": "數",
+          "start_time": 59.031,
+          "end_time": 59.244
+        },
+        {
+          "text": "一",
+          "start_time": 59.244,
+          "end_time": 59.372
+        },
+        {
+          "text": "數",
+          "start_time": 59.372,
+          "end_time": 59.542
+        },
+        {
+          "text": "燈",
+          "start_time": 59.542,
+          "end_time": 59.67
+        },
+        {
+          "text": "臺",
+          "start_time": 59.67,
+          "end_time": 59.884
+        },
+        {
+          "text": "上",
+          "start_time": 59.884,
+          "end_time": 60.012
+        },
+        {
+          "text": "的",
+          "start_time": 60.012,
+          "end_time": 60.097
+        },
+        {
+          "text": "燈",
+          "start_time": 60.097,
+          "end_time": 60.268
+        },
+        {
+          "text": "，",
+          "start_time": 60.268,
+          "end_time": 60.566
+        },
+        {
+          "text": "找",
+          "start_time": 60.566,
+          "end_time": 60.737
+        },
+        {
+          "text": "找",
+          "start_time": 60.737,
+          "end_time": 60.865
+        },
+        {
+          "text": "它",
+          "start_time": 60.865,
+          "end_time": 60.993
+        },
+        {
+          "text": "對",
+          "start_time": 60.993,
+          "end_time": 61.121
+        },
+        {
+          "text": "面",
+          "start_time": 61.121,
+          "end_time": 61.292
+        },
+        {
+          "text": "的",
+          "start_time": 61.292,
+          "end_time": 61.377
+        },
+        {
+          "text": "桌",
+          "start_time": 61.377,
+          "end_time": 61.59
+        },
+        {
+          "text": "子",
+          "start_time": 61.59,
+          "end_time": 61.804
+        },
+        {
+          "text": "。",
+          "start_time": 61.804,
+          "end_time": 62.273
+        },
+        {
+          "text": " ",
+          "start_time": 62.273,
+          "end_time": 62.316
+        },
+        {
+          "text": "看",
+          "start_time": 62.316,
+          "end_time": 62.444
+        },
+        {
+          "text": "過",
+          "start_time": 62.444,
+          "end_time": 62.614
+        },
+        {
+          "text": "之",
+          "start_time": 62.614,
+          "end_time": 62.742
+        },
+        {
+          "text": "後",
+          "start_time": 62.742,
+          "end_time": 62.956
+        },
+        {
+          "text": "，",
+          "start_time": 62.956,
+          "end_time": 63.169
+        },
+        {
+          "text": "回",
+          "start_time": 63.169,
+          "end_time": 63.383
+        },
+        {
+          "text": "到",
+          "start_time": 63.383,
+          "end_time": 63.511
+        },
+        {
+          "text": "觀",
+          "start_time": 63.511,
+          "end_time": 63.681
+        },
+        {
+          "text": "察",
+          "start_time": 63.681,
+          "end_time": 63.895
+        },
+        {
+          "text": "任",
+          "start_time": 63.895,
+          "end_time": 64.022
+        },
+        {
+          "text": "務",
+          "start_time": 64.022,
+          "end_time": 64.236
+        },
+        {
+          "text": "試",
+          "start_time": 64.236,
+          "end_time": 64.406
+        },
+        {
+          "text": "著",
+          "start_time": 64.406,
+          "end_time": 64.534
+        },
+        {
+          "text": "回",
+          "start_time": 64.534,
+          "end_time": 64.705
+        },
+        {
+          "text": "答",
+          "start_time": 64.705,
+          "end_time": 64.876
+        },
+        {
+          "text": "。",
+          "start_time": 64.876,
+          "end_time": 65.16861678004535
+        }
+      ],
+      "fileDuration": 65.410563,
+      "codec": {
+        "codec_name": "mp3",
+        "sample_rate": "44100"
+      }
+    },
+    {
+      "person": "priest",
+      "voiceId": "1ddd191b2454466e9527983c9dcb4c14",
+      "sourceURL": "https://resource2.heygen.ai/text_to_speech/e960072c8abb455896232ed310ed9bb3/1ddd191b2454466e9527983c9dcb4c14/id=48ad62be89ae4fbdabab1d06503191ae.mp3",
+      "duration": 65.07836734693878,
+      "submittedText": "我正在外院預備。從祭壇看向帳幕，中間那個銅盆很容易被忽略，卻和服事前的準備有關。\n\n經文吩咐亞倫和他的兒子，進會幕或到壇前供職時，要用盆裡的水洗手洗腳。這是祭司服事的規定，不只是走路沾了灰塵。\n\n不是同一件器物。會幕的洗濯盆與後來聖殿的銅海，屬不同時期；經文也沒有給這個盆完整的尺寸。\n\n幔子把聖所和至聖所分開。利未記對大祭司進入內部有嚴格規定；你能用模型剖面觀察，不表示當時人人都能進入。\n\n院裡的銅壇用於獻祭；帳幕內、幔子前的金香壇用於燒香。先看它們的位置、材料和大小，便不容易把兩者混在一起。\n\n一起看看「洗濯盆」吧。先找物件，再說說你發現了什麼。\n\n先找祭壇和帳幕之間的銅盆。想一想：服事以前，人要預備什麼？\n\n順著路線，從祭壇找到水盆，再看看帳幕的入口。 看過之後，回到觀察任務試著回答。",
+      "clips": {
+        "greeting": {
+          "start": 0.23600000000000002,
+          "end": 7.866,
+          "text": "我正在外院預備。從祭壇看向帳幕，中間那個銅盆很容易被忽略，卻和服事前的準備有關。"
+        },
+        "washing": {
+          "start": 7.955,
+          "end": 18.358,
+          "text": "經文吩咐亞倫和他的兒子，進會幕或到壇前供職時，要用盆裡的水洗手洗腳。這是祭司服事的規定，不只是走路沾了灰塵。"
+        },
+        "washing-followup": {
+          "start": 18.366,
+          "end": 26.788,
+          "text": "不是同一件器物。會幕的洗濯盆與後來聖殿的銅海，屬不同時期；經文也沒有給這個盆完整的尺寸。"
+        },
+        "curtain": {
+          "start": 26.796,
+          "end": 36.666000000000004,
+          "text": "幔子把聖所和至聖所分開。利未記對大祭司進入內部有嚴格規定；你能用模型剖面觀察，不表示當時人人都能進入。"
+        },
+        "two-altars": {
+          "start": 36.705,
+          "end": 47.279,
+          "text": "院裡的銅壇用於獻祭；帳幕內、幔子前的金香壇用於燒香。先看它們的位置、材料和大小，便不容易把兩者混在一起。"
+        },
+        "child-greeting": {
+          "start": 47.287,
+          "end": 51.562,
+          "text": "一起看看「洗濯盆」吧。先找物件，再說說你發現了什麼。"
+        },
+        "child-observe-basin": {
+          "start": 51.57,
+          "end": 57.45,
+          "text": "先找祭壇和帳幕之間的銅盆。想一想：服事以前，人要預備什麼？"
+        },
+        "child-observe-basin-followup": {
+          "start": 57.477999999999994,
+          "end": 64.89336734693877,
+          "text": "順著路線，從祭壇找到水盆，再看看帳幕的入口。 看過之後，回到觀察任務試著回答。"
+        }
+      },
+      "characterTimings": [
+        {
+          "text": "我",
+          "start_time": 0.256,
+          "end_time": 0.384
+        },
+        {
+          "text": "正",
+          "start_time": 0.384,
+          "end_time": 0.555
+        },
+        {
+          "text": "在",
+          "start_time": 0.555,
+          "end_time": 0.683
+        },
+        {
+          "text": "外",
+          "start_time": 0.683,
+          "end_time": 0.811
+        },
+        {
+          "text": "院",
+          "start_time": 0.811,
+          "end_time": 0.981
+        },
+        {
+          "text": "預",
+          "start_time": 0.981,
+          "end_time": 1.152
+        },
+        {
+          "text": "備",
+          "start_time": 1.152,
+          "end_time": 1.28
+        },
+        {
+          "text": "。",
+          "start_time": 1.28,
+          "end_time": 1.877
+        },
+        {
+          "text": "從",
+          "start_time": 1.877,
+          "end_time": 2.091
+        },
+        {
+          "text": "祭",
+          "start_time": 2.091,
+          "end_time": 2.304
+        },
+        {
+          "text": "壇",
+          "start_time": 2.304,
+          "end_time": 2.517
+        },
+        {
+          "text": "看",
+          "start_time": 2.517,
+          "end_time": 2.731
+        },
+        {
+          "text": "向",
+          "start_time": 2.731,
+          "end_time": 2.901
+        },
+        {
+          "text": "帳",
+          "start_time": 2.901,
+          "end_time": 3.072
+        },
+        {
+          "text": "幕",
+          "start_time": 3.072,
+          "end_time": 3.285
+        },
+        {
+          "text": "，",
+          "start_time": 3.285,
+          "end_time": 3.627
+        },
+        {
+          "text": "中",
+          "start_time": 3.627,
+          "end_time": 3.883
+        },
+        {
+          "text": "間",
+          "start_time": 3.883,
+          "end_time": 4.053
+        },
+        {
+          "text": "那",
+          "start_time": 4.053,
+          "end_time": 4.181
+        },
+        {
+          "text": "個",
+          "start_time": 4.181,
+          "end_time": 4.267
+        },
+        {
+          "text": "銅",
+          "start_time": 4.267,
+          "end_time": 4.437
+        },
+        {
+          "text": "盆",
+          "start_time": 4.437,
+          "end_time": 4.651
+        },
+        {
+          "text": "很",
+          "start_time": 4.651,
+          "end_time": 4.992
+        },
+        {
+          "text": "容",
+          "start_time": 4.992,
+          "end_time": 5.12
+        },
+        {
+          "text": "易",
+          "start_time": 5.12,
+          "end_time": 5.248
+        },
+        {
+          "text": "被",
+          "start_time": 5.248,
+          "end_time": 5.376
+        },
+        {
+          "text": "忽",
+          "start_time": 5.376,
+          "end_time": 5.589
+        },
+        {
+          "text": "略",
+          "start_time": 5.589,
+          "end_time": 5.76
+        },
+        {
+          "text": "，",
+          "start_time": 5.76,
+          "end_time": 6.016
+        },
+        {
+          "text": "卻",
+          "start_time": 6.016,
+          "end_time": 6.229
+        },
+        {
+          "text": "和",
+          "start_time": 6.229,
+          "end_time": 6.357
+        },
+        {
+          "text": "服",
+          "start_time": 6.357,
+          "end_time": 6.571
+        },
+        {
+          "text": "事",
+          "start_time": 6.571,
+          "end_time": 6.741
+        },
+        {
+          "text": "前",
+          "start_time": 6.741,
+          "end_time": 6.869
+        },
+        {
+          "text": "的",
+          "start_time": 6.869,
+          "end_time": 6.997
+        },
+        {
+          "text": "準",
+          "start_time": 6.997,
+          "end_time": 7.168
+        },
+        {
+          "text": "備",
+          "start_time": 7.168,
+          "end_time": 7.339
+        },
+        {
+          "text": "有",
+          "start_time": 7.339,
+          "end_time": 7.509
+        },
+        {
+          "text": "關",
+          "start_time": 7.509,
+          "end_time": 7.68
+        },
+        {
+          "text": "。",
+          "start_time": 7.68,
+          "end_time": 7.851
+        },
+        {
+          "text": "\n",
+          "start_time": 7.851,
+          "end_time": 7.913
+        },
+        {
+          "text": "\n",
+          "start_time": 7.913,
+          "end_time": 7.975
+        },
+        {
+          "text": "經",
+          "start_time": 7.975,
+          "end_time": 8.189
+        },
+        {
+          "text": "文",
+          "start_time": 8.189,
+          "end_time": 8.359
+        },
+        {
+          "text": "吩",
+          "start_time": 8.359,
+          "end_time": 8.573
+        },
+        {
+          "text": "咐",
+          "start_time": 8.573,
+          "end_time": 8.701
+        },
+        {
+          "text": "亞",
+          "start_time": 8.701,
+          "end_time": 8.914
+        },
+        {
+          "text": "倫",
+          "start_time": 8.914,
+          "end_time": 9.127
+        },
+        {
+          "text": "和",
+          "start_time": 9.127,
+          "end_time": 9.213
+        },
+        {
+          "text": "他",
+          "start_time": 9.213,
+          "end_time": 9.341
+        },
+        {
+          "text": "的",
+          "start_time": 9.341,
+          "end_time": 9.469
+        },
+        {
+          "text": "兒",
+          "start_time": 9.469,
+          "end_time": 9.682
+        },
+        {
+          "text": "子",
+          "start_time": 9.682,
+          "end_time": 9.853
+        },
+        {
+          "text": "，",
+          "start_time": 9.853,
+          "end_time": 10.066
+        },
+        {
+          "text": "進",
+          "start_time": 10.066,
+          "end_time": 10.322
+        },
+        {
+          "text": "會",
+          "start_time": 10.322,
+          "end_time": 10.535
+        },
+        {
+          "text": "幕",
+          "start_time": 10.535,
+          "end_time": 10.749
+        },
+        {
+          "text": "或",
+          "start_time": 10.749,
+          "end_time": 10.962
+        },
+        {
+          "text": "到",
+          "start_time": 10.962,
+          "end_time": 11.09
+        },
+        {
+          "text": "壇",
+          "start_time": 11.09,
+          "end_time": 11.218
+        },
+        {
+          "text": "前",
+          "start_time": 11.218,
+          "end_time": 11.431
+        },
+        {
+          "text": "供",
+          "start_time": 11.431,
+          "end_time": 11.602
+        },
+        {
+          "text": "職",
+          "start_time": 11.602,
+          "end_time": 11.815
+        },
+        {
+          "text": "時",
+          "start_time": 11.815,
+          "end_time": 12.071
+        },
+        {
+          "text": "，",
+          "start_time": 12.071,
+          "end_time": 12.327
+        },
+        {
+          "text": "要",
+          "start_time": 12.327,
+          "end_time": 12.498
+        },
+        {
+          "text": "用",
+          "start_time": 12.498,
+          "end_time": 12.626
+        },
+        {
+          "text": "盆",
+          "start_time": 12.626,
+          "end_time": 12.839
+        },
+        {
+          "text": "裡",
+          "start_time": 12.839,
+          "end_time": 13.01
+        },
+        {
+          "text": "的",
+          "start_time": 13.01,
+          "end_time": 13.095
+        },
+        {
+          "text": "水",
+          "start_time": 13.095,
+          "end_time": 13.351
+        },
+        {
+          "text": "洗",
+          "start_time": 13.351,
+          "end_time": 13.65
+        },
+        {
+          "text": "手",
+          "start_time": 13.65,
+          "end_time": 13.821
+        },
+        {
+          "text": "洗",
+          "start_time": 13.821,
+          "end_time": 13.991
+        },
+        {
+          "text": "腳",
+          "start_time": 13.991,
+          "end_time": 14.205
+        },
+        {
+          "text": "。",
+          "start_time": 14.205,
+          "end_time": 14.802
+        },
+        {
+          "text": "這",
+          "start_time": 14.802,
+          "end_time": 14.93
+        },
+        {
+          "text": "是",
+          "start_time": 14.93,
+          "end_time": 15.015
+        },
+        {
+          "text": "祭",
+          "start_time": 15.015,
+          "end_time": 15.229
+        },
+        {
+          "text": "司",
+          "start_time": 15.229,
+          "end_time": 15.442
+        },
+        {
+          "text": "服",
+          "start_time": 15.442,
+          "end_time": 15.613
+        },
+        {
+          "text": "事",
+          "start_time": 15.613,
+          "end_time": 15.741
+        },
+        {
+          "text": "的",
+          "start_time": 15.741,
+          "end_time": 15.826
+        },
+        {
+          "text": "規",
+          "start_time": 15.826,
+          "end_time": 16.039
+        },
+        {
+          "text": "定",
+          "start_time": 16.039,
+          "end_time": 16.167
+        },
+        {
+          "text": "，",
+          "start_time": 16.167,
+          "end_time": 16.551
+        },
+        {
+          "text": "不",
+          "start_time": 16.551,
+          "end_time": 16.765
+        },
+        {
+          "text": "只",
+          "start_time": 16.765,
+          "end_time": 16.893
+        },
+        {
+          "text": "是",
+          "start_time": 16.893,
+          "end_time": 17.021
+        },
+        {
+          "text": "走",
+          "start_time": 17.021,
+          "end_time": 17.234
+        },
+        {
+          "text": "路",
+          "start_time": 17.234,
+          "end_time": 17.447
+        },
+        {
+          "text": "沾",
+          "start_time": 17.447,
+          "end_time": 17.575
+        },
+        {
+          "text": "了",
+          "start_time": 17.575,
+          "end_time": 17.703
+        },
+        {
+          "text": "灰",
+          "start_time": 17.703,
+          "end_time": 17.917
+        },
+        {
+          "text": "塵",
+          "start_time": 17.917,
+          "end_time": 18.087
+        },
+        {
+          "text": "。",
+          "start_time": 18.087,
+          "end_time": 18.343
+        },
+        {
+          "text": "\n",
+          "start_time": 18.343,
+          "end_time": 18.365
+        },
+        {
+          "text": "\n",
+          "start_time": 18.365,
+          "end_time": 18.386
+        },
+        {
+          "text": "不",
+          "start_time": 18.386,
+          "end_time": 18.514
+        },
+        {
+          "text": "是",
+          "start_time": 18.514,
+          "end_time": 18.642
+        },
+        {
+          "text": "同",
+          "start_time": 18.642,
+          "end_time": 18.813
+        },
+        {
+          "text": "一",
+          "start_time": 18.813,
+          "end_time": 18.898
+        },
+        {
+          "text": "件",
+          "start_time": 18.898,
+          "end_time": 19.026
+        },
+        {
+          "text": "器",
+          "start_time": 19.026,
+          "end_time": 19.325
+        },
+        {
+          "text": "物",
+          "start_time": 19.325,
+          "end_time": 19.495
+        },
+        {
+          "text": "。",
+          "start_time": 19.495,
+          "end_time": 19.709
+        },
+        {
+          "text": "會",
+          "start_time": 19.776,
+          "end_time": 20.416
+        },
+        {
+          "text": "幕",
+          "start_time": 20.416,
+          "end_time": 20.544
+        },
+        {
+          "text": "的",
+          "start_time": 20.544,
+          "end_time": 20.63
+        },
+        {
+          "text": "洗",
+          "start_time": 20.63,
+          "end_time": 20.843
+        },
+        {
+          "text": "濯",
+          "start_time": 20.843,
+          "end_time": 21.014
+        },
+        {
+          "text": "盆",
+          "start_time": 21.014,
+          "end_time": 21.227
+        },
+        {
+          "text": "與",
+          "start_time": 21.227,
+          "end_time": 21.526
+        },
+        {
+          "text": "後",
+          "start_time": 21.526,
+          "end_time": 21.696
+        },
+        {
+          "text": "來",
+          "start_time": 21.696,
+          "end_time": 21.824
+        },
+        {
+          "text": "聖",
+          "start_time": 21.824,
+          "end_time": 22.038
+        },
+        {
+          "text": "殿",
+          "start_time": 22.038,
+          "end_time": 22.208
+        },
+        {
+          "text": "的",
+          "start_time": 22.208,
+          "end_time": 22.294
+        },
+        {
+          "text": "銅",
+          "start_time": 22.294,
+          "end_time": 22.507
+        },
+        {
+          "text": "海",
+          "start_time": 22.507,
+          "end_time": 22.763
+        },
+        {
+          "text": "，",
+          "start_time": 22.763,
+          "end_time": 22.976
+        },
+        {
+          "text": "屬",
+          "start_time": 22.976,
+          "end_time": 23.147
+        },
+        {
+          "text": "不",
+          "start_time": 23.147,
+          "end_time": 23.275
+        },
+        {
+          "text": "同",
+          "start_time": 23.275,
+          "end_time": 23.445
+        },
+        {
+          "text": "時",
+          "start_time": 23.445,
+          "end_time": 23.616
+        },
+        {
+          "text": "期",
+          "start_time": 23.616,
+          "end_time": 23.872
+        },
+        {
+          "text": "；",
+          "start_time": 23.872,
+          "end_time": 24.213
+        },
+        {
+          "text": "經",
+          "start_time": 24.213,
+          "end_time": 24.427
+        },
+        {
+          "text": "文",
+          "start_time": 24.427,
+          "end_time": 24.598
+        },
+        {
+          "text": "也",
+          "start_time": 24.598,
+          "end_time": 24.768
+        },
+        {
+          "text": "沒",
+          "start_time": 24.768,
+          "end_time": 24.896
+        },
+        {
+          "text": "有",
+          "start_time": 24.896,
+          "end_time": 24.982
+        },
+        {
+          "text": "給",
+          "start_time": 24.982,
+          "end_time": 25.11
+        },
+        {
+          "text": "這",
+          "start_time": 25.11,
+          "end_time": 25.238
+        },
+        {
+          "text": "個",
+          "start_time": 25.238,
+          "end_time": 25.323
+        },
+        {
+          "text": "盆",
+          "start_time": 25.323,
+          "end_time": 25.536
+        },
+        {
+          "text": "完",
+          "start_time": 25.536,
+          "end_time": 25.707
+        },
+        {
+          "text": "整",
+          "start_time": 25.707,
+          "end_time": 25.92
+        },
+        {
+          "text": "的",
+          "start_time": 25.92,
+          "end_time": 26.006
+        },
+        {
+          "text": "尺",
+          "start_time": 26.006,
+          "end_time": 26.176
+        },
+        {
+          "text": "寸",
+          "start_time": 26.176,
+          "end_time": 26.39
+        },
+        {
+          "text": "。",
+          "start_time": 26.39,
+          "end_time": 26.773
+        },
+        {
+          "text": "\n",
+          "start_time": 26.773,
+          "end_time": 26.795
+        },
+        {
+          "text": "\n",
+          "start_time": 26.795,
+          "end_time": 26.816
+        },
+        {
+          "text": "幔",
+          "start_time": 26.816,
+          "end_time": 27.115
+        },
+        {
+          "text": "子",
+          "start_time": 27.115,
+          "end_time": 27.243
+        },
+        {
+          "text": "把",
+          "start_time": 27.243,
+          "end_time": 27.371
+        },
+        {
+          "text": "聖",
+          "start_time": 27.371,
+          "end_time": 27.584
+        },
+        {
+          "text": "所",
+          "start_time": 27.584,
+          "end_time": 27.883
+        },
+        {
+          "text": "和",
+          "start_time": 27.883,
+          "end_time": 28.011
+        },
+        {
+          "text": "至",
+          "start_time": 28.011,
+          "end_time": 28.224
+        },
+        {
+          "text": "聖",
+          "start_time": 28.224,
+          "end_time": 28.352
+        },
+        {
+          "text": "所",
+          "start_time": 28.352,
+          "end_time": 28.523
+        },
+        {
+          "text": "分",
+          "start_time": 28.523,
+          "end_time": 28.694
+        },
+        {
+          "text": "開",
+          "start_time": 28.694,
+          "end_time": 28.907
+        },
+        {
+          "text": "。",
+          "start_time": 28.907,
+          "end_time": 29.12
+        },
+        {
+          "text": "利",
+          "start_time": 29.483,
+          "end_time": 29.611
+        },
+        {
+          "text": "未",
+          "start_time": 29.611,
+          "end_time": 29.782
+        },
+        {
+          "text": "記",
+          "start_time": 29.782,
+          "end_time": 30.038
+        },
+        {
+          "text": "對",
+          "start_time": 30.038,
+          "end_time": 30.166
+        },
+        {
+          "text": "大",
+          "start_time": 30.166,
+          "end_time": 30.337
+        },
+        {
+          "text": "祭",
+          "start_time": 30.337,
+          "end_time": 30.507
+        },
+        {
+          "text": "司",
+          "start_time": 30.507,
+          "end_time": 30.721
+        },
+        {
+          "text": "進",
+          "start_time": 30.721,
+          "end_time": 30.849
+        },
+        {
+          "text": "入",
+          "start_time": 30.849,
+          "end_time": 30.977
+        },
+        {
+          "text": "內",
+          "start_time": 30.977,
+          "end_time": 31.19
+        },
+        {
+          "text": "部",
+          "start_time": 31.19,
+          "end_time": 31.403
+        },
+        {
+          "text": "有",
+          "start_time": 31.403,
+          "end_time": 31.531
+        },
+        {
+          "text": "嚴",
+          "start_time": 31.531,
+          "end_time": 31.745
+        },
+        {
+          "text": "格",
+          "start_time": 31.745,
+          "end_time": 31.915
+        },
+        {
+          "text": "規",
+          "start_time": 31.915,
+          "end_time": 32.086
+        },
+        {
+          "text": "定",
+          "start_time": 32.086,
+          "end_time": 32.257
+        },
+        {
+          "text": "；",
+          "start_time": 32.257,
+          "end_time": 32.555
+        },
+        {
+          "text": "你",
+          "start_time": 32.555,
+          "end_time": 32.683
+        },
+        {
+          "text": "能",
+          "start_time": 32.683,
+          "end_time": 32.811
+        },
+        {
+          "text": "用",
+          "start_time": 32.811,
+          "end_time": 32.939
+        },
+        {
+          "text": "模",
+          "start_time": 32.939,
+          "end_time": 33.153
+        },
+        {
+          "text": "型",
+          "start_time": 33.153,
+          "end_time": 33.281
+        },
+        {
+          "text": "剖",
+          "start_time": 33.281,
+          "end_time": 33.494
+        },
+        {
+          "text": "面",
+          "start_time": 33.494,
+          "end_time": 33.665
+        },
+        {
+          "text": "觀",
+          "start_time": 33.665,
+          "end_time": 33.835
+        },
+        {
+          "text": "察",
+          "start_time": 33.835,
+          "end_time": 34.091
+        },
+        {
+          "text": "，",
+          "start_time": 34.091,
+          "end_time": 34.39
+        },
+        {
+          "text": "不",
+          "start_time": 34.39,
+          "end_time": 34.561
+        },
+        {
+          "text": "表",
+          "start_time": 34.561,
+          "end_time": 34.731
+        },
+        {
+          "text": "示",
+          "start_time": 34.731,
+          "end_time": 34.859
+        },
+        {
+          "text": "當",
+          "start_time": 34.859,
+          "end_time": 34.987
+        },
+        {
+          "text": "時",
+          "start_time": 34.987,
+          "end_time": 35.201
+        },
+        {
+          "text": "人",
+          "start_time": 35.201,
+          "end_time": 35.286
+        },
+        {
+          "text": "人",
+          "start_time": 35.286,
+          "end_time": 35.627
+        },
+        {
+          "text": "都",
+          "start_time": 35.627,
+          "end_time": 35.755
+        },
+        {
+          "text": "能",
+          "start_time": 35.755,
+          "end_time": 35.883
+        },
+        {
+          "text": "進",
+          "start_time": 35.883,
+          "end_time": 36.054
+        },
+        {
+          "text": "入",
+          "start_time": 36.054,
+          "end_time": 36.267
+        },
+        {
+          "text": "。",
+          "start_time": 36.267,
+          "end_time": 36.651
+        },
+        {
+          "text": "\n",
+          "start_time": 36.651,
+          "end_time": 36.688
+        },
+        {
+          "text": "\n",
+          "start_time": 36.688,
+          "end_time": 36.725
+        },
+        {
+          "text": "院",
+          "start_time": 36.725,
+          "end_time": 36.939
+        },
+        {
+          "text": "裡",
+          "start_time": 36.939,
+          "end_time": 37.067
+        },
+        {
+          "text": "的",
+          "start_time": 37.067,
+          "end_time": 37.152
+        },
+        {
+          "text": "銅",
+          "start_time": 37.152,
+          "end_time": 37.365
+        },
+        {
+          "text": "壇",
+          "start_time": 37.365,
+          "end_time": 37.664
+        },
+        {
+          "text": "用",
+          "start_time": 37.664,
+          "end_time": 37.835
+        },
+        {
+          "text": "於",
+          "start_time": 37.835,
+          "end_time": 37.963
+        },
+        {
+          "text": "獻",
+          "start_time": 37.963,
+          "end_time": 38.176
+        },
+        {
+          "text": "祭",
+          "start_time": 38.176,
+          "end_time": 38.475
+        },
+        {
+          "text": "；",
+          "start_time": 38.475,
+          "end_time": 38.944
+        },
+        {
+          "text": "帳",
+          "start_time": 38.944,
+          "end_time": 39.157
+        },
+        {
+          "text": "幕",
+          "start_time": 39.157,
+          "end_time": 39.328
+        },
+        {
+          "text": "內",
+          "start_time": 39.328,
+          "end_time": 39.499
+        },
+        {
+          "text": "、",
+          "start_time": 39.499,
+          "end_time": 39.84
+        },
+        {
+          "text": "幔",
+          "start_time": 39.84,
+          "end_time": 40.139
+        },
+        {
+          "text": "子",
+          "start_time": 40.139,
+          "end_time": 40.224
+        },
+        {
+          "text": "前",
+          "start_time": 40.224,
+          "end_time": 40.395
+        },
+        {
+          "text": "的",
+          "start_time": 40.395,
+          "end_time": 40.523
+        },
+        {
+          "text": "金",
+          "start_time": 40.523,
+          "end_time": 40.651
+        },
+        {
+          "text": "香",
+          "start_time": 40.651,
+          "end_time": 40.907
+        },
+        {
+          "text": "壇",
+          "start_time": 40.907,
+          "end_time": 41.205
+        },
+        {
+          "text": "用",
+          "start_time": 41.205,
+          "end_time": 41.376
+        },
+        {
+          "text": "於",
+          "start_time": 41.376,
+          "end_time": 41.504
+        },
+        {
+          "text": "燒",
+          "start_time": 41.504,
+          "end_time": 41.717
+        },
+        {
+          "text": "香",
+          "start_time": 41.717,
+          "end_time": 41.973
+        },
+        {
+          "text": "。",
+          "start_time": 41.973,
+          "end_time": 42.485
+        },
+        {
+          "text": "先",
+          "start_time": 42.485,
+          "end_time": 42.656
+        },
+        {
+          "text": "看",
+          "start_time": 42.656,
+          "end_time": 42.784
+        },
+        {
+          "text": "它",
+          "start_time": 42.784,
+          "end_time": 42.955
+        },
+        {
+          "text": "們",
+          "start_time": 42.955,
+          "end_time": 43.04
+        },
+        {
+          "text": "的",
+          "start_time": 43.04,
+          "end_time": 43.125
+        },
+        {
+          "text": "位",
+          "start_time": 43.125,
+          "end_time": 43.296
+        },
+        {
+          "text": "置",
+          "start_time": 43.296,
+          "end_time": 43.552
+        },
+        {
+          "text": "、",
+          "start_time": 43.552,
+          "end_time": 43.765
+        },
+        {
+          "text": "材",
+          "start_time": 43.765,
+          "end_time": 44.021
+        },
+        {
+          "text": "料",
+          "start_time": 44.021,
+          "end_time": 44.277
+        },
+        {
+          "text": "和",
+          "start_time": 44.277,
+          "end_time": 44.491
+        },
+        {
+          "text": "大",
+          "start_time": 44.491,
+          "end_time": 44.661
+        },
+        {
+          "text": "小",
+          "start_time": 44.661,
+          "end_time": 44.875
+        },
+        {
+          "text": "，",
+          "start_time": 44.875,
+          "end_time": 45.216
+        },
+        {
+          "text": "便",
+          "start_time": 45.216,
+          "end_time": 45.387
+        },
+        {
+          "text": "不",
+          "start_time": 45.387,
+          "end_time": 45.557
+        },
+        {
+          "text": "容",
+          "start_time": 45.557,
+          "end_time": 45.685
+        },
+        {
+          "text": "易",
+          "start_time": 45.685,
+          "end_time": 45.813
+        },
+        {
+          "text": "把",
+          "start_time": 45.813,
+          "end_time": 45.941
+        },
+        {
+          "text": "兩",
+          "start_time": 45.941,
+          "end_time": 46.069
+        },
+        {
+          "text": "者",
+          "start_time": 46.069,
+          "end_time": 46.283
+        },
+        {
+          "text": "混",
+          "start_time": 46.283,
+          "end_time": 46.411
+        },
+        {
+          "text": "在",
+          "start_time": 46.411,
+          "end_time": 46.581
+        },
+        {
+          "text": "一",
+          "start_time": 46.581,
+          "end_time": 46.667
+        },
+        {
+          "text": "起",
+          "start_time": 46.667,
+          "end_time": 46.923
+        },
+        {
+          "text": "。",
+          "start_time": 46.923,
+          "end_time": 47.264
+        },
+        {
+          "text": "\n",
+          "start_time": 47.264,
+          "end_time": 47.285
+        },
+        {
+          "text": "\n",
+          "start_time": 47.285,
+          "end_time": 47.307
+        },
+        {
+          "text": "一",
+          "start_time": 47.307,
+          "end_time": 47.435
+        },
+        {
+          "text": "起",
+          "start_time": 47.435,
+          "end_time": 47.563
+        },
+        {
+          "text": "看",
+          "start_time": 47.563,
+          "end_time": 47.691
+        },
+        {
+          "text": "看",
+          "start_time": 47.691,
+          "end_time": 47.776
+        },
+        {
+          "text": "「",
+          "start_time": 47.776,
+          "end_time": 47.819
+        },
+        {
+          "text": "洗",
+          "start_time": 47.819,
+          "end_time": 47.989
+        },
+        {
+          "text": "濯",
+          "start_time": 47.989,
+          "end_time": 48.117
+        },
+        {
+          "text": "盆",
+          "start_time": 48.117,
+          "end_time": 48.288
+        },
+        {
+          "text": "」",
+          "start_time": 48.288,
+          "end_time": 48.331
+        },
+        {
+          "text": "吧",
+          "start_time": 48.331,
+          "end_time": 48.459
+        },
+        {
+          "text": "。",
+          "start_time": 48.459,
+          "end_time": 48.715
+        },
+        {
+          "text": "先",
+          "start_time": 48.816,
+          "end_time": 48.987
+        },
+        {
+          "text": "找",
+          "start_time": 48.987,
+          "end_time": 49.158
+        },
+        {
+          "text": "物",
+          "start_time": 49.158,
+          "end_time": 49.328
+        },
+        {
+          "text": "件",
+          "start_time": 49.328,
+          "end_time": 49.499
+        },
+        {
+          "text": "，",
+          "start_time": 49.499,
+          "end_time": 49.755
+        },
+        {
+          "text": "再",
+          "start_time": 49.755,
+          "end_time": 49.883
+        },
+        {
+          "text": "說",
+          "start_time": 49.883,
+          "end_time": 50.054
+        },
+        {
+          "text": "說",
+          "start_time": 50.054,
+          "end_time": 50.182
+        },
+        {
+          "text": "你",
+          "start_time": 50.182,
+          "end_time": 50.267
+        },
+        {
+          "text": "發",
+          "start_time": 50.267,
+          "end_time": 50.48
+        },
+        {
+          "text": "現",
+          "start_time": 50.48,
+          "end_time": 50.651
+        },
+        {
+          "text": "了",
+          "start_time": 50.651,
+          "end_time": 50.736
+        },
+        {
+          "text": "什",
+          "start_time": 50.736,
+          "end_time": 50.864
+        },
+        {
+          "text": "麼",
+          "start_time": 50.864,
+          "end_time": 50.992
+        },
+        {
+          "text": "。",
+          "start_time": 50.992,
+          "end_time": 51.547
+        },
+        {
+          "text": "\n",
+          "start_time": 51.547,
+          "end_time": 51.568
+        },
+        {
+          "text": "\n",
+          "start_time": 51.568,
+          "end_time": 51.59
+        },
+        {
+          "text": "先",
+          "start_time": 51.59,
+          "end_time": 51.76
+        },
+        {
+          "text": "找",
+          "start_time": 51.76,
+          "end_time": 51.931
+        },
+        {
+          "text": "祭",
+          "start_time": 51.931,
+          "end_time": 52.144
+        },
+        {
+          "text": "壇",
+          "start_time": 52.144,
+          "end_time": 52.4
+        },
+        {
+          "text": "和",
+          "start_time": 52.4,
+          "end_time": 52.656
+        },
+        {
+          "text": "帳",
+          "start_time": 52.656,
+          "end_time": 52.827
+        },
+        {
+          "text": "幕",
+          "start_time": 52.827,
+          "end_time": 52.998
+        },
+        {
+          "text": "之",
+          "start_time": 52.998,
+          "end_time": 53.126
+        },
+        {
+          "text": "間",
+          "start_time": 53.126,
+          "end_time": 53.254
+        },
+        {
+          "text": "的",
+          "start_time": 53.254,
+          "end_time": 53.339
+        },
+        {
+          "text": "銅",
+          "start_time": 53.339,
+          "end_time": 53.51
+        },
+        {
+          "text": "盆",
+          "start_time": 53.51,
+          "end_time": 53.723
+        },
+        {
+          "text": "。",
+          "start_time": 53.723,
+          "end_time": 54.235
+        },
+        {
+          "text": "想",
+          "start_time": 54.235,
+          "end_time": 54.406
+        },
+        {
+          "text": "一",
+          "start_time": 54.406,
+          "end_time": 54.491
+        },
+        {
+          "text": "想",
+          "start_time": 54.491,
+          "end_time": 54.704
+        },
+        {
+          "text": "：",
+          "start_time": 54.704,
+          "end_time": 54.875
+        },
+        {
+          "text": "服",
+          "start_time": 54.875,
+          "end_time": 55.387
+        },
+        {
+          "text": "事",
+          "start_time": 55.387,
+          "end_time": 55.558
+        },
+        {
+          "text": "以",
+          "start_time": 55.558,
+          "end_time": 55.686
+        },
+        {
+          "text": "前",
+          "start_time": 55.686,
+          "end_time": 55.899
+        },
+        {
+          "text": "，",
+          "start_time": 55.899,
+          "end_time": 56.24
+        },
+        {
+          "text": "人",
+          "start_time": 56.24,
+          "end_time": 56.368
+        },
+        {
+          "text": "要",
+          "start_time": 56.368,
+          "end_time": 56.496
+        },
+        {
+          "text": "預",
+          "start_time": 56.496,
+          "end_time": 56.667
+        },
+        {
+          "text": "備",
+          "start_time": 56.667,
+          "end_time": 56.838
+        },
+        {
+          "text": "什",
+          "start_time": 56.838,
+          "end_time": 56.966
+        },
+        {
+          "text": "麼",
+          "start_time": 56.966,
+          "end_time": 57.094
+        },
+        {
+          "text": "？",
+          "start_time": 57.094,
+          "end_time": 57.435
+        },
+        {
+          "text": "\n",
+          "start_time": 57.435,
+          "end_time": 57.467
+        },
+        {
+          "text": "\n",
+          "start_time": 57.467,
+          "end_time": 57.498
+        },
+        {
+          "text": "順",
+          "start_time": 57.498,
+          "end_time": 57.711
+        },
+        {
+          "text": "著",
+          "start_time": 57.711,
+          "end_time": 57.839
+        },
+        {
+          "text": "路",
+          "start_time": 57.839,
+          "end_time": 58.01
+        },
+        {
+          "text": "線",
+          "start_time": 58.01,
+          "end_time": 58.223
+        },
+        {
+          "text": "，",
+          "start_time": 58.223,
+          "end_time": 58.522
+        },
+        {
+          "text": "從",
+          "start_time": 58.522,
+          "end_time": 58.778
+        },
+        {
+          "text": "祭",
+          "start_time": 58.778,
+          "end_time": 58.949
+        },
+        {
+          "text": "壇",
+          "start_time": 58.949,
+          "end_time": 59.119
+        },
+        {
+          "text": "找",
+          "start_time": 59.119,
+          "end_time": 59.29
+        },
+        {
+          "text": "到",
+          "start_time": 59.29,
+          "end_time": 59.418
+        },
+        {
+          "text": "水",
+          "start_time": 59.418,
+          "end_time": 59.589
+        },
+        {
+          "text": "盆",
+          "start_time": 59.589,
+          "end_time": 59.759
+        },
+        {
+          "text": "，",
+          "start_time": 59.759,
+          "end_time": 60.143
+        },
+        {
+          "text": "再",
+          "start_time": 60.143,
+          "end_time": 60.314
+        },
+        {
+          "text": "看",
+          "start_time": 60.314,
+          "end_time": 60.442
+        },
+        {
+          "text": "看",
+          "start_time": 60.442,
+          "end_time": 60.57
+        },
+        {
+          "text": "帳",
+          "start_time": 60.57,
+          "end_time": 60.783
+        },
+        {
+          "text": "幕",
+          "start_time": 60.783,
+          "end_time": 60.954
+        },
+        {
+          "text": "的",
+          "start_time": 60.954,
+          "end_time": 61.039
+        },
+        {
+          "text": "入",
+          "start_time": 61.039,
+          "end_time": 61.21
+        },
+        {
+          "text": "口",
+          "start_time": 61.21,
+          "end_time": 61.381
+        },
+        {
+          "text": "。",
+          "start_time": 61.381,
+          "end_time": 62.021
+        },
+        {
+          "text": " ",
+          "start_time": 62.021,
+          "end_time": 62.063
+        },
+        {
+          "text": "看",
+          "start_time": 62.063,
+          "end_time": 62.234
+        },
+        {
+          "text": "過",
+          "start_time": 62.234,
+          "end_time": 62.362
+        },
+        {
+          "text": "之",
+          "start_time": 62.362,
+          "end_time": 62.533
+        },
+        {
+          "text": "後",
+          "start_time": 62.533,
+          "end_time": 62.703
+        },
+        {
+          "text": "，",
+          "start_time": 62.703,
+          "end_time": 62.959
+        },
+        {
+          "text": "回",
+          "start_time": 62.959,
+          "end_time": 63.13
+        },
+        {
+          "text": "到",
+          "start_time": 63.13,
+          "end_time": 63.258
+        },
+        {
+          "text": "觀",
+          "start_time": 63.258,
+          "end_time": 63.429
+        },
+        {
+          "text": "察",
+          "start_time": 63.429,
+          "end_time": 63.642
+        },
+        {
+          "text": "任",
+          "start_time": 63.642,
+          "end_time": 63.77
+        },
+        {
+          "text": "務",
+          "start_time": 63.77,
+          "end_time": 63.983
+        },
+        {
+          "text": "試",
+          "start_time": 63.983,
+          "end_time": 64.154
+        },
+        {
+          "text": "著",
+          "start_time": 64.154,
+          "end_time": 64.239
+        },
+        {
+          "text": "回",
+          "start_time": 64.239,
+          "end_time": 64.41
+        },
+        {
+          "text": "答",
+          "start_time": 64.41,
+          "end_time": 64.581
+        },
+        {
+          "text": "。",
+          "start_time": 64.581,
+          "end_time": 64.87836734693877
+        }
+      ],
+      "fileDuration": 65.12325,
+      "codec": {
+        "codec_name": "mp3",
+        "sample_rate": "44100"
+      }
+    },
+    {
+      "person": "camp-parent",
+      "voiceId": "4f8c25eb83f4488d82c2a2e38dc0a9d3",
+      "sourceURL": "https://resource2.heygen.ai/text_to_speech/e960072c8abb455896232ed310ed9bb3/4f8c25eb83f4488d82c2a2e38dc0a9d3/id=1054e88700b2470f873a91fecc14bd4c.mp3",
+      "duration": 57.51578231292517,
+      "submittedText": "孩子也會問：為什麼大家要圍著帳幕安營？一起看看營地的中心，再想想移動時需要怎樣彼此配合。\n\n民數記把各支派的安營位置和起行次序分別交代。這裡的幾排帳棚只幫你理解營地，不代表完整人口、數量或精確配置。\n\n沒有。模型裡的人與帳棚經過大幅縮減；不要用畫面上的人數去推算經文所記的群體規模。\n\n出埃及記結尾把起行和雲彩的升起連在一起。安營與出發都有次序；不是每個家庭自己決定先走。\n\n不能把模型中不同主題的距離當作真實路程。渡海、來到西奈、建成會幕，是敘事中先後不同的階段。\n\n一起看看「約櫃」吧。先找物件，再說說你發現了什麼。\n\n找找櫃子兩邊伸出的長槓。模型能讓你觀察，並不表示每個人都能隨意搬動聖物。\n\n找找搬運用的槓。想一想：營地移動時，人們如何搬運它？ 看過之後，回到觀察任務試著回答。",
+      "clips": {
+        "greeting": {
+          "start": 0.23600000000000002,
+          "end": 7.979,
+          "text": "孩子也會問：為什麼大家要圍著帳幕安營？一起看看營地的中心，再想想移動時需要怎樣彼此配合。"
+        },
+        "camp": {
+          "start": 7.979,
+          "end": 17.008,
+          "text": "民數記把各支派的安營位置和起行次序分別交代。這裡的幾排帳棚只幫你理解營地，不代表完整人口、數量或精確配置。"
+        },
+        "camp-followup": {
+          "start": 17.016000000000002,
+          "end": 24.201,
+          "text": "沒有。模型裡的人與帳棚經過大幅縮減；不要用畫面上的人數去推算經文所記的群體規模。"
+        },
+        "moving": {
+          "start": 24.209,
+          "end": 31.949,
+          "text": "出埃及記結尾把起行和雲彩的升起連在一起。安營與出發都有次序；不是每個家庭自己決定先走。"
+        },
+        "memory": {
+          "start": 31.957,
+          "end": 39.919000000000004,
+          "text": "不能把模型中不同主題的距離當作真實路程。渡海、來到西奈、建成會幕，是敘事中先後不同的階段。"
+        },
+        "child-greeting": {
+          "start": 39.927,
+          "end": 43.802,
+          "text": "一起看看「約櫃」吧。先找物件，再說說你發現了什麼。"
+        },
+        "child-observe-ark": {
+          "start": 43.809999999999995,
+          "end": 50.047,
+          "text": "找找櫃子兩邊伸出的長槓。模型能讓你觀察，並不表示每個人都能隨意搬動聖物。"
+        },
+        "child-observe-ark-followup": {
+          "start": 50.055,
+          "end": 57.33078231292517,
+          "text": "找找搬運用的槓。想一想：營地移動時，人們如何搬運它？ 看過之後，回到觀察任務試著回答。"
+        }
+      },
+      "characterTimings": [
+        {
+          "text": "孩",
+          "start_time": 0.256,
+          "end_time": 0.512
+        },
+        {
+          "text": "子",
+          "start_time": 0.512,
+          "end_time": 0.597
+        },
+        {
+          "text": "也",
+          "start_time": 0.597,
+          "end_time": 0.683
+        },
+        {
+          "text": "會",
+          "start_time": 0.683,
+          "end_time": 0.853
+        },
+        {
+          "text": "問",
+          "start_time": 0.853,
+          "end_time": 1.024
+        },
+        {
+          "text": "：",
+          "start_time": 1.024,
+          "end_time": 1.152
+        },
+        {
+          "text": "為",
+          "start_time": 1.152,
+          "end_time": 1.579
+        },
+        {
+          "text": "什",
+          "start_time": 1.579,
+          "end_time": 1.707
+        },
+        {
+          "text": "麼",
+          "start_time": 1.707,
+          "end_time": 1.792
+        },
+        {
+          "text": "大",
+          "start_time": 1.792,
+          "end_time": 1.92
+        },
+        {
+          "text": "家",
+          "start_time": 1.92,
+          "end_time": 2.091
+        },
+        {
+          "text": "要",
+          "start_time": 2.091,
+          "end_time": 2.219
+        },
+        {
+          "text": "圍",
+          "start_time": 2.219,
+          "end_time": 2.389
+        },
+        {
+          "text": "著",
+          "start_time": 2.389,
+          "end_time": 2.475
+        },
+        {
+          "text": "帳",
+          "start_time": 2.475,
+          "end_time": 2.688
+        },
+        {
+          "text": "幕",
+          "start_time": 2.688,
+          "end_time": 2.859
+        },
+        {
+          "text": "安",
+          "start_time": 2.859,
+          "end_time": 3.029
+        },
+        {
+          "text": "營",
+          "start_time": 3.029,
+          "end_time": 3.157
+        },
+        {
+          "text": "？",
+          "start_time": 3.157,
+          "end_time": 3.669
+        },
+        {
+          "text": "一",
+          "start_time": 3.669,
+          "end_time": 3.797
+        },
+        {
+          "text": "起",
+          "start_time": 3.797,
+          "end_time": 3.925
+        },
+        {
+          "text": "看",
+          "start_time": 3.925,
+          "end_time": 4.096
+        },
+        {
+          "text": "看",
+          "start_time": 4.096,
+          "end_time": 4.224
+        },
+        {
+          "text": "營",
+          "start_time": 4.224,
+          "end_time": 4.352
+        },
+        {
+          "text": "地",
+          "start_time": 4.352,
+          "end_time": 4.48
+        },
+        {
+          "text": "的",
+          "start_time": 4.48,
+          "end_time": 4.565
+        },
+        {
+          "text": "中",
+          "start_time": 4.565,
+          "end_time": 4.736
+        },
+        {
+          "text": "心",
+          "start_time": 4.736,
+          "end_time": 4.949
+        },
+        {
+          "text": "，",
+          "start_time": 4.949,
+          "end_time": 5.248
+        },
+        {
+          "text": "再",
+          "start_time": 5.248,
+          "end_time": 5.419
+        },
+        {
+          "text": "想",
+          "start_time": 5.419,
+          "end_time": 5.547
+        },
+        {
+          "text": "想",
+          "start_time": 5.547,
+          "end_time": 5.76
+        },
+        {
+          "text": "移",
+          "start_time": 5.76,
+          "end_time": 5.888
+        },
+        {
+          "text": "動",
+          "start_time": 5.888,
+          "end_time": 6.059
+        },
+        {
+          "text": "時",
+          "start_time": 6.059,
+          "end_time": 6.315
+        },
+        {
+          "text": "需",
+          "start_time": 6.315,
+          "end_time": 6.528
+        },
+        {
+          "text": "要",
+          "start_time": 6.528,
+          "end_time": 6.613
+        },
+        {
+          "text": "怎",
+          "start_time": 6.613,
+          "end_time": 6.784
+        },
+        {
+          "text": "樣",
+          "start_time": 6.784,
+          "end_time": 6.912
+        },
+        {
+          "text": "彼",
+          "start_time": 6.912,
+          "end_time": 7.04
+        },
+        {
+          "text": "此",
+          "start_time": 7.04,
+          "end_time": 7.168
+        },
+        {
+          "text": "配",
+          "start_time": 7.168,
+          "end_time": 7.381
+        },
+        {
+          "text": "合",
+          "start_time": 7.381,
+          "end_time": 7.595
+        },
+        {
+          "text": "。",
+          "start_time": 7.595,
+          "end_time": 7.979
+        },
+        {
+          "text": "\n",
+          "start_time": 7.979,
+          "end_time": 7.979
+        },
+        {
+          "text": "\n",
+          "start_time": 7.979,
+          "end_time": 7.979
+        },
+        {
+          "text": "民",
+          "start_time": 7.979,
+          "end_time": 8.076
+        },
+        {
+          "text": "數",
+          "start_time": 8.076,
+          "end_time": 8.204
+        },
+        {
+          "text": "記",
+          "start_time": 8.204,
+          "end_time": 8.374
+        },
+        {
+          "text": "把",
+          "start_time": 8.374,
+          "end_time": 8.502
+        },
+        {
+          "text": "各",
+          "start_time": 8.502,
+          "end_time": 8.673
+        },
+        {
+          "text": "支",
+          "start_time": 8.673,
+          "end_time": 8.844
+        },
+        {
+          "text": "派",
+          "start_time": 8.844,
+          "end_time": 9.014
+        },
+        {
+          "text": "的",
+          "start_time": 9.014,
+          "end_time": 9.1
+        },
+        {
+          "text": "安",
+          "start_time": 9.1,
+          "end_time": 9.185
+        },
+        {
+          "text": "營",
+          "start_time": 9.185,
+          "end_time": 9.356
+        },
+        {
+          "text": "位",
+          "start_time": 9.356,
+          "end_time": 9.526
+        },
+        {
+          "text": "置",
+          "start_time": 9.526,
+          "end_time": 9.74
+        },
+        {
+          "text": "和",
+          "start_time": 9.74,
+          "end_time": 9.868
+        },
+        {
+          "text": "起",
+          "start_time": 9.868,
+          "end_time": 10.081
+        },
+        {
+          "text": "行",
+          "start_time": 10.081,
+          "end_time": 10.209
+        },
+        {
+          "text": "次",
+          "start_time": 10.209,
+          "end_time": 10.465
+        },
+        {
+          "text": "序",
+          "start_time": 10.465,
+          "end_time": 10.593
+        },
+        {
+          "text": "分",
+          "start_time": 10.593,
+          "end_time": 10.764
+        },
+        {
+          "text": "別",
+          "start_time": 10.764,
+          "end_time": 10.892
+        },
+        {
+          "text": "交",
+          "start_time": 10.892,
+          "end_time": 11.062
+        },
+        {
+          "text": "代",
+          "start_time": 11.062,
+          "end_time": 11.19
+        },
+        {
+          "text": "。",
+          "start_time": 11.19,
+          "end_time": 11.702
+        },
+        {
+          "text": "這",
+          "start_time": 11.702,
+          "end_time": 11.873
+        },
+        {
+          "text": "裡",
+          "start_time": 11.873,
+          "end_time": 11.958
+        },
+        {
+          "text": "的",
+          "start_time": 11.958,
+          "end_time": 12.086
+        },
+        {
+          "text": "幾",
+          "start_time": 12.086,
+          "end_time": 12.214
+        },
+        {
+          "text": "排",
+          "start_time": 12.214,
+          "end_time": 12.385
+        },
+        {
+          "text": "帳",
+          "start_time": 12.385,
+          "end_time": 12.513
+        },
+        {
+          "text": "棚",
+          "start_time": 12.513,
+          "end_time": 12.812
+        },
+        {
+          "text": "只",
+          "start_time": 12.812,
+          "end_time": 12.982
+        },
+        {
+          "text": "幫",
+          "start_time": 12.982,
+          "end_time": 13.11
+        },
+        {
+          "text": "你",
+          "start_time": 13.11,
+          "end_time": 13.238
+        },
+        {
+          "text": "理",
+          "start_time": 13.238,
+          "end_time": 13.366
+        },
+        {
+          "text": "解",
+          "start_time": 13.366,
+          "end_time": 13.537
+        },
+        {
+          "text": "營",
+          "start_time": 13.537,
+          "end_time": 13.708
+        },
+        {
+          "text": "地",
+          "start_time": 13.708,
+          "end_time": 13.836
+        },
+        {
+          "text": "，",
+          "start_time": 13.836,
+          "end_time": 14.134
+        },
+        {
+          "text": "不",
+          "start_time": 14.134,
+          "end_time": 14.262
+        },
+        {
+          "text": "代",
+          "start_time": 14.262,
+          "end_time": 14.39
+        },
+        {
+          "text": "表",
+          "start_time": 14.39,
+          "end_time": 14.518
+        },
+        {
+          "text": "完",
+          "start_time": 14.518,
+          "end_time": 14.689
+        },
+        {
+          "text": "整",
+          "start_time": 14.689,
+          "end_time": 14.86
+        },
+        {
+          "text": "人",
+          "start_time": 14.86,
+          "end_time": 15.03
+        },
+        {
+          "text": "口",
+          "start_time": 15.03,
+          "end_time": 15.244
+        },
+        {
+          "text": "、",
+          "start_time": 15.244,
+          "end_time": 15.457
+        },
+        {
+          "text": "數",
+          "start_time": 15.457,
+          "end_time": 15.713
+        },
+        {
+          "text": "量",
+          "start_time": 15.713,
+          "end_time": 15.884
+        },
+        {
+          "text": "或",
+          "start_time": 15.884,
+          "end_time": 16.097
+        },
+        {
+          "text": "精",
+          "start_time": 16.097,
+          "end_time": 16.268
+        },
+        {
+          "text": "確",
+          "start_time": 16.268,
+          "end_time": 16.438
+        },
+        {
+          "text": "配",
+          "start_time": 16.438,
+          "end_time": 16.609
+        },
+        {
+          "text": "置",
+          "start_time": 16.609,
+          "end_time": 16.78
+        },
+        {
+          "text": "。",
+          "start_time": 16.78,
+          "end_time": 16.993
+        },
+        {
+          "text": "\n",
+          "start_time": 16.993,
+          "end_time": 17.014
+        },
+        {
+          "text": "\n",
+          "start_time": 17.014,
+          "end_time": 17.036
+        },
+        {
+          "text": "沒",
+          "start_time": 17.036,
+          "end_time": 17.164
+        },
+        {
+          "text": "有",
+          "start_time": 17.164,
+          "end_time": 17.292
+        },
+        {
+          "text": "。",
+          "start_time": 17.292,
+          "end_time": 17.718
+        },
+        {
+          "text": "模",
+          "start_time": 17.786,
+          "end_time": 17.957
+        },
+        {
+          "text": "型",
+          "start_time": 17.957,
+          "end_time": 18.085
+        },
+        {
+          "text": "裡",
+          "start_time": 18.085,
+          "end_time": 18.213
+        },
+        {
+          "text": "的",
+          "start_time": 18.213,
+          "end_time": 18.298
+        },
+        {
+          "text": "人",
+          "start_time": 18.298,
+          "end_time": 18.426
+        },
+        {
+          "text": "與",
+          "start_time": 18.426,
+          "end_time": 18.554
+        },
+        {
+          "text": "帳",
+          "start_time": 18.554,
+          "end_time": 18.682
+        },
+        {
+          "text": "棚",
+          "start_time": 18.682,
+          "end_time": 18.938
+        },
+        {
+          "text": "經",
+          "start_time": 18.938,
+          "end_time": 19.109
+        },
+        {
+          "text": "過",
+          "start_time": 19.109,
+          "end_time": 19.237
+        },
+        {
+          "text": "大",
+          "start_time": 19.237,
+          "end_time": 19.408
+        },
+        {
+          "text": "幅",
+          "start_time": 19.408,
+          "end_time": 19.578
+        },
+        {
+          "text": "縮",
+          "start_time": 19.578,
+          "end_time": 19.749
+        },
+        {
+          "text": "減",
+          "start_time": 19.749,
+          "end_time": 19.92
+        },
+        {
+          "text": "；",
+          "start_time": 19.92,
+          "end_time": 20.389
+        },
+        {
+          "text": "不",
+          "start_time": 20.389,
+          "end_time": 20.56
+        },
+        {
+          "text": "要",
+          "start_time": 20.56,
+          "end_time": 20.688
+        },
+        {
+          "text": "用",
+          "start_time": 20.688,
+          "end_time": 20.816
+        },
+        {
+          "text": "畫",
+          "start_time": 20.816,
+          "end_time": 21.029
+        },
+        {
+          "text": "面",
+          "start_time": 21.029,
+          "end_time": 21.157
+        },
+        {
+          "text": "上",
+          "start_time": 21.157,
+          "end_time": 21.285
+        },
+        {
+          "text": "的",
+          "start_time": 21.285,
+          "end_time": 21.37
+        },
+        {
+          "text": "人",
+          "start_time": 21.37,
+          "end_time": 21.498
+        },
+        {
+          "text": "數",
+          "start_time": 21.498,
+          "end_time": 21.754
+        },
+        {
+          "text": "去",
+          "start_time": 21.754,
+          "end_time": 21.882
+        },
+        {
+          "text": "推",
+          "start_time": 21.882,
+          "end_time": 22.053
+        },
+        {
+          "text": "算",
+          "start_time": 22.053,
+          "end_time": 22.181
+        },
+        {
+          "text": "經",
+          "start_time": 22.181,
+          "end_time": 22.394
+        },
+        {
+          "text": "文",
+          "start_time": 22.394,
+          "end_time": 22.522
+        },
+        {
+          "text": "所",
+          "start_time": 22.522,
+          "end_time": 22.736
+        },
+        {
+          "text": "記",
+          "start_time": 22.736,
+          "end_time": 22.864
+        },
+        {
+          "text": "的",
+          "start_time": 22.864,
+          "end_time": 22.949
+        },
+        {
+          "text": "群",
+          "start_time": 22.949,
+          "end_time": 23.12
+        },
+        {
+          "text": "體",
+          "start_time": 23.12,
+          "end_time": 23.248
+        },
+        {
+          "text": "規",
+          "start_time": 23.248,
+          "end_time": 23.461
+        },
+        {
+          "text": "模",
+          "start_time": 23.461,
+          "end_time": 23.632
+        },
+        {
+          "text": "。",
+          "start_time": 23.632,
+          "end_time": 24.186
+        },
+        {
+          "text": "\n",
+          "start_time": 24.186,
+          "end_time": 24.208
+        },
+        {
+          "text": "\n",
+          "start_time": 24.208,
+          "end_time": 24.229
+        },
+        {
+          "text": "出",
+          "start_time": 24.229,
+          "end_time": 24.4
+        },
+        {
+          "text": "埃",
+          "start_time": 24.4,
+          "end_time": 24.528
+        },
+        {
+          "text": "及",
+          "start_time": 24.528,
+          "end_time": 24.698
+        },
+        {
+          "text": "記",
+          "start_time": 24.698,
+          "end_time": 24.869
+        },
+        {
+          "text": "結",
+          "start_time": 24.869,
+          "end_time": 25.082
+        },
+        {
+          "text": "尾",
+          "start_time": 25.082,
+          "end_time": 25.21
+        },
+        {
+          "text": "把",
+          "start_time": 25.21,
+          "end_time": 25.381
+        },
+        {
+          "text": "起",
+          "start_time": 25.381,
+          "end_time": 25.594
+        },
+        {
+          "text": "行",
+          "start_time": 25.594,
+          "end_time": 25.808
+        },
+        {
+          "text": "和",
+          "start_time": 25.808,
+          "end_time": 25.936
+        },
+        {
+          "text": "雲",
+          "start_time": 25.936,
+          "end_time": 26.106
+        },
+        {
+          "text": "彩",
+          "start_time": 26.106,
+          "end_time": 26.234
+        },
+        {
+          "text": "的",
+          "start_time": 26.234,
+          "end_time": 26.32
+        },
+        {
+          "text": "升",
+          "start_time": 26.32,
+          "end_time": 26.533
+        },
+        {
+          "text": "起",
+          "start_time": 26.533,
+          "end_time": 26.704
+        },
+        {
+          "text": "連",
+          "start_time": 26.704,
+          "end_time": 26.832
+        },
+        {
+          "text": "在",
+          "start_time": 26.832,
+          "end_time": 27.002
+        },
+        {
+          "text": "一",
+          "start_time": 27.002,
+          "end_time": 27.088
+        },
+        {
+          "text": "起",
+          "start_time": 27.088,
+          "end_time": 27.301
+        },
+        {
+          "text": "。",
+          "start_time": 27.301,
+          "end_time": 27.685
+        },
+        {
+          "text": "安",
+          "start_time": 27.71,
+          "end_time": 27.881
+        },
+        {
+          "text": "營",
+          "start_time": 27.881,
+          "end_time": 28.094
+        },
+        {
+          "text": "與",
+          "start_time": 28.094,
+          "end_time": 28.222
+        },
+        {
+          "text": "出",
+          "start_time": 28.222,
+          "end_time": 28.436
+        },
+        {
+          "text": "發",
+          "start_time": 28.436,
+          "end_time": 28.649
+        },
+        {
+          "text": "都",
+          "start_time": 28.649,
+          "end_time": 28.82
+        },
+        {
+          "text": "有",
+          "start_time": 28.82,
+          "end_time": 28.948
+        },
+        {
+          "text": "次",
+          "start_time": 28.948,
+          "end_time": 29.161
+        },
+        {
+          "text": "序",
+          "start_time": 29.161,
+          "end_time": 29.331
+        },
+        {
+          "text": "；",
+          "start_time": 29.331,
+          "end_time": 29.673
+        },
+        {
+          "text": "不",
+          "start_time": 29.673,
+          "end_time": 29.843
+        },
+        {
+          "text": "是",
+          "start_time": 29.843,
+          "end_time": 29.971
+        },
+        {
+          "text": "每",
+          "start_time": 29.971,
+          "end_time": 30.099
+        },
+        {
+          "text": "個",
+          "start_time": 30.099,
+          "end_time": 30.185
+        },
+        {
+          "text": "家",
+          "start_time": 30.185,
+          "end_time": 30.355
+        },
+        {
+          "text": "庭",
+          "start_time": 30.355,
+          "end_time": 30.569
+        },
+        {
+          "text": "自",
+          "start_time": 30.569,
+          "end_time": 30.782
+        },
+        {
+          "text": "己",
+          "start_time": 30.782,
+          "end_time": 30.91
+        },
+        {
+          "text": "決",
+          "start_time": 30.91,
+          "end_time": 31.081
+        },
+        {
+          "text": "定",
+          "start_time": 31.081,
+          "end_time": 31.209
+        },
+        {
+          "text": "先",
+          "start_time": 31.209,
+          "end_time": 31.337
+        },
+        {
+          "text": "走",
+          "start_time": 31.337,
+          "end_time": 31.55
+        },
+        {
+          "text": "。",
+          "start_time": 31.55,
+          "end_time": 31.934
+        },
+        {
+          "text": "\n",
+          "start_time": 31.934,
+          "end_time": 31.956
+        },
+        {
+          "text": "\n",
+          "start_time": 31.956,
+          "end_time": 31.977
+        },
+        {
+          "text": "不",
+          "start_time": 31.977,
+          "end_time": 32.105
+        },
+        {
+          "text": "能",
+          "start_time": 32.105,
+          "end_time": 32.19
+        },
+        {
+          "text": "把",
+          "start_time": 32.19,
+          "end_time": 32.361
+        },
+        {
+          "text": "模",
+          "start_time": 32.361,
+          "end_time": 32.532
+        },
+        {
+          "text": "型",
+          "start_time": 32.532,
+          "end_time": 32.702
+        },
+        {
+          "text": "中",
+          "start_time": 32.702,
+          "end_time": 32.873
+        },
+        {
+          "text": "不",
+          "start_time": 32.873,
+          "end_time": 33.001
+        },
+        {
+          "text": "同",
+          "start_time": 33.001,
+          "end_time": 33.172
+        },
+        {
+          "text": "主",
+          "start_time": 33.172,
+          "end_time": 33.385
+        },
+        {
+          "text": "題",
+          "start_time": 33.385,
+          "end_time": 33.513
+        },
+        {
+          "text": "的",
+          "start_time": 33.513,
+          "end_time": 33.598
+        },
+        {
+          "text": "距",
+          "start_time": 33.598,
+          "end_time": 33.769
+        },
+        {
+          "text": "離",
+          "start_time": 33.769,
+          "end_time": 34.025
+        },
+        {
+          "text": "當",
+          "start_time": 34.025,
+          "end_time": 34.153
+        },
+        {
+          "text": "作",
+          "start_time": 34.153,
+          "end_time": 34.281
+        },
+        {
+          "text": "真",
+          "start_time": 34.281,
+          "end_time": 34.452
+        },
+        {
+          "text": "實",
+          "start_time": 34.452,
+          "end_time": 34.665
+        },
+        {
+          "text": "路",
+          "start_time": 34.665,
+          "end_time": 34.793
+        },
+        {
+          "text": "程",
+          "start_time": 34.793,
+          "end_time": 34.964
+        },
+        {
+          "text": "。",
+          "start_time": 34.964,
+          "end_time": 35.39
+        },
+        {
+          "text": "渡",
+          "start_time": 35.424,
+          "end_time": 35.638
+        },
+        {
+          "text": "海",
+          "start_time": 35.638,
+          "end_time": 35.894
+        },
+        {
+          "text": "、",
+          "start_time": 35.894,
+          "end_time": 36.107
+        },
+        {
+          "text": "來",
+          "start_time": 36.107,
+          "end_time": 36.235
+        },
+        {
+          "text": "到",
+          "start_time": 36.235,
+          "end_time": 36.363
+        },
+        {
+          "text": "西",
+          "start_time": 36.363,
+          "end_time": 36.576
+        },
+        {
+          "text": "奈",
+          "start_time": 36.576,
+          "end_time": 36.747
+        },
+        {
+          "text": "、",
+          "start_time": 36.747,
+          "end_time": 36.918
+        },
+        {
+          "text": "建",
+          "start_time": 36.918,
+          "end_time": 37.088
+        },
+        {
+          "text": "成",
+          "start_time": 37.088,
+          "end_time": 37.259
+        },
+        {
+          "text": "會",
+          "start_time": 37.259,
+          "end_time": 37.43
+        },
+        {
+          "text": "幕",
+          "start_time": 37.43,
+          "end_time": 37.6
+        },
+        {
+          "text": "，",
+          "start_time": 37.6,
+          "end_time": 37.771
+        },
+        {
+          "text": "是",
+          "start_time": 37.771,
+          "end_time": 38.112
+        },
+        {
+          "text": "敘",
+          "start_time": 38.112,
+          "end_time": 38.283
+        },
+        {
+          "text": "事",
+          "start_time": 38.283,
+          "end_time": 38.411
+        },
+        {
+          "text": "中",
+          "start_time": 38.411,
+          "end_time": 38.539
+        },
+        {
+          "text": "先",
+          "start_time": 38.539,
+          "end_time": 38.795
+        },
+        {
+          "text": "後",
+          "start_time": 38.795,
+          "end_time": 38.966
+        },
+        {
+          "text": "不",
+          "start_time": 38.966,
+          "end_time": 39.094
+        },
+        {
+          "text": "同",
+          "start_time": 39.094,
+          "end_time": 39.264
+        },
+        {
+          "text": "的",
+          "start_time": 39.264,
+          "end_time": 39.392
+        },
+        {
+          "text": "階",
+          "start_time": 39.392,
+          "end_time": 39.52
+        },
+        {
+          "text": "段",
+          "start_time": 39.52,
+          "end_time": 39.691
+        },
+        {
+          "text": "。",
+          "start_time": 39.691,
+          "end_time": 39.904
+        },
+        {
+          "text": "\n",
+          "start_time": 39.904,
+          "end_time": 39.926
+        },
+        {
+          "text": "\n",
+          "start_time": 39.926,
+          "end_time": 39.947
+        },
+        {
+          "text": "一",
+          "start_time": 39.947,
+          "end_time": 40.118
+        },
+        {
+          "text": "起",
+          "start_time": 40.118,
+          "end_time": 40.246
+        },
+        {
+          "text": "看",
+          "start_time": 40.246,
+          "end_time": 40.374
+        },
+        {
+          "text": "看",
+          "start_time": 40.374,
+          "end_time": 40.459
+        },
+        {
+          "text": "「",
+          "start_time": 40.459,
+          "end_time": 40.502
+        },
+        {
+          "text": "約",
+          "start_time": 40.502,
+          "end_time": 40.63
+        },
+        {
+          "text": "櫃",
+          "start_time": 40.63,
+          "end_time": 40.758
+        },
+        {
+          "text": "」",
+          "start_time": 40.758,
+          "end_time": 40.8
+        },
+        {
+          "text": "吧",
+          "start_time": 40.8,
+          "end_time": 40.928
+        },
+        {
+          "text": "。",
+          "start_time": 40.928,
+          "end_time": 41.27
+        },
+        {
+          "text": "先",
+          "start_time": 41.27,
+          "end_time": 41.611
+        },
+        {
+          "text": "找",
+          "start_time": 41.611,
+          "end_time": 41.739
+        },
+        {
+          "text": "物",
+          "start_time": 41.739,
+          "end_time": 41.867
+        },
+        {
+          "text": "件",
+          "start_time": 41.867,
+          "end_time": 42.038
+        },
+        {
+          "text": "，",
+          "start_time": 42.038,
+          "end_time": 42.251
+        },
+        {
+          "text": "再",
+          "start_time": 42.251,
+          "end_time": 42.422
+        },
+        {
+          "text": "說",
+          "start_time": 42.422,
+          "end_time": 42.55
+        },
+        {
+          "text": "說",
+          "start_time": 42.55,
+          "end_time": 42.678
+        },
+        {
+          "text": "你",
+          "start_time": 42.678,
+          "end_time": 42.763
+        },
+        {
+          "text": "發",
+          "start_time": 42.763,
+          "end_time": 42.934
+        },
+        {
+          "text": "現",
+          "start_time": 42.934,
+          "end_time": 43.062
+        },
+        {
+          "text": "了",
+          "start_time": 43.062,
+          "end_time": 43.147
+        },
+        {
+          "text": "什",
+          "start_time": 43.147,
+          "end_time": 43.232
+        },
+        {
+          "text": "麼",
+          "start_time": 43.232,
+          "end_time": 43.36
+        },
+        {
+          "text": "。",
+          "start_time": 43.36,
+          "end_time": 43.787
+        },
+        {
+          "text": "\n",
+          "start_time": 43.787,
+          "end_time": 43.808
+        },
+        {
+          "text": "\n",
+          "start_time": 43.808,
+          "end_time": 43.83
+        },
+        {
+          "text": "找",
+          "start_time": 43.83,
+          "end_time": 43.958
+        },
+        {
+          "text": "找",
+          "start_time": 43.958,
+          "end_time": 44.086
+        },
+        {
+          "text": "櫃",
+          "start_time": 44.086,
+          "end_time": 44.299
+        },
+        {
+          "text": "子",
+          "start_time": 44.299,
+          "end_time": 44.427
+        },
+        {
+          "text": "兩",
+          "start_time": 44.427,
+          "end_time": 44.598
+        },
+        {
+          "text": "邊",
+          "start_time": 44.598,
+          "end_time": 44.726
+        },
+        {
+          "text": "伸",
+          "start_time": 44.726,
+          "end_time": 44.896
+        },
+        {
+          "text": "出",
+          "start_time": 44.896,
+          "end_time": 45.024
+        },
+        {
+          "text": "的",
+          "start_time": 45.024,
+          "end_time": 45.11
+        },
+        {
+          "text": "長",
+          "start_time": 45.11,
+          "end_time": 45.323
+        },
+        {
+          "text": "槓",
+          "start_time": 45.323,
+          "end_time": 45.494
+        },
+        {
+          "text": "。",
+          "start_time": 45.494,
+          "end_time": 45.75
+        },
+        {
+          "text": "模",
+          "start_time": 45.936,
+          "end_time": 46.15
+        },
+        {
+          "text": "型",
+          "start_time": 46.15,
+          "end_time": 46.32
+        },
+        {
+          "text": "能",
+          "start_time": 46.32,
+          "end_time": 46.406
+        },
+        {
+          "text": "讓",
+          "start_time": 46.406,
+          "end_time": 46.534
+        },
+        {
+          "text": "你",
+          "start_time": 46.534,
+          "end_time": 46.662
+        },
+        {
+          "text": "觀",
+          "start_time": 46.662,
+          "end_time": 46.79
+        },
+        {
+          "text": "察",
+          "start_time": 46.79,
+          "end_time": 47.046
+        },
+        {
+          "text": "，",
+          "start_time": 47.046,
+          "end_time": 47.344
+        },
+        {
+          "text": "並",
+          "start_time": 47.344,
+          "end_time": 47.515
+        },
+        {
+          "text": "不",
+          "start_time": 47.515,
+          "end_time": 47.6
+        },
+        {
+          "text": "表",
+          "start_time": 47.6,
+          "end_time": 47.771
+        },
+        {
+          "text": "示",
+          "start_time": 47.771,
+          "end_time": 47.942
+        },
+        {
+          "text": "每",
+          "start_time": 47.942,
+          "end_time": 48.112
+        },
+        {
+          "text": "個",
+          "start_time": 48.112,
+          "end_time": 48.24
+        },
+        {
+          "text": "人",
+          "start_time": 48.24,
+          "end_time": 48.326
+        },
+        {
+          "text": "都",
+          "start_time": 48.326,
+          "end_time": 48.496
+        },
+        {
+          "text": "能",
+          "start_time": 48.496,
+          "end_time": 48.624
+        },
+        {
+          "text": "隨",
+          "start_time": 48.624,
+          "end_time": 48.838
+        },
+        {
+          "text": "意",
+          "start_time": 48.838,
+          "end_time": 48.966
+        },
+        {
+          "text": "搬",
+          "start_time": 48.966,
+          "end_time": 49.094
+        },
+        {
+          "text": "動",
+          "start_time": 49.094,
+          "end_time": 49.264
+        },
+        {
+          "text": "聖",
+          "start_time": 49.264,
+          "end_time": 49.392
+        },
+        {
+          "text": "物",
+          "start_time": 49.392,
+          "end_time": 49.563
+        },
+        {
+          "text": "。",
+          "start_time": 49.563,
+          "end_time": 50.032
+        },
+        {
+          "text": "\n",
+          "start_time": 50.032,
+          "end_time": 50.054
+        },
+        {
+          "text": "\n",
+          "start_time": 50.054,
+          "end_time": 50.075
+        },
+        {
+          "text": "找",
+          "start_time": 50.075,
+          "end_time": 50.246
+        },
+        {
+          "text": "找",
+          "start_time": 50.246,
+          "end_time": 50.416
+        },
+        {
+          "text": "搬",
+          "start_time": 50.416,
+          "end_time": 50.587
+        },
+        {
+          "text": "運",
+          "start_time": 50.587,
+          "end_time": 50.758
+        },
+        {
+          "text": "用",
+          "start_time": 50.758,
+          "end_time": 50.843
+        },
+        {
+          "text": "的",
+          "start_time": 50.843,
+          "end_time": 50.928
+        },
+        {
+          "text": "槓",
+          "start_time": 50.928,
+          "end_time": 51.099
+        },
+        {
+          "text": "。",
+          "start_time": 51.099,
+          "end_time": 51.27
+        },
+        {
+          "text": "想",
+          "start_time": 51.557,
+          "end_time": 51.728
+        },
+        {
+          "text": "一",
+          "start_time": 51.728,
+          "end_time": 51.77
+        },
+        {
+          "text": "想",
+          "start_time": 51.77,
+          "end_time": 51.941
+        },
+        {
+          "text": "：",
+          "start_time": 51.941,
+          "end_time": 52.112
+        },
+        {
+          "text": "營",
+          "start_time": 52.112,
+          "end_time": 52.41
+        },
+        {
+          "text": "地",
+          "start_time": 52.41,
+          "end_time": 52.581
+        },
+        {
+          "text": "移",
+          "start_time": 52.581,
+          "end_time": 52.709
+        },
+        {
+          "text": "動",
+          "start_time": 52.709,
+          "end_time": 52.837
+        },
+        {
+          "text": "時",
+          "start_time": 52.837,
+          "end_time": 53.136
+        },
+        {
+          "text": "，",
+          "start_time": 53.136,
+          "end_time": 53.349
+        },
+        {
+          "text": "人",
+          "start_time": 53.349,
+          "end_time": 53.477
+        },
+        {
+          "text": "們",
+          "start_time": 53.477,
+          "end_time": 53.605
+        },
+        {
+          "text": "如",
+          "start_time": 53.605,
+          "end_time": 53.776
+        },
+        {
+          "text": "何",
+          "start_time": 53.776,
+          "end_time": 53.904
+        },
+        {
+          "text": "搬",
+          "start_time": 53.904,
+          "end_time": 54.032
+        },
+        {
+          "text": "運",
+          "start_time": 54.032,
+          "end_time": 54.202
+        },
+        {
+          "text": "它",
+          "start_time": 54.202,
+          "end_time": 54.373
+        },
+        {
+          "text": "？",
+          "start_time": 54.373,
+          "end_time": 54.672
+        },
+        {
+          "text": " ",
+          "start_time": 54.672,
+          "end_time": 54.714
+        },
+        {
+          "text": "看",
+          "start_time": 54.714,
+          "end_time": 54.885
+        },
+        {
+          "text": "過",
+          "start_time": 54.885,
+          "end_time": 55.013
+        },
+        {
+          "text": "之",
+          "start_time": 55.013,
+          "end_time": 55.141
+        },
+        {
+          "text": "後",
+          "start_time": 55.141,
+          "end_time": 55.312
+        },
+        {
+          "text": "，",
+          "start_time": 55.312,
+          "end_time": 55.525
+        },
+        {
+          "text": "回",
+          "start_time": 55.525,
+          "end_time": 55.696
+        },
+        {
+          "text": "到",
+          "start_time": 55.696,
+          "end_time": 55.824
+        },
+        {
+          "text": "觀",
+          "start_time": 55.824,
+          "end_time": 55.994
+        },
+        {
+          "text": "察",
+          "start_time": 55.994,
+          "end_time": 56.165
+        },
+        {
+          "text": "任",
+          "start_time": 56.165,
+          "end_time": 56.293
+        },
+        {
+          "text": "務",
+          "start_time": 56.293,
+          "end_time": 56.506
+        },
+        {
+          "text": "試",
+          "start_time": 56.506,
+          "end_time": 56.72
+        },
+        {
+          "text": "著",
+          "start_time": 56.72,
+          "end_time": 56.805
+        },
+        {
+          "text": "回",
+          "start_time": 56.805,
+          "end_time": 56.976
+        },
+        {
+          "text": "答",
+          "start_time": 56.976,
+          "end_time": 57.146
+        },
+        {
+          "text": "。",
+          "start_time": 57.146,
+          "end_time": 57.31578231292517
+        }
+      ],
+      "fileDuration": 57.54775,
+      "codec": {
+        "codec_name": "mp3",
+        "sample_rate": "44100"
+      }
+    }
+  ]
+}

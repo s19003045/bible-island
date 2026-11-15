@@ -9,13 +9,13 @@ const turn=(m,target,dt)=>{const d=angleDelta(m.yaw,target);m.yaw+=clamp(d*(1-Ma
 
 // Every decision, social check, dwell, cooldown, animation phase and PRNG belongs to one agent.
 // The shared update is only a physics integrator, never a behaviour clock or random walk.
-export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{}}) {
+export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{},spawnCandidates:customSpawns=null,allowedPosition=()=>true,spawnExclusion=[20,0,0]}) {
   const reservations=new Map(pois.map(p=>[p.id,new Map()]));
   const agents=actors.map((actor,index)=>{
     const key=actor.id||`resident-${index}`,individualSeed=npcSeed(`${seed}:${key}`),random=seededNPC(individualSeed);
     const speedFactor=.85+random()*.3;
     const a={key,actor,seed:individualSeed,random,speedFactor,speed:.8*speedFactor,radius:.29*(actor.scale||1),
-      role:actor.id==='householder'?'householder':actor.id==='street-vendor'?'vendor':actor.id==='water-carrier'?'carrier':'resident',
+      role:actor.role||(actor.id==='householder'?'householder':actor.id==='street-vendor'?'vendor':actor.id==='water-carrier'?'carrier':'resident'),
       state:'rest',action:'Idle',age:0,timer:.4+(index+random())/actors.length*4.5,socialCheck:.25+random()*1.7,
       cooldown:3+random()*12,velocity:[0,0],path:[],poi:null,slot:null,lastPOI:null,partner:null,chatLeft:0,
       lane:(random()-.5)*.34,lookPhase:random()*Math.PI*2,blockedFor:0,visits:new Map(),held:false,wasAttending:false,attentionLeft:0};
@@ -24,13 +24,13 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{}}) {
   });
   // Rehome the illustrative background silhouettes onto valid public surfaces before first render.
   // Authored dialogue characters retain their location whenever it is physically valid.
-  const spawnCandidates=[];
-  for(let x=-71;x<=24;x+=2.4)for(const z of [-1.15,1.15])spawnCandidates.push([x,model.heightAt(x,z),z]);
-  for(const z of [-16,30])for(let x=-70;x<=20;x+=3)spawnCandidates.push([x,model.heightAt(x,z),z]);
+  const spawnCandidates=customSpawns?[...customSpawns]:[];
+  if(!customSpawns)for(let x=-71;x<=24;x+=2.4)for(const z of [-1.15,1.15])spawnCandidates.push([x,model.heightAt(x,z),z]);
+  if(!customSpawns)for(const z of [-16,30])for(let x=-70;x<=20;x+=3)spawnCandidates.push([x,model.heightAt(x,z),z]);
   const placed=[];
   for(const a of [...agents].sort((a,b)=>Number(!!b.actor.id)-Number(!!a.actor.id))) {
     const origin=a.actor.state.position;
-    const free=p=>model.valid(p[0],p[2])&&distance(p,[20,0,0])>1.5&&placed.every(b=>distance(p,b.actor.state.position)>a.radius+b.radius+.35);
+    const free=p=>model.valid(p[0],p[2])&&allowedPosition(a,p)&&(!spawnExclusion||distance(p,spawnExclusion)>1.5)&&placed.every(b=>distance(p,b.actor.state.position)>a.radius+b.radius+.35);
     if(!free(origin)) {
       const options=spawnCandidates.filter(free).sort((p,q)=>distance(p,origin)-distance(q,origin));
       if(!options.length)throw new Error(`No safe spawn for ${a.key}`);
@@ -57,7 +57,7 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{}}) {
       let roll=a.random()*candidates.reduce((n,c)=>n+c.weight,0),index=candidates.length-1;
       for(let i=0;i<candidates.length;i++){roll-=candidates[i].weight;if(roll<=0){index=i;break;}}
       const {p,slots}=candidates.splice(index,1)[0],slot=slots[Math.floor(a.random()*slots.length)];
-      const path=model.path(a.actor.state.position,slot.position);if(!path.length)continue;
+      const path=model.path(a.actor.state.position,slot.position);if(!path.length||!path.every(p=>allowedPosition(a,p)))continue;
       // Do not walk backwards to a rounded start node when replanning.
       if(path.length>1&&traverse(a.actor.state.position,path[1]))path.shift();
       if(traverse(path.at(-1),slot.position))path.push([...slot.position]);
@@ -116,7 +116,7 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{}}) {
   }
   function dynamicMove(from,to,radius,exclude=null,player=null) {
     const dx=to[0]-from[0],dz=to[2]-from[2],steps=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.035));let p=[...from];
-    const blocked=q=>agents.some(b=>b!==exclude&&Math.abs(q[1]-b.actor.state.position[1])<1.7&&distance(q,b.actor.state.position)<radius+b.radius+.025)||
+    const blocked=q=>exclude&&!allowedPosition(exclude,q)||agents.some(b=>b!==exclude&&Math.abs(q[1]-b.actor.state.position[1])<1.7&&distance(q,b.actor.state.position)<radius+b.radius+.025)||
       player&&Math.abs(q[1]-player[1])<1.7&&distance(q,player)<radius+.32+.025;
     for(let i=0;i<steps;i++) {
       const next=model.move(p,dx/steps,dz/steps);
@@ -172,6 +172,10 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{}}) {
       const options=[];for(let dx=-6;dx<=6;dx+=.4)for(let dz=-6;dz<=6;dz+=.4){const p=[preferred[0]+dx,0,preferred[2]+dz];if(free(p)){p[1]=model.heightAt(p[0],p[2]);options.push(p);}}
       options.sort((a,b)=>distance(a,preferred)-distance(b,preferred));return options[0]||null;
     },
+    suspend(){for(const a of agents){
+      a.lastPOI=a.poi?.id||a.lastPOI;release(a);a.partner=null;a.path=[];a.state='rest';a.action='Idle';a.velocity=[0,0];a.timer=ranged(a,.4,4.9);
+      a.held=false;a.wasAttending=false;Object.assign(a.actor.state,{talking:false,attending:false,socialTalking:false,stride:0});
+    }},
     dispose(){for(const a of agents){release(a);a.partner=null;}},
   };
 }

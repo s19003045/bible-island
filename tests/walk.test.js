@@ -40,10 +40,11 @@ test('actual city geometry permits continuous routes to residents and the courty
 
 test('movement uses eye height, blocks during conversation, and releases held keys on focus loss',()=>{
   const canvas=Object.assign(new EventTarget(),{focus(){},setPointerCapture(){}}),camera=new THREE.PerspectiveCamera();
-  const control=createWalkControls(camera,canvas);control.start(createWalkModel());
+  let manualInputs=0;const control=createWalkControls(camera,canvas,{onManualInput:()=>manualInputs++});control.start(createWalkModel());
+  control.navigate([12,8,0]);
   assert.ok(Math.abs(camera.position.y-control.position[1]-1.65)<.001);
   const event=new Event('keydown',{cancelable:true});Object.defineProperty(event,'code',{value:'KeyW'});document.dispatchEvent(event);
-  control.update(.05);const first=control.position;assert.ok(first[0]<walkSpawn[0]);
+  control.update(.05);const first=control.position;assert.ok(first[0]<walkSpawn[0]);assert.equal(manualInputs,1);assert.equal(control.navigating,false,'manual keys cancel both route and outer moving-target guidance');
   control.block(true);control.update(1);assert.deepEqual(control.position,first);
   control.block(false);control.update(1);assert.deepEqual(control.position,first,'conversation must clear held movement');
   document.dispatchEvent(event);window.dispatchEvent(new Event('blur'));control.update(1);assert.deepEqual(control.position,first);
