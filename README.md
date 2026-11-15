@@ -50,6 +50,10 @@ npm run preview
 
 ## 發佈
 
+Sites 網址：[讀聖經順起來](https://bible-island.starryswift8.chatgpt.site)。目前採擁有者私人權限。
+
+Sites 專案識別與靜態產物設定保存在 `.openai/hosting.json`；`.sites/` 是本機發佈用的獨立來源倉庫，不提交至 GitHub。
+
 附 `CI` 工作流程驗證內容、測試及建置。另附手動觸發的 GitHub Pages 部署流程；倉庫擁有者需先在 Settings → Pages 將來源設為 GitHub Actions，再執行該流程。未啟用 Pages 時，推送原始碼不等於網站已上線。
 
 ## 研究來源
