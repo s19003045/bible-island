@@ -371,7 +371,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   function clearConnections() {
     for (const obj of [...connectionGroup.children]) { obj.geometry.dispose(); obj.material.dispose(); connectionGroup.remove(obj); }
   }
-  function select(id) {
+  function select(id,segment=null) {
     cancelAtlasFlight();
     if(walk.active)exitWalk();
     activeHistorical?.npcSystem?.suspend();
@@ -386,8 +386,9 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
         const pmrem = new THREE.PMREMGenerator(renderer), room = new RoomEnvironment();
         environment = pmrem.fromScene(room, .04).texture; room.dispose(); pmrem.dispose();
       }
-      if (!historicalCache.has(id)) historicalCache.set(id, createHistoricalScene(id, environment));
-      activeHistorical = historicalCache.get(id); activeHistorical.roof.visible = !cutaway; activeHistorical.setTime(nightMode);
+      const key=id==='exodus'&&segment?`${id}:${segment}`:id;
+      if (!historicalCache.has(key)) historicalCache.set(key, createHistoricalScene(id, environment,{segment:segment||'all'}));
+      activeHistorical = historicalCache.get(key); activeHistorical.roof.visible = !cutaway; activeHistorical.setTime(nightMode);
     }
     camera.fov = activeHistorical ? 48 : 39; camera.updateProjectionMatrix();
     controls.screenSpacePanning = !!activeHistorical;
@@ -407,6 +408,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
       focus(new THREE.Vector3(...c.target), new THREE.Vector3(...c.overview), 450);
     } else focus(new THREE.Vector3(x, .3, z), new THREE.Vector3(7.5, 10, 12));
     selected.stops.forEach((s, index) => {
+      if(activeHistorical?.segment&&s.id!==activeHistorical.segment)return;
       const el = document.createElement('button'); el.className = 'hotspot'; el.innerHTML = `<span>${index + 1}</span><b>${s.name}</b>`;
       el.setAttribute('aria-label', `探索${s.name}`); el.onclick = () => onStop(s.id); hotspotLayer.appendChild(el);
       hotspots.push({ el, id: s.id, pos: activeHistorical ? new THREE.Vector3(...activeHistorical.config.stops[s.id]) : new THREE.Vector3(x + s.position[0], TOP + s.position[1], z + s.position[2]) });
@@ -500,7 +502,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     ray.setFromCamera(pointer, camera);
     if(activeHistorical) {
       // Use the rendered geometry itself; a wall in front of a person blocks the hit.
-      activeHistorical.scene.updateMatrixWorld(true);
+      activeHistorical.scene.updateMatrixWorld(true);activeHistorical.updateRaycastBounds();
       const meshes=[];activeHistorical.scene.traverseVisible(o=>{if(o.isMesh)meshes.push(o);});
       const hit=ray.intersectObjects(meshes,false)[0];
       const actorId=hit?.object.userData.actorInstances?.[hit.instanceId];
@@ -581,7 +583,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
     if(!activeHistorical){if(!paused){elapsed+=dt;dirty=true;}ocean.update(elapsed,nightMode);boats.forEach((b,i)=>{if(b.userData.routeId){const curve=network.curve(b.userData.routeId),t=(elapsed*.014+b.userData.routeOffset)%1,p=curve.getPoint(t),d=curve.getTangent(t);b.position.set(p.x,.15,p.z);b.rotation.y=Math.atan2(d.x,d.z);}b.rotation.z=Math.sin(elapsed*.8+i)*.025;b.rotation.x=Math.cos(elapsed*.6+i)*.02;});}
     if(activeHistorical && !paused) {
-      activeHistorical.animate(dt,camera.position.toArray(),walk.active?walk.position:null);dirty=true;
+      activeHistorical.animate(dt,camera.position.toArray(),walk.active?walk.position:null,p=>{v.set(p[0],p[1]+1,p[2]);if(camera.position.distanceTo(v)>(activeHistorical.scene.fog?.far||camera.far))return false;v.project(camera);return v.z>-1&&v.z<1&&Math.abs(v.x)<1.15&&Math.abs(v.y)<1.15;});dirty=true;
     }
     if(atlasFlight){const flight=atlasFlight,t=Math.min(1,(now-flight.start)/flight.duration),ease=t*t*(3-2*t),p=flight.curve.getPoint(ease),dest=p.clone().add(new THREE.Vector3(9,13,14)),blend=Math.min(1,t*4);camera.position.lerpVectors(flight.from,dest,blend);controls.target.lerpVectors(flight.oldTarget,p,blend);camera.lookAt(controls.target);dirty=true;if(t===1){const done=flight.done;cancelAtlasFlight();done();}}
     if (fly) {

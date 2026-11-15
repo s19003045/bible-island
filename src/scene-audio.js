@@ -3,10 +3,10 @@ import {Vector3} from 'three';
 
 // Original synthesized ambience; no claim to reproduce the sound of an ancient city.
 export function createSceneAudio(onState=()=>{},preferences={}) {
-  let ctx=null,master=null,ambient=null,speech=null,music=null,musicGain=null,enabled=false,active=false,hidden=false,token=0,source=null,voicePosition=null,playing=null,lastEffect=0;
-  const buffers=new Map(),pending=new Map();const volume={environment:.6,voice:.9,music:.16};let noise=null,island='jerusalem',ambientNodes=[];
+  let ctx=null,master=null,ambient=null,speech=null,music=null,musicGain=null,enabled=false,active=false,hidden=false,token=0,source=null,voicePosition=null,playing=null,nextEffect=0;
+  const buffers=new Map(),pending=new Map();const volume={environment:.6,voice:.9,music:.16};let noise=null,island='jerusalem',ambientNodes=[],transients=new Set();
   for(const key of Object.keys(volume))if(Number.isFinite(preferences[key]))volume[key]=Math.max(0,Math.min(1,preferences[key]));
-  const profiles={herod:{cloth:[78,10,54],bird:[112,18,-25],tone:960,ground:'stone'},jerusalem:{cloth:[-48,14,5],bird:[-11,13,9],tone:1100,ground:'stone'},tabernacle:{cloth:[31,1.4,6],bird:[43,3,-12],tone:680,ground:'earth'},solomon:{cloth:[32,1.4,-12],bird:[45,6,18],tone:900,ground:'stone'}};
+  const profiles={'exodus:bricks':{cloth:[-46,1,-24],bird:[-68,5,-10],tone:720,ground:'earth',effect:'work'},'exodus:passover':{cloth:[-35,1.4,24.5],bird:[-45,5,40],tone:580,ground:'earth',effect:'home'},'exodus:crossing':{cloth:[35,2,9.5],bird:[110,8,-12],tone:360,ground:'earth',effect:'water'},herod:{cloth:[78,10,54],bird:[112,18,-25],tone:960,ground:'stone'},jerusalem:{cloth:[-48,14,5],bird:[-11,13,9],tone:1100,ground:'stone'},tabernacle:{cloth:[31,1.4,6],bird:[43,3,-12],tone:680,ground:'earth'},solomon:{cloth:[32,1.4,-12],bird:[45,6,18],tone:900,ground:'stone'}};
   const report=(status,text='')=>onState({enabled,status,text,volume:{...volume}});
   function panner(position,bus) {
     const p=ctx.createPanner();p.panningModel='HRTF';p.distanceModel='inverse';p.refDistance=4;p.maxDistance=55;p.rolloffFactor=1.2;
@@ -19,7 +19,9 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
     noise=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate);const data=noise.getChannelData(0);let b=0;for(let i=0;i<data.length;i++){b=(b+(Math.random()*2-1)*.02)/1.02;data[i]=b*3;}
     rebuildAmbience();buildMusic();mix();
   }
+  function stopTransients(){for(const nodes of transients){try{nodes[0].stop();}catch{}for(const n of nodes)n.disconnect();}transients.clear();}
   function rebuildAmbience() {
+    stopTransients();
     for(const n of ambientNodes){try{n.stop?.();}catch{}n.disconnect();}ambientNodes=[];
     const profile=profiles[island]||profiles.jerusalem;
     function loop(position,frequency,gain) {
@@ -28,7 +30,7 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
       source.connect(filter);filter.connect(level);const node=position?panner(position,ambient):ambient;level.connect(node);source.start();
       ambientNodes.push(source,filter,level);if(node!==ambient)ambientNodes.push(node);
     }
-    loop(null,230,.16);loop(profile.cloth,profile.tone,.045);lastEffect=0;
+    loop(null,230,.16);loop(profile.cloth,profile.tone,.045);nextEffect=0;
   }
   function buildMusic() {
     // Original modern ambient score. No sampled recordings or historical authenticity claim.
@@ -51,13 +53,13 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
     catch(e){enabled=false;mix();report('unavailable',e.message);return false;}
   }
   async function bufferFor(person) {
-    if(buffers.has(person))return buffers.get(person);
-    if(!pending.has(person))pending.set(person,(async()=>{const response=await fetch(new URL(voices[person].src,document.baseURI));if(!response.ok)throw new Error('配音暫時無法載入，請使用字幕或稍後重播。');const b=await ctx.decodeAudioData(await response.arrayBuffer());buffers.set(person,b);return b;})().finally(()=>pending.delete(person)));
+    if(buffers.has(person)){const cached=buffers.get(person);buffers.delete(person);buffers.set(person,cached);return cached;}
+    if(!pending.has(person))pending.set(person,(async()=>{const response=await fetch(new URL(voices[person].src,document.baseURI));if(!response.ok)throw new Error('配音暫時無法載入，請使用字幕或稍後重播。');const b=await ctx.decodeAudioData(await response.arrayBuffer());buffers.set(person,b);while(buffers.size>4)buffers.delete(buffers.keys().next().value);return b;})().finally(()=>pending.delete(person)));
     return pending.get(person);
   }
   return {
     get volumes(){return {...volume};},get enabled(){return enabled;},get playing(){return playing;},enable,stopVoice,
-    setScene(id){if(id===island)return;stopVoice();island=id;if(ctx)rebuildAmbience();},
+    setScene(id,segment=null){const key=segment?`${id}:${segment}`:id;if(key===island)return;stopVoice();island=key;if(ctx)rebuildAmbience();},
     setActive(value){active=value;mix();if(!value)stopVoice();},
     setHidden(value){hidden=value;if(value)stopVoice();mix();},
     setVolume(kind,value){if(!(kind in volume))return;volume[kind]=Math.max(0,Math.min(1,Number(value)));if(kind==='voice'&&volume.voice===0)stopVoice();mix();report(enabled?'ready':'off');},
@@ -76,14 +78,22 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
       const l=ctx.listener,direction=camera.getWorldDirection(_direction);l.positionX.value=camera.position.x;l.positionY.value=camera.position.y;l.positionZ.value=camera.position.z;
       l.forwardX.value=direction.x;l.forwardY.value=direction.y;l.forwardZ.value=direction.z;l.upX.value=0;l.upY.value=1;l.upZ.value=0;
       if(voicePosition&&playing){const p=people.find(p=>p.id===playing.person)?.state.position;if(p){voicePosition.positionX.value=p[0];voicePosition.positionY.value=p[1]+1.5;voicePosition.positionZ.value=p[2];}}
-      if(active&&now-lastEffect>5200){lastEffect=now;const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;o.type='sine';o.frequency.setValueAtTime(2100,t);o.frequency.exponentialRampToValueAtTime(3100,t+.12);o.frequency.exponentialRampToValueAtTime(2300,t+.28);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.018,t+.05);g.gain.exponentialRampToValueAtTime(.0001,t+.32);const p=panner((profiles[island]||profiles.jerusalem).bird,ambient);o.connect(g);g.connect(p);o.start();o.stop(t+.34);o.onended=()=>{g.disconnect();p.disconnect();};}
+      if(active&&now>nextEffect){
+        const profile=profiles[island]||profiles.jerusalem;nextEffect=now+(profile.effect==='work'?1800+Math.random()*3200:4000+Math.random()*5000);
+        if(profile.effect){
+          const source=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),g=ctx.createGain(),t=ctx.currentTime,water=profile.effect==='water',duration=water?1.4:.14;
+          source.buffer=noise;filter.type='bandpass';filter.frequency.value=water?420:profile.effect==='work'?680:1450;filter.Q.value=water?.35:1.3;
+          g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(water?.025:.035,t+(water?.45:.015));g.gain.exponentialRampToValueAtTime(.0001,t+duration);
+          const p=panner(profile.cloth,ambient),nodes=[source,filter,g,p];transients.add(nodes);source.connect(filter);filter.connect(g);g.connect(p);source.start(0,Math.random()*.4,duration);source.onended=()=>{transients.delete(nodes);filter.disconnect();g.disconnect();p.disconnect();};
+        }else{const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;o.type='sine';o.frequency.setValueAtTime(2100,t);o.frequency.exponentialRampToValueAtTime(3100,t+.12);o.frequency.exponentialRampToValueAtTime(2300,t+.28);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.018,t+.05);g.gain.exponentialRampToValueAtTime(.0001,t+.32);const p=panner((profiles[island]||profiles.jerusalem).bird,ambient);o.connect(g);g.connect(p);o.start();o.stop(t+.34);o.onended=()=>{g.disconnect();p.disconnect();};}
+      }
     },
     footstep(position) {
       if(!ctx||!enabled||!active||hidden||!volume.environment||ctx.state!=='running')return;
       const s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain(),t=ctx.currentTime;s.buffer=noise;f.type='lowpass';f.frequency.value=((profiles[island]||profiles.jerusalem).ground==='earth'?480:['solomon','herod'].includes(island)||Math.abs(position[2])<2.3?1500:600)+Math.random()*300;g.gain.setValueAtTime(.55,t);g.gain.exponentialRampToValueAtTime(.0001,t+.13);s.connect(f);f.connect(g);g.connect(ambient);s.start(0,Math.random(),.14);s.onended=()=>{f.disconnect();g.disconnect();};
       const o=ctx.createOscillator(),thud=ctx.createGain();o.frequency.setValueAtTime(130,t);o.frequency.exponentialRampToValueAtTime(65,t+.08);thud.gain.setValueAtTime(.08,t);thud.gain.exponentialRampToValueAtTime(.0001,t+.1);o.connect(thud);thud.connect(ambient);o.start();o.stop(t+.11);o.onended=()=>thud.disconnect();
     },
-    dispose(){stopVoice();for(const n of ambientNodes){try{n.stop?.();}catch{}n.disconnect();}music?.stop();ctx?.close();},
+    dispose(){stopVoice();stopTransients();for(const n of ambientNodes){try{n.stop?.();}catch{}n.disconnect();}music?.stop();ctx?.close();},
   };
 }
 const _direction=new Vector3();

@@ -35,11 +35,11 @@ export const historicalScenes = {
     sources: [{ title: '約瑟夫斯《猶太戰記》卷五，第五章', url: 'https://sacred-texts.com/jud/josephus/war-5.htm', note: '院落、柱廊、殿宇立面與內部空間的古代描述；是文本證詞，並非現代測繪。' }, { title: '《米示拿・Middot》4–5 章', url: 'https://www.sefaria.org/Mishnah_Middot.4?lang=bi', note: '對讀殿宇與院落尺度；成書晚於第二聖殿毀壞，使用時需保留差異。' }, { title: '以色列博物館：耶路撒冷模型', url: 'https://www.imj.org.il/en/wings/shrine-book/model-jerusalem-second-temple-period', note: '模型呈現西元 66 年；不能直接把完整城市狀態套用到耶穌活動年代。' }],
   },
   exodus: {
-    edition: '從勞役聚落到渡海敘事', category: '三段敘事並置 · 非連續地理', scale: '成人 1.70 m · 海岸與通道為敘事示意',
+    edition: '從勞役聚落到渡海敘事', category: '三段章節探索 · 非連續地理', scale: '成人 1.70 m · 海岸與通道為敘事示意',
     extent: 290, shadow: 110, target: [8, 2, 0], overview: [-103, 52, 66], human: { target: [35, 2.1, 0], offset: [-35, -.4, 5.5] }, plan: 190, close: [12, 7, 15],
     stops: { bricks: [-48, 1, -26], passover: [-35, 1.5, 21], crossing: [30, 2, 0] },
     facts: ['以泥磚、草料、磚模與曬場呈現出埃及記中的製磚勞役。', '住家可看見門框、行囊與簡單生活器物；步行隊伍採正常成人及兒童比例。', '海中乾地與兩側水面按出埃及記 14 章敘事呈現。'],
-    limits: '製磚、逾越節住家與渡海是不同時間、地點的分段敘事，在同一畫面中並置方便閱讀，不代表它們彼此相鄰。未指定法老、年代、渡海海域或海牆高度；人物數量不代表出埃及人口。',
+    limits: '製磚、逾越節住家與渡海是不同時間、地點的分段敘事，以章節切換連接方便閱讀，不代表它們彼此相鄰。未指定法老、年代、渡海海域或海牆高度；人物數量不代表出埃及人口。',
     sources: [{ title: '出埃及記 1、5、12–14 章', ...bible('Exodus 1;5;12-14'), note: '製磚、出發準備及渡海場景的敘事依據；未提供可直接套用的完整地形測量。' }, { title: '出埃及路線的不同提案', url: 'https://www.biblegateway.com/learn/topics-themes/commentaries/exodus-route-from-egypt/', note: '列出常見研究提案與地點辨識的不確定性，作為對讀材料。' }],
   },
   jerusalem: {

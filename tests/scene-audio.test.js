@@ -1,0 +1,42 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {build} from 'esbuild';
+import {PerspectiveCamera} from 'three';
+const bundle=await build({entryPoints:[new URL('../src/scene-audio.js',import.meta.url).pathname],bundle:true,format:'esm',platform:'node',write:false,logLevel:'silent'});
+const {createSceneAudio}=await import('data:text/javascript;base64,'+Buffer.from(bundle.outputFiles[0].text).toString('base64'));
+function fixture(){
+ const param=()=>({value:0,setTargetAtTime(n){this.value=n;},setValueAtTime(n){this.value=n;},exponentialRampToValueAtTime(n){this.value=n;},linearRampToValueAtTime(n){this.value=n;}});
+ const node=()=>({connect(n){this.output=n;},disconnect(){this.disconnected=true;},start(...args){this.started=args;},stop(){this.stopped=true;}});
+ let context;const fetched=[];
+ class MockContext{
+  constructor(){context=this;this.currentTime=0;this.sampleRate=100;this.state='running';this.destination=node();this.sources=[];this.panners=[];this.gains=[];this.filters=[];this.listener={};for(const prefix of ['position','forward','up'])for(const axis of ['X','Y','Z'])this.listener[prefix+axis]=param();}
+  createGain(){const n={...node(),gain:param()};this.gains.push(n);return n;}
+  createPanner(){const n={...node(),positionX:param(),positionY:param(),positionZ:param()};this.panners.push(n);return n;}
+  createBuffer(channels,count,rate){return {duration:count/rate,getChannelData:()=>new Float32Array(count)};}
+  createBufferSource(){const n=node();this.sources.push(n);return n;}
+  createBiquadFilter(){const n={...node(),frequency:param(),Q:param()};this.filters.push(n);return n;}
+  createOscillator(){return {...node(),frequency:param()};}
+  async resume(){this.state='running';}async close(){this.state='closed';}
+  async decodeAudioData(){return {duration:100};}
+ }
+ globalThis.window={AudioContext:MockContext};globalThis.document={baseURI:'http://localhost:5173/'};globalThis.fetch=async url=>{fetched.push(String(url));return {ok:true,arrayBuffer:async()=>new ArrayBuffer(1)};};
+ return {get context(){return context;},fetched};
+}
+
+test('chapter audio cancels old spatial effects and speech, preserves independent mix, and mutes on page hiding',async()=>{
+ const f=fixture(),events=[],audio=createSceneAudio(s=>events.push(s));audio.setScene('exodus','crossing');await audio.enable();audio.setActive(true);audio.update(new PerspectiveCamera(),[],5000);
+ const wash=f.context.sources.at(-1);assert.ok(wash.started);assert.ok(f.context.panners.some(p=>p.positionX.value===35&&p.positionZ.value===9.5));
+ await audio.speak('traveler','greeting',[18,1.5,-3]);const spoken=f.context.sources.at(-1);assert.equal(audio.playing.person,'traveler');
+ audio.setScene('exodus','passover');assert.equal(wash.stopped,true);assert.equal(spoken.stopped,true);assert.equal(audio.playing,null);assert.ok(f.context.panners.some(p=>p.positionX.value===-35&&p.positionZ.value===24.5));
+ audio.setVolume('music',0);assert.equal(audio.volumes.music,0);assert.equal(audio.volumes.environment,.6);assert.equal(audio.volumes.voice,.9);
+ await audio.speak('passover-parent','greeting',[-30,1.5,28]);audio.setHidden(true);assert.equal(audio.playing,null);assert.ok(f.context.gains.slice(1,4).every(g=>g.gain.value===0),'all three buses mute while hidden');
+ assert.ok(events.some(e=>e.status==='playing'&&e.text.includes('昨夜')));audio.dispose();assert.equal(f.context.state,'closed');
+});
+
+test('voice playback ignores stale completions and bounds decoded audio across repeated island switches',async()=>{
+ const f=fixture(),audio=createSceneAudio();await audio.enable();audio.setActive(true);
+ for(const id of ['brick-maker','passover-parent','traveler','pilgrim','stone-worker'])await audio.speak(id,'greeting',[0,1.5,0]);
+ assert.equal(f.fetched.length,5);const old=f.context.sources.at(-1),callback=old.onended;
+ await audio.speak('stone-worker','greeting',[0,1.5,0]);assert.equal(f.fetched.length,5,'recent voice remains cached');callback();assert.equal(audio.playing.person,'stone-worker');
+ await audio.speak('brick-maker','greeting',[0,1.5,0]);assert.equal(f.fetched.length,6,'oldest decoded buffer was evicted');assert.equal(audio.playing.person,'brick-maker');audio.enable(false);assert.equal(audio.playing,null);audio.dispose();
+});

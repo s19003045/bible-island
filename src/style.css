@@ -235,3 +235,17 @@ body[data-reading-mode] .journey-art{background:var(--learning-surface);color:va
 .atlas-route-card{max-height:calc(100% - 190px);overflow:auto;scrollbar-width:thin}.atlas-route-card .primary-button{color:#fff8e6}.atlas-legend{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:12px;font-size:10px;color:#63765e}.island-label.journey-stop{display:flex;opacity:1;background:#fbf3db;border-color:#c7b582}
 @media(max-width:760px){.atlas-route-card{max-height:52%}.atlas-legend{font-size:10px}.atlas-route-card.timeline-open{display:none}}
 @media(max-width:760px){.map-layout:not(.has-selection) .zoom-tools{top:69px;bottom:auto;right:16px;flex-direction:row}.map-layout:not(.has-selection) .atlas-journey-picker{max-width:calc(100% - 140px)}.map-layout:not(.has-selection) .compass-rose{display:none}}
+
+.exodus-chapters{margin:12px 0;padding:11px 0;border-top:1px solid #cbd3bc;border-bottom:1px solid #cbd3bc;color:#425942}
+.exodus-chapters>span{display:block;font-size:10px;line-height:1.7;letter-spacing:.4px;margin-bottom:7px;color:#657358}
+.exodus-chapters>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.exodus-chapters button{display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;padding:7px 4px;border:1px solid #c4ceb7;border-radius:3px;font-size:11px;line-height:1.6;background:#f9f6e9;color:#38533e}
+.exodus-chapters button small{font:italic 12px Georgia,serif;color:#9e7c43}
+.exodus-chapters button[aria-pressed=true]{background:#355b46;color:#fff8e4;border-color:#355b46}
+.exodus-chapters button[aria-pressed=true] small{color:#ebd39a}
+.exodus-chapters p{font-size:10px!important;line-height:1.7!important;color:#657358;margin:6px 0 0!important}
+.walk-mission .exodus-chapters{margin:0 0 10px;padding-top:0;border-top:0}.walk-mission:has(.exodus-chapters){width:340px}
+.walk-mission:has(.exodus-chapters) #mission-body{max-height:30vh;overflow:auto;scrollbar-width:thin}
+@media(max-width:760px){.walk-mission:has(.exodus-chapters){width:calc(100% - 112px)}.walk-mission .exodus-chapters button{min-height:42px;font-size:10px;gap:3px;padding:5px 2px}.walk-mission .exodus-chapters>span{font-size:9px}.walk-mission .exodus-chapters p{font-size:9px!important}.walk-mission:has(.exodus-chapters) #mission-body{max-height:24vh}}
+
+.exodus-chapters p a{text-decoration:underline;text-underline-offset:3px;display:inline-block;min-height:28px;line-height:28px}

@@ -37,11 +37,13 @@ export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{
     lookAt(p){const dx=p[0]-position[0],dz=p[2]-position[2];yaw=Math.atan2(-dx,-dz);pitch=THREE.MathUtils.clamp(Math.atan2(p[1]-camera.position.y,Math.hypot(dx,dz)),-1.15,1.15);apply();},
     async lock(){if(!active||blocked)return;try{await canvas.requestPointerLock?.();if(document.pointerLockElement!==canvas)onMessage('可拖曳畫面環顧，或使用方向鍵。');}catch{onMessage('這個瀏覽器可用拖曳畫面環顧。');}},
     navigate(to){
-      if(!active||blocked)return false;destination=[...to];blockedTime=0;route=model.path(position,to,{avoid:navigationObstacles()});
+      if(!active||blocked)return false;destination=[...to];blockedTime=0;const obstacles=navigationObstacles();route=model.path(position,to,{avoid:obstacles});
+      // A temporarily occupied doorway keeps the destination active while swept collision yields.
+      if(!route.length&&obstacles.length)route=model.path(position,to);
       // Replanning must not pull a slowly moving player back to the nearest grid node.
       // Skip that node only if swept movement can safely reach its successor.
       if(route.length>1){const next=route[1],end=model.move(position,next[0]-position[0],next[2]-position[2]);if(Math.hypot(end[0]-next[0],end[2]-next[2])<.001)route.shift();}
-      if(!route.length){onMessage('這裡沒有可步行路線，請選街道或院落入口。');return false;}return true;
+      if(!route.length){onMessage('這裡沒有可步行路線，請選擇可探索的地面或入口。');return false;}return true;
     },
     cancelRoute(){route=[];destination=null;blockedTime=0;},setAxis(x,z){axis=[x,z];route=[];},setTurn(n){turn=n;},
     update(dt){

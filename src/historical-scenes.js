@@ -5,6 +5,8 @@ import { createMotion, advanceMotion } from './people-motion.js';
 import { walkSurfaces,walkFloor,vesselDefinitions,stairCollisionProxies } from './walk-data.js';
 import { createVessel } from './vessels.js';
 import { createWalkModel } from './walk-model.js';
+import {buildExodusScene,attachExodusExploration} from './exodus-scenes.js';
+import {exodusSegmentById,exodusSegments} from './exodus-exploration.js';
 import {createNPCSystem} from './npc-system.js';
 import {jerusalemPOIs} from './npc-pois.js';
 import {tabernacleSurfaces,tabernacleFloor,tabernaclePOIs,tabernacleAllowed,tabernacleSpawnCandidates,tabernacleObjects} from './tabernacle-exploration.js';
@@ -58,7 +60,7 @@ function palette() {
 }
 function builder(parent, p, seed = 31, collectCollision = false) {
   const actors = [], collisionBoxes = []; let actor = null, bone = null;
-  const batches = new Map(), rand = seeded(seed), dummy = new THREE.Object3D();
+  const batches = new Map(), rand = seeded(seed), dummy = new THREE.Object3D(),hiddenScale=new THREE.Vector3(1e-6,1e-6,1e-6);
   function part(kind, mat, x, y, z, w, h, d, rx = 0, ry = 0, rz = 0) {
     const key = `${kind}/${mat}${actor ? "/people" : ""}`;
     if (!batches.has(key)) batches.set(key, { kind, mat, parts: [] });
@@ -151,7 +153,7 @@ function builder(parent, p, seed = 31, collectCollision = false) {
     box('wool',x+w*.34,y+h*.42,z+d*.5,w*.32,h*.84,.035);
     jar(x+w*.65,y,z,.5*s);
   }
-  function house(x,y,z,w=8,d=7,h=3.6,mat='stone',roofBuilder=null,yaw=0) {
+  function house(x,y,z,w=8,d=7,h=3.6,mat='stone',roofBuilder=null,yaw=0,doorOpen=false) {
     const before = new Map([...batches].map(([key,batch])=>[key,batch.parts.length]));
     const t=.5,door=1.15;
     // Foundation descends into uneven ground instead of leaving detached floating houses.
@@ -163,15 +165,17 @@ function builder(parent, p, seed = 31, collectCollision = false) {
     box(mat,x,y+2.25+(h-2.25)/2,z+d/2,door+.1,h-2.25,t);
     box('wood',x,y+2.19,z+d/2,door+.35,.16,.65);
     box('black',x,y+1,z+d/2-.23,door,2,.04);
-    box('wood',x,y+1,z+d/2-.2,door*.78,2,.07,.18);
+    if(doorOpen)box('wood',x+door/2+.15,y+1,z+d/2-.55,.07,2,door*.9);else box('wood',x,y+1,z+d/2-.2,door*.78,2,.07,.18);
     for(const sx of [-1,1]) { box('black',x+sx*w*.31,y+2.3,z+d/2+.265,.5,.65,.025); for(let n=0;n<3;n++) box('wood',x+sx*w*.31-.18+n*.18,y+2.3,z+d/2+.29,.035,.65,.04); }
     const roof = roofBuilder || { box };
     roof.box('plaster',x,y+h+.12,z,w+.25,.24,d+.25);
     for(const q of [-1,1]) { roof.box(mat,x+q*w/2,y+h+.46,z,.27,.7,d+.25); roof.box(mat,x,y+h+.46,z+q*d/2,w,.7,.27); }
     for(let i=0;i<12;i++) box(mat,x+w/2+.85,y+(i+1)*h/12/2,z+d/2-i*.32,.95,(i+1)*h/12,.34);
+    if(!doorOpen){
     for(let i=0;i<5;i++) jar(x-w*.3+i*.48,y,z+d*.5+.7,.42+rand()*.25);
     box('wood',x-w*.2,y+.5,z+d*.5+1.2,1.8,.1,.6);
     for(const dx of [-.7,.7]) box('wood',x-w*.2+dx,y+.23,z+d*.5+1.2,.09,.46,.5);
+    }
     if(yaw) for(const [key,batch] of batches) for(let i=before.get(key)||0;i<batch.parts.length;i++) {
       const v=batch.parts[i],dx=v.x-x,dz=v.z-z;
       v.x=x+dx*Math.cos(yaw)+dz*Math.sin(yaw);v.z=z-dx*Math.sin(yaw)+dz*Math.cos(yaw);v.ry+=yaw;
@@ -226,7 +230,7 @@ function builder(parent, p, seed = 31, collectCollision = false) {
           if(bone.startsWith('forearm'))posing[bone].premultiply(posing[bone==='forearmL'?'armL':'armR']);
       }
       for(const part of a.parts) {
-        matrix.copy(root);if(part.bone)matrix.multiply(posing[part.bone]);matrix.multiply(part.bind);
+        matrix.copy(root);if(part.bone)matrix.multiply(posing[part.bone]);matrix.multiply(part.bind);if(m.visible===false)matrix.scale(hiddenScale);
         if(part.bone==='ground')matrix.elements[13]=m.position[1]+.035*s;
         part.mesh.setMatrixAt(part.index,matrix);touched.add(part.mesh);
       }
@@ -260,10 +264,11 @@ function terrain(scene,p,extent,kind,flatRadius = 70) {
   const ground=new THREE.Mesh(geo,mat); ground.receiveShadow=true; scene.add(ground);
   return height;
 }
-function landscape(k,height,extent,city=false) {
+function landscape(k,height,extent,city=false,excluded=[]) {
   for(let i=0;i<180;i++) {
     const a=k.rand()*Math.PI*2,r=55+k.rand()*extent;
     const x=Math.cos(a)*r,z=Math.sin(a)*r,y=height(x,z);
+    if(excluded.some(s=>x>s.x1-4&&x<s.x2+4&&z>s.z1-4&&z<s.z2+4))continue;
     if(city&&x>65&&x<140) continue;
     if(city&&i%4===0) k.olive(x,y,z,.6+k.rand());
     else k.ball('darkstone',x,y-.2,z,1+k.rand()*3,.5+k.rand()*1.6,1+k.rand()*2);
@@ -478,46 +483,6 @@ function herod(k,roof) {
     k.box('water',x,-1.05,130.5,7,.05,2);
   }
 }
-function exodus(k,roof,height,scene,p) {
-  // Three narrative stations are juxtaposed. They are not a geographic route reconstruction.
-  for(let i=0;i<11;i++) {
-    const x=-63+(i%3)*11,z=-38+Math.floor(i/3)*13;
-    k.house(x,0,z,7.5,6.5,3,'mud',i===10?roof:null);
-  }
-  for(let row=0;row<14;row++) for(let col=0;col<9;col++) k.box('mud',-51+col*.65,.09,-36+row*.43,.57,.18,.34);
-  k.box('mud',-48,.02,-26,10,.04,5);
-  for(let i=0;i<10;i++) {
-    const x=-52+i*.85,z=-22;
-    k.box('wood',x,.06,z,.6,.12,.07);k.box('wood',x,.06,z+.42,.6,.12,.07);
-    for(const dx of [-.28,.28]) k.box('wood',x+dx,.06,z+.21,.06,.12,.48);
-  }
-  for(let i=0;i<80;i++) { const x=-41+k.rand()*6,z=-28+k.rand()*6;k.part('column','reed',x,.12+k.rand()*.3,z,.04,.7,.04,.9,k.rand()*6); }
-  k.person(-45,0,-29,0,1.1);k.person(-53,0,-31,1);
-  k.house(-35,0,21,8,7,3.3,'mud',roof);
-  k.box('red',-35,2.19,24.53,1.5,.1,.08);
-  for(const x of [-35.62,-34.38]) k.box('red',x,1.08,24.53,.07,2.12,.08);
-  k.box('wood',-35,.6,21,2,.12,1);for(let i=0;i<4;i++) {k.ball('linen',-35+(i%2-.5)*.6,.7,20.8+Math.floor(i/2)*.4,.38,.04,.3);k.ball('hide',-32+i*.6,.35,22,.55,.7,.5);}
-  k.person(-34,0,26,1);k.person(-33,0,26.5,2,.7,1.1);
-  k.box('court',35,-.06,0,130,.08,17);
-  const waterMat=p.water.clone(); waterMat.color.set('#355f62');
-  for(const side of [-1,1]) {
-    const geo=new THREE.PlaneGeometry(550,5.8,180,12); const a=geo.attributes.position;
-    for(let i=0;i<a.count;i++) {const x=a.getX(i),y=a.getY(i);a.setZ(i,Math.sin(x*.17+y*.8)*.34+Math.sin(x*.6-y*.4)*.13);}
-    geo.computeVertexNormals();const m=waterMat.clone();m.side=THREE.DoubleSide;
-    const face=new THREE.Mesh(geo,m);face.position.set(262,2.9,side*10);scene.add(face);
-    const surfaceGeo=new THREE.PlaneGeometry(550,300,160,90); surfaceGeo.rotateX(-Math.PI/2);
-    const sp=surfaceGeo.attributes.position;
-    for(let i=0;i<sp.count;i++) {const x=sp.getX(i),z=sp.getZ(i);sp.setY(i,Math.sin(x*.27+z*.18)*.1+Math.sin(x*.5-z*.6)*.04);}
-    surfaceGeo.computeVertexNormals();const surface=new THREE.Mesh(surfaceGeo,waterMat);surface.position.set(262,5.77,side*160);surface.receiveShadow=true;scene.add(surface);
-    for(let i=0;i<65;i++) {const x=-12+k.rand()*188,z=side*(9.6+k.rand()*.5);k.ball('linen',x,.08,z,.2,.025,.45);}
-  }
-  for(let i=0;i<112;i++) {
-    const x=-18+(i/112)*110+(k.rand()-.5)*2,z=(k.rand()-.5)*12;
-    k.person(x,0,z,i,Math.PI/2,i%11===0?1.12:HUMAN_HEIGHT,{route:[[x-40,0,z],[x+60,0,z]],routeMode:'forward'});
-  }
-  for(let i=0;i<14;i++) k.tent(-18-k.rand()*16,0,-35+k.rand()*18,.8);
-  for(let i=0;i<70;i++) {const x=-90+k.rand()*110,z=-65-k.rand()*25;for(let q=0;q<3;q++)k.beam('reed',[x,0,z],[x+(k.rand()-.5)*.6,1+k.rand(),z+.2],.018);}
-}
 function jerusalem(k,roof,height) {
   // Fill the selected public alleys with visible, continuous walking surfaces.
   for(const s of walkSurfaces.filter(s=>!['street','courtyard','entry-stairs'].includes(s.id))) {
@@ -599,25 +564,27 @@ function jerusalem(k,roof,height) {
   k.box('water',-8,6.35,44,3,.04,2.4);
   for(let i=0;i<5;i++) {k.box('wood',-56+i*2.3,12.9,5.2,2,.1,1);k.box('linen',-56+i*2.3,14.4,5.2,2,.04,2);k.cyl('wood',-56+i*2.3,13.6,6,.035,1.6);k.jar(-56+i*2.3,12.1,5.5,.45);}
 }
-export function createHistoricalScene(id, environment) {
-  const config=historicalScenes[id]; if(!config) return null;
+export function createHistoricalScene(id, environment,{segment='all'}={}) {
+  if(id==='exodus'&&segment!=='all'&&!exodusSegmentById.has(segment))segment='bricks';
+  const base=historicalScenes[id];if(!base)return null;const section=id==='exodus'?exodusSegmentById.get(segment):null;
+  const config=section?{...base,...section}:base;
   const scene=new THREE.Scene(), p=palette();
   const sky=id==='exodus'?'#a5b2b0':'#b4bdb8';
-  scene.background=new THREE.Color(sky);scene.fog=new THREE.Fog(sky,config.extent*1.1,config.extent*3.1);scene.environment=environment;scene.environmentIntensity=.4;
+  scene.background=new THREE.Color(sky);scene.fog=new THREE.Fog(sky,config.fogNear??config.extent*1.1,config.fogFar??config.extent*3.1);scene.environment=environment;scene.environmentIntensity=.4;
   const ambient=new THREE.HemisphereLight('#e7e9df','#75624a',1.1);scene.add(ambient);
   const sun=new THREE.DirectionalLight('#fff0d9',2.65);sun.position.set(-55,95,60);sun.castShadow=true;
   const range=config.shadow;Object.assign(sun.shadow.camera,{left:-range,right:range,top:range,bottom:-range,near:1,far:450});
   sun.shadow.mapSize.set(2048,2048);sun.shadow.normalBias=.035;sun.shadow.bias=-.00013;scene.add(sun);
   const roofGroup=new THREE.Group();scene.add(roofGroup);
-  const k=builder(scene,p,id.length*113,['jerusalem','tabernacle','solomon','herod'].includes(id)), roof=builder(roofGroup,p,83,['jerusalem','tabernacle','solomon','herod'].includes(id));
-  const height=terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id));
+  const k=builder(scene,p,id.length*113,['jerusalem','tabernacle','solomon','herod','exodus'].includes(id)), roof=builder(roofGroup,p,83,['jerusalem','tabernacle','solomon','herod','exodus'].includes(id));
+  const height=terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id),id==='exodus'?exodusSegments.flatMap(s=>s.surfaces):[]);
   if(id==='tabernacle')tabernacle(k,roof);
   else if(id==='solomon')solomon(k,roof,height);
   else if(id==='herod')herod(k,roof);
-  else if(id==='exodus')exodus(k,roof,height,scene,p);
+  else if(id==='exodus')buildExodusScene(k,roof,scene,p,segment);
   else jerusalem(k,roof,height);
-  const roles=id==='tabernacle'?{weaver:'weaver',priest:'priest','camp-parent':'parent'}:id==='solomon'?{'bronze-worker':'bronze-worker',singer:'singer','temple-visitor':'visitor'}:id==='herod'?{pilgrim:'pilgrim','stone-worker':'stone-worker',listener:'listener'}:{};
-  for(const person of peopleByIsland[id]) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:roles[person.id]});
+  const roles=id==='tabernacle'?{weaver:'weaver',priest:'priest','camp-parent':'parent'}:id==='solomon'?{'bronze-worker':'bronze-worker',singer:'singer','temple-visitor':'visitor'}:id==='herod'?{pilgrim:'pilgrim','stone-worker':'stone-worker',listener:'listener'}:id==='exodus'?{'brick-maker':'brick-guide','passover-parent':'departure-parent',traveler:'crossing-guide'}:{};
+  for(const person of peopleByIsland[id].filter(p=>!section||p.id===section.person)) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:roles[person.id]});
   k.finish();roof.finish();
   const people=k.actors.filter(a=>a.id);
   let walkModel=null;const objects=[];
@@ -683,7 +650,8 @@ export function createHistoricalScene(id, environment) {
     walkModel=createWalkModel(k.collisionBoxes,herodSurfaces,herodFloor,{proxies:herodProxies,navigationStep:.8});
   }
   const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
-  const npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
+  let npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
+  if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment);walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);
   const occluders=[];scene.updateMatrixWorld(true);scene.traverseVisible(o=>{if(o.isMesh&&!o.userData.people)occluders.push(o);});
@@ -702,8 +670,9 @@ export function createHistoricalScene(id, environment) {
     return best;
   }
   return {
-    scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,npcSystem,exploration:explorationFor(id),
-    animate(dt,cameraPosition,playerPosition=null) {npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition});k.animate(dt,cameraPosition);},
+    scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,npcSystem,segment:section?.id||null,exploration:explorationFor(id,section?.id),
+    animate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});k.animate(dt,cameraPosition);},
+    updateRaycastBounds(){scene.traverse(o=>{if(o.isInstancedMesh&&o.userData.people)o.computeBoundingSphere();});},
     converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },
     attend(personId) {people.forEach(a=>a.state.attending=a.id===personId);},
     groundHeight(x,z) { return Math.max(height(x,z),id==='herod' && Math.abs(x)<121 && Math.abs(z)<101 ? 8 : -.14); },

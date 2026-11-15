@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 export function createVessel(id) {
+  if(['brick-mould','passover-kit','crossing-ground'].includes(id))return createExodusObject(id);
   if(['herod-stone','herod-boundary','herod-capital'].includes(id))return createHerodObject(id);
   if(['pillar-capital','solomon-sea','temple-masonry'].includes(id))return createSolomonObject(id);
   if(['woven-sample','board-joint','tabernacle-basin'].includes(id))return createCraftObject(id);
@@ -11,6 +12,28 @@ export function createVessel(id) {
   // Fine horizontal tooling marks, shared with the inspectable object rather than a second representation.
   for(let i=0;i<6;i++){const radius=clay?.218-Math.abs(i-2)*.004:.15;const mark=new THREE.Mesh(new THREE.TorusGeometry(radius,.0013,3,40),new THREE.MeshStandardMaterial({color:clay?'#805237':'#b2aa94',roughness:1}));mark.rotation.x=Math.PI/2;mark.position.y=clay?.16+i*.023:.08+i*.035;group.add(mark);}
   group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});group.userData.objectId=id;return group;
+}
+function createExodusObject(id){
+ const g=new THREE.Group(),wood=new THREE.MeshStandardMaterial({color:'#756047',roughness:.96}),mud=new THREE.MeshStandardMaterial({color:'#987d60',roughness:1}),straw=new THREE.MeshStandardMaterial({color:'#b2a17b',roughness:1});
+ const add=(geo,mat,x,y,z)=>{const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);g.add(m);return m;};
+ const box=(w,h,d,x,y,z,mat)=>add(new THREE.BoxGeometry(w,h,d),mat,x,y,z);
+ if(id==='brick-mould'){
+  for(const z of [-.23,.23])box(.86,.12,.045,0,.06,z,wood);for(const x of [-.41,.41])box(.045,.12,.46,x,.06,0,wood);
+  box(.34,.09,.38,-.18,.045,0,mud);box(.035,.12,.46,0,.06,0,wood);
+  for(let i=0;i<24;i++){const reed=box(.003,.003,.16+(i%4)*.015,-.32+(i%7)*.045,.092,-.12+Math.floor(i/7)*.075,straw);reed.rotation.y=i*2.4;}
+  for(const x of [-.49,.49])box(.15,.04,.09,x,.06,0,wood);
+ }else if(id==='passover-kit'){
+  const bread=new THREE.MeshStandardMaterial({color:'#bd9c6c',roughness:1}),cloth=new THREE.MeshStandardMaterial({color:'#9c9277',roughness:1}),rope=new THREE.MeshStandardMaterial({color:'#665946',roughness:1});
+  for(let i=0;i<3;i++){const b=add(new THREE.CylinderGeometry(.17,.18,.025,40),bread,-.27+i*.025,.025+i*.027,-.06);b.rotation.z=(i-1)*.025;for(let n=0;n<12;n++)box(.008,.002,.008,-.38+(n%4)*.07,.039+i*.027,-.15+Math.floor(n/4)*.075,wood);}
+  const bundle=add(new THREE.SphereGeometry(1,24,16),cloth,.31,.15,-.04);bundle.scale.set(.2,.15,.17);
+  const strap=add(new THREE.TorusGeometry(.155,.009,8,40),rope,.31,.15,-.04);strap.rotation.y=Math.PI/2;
+  const staff=add(new THREE.CylinderGeometry(.012,.016,1.13,12),wood,0,.022,.25);staff.rotation.z=Math.PI/2;
+ }else{
+  box(1,.04,.7,0,.02,0,mud);const water=new THREE.MeshPhysicalMaterial({color:'#52777a',transparent:true,opacity:.72,roughness:.25,metalness:.15});
+  for(const side of [-1,1]){box(1,.33,.23,0,.205,side*.235,water);for(let i=0;i<7;i++){const ripple=add(new THREE.SphereGeometry(1,16,8),water,-.43+i*.145,.36,side*.235);ripple.scale.set(.11,.025,.1);}}
+  for(let i=0;i<3;i++){const x=-.3+i*.29,body=add(new THREE.CylinderGeometry(.011,.017,.061,10),wood,x,.075,(i%2-.5)*.055);add(new THREE.SphereGeometry(.009,10,8),wood,x,.118,(i%2-.5)*.055);for(const dx of [-.006,.006])box(.005,.025,.008,x+dx,.043,(i%2-.5)*.055,wood);}
+ }
+ g.traverse(o=>{if(o.isMesh){o.castShadow=o.receiveShadow=true;o.userData.objectId=id;}});g.userData.objectId=id;return g;
 }
 function createHerodObject(id){
  const g=new THREE.Group(),stone=new THREE.MeshStandardMaterial({color:'#c5baa2',roughness:.94}),shade=new THREE.MeshStandardMaterial({color:'#a59b86',roughness:1});
