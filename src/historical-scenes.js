@@ -1,9 +1,12 @@
 import * as THREE from 'three';
 import { dimensions, historicalScenes, HUMAN_HEIGHT } from './historical-data.js';
+import { peopleByIsland } from './people-data.js';
+import { createMotion, advanceMotion } from './people-motion.js';
 
 // Detailed scenes use one Three unit per metre. Geometry is batched by material, not by building.
 const G = {
   box: new THREE.BoxGeometry(1, 1, 1),
+  shadow: new THREE.PlaneGeometry(1,1).rotateX(-Math.PI/2),
   leaf: (() => {const g=new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute([-.5,0,0,0,.04,-.18,.5,0,0,-.5,0,0,.5,0,0,0,-.01,.18],3)); g.computeVertexNormals(); return g;})(),
   column: new THREE.CylinderGeometry(.47, .5, 1, 24),
   sphere: new THREE.SphereGeometry(.5, 16, 12),
@@ -35,6 +38,7 @@ function material(name, color, type = 'stone') {
 }
 function palette() {
   return {
+    contact: new THREE.ShaderMaterial({transparent:true,depthWrite:false,vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*instanceMatrix*vec4(position,1.);}',fragmentShader:'varying vec2 vUv;void main(){float a=(1.-smoothstep(.14,.5,length(vUv-.5)))*.24;gl_FragColor=vec4(.07,.055,.035,a);}'}),
     stone: material('limestone', '#b7aa8f'), light: material('cut-limestone', '#d7cbb3'), darkstone: material('foundation', '#92836d'), plaster: material('lime-plaster', '#c9c0a8'),
     court: material('beaten-earth', '#93856c'), mud: material('mudbrick', '#a48a67'), sand: material('gravel-sand', '#ac9270'), path: material('beaten-path', '#bda685'),
     wood: material('acacia', '#574331', 'wood'), cedar: material('cedar', '#795439', 'wood'), gold: material('gold', '#c89a43', 'metal'), bronze: material('aged-bronze', '#8c623e', 'metal'), silver: material('silver', '#aba79c', 'metal'),
@@ -44,11 +48,12 @@ function palette() {
   };
 }
 function builder(parent, p, seed = 31) {
+  const actors = []; let actor = null, bone = null;
   const batches = new Map(), rand = seeded(seed), dummy = new THREE.Object3D();
   function part(kind, mat, x, y, z, w, h, d, rx = 0, ry = 0, rz = 0) {
-    const key = `${kind}/${mat}`;
+    const key = `${kind}/${mat}${actor ? "/people" : ""}`;
     if (!batches.has(key)) batches.set(key, { kind, mat, parts: [] });
-    batches.get(key).parts.push({ x,y,z,w,h,d,rx,ry,rz, tone: .9 + rand() * .19 });
+    batches.get(key).parts.push({ x,y,z,w,h,d,rx,ry,rz, actor,bone, tone: .9 + rand() * .19 });
   }
   const box = (mat, x,y,z,w,h,d,ry = 0) => part('box',mat,x,y,z,w,h,d,0,ry);
   const cyl = (mat,x,y,z,r,h) => part('column',mat,x,y,z,r*2,h,r*2);
@@ -76,26 +81,34 @@ function builder(parent, p, seed = 31) {
       box('stone',x+a+dx/2,y-.07,z+b+dz/2,dx-.035,.16,dz-.035);
     }
   }
-  function person(x,y,z,style = 0,yaw = 0,height = HUMAN_HEIGHT) {
+  function person(x,y,z,style = 0,yaw = 0,height = HUMAN_HEIGHT,options = {}) {
+    actor = {id:options.id, motion:options.motion || "idle", state:createMotion([x,y,z],yaw,options.route,actors.length,options.routeMode), parts:[], scale:height/HUMAN_HEIGHT};
+    actors.push(actor);
     const s = height / HUMAN_HEIGHT;
     const loc = (a,b,c) => [x+(a*Math.cos(yaw)+c*Math.sin(yaw))*s, y+b*s,z+(-a*Math.sin(yaw)+c*Math.cos(yaw))*s];
     const pp = (kind, mat,a,b,c,w,h,d) => part(kind,mat,...loc(a,b,c),w*s,h*s,d*s,0,yaw);
     // 0.225 m head; shoulders 0.43 m. Normal adult proportions rather than enlarged toy heads.
     pp('robe',`robe${style%4}`,0,.72,0,.49,1.05,.33);
-    for(const side of [-1,1]) pp('column','skin',side*.10,.19,0,.065,.22,.075);
+    for(const side of [-1,1]) {bone=side<0?'legL':'legR';pp('column','skin',side*.10,.19,0,.065,.22,.075);} bone=null;
     pp('sphere',`robe${style%4}`,0,1.28,0,.43,.30,.29);
-    pp('column','skin',0,1.43,0,.11,.12,.11);
-    pp('sphere','skin',0,1.565,0,.17,.225,.195);
+    pp('column','skin',0,1.43,0,.11,.12,.11);bone='head';
+    bone='head';pp('sphere','skin',0,1.565,0,.17,.225,.195);
     pp('sphere','hair',0,1.65,-.01,.18,.10,.2);
-    pp('box','wood',-.105,.055,.04,.105,.11,.25); pp('box','wood',.105,.055,.04,.105,.11,.25);
+    bone='legL';pp('box','wood',-.105,.055,.04,.105,.11,.25);bone='legR';pp('box','wood',.105,.055,.04,.105,.11,.25);
     for(const side of [-1,1]) {
+      bone=side<0?'armL':'armR';
+      pp('sphere',`robe${style%4}`,side*.195,1.265,0,.155,.16,.17);
       const shoulder = loc(side*.22,1.27,0), elbow = loc(side*.25,1.02,.04), hand = loc(side*.23,.83,.13);
-      beam(`robe${style%4}`,shoulder,elbow,.065*s); beam('skin',elbow,hand,.042*s); ball('skin',...hand,.075*s,.12*s,.065*s);
+      beam(`robe${style%4}`,shoulder,elbow,.065*s);bone=side<0?'forearmL':'forearmR';beam('skin',elbow,hand,.042*s);ball('skin',...hand,.075*s,.12*s,.065*s);
     }
-    pp('robe',style%2?'linen':'hide',0,1.27,0,.48,.15,.34);
-    pp('sphere','skin',0,1.56,.102,.036,.054,.045);
-    if (style%3===0) { pp('sphere','linen',0,1.68,0,.22,.055,.24); pp('box','linen',0,1.53,-.09,.21,.27,.04); }
-    box('hide',x,y+1.01*s,z,.32*s,.045*s,.25*s,yaw);
+    bone=null;pp('robe',style%2?'linen':'hide',0,1.27,0,.48,.15,.34);
+    bone='head';pp('sphere','skin',0,1.56,.102,.036,.054,.045);
+    for(const side of [-1,1])pp('sphere','hair',side*.039,1.59,.087,.012,.012,.008);
+    pp('box','hair',0,1.515,.094,.032,.005,.006);
+    if (style%3===0 || options.headCover) { pp('sphere','linen',0,1.68,0,.22,.055,.24); pp('box','linen',0,1.53,-.09,.21,.27,.04); }
+    bone=null;box('hide',x,y+1.01*s,z,.32*s,.045*s,.25*s,yaw);
+    bone='ground';part('shadow','contact',x,y+.035*s,z,.75*s,.01,.65*s);bone=null;
+    actor=null;
   }
   function jar(x,y,z,s=.6,mat='terra') {
     part('bowl',mat,x,y+s*.48,z,s,s*.9,s); cyl(mat,x,y+s*.95,z,s*.18,s*.2);
@@ -155,13 +168,58 @@ function builder(parent, p, seed = 31) {
     }
   }
   function finish() {
+    const root=new THREE.Matrix4(), inverse=new THREE.Matrix4();
     for(const {kind,mat,parts} of batches.values()) {
       const mesh = new THREE.InstancedMesh(G[kind],p[mat],parts.length);
-      parts.forEach((v,i) => { dummy.position.set(v.x,v.y,v.z); dummy.rotation.set(v.rx,v.ry,v.rz); dummy.scale.set(v.w,v.h,v.d); dummy.updateMatrix(); mesh.setMatrixAt(i,dummy.matrix); mesh.setColorAt(i,new THREE.Color(v.tone,v.tone,v.tone)); });
-      mesh.name=`${kind}/${mat}`; mesh.castShadow=true; mesh.receiveShadow=true; mesh.computeBoundingSphere(); parent.add(mesh);
+      const dynamic=parts.some(v=>v.actor);
+      if(dynamic) {mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);mesh.frustumCulled=false;mesh.userData.people=true;}
+      parts.forEach((v,i) => {
+        dummy.position.set(v.x,v.y,v.z); dummy.rotation.set(v.rx,v.ry,v.rz); dummy.scale.set(v.w,v.h,v.d); dummy.updateMatrix();
+        mesh.setMatrixAt(i,dummy.matrix);mesh.setColorAt(i,new THREE.Color(v.tone,v.tone,v.tone));
+        if(v.actor) {
+          root.makeRotationY(v.actor.state.yaw);root.setPosition(...v.actor.state.position);inverse.copy(root).invert();
+          v.actor.parts.push({mesh,index:i,bone:v.bone,bind:inverse.clone().multiply(dummy.matrix)});
+          if(v.actor.id) {mesh.userData.actorInstances ||= {};mesh.userData.actorInstances[i]=v.actor.id;}
+        }
+      });
+      mesh.name=`${kind}/${mat}${dynamic?'/people':''}`; mesh.castShadow=!dynamic; mesh.receiveShadow=mat!=='contact'; mesh.computeBoundingSphere(); parent.add(mesh);
     }
   }
-  return { part,box,cyl,ball,beam,wall,paving,person,jar,olive,tent,house,finish,rand };
+  const root=new THREE.Matrix4(),joint=new THREE.Matrix4(),matrix=new THREE.Matrix4(),r=new THREE.Matrix4(),t=new THREE.Matrix4();
+  function animate(dt,cameraPosition) {
+    const touched=new Set();
+    for(const a of actors) {
+      const m=advanceMotion(a.state,dt,cameraPosition),s=a.scale;
+      const stride=Math.sin(m.time*7.5)*m.stride, breath=Math.sin(m.time*1.8)*.009;
+      root.makeRotationY(m.yaw);root.setPosition(m.position[0],m.position[1]+(breath+Math.abs(stride)*.018)*s,m.position[2]);
+      const posing={};
+      for(const bone of ['head','armL','armR','forearmL','forearmR','legL','legR','ground']) {
+          let x=0,y=0,rx=0,rz=0,ry=0;
+          if(bone==='head') {y=1.44;ry=Math.sin(m.time*.65)*.07;rx=m.talking?Math.sin(m.time*2.5)*.055:0;}
+          else if(bone.startsWith('arm')) {
+            const side=bone==='armL'?-1:1;x=side*.22;y=1.27;
+            rx=stride*side*.48;
+            if(m.talking) {rx=-.38+Math.sin(m.time*2.2+side)*.16;rz=side*(.12+Math.sin(m.time*1.5)*.06);}
+            else if(a.motion==='work') {rx=-.55+Math.sin(m.time*2+side*.4)*.28;}
+            else {rz=side*(.025+Math.sin(m.time*1.1+side)*.02);}
+          } else if(bone.startsWith('forearm')) {
+            const side=bone==='forearmL'?-1:1;x=side*.25;y=1.02;
+            rx=m.talking?-.6+Math.sin(m.time*2.1+side)*.22:a.motion==='work'?-.5+Math.sin(m.time*2+side*.4)*.22:-.1;
+          } else if(bone.startsWith('leg')) {const side=bone==='legL'?-1:1;x=side*.10;y=.35;rx=-stride*side*.55;}
+          joint.makeTranslation(x*s,y*s,0);r.makeRotationFromEuler(new THREE.Euler(rx,ry,rz));joint.multiply(r);t.makeTranslation(-x*s,-y*s,0);joint.multiply(t);
+          posing[bone]=joint.clone();
+          if(bone.startsWith('forearm'))posing[bone].premultiply(posing[bone==='forearmL'?'armL':'armR']);
+      }
+      for(const part of a.parts) {
+        matrix.copy(root);if(part.bone)matrix.multiply(posing[part.bone]);matrix.multiply(part.bind);
+        if(part.bone==='ground')matrix.elements[13]=m.position[1]+.035*s;
+        part.mesh.setMatrixAt(part.index,matrix);touched.add(part.mesh);
+      }
+    }
+    touched.forEach(mesh=>{mesh.instanceMatrix.needsUpdate=true;});
+  }
+  return { part,box,cyl,ball,beam,wall,paving,person,jar,olive,tent,house,finish,rand,actors,animate };
+
 }
 function terrain(scene,p,extent,kind,flatRadius = 70) {
   const height = (x,z) => {
@@ -413,7 +471,7 @@ function exodus(k,roof,height,scene,p) {
     for(const dx of [-.28,.28]) k.box('wood',x+dx,.06,z+.21,.06,.12,.48);
   }
   for(let i=0;i<80;i++) { const x=-41+k.rand()*6,z=-28+k.rand()*6;k.part('column','reed',x,.12+k.rand()*.3,z,.04,.7,.04,.9,k.rand()*6); }
-  k.person(-48,0,-24,2,.5);k.person(-45,0,-29,0,1.1);k.person(-53,0,-31,1);
+  k.person(-45,0,-29,0,1.1);k.person(-53,0,-31,1);
   k.house(-35,0,21,8,7,3.3,'mud',roof);
   k.box('red',-35,2.19,24.53,1.5,.1,.08);
   for(const x of [-35.62,-34.38]) k.box('red',x,1.08,24.53,.07,2.12,.08);
@@ -434,8 +492,7 @@ function exodus(k,roof,height,scene,p) {
   }
   for(let i=0;i<112;i++) {
     const x=-18+(i/112)*110+(k.rand()-.5)*2,z=(k.rand()-.5)*12;
-    k.person(x,0,z,i,Math.PI/2,i%11===0?1.12:HUMAN_HEIGHT);
-    if(i%7===0) k.ball('hide',x-.15,1,z-.2,.5,.6,.3);
+    k.person(x,0,z,i,Math.PI/2,i%11===0?1.12:HUMAN_HEIGHT,{route:[[x-40,0,z],[x+60,0,z]],routeMode:'forward'});
   }
   for(let i=0;i<14;i++) k.tent(-18-k.rand()*16,0,-35+k.rand()*18,.8);
   for(let i=0;i<70;i++) {const x=-90+k.rand()*110,z=-65-k.rand()*25;for(let q=0;q<3;q++)k.beam('reed',[x,0,z],[x+(k.rand()-.5)*.6,1+k.rand(),z+.2],.018);}
@@ -503,7 +560,8 @@ function jerusalem(k,roof,height) {
   }
   for(let i=0;i<28;i++) {
     const x=-63+k.rand()*85,y=8+Math.max(0,-x)*.065;
-    k.person(x,y,((i%2)*2-1)*(1.2+k.rand()*.8),i,Math.PI/2);
+    const z=((i%2)*2-1)*(1.2+k.rand()*.8),a=Math.max(-72,x-2),b=Math.min(24,x+3);
+    k.person(x,y,z,i,Math.PI/2,HUMAN_HEIGHT,{route:[[a,8+Math.max(0,-a)*.065,z],[b,8+Math.max(0,-b)*.065,z]]});
     if(i%8===0)k.person(x+.8,y,2,i+1,.4,1.1);
   }
   // Contextual water storage: rim, cover slabs and stepped pool, with no medieval well canopy.
@@ -529,9 +587,30 @@ export function createHistoricalScene(id, environment) {
   else if(id==='herod')herod(k,roof);
   else if(id==='exodus')exodus(k,roof,height,scene,p);
   else jerusalem(k,roof,height);
+  for(const person of peopleByIsland[id]) k.person(...person.position,person.style,0,HUMAN_HEIGHT,person);
   k.finish();roof.finish();
+  const people=k.actors.filter(a=>a.id);
+  // Moving contact shadows are separate from the cached architectural shadow map.
+  k.animate(0,null);
+  const occluders=[];scene.updateMatrixWorld(true);scene.traverseVisible(o=>{if(o.isMesh&&!o.userData.people)occluders.push(o);});
+  const sight=new THREE.Raycaster();
+  function conversationOffset(actor) {
+    const origin=new THREE.Vector3(...actor.state.position).add(new THREE.Vector3(0,1.1,0));
+    let best=null,clearance=-1;
+    for(const [x,y,z] of [[-2.4,1.1,4.2],[2.4,1.1,4.2],[-4.2,1.1,-2.4],[4.2,1.1,-2.4],[-4.2,1.1,2.4],[4.2,1.1,2.4],[2.4,1.1,-4.2],[-2.4,1.1,-4.2],[0,3.5,5]]) {
+      const offset=new THREE.Vector3(x,y,z),length=offset.length();
+      const meshes=occluders.filter(o=>{let p=o;while(p){if(!p.visible)return false;p=p.parent;}return true;});
+      sight.set(origin,offset.clone().normalize());sight.far=length+.5;
+      const hit=sight.intersectObjects(meshes,false)[0],free=hit?.distance??length+.5;
+      if(free>length+.3)return offset;
+      if(free>clearance){clearance=free;best=offset;}
+    }
+    return best;
+  }
   return {
-    scene,roof:roofGroup,config,
+    scene,roof:roofGroup,config,people,conversationOffset,
+    animate(dt,cameraPosition) { k.animate(dt,cameraPosition); },
+    converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },
     groundHeight(x,z) { return Math.max(height(x,z),id==='herod' && Math.abs(x)<121 && Math.abs(z)<101 ? 8 : -.14); },
     setTime(night) {ambient.intensity=night?.55:1.1;sun.intensity=night?.75:2.65;sun.color.set(night?'#a9bdd5':'#fff0d9');scene.background.set(night?'#394650':sky);scene.fog.color.copy(scene.background);},
     dispose() {scene.traverse(o=>{if(o.isInstancedMesh)o.dispose();if(o.geometry&&!Object.values(G).includes(o.geometry))o.geometry.dispose();});sun.shadow.dispose();},

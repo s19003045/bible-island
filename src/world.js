@@ -4,6 +4,7 @@ import { themes, themeById } from './content.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { createHistoricalScene } from './historical-scenes.js';
 import { historicalScenes } from './historical-data.js';
+import { peopleByIsland } from './people-data.js';
 
 const TOP = 0.62;
 const C = { sand: '#d4bd93', stone: '#ddcfac', white: '#f1e6cb', dark: '#706451', wood: '#80634b',
@@ -288,7 +289,7 @@ function makeScene(theme, root, scene, boats) {
   return roofGroup;
 }
 
-export function createWorld(container, { onSelect, onStop, onReady, onError, icon }) {
+export function createWorld(container, { onSelect, onStop, onActor, onReady, onError, icon }) {
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' }); }
   catch (error) { onError(error); return null; }
@@ -347,13 +348,14 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
   const selectedRing = new THREE.Mesh(new THREE.RingGeometry(1, 1.04, 80).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: '#f4d691', transparent: true, opacity: .8, depthWrite: false }));
   selectedRing.visible = false; scene.add(selectedRing);
   const hotspotLayer = document.createElement('div'); hotspotLayer.className = 'world-hotspots'; container.appendChild(hotspotLayer);
+  let actorMarkers = [], conversationId = null, motionClock = 0;
   let hotspots = [], selected = null, selectedStop = null, cutaway = false, showLabels = true, showConnections = true, paused = reduced.matches;
   let visibleIds = new Set(themes.map(t => t.id)), fly = null, raf, elapsed = 0, last = 0, dirty = true, hidden = false;
   let frameSum = 0, frameCount = 0, lastAdapt = 0, pixelRatio = renderer.getPixelRatio();
   const v = new THREE.Vector3(), ray = new THREE.Raycaster(), pointer = new THREE.Vector2(); let down = null;
-  function focus(target, offset, duration = 1050, preserveHeight = false) {
+  function focus(target, offset, duration = 1050, preserveHeight = false, frame = true) {
     resize();
-    const framedOffset = offset.clone().multiplyScalar(Math.max(1, .95 / camera.aspect));
+    const framedOffset = offset.clone().multiplyScalar(frame ? Math.max(1, .95 / camera.aspect) : 1);
     if (preserveHeight) framedOffset.y = offset.y;
     fly = { from: camera.position.clone(), to: target.clone().add(framedOffset), old: controls.target.clone(), target: target.clone(), start: performance.now(), duration: reduced.matches ? 0 : duration };
     dirty = true;
@@ -362,6 +364,7 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
     for (const obj of [...connectionGroup.children]) { obj.geometry.dispose(); obj.material.dispose(); connectionGroup.remove(obj); }
   }
   function select(id) {
+    activeHistorical?.converse(null); conversationId=null;actorMarkers=[];
     selected = id ? themeById.get(id) : null; selectedStop = null;
     hotspotLayer.replaceChildren(); hotspots = []; clearConnections();
     for (const [id, roof] of roofs) roof.visible = !(cutaway && selected?.id === id);
@@ -396,7 +399,16 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
       el.setAttribute('aria-label', `探索${s.name}`); el.onclick = () => onStop(s.id); hotspotLayer.appendChild(el);
       hotspots.push({ el, id: s.id, pos: activeHistorical ? new THREE.Vector3(...activeHistorical.config.stops[s.id]) : new THREE.Vector3(x + s.position[0], TOP + s.position[1], z + s.position[2]) });
     });
-    if (activeHistorical) { dirty = true; return; }
+    if (activeHistorical) {
+      for(const actor of activeHistorical.people) {
+        const el=document.createElement('button');el.className='person-marker';
+        const person=peopleByIsland[id].find(p=>p.id===actor.id);
+        el.innerHTML=`${icon('chat',16)}<span>${person.name}</span>`;el.setAttribute('aria-label',`與${person.name}交談`);
+        el.onclick=()=>onActor?.(actor.id);hotspotLayer.appendChild(el);
+        actorMarkers.push({el,id:actor.id,actor,pos:new THREE.Vector3()});
+      }
+      dirty = true; return;
+    }
     for (const connection of selected.connections) {
       const other = themeById.get(connection.id); if (!other) continue;
       const start = new THREE.Vector3(x, .7, z), end = new THREE.Vector3(other.position[0], .7, other.position[1]);
@@ -409,6 +421,7 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
   }
   function focusStop(id) {
     if (!selected) return; const s = selected.stops.find(s => s.id === id); if (!s) return;
+    activeHistorical?.converse(null);conversationId=null;
     selectedStop = id; activeView = 'stop'; if(activeHistorical) controls.maxPolarAngle = Math.PI/2-.018; const [x,z] = selected.position;
     hotspots.forEach(h => h.el.classList.toggle('active', h.id === id));
     if (activeHistorical) {
@@ -448,7 +461,7 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
     const oldFactor = Math.max(1, .95 / camera.aspect), nextFactor = Math.max(1, .95 / (width / height));
     if (oldFactor !== nextFactor && !fly) {
       const off = camera.position.clone().sub(controls.target).multiplyScalar(nextFactor / oldFactor);
-      if (activeHistorical && activeView === 'human') off.y = camera.position.y - controls.target.y;
+      if (activeHistorical && ['human','person'].includes(activeView)) off.y = camera.position.y - controls.target.y;
       camera.position.copy(controls.target).add(off);
     }
     renderer.setSize(width, height, false); camera.aspect = width / height; camera.updateProjectionMatrix(); dirty = true;
@@ -457,9 +470,17 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
   const onDown = e => { down = { x: e.clientX, y: e.clientY }; fly = null; };
   const onUp = e => {
     if (!down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) { down = null; return; } down = null;
-    if (activeHistorical) return;
     const rect = renderer.domElement.getBoundingClientRect(); pointer.set((e.clientX - rect.left) / rect.width * 2 - 1, -(e.clientY - rect.top) / rect.height * 2 + 1);
     ray.setFromCamera(pointer, camera);
+    if(activeHistorical) {
+      // Use the rendered geometry itself; a wall in front of a person blocks the hit.
+      activeHistorical.scene.updateMatrixWorld(true);
+      const meshes=[];activeHistorical.scene.traverseVisible(o=>{if(o.isMesh)meshes.push(o);});
+      const hit=ray.intersectObjects(meshes,false)[0];
+      const actorId=hit?.object.userData.actorInstances?.[hit.instanceId];
+      if(actorId)onActor?.(actorId);
+      return;
+    }
     const hit = ray.intersectObjects([...roots.values()], true).find(h => {
       const id = h.object.userData.themeId; return id && visibleIds.has(id) && h.object.visible && h.object.parent.visible;
     });
@@ -484,6 +505,10 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
     raf = requestAnimationFrame(animate); if (hidden) return;
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
     if (!paused && !activeHistorical) { elapsed += dt; waterMaterial.uniforms.uTime.value = elapsed; dirty = true; boats.forEach((b,i) => { b.rotation.z = Math.sin(elapsed * .8 + i) * .025; b.rotation.x = Math.cos(elapsed * .6 + i) * .02; }); }
+    if(activeHistorical && !paused) {
+      motionClock+=dt;
+      if(motionClock>=1/30) {activeHistorical.animate(motionClock,camera.position.toArray());motionClock=0;dirty=true;}
+    }
     if (fly) {
       const t = fly.duration ? Math.min(1, (now - fly.start) / fly.duration) : 1, ease = 1 - (1 - t) ** 3;
       camera.position.lerpVectors(fly.from, fly.to, ease); controls.target.lerpVectors(fly.old, fly.target, ease); if (t === 1) fly = null; dirty = true;
@@ -500,12 +525,22 @@ export function createWorld(container, { onSelect, onStop, onReady, onError, ico
       renderer.render(activeHistorical?.scene || scene, camera);
       const w = container.clientWidth, h = container.clientHeight;
       if (!activeHistorical) labels.forEach(l => project(l, w, h)); hotspots.forEach(l => project(l, w, h, true));
-      avoidLabelOverlap(labels, selected?.id); avoidLabelOverlap(hotspots, selectedStop); dirty = false;
+      actorMarkers.forEach(l=>{const p=l.actor.state.position;l.pos.set(p[0],p[1]+2.15,p[2]);project(l,w,h,true);l.el.classList.toggle('active',l.id===conversationId);});
+      avoidLabelOverlap(labels, selected?.id); avoidLabelOverlap([...actorMarkers,...hotspots], conversationId || selectedStop); dirty = false;
     }
   }
   raf = requestAnimationFrame(animate); onReady();
   return {
     select, focusStop,
+    converse(id) {
+      if(!activeHistorical)return;
+      activeHistorical.converse(id);conversationId=id;
+      const a=activeHistorical.people.find(a=>a.id===id);if(!a){dirty=true;return;}
+      selectedStop=null;activeView='person';controls.maxPolarAngle=Math.PI*.6;
+      const [x,y,z]=a.state.position;
+      focus(new THREE.Vector3(x,y+1.1,z),activeHistorical.conversationOffset(a),850,true,false);
+      hotspots.forEach(h=>h.el.classList.remove('active'));dirty=true;
+    },
     sceneView(view) {
       if (!activeHistorical) return; const c = activeHistorical.config;
       activeView = view; controls.maxPolarAngle = view==='human' ? Math.PI*.6 : Math.PI/2-.018; selectedStop = null; hotspots.forEach(h => h.el.classList.remove('active'));
