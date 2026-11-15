@@ -52,10 +52,11 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
     try{build();await ctx.resume();if(ctx.state!=='running')throw new Error('點一下聲音按鈕以繼續播放。');mix();report('ready');return true;}
     catch(e){enabled=false;mix();report('unavailable',e.message);return false;}
   }
-  async function bufferFor(person) {
-    if(buffers.has(person)){const cached=buffers.get(person);buffers.delete(person);buffers.set(person,cached);return cached;}
-    if(!pending.has(person))pending.set(person,(async()=>{const response=await fetch(new URL(voices[person].src,document.baseURI));if(!response.ok)throw new Error('配音暫時無法載入，請使用字幕或稍後重播。');const b=await ctx.decodeAudioData(await response.arrayBuffer());buffers.set(person,b);while(buffers.size>4)buffers.delete(buffers.keys().next().value);return b;})().finally(()=>pending.delete(person)));
-    return pending.get(person);
+  async function bufferFor(person,cue) {
+    const url=cue.src||voices[person].src;
+    if(buffers.has(url)){const cached=buffers.get(url);buffers.delete(url);buffers.set(url,cached);return cached;}
+    if(!pending.has(url))pending.set(url,(async()=>{const response=await fetch(new URL(url,document.baseURI));if(!response.ok)throw new Error('配音暫時無法載入，請使用字幕或稍後重播。');const b=await ctx.decodeAudioData(await response.arrayBuffer());buffers.set(url,b);while(buffers.size>4)buffers.delete(buffers.keys().next().value);return b;})().finally(()=>pending.delete(url)));
+    return pending.get(url);
   }
   return {
     get volumes(){return {...volume};},get enabled(){return enabled;},get playing(){return playing;},enable,stopVoice,
@@ -67,7 +68,7 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
       stopVoice();const cue=voices[person]?.clips[key];if(!enabled||!cue||!volume.voice)return;
       const generation=token;report('loading','正在載入角色語音…');
       try {
-        await ctx.resume();const buffer=await bufferFor(person);if(generation!==token||!enabled||hidden)return;
+        await ctx.resume();const buffer=await bufferFor(person,cue);if(generation!==token||!enabled||hidden)return;
         source=ctx.createBufferSource();source.buffer=buffer;const node=panner(position||[0,1.6,0],speech);source.connect(node);voicePosition=node;playing={person,key,text:cue.text};mix();
         source.onended=()=>{node.disconnect();if(generation!==token)return;source=null;playing=null;voicePosition=null;mix();report('ready');};
         source.start(0,cue.start,Math.min(cue.end-cue.start,buffer.duration-cue.start));report('playing',cue.text);

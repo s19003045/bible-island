@@ -27,6 +27,27 @@
         "start": 39.893,
         "end": 51.22,
         "text": "第二聖殿晚期耶路撒冷出土許多石器，研究把它與潔淨觀念聯繫起來。模型同時放入石器與陶器作比較；不能由一個器皿猜定屋主身分。"
+      },
+      "child-greeting": {
+        "start": 0.23600000000000002,
+        "end": 4.537999999999999,
+        "text": "一起看看「住家與屋頂」吧。先找物件，再說說你發現了什麼。",
+        "src": "audio/jerusalem/householder-child.mp3",
+        "duration": 19.173875
+      },
+      "child-observe-house": {
+        "start": 5.015000000000001,
+        "end": 11.279,
+        "text": "找找外梯與屋頂。相似的家屋可以幫助想像，不能只憑外形認定故事地點。",
+        "src": "audio/jerusalem/householder-child.mp3",
+        "duration": 19.173875
+      },
+      "child-observe-house-followup": {
+        "start": 11.628,
+        "end": 18.742,
+        "text": "找找通往屋頂的樓梯，想像從屋頂往下看的視野。 看過之後，回到觀察任務試著回答。",
+        "src": "audio/jerusalem/householder-child.mp3",
+        "duration": 19.173875
       }
     }
   },
@@ -58,6 +79,27 @@
         "start": 39.464,
         "end": 49.07858276643991,
         "text": "這裡只做古代城門的類型截段，沒有指定福音書中某一座門。也沒有把今天看得到的後世舊城牆，直接當成第一世紀的城牆。"
+      },
+      "child-greeting": {
+        "start": 0.193,
+        "end": 5.135,
+        "text": "一起看看「汲淪谷與橄欖山方向」吧。先找物件，再說說你發現了什麼。",
+        "src": "audio/jerusalem/water-carrier-child.mp3",
+        "duration": 19.539563
+      },
+      "child-observe-valley": {
+        "start": 5.527,
+        "end": 11.272,
+        "text": "回到全景，看看城市、谷地與山坡的高低。試著想像手中提著器皿的感受。",
+        "src": "audio/jerusalem/water-carrier-child.mp3",
+        "duration": 19.539563
+      },
+      "child-observe-valley-followup": {
+        "start": 11.621,
+        "end": 19.293,
+        "text": "看看山坡，再回頭看城。走這段路會需要上坡還是下坡？ 看過之後，回到觀察任務試著回答。",
+        "src": "audio/jerusalem/water-carrier-child.mp3",
+        "duration": 19.539563
       }
     }
   },
@@ -89,6 +131,27 @@
         "start": 38.709,
         "end": 49.97917233560091,
         "text": "這個模型沒有足夠資料，可以報出特定年代、容量、品質與交易條件下的確定價格。先比較材質與用途，比編一個看似精準的價錢可靠。"
+      },
+      "child-greeting": {
+        "start": 0.27899999999999997,
+        "end": 4.9639999999999995,
+        "text": "一起看看「城門與街道」吧。先找物件，再說說你發現了什麼。",
+        "src": "audio/jerusalem/street-vendor-child.mp3",
+        "duration": 16.692188
+      },
+      "child-observe-gate": {
+        "start": 5.441000000000001,
+        "end": 9.615,
+        "text": "先找城門與住家，再想想聖殿院落是不是同一種空間。",
+        "src": "audio/jerusalem/street-vendor-child.mp3",
+        "duration": 16.692188
+      },
+      "child-observe-gate-followup": {
+        "start": 10.049000000000001,
+        "end": 16.139,
+        "text": "從城門沿街道走，找出最高和最低的地方。 看過之後，回到觀察任務試著回答。",
+        "src": "audio/jerusalem/street-vendor-child.mp3",
+        "duration": 16.692188
       }
     }
   },

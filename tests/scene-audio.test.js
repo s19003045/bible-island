@@ -40,3 +40,12 @@ test('voice playback ignores stale completions and bounds decoded audio across r
  await audio.speak('stone-worker','greeting',[0,1.5,0]);assert.equal(f.fetched.length,5,'recent voice remains cached');callback();assert.equal(audio.playing.person,'stone-worker');
  await audio.speak('brick-maker','greeting',[0,1.5,0]);assert.equal(f.fetched.length,6,'oldest decoded buffer was evicted');assert.equal(audio.playing.person,'brick-maker');audio.enable(false);assert.equal(audio.playing,null);audio.dispose();
 });
+
+test('one character switches between preserved original and child recordings without reusing the wrong decoded source',async()=>{
+ const f=fixture(),audio=createSceneAudio();await audio.enable();
+ await audio.speak('householder','greeting',[0,1.5,0]);const original=f.context.sources.at(-1),oldCallback=original.onended;
+ await audio.speak('householder','child-greeting',[0,1.5,0]);const child=f.context.sources.at(-1);
+ assert.equal(f.fetched.length,2);assert.ok(f.fetched[0].endsWith('/householder.mp3'));assert.ok(f.fetched[1].endsWith('/householder-child.mp3'));assert.notEqual(child.buffer,original.buffer);assert.equal(original.stopped,true);oldCallback();assert.equal(audio.playing.key,'child-greeting');
+ await audio.speak('householder','child-observe-house',[0,1.5,0]);assert.equal(f.fetched.length,2);assert.equal(f.context.sources.at(-1).buffer,child.buffer);
+ await audio.speak('householder','greeting',[0,1.5,0]);assert.equal(f.fetched.length,2);assert.equal(f.context.sources.at(-1).buffer,original.buffer);audio.dispose();
+});

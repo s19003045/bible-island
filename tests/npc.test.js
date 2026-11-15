@@ -110,3 +110,10 @@ test('residents on different vertical levels do not start a conversation through
   for(const a of s.agents){a.timer=100;a.cooldown=0;a.socialCheck=0;}
   s.update(.05);assert.equal(events.filter(e=>e.type==='social-attempt').length,0);
 });
+
+test('an NPC blocked by a player in a single-width passage retreats along a real route to another free POI',()=>{
+  const events=[],model=createWalkModel([],[{x1:-7,x2:7,z1:-.6,z2:.6}],()=>0),s=createNPCSystem({actors:[actor('a',1)],pois:[poi('west',-6),poi('east',6)],model,allowRetreat:true,onEvent:e=>events.push(e)}),a=s.agents[0],west=s.pois[0];
+  a.poi=west;a.slot={index:0,position:west.slots[0]};a.path=model.path(a.actor.state.position,west.slots[0]);a.state='travel';a.cooldown=100;s.reservations.get(west.id).set(a.key,0);
+  let maxX=0;for(let i=0;i<600;i++){const yaw=a.actor.state.yaw;s.update(.05,{player:[0,0,0]});maxX=Math.max(maxX,a.actor.state.position[0]);assert.ok(distance(a.actor.state.position,[0,0,0])>=a.radius+.32+.024);assert.ok(Math.abs(angleDelta(yaw,a.actor.state.yaw))<=2.2*.05+.00001);}
+  assert.ok(maxX>4,'a blocked person must make space rather than wait forever');assert.ok(events.some(e=>e.type==='yield'&&e.poi==='east'));assert.ok(s.reservations.get('west').size<=1&&s.reservations.get('east').size<=1);s.dispose();
+});

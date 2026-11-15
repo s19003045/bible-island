@@ -21,10 +21,10 @@ export function walkFloor(x,z) {
   return Math.max(8+Math.max(0,-x)*.065+.025,7+Math.max(0,-x)*.07+Math.sin(z*.025)*1.4+.04);
 }
 export const vesselDefinitions = [
-  {id:'clay-vessel',name:'陶製水罐',material:'陶土',position:[-33.7,10.96,25.6],
+  {id:'clay-vessel',name:'陶製水罐',material:'陶土',stop:'house',position:[-33.7,10.96,25.6],approach:[-34.7,10.28,27.6],
     description:'留意罐腹、窄頸與提耳。這件是協助觀察古代盛裝器物的類型模型，並非某件出土器物的精確複製。',
     observation:'旋轉看看：窄頸與寬腹，可能怎樣影響盛裝與搬運？僅憑外形，不能斷定它只用來盛水。'},
-  {id:'stone-vessel',name:'石製器皿',material:'淺色石材',position:[-33.15,10.96,25.6],
+  {id:'stone-vessel',name:'石製器皿',material:'淺色石材',stop:'house',position:[-33.15,10.96,25.6],approach:[-34.7,10.28,27.6],
     description:'第二聖殿晚期耶路撒冷出土許多石製器皿，研究將它們與潔淨觀念聯繫。此模型只呈現材質與器形比較。',
     observation:'比較陶器與石器的表面、口緣及厚度。器皿提供生活線索，不能單靠它認定屋主是誰。'},
 ];
@@ -44,3 +44,10 @@ export function missionEvent(m,event) {
   if(event.type==='reflect'&&event.correct&&missionStage(next)===3)next.complete=true;
   return next;
 }
+export const MISSION_KEY='bible-island:jerusalem-walk:v1';
+export function readMission(storage){
+  const mission=freshMission();
+  try{const saved=JSON.parse(storage?.getItem(MISSION_KEY)||'null');if(saved){mission.listen=saved.listen===true;mission.observed=Array.isArray(saved.observed)?[...new Set(saved.observed.filter(id=>vesselDefinitions.some(v=>v.id===id)))]:[];mission.ask=saved.ask===true;mission.complete=saved.complete===true&&missionStage(mission)===3;}}catch{}
+  return mission;
+}
+export function writeMission(storage,mission){try{storage?.setItem(MISSION_KEY,JSON.stringify(mission));return !!storage;}catch{return false;}}

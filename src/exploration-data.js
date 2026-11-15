@@ -6,7 +6,7 @@ import {herodSpawn,herodObjects} from './herod-exploration.js';
 export const explorationByIsland = {
   exodus:{title:'分三段走進出埃及',shortTitle:'出埃及的三段敘事',era:'EXODUS / 分段探索',objects:exodusObjects,segments:exodusSegments,destinations:true,recordedChild:true,teachingInspection:true,spawn:exodusSegments[0].spawn,
     intro:'先理解製磚勞役，再進入預備出發的家屋，最後走到海中乾地。',enter:'開啟聲音，走進本段',hint:'三段不是相鄰街區；請選擇章節探索，辨認敘事先後。',region:()=> '出埃及分段探索'},
-  jerusalem:{title:'走進山城的一天',shortTitle:'山城的一段路',era:'JERUSALEM / 第一世紀',spawn:walkSpawn,objects:vesselDefinitions,
+  jerusalem:{title:'走進山城的一天',shortTitle:'山城的一段路',heading:'走街巷，也辨認故事的地點',destinations:true,recordedChild:true,era:'JERUSALEM / 第一世紀',spawn:walkSpawn,objects:vesselDefinitions,
     intro:'自由行走、聆聽角色，走到院落觀察器皿。',enter:'開啟聲音，走進街區',hint:'場景、路線與中文配音皆為教學設計。',
     region:p=>p[0]>18&&p[2]>2?'街角石階':p[2]>21?'院落與南巷':p[2]<-8?'北側巷弄':'主街'},
   tabernacle:{title:'走進會幕旁的營地',shortTitle:'從營地走近會幕',heading:'從日常，走近會幕',destinations:true,recordedChild:true,teachingInspection:true,era:'TABERNACLE / 曠野營地',spawn:tabernacleSpawn,objects:tabernacleObjects,

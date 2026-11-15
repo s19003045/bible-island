@@ -2,7 +2,8 @@ import {walkFloor} from './walk-data.js';
 // Typological first-century activities, placed on the existing public navigation mesh.
 // Slots are explicit standing places: a reservation includes travel AND dwell time.
 const poi=(id,name,action,weight,slots,lookAt,tags=['resident','carrier','vendor'])=>({
-  id,name,action,weight,capacity:slots.length,slots:slots.map(([x,z])=>[x,walkFloor(x,z),z]),lookAt,tags,
+  id,name,action,weight,capacity:slots.length,slots:slots.map(([x,z])=>[x,walkFloor(x,z),z]),lookAt,
+  tags:tags.includes('resident')?['resident','carrier',...(slots[0][1]<-8?['resident-north']:slots[0][1]>20?['resident-south']:['resident-street','vendor'])]:tags,
   dwell:action==='Interact'?[7,15]:action==='LookAround'?[4,10]:[3,8],
 });
 export const jerusalemPOIs=[
@@ -31,3 +32,18 @@ export const jerusalemPOIs=[
   poi('courtyard-door','院落房門前','LookAround',1,[[-34.6,26.8]],[-38,26.8],['householder']),
   poi('courtyard-south','院落入口','Idle',1,[[-34.5,29.5]],[-34,24],['householder']),
 ];
+
+// Most residents have local errands; a few travellers connect the neighbourhoods.
+// The first frame is authored across the three streets, before any NPC is visible.
+export function prepareJerusalemResidents(actors,model){
+  const background=actors.filter(a=>!a.id);
+  background.forEach((a,i)=>{
+    const zone=i<12?'north':i<24?'south':i<45?'street':'roaming',index=i<12?i:i<24?i-12:i-24;
+    const x=zone==='north'||zone==='south'?-68+index*7.5:zone==='street'?-69+index*4.35:-44+(i-45)*26,z=zone==='north'?-16:zone==='south'?30:((index%2)*2-1)*1.1;
+    a.role=zone==='roaming'?'resident':`resident-${zone}`;a.state.position=[x,model.heightAt(x,z),z];
+  });
+}
+export function jerusalemAllowed(a,p,model){
+  if(Math.abs(p[1]-model.heightAt(p[0],p[2]))>=.06)return false;
+  return a.role==='resident-street'?Math.abs(p[2])<=2.2:a.role==='resident-north'?Math.abs(p[2]+16)<=1.2:a.role==='resident-south'?Math.abs(p[2]-30)<=1.2:true;
+}

@@ -8,7 +8,7 @@ import { createWalkModel } from './walk-model.js';
 import {buildExodusScene,attachExodusExploration} from './exodus-scenes.js';
 import {exodusSegmentById,exodusSegments} from './exodus-exploration.js';
 import {createNPCSystem} from './npc-system.js';
-import {jerusalemPOIs} from './npc-pois.js';
+import {jerusalemPOIs,prepareJerusalemResidents,jerusalemAllowed} from './npc-pois.js';
 import {tabernacleSurfaces,tabernacleFloor,tabernaclePOIs,tabernacleAllowed,tabernacleSpawnCandidates,tabernacleObjects} from './tabernacle-exploration.js';
 import {herodSurfaces,herodFloor,herodProxies,herodPOIs,herodAllowed,herodSpawnCandidates,herodObjects,herodSpawn} from './herod-exploration.js';
 import {solomonSurfaces,solomonFloor,solomonProxies,solomonPOIs,solomonAllowed,solomonSpawnCandidates,solomonObjects,solomonSpawn} from './solomon-exploration.js';
@@ -649,7 +649,11 @@ export function createHistoricalScene(id, environment,{segment='all'}={}) {
     for(const d of herodObjects){const root=createVessel(d.id);root.position.fromArray(d.position);scene.add(root);objects.push({...d,root});k.collisionBoxes.push({min:[d.position[0]-.73,8,d.position[2]-.46],max:[d.position[0]+.73,10,d.position[2]+.46]});}
     walkModel=createWalkModel(k.collisionBoxes,herodSurfaces,herodFloor,{proxies:herodProxies,navigationStep:.8});
   }
-  const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
+  // Separation may push a city NPC sideways against decorative exterior stairs.
+  // Keep authored street journeys on their navigation surface, rather than climbing
+  // successive stair edges and blocking the alley at unintended heights.
+  if(id==='jerusalem')prepareJerusalemResidents(k.actors,walkModel);
+  const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs,allowRetreat:true,allowedPosition:(a,p)=>jerusalemAllowed(a,p,walkModel)}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
   let npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment);walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   // Moving contact shadows are separate from the cached architectural shadow map.

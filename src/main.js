@@ -10,7 +10,7 @@ import { historicalScenes } from './historical-data.js';
 import { personById } from './people-data.js';
 import { peopleMarkup } from './people-ui.js';
 import {walkEntry,walkMarkup} from './walk-ui.js';
-import {freshMission,missionEvent,missionStage,missionSteps,vesselDefinitions} from './walk-data.js';
+import {freshMission,missionEvent,missionStage,missionSteps,readMission,writeMission} from './walk-data.js';
 import {explorationFor} from './exploration-data.js';
 import {readExploration,observeObject,writeExploration} from './exploration-progress.js';
 import {createSceneAudio} from './scene-audio.js';
@@ -28,8 +28,7 @@ state.exodusSegment=exodusSegmentById.has(new URLSearchParams(location.hash.slic
 state.actor=null;state.dialogue=[];state.walking=false;state.soundEnabled=false;
 state.explorationSeen=readExploration(storage);
 state.atlasJourney='all';state.atlasRoute=null;state.atlasCompact=matchMedia('(max-width:760px)').matches;
-state.mission=freshMission();
-try{const saved=JSON.parse(storage?.getItem('bible-island:jerusalem-walk:v1')||'null');if(saved){state.mission={listen:saved.listen===true,observed:Array.isArray(saved.observed)?[...new Set(saved.observed.filter(id=>vesselDefinitions.some(v=>v.id===id)))]:[],ask:saved.ask===true,complete:false};state.mission.complete=saved.complete===true&&missionStage(state.mission)===3;}}catch{}
+state.mission=readMission(storage);
 let world = null, restoreFocus = null, toastTimer,modalCleanup=null,feedbackTimer;
 let soundPreferences={};try{soundPreferences=JSON.parse(storage?.getItem('bible-island:audio:v1')||'{}')||{};}catch{}
 const sceneAudio=createSceneAudio(updateSoundState,soundPreferences);
@@ -364,7 +363,7 @@ function playVoice(key) {
 }
 function recordMission(event) {
   if(!state.walking||state.mode!=='general'||state.selected!=='jerusalem')return;const before=missionStage(state.mission);state.mission=missionEvent(state.mission,event);
-  try{storage?.setItem('bible-island:jerusalem-walk:v1',JSON.stringify(state.mission));}catch{}
+  writeMission(storage,state.mission);
   if(missionStage(state.mission)!==before){renderWalk();walkFeedback(missionStage(state.mission)===4?'旅程完成，閱讀札記已保存在這個瀏覽器。':'已記下觀察，下一段旅程已更新。');}
 }
 function startWalk(sound) {
@@ -395,7 +394,7 @@ function renderWalk() {
   $('#walk-interact').onclick=()=>world?.interactWalk();$('#walk-stop').onclick=()=>world?.stopWalkRoute();
   $('#walk-guide')?.addEventListener('click',()=>{if(!step?.target)return;world?.guideWalk(step.target);$('#stage canvas')?.focus({preventScroll:true});});
   $('#walk-reflect')?.addEventListener('click',showReflection);$('#walk-journal')?.addEventListener('click',showWalkJournal);
-  $('#walk-restart')?.addEventListener('click',()=>{state.mission=freshMission();try{storage?.setItem('bible-island:jerusalem-walk:v1',JSON.stringify(state.mission));}catch{}renderWalk();});
+  $('#walk-restart')?.addEventListener('click',()=>{state.mission=freshMission();writeMission(storage,state.mission);renderWalk();});
   $('#mission-toggle').onclick=()=>{const open=$('#mission-body').hidden;$('#mission-body').hidden=!open;state.walkCompact=!open;$('#mission-toggle').setAttribute('aria-expanded',open);};
   function hold(button,start,stop) {
     button.onpointerdown=e=>{e.preventDefault();button.setPointerCapture(e.pointerId);start();};button.onpointerup=stop;button.onpointercancel=stop;button.onlostpointercapture=stop;
@@ -419,7 +418,7 @@ async function openVessel(id) {
   if(!definition||!state.walking||!world?.canInspect(id))return;
   recordMission({type:'inspect',id});state.explorationSeen=observeObject(state.explorationSeen,state.selected,id);writeExploration(storage,state.explorationSeen);renderWalk();
   const teaching=currentExploration()?.teachingInspection;
-  openModal(`<h2 id="modal-title">${definition.name}<span>${teaching?'教學近景 · 旋轉觀察，核對經文':'拿在手中，慢慢觀察'}</span></h2>${!teaching?`<div class="vessel-tabs" role="group" aria-label="比較器皿">${definitions.map(v=>`<button data-vessel="${v.id}" aria-pressed="${v.id===id}">${v.name}</button>`).join('')}</div>`:''}<div id="vessel-viewer" class="vessel-viewer"></div><div class="vessel-controls"><button id="vessel-left" aria-label="向左旋轉器物">↶ 向左轉</button><span>拖曳或使用方向鍵</span><button id="vessel-right" aria-label="向右旋轉器物">向右轉 ↷</button></div><p>${definition.description}</p><div class="source-note"><strong>帶著問題觀察</strong><p>${definition.observation}</p></div>${teaching?`${scriptureReferences(definition.passage)}${definition.source?`<a class="source-item" href="${definition.source.url}" target="_blank" rel="noopener noreferrer">${definition.source.label} ↗</a>`:''}<button id="inspect-learning-stop" class="primary-button">回到相關探索點與閱讀流程 →</button><p class="modal-small">${currentExploration().inspectionNote||'近景與構造為教學示意；不代表可以搬動聖物或自由進入聖所。'}</p>`:'<p class="modal-small">類型復原 · 未認定特定出土原物。石器的歷史解釋仍需對照研究。</p><a class="source-item" href="https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period" target="_blank" rel="noopener noreferrer">查閱上城住居與器皿發掘資料 ↗</a>'}`);
+  openModal(`<h2 id="modal-title">${definition.name}<span>${teaching?'教學近景 · 旋轉觀察，核對經文':'拿在手中，慢慢觀察'}</span></h2>${!teaching?`<div class="vessel-tabs" role="group" aria-label="比較器皿">${definitions.map(v=>`<button data-vessel="${v.id}" aria-pressed="${v.id===id}">${v.name}</button>`).join('')}</div>`:''}<div id="vessel-viewer" class="vessel-viewer"></div><div class="vessel-controls"><button id="vessel-left" aria-label="向左旋轉器物">↶ 向左轉</button><span>拖曳或使用方向鍵</span><button id="vessel-right" aria-label="向右旋轉器物">向右轉 ↷</button></div><p>${definition.description}</p><div class="source-note"><strong>帶著問題觀察</strong><p>${definition.observation}</p></div>${teaching?`${scriptureReferences(definition.passage)}${definition.source?`<a class="source-item" href="${definition.source.url}" target="_blank" rel="noopener noreferrer">${definition.source.label} ↗</a>`:''}<p class="modal-small">${currentExploration().inspectionNote||'近景與構造為教學示意；不代表可以搬動聖物或自由進入聖所。'}</p>`:'<p class="modal-small">類型復原 · 未認定特定出土原物。石器的歷史解釋仍需對照研究。</p><a class="source-item" href="https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period" target="_blank" rel="noopener noreferrer">查閱上城住居與器皿發掘資料 ↗</a>'}${definition.stop?'<button id="inspect-learning-stop" class="primary-button">回到相關探索點與閱讀流程 →</button>':''}`);
   document.querySelectorAll('[data-vessel]').forEach(b=>b.onclick=()=>openVessel(b.dataset.vessel));
   $('#inspect-learning-stop')?.addEventListener('click',()=>{closeModal();selectStop(definition.stop);});
   const container=$('#vessel-viewer');try {const {mountVesselViewer}=await import('./vessels.js');if(!container.isConnected||!$('#modal').open)return;const view=mountVesselViewer(container,id);modalCleanup=()=>view.dispose();$('#vessel-left').onclick=()=>view.rotate(.25);$('#vessel-right').onclick=()=>view.rotate(-.25);}catch{if(container.isConnected)container.textContent='此裝置無法開啟器物近景；仍可閱讀上方說明與經文。';}

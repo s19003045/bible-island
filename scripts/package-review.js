@@ -7,7 +7,9 @@ const output = resolve(process.argv[2] || '.qa/five-islands-review.html');
 const result = await build({ entryPoints: ['src/main.js'], bundle: true, format: 'iife', minify: true, write: false, outfile: 'review.js', legalComments: 'inline', target: 'es2022',
   plugins:[{name:'inline-review-voices',setup(builder){builder.onLoad({filter:/voice-manifest\.json$/},async({path})=>{
     const manifest=JSON.parse(await readFile(path,'utf8'));
-    for(const entry of Object.values(manifest))entry.src=`data:audio/mpeg;base64,${(await readFile(resolve('public',entry.src))).toString('base64')}`;
+    const inlined=new Map();
+    async function inline(src){if(!inlined.has(src))inlined.set(src,`data:audio/mpeg;base64,${(await readFile(resolve('public',src))).toString('base64')}`);return inlined.get(src);}
+    for(const entry of Object.values(manifest)){entry.src=await inline(entry.src);for(const cue of Object.values(entry.clips))if(cue.src)cue.src=await inline(cue.src);}
     return {contents:JSON.stringify(manifest),loader:'json'};
   });}}],
 });

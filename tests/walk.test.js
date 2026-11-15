@@ -82,7 +82,7 @@ test('all Jerusalem dialogue voice cues match the authored text and ship with lo
   for(const p of peopleByIsland.jerusalem) {
     const entry=manifest[p.id];assert.ok(statSync(new URL(`../public/${entry.src}`,import.meta.url)).size>100000);
     const text={greeting:p.greeting};for(const t of p.topics){text[t.id]=t.answer;if(t.followup)text[t.id+'-followup']=t.followup.answer;}
-    assert.deepEqual(Object.keys(entry.clips).sort(),Object.keys(text).sort());let end=0;
-    for(const [key,cue] of Object.entries(entry.clips)){assert.equal(cue.text,text[key]);assert.ok(cue.start>=0&&cue.end>cue.start&&cue.end<=entry.duration);assert.ok(cue.start>=end-.1);end=cue.end;}
+    const original=Object.entries(entry.clips).filter(([key])=>!key.startsWith('child-'));assert.deepEqual(original.map(([key])=>key).sort(),Object.keys(text).sort());let end=0;
+    for(const [key,cue] of original){assert.equal(cue.text,text[key]);assert.ok(cue.start>=0&&cue.end>cue.start&&cue.end<=entry.duration);assert.ok(cue.start>=end-.1);end=cue.end;}
   }
 });

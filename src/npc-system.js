@@ -9,7 +9,7 @@ const turn=(m,target,dt)=>{const d=angleDelta(m.yaw,target);m.yaw+=clamp(d*(1-Ma
 
 // Every decision, social check, dwell, cooldown, animation phase and PRNG belongs to one agent.
 // The shared update is only a physics integrator, never a behaviour clock or random walk.
-export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{},spawnCandidates:customSpawns=null,allowedPosition=()=>true,spawnExclusion=[20,0,0]}) {
+export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{},spawnCandidates:customSpawns=null,allowedPosition=()=>true,spawnExclusion=[20,0,0],allowRetreat=false}) {
   const reservations=new Map(pois.map(p=>[p.id,new Map()]));
   const agents=actors.map((actor,index)=>{
     const key=actor.id||`resident-${index}`,individualSeed=npcSeed(`${seed}:${key}`),random=seededNPC(individualSeed);
@@ -41,34 +41,41 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{},spa
   function emit(a,type,extra={}){onEvent({agent:a.key,time:a.age,type,...extra});}
   function release(a){if(a.poi)reservations.get(a.poi.id).delete(a.key);a.poi=null;a.slot=null;}
   function traverse(from,to) {const end=model.move(from,to[0]-from[0],to[2]-from[2]);return distance(end,to)<.015;}
+  function clearRetreat(from,to,obstacle,radius){
+    if(!obstacle)return true;const dx=to[0]-from[0],dz=to[2]-from[2],length=dx*dx+dz*dz,t=length?clamp(((obstacle.position[0]-from[0])*dx+(obstacle.position[2]-from[2])*dz)/length,0,1):0;
+    return Math.hypot(from[0]+dx*t-obstacle.position[0],from[2]+dz*t-obstacle.position[2])>=radius+obstacle.radius+.02;
+  }
   function freeSlots(p,a,player) {
     const used=reservations.get(p.id);if(used.size>=p.capacity)return [];
     return p.slots.map((position,index)=>({position,index})).filter(s=>![...used.values()].includes(s.index)&&
       (!player||distance(s.position,player)>a.radius+.65)&&agents.every(b=>b===a||distance(s.position,b.actor.state.position)>a.radius+b.radius+.08));
   }
-  function choose(a,player) {
+  function choose(a,player,retreatFrom=null) {
     const previous=a.poi?.id||a.lastPOI;
     let candidates=pois.filter(p=>p.id!==previous&&p.tags.includes(a.role)).map(p=>{
       const slots=freeSlots(p,a,player),d=Math.min(...p.slots.map(s=>distance(s,a.actor.state.position)));
       const preference=a.role==='carrier'&&p.id==='water-view'?3:a.role==='vendor'&&p.id.startsWith('market')?4:1;
-      return {p,slots,weight:p.weight*preference/(1+d/25)/(1+(a.visits.get(p.id)||0)*.3)};
+      return {p,slots,weight:p.weight*preference/(retreatFrom?(1+d/8)**2:1+d/25)/(1+(a.visits.get(p.id)||0)*.3)};
     }).filter(c=>c.slots.length);
     while(candidates.length) {
       let roll=a.random()*candidates.reduce((n,c)=>n+c.weight,0),index=candidates.length-1;
       for(let i=0;i<candidates.length;i++){roll-=candidates[i].weight;if(roll<=0){index=i;break;}}
       const {p,slots}=candidates.splice(index,1)[0],slot=slots[Math.floor(a.random()*slots.length)];
-      const path=model.path(a.actor.state.position,slot.position);if(!path.length||!path.every(p=>allowedPosition(a,p)))continue;
+      const origin=a.actor.state.position,avoid=retreatFrom?[{position:retreatFrom.position,radius:a.radius+retreatFrom.radius+.02}]:[];
+      const path=model.path(origin,slot.position,{avoid});if(!path.length||!path.every(p=>allowedPosition(a,p)))continue;
+      if(retreatFrom){const probe=path.find(q=>distance(q,origin)>.5);if(!probe||distance(probe,retreatFrom.position)<distance(origin,retreatFrom.position)+.12)continue;}
       // Do not walk backwards to a rounded start node when replanning.
-      if(path.length>1&&traverse(a.actor.state.position,path[1]))path.shift();
+      if(path.length>1&&traverse(origin,path[1])&&clearRetreat(origin,path[1],retreatFrom,a.radius))path.shift();
+      if(!clearRetreat(origin,path[0],retreatFrom,a.radius))continue;
       if(traverse(path.at(-1),slot.position))path.push([...slot.position]);
       release(a);a.poi=p;a.slot=slot;reservations.get(p.id).set(a.key,slot.index);
-      a.path=path;a.state='travel';a.action='Walk';a.blockedFor=0;emit(a,'depart',{poi:p.id});return;
+      a.path=path;a.retreatFrom=retreatFrom?{position:[...retreatFrom.position],radius:retreatFrom.radius}:null;a.state='travel';a.action='Walk';a.blockedFor=0;emit(a,retreatFrom?'yield':'depart',{poi:p.id});return true;
     }
     // A full POI never attracts a queue of unreserved NPCs. Wait locally, then decide again.
-    a.timer=ranged(a,1.3,3.5);a.state='rest';a.action='LookAround';
+    if(!retreatFrom){a.timer=ranged(a,1.3,3.5);a.state='rest';a.action='LookAround';}return false;
   }
   function arrive(a) {
-    a.state='rest';a.action=a.poi.action;a.timer=ranged(a,...a.poi.dwell);a.lastPOI=a.poi.id;
+    a.state='rest';a.retreatFrom=null;a.action=a.poi.action;a.timer=ranged(a,...a.poi.dwell);a.lastPOI=a.poi.id;
     a.visits.set(a.poi.id,(a.visits.get(a.poi.id)||0)+1);a.path=[];emit(a,'arrive',{poi:a.poi.id,action:a.action});
   }
   function endChat(a,interrupted=false) {
@@ -93,7 +100,8 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{},spa
     while(a.path.length&&distance(p,a.path[0])<.13)a.path.shift();
     // Look ahead along a collision-free portion of the path. Otherwise separation could
     // pull someone past a tiny grid waypoint, then make them turn back into oncoming traffic.
-    while(a.path.length>1&&distance(p,a.path[1])<1.2&&traverse(p,a.path[1]))a.path.shift();
+    if(a.retreatFrom&&distance(p,a.retreatFrom.position)>3)a.retreatFrom=null;
+    while(a.path.length>1&&distance(p,a.path[1])<1.2&&traverse(p,a.path[1])&&clearRetreat(p,a.path[1],a.retreatFrom,a.radius))a.path.shift();
     if(!a.path.length){if(a.poi&&distance(p,a.slot.position)<.28)arrive(a);else {a.timer=ranged(a,.6,1.5);a.state='rest';}return [0,0];}
     const target=a.path[0],tx=target[0]-p[0],tz=target[2]-p[2],length=Math.hypot(tx,tz),nx=tx/length,nz=tz/length;
     const remaining=distance(p,a.slot.position),speed=a.speed*clamp(remaining/.8,.25,1);
@@ -154,7 +162,15 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{},spa
         a.velocity=[(next[0]-p[0])/dt,(next[2]-p[2])/dt];m.position=next;
         if(d>.00005)turn(m,Math.atan2(a.velocity[0],a.velocity[1]),dt);
         a.blockedFor=d<.002?a.blockedFor+dt:0;
-        if(a.blockedFor>rangedThreshold(a)){a.blockedFor=0;a.lastPOI=a.poi?.id;release(a);a.state='rest';a.action='LookAround';a.timer=ranged(a,.3,1.4);a.path=[];}
+        if(a.blockedFor>rangedThreshold(a)){
+          a.blockedFor=0;
+          const nearPlayer=allowRetreat&&player&&distance(p,player)<1.35&&Math.abs(p[1]-player[1])<1.7;
+          const neighbour=allowRetreat&&!nearPlayer&&agents.filter(b=>b!==a&&distance(p,b.actor.state.position)<1.35&&Math.abs(p[1]-b.actor.state.position[1])<1.7).sort((b,c)=>distance(p,b.actor.state.position)-distance(p,c.actor.state.position))[0];
+          const obstruction=nearPlayer?{position:player,radius:.32}:neighbour?{position:neighbour.actor.state.position,radius:neighbour.radius}:null;
+          // Back out along a real route to another free POI, rather than keep
+          // selecting destinations on the far side of an impassable encounter.
+          if(!obstruction||!choose(a,player,obstruction)){a.lastPOI=a.poi?.id;release(a);a.state='rest';a.action='LookAround';a.timer=ranged(a,.3,1.4);a.path=[];}
+        }
       } else {a.velocity=[0,0];if(!a.held&&!a.partner&&a.poi){const q=a.poi.lookAt;const yaw=Math.atan2(q[0]-p[0],q[1]-p[2])+(a.action==='LookAround'?Math.sin(m.time*.45+a.lookPhase)*.35:0);turn(m,yaw,dt);}}
       const actual=Math.hypot(...a.velocity)/a.speed;m.stride+=(clamp(actual,0,1)-m.stride)*(1-Math.exp(-8*dt));
       m.socialTalking=!!a.partner;m.idleAction=a.held?'Idle':a.action;
@@ -173,7 +189,7 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{},spa
       options.sort((a,b)=>distance(a,preferred)-distance(b,preferred));return options[0]||null;
     },
     suspend(){for(const a of agents){
-      a.lastPOI=a.poi?.id||a.lastPOI;release(a);a.partner=null;a.path=[];a.state='rest';a.action='Idle';a.velocity=[0,0];a.timer=ranged(a,.4,4.9);
+      a.lastPOI=a.poi?.id||a.lastPOI;release(a);a.partner=null;a.path=[];a.retreatFrom=null;a.state='rest';a.action='Idle';a.velocity=[0,0];a.timer=ranged(a,.4,4.9);
       a.held=false;a.wasAttending=false;Object.assign(a.actor.state,{talking:false,attending:false,socialTalking:false,stride:0});
     }},
     dispose(){for(const a of agents){release(a);a.partner=null;}},
