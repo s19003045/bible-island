@@ -1,4 +1,6 @@
 import './style.css';
+import {atlasPanel,atlasJourneyOptions} from './atlas-ui.js';
+import {atlasRouteById} from './atlas-data.js';
 import { themes, themeById, eras, sources, evidenceLabels, filterThemes } from './content.js';
 import { readProgress, writeProgress, markStop, getTourStep } from './progress.js';
 import { icon } from './icons.js';
@@ -23,6 +25,7 @@ const state = { selected: null, stop: null, query: '', era: 'all', testament: 'a
 state.learning=readLearning(storage);state.mode=state.learning.mode;state.learningCursor={};state.learningFeedback=null;
 state.actor=null;state.dialogue=[];state.walking=false;state.soundEnabled=false;
 state.explorationSeen=readExploration(storage);
+state.atlasJourney='all';state.atlasRoute=null;state.atlasCompact=matchMedia('(max-width:760px)').matches;
 state.mission=freshMission();
 try{const saved=JSON.parse(storage?.getItem('bible-island:jerusalem-walk:v1')||'null');if(saved){state.mission={listen:saved.listen===true,observed:Array.isArray(saved.observed)?[...new Set(saved.observed.filter(id=>vesselDefinitions.some(v=>v.id===id)))]:[],ask:saved.ask===true,complete:false};state.mission.complete=saved.complete===true&&missionStage(state.mission)===3;}}catch{}
 let world = null, restoreFocus = null, toastTimer,modalCleanup=null,feedbackTimer;
@@ -53,14 +56,14 @@ $('#app').innerHTML = `
     </aside>
     <section class="map-layout" id="map-layout" aria-label="互動主題群島">
       <div id="stage"><div class="loading" id="loading"><span class="loading-book">${icon('book', 34)}</span><p>讓經文中的世界，慢慢浮現。</p><small>正在建立主題群島…</small></div></div>
-      <div class="map-topbar"><button id="scene-menu" class="scene-menu" aria-label="開啟主題清單" aria-expanded="false" hidden>${icon('menu',16)} 主題清單</button><div class="map-view-tabs"><button class="active" id="overview">${icon('compass', 16)}群島全景</button><button id="timeline-toggle" aria-pressed="false">${icon('clock', 16)}時代脈絡</button></div><span class="map-note">主題位置示意 · 非實際地圖</span></div>
+      <div class="map-topbar"><button id="scene-menu" class="scene-menu" aria-label="開啟主題清單" aria-expanded="false" hidden>${icon('menu',16)} 主題清單</button><div class="map-view-tabs"><button class="active" id="overview">${icon('compass', 16)}群島全景</button><button id="timeline-toggle" aria-pressed="false">${icon('clock', 16)}時代脈絡</button></div><span class="map-note">主題位置示意 · 非實際地圖</span></div><label class="atlas-journey-picker" id="atlas-journey-picker">${icon('route',15)}<span>閱讀路線</span><select id="atlas-journey" aria-label="選擇群島閱讀路線">${atlasJourneyOptions}</select></label><div id="atlas-travel-status" class="atlas-travel-status" role="status" hidden></div>
       <div class="map-intro" id="map-intro"><div class="eyebrow"><span></span> WALK INTO THE WORD</div><h2>跨越時空，<br>走進經文<span>。</span></h2><p>從曠野的一座帳幕，<br>到地中海的一葉帆船。<br>讓聖經的故事，在眼前展開。</p><button class="text-button" id="start-exploring">從摩西會幕出發 ${icon('arrow', 19)}</button></div>
       <div id="scene-caption" class="scene-caption" hidden></div><div id="scene-views" class="scene-views" role="group" aria-label="歷史場景視角" hidden><button data-view="overview" aria-pressed="true">場景全景</button><button data-view="human" aria-pressed="false">人物尺度</button><button data-view="plan" aria-pressed="false">俯視配置</button></div><div class="selected-breadcrumb" id="breadcrumb" hidden><button id="back-overview">群島全景</button><span>/</span><strong></strong></div>
       <div class="world-tools" role="toolbar" aria-label="場景控制"><button id="time-button" aria-label="切換夜晚" title="切換夜晚">${icon('sun')}</button><span></span><button id="labels-button" aria-label="顯示島嶼名稱" aria-pressed="true" title="島嶼名稱">${icon('eye')}</button><button id="connections-button" aria-label="顯示主題連線" aria-pressed="true" title="主題連線">${icon('route')}</button><button id="pause-button" aria-label="${state.paused ? '播放人物與環境動畫' : '暫停人物與環境動畫'}" aria-pressed="${state.paused}" title="暫停動畫">${icon(state.paused ? 'play' : 'pause')}</button><span></span><button id="top-button" aria-label="切換鳥瞰視角" title="鳥瞰視角">${icon('layers')}</button></div>
       <div class="zoom-tools"><button id="zoom-in" aria-label="放大">${icon('plus')}</button><button id="zoom-out" aria-label="縮小">${icon('minus')}</button><span></span><button id="home-button" aria-label="回到群島全景">${icon('home', 18)}</button></div>
       <div class="compass-rose" aria-hidden="true"><span>N</span><svg viewBox="0 0 50 50"><path d="m25 5 6 20-6 20-6-20Z" fill="currentColor"/><path d="m5 25 20-6 20 6-20 6Z" fill="currentColor" opacity=".4"/></svg><small>EXPLORE</small></div>
       <div class="timeline" id="timeline" hidden><div><span class="eyebrow">FOLLOW THE STORY</span><p>沿著時代，找到故事的位置。</p></div><div class="era-buttons">${eras.map(e => `<button data-era="${e.id}" class="${e.id === 'all' ? 'active' : ''}" aria-pressed="${e.id === 'all'}"><i></i>${e.name}</button>`).join('')}</div></div>
-      <div class="journey-card" id="journey-card"><span class="journey-art">${icon('archive', 25)}</span><div><span class="eyebrow">YOUR FIRST ISLAND</span><strong>從一座會幕，開始探索</strong><small>5 個探索點 · 出埃及記 25–40 章</small></div><button id="first-island" aria-label="探索摩西會幕">${icon('arrow', 21)}</button></div>
+      <div class="journey-card atlas-route-card" id="journey-card"><span class="journey-art">${icon('archive', 25)}</span><div><span class="eyebrow">YOUR FIRST ISLAND</span><strong>從一座會幕，開始探索</strong><small>5 個探索點 · 出埃及記 25–40 章</small></div><button id="first-island" aria-label="探索摩西會幕">${icon('arrow', 21)}</button></div>
       <div class="map-footer"><span><i></i>${themes.length} 座主題島 <b>·</b> ${themes.reduce((n,t) => n + t.stops.length, 0)} 個探索點</span><span class="gesture-hint">拖曳旋轉 <b>·</b> 滾輪縮放 <b>·</b> 點選探索</span><button id="map-sources">經文與復原說明 ${icon('external', 12)}</button></div>
       <div id="walk-interface" hidden></div><aside class="detail-panel" id="detail" aria-label="主題詳情" hidden></aside>
     </section>
@@ -86,6 +89,7 @@ function listThemes() {
   }).join('') : `<div class="empty-state">${icon(state.visitedOnly ? 'footprints' : 'search', 30)}<strong>${state.visitedOnly ? '每段旅程，都從第一步開始。' : '還沒有找到這座島。'}</strong><p>${state.visitedOnly ? '探索一座島或收藏主題，就會在這裡留下足跡。' : '試試「會幕」「漁船」或「出埃及記」。'}</p><button id="reset-filters">${state.visitedOnly ? '開始探索' : '清除篩選'}</button></div>`;
   $('#reset-filters')?.addEventListener('click', resetFilters);
   world?.setVisible(list.map(t => t.id));
+  if(!state.selected){const route=atlasRouteById.get(state.atlasRoute),ids=new Set(list.map(t=>t.id));if(route&&(!ids.has(route.from)||!ids.has(route.to))){state.atlasRoute=null;world?.setAtlasRoute(null);}renderAtlasPanel();}
   return list;
 }
 function resetFilters() {
@@ -116,7 +120,7 @@ function selectTheme(id, { updateHash = true } = {}) {
   $('#map-layout').classList.add('has-selection'); $('#map-intro').hidden = true; $('#journey-card').hidden = true;
   $('#breadcrumb').hidden = false; $('#breadcrumb strong').textContent = t.name;
   $('#detail').hidden = false; renderDetail(); listThemes(); closeAtlas();
-  world?.select(id);
+  $('#atlas-travel-status').hidden=true;world?.select(id);
   if (updateHash) history.replaceState(null, '', `#island=${encodeURIComponent(id)}`);
   document.title = `${t.name} — 讀聖經順起來`;
 }
@@ -126,7 +130,7 @@ function overview() {
   $('#connections-button').hidden = false; $('#pause-button').hidden = false;
   $('#labels-button').setAttribute('aria-label','顯示島嶼名稱'); $('#labels-button').title='島嶼名稱'; $('.compass-rose').hidden = false; $('.map-note').textContent = '主題位置示意 · 非實際地圖';
   $('#map-layout').classList.remove('has-selection'); $('#map-intro').hidden = false; $('#journey-card').hidden = false; $('#breadcrumb').hidden = true; $('#detail').hidden = true;
-  resetFilters(); world?.home(); history.replaceState(null, '', location.pathname + location.search); document.title = '讀聖經順起來 — Bible Island';
+  resetFilters();$('#atlas-travel-status').hidden=true;state.atlasRoute=null;renderAtlasPanel();world?.home(); history.replaceState(null, '', location.pathname + location.search); document.title = '讀聖經順起來 — Bible Island';
 }
 function selectStop(id, { focus = true } = {}) {
   const t = themeById.get(state.selected), s = t?.stops.find(s => s.id === id); if (!s) return;
@@ -295,9 +299,21 @@ function updateModePresentation() {
   const mode=readingModes[state.mode];document.body.dataset.readingMode=state.mode;$('#reading-mode').value=state.mode;
   $('#map-intro>p').textContent=mode.description;
   $('#start-exploring').innerHTML=`${mode.action} ${icon('arrow',19)}`;
-  $('#journey-card').innerHTML=`<span class="journey-art">${icon(mode.icon,25)}</span><div><span class="eyebrow">${mode.name} · 摩西會幕</span><strong>${mode.title}</strong><small>${mode.steps}</small></div><button id="first-island" aria-label="${mode.action}：摩西會幕">${icon('arrow',21)}</button>`;
-  $('#first-island').onclick=()=>selectTheme('tabernacle');
+  renderAtlasPanel();
 }
+function engageAtlas(){if(!state.selected)$('#map-layout').classList.add('atlas-engaged');}
+function renderAtlasPanel(){
+  const root=$('#journey-card');root.innerHTML=atlasPanel(state,{ids:new Set(filterThemes(state).map(t=>t.id))});
+  root.querySelectorAll('[data-atlas-route]').forEach(b=>b.onclick=()=>chooseAtlasRoute(b.dataset.atlasRoute));
+  root.querySelectorAll('[data-atlas-enter]').forEach(b=>b.onclick=()=>selectTheme(b.dataset.atlasEnter));
+  $('#atlas-card-toggle').onclick=()=>{state.atlasCompact=!state.atlasCompact;renderAtlasPanel();};
+  $('#atlas-travel')?.addEventListener('click',()=>{const route=atlasRouteById.get(state.atlasRoute);if(!route)return;
+    const label=$('#atlas-travel-status');label.hidden=false;label.textContent=`${themeById.get(route.from).name} → ${themeById.get(route.to).name} · 沿閱讀連結前往`;$('#atlas-travel').disabled=true;
+    if(!world?.travelAtlas(route.id,()=>{label.hidden=true;$('#map-layout').classList.add('scene-arriving');selectTheme(route.to);setTimeout(()=>$('#map-layout').classList.remove('scene-arriving'),320);})){label.hidden=true;$('#atlas-travel').disabled=false;}
+  });
+  $('#atlas-compare')?.addEventListener('click',()=>{const route=atlasRouteById.get(state.atlasRoute);if(!route)return;openModal(`<h2 id="modal-title">${route.type}<span>把兩座島放在一起讀</span></h2>${[route.from,route.to].map(id=>{const t=themeById.get(id);return `<section class="source-item"><h3>${t.name}</h3><p>${t.period} · ${t.question}</p><p>${t.intro}</p>${scriptureReading(t.book,t.reference)}</section>`;}).join('')}<p class="modal-small">${route.text} 群島位置與連結均為閱讀示意。</p>`);});
+}
+function chooseAtlasRoute(id){if(!atlasRouteById.has(id))return;state.atlasRoute=id;state.atlasCompact=false;engageAtlas();world?.setAtlasRoute(id);renderAtlasPanel();$('#atlas-travel')?.focus({preventScroll:true});}
 function changeReadingMode(mode) {
   if(!Object.hasOwn(readingModes,mode))return;
   if(state.walking)exitWalk(false);endConversation(false);state.stop=null;state.tour=false;
@@ -425,9 +441,10 @@ $('#search').oninput = e => { state.query = e.target.value; listThemes(); };
 document.querySelectorAll('[data-testament]').forEach(b => b.onclick = () => { state.testament = b.dataset.testament; updateFilters(); listThemes(); });
 document.querySelectorAll('[data-era]').forEach(b => b.onclick = () => { state.era = b.dataset.era; updateFilters(); listThemes(); });
 $('#reading-mode').onchange = e => changeReadingMode(e.target.value);
+$('#atlas-journey').onchange=e=>{state.atlasJourney=e.target.value;state.atlasRoute=null;engageAtlas();renderAtlasPanel();world?.setAtlasJourney(state.atlasJourney);};
 $('#overview').onclick = overview; $('#home-button').onclick = overview; $('#back-overview').onclick = overview;
 $('.brand').onclick = e => { e.preventDefault(); overview(); };
-$('#start-exploring').onclick = () => selectTheme('tabernacle'); $('#first-island').onclick = () => selectTheme('tabernacle');
+$('#start-exploring').onclick=()=>selectTheme('tabernacle');
 $('#timeline-toggle').onclick = () => { const show = $('#timeline').hidden; $('#timeline').hidden = !show; $('#timeline-toggle').classList.toggle('active', show); $('#timeline-toggle').setAttribute('aria-pressed', show); $('#journey-card').classList.toggle('timeline-open', show); };
 $('#time-button').onclick = () => { state.night = !state.night; world?.setTime(state.night); $('#time-button').innerHTML = icon(state.night ? 'moon' : 'sun'); $('#time-button').setAttribute('aria-label', state.night ? '切換白天' : '切換夜晚'); document.body.classList.toggle('night', state.night); };
 for (const [button, key, method] of [['labels-button','labels','setLabels'],['connections-button','connections','setConnections'],['pause-button','paused','setPaused']]) {
@@ -458,7 +475,7 @@ function worldError() {
 // Content is available before WebGL loads, so a GPU/import failure never removes the reading experience.
 import('./world.js').then(({ createWorld }) => {
   world = createWorld($('#stage'), {
-    onSelect: selectTheme, onStop: selectStop, onActor: selectActor, onInspect:openVessel,onWalkUpdate:updateWalkHUD,onWalkMessage:walkFeedback,audio:sceneAudio,icon,
+    onSelect: selectTheme,onRoute:chooseAtlasRoute,onAtlasInteract:engageAtlas,onAtlasTravelEnd:()=>{$('#atlas-travel-status').hidden=true;const b=$('#atlas-travel');if(b)b.disabled=false;}, onStop: selectStop, onActor: selectActor, onInspect:openVessel,onWalkUpdate:updateWalkHUD,onWalkMessage:walkFeedback,audio:sceneAudio,icon,
     onReady() { state.worldReady = true; $('#loading').classList.add('loaded'); setTimeout(() => $('#loading')?.remove(), 550); }, onError: worldError,
   });
   if (!world) return;

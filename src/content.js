@@ -1,3 +1,4 @@
+import {atlasLayout} from './atlas-data.js';
 import { scriptureVersion } from './scripture.js';
 export { scriptureUrl } from './scripture.js';
 
@@ -138,6 +139,8 @@ for (const [i, row] of more.entries()) {
       [[-1.1, 1.5, 0.7], [1, 1.5, -0.5], [0, 1.5, -1.3]][j], 'reconstruction')),
   });
 }
+
+for(const theme of themes)theme.position=[...atlasLayout[theme.id]];
 
 export const themeById = new Map(themes.map(t => [t.id, t]));
 export const sources = [

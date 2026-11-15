@@ -190,3 +190,48 @@ body[data-reading-mode] .journey-art{background:var(--learning-surface);color:va
 @media(max-width:760px){.walk-destinations button{min-height:32px;font-size:10px;padding:5px}.walk-mission:has(.walk-destinations) #mission-body{max-height:28vh;overflow:auto}.walk-mission:has(.walk-destinations) h2{font-size:14px}}
 
 .music-setting{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px;margin-top:9px}.music-setting input{grid-column:1 / -1;width:100%}.music-setting button{font-size:10px;min-height:28px;text-decoration:underline;color:#355844}
+
+/* Reading atlas: calm sea, restrained route controls, and clear map hierarchy. */
+.map-layout:not(.has-selection):after{background:linear-gradient(100deg,#e8ead519,transparent 45%),linear-gradient(0deg,#193c3a18,transparent 12%)}
+.atlas-journey-picker{position:absolute;top:83px;left:27px;z-index:8;display:flex;align-items:center;gap:8px;background:#f9f7eff2;color:var(--green);border:1px solid #d5ddcf;border-radius:5px;padding:8px 11px;font-size:12px;max-width:calc(100% - 108px)}
+.atlas-journey-picker select{min-width:0;max-width:210px;padding:3px 2px;border:0;background:transparent;color:var(--ink);font-size:12px}
+.has-selection .atlas-journey-picker{display:none}
+.map-intro{top:145px;left:30px;max-width:270px;pointer-events:none;transition:opacity .3s,transform .3s}
+.map-intro h2{font-size:30px;line-height:1.55;letter-spacing:3px;margin:10px 0 12px;text-shadow:0 1px 12px #38574a40}
+.map-intro p{font-size:12px;line-height:1.9;max-width:250px}
+.map-intro button{pointer-events:auto}
+.atlas-engaged .map-intro{opacity:0;transform:translateY(-8px);pointer-events:none;visibility:hidden}
+.atlas-engaged .map-intro button{pointer-events:none}
+.atlas-route-card{display:block;max-width:330px;width:calc(100% - 100px);padding:15px 18px;bottom:59px;border-color:#d5ddcf;background:#f9f7eff5;box-shadow:0 7px 25px #1b494b16;z-index:9}
+.atlas-route-card .atlas-card-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.atlas-route-card .atlas-card-heading button{width:30px;height:28px;margin:0;display:grid;place-items:center;border-radius:3px;border:1px solid var(--line)}
+.atlas-route-card h3{font:500 17px var(--serif);line-height:1.6;margin:3px 0 7px;color:var(--ink)}
+.atlas-route-card h3 span{color:#987844}
+.atlas-route-card p{font-size:12px;line-height:1.8;color:#526354}
+.atlas-route-card small{font-size:11px;line-height:1.7;color:#657462;display:block;margin:7px 0}
+.atlas-card-actions{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-top:12px}
+.atlas-route-card .atlas-card-actions button{width:auto;height:auto;margin:0;border-radius:4px}
+.atlas-route-card .primary-button{font-size:12px;min-height:40px;padding:9px 12px}
+.atlas-route-card .atlas-text-button{font-size:12px;padding:7px 2px;color:var(--green);text-decoration:underline;text-underline-offset:4px}
+.atlas-route-list{margin-top:12px;border-top:1px solid #dbe1d3;padding-top:9px;font-size:12px}
+.atlas-route-list summary{cursor:pointer;color:var(--green)}
+.atlas-route-list summary span{margin-left:4px;color:#7c846f}
+.atlas-route-list>div{max-height:190px;overflow:auto;margin-top:7px;scrollbar-width:thin}
+.atlas-route-card .atlas-route-list button{display:block;text-align:left;width:100%;height:auto;margin:0;padding:9px 5px;border:0;border-bottom:1px solid var(--line);border-radius:0;font-size:12px;line-height:1.7}
+.atlas-route-list button[aria-pressed=true]{background:#e6eddf}
+.atlas-route-list small{margin:2px 0 0;font-size:10px;color:#6c775f}
+.atlas-route-card .atlas-symbol-note{font-size:10px;line-height:1.7;margin-top:9px;color:#6e7868}
+.atlas-region{position:absolute;left:0;top:0;white-space:nowrap;font:500 13px var(--serif);letter-spacing:2px;color:#f6f3e2;text-shadow:0 1px 5px #2b514d;pointer-events:none;opacity:.9}
+.island-label{font-size:11px;background:#fbf9eff2;color:#314a3d;border-color:#e6eadb;box-shadow:0 3px 12px #193e3526}
+.island-label.minor{font-size:10px;background:#f6f5e9df;opacity:.9}
+.island-label.route-related{background:#fbf2d9;color:#5e4c2e;border-color:#b5965c;opacity:1;display:flex}
+.atlas-travel-status{position:absolute;left:50%;top:29%;transform:translateX(-50%);max-width:85%;padding:12px 18px;background:var(--paper);color:var(--green);box-shadow:0 4px 18px #214e3b30;font-size:14px;line-height:1.8;z-index:15;border-radius:5px;text-align:center}
+.scene-arriving:before{content:'';position:absolute;inset:0;background:var(--paper);z-index:38;pointer-events:none;animation:atlas-arrival .32s ease-out forwards}
+@keyframes atlas-arrival{from{opacity:1}to{opacity:0}}
+@media(max-height:760px) and (min-width:761px){.map-intro{top:140px}.map-intro h2{font-size:26px}.map-intro p,.map-intro .eyebrow{display:none}.map-intro .text-button{margin-top:5px}.atlas-route-card{padding:11px 15px}.atlas-route-card .atlas-symbol-note{font-size:9px}}
+@media(max-width:760px){.atlas-journey-picker{top:69px;left:16px;max-width:calc(100% - 72px);padding:6px 9px;gap:5px}.atlas-journey-picker>span{display:none}.atlas-journey-picker select{font-size:12px;max-width:190px;padding:3px}.map-intro{top:123px;left:20px;max-width:230px}.map-intro h2{font-size:25px;margin-bottom:8px}.map-intro p{font-size:11px;max-width:210px}.map-intro .eyebrow{display:none}.map-intro .text-button{font-size:12px;margin-top:12px}.atlas-route-card{left:14px;right:14px;bottom:50px;width:auto;max-width:none;padding:10px 14px}.atlas-route-card h3{font-size:16px;margin:0}.atlas-route-card p{font-size:12px}.atlas-route-card small{font-size:11px}.atlas-route-card .atlas-symbol-note{font-size:10px}.atlas-route-card .atlas-card-heading button{width:38px;height:34px}.atlas-region{font-size:12px;letter-spacing:1px}.island-label,.island-label.minor{font-size:11px;padding:5px 7px}.island-label.minor:not(.route-related):not(.journey-stop){display:none}.world-tools{top:117px}.zoom-tools{bottom:157px}.compass-rose{bottom:166px}.atlas-route-list>div{max-height:145px}.atlas-route-list button{min-height:44px}.timeline{bottom:148px;max-height:260px;overflow:auto}.atlas-travel-status{top:30%;font-size:12px}.has-selection .world-tools{top:77px}.has-selection .zoom-tools{bottom:calc(47% + 15px)}}
+@media(prefers-reduced-motion:reduce){.map-intro{transition:none}.scene-arriving:before{animation:none;opacity:0}}
+
+.atlas-route-card{max-height:calc(100% - 190px);overflow:auto;scrollbar-width:thin}.atlas-route-card .primary-button{color:#fff8e6}.atlas-legend{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:12px;font-size:10px;color:#63765e}.island-label.journey-stop{display:flex;opacity:1;background:#fbf3db;border-color:#c7b582}
+@media(max-width:760px){.atlas-route-card{max-height:52%}.atlas-legend{font-size:10px}.atlas-route-card.timeline-open{display:none}}
+@media(max-width:760px){.map-layout:not(.has-selection) .zoom-tools{top:69px;bottom:auto;right:16px;flex-direction:row}.map-layout:not(.has-selection) .atlas-journey-picker{max-width:calc(100% - 140px)}.map-layout:not(.has-selection) .compass-rose{display:none}}

@@ -7,6 +7,9 @@ import { historicalScenes } from './historical-data.js';
 import { peopleByIsland } from './people-data.js';
 import {createWalkControls} from './walk-controls.js';
 import {walkSpawn} from './walk-data.js';
+import {atlasBounds,atlasRegions,atlasJourneys,atlasRouteById,atlasFrame,coastRadius} from './atlas-data.js';
+import {createAtlasEnvironment,atlasSkyColor} from './atlas-environment.js';
+import {createAtlasNetwork} from './atlas-network.js';
 
 const TOP = 0.62;
 const C = { sand: '#d4bd93', stone: '#ddcfac', white: '#f1e6cb', dark: '#706451', wood: '#80634b',
@@ -118,18 +121,13 @@ function makeIsland(theme, scene) {
   root.position.set(theme.position[0], 0, theme.position[1]); scene.add(root);
   const rng = random(theme.number * 7957 + 7), r = theme.radius;
   const shape = new THREE.Shape();
-  for (let i = 0; i < 12; i++) {
-    const a = i / 12 * Math.PI * 2, s = r * (.92 + rng() * .1);
-    const x = Math.cos(a) * s, y = Math.sin(a) * s;
-    if (!i) shape.moveTo(x, y); else shape.lineTo(x, y);
-  }
+  for (let i=0;i<64;i++){const a=i/64*Math.PI*2,radius=coastRadius(r,a,theme.number),x=Math.cos(a)*radius,y=Math.sin(a)*radius;if(!i)shape.moveTo(x,y);else shape.lineTo(x,y);}
   shape.closePath();
-  const geo = new THREE.ExtrudeGeometry(shape, { depth: .67, bevelEnabled: true, bevelSegments: 1, bevelThickness: .16, bevelSize: .16, steps: 1 });
+  const geo = new THREE.ExtrudeGeometry(shape, { depth: .67, bevelEnabled: true, bevelSegments: 2, bevelThickness: .16, bevelSize: .16, steps: 1 });
   geo.rotateX(-Math.PI / 2); geo.translate(0, -.17, 0);
   const land = new THREE.Mesh(geo, [new THREE.MeshStandardMaterial({ color: '#d9caa7', roughness: 1 }), new THREE.MeshStandardMaterial({ color: '#a68d69', roughness: 1 })]);
   land.userData.themeId = theme.id; land.receiveShadow = true; land.castShadow = true; root.add(land);
-  const rim = new THREE.Mesh(new THREE.CylinderGeometry(r * .89, r * .83, .18, 12), new THREE.MeshStandardMaterial({ color: '#d2b183', flatShading: true }));
-  rim.position.y = -.2; root.add(rim);
+  const rim=new THREE.Mesh(geo.clone(),new THREE.MeshStandardMaterial({color:'#bda882',roughness:1}));rim.scale.set(1.035,.6,1.035);rim.position.y=-.21;root.add(rim);
   const ground = kit(root);
   for (let i = 0; i < 15; i++) {
     const a = rng() * Math.PI * 2, d = r * (.78 + rng() * .12), x = Math.cos(a) * d, z = Math.sin(a) * d;
@@ -291,12 +289,12 @@ function makeScene(theme, root, scene, boats) {
   return roofGroup;
 }
 
-export function createWorld(container, { onSelect, onStop, onActor,onInspect,onWalkUpdate,onWalkMessage,audio,onReady,onError,icon }) {
+export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{},onAtlasInteract=()=>{},onAtlasTravelEnd=()=>{},onInspect,onWalkUpdate,onWalkMessage,audio,onReady,onError,icon }) {
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' }); }
   catch (error) { onError(error); return null; }
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color('#94b2a9'); scene.fog = new THREE.FogExp2('#94b2a9', .0027);
+  scene.background = new THREE.Color(atlasSkyColor(false)); scene.fog = new THREE.Fog(atlasSkyColor(false),180,600);
   const camera = new THREE.PerspectiveCamera(39, 1, .1, 1800);
   const historicalCache = new Map(); let activeHistorical = null, environment = null, nightMode = false, activeView = 'overview';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -307,40 +305,36 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   renderer.domElement.setAttribute('aria-label', '聖經主題群島 3D 場景，可拖曳旋轉、滾輪縮放；所有主題與探索點亦可由清單操作。');
   renderer.domElement.tabIndex = 0; container.appendChild(renderer.domElement);
   const controls = new OrbitControls(camera, renderer.domElement);
+  controls.screenSpacePanning = false;
   controls.enableDamping = !reduced.matches; controls.dampingFactor = .065; controls.maxPolarAngle = Math.PI / 2.25;
-  controls.minDistance = 4; controls.maxDistance = 220; controls.target.set(5, 0, 6);
-  camera.position.set(51, 63, 82); controls.update();
+  controls.minDistance = 4; controls.maxDistance = atlasBounds.maxDistance; controls.target.set(0, 0, 4);
+  camera.position.set(57, 89, 112); controls.update();
   let walkSnapshot=null,walkObjective=null,interactionTarget=null,autoGoal=null,lastWalkUI=0,lastRepath=0;
   const walk=createWalkControls(camera,renderer.domElement,{onInteract:interactWalk,onStep:p=>audio?.footstep(p),onMessage:onWalkMessage,onManualInput:()=>{autoGoal=null;interactionTarget=null;},constrainMove:(from,to)=>activeHistorical?.npcSystem?.constrainPlayer(from,to)||to,navigationObstacles:()=>activeHistorical?.npcSystem?.agents.map(a=>({position:a.actor.state.position,radius:a.radius+.32+.07}))||[]});
   const ambient = new THREE.HemisphereLight('#fff3dc', '#557879', 2.6); scene.add(ambient);
   const sun = new THREE.DirectionalLight('#fff0cf', 4); sun.position.set(-18, 40, 24); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); sun.shadow.camera.left = -45; sun.shadow.camera.right = 45; sun.shadow.camera.top = 45; sun.shadow.camera.bottom = -45;
   sun.shadow.camera.far = 140; sun.shadow.normalBias = .075; sun.shadow.bias = -.0002; scene.add(sun);
-  const waterMaterial = new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 }, uDark: { value: 0 } },
-    vertexShader: 'varying vec3 vWorld; void main(){ vec4 p=modelMatrix*vec4(position,1.); vWorld=p.xyz; gl_Position=projectionMatrix*viewMatrix*p; }',
-    fragmentShader: `varying vec3 vWorld; uniform float uTime; uniform float uDark;
-      void main(){vec2 p=vWorld.xz; float wave=sin(p.x*2.3+sin(p.y*1.7)+uTime*.35)*sin(p.y*3.1-uTime*.22);
-      float broad=sin(p.x*.09+p.y*.07); vec3 base=mix(vec3(.18,.38,.38),vec3(.29,.52,.49),.5+.5*broad);
-      base+=smoothstep(.94,1.,wave)*.045; base*=1.-uDark*.55; float far=clamp(length(p)*.002,0.,.22);
-      gl_FragColor=vec4(mix(base,vec3(.58,.69,.65),far),1.); }`,
-  });
-  const water = new THREE.Mesh(new THREE.PlaneGeometry(600, 600), waterMaterial); water.rotation.x = -Math.PI / 2; water.position.y = -.13; scene.add(water);
+  const ocean=createAtlasEnvironment(themes);scene.add(ocean.water);
   const roots = new Map(), roofs = new Map(), boats = [], markers = new Map();
   const labelsLayer = document.createElement('div'); labelsLayer.className = 'world-labels'; container.appendChild(labelsLayer);
-  const labels = [];
+  const labels = [],regionLabels=[];
   for (const t of themes) {
     const root = makeIsland(t, scene); roots.set(t.id, root); roofs.set(t.id, makeScene(t, root, scene, boats));
     const el = document.createElement('button'); el.className = `island-label ${t.number <= 8 ? 'core' : 'minor'}`;
     el.innerHTML = `<span class="label-number">${String(t.number).padStart(2, '0')}</span><span>${t.name}</span>`;
+    el.onpointerenter=()=>setAtlasFocus(t.id);el.onfocus=()=>setAtlasFocus(t.id);el.onpointerleave=el.onblur=()=>setAtlasFocus(atlasRouteById.get(atlasRoute)?.from||null);
     el.setAttribute('aria-label', `探索${t.name}`); el.onclick = () => onSelect(t.id); labelsLayer.appendChild(el);
     labels.push({ el, id: t.id, pos: new THREE.Vector3(t.position[0], 1.6, t.position[1] + t.radius * .75) });
     const mg = new THREE.Group(); mg.visible = false; scene.add(mg); markers.set(t.id, mg);
   }
+  for(const region of atlasRegions){const el=document.createElement('span');el.className='atlas-region';el.textContent=region.name;labelsLayer.appendChild(el);regionLabels.push({el,pos:new THREE.Vector3(region.position[0],0,region.position[1]-12),id:region.id});}
+  const network=createAtlasNetwork(themes);scene.add(network.root);
+  for(const r of network.records.values())if(r.route.kind==='sea'){const b=makeBoat(scene,...[r.curve.getPoint(.5).x,r.curve.getPoint(.5).z],.62,r.route.from);b.userData.routeId=r.route.id;b.userData.routeOffset=boats.length*.173;boats.push(b);}
   // Tiny skerries and sailboats give the archipelago a human scale without competing with story islands.
   const decor = kit(scene), rand = random(577);
   for (let i = 0; i < 45; i++) {
-    const x = -35 + rand() * 80, z = -27 + rand() * 70;
+    const x = -53 + rand() * 112, z = -42 + rand() * 98;
     if (themes.some(t => Math.hypot(x - t.position[0], z - t.position[1]) < t.radius + 2)) continue;
     decor.part('sphere', x, -.55, z, 1 + rand() * 1.6, .5 + rand(), 1 + rand(), '#b5ad91');
     if (i % 3 === 0) decor.tree(x, z, .45);
@@ -354,9 +348,19 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   const hotspotLayer = document.createElement('div'); hotspotLayer.className = 'world-hotspots'; container.appendChild(hotspotLayer);
   let actorMarkers = [], emotes=[], conversationId = null;
   let hotspots = [], selected = null, selectedStop = null, cutaway = false, showLabels = true, showConnections = true, paused = reduced.matches;
+  let atlasJourney='all',atlasFocus=null,atlasRoute=null,atlasFlight=null;
   let visibleIds = new Set(themes.map(t => t.id)), fly = null, raf, elapsed = 0, last = 0, dirty = true, hidden = false;
   let frameSum = 0, frameCount = 0, lastAdapt = 0, pixelRatio = renderer.getPixelRatio();
   const v = new THREE.Vector3(), ray = new THREE.Raycaster(), pointer = new THREE.Vector2(); let down = null;
+  function updateNetwork(){network.update({journey:atlasJourney,focus:atlasFocus,routeId:atlasRoute,ids:visibleIds,enabled:showConnections});for(const b of boats)if(b.userData.routeId)b.visible=!!network.records.get(b.userData.routeId)?.group.visible;}
+  function setAtlasFocus(id){if(activeHistorical)return;atlasFocus=id;labels.forEach(l=>l.el.classList.toggle('route-related',!!id&&(l.id===id||[...network.records.values()].some(r=>(r.route.from===id||r.route.to===id)&&(r.route.from===l.id||r.route.to===l.id)))));updateNetwork();dirty=true;}
+  function cancelAtlasFlight(){if(!atlasFlight)return;atlasFlight=null;controls.enabled=true;container.dataset.travelling='false';onAtlasTravelEnd();}
+  function focusJourney(id){cancelAtlasFlight();atlasJourney=id;atlasRoute=null;setAtlasFocus(null);updateNetwork();const journey=atlasJourneys.find(j=>j.id===id)||atlasJourneys[0];
+    resize();const list=journey.stops.length?journey.stops.map(id=>themeById.get(id)):themes,framing=atlasFrame(list,camera.aspect);
+    focus(new THREE.Vector3(...framing.center),new THREE.Vector3(...framing.offset),1050,false,false);}
+  function travelAtlas(id,done){const route=atlasRouteById.get(id),curve=network.curve(id);if(!route||!curve)return false;cancelAtlasFlight();onAtlasInteract();atlasRoute=id;updateNetwork();
+    if(reduced.matches){done();return true;}
+    atlasFlight={curve,done,from:camera.position.clone(),oldTarget:controls.target.clone(),start:performance.now(),duration:2200+Math.min(1600,curve.getLength()*22)};controls.enabled=false;fly=null;container.dataset.travelling='true';return true;}
   function focus(target, offset, duration = 1050, preserveHeight = false, frame = true) {
     resize();
     const framedOffset = offset.clone().multiplyScalar(frame ? Math.max(1, .95 / camera.aspect) : 1);
@@ -368,6 +372,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
     for (const obj of [...connectionGroup.children]) { obj.geometry.dispose(); obj.material.dispose(); connectionGroup.remove(obj); }
   }
   function select(id) {
+    cancelAtlasFlight();
     if(walk.active)exitWalk();
     activeHistorical?.npcSystem?.suspend();
     activeHistorical?.converse(null);activeHistorical?.attend(null);conversationId=null;actorMarkers=[];emotes=[];
@@ -385,13 +390,14 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
       activeHistorical = historicalCache.get(id); activeHistorical.roof.visible = !cutaway; activeHistorical.setTime(nightMode);
     }
     camera.fov = activeHistorical ? 48 : 39; camera.updateProjectionMatrix();
-    controls.minDistance = activeHistorical ? 2 : 4; controls.maxDistance = activeHistorical ? activeHistorical.config.extent * 2 : 220;
+    controls.screenSpacePanning = !!activeHistorical;
+    controls.minDistance = activeHistorical ? 2 : 4; controls.maxDistance = activeHistorical ? activeHistorical.config.extent * 2 : atlasBounds.maxDistance;
     controls.maxPolarAngle = activeHistorical ? Math.PI / 2 - .018 : Math.PI / 2.25;
     renderer.toneMappingExposure = activeHistorical ? 1.02 : 1.35;
     renderer.shadowMap.needsUpdate = true;
     labelsLayer.hidden = !!activeHistorical;
     selectedRing.visible = !!selected && !activeHistorical;
-    if (!selected) { focus(new THREE.Vector3(5, 0, 6), new THREE.Vector3(48, 63, 77)); return; }
+    if (!selected) {focusJourney(atlasJourney);return;}
     const [x,z] = selected.position;
     selectedRing.position.set(x, TOP + .02, z); selectedRing.scale.setScalar(selected.radius + .45);
     if (activeHistorical) {
@@ -443,18 +449,23 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
     v.copy(item.pos).project(camera);
     const inView = v.z < 1 && v.z > -1 && Math.abs(v.x) < 1.1 && Math.abs(v.y) < 1.1;
     const distance = camera.position.distanceTo(item.pos);
-    const allowed = (isHotspot && (!activeHistorical || showLabels)) || (!isHotspot && showLabels && visibleIds.has(item.id) && (themeById.get(item.id).number <= 8 || distance < 45 || !selected));
+    const journeyStops=atlasJourneys.find(j=>j.id===atlasJourney)?.stops||[];
+    const inJourney=!!selected||!journeyStops.length||journeyStops.includes(item.id);
+    item.el.classList.toggle('journey-stop',journeyStops.includes(item.id));
+    const allowed = (isHotspot && (!activeHistorical || showLabels)) || (!isHotspot && showLabels && inJourney && visibleIds.has(item.id) && (themeById.get(item.id).number <= 8 || distance < 45 || !selected));
     item.el.hidden = !inView || !allowed || (isHotspot && distance > (activeHistorical ? activeHistorical.config.extent * 3 : 28) * Math.max(1, .95 / camera.aspect));
     if(walk.active){if(!item.actor||distance>4)item.el.hidden=true;}
     if (!item.el.hidden) {
-      item.el.style.transform = `translate(-50%, -50%) translate(${(v.x * .5 + .5) * width}px,${(-v.y * .5 + .5) * height}px)`;
+      const projectedX=(v.x*.5+.5)*width,halfWidth=item.el.offsetWidth/2+6;
+      const labelX=isHotspot?projectedX:THREE.MathUtils.clamp(projectedX,halfWidth,Math.max(halfWidth,width-halfWidth));
+      item.el.style.transform = `translate(-50%, -50%) translate(${labelX}px,${(-v.y * .5 + .5) * height}px)`;
       item.el.style.zIndex = String(item.id === selected?.id ? 2000 : Math.max(1, Math.round(1000 - distance)));
     }
   }
   function avoidLabelOverlap(items, activeId) {
     const placed = [];
     const ranked = [...items].sort((a,b) => {
-      const priority = item => item.id === activeId ? 0 : (themeById.get(item.id)?.number || 0) <= 8 ? 1 : 2;
+      const priority = item => item.id === activeId ? 0 : item.el.classList.contains('route-related')||item.el.classList.contains('journey-stop') ? 1 : (themeById.get(item.id)?.number || 0) <= 8 ? 2 : 3;
       return priority(a) - priority(b);
     });
     for (const item of ranked) {
@@ -475,10 +486,12 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
       if (activeHistorical && ['human','person'].includes(activeView)) off.y = camera.position.y - controls.target.y;
       camera.position.copy(controls.target).add(off);
     }
-    renderer.setSize(width, height, false); camera.aspect = width / height; camera.updateProjectionMatrix(); dirty = true;
+    renderer.setSize(width, height, false); camera.aspect = width / height; camera.updateProjectionMatrix();
+    if(!activeHistorical)controls.maxDistance=atlasBounds.maxDistance*Math.max(1,.95/camera.aspect);
+    dirty = true;
   }
   const observer = new ResizeObserver(resize); observer.observe(container); resize();
-  const onDown = e => { down = { x: e.clientX, y: e.clientY }; fly = null; };
+  const onDown = e => {cancelAtlasFlight();if(!activeHistorical)onAtlasInteract();down = { x: e.clientX, y: e.clientY }; fly = null; };
   const onUp = e => {
     if (!down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) { down = null; return; } down = null;
     if(walk.active&&walk.dragged)return;
@@ -511,16 +524,16 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
         const nearest = selected.stops.map(s => ({ s, d: hit.point.distanceTo(new THREE.Vector3(selected.position[0] + s.position[0], hit.point.y, selected.position[1] + s.position[2])) })).sort((a,b) => a.d - b.d)[0];
         if (nearest.d < 1.2) onStop(nearest.s.id);
       }
-    }
+    }else{const routeId=network.pick(ray);if(routeId){atlasRoute=routeId;updateNetwork();onRoute(routeId);dirty=true;}}
   };
   const onKey = e => {
-    if(walk.active)return;
+    if(walk.active)return;cancelAtlasFlight();
     const angles = { ArrowLeft: .13, ArrowRight: -.13 }; if (!(e.key in angles)) return;
     e.preventDefault(); fly = null; const off = camera.position.clone().sub(controls.target).applyAxisAngle(new THREE.Vector3(0,1,0), angles[e.key]); camera.position.copy(controls.target).add(off); controls.update(); dirty = true;
   };
   renderer.domElement.addEventListener('pointerdown', onDown); renderer.domElement.addEventListener('pointerup', onUp); renderer.domElement.addEventListener('keydown', onKey);
   controls.addEventListener('change', () => dirty = true);
-  const onVisibility = () => { hidden = document.hidden;audio?.setHidden(hidden);last = performance.now();dirty = true; };
+  const onVisibility = () => { hidden = document.hidden;if(hidden)cancelAtlasFlight();audio?.setHidden(hidden);last = performance.now();dirty = true; };
   document.addEventListener('visibilitychange', onVisibility);
   function startWalk() {
     if(!activeHistorical?.walkModel)return false;
@@ -566,10 +579,11 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   function animate(now) {
     raf = requestAnimationFrame(animate); if (hidden) return;
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
-    if (!paused && !activeHistorical) { elapsed += dt; waterMaterial.uniforms.uTime.value = elapsed; dirty = true; boats.forEach((b,i) => { b.rotation.z = Math.sin(elapsed * .8 + i) * .025; b.rotation.x = Math.cos(elapsed * .6 + i) * .02; }); }
+    if(!activeHistorical){if(!paused){elapsed+=dt;dirty=true;}ocean.update(elapsed,nightMode);boats.forEach((b,i)=>{if(b.userData.routeId){const curve=network.curve(b.userData.routeId),t=(elapsed*.014+b.userData.routeOffset)%1,p=curve.getPoint(t),d=curve.getTangent(t);b.position.set(p.x,.15,p.z);b.rotation.y=Math.atan2(d.x,d.z);}b.rotation.z=Math.sin(elapsed*.8+i)*.025;b.rotation.x=Math.cos(elapsed*.6+i)*.02;});}
     if(activeHistorical && !paused) {
       activeHistorical.animate(dt,camera.position.toArray(),walk.active?walk.position:null);dirty=true;
     }
+    if(atlasFlight){const flight=atlasFlight,t=Math.min(1,(now-flight.start)/flight.duration),ease=t*t*(3-2*t),p=flight.curve.getPoint(ease),dest=p.clone().add(new THREE.Vector3(9,13,14)),blend=Math.min(1,t*4);camera.position.lerpVectors(flight.from,dest,blend);controls.target.lerpVectors(flight.oldTarget,p,blend);camera.lookAt(controls.target);dirty=true;if(t===1){const done=flight.done;cancelAtlasFlight();done();}}
     if (fly) {
       const t = fly.duration ? Math.min(1, (now - fly.start) / fly.duration) : 1, ease = 1 - (1 - t) ** 3;
       camera.position.lerpVectors(fly.from, fly.to, ease); controls.target.lerpVectors(fly.old, fly.target, ease); if (t === 1) fly = null; dirty = true;
@@ -587,7 +601,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
         else if(target&&autoGoal.type==='person')walk.navigate(target);
       }
       if(now-lastWalkUI>220){lastWalkUI=now;const target=goalPosition(walkObjective),p=walk.position;const close=nearby();activeHistorical.attend(close?.type==='person'?close.id:null);onWalkUpdate?.({position:p,locomotion:walk.groundState,nearby:close,navigating:walk.navigating,distance:target?Math.hypot(target[0]-p[0],target[2]-p[2]):null});}
-    } else controls.update();
+    }else if(!atlasFlight){controls.update();if(!activeHistorical){const before=controls.target.clone();controls.target.x=THREE.MathUtils.clamp(controls.target.x,atlasBounds.x1,atlasBounds.x2);controls.target.y=0;controls.target.z=THREE.MathUtils.clamp(controls.target.z,atlasBounds.z1,atlasBounds.z2);camera.position.add(controls.target.clone().sub(before));container.dataset.atlasTarget=controls.target.toArray().map(n=>n.toFixed(2)).join(',');}}
     if(activeHistorical?.exploration)audio?.update(camera,activeHistorical?.people||[],now);
     if(activeHistorical && !walk.active) { const floor=activeHistorical.groundHeight(camera.position.x,camera.position.z)+.3; if(camera.position.y<floor) {camera.position.y=floor;dirty=true;} }
     // Lower DPR only after sustained slow frames. No promise of a particular frame rate.
@@ -599,7 +613,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
     if (dirty) {
       renderer.render(activeHistorical?.scene || scene, camera);
       const w = container.clientWidth, h = container.clientHeight;
-      if (!activeHistorical) labels.forEach(l => project(l, w, h)); hotspots.forEach(l => project(l, w, h, true));
+      if(!activeHistorical){labels.forEach(l=>project(l,w,h));regionLabels.forEach(l=>{v.copy(l.pos).project(camera);l.el.hidden=!showLabels||!!selected||atlasJourney!=='all'||camera.position.distanceTo(l.pos)<65||Math.abs(v.x)>1||Math.abs(v.y)>1||v.z>1;if(!l.el.hidden)l.el.style.transform=`translate(-50%,-50%) translate(${(v.x*.5+.5)*w}px,${(-v.y*.5+.5)*h}px)`;});} hotspots.forEach(l => project(l, w, h, true));
       actorMarkers.forEach(l=>{const p=l.actor.state.position;l.pos.set(p[0],p[1]+2.15,p[2]);project(l,w,h,true);l.el.classList.toggle('active',l.id===conversationId);const a=l.actor.state.behavior;if(a){l.el.dataset.behavior=a.held?'held':a.state;l.el.dataset.poi=a.poi?.id||'';l.el.dataset.position=p.map(n=>n.toFixed(3)).join(',');}});
       emotes.forEach(({el,agent:a})=>{
         const p=a.actor.state.position;v.set(p[0],p[1]+2.05*(a.actor.scale||1),p[2]);const d=camera.position.distanceTo(v);v.project(camera);
@@ -609,9 +623,12 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
       avoidLabelOverlap(labels, selected?.id); avoidLabelOverlap([...actorMarkers,...hotspots], conversationId || selectedStop); dirty = false;
     }
   }
+  focusJourney(atlasJourney);
   raf = requestAnimationFrame(animate); onReady();
   return {
-    select, focusStop,
+    select, focusStop,travelAtlas,
+    setAtlasJourney(id){focusJourney(id);dirty=true;},
+    setAtlasRoute(id){cancelAtlasFlight();atlasRoute=id;const r=atlasRouteById.get(id);setAtlasFocus(r?.from||null);updateNetwork();dirty=true;},
     startWalk,exitWalk,canTalk,canInspect,
     personPosition(id){return activeHistorical?.people.find(p=>p.id===id)?.state.position;},
     setWalkObjective(target){walkObjective=target;},
@@ -641,18 +658,18 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
     home() { select(null); },
     setCutaway(value) { cutaway = value; if (activeHistorical) activeHistorical.roof.visible = !value; for (const [id, roof] of roofs) roof.visible = !(cutaway && selected?.id === id); renderer.shadowMap.needsUpdate = true; dirty = true; },
     setLabels(value) { showLabels = value; dirty = true; },
-    setConnections(value) { showConnections = value; connectionGroup.visible = value; dirty = true; },
+    setConnections(value) { showConnections = value; connectionGroup.visible = value; updateNetwork();dirty = true; },
     setPaused(value) { paused = value; dirty = true; },
     setTime(night) {
       nightMode = night; activeHistorical?.setTime(night);
       ambient.intensity = night ? 1.35 : 2.6; sun.intensity = night ? 1.2 : 4;
-      sun.color.set(night ? '#a3b9e2' : '#fff0cf'); scene.background.set(night ? '#3c5d64' : '#94b2a9'); scene.fog.color.copy(scene.background);
-      waterMaterial.uniforms.uDark.value = night ? 1 : 0; renderer.shadowMap.needsUpdate = true; dirty = true;
+      sun.color.set(night ? '#a3b9e2' : '#fff0cf'); scene.background.set(atlasSkyColor(night)); scene.fog.color.copy(scene.background);
+      ocean.update(elapsed,night); renderer.shadowMap.needsUpdate = true; dirty = true;
     },
-    setVisible(ids) { visibleIds = new Set(ids); for (const [id, root] of roots) root.visible = visibleIds.has(id); boats.forEach(b => { const id = b.children.find(c => c.userData.themeId)?.userData.themeId; b.visible = !id || visibleIds.has(id); }); dirty = true; },
-    zoom(amount) { fly = null; const off = camera.position.clone().sub(controls.target); const distance = THREE.MathUtils.clamp(off.length() * amount, controls.minDistance, controls.maxDistance); camera.position.copy(controls.target).add(off.setLength(distance)); controls.update(); dirty = true; },
-    topView() { if (activeHistorical) { activeView='plan'; controls.maxPolarAngle=Math.PI/2-.018; const c = activeHistorical.config; focus(new THREE.Vector3(...c.target),new THREE.Vector3(.1,c.plan,.1)); return; } const target = selected ? new THREE.Vector3(selected.position[0], .2, selected.position[1]) : new THREE.Vector3(3,0,5); focus(target, new THREE.Vector3(.1, selected ? 18 : 95, 4)); },
+    setVisible(ids) {cancelAtlasFlight();visibleIds = new Set(ids); for (const [id, root] of roots) root.visible = visibleIds.has(id); boats.forEach(b => { const id = b.children.find(c => c.userData.themeId)?.userData.themeId; b.visible = !id || visibleIds.has(id); }); updateNetwork();dirty = true; },
+    zoom(amount) {cancelAtlasFlight();if(!activeHistorical)onAtlasInteract();fly = null; const off = camera.position.clone().sub(controls.target); const distance = THREE.MathUtils.clamp(off.length() * amount, controls.minDistance, controls.maxDistance); camera.position.copy(controls.target).add(off.setLength(distance)); controls.update(); dirty = true; },
+    topView() { if (activeHistorical) { activeView='plan'; controls.maxPolarAngle=Math.PI/2-.018; const c = activeHistorical.config; focus(new THREE.Vector3(...c.target),new THREE.Vector3(.1,c.plan,.1)); return; } const target=selected?new THREE.Vector3(selected.position[0],.2,selected.position[1]):new THREE.Vector3(0,0,4);focus(target,new THREE.Vector3(.1,selected?18:120,4)); },
     getStats() { return { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, pixelRatio, selected: selected?.id, stop: selectedStop, historical: !!activeHistorical }; },
-    dispose() { cancelAnimationFrame(raf);walk.dispose();observer.disconnect();controls.dispose(); document.removeEventListener('visibilitychange', onVisibility); historicalCache.forEach(s => s.dispose()); environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
+    dispose() { cancelAnimationFrame(raf);walk.dispose();observer.disconnect();controls.dispose(); document.removeEventListener('visibilitychange', onVisibility); historicalCache.forEach(s => s.dispose());ocean.dispose();network.dispose();environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
   };
 }
