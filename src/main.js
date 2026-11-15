@@ -9,19 +9,25 @@ import { peopleMarkup } from './people-ui.js';
 import {walkEntry,walkMarkup} from './walk-ui.js';
 import {freshMission,missionEvent,missionStage,missionSteps,vesselDefinitions} from './walk-data.js';
 import {createSceneAudio} from './scene-audio.js';
+import { readingModes, learningIslands } from './learning-data.js';
+import { readLearning, writeLearning, learningEvent, learningTasks, personForMode } from './learning-model.js';
+import { learningPanel, modeStatus, currentLearning, learningKey, learningReadText, learningSourceModal, learningComparison } from './learning-ui.js';
+import { createReadingSpeech } from './reading-speech.js';
 
 let storage; try { storage = window.localStorage; } catch { storage = null; }
 const state = { selected: null, stop: null, query: '', era: 'all', testament: 'all', mode: 'general',
   cutaway: false, labels: true, connections: true, paused: matchMedia('(prefers-reduced-motion: reduce)').matches,
   night: false, tour: false, visitedOnly: false, progress: readProgress(storage), worldReady: false };
+state.learning=readLearning(storage);state.mode=state.learning.mode;state.learningCursor={};state.learningFeedback=null;
 state.actor=null;state.dialogue=[];state.walking=false;state.soundEnabled=false;
 state.mission=freshMission();
 try{const saved=JSON.parse(storage?.getItem('bible-island:jerusalem-walk:v1')||'null');if(saved){state.mission={listen:saved.listen===true,observed:Array.isArray(saved.observed)?[...new Set(saved.observed.filter(id=>vesselDefinitions.some(v=>v.id===id)))]:[],ask:saved.ask===true,complete:false};state.mission.complete=saved.complete===true&&missionStage(state.mission)===3;}}catch{}
 let world = null, restoreFocus = null, toastTimer,modalCleanup=null,feedbackTimer;
 const sceneAudio=createSceneAudio(updateSoundState);
+const readingSpeech=createReadingSpeech(updateReadingSpeech);
 const $ = s => document.querySelector(s);
 const number = n => String(n).padStart(2, '0');
-const modes = { child: '親子探索', general: '一般閱讀', study: '深入研讀' };
+const modes = Object.fromEntries(Object.entries(readingModes).map(([id, mode])=>[id,mode.name]));
 const oldNew = t => t.testament === 'old' ? '舊約' : t.testament === 'new' ? '新約' : '時代背景';
 
 $('#app').innerHTML = `
@@ -121,13 +127,15 @@ function selectStop(id, { focus = true } = {}) {
   const t = themeById.get(state.selected), s = t?.stops.find(s => s.id === id); if (!s) return;
   if(state.walking)exitWalk(false);
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',false));
-  endConversation(false);state.stop = id; state.progress = markStop(state.progress, t.id, id); persist(); renderDetail(); listThemes();
+  endConversation(false);state.stop = id;
+  if(learningIslands[t.id]){if(learningTasks(t.id,state.mode).some(task=>task.id===id))state.learningCursor[learningKey(state)]=id;recordLearning({type:'observe',id});}
+  state.progress = markStop(state.progress, t.id, id); persist(); renderDetail(); listThemes();
   world?.focusStop(id);
   const interior = ['tabernacle', 'solomon', 'herod'].includes(t.id) && ['lampstand', 'incense', 'ark', 'sanctuary', 'temple'].includes(id) || t.id==='exodus' && id==='passover' || t.id==='jerusalem' && id==='house';
   if (interior && !state.cutaway) {
     state.cutaway = true; world?.setCutaway(true); updateCutawayButton();
   }
-  if (focus) $('#stop-heading')?.focus({ preventScroll: true });
+  if (focus) $(learningIslands[t.id]?'#learning-heading':'#stop-heading')?.focus({ preventScroll: true });
 }
 function updateCutawayButton() {
   const button = $('#cutaway-button'); if (!button) return; button.setAttribute('aria-pressed', state.cutaway); button.classList.toggle('active', state.cutaway);
@@ -142,20 +150,20 @@ function renderDetail() {
   const index = current ? t.stops.indexOf(current) : -1;
   $('#detail').innerHTML = `
     <div class="detail-sticky"><div class="detail-top"><span class="eyebrow">ISLAND ${number(t.number)} <i>/</i> ${oldNew(t)}</span><div><button class="icon-button ${saved ? 'saved' : ''}" id="save-theme" aria-label="${saved ? '取消收藏' : '收藏主題'}" aria-pressed="${saved}">${icon('bookmark', 18)}</button><button class="icon-button" id="close-detail" aria-label="${state.walking?'結束交談':'返回群島全景'}">${icon('close', 20)}</button></div></div>
-    <p class="detail-english">${t.english}</p><h2>${t.name}</h2><p class="detail-subtitle">${t.subtitle}</p><div class="detail-meta"><span>${icon('clock', 13)}${t.period}</span><span>${icon('compass', 13)}${t.stops.length} 個探索點</span></div></div>
-    <div class="detail-scroll">${t.id==='jerusalem'&&!state.walking?walkEntry(state.worldReady):''}${peopleMarkup(state)}${sceneInfo ? `<section class="reconstruction-card"><span>五座場景 · 復原預覽</span><strong>${sceneInfo.scale}</strong><button id="scene-evidence">查看尺度與復原取捨 ${icon('arrow',13)}</button></section>` : ''}<p class="detail-intro">${t.intro}</p>${scriptureReading(t.book, t.reference)}
-    <div class="detail-actions"><button class="primary-button" id="start-tour">${icon(state.tour ? 'compass' : 'play', 15)}${state.tour ? '重新開始導覽' : '跟著導覽走一趟'}<small>約 ${t.stops.length} 分鐘</small></button>${canCut ? '<button class="secondary-button" id="cutaway-button" aria-pressed="false"></button>' : ''}</div>
+    <p class="detail-english">${t.english}</p><h2>${t.name}</h2><p class="detail-subtitle">${t.subtitle}</p><div class="detail-meta"><span>${icon('clock', 13)}${t.period}</span><span>${icon('compass', 13)}${t.stops.length} 個探索點</span></div>${modeStatus(state.mode)}</div>
+    <div class="detail-scroll">${learningPanel(state,t)}${t.id==='jerusalem'&&!state.walking?walkEntry(state.worldReady):''}${peopleMarkup(state)}${sceneInfo ? `<section class="reconstruction-card"><span>五座場景 · 復原預覽</span><strong>${sceneInfo.scale}</strong><button id="scene-evidence">查看尺度與復原取捨 ${icon('arrow',13)}</button></section>` : ''}<p class="detail-intro">${t.intro}</p>${scriptureReading(t.book, t.reference)}
+    <div class="detail-actions"><button class="primary-button" id="start-tour">${icon(state.tour ? 'compass' : 'play', 15)}${learningIslands[t.id]?readingModes[state.mode].action:state.tour ? '重新開始導覽' : '跟著導覽走一趟'}<small>${learningIslands[t.id]?(state.mode==='general'?`${t.stops.length} 幕故事`:state.mode==='child'?'3 個觀察任務':'3 項資料對讀'):`約 ${t.stops.length} 分鐘`}</small></button>${canCut ? '<button class="secondary-button" id="cutaway-button" aria-pressed="false"></button>' : ''}</div>
     ${current ? `<section class="stop-card" aria-labelledby="stop-heading"><div class="stop-card-top"><span>${state.tour ? '跟著導覽' : '正在探索'} ${number(index + 1)} / ${number(t.stops.length)}</span><button id="close-stop" aria-label="收合探索點">${icon('close', 15)}</button></div><h3 id="stop-heading" tabindex="-1">${icon(current.icon, 21)}${current.name}</h3><p class="stop-question">${current.question}</p><p>${state.mode === 'child' ? current.child : current.summary}</p>${state.mode === 'study' ? `<div class="study-note"><span>進一步觀察</span><p>${current.study}</p></div>` : ''}${scriptureReferences(current.reference)}<button class="evidence-chip" id="stop-evidence">${icon('info', 12)}${evidenceLabels[current.evidence]}</button><div class="tour-navigation"><button id="previous-stop" ${index === 0 ? 'disabled' : ''}>上一站</button><span>${index + 1} / ${t.stops.length}</span><button id="next-stop">${index === t.stops.length - 1 ? '完成探索' : '下一站'}${icon(index === t.stops.length - 1 ? 'check' : 'arrow', 15)}</button></div></section>` : `<div class="guiding-question"><span>帶著一個問題出發</span><p>${t.question}</p></div>`}
     <div class="section-heading"><h3>這座島的探索點</h3><span>${done} / ${t.stops.length}</span></div><div class="stop-progress"><i style="width:${done / t.stops.length * 100}%"></i></div><div class="stop-list">${t.stops.map((s,i) => `<button data-stop="${s.id}" class="stop-row ${s.id === state.stop ? 'active' : ''}"><span>${state.progress.stops.includes(`${t.id}/${s.id}`) ? icon('check', 13) : number(i+1)}</span><strong>${s.name}<small>${s.reference}</small></strong>${icon('chevron', 14)}</button>`).join('')}</div>
     <div class="section-heading related-heading"><h3>從這裡，繼續閱讀</h3>${icon('route', 16)}</div><div class="related-list">${t.connections.map(c => { const other = themeById.get(c.id); return `<button class="related-row" data-related="${c.id}"><span class="related-number">${number(other.number)}</span><span><small>${c.type}</small><strong>${other.name}</strong></span>${icon('arrow', 16)}</button>`; }).join('')}</div>
     <button class="context-button" id="context-button">${icon('info', 15)}這個場景如何復原？${icon('chevron', 13)}</button><p class="detail-footnote">觀察場景 · 回到經文 · 連起故事</p></div>`;
-  bindPeople();
+  bindPeople();bindLearning();
   $('#enter-walk-sound')?.addEventListener('click',()=>startWalk(true));$('#enter-walk-quiet')?.addEventListener('click',()=>startWalk(false));
   updateCutawayButton();
   $('#scene-evidence')?.addEventListener('click',()=>openContext(t));
   $('#save-theme').onclick = () => { state.progress.saved = saved ? state.progress.saved.filter(id => id !== t.id) : [...state.progress.saved, t.id]; persist(); renderDetail(); toast(saved ? '已取消收藏' : `已收藏「${t.name}」`); };
   $('#close-detail').onclick = ()=>state.walking?endConversation():overview();
-  $('#start-tour').onclick = () => { state.tour = true; selectStop(t.stops[0].id); };
+  $('#start-tour').onclick = () => { if(learningIslands[t.id])beginLearning();else{state.tour = true; selectStop(t.stops[0].id);} };
   $('#cutaway-button')?.addEventListener('click', () => { state.cutaway = !state.cutaway; world?.setCutaway(state.cutaway); updateCutawayButton(); });
   document.querySelectorAll('[data-stop]').forEach(b => b.onclick = () => selectStop(b.dataset.stop));
   document.querySelectorAll('[data-related]').forEach(b => b.onclick = () => selectTheme(b.dataset.related));
@@ -169,7 +177,7 @@ function renderDetail() {
     };
     $('#stop-evidence').onclick = () => openContext(t, current);
     // Keep the current learning stop visible after changing reading modes or moving between steps.
-    const scroller=$('#detail .detail-scroll'),card=$('.stop-card');
+    const scroller=$('#detail .detail-scroll'),card=$(learningIslands[t.id]?'.learning-panel':'.stop-card');
     if(card)scroller.scrollTop+=card.getBoundingClientRect().top-scroller.getBoundingClientRect().top-10;
   }
 }
@@ -177,6 +185,7 @@ function renderDetail() {
 function selectActor(id) {
   if(!personById(state.selected,id))return;
   if(state.walking&&!world?.canTalk(id)){walkFeedback('再靠近角色一些，就能開始交談。');return;}
+  readingSpeech.stop();sceneAudio.stopVoice();
   state.actor=id;state.dialogue=[];state.stop=null;state.tour=false;
   document.body.classList.add('in-conversation');
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',false));
@@ -184,15 +193,16 @@ function selectActor(id) {
   if(state.selected==='jerusalem')playVoice('greeting');
 }
 function endConversation(render=true) {
-  sceneAudio.stopVoice();const previous=state.actor;state.actor=null;state.dialogue=[];document.body.classList.remove('in-conversation');world?.converse(null);
+  readingSpeech.stop();sceneAudio.stopVoice();const previous=state.actor;state.actor=null;state.dialogue=[];document.body.classList.remove('in-conversation');world?.converse(null);
   if(render&&state.selected){renderDetail();if(state.walking)$('#stage canvas')?.focus({preventScroll:true});else document.querySelector(`[data-person="${previous}"]`)?.focus({preventScroll:true});}
 }
 function bindPeople() {
   document.querySelectorAll('[data-person]').forEach(b=>b.onclick=()=>selectActor(b.dataset.person));
-  const actor=personById(state.selected,state.actor);if(!actor)return;
+  const actor=personForMode(personById(state.selected,state.actor),state.selected,state.mode);if(!actor)return;
   function answer(topicId,followup=false) {
     const topic=actor.topics.find(t=>t.id===topicId);if(!topic)return;
     const line=followup?topic.followup:topic;if(!line)return;
+    readingSpeech.stop();
     state.dialogue.push({...topic,...line,topic:topicId,isFollowup:followup});
     state.dialogue=state.dialogue.slice(-8);
     recordMission({type:'answer',person:actor.id,topic:topicId,followup});
@@ -209,11 +219,89 @@ function bindPeople() {
   $('#restart-conversation').onclick=()=>{state.dialogue=[];renderDetail();$('#conversation-heading')?.focus({preventScroll:true});if(state.selected==='jerusalem')playVoice('greeting');};
   $('#replay-voice')?.addEventListener('click',async()=>{if(!sceneAudio.enabled)await sceneAudio.enable();const last=state.dialogue.at(-1);playVoice(last?last.topic+(last.isFollowup?'-followup':''):'greeting');});
   $('#stop-voice')?.addEventListener('click',()=>sceneAudio.stopVoice());
+  document.querySelector('[data-learning-return]')?.addEventListener('click',returnToLearning);
+  document.querySelector('[data-read-character]')?.addEventListener('click',()=>{sceneAudio.stopVoice();readingSpeech.read(state.dialogue.at(-1)?.answer||actor.greeting);});
+  $('#stop-learning-speech')?.addEventListener('click',()=>readingSpeech.stop());
+  document.querySelectorAll('[data-study-stop]').forEach(b=>b.onclick=()=>{const tasks=learningTasks(state.selected,'study');state.learningCursor[learningKey(state)]=(tasks.find(t=>t.stop===b.dataset.studyStop)||tasks[0]).id;returnToLearning();});
+}
+
+function returnToLearning() {
+  if(state.walking)exitWalk(false);else endConversation(false);
+  renderDetail();$('#detail .detail-scroll').scrollTop=0;$('#learning-heading')?.focus({preventScroll:true});
 }
 
 function walkFeedback(text) {
   const el=$('#walk-feedback');if(!el){if(text)toast(text);return;}el.textContent=text;el.classList.add('show');clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>el.classList.remove('show'),4000);
 }
+
+function recordLearning(event) {
+  const result=learningEvent(state.learning,state.selected,state.mode,event);
+  state.learning=result.data;
+  if(result.feedback)state.learningFeedback={...result.feedback,key:learningKey(state),id:event.id};
+  writeLearning(storage,state.learning);return result.feedback;
+}
+function refreshLearning(focus=false) {
+  const panel=$('.learning-panel'),theme=themeById.get(state.selected);if(!panel||!theme)return;
+  panel.outerHTML=learningPanel(state,theme);bindLearning();
+  if(focus)$('#learning-heading')?.focus({preventScroll:true});
+}
+function beginLearning() {
+  const {task}=currentLearning(state);if(!task)return;
+  state.learningCursor[learningKey(state)]=task.id;selectStop(task.stop);
+}
+function bindLearning() {
+  document.querySelectorAll('[data-learning-island]').forEach(b=>b.onclick=()=>selectTheme(b.dataset.learningIsland));
+  if(!learningIslands[state.selected]||state.actor)return;
+  const current=()=>currentLearning(state);
+  document.querySelectorAll('[data-learning-step]').forEach(b=>b.onclick=()=>{readingSpeech.stop();state.learningCursor[learningKey(state)]=b.dataset.learningStep;state.learningFeedback=null;refreshLearning(true);});
+  document.querySelectorAll('[data-learning-go]').forEach(b=>b.onclick=()=>selectStop(b.dataset.learningGo));
+  document.querySelectorAll('[data-learning-person]').forEach(b=>b.onclick=()=>selectActor(b.dataset.learningPerson));
+  document.querySelectorAll('[data-learning-answer]').forEach(b=>b.onclick=()=>{
+    readingSpeech.stop();const {task}=current();state.learningCursor[learningKey(state)]=task.id;
+    recordLearning({type:'answer',id:task.id,choice:state.mode==='child'?Number(b.dataset.learningAnswer):b.dataset.learningAnswer});refreshLearning();
+    const feedback=$('.learning-feedback,.learning-success');if(feedback){feedback.setAttribute('tabindex','-1');feedback.focus({preventScroll:true});feedback.scrollIntoView({block:'nearest'});}
+  });
+  function nextTask() {
+    const {tasks,record,index}=current();const next=tasks.slice(index+1).concat(tasks.slice(0,index)).find(t=>!record.completed.includes(t.id));
+    if(!next){refreshLearning(true);return;}state.learningCursor[learningKey(state)]=next.id;state.learningFeedback=null;selectStop(next.stop);
+  }
+  document.querySelector('[data-learning-next]')?.addEventListener('click',nextTask);
+  document.querySelector('[data-learning-read]')?.addEventListener('click',()=>{const feedback=recordLearning({type:'read',id:current().task.id});if(feedback?.kind==='correct')nextTask();else refreshLearning();});
+  document.querySelector('[data-learning-source]')?.addEventListener('click',()=>{
+    recordLearning({type:'inspect',id:current().task.id});refreshLearning();document.querySelector('[data-learning-source]')?.focus({preventScroll:true});openModal(learningSourceModal(state));
+  });
+  document.querySelector('[data-learning-compare]')?.addEventListener('click',()=>openModal(learningComparison(state)));
+  document.querySelectorAll('[data-learning-view]').forEach(b=>b.onclick=()=>{
+    if(state.walking)exitWalk(false);world?.sceneView(b.dataset.learningView);
+    document.querySelectorAll('[data-view]').forEach(other=>other.setAttribute('aria-pressed',other.dataset.view===b.dataset.learningView));
+  });
+  const note=$('#learning-note');if(note)note.oninput=()=>{
+    const result=learningEvent(state.learning,state.selected,state.mode,{type:'note',text:note.value});state.learning=result.data;
+    $('#learning-note-status').textContent=writeLearning(storage,state.learning)?'已保存在目前瀏覽器。':'目前只暫存在這個頁面，瀏覽器儲存空間無法使用。';
+  };
+  document.querySelector('[data-read-learning]')?.addEventListener('click',()=>{sceneAudio.stopVoice();readingSpeech.read(learningReadText(state));});
+  $('#stop-learning-speech')?.addEventListener('click',()=>readingSpeech.stop());
+}
+function updateReadingSpeech(info) {
+  document.querySelectorAll('#learning-speech-status,[data-reading-status]').forEach(el=>el.textContent=info.message);
+  const button=$('#stop-learning-speech');if(button)button.hidden=info.status!=='speaking';
+}
+function updateModePresentation() {
+  const mode=readingModes[state.mode];document.body.dataset.readingMode=state.mode;$('#reading-mode').value=state.mode;
+  $('#map-intro>p').textContent=mode.description;
+  $('#start-exploring').innerHTML=`${mode.action} ${icon('arrow',19)}`;
+  $('#journey-card').innerHTML=`<span class="journey-art">${icon(mode.icon,25)}</span><div><span class="eyebrow">${mode.name} · 摩西會幕</span><strong>${mode.title}</strong><small>${mode.steps}</small></div><button id="first-island" aria-label="${mode.action}：摩西會幕">${icon('arrow',21)}</button>`;
+  $('#first-island').onclick=()=>selectTheme('tabernacle');
+}
+function changeReadingMode(mode) {
+  if(!Object.hasOwn(readingModes,mode))return;
+  if(state.walking)exitWalk(false);endConversation(false);state.stop=null;state.tour=false;
+  state.mode=mode;state.learning={...state.learning,mode};state.learningFeedback=null;writeLearning(storage,state.learning);
+  updateModePresentation();renderDetail();if($('#detail .detail-scroll'))$('#detail .detail-scroll').scrollTop=0;
+  toast(`${modes[mode]}：${readingModes[mode].title}`);
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)readingSpeech.stop();});
+window.addEventListener('pagehide',()=>readingSpeech.stop());
 function updateSoundState(info) {
   state.soundEnabled=info.enabled;state.audioVolumes=info.volume;
   const button=$('#walk-audio-toggle');if(button){button.setAttribute('aria-pressed',info.enabled);button.setAttribute('aria-label',info.enabled?'關閉聲音':'開啟聲音');button.innerHTML=`${icon('volume',16)}<span>${info.enabled?'聲音開啟':'開啟聲音'}</span>`;}
@@ -223,11 +311,11 @@ function updateSoundState(info) {
   if(info.status==='unavailable')walkFeedback(info.text);
 }
 function playVoice(key) {
-  if(state.selected!=='jerusalem'||!state.actor)return;
+  if(state.mode==='child'||state.selected!=='jerusalem'||!state.actor)return;
   sceneAudio.speak(state.actor,key,world?.personPosition(state.actor)||personById('jerusalem',state.actor).position);
 }
 function recordMission(event) {
-  if(!state.walking)return;const before=missionStage(state.mission);state.mission=missionEvent(state.mission,event);
+  if(!state.walking||state.mode!=='general')return;const before=missionStage(state.mission);state.mission=missionEvent(state.mission,event);
   try{storage?.setItem('bible-island:jerusalem-walk:v1',JSON.stringify(state.mission));}catch{}
   if(missionStage(state.mission)!==before){renderWalk();walkFeedback(missionStage(state.mission)===4?'旅程完成，閱讀札記已保存在這個瀏覽器。':'已記下觀察，下一段旅程已更新。');}
 }
@@ -245,7 +333,8 @@ function exitWalk(render=true) {
 }
 function renderWalk() {
   if(!state.walking)return;const root=$('#walk-interface');root.hidden=false;root.innerHTML=walkMarkup(state);
-  const step=missionSteps[missionStage(state.mission)];world?.setWalkObjective(step?.target||null);
+  const step=missionSteps[missionStage(state.mission)];world?.setWalkObjective(state.mode==='general'?step?.target||null:null);
+  $('#walk-learning-return')?.addEventListener('click',returnToLearning);
   $('#walk-exit').onclick=()=>exitWalk();$('#walk-look').onclick=()=>world?.lockWalk();
   $('#walk-audio-toggle').onclick=()=>sceneAudio.enable(!sceneAudio.enabled);
   $('#environment-volume').value=(state.audioVolumes?.environment??.6)*100;$('#voice-volume').value=(state.audioVolumes?.voice??.9)*100;
@@ -290,7 +379,7 @@ function showWalkJournal() {
 }
 
 function openModal(content) {
-  modalCleanup?.();modalCleanup=null;sceneAudio.stopVoice();world?.blockWalk(true);
+  modalCleanup?.();modalCleanup=null;readingSpeech.stop();sceneAudio.stopVoice();world?.blockWalk(true);
   restoreFocus = document.activeElement; $('#modal-content').innerHTML = content;
   if (!$('#modal').open) $('#modal').showModal(); $('#modal-close').focus();
 }
@@ -315,7 +404,7 @@ $('#theme-list').onclick = e => { const b = e.target.closest('[data-theme]'); if
 $('#search').oninput = e => { state.query = e.target.value; listThemes(); };
 document.querySelectorAll('[data-testament]').forEach(b => b.onclick = () => { state.testament = b.dataset.testament; updateFilters(); listThemes(); });
 document.querySelectorAll('[data-era]').forEach(b => b.onclick = () => { state.era = b.dataset.era; updateFilters(); listThemes(); });
-$('#reading-mode').onchange = e => { state.mode = e.target.value; renderDetail(); toast(`已切換為${modes[state.mode]}`); };
+$('#reading-mode').onchange = e => changeReadingMode(e.target.value);
 $('#overview').onclick = overview; $('#home-button').onclick = overview; $('#back-overview').onclick = overview;
 $('.brand').onclick = e => { e.preventDefault(); overview(); };
 $('#start-exploring').onclick = () => selectTheme('tabernacle'); $('#first-island').onclick = () => selectTheme('tabernacle');
@@ -339,7 +428,7 @@ document.addEventListener('keydown', e => {
 });
 window.addEventListener('hashchange', () => { const id = new URLSearchParams(location.hash.slice(1)).get('island'); if (themeById.has(id)) selectTheme(id, { updateHash: false }); else overview(); });
 
-listThemes(); updateProgressCount();
+updateModePresentation();listThemes(); updateProgressCount();
 const initialId = new URLSearchParams(location.hash.slice(1)).get('island');
 if (themeById.has(initialId)) selectTheme(initialId, { updateHash: false });
 function worldError() {
