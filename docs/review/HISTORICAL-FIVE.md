@@ -49,8 +49,8 @@
 
 ### 主要查閱來源
 
-- [出埃及記 25–27、30、40](https://www.biblegateway.com/passage/?search=Exodus%2025-27%3B30%3B40&version=CUV)
-- [列王紀上 6–7](https://www.biblegateway.com/passage/?search=1%20Kings%206-7&version=CUV)、[歷代志下 3–4](https://www.biblegateway.com/passage/?search=2%20Chronicles%203-4&version=CUV)
+- YouVersion CSBT：[出埃及記 25](https://www.bible.com/zh-TW/bible/312/EXO.25.CSBT)、[26](https://www.bible.com/zh-TW/bible/312/EXO.26.CSBT)、[27](https://www.bible.com/zh-TW/bible/312/EXO.27.CSBT)、[30](https://www.bible.com/zh-TW/bible/312/EXO.30.CSBT)、[40](https://www.bible.com/zh-TW/bible/312/EXO.40.CSBT)
+- YouVersion CSBT：[列王紀上 6](https://www.bible.com/zh-TW/bible/312/1KI.6.CSBT)、[7](https://www.bible.com/zh-TW/bible/312/1KI.7.CSBT)；[歷代志下 3](https://www.bible.com/zh-TW/bible/312/2CH.3.CSBT)、[4](https://www.bible.com/zh-TW/bible/312/2CH.4.CSBT)
 - [約瑟夫斯《猶太戰記》卷五，第五章](https://sacred-texts.com/jud/josephus/war-5.htm)
 - [《米示拿・Middot》4–5](https://www.sefaria.org/Mishnah_Middot.4?lang=bi)
 - [以色列博物館：第二聖殿時期耶路撒冷模型](https://www.imj.org.il/en/wings/shrine-book/model-jerusalem-second-temple-period)

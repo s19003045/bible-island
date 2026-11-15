@@ -45,11 +45,11 @@ test('progress survives a round trip through storage', () => {
   assert.equal(writeProgress(storage, progress), true);
   assert.deepEqual(readProgress(storage), progress);
 });
-test('scripture links preserve the requested book and select traditional Chinese', () => {
+test('primary scripture links open the first chapter in YouVersion CSBT', () => {
   const url = new URL(scriptureUrl(themeById.get('tabernacle').book));
   assert.equal(url.protocol, 'https:');
-  assert.equal(url.searchParams.get('search'), 'Exodus 25-40');
-  assert.equal(url.searchParams.get('version'), 'CUV');
+  assert.equal(url.hostname, 'www.bible.com');
+  assert.equal(url.pathname, '/zh-TW/bible/312/EXO.25.CSBT');
 });
 test('every connection is navigable and every hotspot has a reading reference', () => {
   for (const theme of themes) {

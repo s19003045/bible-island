@@ -1,3 +1,5 @@
+import { scriptureLinks } from './scripture.js';
+
 // Composite teaching characters. None of these lines is a quotation or a named person's testimony.
 const topic = (id, question, answer, reference, passage, stop, followup) => ({id,question,answer,reference,passage,stop,followup});
 const npc = (id, name, role, era, position, style, motion, greeting, topics, route = null, routeMode = 'shuttle') =>
@@ -121,7 +123,8 @@ export const peopleByIsland = {
   ],
 };
 export const personById = (island, id) => peopleByIsland[island]?.find(p=>p.id===id);
-export const dialogueSource = passage => passage === 'UpperCity'
-  ? 'https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period'
-  : passage === 'Josephus' ? 'https://sacred-texts.com/jud/josephus/war-5.htm'
-  : `https://www.biblegateway.com/passage/?search=${encodeURIComponent(passage)}&version=CUV`;
+export const dialogueSources = (passage, label) => passage === 'UpperCity'
+  ? [{ label, url: 'https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period' }]
+  : passage === 'Josephus' ? [{ label, url: 'https://sacred-texts.com/jud/josephus/war-5.htm' }]
+  : scriptureLinks(passage).map((link, index, links) => ({ ...link, label: links.length === 1 && label ? label : link.label }));
+export const dialogueSource = passage => dialogueSources(passage)[0].url;

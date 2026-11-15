@@ -58,6 +58,7 @@ Sites 專案識別與靜態產物設定保存在 `.openai/hosting.json`；`.site
 
 ## 研究來源
 
+- 經文連結統一採用 [YouVersion CSBT 中文標準譯本](https://www.bible.com/zh-TW/versions/312)。跨章、跨書卷參照提供各段的獨立連結；主題入口可展開「選擇章節」。
 - [St Andrews Encyclopaedia of Theology — The Temple in the Christian Bible](https://www.saet.ac.uk/Christianity/TheTempleintheChristianBible)
 - [The Israel Museum — Collection Galleries / Jerusalem Model](https://www.imj.org.il/ar/node/104)
 - [Bible Gateway — Exodus route](https://www.biblegateway.com/learn/topics-themes/commentaries/exodus-route-from-egypt/)

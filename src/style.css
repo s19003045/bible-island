@@ -70,6 +70,16 @@
 
 .preview-tag{font-size:9px;color:#775a32;border:1px solid #c8b48e;border-radius:2px;background:#f3ead9;padding:2px 4px;white-space:nowrap}
 
+.scripture-passages{border:1px solid #dbe0cc;border-top:0;border-radius:0 0 5px 5px;background:#f5f5eb;font-size:11px;color:#45613f}
+.scripture-passages summary{cursor:pointer;padding:10px 12px;min-height:38px}
+.scripture-passages .scripture-references{max-height:225px;overflow:auto;padding:0 12px 10px;scrollbar-width:thin}
+.scripture-references{display:flex;flex-direction:column;gap:5px}
+.scripture-references a{display:flex;align-items:center;gap:6px;line-height:1.8;min-height:30px;margin:0;overflow-wrap:anywhere}
+.scripture-references a svg{flex:none}
+.scripture-references a:focus-visible,.scripture-passages summary:focus-visible{outline:2px solid #65865b;outline-offset:2px}
+.scripture-source>small{display:block;font-size:10px;color:#647553;margin:8px 0}
+.scripture-source .scripture-references{font-size:12px;margin-top:8px}
+
 /* People share the scene's forest-green / warm-stone palette. Dialogue stays next to the world. */
 .person-marker{position:absolute;top:0;left:0;display:flex;align-items:center;gap:6px;min-height:36px;padding:7px 10px;border:1px solid #d7c8a8;border-radius:5px;background:#314d43f2;color:#fff8e8;box-shadow:0 3px 10px #192a3133;pointer-events:auto;white-space:nowrap;font-size:11px;cursor:pointer}
 .person-marker::after{content:'';position:absolute;bottom:-5px;left:calc(50% - 4px);width:8px;height:8px;background:#314d43;transform:rotate(45deg);border-right:1px solid #d7c8a8;border-bottom:1px solid #d7c8a8}
