@@ -85,9 +85,9 @@ test('real Jerusalem crowd stays on the mesh without overlap or capacity overflo
   for(let i=0;i<2400;i++) {
     s.update(.05,{player:[20,8.025,0]});
     for(const [j,a] of s.agents.entries()) {
-      const p=a.actor.state.position;assert.ok(scene.walkModel.valid(p[0],p[2]));if(a.poi)visited.get(a.key).add(a.poi.id);if(a.state==='rest'&&a.poi)arrivals++;if(a.partner)chats++;
+      const p=a.actor.state.position;assert.ok(scene.walkModel.valid(p[0],p[2],p[1]),'body is clear at its actual supporting height');if(a.poi)visited.get(a.key).add(a.poi.id);if(a.state==='rest'&&a.poi)arrivals++;if(a.partner)chats++;
       assert.ok(Math.hypot(...a.velocity)<=a.speed+.00001,'avoidance must respect the assigned individual speed');
-      for(const b of s.agents.slice(j+1))assert.ok(distance(p,b.actor.state.position)>=a.radius+b.radius+.024,`${a.key} overlaps ${b.key}`);
+      for(const b of s.agents.slice(j+1)){const q=b.actor.state.position,verticalOverlap=p[1]<q[1]+1.7*b.actor.scale&&p[1]+1.7*a.actor.scale>q[1];if(verticalOverlap)assert.ok(distance(p,q)>=a.radius+b.radius+.024,`${a.key} overlaps ${b.key}`);}
       assert.ok(distance(p,[20,8.025,0])>=a.radius+.32+.024);
     }
     for(const p of s.pois)assert.ok(s.reservations.get(p.id).size<=p.capacity);
@@ -102,4 +102,11 @@ test('noticing a nearby player is brief; only an actual dialogue keeps an NPC he
   const p=[...m.position];m.attending=true;for(let i=0;i<30;i++)s.update(1/30,{camera:[-2,2,0]});assert.deepEqual(m.position,p);assert.ok(a.held);
   for(let i=0;i<300;i++)s.update(1/30,{camera:[-2,2,0]});assert.equal(a.held,false);assert.ok(distance(p,m.position)>.5);
   m.talking=true;const held=[...m.position];for(let i=0;i<300;i++)s.update(1/30,{camera:[-2,2,0]});assert.deepEqual(m.position,held);assert.ok(a.held);
+});
+
+test('residents on different vertical levels do not start a conversation through the floor',()=>{
+  const events=[],s=createNPCSystem({actors:[actor('a',-.5),actor('b',.5)],pois:[poi('west',-5),poi('east',5)],model:flat(),onEvent:e=>events.push(e)});
+  s.agents[1].actor.state.position[1]=2.5;
+  for(const a of s.agents){a.timer=100;a.cooldown=0;a.socialCheck=0;}
+  s.update(.05);assert.equal(events.filter(e=>e.type==='social-attempt').length,0);
 });

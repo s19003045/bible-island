@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { dimensions, historicalScenes, HUMAN_HEIGHT } from './historical-data.js';
 import { peopleByIsland } from './people-data.js';
 import { createMotion, advanceMotion } from './people-motion.js';
-import { walkSurfaces,walkFloor,vesselDefinitions } from './walk-data.js';
+import { walkSurfaces,walkFloor,vesselDefinitions,stairCollisionProxies } from './walk-data.js';
 import { createVessel } from './vessels.js';
 import { createWalkModel } from './walk-model.js';
 import {createNPCSystem} from './npc-system.js';
@@ -510,7 +510,7 @@ function exodus(k,roof,height,scene,p) {
 }
 function jerusalem(k,roof,height) {
   // Fill the selected public alleys with visible, continuous walking surfaces.
-  for(const s of walkSurfaces.filter(s=>!['street','courtyard'].includes(s.id))) {
+  for(const s of walkSurfaces.filter(s=>!['street','courtyard','entry-stairs'].includes(s.id))) {
     const alongX=s.x2-s.x1>s.z2-s.z1,len=alongX?s.x2-s.x1:s.z2-s.z1,count=Math.ceil(len/.8);
     for(let i=0;i<count;i++) {
       const a=(i+.5)/count,x=alongX?s.x1+a*len:(s.x1+s.x2)/2,z=alongX?(s.z1+s.z2)/2:s.z1+a*len;
@@ -612,6 +612,17 @@ export function createHistoricalScene(id, environment) {
   let walkModel=null;const objects=[];
   if(id==='jerusalem') {
     k.collisionBoxes.push(...roof.collisionBoxes);
+    // A small public stone stair, separate render treads and a smooth walk collision proxy.
+    // This is a typological teaching detail, not an identified archaeological staircase.
+    const flight=stairCollisionProxies.find(p=>p.id==='entry-flight'),base=flight.baseHeight;
+    function stairStone(name,x,y,z,w,h,d,collision=false) {
+      const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),p.stone);mesh.name=name;mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.collisionProxy='entry-flight';scene.add(mesh);
+      if(collision)k.collisionBoxes.push({min:[x-w/2,y-h/2,z-d/2],max:[x+w/2,y+h/2,z+d/2]});
+    }
+    for(let i=0;i<5;i++){const top=base+(i+1)*.24,bottom=6.8;stairStone(`entry-stair-tread-${i}`,21,(top+bottom)/2,2+(i+.5)*.5,5.2,top-bottom,.505);}
+    stairStone('entry-stair-landing',21,(9.225+6.8)/2,6.55,5.2,9.225-6.8,4.1);
+    stairStone('entry-stair-back',21,9.55,8.6,5.2,.65,.25,true);
+    for(const x of [18.4,23.6])stairStone('entry-stair-parapet',x,9.55,6.6,.25,.65,4.2,true);
     for(const definition of vesselDefinitions){const root=createVessel(definition.id);root.position.fromArray(definition.position);scene.add(root);objects.push({...definition,root});}
     const table=new THREE.Mesh(new THREE.BoxGeometry(1.1,.08,.6),p.wood);table.position.set(-33.4,10.92,25.6);table.castShadow=true;scene.add(table);
     for(const x of [-33.85,-32.95]) {const leg=new THREE.Mesh(new THREE.BoxGeometry(.07,.7,.45),p.wood);leg.position.set(x,10.56,25.6);scene.add(leg);}

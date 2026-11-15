@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "test": "node --test tests/*.test.js",
-    "check": "node scripts/check-content.js && node --check src/main.js && node --check src/world.js && node --check src/historical-scenes.js && node --check src/historical-data.js && node --check src/people-data.js && node --check src/people-motion.js && node --check src/people-ui.js && node --check src/walk-data.js && node --check src/walk-model.js && node --check src/walk-controls.js && node --check src/walk-ui.js && node --check src/scene-audio.js && node --check src/vessels.js && node --check src/npc-system.js && node --check src/npc-pois.js",
+    "check": "node scripts/check-content.js && node --check src/main.js && node --check src/world.js && node --check src/historical-scenes.js && node --check src/historical-data.js && node --check src/people-data.js && node --check src/people-motion.js && node --check src/people-ui.js && node --check src/walk-data.js && node --check src/walk-model.js && node --check src/walk-controls.js && node --check src/walk-ui.js && node --check src/scene-audio.js && node --check src/vessels.js && node --check src/npc-system.js && node --check src/npc-pois.js && node --check src/character-controller.js",
     "review:bundle": "node scripts/package-review.js"
   },
   "dependencies": {

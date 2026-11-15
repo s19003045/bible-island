@@ -30,7 +30,7 @@ test('actual city geometry permits continuous routes to residents and the courty
         const dx=point[0]-position[0],dz=point[2]-position[2],length=Math.hypot(dx,dz),distance=Math.min(length,1.85/30);
         const next=model.move(position,dx/length*distance,dz/length*distance);
         assert.ok(Math.hypot(next[0]-position[0],next[2]-position[2])>.0001,'route must be traversable, not just connected in a graph');
-        assert.ok(Math.abs(next[1]-walkFloor(next[0],next[2]))<.00001);position=next;assert.ok(++iterations<10000);
+        assert.ok(Math.abs(next[1]-model.sampleGround(next[0],next[2],next[1]).height)<.00001,'feet stay on the ground or a legal step');position=next;assert.ok(++iterations<10000);
       }
     }
     assert.ok(Math.hypot(position[0]-target[0],position[2]-target[2])<.5);

@@ -79,7 +79,7 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{}}) {
   const wandering=a=>!a.held&&!a.partner&&(a.state==='travel'||a.state==='rest'&&a.action!=='Interact');
   function social(a,player) {
     a.socialCheck=ranged(a,.7,1.7);if(a.cooldown>0||!wandering(a)||player&&distance(player,a.actor.state.position)<2)return;
-    const b=agents.filter(b=>b!==a&&b.cooldown<=0&&wandering(b)&&distance(a.actor.state.position,b.actor.state.position)<1.65&&
+    const b=agents.filter(b=>b!==a&&b.cooldown<=0&&wandering(b)&&Math.abs(a.actor.state.position[1]-b.actor.state.position[1])<.6&&distance(a.actor.state.position,b.actor.state.position)<1.65&&
       (!player||distance(player,b.actor.state.position)>2)&&traverse(a.actor.state.position,b.actor.state.position)).sort((b,c)=>distance(a.actor.state.position,b.actor.state.position)-distance(a.actor.state.position,c.actor.state.position))[0];
     if(!b)return;
     // Exactly one 20% attempt for this encounter. Even a miss consumes BOTH cooldowns.

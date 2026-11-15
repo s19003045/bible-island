@@ -264,9 +264,10 @@ function renderWalk() {
 function updateWalkHUD(info) {
   if(!state.walking)return;
   $('#walk-interface').dataset.position=info.position.map(n=>n.toFixed(3)).join(',');
+  if(info.locomotion){const root=$('#walk-interface'),s=info.locomotion;root.dataset.locomotion=s.animation;root.dataset.grounded=String(s.isGrounded);root.dataset.climbing=String(s.isClimbingStairs);root.dataset.groundNormal=s.groundNormal.map(n=>n.toFixed(4)).join(',');root.dataset.visualY=s.visualY.toFixed(4);root.dataset.groundSnap=String(s.groundSnapApplied);}
   const action=$('#walk-interact');if(action){action.disabled=!info.nearby;action.querySelector('span').textContent=info.nearby?(info.nearby.type==='person'?`與${info.nearby.name}交談`:`拿起${info.nearby.name}`):'走近人物或器皿，開始互動';}
   if($('#walk-distance'))$('#walk-distance').textContent=info.distance!==null?`約 ${Math.round(info.distance)} 公尺`:'';
-  if($('#walk-region'))$('#walk-region').textContent=info.position[2]>21?'院落與南巷':info.position[2]<-8?'北側巷弄':'主街';
+  if($('#walk-region'))$('#walk-region').textContent=info.position[0]>18&&info.position[2]>2?'街角石階':info.position[2]>21?'院落與南巷':info.position[2]<-8?'北側巷弄':'主街';
   if($('#walk-stop'))$('#walk-stop').hidden=!info.navigating;
   if($('#walk-nav-state'))$('#walk-nav-state').textContent=info.navigating?'沿路行走中 · 按 WASD 或「停止」可接手':'WASD 移動 · 拖曳環顧 · 點地沿路前往';
 }

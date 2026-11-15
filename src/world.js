@@ -578,7 +578,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
         if(target&&Math.hypot(target[0]-walk.position[0],target[2]-walk.position[2])<(autoGoal.type==='person'?3.0:.4)){walk.cancelRoute();walk.lookAt([target[0],target[1]+1.3,target[2]]);autoGoal=null;dirty=true;}
         else if(target&&autoGoal.type==='person')walk.navigate(target);
       }
-      if(now-lastWalkUI>220){lastWalkUI=now;const target=goalPosition(walkObjective),p=walk.position;const close=nearby();activeHistorical.attend(close?.type==='person'?close.id:null);onWalkUpdate?.({position:p,nearby:close,navigating:walk.navigating,distance:target?Math.hypot(target[0]-p[0],target[2]-p[2]):null});}
+      if(now-lastWalkUI>220){lastWalkUI=now;const target=goalPosition(walkObjective),p=walk.position;const close=nearby();activeHistorical.attend(close?.type==='person'?close.id:null);onWalkUpdate?.({position:p,locomotion:walk.groundState,nearby:close,navigating:walk.navigating,distance:target?Math.hypot(target[0]-p[0],target[2]-p[2]):null});}
     } else controls.update();
     if(selected?.id==='jerusalem')audio?.update(camera,activeHistorical?.people||[],now);
     if(activeHistorical && !walk.active) { const floor=activeHistorical.groundHeight(camera.position.x,camera.position.z)+.3; if(camera.position.y<floor) {camera.position.y=floor;dirty=true;} }

@@ -5,9 +5,19 @@ export const walkSurfaces = [
   {id:'south',x1:-73,x2:24,z1:28.85,z2:31.15},
   ...[-58,-42,-26,-10].map(x=>({id:`alley${x}`,x1:x-.78,x2:x+.78,z1:-17,z2:31})),
   {id:'courtyard',x1:-35.15,x2:-32.85,z1:22,z2:30.8},
+  {id:'entry-stairs',x1:18.4,x2:23.6,z1:1.2,z2:8.8},
 ];
+// Only these authored flights use ramp collision proxies. Visual stone risers remain separate.
+export const stairCollisionProxies=[
+  {id:'hill-street',kind:'stairs',x1:-74,x2:0,z1:-2.2,z2:2.2,axis:'x',start:0,end:-74,baseHeight:8.025,rise:4.81,riserHeight:.06175},
+  {id:'entry-flight',kind:'stairs',x1:18.4,x2:23.6,z1:2,z2:4.5,axis:'z',start:2,end:4.5,baseHeight:8.025,rise:1.2,riserHeight:.24},
+  {id:'entry-landing',kind:'landing',x1:18.4,x2:23.6,z1:4.5,z2:8.8,axis:'z',start:4.5,end:8.8,baseHeight:9.225,rise:0},
+];
+export function proxyHeight(proxy,x,z){const t=Math.max(0,Math.min(1,((proxy.axis==='x'?x:z)-proxy.start)/(proxy.end-proxy.start)));return proxy.baseHeight+proxy.rise*t;}
 export const walkSpawn = [20,8.025,0];
 export function walkFloor(x,z) {
+  const proxy=stairCollisionProxies.find(p=>x>=p.x1&&x<=p.x2&&z>=p.z1&&z<=p.z2);
+  if(proxy)return proxyHeight(proxy,x,z);
   return Math.max(8+Math.max(0,-x)*.065+.025,7+Math.max(0,-x)*.07+Math.sin(z*.025)*1.4+.04);
 }
 export const vesselDefinitions = [
