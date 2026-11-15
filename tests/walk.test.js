@@ -68,6 +68,13 @@ test('frequent replanning at a low frame rate keeps moving forward instead of re
   assert.ok(control.position[0]<12,'repeated replans must make sustained progress');control.dispose();
 });
 
+test('automatic walking yields to a passing NPC without cancelling the route or flooding obstacle messages',()=>{
+  let blocked=true,messages=0;const canvas=Object.assign(new EventTarget(),{focus(){},setPointerCapture(){}}),camera=new THREE.PerspectiveCamera();
+  const control=createWalkControls(camera,canvas,{constrainMove:(from,to)=>blocked?from:to,onMessage:()=>messages++});control.start(createWalkModel());control.navigate([12,8,0]);
+  for(let i=0;i<60;i++)control.update(.05);assert.deepEqual(control.position,walkSpawn);assert.ok(control.navigating);assert.equal(messages,0);
+  blocked=false;for(let i=0;i<20;i++)control.update(.05);assert.ok(control.position[0]<19);control.dispose();
+});
+
 test('all Jerusalem dialogue voice cues match the authored text and ship with local audio files',()=>{
   const manifest=JSON.parse(readFileSync(new URL('../src/voice-manifest.json',import.meta.url)));
   for(const p of peopleByIsland.jerusalem) {

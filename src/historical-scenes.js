@@ -5,6 +5,8 @@ import { createMotion, advanceMotion } from './people-motion.js';
 import { walkSurfaces,walkFloor,vesselDefinitions } from './walk-data.js';
 import { createVessel } from './vessels.js';
 import { createWalkModel } from './walk-model.js';
+import {createNPCSystem} from './npc-system.js';
+import {jerusalemPOIs} from './npc-pois.js';
 
 // Detailed scenes use one Three unit per metre. Geometry is batched by material, not by building.
 const G = {
@@ -197,22 +199,23 @@ function builder(parent, p, seed = 31, collectCollision = false) {
   function animate(dt,cameraPosition) {
     const touched=new Set();
     for(const a of actors) {
-      const m=advanceMotion(a.state,dt,cameraPosition),s=a.scale;
+      const m=a.state.autonomous?a.state:advanceMotion(a.state,dt,cameraPosition),s=a.scale;
+      const speaking=m.talking||m.socialTalking,working=m.autonomous?m.idleAction==='Interact':a.motion==='work';
       const stride=Math.sin(m.time*7.5)*m.stride, breath=Math.sin(m.time*1.8)*.009;
       root.makeRotationY(m.yaw);root.setPosition(m.position[0],m.position[1]+(breath+Math.abs(stride)*.018)*s,m.position[2]);
       const posing={};
       for(const bone of ['head','armL','armR','forearmL','forearmR','legL','legR','ground']) {
           let x=0,y=0,rx=0,rz=0,ry=0;
-          if(bone==='head') {y=1.44;ry=Math.sin(m.time*.65)*.07;rx=m.talking?Math.sin(m.time*2.5)*.055:0;}
+          if(bone==='head') {y=1.44;ry=Math.sin(m.time*.65)*(m.idleAction==='LookAround'?.23:.07);rx=speaking?Math.sin(m.time*2.5)*.055:0;}
           else if(bone.startsWith('arm')) {
             const side=bone==='armL'?-1:1;x=side*.22;y=1.27;
             rx=stride*side*.48;
-            if(m.talking) {rx=-.38+Math.sin(m.time*2.2+side)*.16;rz=side*(.12+Math.sin(m.time*1.5)*.06);}
-            else if(a.motion==='work') {rx=-.55+Math.sin(m.time*2+side*.4)*.28;}
+            if(speaking) {rx=-.38+Math.sin(m.time*2.2+side)*.16;rz=side*(.12+Math.sin(m.time*1.5)*.06);}
+            else if(working) {rx=-.55+Math.sin(m.time*2+side*.4)*.28;}
             else {rz=side*(.025+Math.sin(m.time*1.1+side)*.02);}
           } else if(bone.startsWith('forearm')) {
             const side=bone==='forearmL'?-1:1;x=side*.25;y=1.02;
-            rx=m.talking?-.6+Math.sin(m.time*2.1+side)*.22:a.motion==='work'?-.5+Math.sin(m.time*2+side*.4)*.22:-.1;
+            rx=speaking?-.6+Math.sin(m.time*2.1+side)*.22:working?-.5+Math.sin(m.time*2+side*.4)*.22:-.1;
           } else if(bone.startsWith('leg')) {const side=bone==='legL'?-1:1;x=side*.10;y=.35;rx=-stride*side*.55;}
           joint.makeTranslation(x*s,y*s,0);r.makeRotationFromEuler(new THREE.Euler(rx,ry,rz));joint.multiply(r);t.makeTranslation(-x*s,-y*s,0);joint.multiply(t);
           posing[bone]=joint.clone();
@@ -615,6 +618,7 @@ export function createHistoricalScene(id, environment) {
     k.collisionBoxes.push({min:[-33.98,10.21,25.27],max:[-32.82,11.5,25.93]});
     walkModel=createWalkModel(k.collisionBoxes);
   }
+  const npcSystem=id==='jerusalem'?createNPCSystem({actors:k.actors,pois:jerusalemPOIs,model:walkModel}):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);
   const occluders=[];scene.updateMatrixWorld(true);scene.traverseVisible(o=>{if(o.isMesh&&!o.userData.people)occluders.push(o);});
@@ -633,12 +637,12 @@ export function createHistoricalScene(id, environment) {
     return best;
   }
   return {
-    scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,
-    animate(dt,cameraPosition) { k.animate(dt,cameraPosition); },
+    scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,npcSystem,
+    animate(dt,cameraPosition,playerPosition=null) {npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition});k.animate(dt,cameraPosition);},
     converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },
     attend(personId) {people.forEach(a=>a.state.attending=a.id===personId);},
     groundHeight(x,z) { return Math.max(height(x,z),id==='herod' && Math.abs(x)<121 && Math.abs(z)<101 ? 8 : -.14); },
     setTime(night) {ambient.intensity=night?.55:1.1;sun.intensity=night?.75:2.65;sun.color.set(night?'#a9bdd5':'#fff0d9');scene.background.set(night?'#394650':sky);scene.fog.color.copy(scene.background);},
-    dispose() {scene.traverse(o=>{if(o.isInstancedMesh)o.dispose();if(o.geometry&&!Object.values(G).includes(o.geometry))o.geometry.dispose();});sun.shadow.dispose();},
+    dispose() {npcSystem?.dispose();scene.traverse(o=>{if(o.isInstancedMesh)o.dispose();if(o.geometry&&!Object.values(G).includes(o.geometry))o.geometry.dispose();});sun.shadow.dispose();},
   };
 }

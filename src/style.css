@@ -121,3 +121,8 @@ body.walking .has-selection #stage{right:0;bottom:0}.walking #detail{display:non
 @media(max-width:760px){.mission-actions button,.mission-primary,.voice-controls button,.vessel-controls button{min-height:44px}}
 
 .mission-head-row{display:flex;align-items:center;gap:6px}.mission-head-row .mission-heading{flex:1}.mission-reset{font-size:20px;min-width:34px;min-height:34px;border:1px solid #c8d0bb;border-radius:3px;color:#526349}.mission-reset:hover{background:#e1e8d8}@media(max-width:760px){.mission-reset{min-width:40px;min-height:40px}}
+
+/* Social emotes are quiet, spatial cues; they never capture an exploration click. */
+.npc-emote{position:absolute;top:0;left:0;display:block;min-width:32px;padding:1px 8px 5px;border:1px solid #b8a98c;border-radius:12px;background:#fcf8ed;color:#314d43;font:700 22px/1.1 Georgia,serif;text-align:center;box-shadow:0 2px 5px #192a3126;pointer-events:none;z-index:15}
+.npc-emote::after{content:'';position:absolute;bottom:-4px;left:12px;width:7px;height:7px;background:#fcf8ed;border-right:1px solid #b8a98c;border-bottom:1px solid #b8a98c;transform:rotate(45deg)}
+.npc-emote[hidden]{display:none}

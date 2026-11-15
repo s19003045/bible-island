@@ -6,6 +6,7 @@ import { createHistoricalScene } from './historical-scenes.js';
 import { historicalScenes } from './historical-data.js';
 import { peopleByIsland } from './people-data.js';
 import {createWalkControls} from './walk-controls.js';
+import {walkSpawn} from './walk-data.js';
 
 const TOP = 0.62;
 const C = { sand: '#d4bd93', stone: '#ddcfac', white: '#f1e6cb', dark: '#706451', wood: '#80634b',
@@ -310,7 +311,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   controls.minDistance = 4; controls.maxDistance = 220; controls.target.set(5, 0, 6);
   camera.position.set(51, 63, 82); controls.update();
   let walkSnapshot=null,walkObjective=null,autoGoal=null,lastWalkUI=0,lastRepath=0;
-  const walk=createWalkControls(camera,renderer.domElement,{onInteract:interactWalk,onStep:p=>audio?.footstep(p),onMessage:onWalkMessage});
+  const walk=createWalkControls(camera,renderer.domElement,{onInteract:interactWalk,onStep:p=>audio?.footstep(p),onMessage:onWalkMessage,constrainMove:(from,to)=>activeHistorical?.npcSystem?.constrainPlayer(from,to)||to});
   const ambient = new THREE.HemisphereLight('#fff3dc', '#557879', 2.6); scene.add(ambient);
   const sun = new THREE.DirectionalLight('#fff0cf', 4); sun.position.set(-18, 40, 24); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); sun.shadow.camera.left = -45; sun.shadow.camera.right = 45; sun.shadow.camera.top = 45; sun.shadow.camera.bottom = -45;
@@ -351,7 +352,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   const selectedRing = new THREE.Mesh(new THREE.RingGeometry(1, 1.04, 80).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: '#f4d691', transparent: true, opacity: .8, depthWrite: false }));
   selectedRing.visible = false; scene.add(selectedRing);
   const hotspotLayer = document.createElement('div'); hotspotLayer.className = 'world-hotspots'; container.appendChild(hotspotLayer);
-  let actorMarkers = [], conversationId = null, motionClock = 0;
+  let actorMarkers = [], emotes=[], conversationId = null;
   let hotspots = [], selected = null, selectedStop = null, cutaway = false, showLabels = true, showConnections = true, paused = reduced.matches;
   let visibleIds = new Set(themes.map(t => t.id)), fly = null, raf, elapsed = 0, last = 0, dirty = true, hidden = false;
   let frameSum = 0, frameCount = 0, lastAdapt = 0, pixelRatio = renderer.getPixelRatio();
@@ -368,7 +369,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   }
   function select(id) {
     if(walk.active)exitWalk();
-    activeHistorical?.converse(null);activeHistorical?.attend(null);conversationId=null;actorMarkers=[];
+    activeHistorical?.converse(null);activeHistorical?.attend(null);conversationId=null;actorMarkers=[];emotes=[];
     selected = id ? themeById.get(id) : null; selectedStop = null;
     hotspotLayer.replaceChildren(); hotspots = []; clearConnections();
     for (const [id, roof] of roofs) roof.visible = !(cutaway && selected?.id === id);
@@ -404,6 +405,10 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
       hotspots.push({ el, id: s.id, pos: activeHistorical ? new THREE.Vector3(...activeHistorical.config.stops[s.id]) : new THREE.Vector3(x + s.position[0], TOP + s.position[1], z + s.position[2]) });
     });
     if (activeHistorical) {
+      for(const agent of activeHistorical.npcSystem?.agents||[]) {
+        const el=document.createElement('span');el.className='npc-emote';el.textContent='···';el.setAttribute('role','img');el.setAttribute('aria-label','居民短暫交談');el.hidden=true;hotspotLayer.appendChild(el);
+        emotes.push({el,agent});
+      }
       for(const actor of activeHistorical.people) {
         const el=document.createElement('button');el.className='person-marker';
         const person=peopleByIsland[id].find(p=>p.id===actor.id);
@@ -518,8 +523,10 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   document.addEventListener('visibilitychange', onVisibility);
   function startWalk() {
     if(!activeHistorical?.walkModel)return false;
+    const spawn=activeHistorical.npcSystem?activeHistorical.npcSystem.safePlayerSpawn(walkSpawn):walkSpawn;
+    if(!spawn){onWalkMessage?.('入口有人通過，請稍後再進入街區。');return false;}
     walkSnapshot={position:camera.position.clone(),target:controls.target.clone(),roof:activeHistorical.roof.visible};activeHistorical.roof.visible=true;renderer.shadowMap.needsUpdate=true;fly=null;conversationId=null;
-    activeHistorical.converse(null);controls.enabled=false;activeView='walk';camera.fov=62;camera.updateProjectionMatrix();walk.start(activeHistorical.walkModel);dirty=true;return true;
+    activeHistorical.converse(null);controls.enabled=false;activeView='walk';camera.fov=62;camera.updateProjectionMatrix();walk.start(activeHistorical.walkModel,spawn);dirty=true;return true;
   }
   function exitWalk() {
     if(!walk.active)return;walk.stop();activeHistorical?.attend(null);autoGoal=null;controls.enabled=true;activeView='overview';camera.fov=48;camera.updateProjectionMatrix();
@@ -558,8 +565,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
     if (!paused && !activeHistorical) { elapsed += dt; waterMaterial.uniforms.uTime.value = elapsed; dirty = true; boats.forEach((b,i) => { b.rotation.z = Math.sin(elapsed * .8 + i) * .025; b.rotation.x = Math.cos(elapsed * .6 + i) * .02; }); }
     if(activeHistorical && !paused) {
-      motionClock+=dt;
-      if(motionClock>=1/30) {activeHistorical.animate(motionClock,camera.position.toArray());motionClock=0;dirty=true;}
+      activeHistorical.animate(dt,camera.position.toArray(),walk.active?walk.position:null);dirty=true;
     }
     if (fly) {
       const t = fly.duration ? Math.min(1, (now - fly.start) / fly.duration) : 1, ease = 1 - (1 - t) ** 3;
@@ -586,7 +592,12 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
       renderer.render(activeHistorical?.scene || scene, camera);
       const w = container.clientWidth, h = container.clientHeight;
       if (!activeHistorical) labels.forEach(l => project(l, w, h)); hotspots.forEach(l => project(l, w, h, true));
-      actorMarkers.forEach(l=>{const p=l.actor.state.position;l.pos.set(p[0],p[1]+2.15,p[2]);project(l,w,h,true);l.el.classList.toggle('active',l.id===conversationId);});
+      actorMarkers.forEach(l=>{const p=l.actor.state.position;l.pos.set(p[0],p[1]+2.15,p[2]);project(l,w,h,true);l.el.classList.toggle('active',l.id===conversationId);const a=l.actor.state.behavior;if(a){l.el.dataset.behavior=a.held?'held':a.state;l.el.dataset.poi=a.poi?.id||'';l.el.dataset.position=p.map(n=>n.toFixed(3)).join(',');}});
+      emotes.forEach(({el,agent:a})=>{
+        const p=a.actor.state.position;v.set(p[0],p[1]+2.05*(a.actor.scale||1),p[2]);const d=camera.position.distanceTo(v);v.project(camera);
+        el.hidden=!a.partner||!!conversationId||v.z<=-1||v.z>=1||Math.abs(v.x)>1||Math.abs(v.y)>1||d>45||!sightClear([p[0],p[1]+1.75*(a.actor.scale||1),p[2]]);
+        if(!el.hidden){el.style.transform=`translate(-50%,-100%) translate(${(v.x*.5+.5)*w}px,${(-v.y*.5+.5)*h}px)`;el.dataset.npc=a.key;el.dataset.partner=a.partner.key;}
+      });
       avoidLabelOverlap(labels, selected?.id); avoidLabelOverlap([...actorMarkers,...hotspots], conversationId || selectedStop); dirty = false;
     }
   }
