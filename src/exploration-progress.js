@@ -1,8 +1,8 @@
-import {explorationFor} from './exploration-data.js';
+import {explorationFor,explorationByIsland} from './exploration-data.js';
 export const EXPLORATION_KEY='bible-island:exploration:v1';
 export function readExploration(storage){
   try{const raw=JSON.parse(storage?.getItem(EXPLORATION_KEY)||'{}'),clean={};
-    for(const id of ['tabernacle','jerusalem'])if(Array.isArray(raw[id]))clean[id]=[...new Set(raw[id].filter(key=>explorationFor(id).objects.some(o=>o.id===key)))];
+    for(const id of Object.keys(explorationByIsland))if(Array.isArray(raw[id]))clean[id]=[...new Set(raw[id].filter(key=>explorationFor(id).objects.some(o=>o.id===key)))];
     return clean;
   }catch{return {};}
 }

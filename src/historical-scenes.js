@@ -8,6 +8,7 @@ import { createWalkModel } from './walk-model.js';
 import {createNPCSystem} from './npc-system.js';
 import {jerusalemPOIs} from './npc-pois.js';
 import {tabernacleSurfaces,tabernacleFloor,tabernaclePOIs,tabernacleAllowed,tabernacleSpawnCandidates,tabernacleObjects} from './tabernacle-exploration.js';
+import {solomonSurfaces,solomonFloor,solomonProxies,solomonPOIs,solomonAllowed,solomonSpawnCandidates,solomonObjects,solomonSpawn} from './solomon-exploration.js';
 import {explorationFor} from './exploration-data.js';
 
 // Detailed scenes use one Three unit per metre. Geometry is batched by material, not by building.
@@ -347,6 +348,11 @@ function solomon(k,roof,height) {
   k.wall(-35,.3,0,50,1.5,.65,'z');
   const west=-19,front=west+l;
   k.box('darkstone',-5.5,.65,0,29,1.3,11);
+  // Teaching platform supports the pillars; its footprint and approach stair are conjectural.
+  k.box('darkstone',12.25,.65,0,8.5,1.3,10.8);
+  k.box('stone',14.1,1.7,0,1.2,.8,1.2);
+  k.box('cedar',32,1.02,-12,1.4,.08,1.1);
+  for(const x of [31.4,32.6])k.box('cedar',x,.665,-12,.09,.71,.9);
   for(const z of [-w/2,w/2]) (z>0?roof:k).wall(-5.5,1.3,z,l,h,.7,'x','light',1.5,.55);
   k.wall(west,1.3,0,w,h,.8,'z','light',1.5,.55);
   k.box('cedar',-5.5,1.35,0,l,.1,w);
@@ -383,23 +389,13 @@ function solomon(k,roof,height) {
     for(let row=0;row<2;row++) for(let n=0;n<100;n++) { const a=(n+row*.5)/100*Math.PI*2; k.ball('bronze',x+Math.cos(a)*r*1.2,base+dim.pillar+.45+row*.2,z+Math.sin(a)*r*1.2,.064); }
     for(let n=0;n<4;n++) k.part('ring','bronze',x,base+dim.pillar+.2+n*.25,z,r*2.6,r*2.6,r*2.6,Math.PI/2);
   }
-  // Sea: 4.5 m diameter, 2.25 m basin height; twelve oxen, three facing each cardinal direction.
-  const sx=22,sz=12,base=.3;
-  for(let side=0;side<4;side++) for(let n=-1;n<=1;n++) {
-    const a=side*Math.PI/2,x=sx+Math.cos(a)*1.4+Math.sin(a)*n*.55,z=sz+Math.sin(a)*1.4-Math.cos(a)*n*.55;
-    k.box('bronze',x,base+.65,z,.48,.6,1.2,-a+Math.PI/2);
-    k.ball('bronze',x+Math.cos(a)*.62,base+.9,z+Math.sin(a)*.62,.38,.42,.34);
-    for(const q of [-1,1]) for(const r of [-1,1]) k.cyl('bronze',x+q*.16,base+.27,z+r*.4,.055,.54);
-    for(const q of [-1,1]) k.beam('bronze',[x+Math.cos(a)*.65,base+1.02,z+Math.sin(a)*.65+q*.12],[x+Math.cos(a)*.7,base+1.3,z+Math.sin(a)*.7+q*.2],.025);
-  }
-  k.part('bowl','bronze',sx,base+1.2+dim.sea[1]/2,sz,dim.sea[0],dim.sea[1],dim.sea[0]);
-  k.cyl('water',sx,base+1.2+dim.sea[1]-.15,sz,2,.025);
+  // Sea is added below from the same continuous bowl / twelve-ox model as its teaching close-up.
   altar(k,24,.3,-2,9,4.5,9); // 2 Chronicles 4:1; dimensions do not derive from Kings.
   for(let i=0;i<12;i++) k.box('stone',24+(12-i)*.4,.3+(i+1)*.36/2,-2,1,(i+1)*.36,3);
   ark(k,-14,1.4,0,1);
   for(const z of [-2,2]) { k.cyl('gold',-14,3.4,z,.15,4.2); k.part('sphere','gold',-14,5.5,z,1,.8,4.4); }
   for(let i=0;i<10;i++) menorah(k,-4+(i%5)*1.3,1.4,i<5?-2.7:2.7,.8);
-  for(let i=0;i<32;i++) { const x=15+k.rand()*22,z=-20+k.rand()*40;if(Math.abs(z)<7&&x<31||Math.hypot(x-22,z-12)<4)continue;k.person(x,.3,z,i,2); }
+  for(let i=0;i<32;i++)k.person(11+(i%8)*3.7,.31,-20+Math.floor(i/8)*12.5,i,2);
   for(let i=0;i<16;i++) {const x=-45-k.rand()*45,z=-70+k.rand()*140,y=height(x,z); k.house(x,y,z,6+k.rand()*3,6,3.2,'stone');}
   for(let i=0;i<18;i++) {const x=45+k.rand()*40,z=-50+k.rand()*100;k.olive(x,height(x,z),z,.7);}
 }
@@ -608,14 +604,15 @@ export function createHistoricalScene(id, environment) {
   const range=config.shadow;Object.assign(sun.shadow.camera,{left:-range,right:range,top:range,bottom:-range,near:1,far:450});
   sun.shadow.mapSize.set(2048,2048);sun.shadow.normalBias=.035;sun.shadow.bias=-.00013;scene.add(sun);
   const roofGroup=new THREE.Group();scene.add(roofGroup);
-  const k=builder(scene,p,id.length*113,['jerusalem','tabernacle'].includes(id)), roof=builder(roofGroup,p,83,['jerusalem','tabernacle'].includes(id));
+  const k=builder(scene,p,id.length*113,['jerusalem','tabernacle','solomon'].includes(id)), roof=builder(roofGroup,p,83,['jerusalem','tabernacle','solomon'].includes(id));
   const height=terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id));
   if(id==='tabernacle')tabernacle(k,roof);
   else if(id==='solomon')solomon(k,roof,height);
   else if(id==='herod')herod(k,roof);
   else if(id==='exodus')exodus(k,roof,height,scene,p);
   else jerusalem(k,roof,height);
-  for(const person of peopleByIsland[id]) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:id==='tabernacle'?({weaver:'weaver',priest:'priest','camp-parent':'parent'}[person.id]):undefined});
+  const roles=id==='tabernacle'?{weaver:'weaver',priest:'priest','camp-parent':'parent'}:id==='solomon'?{'bronze-worker':'bronze-worker',singer:'singer','temple-visitor':'visitor'}:{};
+  for(const person of peopleByIsland[id]) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:roles[person.id]});
   k.finish();roof.finish();
   const people=k.actors.filter(a=>a.id);
   let walkModel=null;const objects=[];
@@ -655,7 +652,24 @@ export function createHistoricalScene(id, environment) {
       objects.push({...definition,root});
     }
   }
-  const npcSystem=id==='jerusalem'?createNPCSystem({actors:k.actors,pois:jerusalemPOIs,model:walkModel}):id==='tabernacle'?createNPCSystem({actors:k.actors,pois:tabernaclePOIs,model:walkModel,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}):null;
+  if(id==='solomon') {
+    const sea=createVessel('solomon-sea');sea.scale.setScalar(5);sea.position.set(22,.3,12);scene.add(sea);
+    k.collisionBoxes.push(...roof.collisionBoxes,
+      {min:[19.6,.3,9.6],max:[24.4,3.8,14.4]},
+      {min:[-22,-.1,-8.3],max:[12.5,16,8.3]}, // Inner building stays observation-only, including in cutaway view.
+      {min:[19.5,.3,-6.6],max:[29.5,5,2.6]}, // Ritual altar and its illustrative steps are not a public route.
+      {min:[31.25,.3,-12.6],max:[32.75,1.85,-11.4]},
+      {min:[13.5,1.3,-.6],max:[14.7,2.85,.6]});
+    // Four rendered risers, separate from the continuous collision ramp.
+    for(let i=0;i<4;i++) {
+      const top=.31+(i+1)*.2475,mesh=new THREE.Mesh(new THREE.BoxGeometry(.5,top,4.4),p.stone);
+      mesh.name=`solomon-court-tread-${i}`;mesh.position.set(18.25-i*.5,top/2,0);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.collisionProxy='solomon-court-flight';scene.add(mesh);
+    }
+    walkModel=createWalkModel(k.collisionBoxes,solomonSurfaces,solomonFloor,{proxies:solomonProxies});
+    for(const definition of solomonObjects){let root=null;if(!definition.sceneOnly){root=createVessel(definition.id);root.position.fromArray(definition.position);scene.add(root);}objects.push({...definition,root});}
+  }
+  const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:null;
+  const npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);
   const occluders=[];scene.updateMatrixWorld(true);scene.traverseVisible(o=>{if(o.isMesh&&!o.userData.people)occluders.push(o);});

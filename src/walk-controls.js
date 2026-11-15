@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 import {walkSpawn} from './walk-data.js';
 import {createCharacterController} from './character-controller.js';
-export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{},onMessage=()=>{},onManualInput=()=>{},constrainMove=(from,to)=>to}={}) {
+export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{},onMessage=()=>{},onManualInput=()=>{},constrainMove=(from,to)=>to,navigationObstacles=()=>[]}={}) {
   const keys=new Set();let model=null,motor=null,active=false,blocked=false,position=[...walkSpawn],yaw=Math.PI/2,pitch=0,route=[],distance=0,drag=null,moved=false,axis=[0,0],turn=0;
+  let destination=null,blockedTime=0;
   const apply=()=>{camera.position.set(position[0],(motor?.visualPosition[1]??position[1])+1.65,position[2]);camera.rotation.set(pitch,yaw,0,'YXZ');};
   function clear(){keys.clear();axis=[0,0];turn=0;drag=null;}
   function unlock(){if(document.pointerLockElement===canvas)document.exitPointerLock?.();}
@@ -36,13 +37,13 @@ export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{
     lookAt(p){const dx=p[0]-position[0],dz=p[2]-position[2];yaw=Math.atan2(-dx,-dz);pitch=THREE.MathUtils.clamp(Math.atan2(p[1]-camera.position.y,Math.hypot(dx,dz)),-1.15,1.15);apply();},
     async lock(){if(!active||blocked)return;try{await canvas.requestPointerLock?.();if(document.pointerLockElement!==canvas)onMessage('可拖曳畫面環顧，或使用方向鍵。');}catch{onMessage('這個瀏覽器可用拖曳畫面環顧。');}},
     navigate(to){
-      if(!active||blocked)return false;route=model.path(position,to);
+      if(!active||blocked)return false;destination=[...to];blockedTime=0;route=model.path(position,to,{avoid:navigationObstacles()});
       // Replanning must not pull a slowly moving player back to the nearest grid node.
       // Skip that node only if swept movement can safely reach its successor.
       if(route.length>1){const next=route[1],end=model.move(position,next[0]-position[0],next[2]-position[2]);if(Math.hypot(end[0]-next[0],end[2]-next[2])<.001)route.shift();}
       if(!route.length){onMessage('這裡沒有可步行路線，請選街道或院落入口。');return false;}return true;
     },
-    cancelRoute(){route=[];},setAxis(x,z){axis=[x,z];route=[];},setTurn(n){turn=n;},
+    cancelRoute(){route=[];destination=null;blockedTime=0;},setAxis(x,z){axis=[x,z];route=[];},setTurn(n){turn=n;},
     update(dt){
       if(!active)return false;
       if(blocked){const changed=motor.update(dt);position=motor.position;if(changed)apply();return changed;}
@@ -60,7 +61,11 @@ export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{
       }
       if(dx||dz){const factor=motor.speedFactor(dx,dz);dx*=factor;dz*=factor;}
       const before=position,physicalChange=motor.update(dt,dx,dz);position=motor.position;
-      if(dx||dz){const d=Math.hypot(position[0]-before[0],position[2]-before[2]);if(d<.0001&&route.length){const staticNext=model.move(before,dx,dz);if(Math.hypot(staticNext[0]-before[0],staticNext[2]-before[2])<.0001){route=[];onMessage('前方有障礙，請換個方向。');}}distance+=d;const stride=motor.state.isClimbingStairs?.68:.78;if(distance>stride){distance%=stride;onStep(position,motor.state);}}
+      if(dx||dz){const d=Math.hypot(position[0]-before[0],position[2]-before[2]);blockedTime=d<.001?blockedTime+dt:0;
+        if(d<.0001&&route.length){const staticNext=model.move(before,dx,dz);if(Math.hypot(staticNext[0]-before[0],staticNext[2]-before[2])<.0001){route=[];onMessage('前方有障礙，請換個方向。');}}
+        // Yield briefly to crossing traffic, then route around someone who remains in the way.
+        if(blockedTime>.9&&route.length&&destination){const avoid=navigationObstacles();if(avoid.length){const next=model.path(position,destination,{avoid});if(next.length)route=next;}blockedTime=0;}
+        distance+=d;const stride=motor.state.isClimbingStairs?.68:.78;if(distance>stride){distance%=stride;onStep(position,motor.state);}}
       changed ||=physicalChange;
       if(changed||dx||dz)apply();return changed||!!dx||!!dz;
     },

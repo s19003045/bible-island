@@ -311,7 +311,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
   controls.minDistance = 4; controls.maxDistance = 220; controls.target.set(5, 0, 6);
   camera.position.set(51, 63, 82); controls.update();
   let walkSnapshot=null,walkObjective=null,interactionTarget=null,autoGoal=null,lastWalkUI=0,lastRepath=0;
-  const walk=createWalkControls(camera,renderer.domElement,{onInteract:interactWalk,onStep:p=>audio?.footstep(p),onMessage:onWalkMessage,onManualInput:()=>{autoGoal=null;interactionTarget=null;},constrainMove:(from,to)=>activeHistorical?.npcSystem?.constrainPlayer(from,to)||to});
+  const walk=createWalkControls(camera,renderer.domElement,{onInteract:interactWalk,onStep:p=>audio?.footstep(p),onMessage:onWalkMessage,onManualInput:()=>{autoGoal=null;interactionTarget=null;},constrainMove:(from,to)=>activeHistorical?.npcSystem?.constrainPlayer(from,to)||to,navigationObstacles:()=>activeHistorical?.npcSystem?.agents.map(a=>({position:a.actor.state.position,radius:a.radius+.32+.07}))||[]});
   const ambient = new THREE.HemisphereLight('#fff3dc', '#557879', 2.6); scene.add(ambient);
   const sun = new THREE.DirectionalLight('#fff0cf', 4); sun.position.set(-18, 40, 24); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); sun.shadow.camera.left = -45; sun.shadow.camera.right = 45; sun.shadow.camera.top = 45; sun.shadow.camera.bottom = -45;
@@ -578,9 +578,11 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
       if(walk.update(dt))dirty=true;
       if(autoGoal && now-lastRepath>900) {
         lastRepath=now;const target=goalPosition(autoGoal);
-        if(target&&Math.hypot(target[0]-walk.position[0],target[2]-walk.position[2])<(autoGoal.type==='person'?2.6:.4)&&(autoGoal.type!=='person'||canTalk(autoGoal.id))){walk.cancelRoute();
+        const targetDistance=target?Math.hypot(target[0]-walk.position[0],target[2]-walk.position[2]):Infinity;
+        const reached=target&&(autoGoal.type==='person'?targetDistance<2.6&&canTalk(autoGoal.id):canInspect(autoGoal.id)&&(targetDistance<.4||!walk.navigating));
+        if(reached){walk.cancelRoute();
           const object=autoGoal.type==='object'?activeHistorical.objects.find(o=>o.id===autoGoal.id):null;
-          walk.lookAt(object?(object.lookAt||[object.position[0],object.position[1]+.2,object.position[2]]):[target[0],target[1]+1.3,target[2]]);
+          walk.lookAt(object?(object.viewTarget||object.lookAt||[object.position[0],object.position[1]+.2,object.position[2]]):[target[0],target[1]+1.3,target[2]]);
           if(autoGoal.type!=='person')autoGoal=null;dirty=true;}
         else if(target&&autoGoal.type==='person')walk.navigate(target);
       }

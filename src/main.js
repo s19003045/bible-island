@@ -225,7 +225,7 @@ function bindPeople() {
   $('#replay-voice')?.addEventListener('click',async()=>{if(!sceneAudio.enabled)await sceneAudio.enable();const last=state.dialogue.at(-1);playVoice(last?last.topic+(last.isFollowup?'-followup':''):'greeting');});
   $('#stop-voice')?.addEventListener('click',()=>sceneAudio.stopVoice());
   document.querySelector('[data-learning-return]')?.addEventListener('click',returnToLearning);
-  document.querySelector('[data-read-character]')?.addEventListener('click',()=>{sceneAudio.stopVoice();if(state.selected==='tabernacle'){const last=state.dialogue.at(-1);sceneAudio.enable().then(ok=>{if(ok)playVoice(last?last.topic+(last.isFollowup?'-followup':''):'greeting');});}else readingSpeech.read(state.dialogue.at(-1)?.answer||actor.greeting);});
+  document.querySelector('[data-read-character]')?.addEventListener('click',()=>{sceneAudio.stopVoice();if(explorationFor(state.selected)?.recordedChild){const last=state.dialogue.at(-1);sceneAudio.enable().then(ok=>{if(ok)playVoice(last?last.topic+(last.isFollowup?'-followup':''):'greeting');});}else readingSpeech.read(state.dialogue.at(-1)?.answer||actor.greeting);});
   $('#stop-learning-speech')?.addEventListener('click',()=>{readingSpeech.stop();sceneAudio.stopVoice();});
   document.querySelectorAll('[data-study-stop]').forEach(b=>b.onclick=()=>{const tasks=learningTasks(state.selected,'study');state.learningCursor[learningKey(state)]=(tasks.find(t=>t.stop===b.dataset.studyStop)||tasks[0]).id;returnToLearning();});
 }
@@ -310,7 +310,7 @@ window.addEventListener('pagehide',()=>readingSpeech.stop());
 function updateSoundState(info) {
   state.soundEnabled=info.enabled;state.audioVolumes=info.volume;
   try{storage?.setItem('bible-island:audio:v1',JSON.stringify(info.volume));}catch{}
-  if(state.selected==='tabernacle'&&state.mode==='child'&&state.actor){
+  if(explorationFor(state.selected)?.recordedChild&&state.mode==='child'&&state.actor){
     const label=document.querySelector('[data-reading-status]');if(label)label.textContent=info.status==='playing'?'情境配音播放中':info.status==='loading'?'正在載入配音…':info.status==='unavailable'?info.text:'';
     const stop=document.querySelector('#stop-learning-speech');if(stop)stop.hidden=!['playing','loading'].includes(info.status);
   }
@@ -321,7 +321,7 @@ function updateSoundState(info) {
   if(info.status==='unavailable')walkFeedback(info.text);
 }
 function playVoice(key) {
-  if(!state.actor||!explorationFor(state.selected)||state.mode==='child'&&state.selected!=='tabernacle')return;
+  if(!state.actor||!explorationFor(state.selected)||state.mode==='child'&&!explorationFor(state.selected)?.recordedChild)return;
   sceneAudio.setScene(state.selected);
   sceneAudio.speak(state.actor,state.mode==='child'?'child-'+key:key,world?.personPosition(state.actor)||personById(state.selected,state.actor).position);
 }
@@ -381,8 +381,8 @@ async function openVessel(id) {
   const definitions=explorationFor(state.selected)?.objects||[],definition=definitions.find(v=>v.id===id);
   if(!definition||!state.walking||!world?.canInspect(id))return;
   recordMission({type:'inspect',id});state.explorationSeen=observeObject(state.explorationSeen,state.selected,id);writeExploration(storage,state.explorationSeen);renderWalk();
-  const isCamp=state.selected==='tabernacle';
-  openModal(`<h2 id="modal-title">${definition.name}<span>${isCamp?'教學近景 · 旋轉觀察，核對經文':'拿在手中，慢慢觀察'}</span></h2>${!isCamp?`<div class="vessel-tabs" role="group" aria-label="比較器皿">${definitions.map(v=>`<button data-vessel="${v.id}" aria-pressed="${v.id===id}">${v.name}</button>`).join('')}</div>`:''}<div id="vessel-viewer" class="vessel-viewer"></div><div class="vessel-controls"><button id="vessel-left" aria-label="向左旋轉器物">↶ 向左轉</button><span>拖曳或使用方向鍵</span><button id="vessel-right" aria-label="向右旋轉器物">向右轉 ↷</button></div><p>${definition.description}</p><div class="source-note"><strong>帶著問題觀察</strong><p>${definition.observation}</p></div>${isCamp?`${scriptureReferences(definition.passage)}<button id="inspect-learning-stop" class="primary-button">回到相關探索點與閱讀流程 →</button><p class="modal-small">近景與構造為教學示意；不代表可以搬動聖物或自由進入聖所。</p>`:'<p class="modal-small">類型復原 · 未認定特定出土原物。石器的歷史解釋仍需對照研究。</p><a class="source-item" href="https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period" target="_blank" rel="noopener noreferrer">查閱上城住居與器皿發掘資料 ↗</a>'}`);
+  const teaching=explorationFor(state.selected)?.teachingInspection;
+  openModal(`<h2 id="modal-title">${definition.name}<span>${teaching?'教學近景 · 旋轉觀察，核對經文':'拿在手中，慢慢觀察'}</span></h2>${!teaching?`<div class="vessel-tabs" role="group" aria-label="比較器皿">${definitions.map(v=>`<button data-vessel="${v.id}" aria-pressed="${v.id===id}">${v.name}</button>`).join('')}</div>`:''}<div id="vessel-viewer" class="vessel-viewer"></div><div class="vessel-controls"><button id="vessel-left" aria-label="向左旋轉器物">↶ 向左轉</button><span>拖曳或使用方向鍵</span><button id="vessel-right" aria-label="向右旋轉器物">向右轉 ↷</button></div><p>${definition.description}</p><div class="source-note"><strong>帶著問題觀察</strong><p>${definition.observation}</p></div>${teaching?`${scriptureReferences(definition.passage)}<button id="inspect-learning-stop" class="primary-button">回到相關探索點與閱讀流程 →</button><p class="modal-small">近景與構造為教學示意；不代表可以搬動聖物或自由進入聖所。</p>`:'<p class="modal-small">類型復原 · 未認定特定出土原物。石器的歷史解釋仍需對照研究。</p><a class="source-item" href="https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period" target="_blank" rel="noopener noreferrer">查閱上城住居與器皿發掘資料 ↗</a>'}`);
   document.querySelectorAll('[data-vessel]').forEach(b=>b.onclick=()=>openVessel(b.dataset.vessel));
   $('#inspect-learning-stop')?.addEventListener('click',()=>{closeModal();selectStop(definition.stop);});
   const container=$('#vessel-viewer');try {const {mountVesselViewer}=await import('./vessels.js');if(!container.isConnected||!$('#modal').open)return;const view=mountVesselViewer(container,id);modalCleanup=()=>view.dispose();$('#vessel-left').onclick=()=>view.rotate(.25);$('#vessel-right').onclick=()=>view.rotate(-.25);}catch{if(container.isConnected)container.textContent='此裝置無法開啟器物近景；仍可閱讀上方說明與經文。';}

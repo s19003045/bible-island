@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 export function createVessel(id) {
+  if(['pillar-capital','solomon-sea','temple-masonry'].includes(id))return createSolomonObject(id);
   if(['woven-sample','board-joint','tabernacle-basin'].includes(id))return createCraftObject(id);
   const clay=id==='clay-vessel',group=new THREE.Group();
   const profile=clay?[[0,0],[.09,0],[.16,.06],[.23,.19],[.22,.31],[.15,.4],[.085,.44],[.08,.51],[.10,.52],[.105,.55],[.075,.55],[.065,.5],[.075,.44],[.14,.39],[.20,.3],[.21,.19],[.14,.08],[.07,.035],[0,.035]]:[[0,0],[.11,0],[.145,.045],[.15,.27],[.165,.3],[.165,.325],[.14,.325],[.13,.28],[.12,.055],[0,.055]];
@@ -8,6 +9,37 @@ export function createVessel(id) {
   if(clay)for(const side of [-1,1]){const handle=new THREE.Mesh(new THREE.TorusGeometry(.105,.021,8,32),material);handle.position.set(side*.12,.39,0);group.add(handle);}
   // Fine horizontal tooling marks, shared with the inspectable object rather than a second representation.
   for(let i=0;i<6;i++){const radius=clay?.218-Math.abs(i-2)*.004:.15;const mark=new THREE.Mesh(new THREE.TorusGeometry(radius,.0013,3,40),new THREE.MeshStandardMaterial({color:clay?'#805237':'#b2aa94',roughness:1}));mark.rotation.x=Math.PI/2;mark.position.y=clay?.16+i*.023:.08+i*.035;group.add(mark);}
+  group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});group.userData.objectId=id;return group;
+}
+function createSolomonObject(id) {
+  const group=new THREE.Group(),bronze=new THREE.MeshStandardMaterial({color:'#89724f',metalness:.7,roughness:.43}),stone=new THREE.MeshStandardMaterial({color:'#bcb097',roughness:.96}),cedar=new THREE.MeshStandardMaterial({color:'#725039',roughness:.88});
+  const add=(geometry,material,x,y,z)=>{const m=new THREE.Mesh(geometry,material);m.position.set(x,y,z);group.add(m);return m;};
+  const box=(w,h,d,x,y,z,mat)=>add(new THREE.BoxGeometry(w,h,d),mat,x,y,z);
+  const sphere=new THREE.SphereGeometry(1,12,8);
+  if(id==='pillar-capital') {
+    add(new THREE.CylinderGeometry(.14,.15,.2,32),bronze,0,.1,0);
+    add(new THREE.LatheGeometry([[.13,.18],[.23,.26],[.3,.39],[.24,.5],[.17,.58],[.31,.76]].map(p=>new THREE.Vector2(...p)),48),bronze,0,0,0);
+    for(const y of [.3,.4,.5]){const ring=add(new THREE.TorusGeometry(.265,.008,6,64),bronze,0,y,0);ring.rotation.x=Math.PI/2;}
+    const fruit=new THREE.InstancedMesh(sphere,bronze,200),transform=new THREE.Object3D();group.add(fruit);
+    for(let row=0;row<2;row++)for(let n=0;n<100;n++){
+      const a=(n+row*.5)/100*Math.PI*2;transform.position.set(Math.cos(a)*.28,.32+row*.12,Math.sin(a)*.28);transform.scale.setScalar(.012);transform.updateMatrix();fruit.setMatrixAt(row*100+n,transform.matrix);
+    }
+    for(let n=0;n<20;n++){const a=n/20*Math.PI*2,net=box(.008,.25,.008,Math.cos(a)*.25,.41,Math.sin(a)*.25,bronze);net.rotation.z=.2*Math.sin(a);}
+  } else if(id==='solomon-sea') {
+    for(let side=0;side<4;side++)for(let n=-1;n<=1;n++) {
+      const a=side*Math.PI/2,ox=new THREE.Group();ox.position.set(Math.cos(a)*.27+Math.sin(a)*n*.11,0,Math.sin(a)*.27-Math.cos(a)*n*.11);ox.rotation.y=-a;group.add(ox);
+      const part=(x,y,z,sx,sy,sz)=>{const m=new THREE.Mesh(sphere,bronze);m.position.set(x,y,z);m.scale.set(sx,sy,sz);ox.add(m);};
+      part(0,.135,0,.13,.06,.043);part(.12,.17,0,.045,.047,.031);part(.157,.15,0,.03,.022,.026);
+      for(const x of [-.075,.075])for(const z of [-.03,.03]){const leg=new THREE.Mesh(new THREE.CylinderGeometry(.008,.006,.105,8),bronze);leg.position.set(x,.058,z);ox.add(leg);}
+      for(const z of [-.034,.034]){const horn=new THREE.Mesh(new THREE.ConeGeometry(.007,.045,8),bronze);horn.position.set(.12,.215,z);horn.rotation.z=-.3;ox.add(horn);}
+    }
+    add(new THREE.LatheGeometry([[.14,.25],[.26,.3],[.38,.48],[.45,.7],[.425,.7],[.355,.49],[.24,.33],[.14,.29]].map(p=>new THREE.Vector2(...p)),64),bronze,0,0,0);
+    const water=add(new THREE.CircleGeometry(.405,64),new THREE.MeshStandardMaterial({color:'#5e7b77',roughness:.25,transparent:true,opacity:.7,side:THREE.DoubleSide}),0,.66,0);water.rotation.x=-Math.PI/2;
+  } else {
+    for(let row=0;row<2;row++)for(let n=0;n<3;n++)box(.255,.2,.25,-.27+n*.27+(row?.06:0),.1+row*.205,0,stone);
+    for(let n=0;n<5;n++)box(.15,.6,.035,-.3+n*.155,.3,-.17,cedar);
+    for(const y of [.07,.52])box(.84,.045,.045,0,y,-.21,cedar);
+  }
   group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});group.userData.objectId=id;return group;
 }
 function createCraftObject(id) {

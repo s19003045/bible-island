@@ -74,14 +74,18 @@ export function createWalkModel(boxes=[],surfaces=walkSurfaces,floor=walkFloor,o
       const x=ix*step,z=iz*step;if(valid(x,z))nodes.set(key(ix,iz),{ix,iz,x,z});
     }
   }
-  function nearest(p) {let best=null,d=Infinity;for(const n of nodes.values()){const v=(p[0]-n.x)**2+(p[2]-n.z)**2;if(v<d){d=v;best=n;}}return best;}
+  function nearest(p,blocked=new Set()) {let best=null,d=Infinity;for(const [k,n] of nodes){if(blocked.has(k))continue;const v=(p[0]-n.x)**2+(p[2]-n.z)**2;if(v<d){d=v;best=n;}}return best;}
   const edges=new Map();
   function connected(a,b) {
     const k=`${a.ix},${a.iz}:${b.ix},${b.iz}`;if(edges.has(k))return edges.get(k);
     const from=[a.x,heightAt(a.x,a.z),a.z],to=move(from,b.x-a.x,b.z-a.z),ok=Math.hypot(to[0]-b.x,to[2]-b.z)<.001;edges.set(k,ok);return ok;
   }
-  function path(from,to) {
-    makeGraph();const start=nearest(from),end=nearest(to);if(!start||!end)return [];
+  function path(from,to,{avoid=[]}={}) {
+    makeGraph();
+    // Temporary obstacles affect this request only; never poison the cached static graph.
+    const blocked=new Set();
+    if(avoid.length)for(const [k,n] of nodes){const y=heightAt(n.x,n.z);if(avoid.some(o=>Math.abs(y-o.position[1])<1.7&&Math.hypot(n.x-o.position[0],n.z-o.position[2])<o.radius))blocked.add(k);}
+    const start=nearest(from,blocked),end=nearest(to,blocked);if(!start||!end)return [];
     if(Math.hypot(end.x-to[0],end.z-to[2])>3.8)return [];
     const first=key(start.ix,start.iz),last=key(end.ix,end.iz),open=new Set([first]),g=new Map([[first,0]]),came=new Map();
     const heuristic=n=>Math.hypot(n.x-end.x,n.z-end.z);
@@ -90,9 +94,10 @@ export function createWalkModel(boxes=[],surfaces=walkSurfaces,floor=walkFloor,o
       if(current===last) {const result=[];let k=last;while(k){const n=nodes.get(k);result.push([n.x,heightAt(n.x,n.z),n.z]);k=came.get(k);}return result.reverse();}
       open.delete(current);const n=nodes.get(current);
       for(const [dx,dz] of [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]]) {
-        const k=key(n.ix+dx,n.iz+dz),next=nodes.get(k);if(!next)continue;
+        const k=key(n.ix+dx,n.iz+dz),next=nodes.get(k);if(!next||blocked.has(k))continue;
         if(dx&&dz&&(!nodes.has(key(n.ix+dx,n.iz))||!nodes.has(key(n.ix,n.iz+dz))))continue;
         if(!connected(n,next))continue;
+        if(avoid.length){const y=heightAt(n.x,n.z);if(avoid.some(o=>{const vx=next.x-n.x,vz=next.z-n.z,t=clamp(((o.position[0]-n.x)*vx+(o.position[2]-n.z)*vz)/(vx*vx+vz*vz),0,1);return Math.abs(y-o.position[1])<1.7&&Math.hypot(n.x+vx*t-o.position[0],n.z+vz*t-o.position[2])<o.radius;}))continue;}
         const tentative=g.get(current)+Math.hypot(dx,dz)*step;
         if(tentative<(g.get(k)??Infinity)){came.set(k,current);g.set(k,tentative);open.add(k);}
       }
