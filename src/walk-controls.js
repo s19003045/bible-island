@@ -33,7 +33,7 @@ export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{
     start(walkModel,spawn=walkSpawn){model=walkModel;motor=createCharacterController(model,{constrainMove});motor.reset(spawn);position=motor.position;yaw=Math.PI/2;pitch=0;route=[];active=true;blocked=false;clear();apply();canvas.focus({preventScroll:true});},
     stop(){active=false;route=[];clear();unlock();},
     block(value){blocked=value;clear();route=[];if(value)unlock();},
-    lookAt(p){const dx=p[0]-position[0],dz=p[2]-position[2];yaw=Math.atan2(-dx,-dz);pitch=Math.atan2(p[1]-camera.position.y,Math.hypot(dx,dz));apply();},
+    lookAt(p){const dx=p[0]-position[0],dz=p[2]-position[2];yaw=Math.atan2(-dx,-dz);pitch=THREE.MathUtils.clamp(Math.atan2(p[1]-camera.position.y,Math.hypot(dx,dz)),-1.15,1.15);apply();},
     async lock(){if(!active||blocked)return;try{await canvas.requestPointerLock?.();if(document.pointerLockElement!==canvas)onMessage('可拖曳畫面環顧，或使用方向鍵。');}catch{onMessage('這個瀏覽器可用拖曳畫面環顧。');}},
     navigate(to){
       if(!active||blocked)return false;route=model.path(position,to);

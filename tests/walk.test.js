@@ -47,6 +47,7 @@ test('movement uses eye height, blocks during conversation, and releases held ke
   control.update(.05);const first=control.position;assert.ok(first[0]<walkSpawn[0]);assert.equal(manualInputs,1);assert.equal(control.navigating,false,'manual keys cancel both route and outer moving-target guidance');
   control.block(true);control.update(1);assert.deepEqual(control.position,first);
   control.block(false);control.update(1);assert.deepEqual(control.position,first,'conversation must clear held movement');
+  control.lookAt([first[0],first[1]-20,first[2]]);assert.ok(camera.rotation.x>=-1.15,'guided look cannot point straight down at its own feet');
   document.dispatchEvent(event);window.dispatchEvent(new Event('blur'));control.update(1);assert.deepEqual(control.position,first);
   control.dispose();
 });

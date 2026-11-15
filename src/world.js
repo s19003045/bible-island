@@ -578,7 +578,10 @@ export function createWorld(container, { onSelect, onStop, onActor,onInspect,onW
       if(walk.update(dt))dirty=true;
       if(autoGoal && now-lastRepath>900) {
         lastRepath=now;const target=goalPosition(autoGoal);
-        if(target&&Math.hypot(target[0]-walk.position[0],target[2]-walk.position[2])<(autoGoal.type==='person'?2.6:.4)&&(autoGoal.type!=='person'||canTalk(autoGoal.id))){walk.cancelRoute();walk.lookAt([target[0],target[1]+1.3,target[2]]);if(autoGoal.type!=='person')autoGoal=null;dirty=true;}
+        if(target&&Math.hypot(target[0]-walk.position[0],target[2]-walk.position[2])<(autoGoal.type==='person'?2.6:.4)&&(autoGoal.type!=='person'||canTalk(autoGoal.id))){walk.cancelRoute();
+          const object=autoGoal.type==='object'?activeHistorical.objects.find(o=>o.id===autoGoal.id):null;
+          walk.lookAt(object?(object.lookAt||[object.position[0],object.position[1]+.2,object.position[2]]):[target[0],target[1]+1.3,target[2]]);
+          if(autoGoal.type!=='person')autoGoal=null;dirty=true;}
         else if(target&&autoGoal.type==='person')walk.navigate(target);
       }
       if(now-lastWalkUI>220){lastWalkUI=now;const target=goalPosition(walkObjective),p=walk.position;const close=nearby();activeHistorical.attend(close?.type==='person'?close.id:null);onWalkUpdate?.({position:p,locomotion:walk.groundState,nearby:close,navigating:walk.navigating,distance:target?Math.hypot(target[0]-p[0],target[2]-p[2]):null});}
