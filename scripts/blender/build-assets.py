@@ -311,6 +311,7 @@ export_asset(stone_scene,'stone-vessel','stone-vessel.glb')
 
 exec(compile((ROOT/'scripts/blender/tabernacle-props.py').read_text(),str(ROOT/'scripts/blender/tabernacle-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/solomon-props.py').read_text(),str(ROOT/'scripts/blender/solomon-props.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/herod-props.py').read_text(),str(ROOT/'scripts/blender/herod-props.py'),'exec'),globals())
 
 bpy.context.window.scene=scene
 scene.frame_set(1)
@@ -338,4 +339,7 @@ render_preview(basin_scene,(0,0,.65),(2.5,-4,3.4),'blender-tabernacle-basin.png'
 render_preview(sea_scene,(0,0,.35),(2.3,-3,1.8),'blender-solomon-sea.png',1.35)
 render_preview(capital_scene,(0,0,.40),(2,-4,1.7),'blender-pillar-capital.png',1.12)
 render_preview(masonry_scene,(0,0,.30),(1.6,-3,1.5),'blender-temple-masonry.png',1.30)
+render_preview(ashlar_scene,(0,0,.20),(1.4,-3,1.3),'blender-herod-stone.png',1.3)
+render_preview(boundary_scene,(0,0,.34),(1.6,-3,1.6),'blender-herod-boundary.png',1.60)
+render_preview(portico_scene,(0,0,.38),(1.6,-3,1.4),'blender-herod-capital.png',1.10)
 print('BIBLE_ASSETS_COMPLETE',json.dumps(report))

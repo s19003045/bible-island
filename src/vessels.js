@@ -59,16 +59,21 @@ function createExodusObject(id){
 }
 function createHerodObject(id){
  const g=new THREE.Group(),stone=new THREE.MeshStandardMaterial({color:'#c5baa2',roughness:.94}),shade=new THREE.MeshStandardMaterial({color:'#a59b86',roughness:1});
- const box=(w,h,d,x,y,z,mat=stone)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);g.add(m);return m;};
+ let part=g;
+ const box=(w,h,d,x,y,z,mat=stone)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);part.add(m);return m;};
  if(id==='herod-stone'){
   for(let i=0;i<2;i++){
+   part=new THREE.Group();part.name=i?'ashlar-right':'ashlar-left';g.add(part);
    const x=(i-.5)*.46;box(.45,.4,.38,x,.2,0,shade);box(.37,.32,.015,x,.2,.198);
    for(let j=0;j<16;j++){const line=box(.0015,.27,.001,x-.155+j*.021,.2,.207,shade);line.rotation.z=.07;}
   }
+  part=g;
   box(.92,.035,.42,0,.018,0);
  }else if(id==='herod-boundary'){
-  box(.94,.04,.64,0,.02,0);for(let i=0;i<6;i++)box(.025,.23,.025,-.42+i*.168,.155,.22);
+  box(.94,.04,.64,0,.02,0);part=new THREE.Group();part.name='boundary-layer';g.add(part);
+  for(let i=0;i<6;i++)box(.025,.23,.025,-.42+i*.168,.155,.22);
   for(const y of [.07,.25])box(.9,.025,.03,0,y,.22);
+  part=g;
   for(const x of [-.31,.31])box(.29,.43,.07,x,.255,-.13);box(.21,.13,.07,0,.405,-.13);
   for(let i=0;i<3;i++)box(.15,.025,.06,0,.045+i*.025,.1-i*.06);
  }else{

@@ -649,7 +649,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
     const keep=k.collisionBoxes.filter(b=>!(b.min[0]>=51.99&&b.max[0]<=84.01&&b.min[2]>=102.8&&b.max[2]<=129.51));k.collisionBoxes.splice(0,k.collisionBoxes.length,...keep);
     // Cutaway visibility never permits crossing the inner sacred precinct.
     k.collisionBoxes.push({min:[-68,8,-43.4],max:[109,60,43.4]});
-    for(const d of herodObjects){const root=createVessel(d.id);root.position.fromArray(d.position);scene.add(root);objects.push({...d,root});k.collisionBoxes.push({min:[d.position[0]-.73,8,d.position[2]-.46],max:[d.position[0]+.73,10,d.position[2]+.46]});}
+    for(const d of herodObjects){const root=createVessel(d.id,{blenderAssets,onReady:assetsChanged,assetLoader});root.position.fromArray(d.position);scene.add(root);objects.push({...d,root});k.collisionBoxes.push({min:[d.position[0]-.73,8,d.position[2]-.46],max:[d.position[0]+.73,10,d.position[2]+.46]});}
     walkModel=createWalkModel(k.collisionBoxes,herodSurfaces,herodFloor,{proxies:herodProxies,navigationStep:.8});
   }
   // Separation may push a city NPC sideways against decorative exterior stairs.

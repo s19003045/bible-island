@@ -51,14 +51,14 @@ export const herodPOIs=[
 ];
 export const herodObjects=[
  {id:'herod-stone',name:'石材接縫教學模型',position:[94,8.91,-60],approach:[94,8.03,-57.8],lookAt:[94,9.25,-60],stop:'temple',
-  description:'以縮小石塊示意加工表面、邊緣與接縫，並非從聖殿拆下的原石或某一塊出土石材的掃描。形制、刀痕與工作桌屬教學補足。',
-  observation:'先比較真人與平台牆，再看近景。馬可的讚嘆與約翰的建造年數，分屬哪兩段敘事？',passage:'Mark 13:1-2;John 2:19-22'},
+  description:'以兩塊縮小石材比較較低的鑿修邊帶、略突的中央面與接縫，可分開右側石塊觀察。凹邊加工可與耶路撒冷發掘報告對照；此處 0.40 m 高教具、刀痕、接觸面與工作桌為教學安排，不是原石掃描或原牆的固定縮尺。',
+  observation:'先比較真人與平台牆，再看近景。馬可的讚嘆與約翰的建造年數，分屬哪兩段敘事？',passage:'Mark 13:1-2;John 2:19-22',source:{label:'IAA：Wilson’s Arch 與 Great Causeway 發掘報告（2011）',url:'https://hadashot.iaa.org.il/Report_Detail_Eng.aspx?id=1738&mag_id=118&print=all'}},
  {id:'herod-boundary',name:'院界與通行範圍示意',position:[81,8.91,46.5],approach:[81,8.03,48.6],lookAt:[81,9.2,46.5],stop:'steps',
-  description:'縮小教具把低石欄、院牆與門的空間關係分開呈現。約瑟夫斯描述圍界與進入限制；此處構件不摹寫警告碑，不作古代原物的精確複製。',
+  description:'把低石欄、上行階梯、較高院牆與門分層呈現；十四級小階梯對照約瑟夫斯《猶太戰記》5.5.2。教具不採全體一致縮尺，欄式、位置與構件接法屬推定，也不擬造警告碑文字。分開低欄只是現代教具操作，不會解除場景的古代院界限制。',
   observation:'對照眼前的低欄與較高院牆。為何能在教學視圖剖看建築，並不代表古代每一位訪客都可穿越？',passage:'Luke 2:41-50',source:{label:'約瑟夫斯《猶太戰記》5.5.2',url:'https://sacred-texts.com/jud/josephus/war-5.htm'}},
  {id:'herod-capital',name:'柱廊構件教學模型',position:[31,8.91,-88],approach:[31,8.03,-85.3],lookAt:[31,9.25,-88],stop:'portico',
-  description:'縮小展示柱身、柱頭與上部承托，方便在人的視線高度觀察。葉飾、曲線及組裝方式為示意，並非已確認的所羅門廊出土柱頭。',
-  observation:'先抬頭比較柱與人的高度，再分清路加的聆聽敘事、約翰的所羅門廊，以及現代模型所選的柱式。',passage:'Luke 2:46-47;John 10:22-23'},
+  description:'在人的視線高度比較短柱身、兩層葉飾、角渦卷與上部承托。科林斯式參照約瑟夫斯《猶太古史》15.11.5 對南側王家柱廊的描述；不能據此認定約翰所述的所羅門廊也用同一柱式。此處高 0.76 m、葉片數量、曲線及接法均為教學選擇，不是已確認的所羅門廊出土柱頭。',
+  observation:'先抬頭比較柱與人的高度，再分清路加的聆聽敘事、約翰的所羅門廊，以及現代模型所選的柱式。',passage:'Luke 2:46-47;John 10:22-23',source:{label:'約瑟夫斯《猶太古史》15.11.5：南側王家柱廊',url:'https://sacred-texts.com/book/the-works-of-flavius-josephus/book-xv'}},
 ];
 export function herodAllowed(agent,p){
  if(['pilgrim','south-visitor'].includes(agent.role))return p[2]>=45;

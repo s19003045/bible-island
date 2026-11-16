@@ -32,7 +32,7 @@
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "9643e49be8da5d99083b3ea62ff4b9a23dc93e16665aa2b4618d52958a6b3b04",
+      "sha256": "0de4db463fcc6ccbd96a1dc010f8799b6f7f2009d12239dca07e29da9b1c13b4",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -41,7 +41,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "f09bb7e3341ca4a2f894223d934e042e9dd8ea1d11ff524f7fe548d0e73dabfa",
+      "sha256": "45d6c5ea8aff6479200c23243d26db4fc68cde0f43b72532e2b63fafb46485fd",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -59,7 +59,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "a09f4556d9fa6e718d0a5fbe2e17aa413979174a464127567f9ad3ff822d9277",
+      "sha256": "1b51681b2037c18d7b4140b694e10824e4082bf8ead7d97e143534a6c90ee75f",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -84,11 +84,42 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "50a7ace37adc8d8bc00ed84b7b5df86ac40e9309ee447db37693b9e98f43d6b0",
+      "sha256": "09502343c98ac9d9abfa191aef1c0f10772b526253e414fda7aa4331d73a61a0",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
       "teaching_model": true
+    },
+    "herod-stone": {
+      "file": "models/herod-stone.glb",
+      "bytes": 165524,
+      "sha256": "92911c9b58d1607c5ed8c7a836cfe6a4436ba40de6941439188b4e7b96b13832",
+      "triangles": 3556,
+      "animations": [],
+      "height": 0.4,
+      "teaching_model": true
+    },
+    "herod-boundary": {
+      "file": "models/herod-boundary.glb",
+      "bytes": 814876,
+      "sha256": "d0f86ce7b11d50a6faa0f834d8b96e43e123cca25824bd1c6307509840b7c02a",
+      "triangles": 8460,
+      "animations": [],
+      "height": 0.692,
+      "teaching_model": true,
+      "ascent_treads": 14,
+      "uniform_scale": false
+    },
+    "herod-capital": {
+      "file": "models/herod-capital.glb",
+      "bytes": 487136,
+      "sha256": "f44c42cffaedcedccf9489bbc0f7f6adb395ce891e0ed2960facd2ef6a553d34",
+      "triangles": 20328,
+      "animations": [],
+      "height": 0.76,
+      "teaching_model": true,
+      "comparison_order": "Corinthian; south royal portico reference only",
+      "leaf_rows": 2
     }
   }
 }
