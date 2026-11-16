@@ -280,3 +280,19 @@
 對話入口修正發布：本機 `1ecacf820dc2d4332104c01bb9b2acea159446ea`；317追蹤檔與Sites來源逐檔相符。Sites source `846da20e804f28c7fc188543aadabd2a94110186`，version `appgprj_6af95ea0dac4819182957156725483aa~appgver_c00438ceddf88191af951c9409ca18f0`，deployment `appgdep_6afaf98841e48191a6afac96f7abdd8e`，平台於 `2026-11-16T12:39:55.794332+00:00` 回傳 `succeeded`。入口 `index-tOeuEgUH.js`、world `world-Ci28UESq.js`、vessels `vessels-jTuxxaAr.js`，CSS維持 `index-Gu4b_RX2.css`。完整201測試再次通過，最新單檔試閱139,887KiB；建置1.53s／91模組。其後下一島研究與未註冊草稿、發布後紀錄各自提交，發布來源仍以上述精確版本為準。
 
 - 最終正式頁已重新載入核對交談期間探索入口收起，牧地豎琴問答／CSBT及`語音播放中`實際確認；`.qa/david-final-dialogue-sites.png`已檢視。console warning／error為空，恢復一般閱讀／牧地全景、動畫開啟，未留對話／近景／自動行走。三件器物走訪全部完成，其餘三個約櫃時刻近景與人工審驗仍按大衛驗收保留。
+
+
+## 2026-11-16：分裂王國與先知，第十四座詳細島
+
+- 本機來源：`d4e9e2b2f4e1bab2e4523ed3db6dde1656d1bc21`；333個追蹤檔與Sites checkout逐檔SHA256相符。
+- Sites source：`caf65e30086e0a33b9646f3be9d979fd923b8bc7`。
+- Saved version：27，`appgprj_6af95ea0dac4819182957156725483aa~appgver_8e570686de74819195c0aac3688ccc65`。
+- Deployment：`appgdep_6afafee6bb1c8191a1cc43aa65fe7a68`，平台回傳 `succeeded`，`2026-11-16T13:02:51.220931+00:00`。
+- 網址：[Bible Island](https://bible-island.starryswift8.chatgpt.site/#island=kingdoms&chapter=south)。既有owner／custom單一使用者、0群組、0外部訪客範圍保留。
+- 來源helper完成推送／同版建置及封裝；95模組1.36s，入口 `index-D56y0ZZ0.js`、world `world-MUtr3RUO.js`、vessels `vessels-CyB2BwUE.js`、three `three-CLGziNgE.js`，CSS `index-Gu4b_RX2.css`。平台驗證來源SHA相同，archive124files／112,291,840bytes，content SHA256 `6201d058bbfe2a202334948fec5f88207b8e46b38c3b5ced89134f82242b26a9`。保留封裝 `/tmp/bible-island-d4e9e2b-kingdoms-sites.tar.gz`。
+- 210／210全站回歸、24主題74點內容／語法與正式建置通過，離線單檔148,154KiB。新增三件Blender教具、三位角色與24cue配音，全站71GLB／45MP3／42可交談角色／336cue。詳細來源與界線見 [分裂王國驗收](review/KINGDOMS-CHAPTERS.md)。
+- 本機三章均從出生點沿路走到各教具並完成近景、旋轉、拆合及還原，各章觀察1／1，研讀維持0／3；摩5核心／摩8延伸顯隱已實際檢視。正式頁已重新載入並顯示第14島：一般對話追問連摩5:21–24、語音播放中、親子專屬提示配音、研讀資料查閱前後判讀按鈕啟用均確認。正式步行近景與恢復頁面結果接續追加。
+- 原Goal持續，尚餘十島；獨立歷史專家簽核、完整真人專名聽驗、實體手機性能及既有人工補驗未宣稱通過。
+
+
+第14島發布後補驗：正式第三章已實際沿路步行到教具，摩5核心／摩8延伸顯隱、容量層抬升／還原及旋轉均完成，觀察1／1而研讀仍0／3；證據 `.qa/kingdoms-measures-inspection-sites.png`。正式頁最後一般閱讀／示劍全景，本機研讀／城門全景，兩頁動畫正常、無對話／近景／導航，console warning／error皆[]。後續文件及下一島研究不改本次部署的d4e9e2b來源。
