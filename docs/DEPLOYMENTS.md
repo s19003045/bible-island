@@ -393,3 +393,13 @@
 - 封裝`/tmp/bible-island-39db6b9-walk-focus-sites.tar.gz`，101,743,587bytes，SHA256=`6efc1234be906510c04a6d607f29cb096c3b3d92d0a4a6207b6714a67f4ce290`；平台160內容檔／146,831,360bytes，內容hash=`b1f2cf8186eeb8520a7d7111073937db5bc600ebff2b353f8a99714cabe98700`。
 - 全站42檔274項回歸、內容／語法及193121KiB離線試閱通過。Sites同源建置120模組／1.37s，入口`index-DItO92S8.js`、world`world-CJV1yj4x.js`、vessels`vessels-BdjFY_KH.js`、three`three-qqpqWelr.js`、CSS`index-zmRD_4cI.css`；保留既有大chunk提示。
 - 網址仍為 [讀聖經順起來](https://bible-island.starryswift8.chatgpt.site)。正式既有分頁已送reload，頁面回讀與沿路近景接續追加；不能由發布成功推定全部手動操作通過。
+
+## 2026-11-17：比喻中的日常世界，第二十一座詳細島（第36版）
+
+- root來源`44acd0d1a7034d240dc1368825d934b520e3f72b`；Sites來源`de3f452f12a3d49f49b27ee47e0c2ab95fc8c504`。465個追蹤來源逐檔SHA256相同，既有node_modules連結保持；下一島研究未追蹤，不在此版封裝。
+- 同一owner-private專案`appgprj_6af95ea0dac4819182957156725483aa`；owner／custom單一使用者、0群組／0外部訪客未改。第36版`appgprj_6af95ea0dac4819182957156725483aa~appgver_a2bb766c2e748191a3585e05890e1749`；部署`appgdep_6afb6055caac81918760fc954b7fefba`於`2026-11-16T19:58:30.455050+00:00`回傳succeeded，沒有terminal後poll或重複發布。平台版本來源SHA相符。
+- 正式入口：[聆聽、尋回與預備](https://bible-island.starryswift8.chatgpt.site/#island=parables&chapter=seed&phase=sowing)。壓縮封裝`/tmp/bible-island-44acd0d-parables-sites.tar.gz`，107,079,660bytes，SHA256=`b909dd11ebd1f47b2fa669e9360b9582077fc0a8d19b4edffdfe5628d9ca47e1`；平台166內容檔／152,883,200bytes，內容hash=`706b37440c20a24d8ee881cd96a2e2b5303b65fc5ff3bddec81958629650008c`。
+- 同源建置124模組／1.45s；入口`index-PtLGxBO6.js`、world`world-CscZVJ61.js`、vessels`vessels-CCSiM0MB.js`、three`three-Dz9Lx53B.js`、CSS`index-zmRD_4cI.css`。44檔286項全站回歸、內容／語法、200997KiB離線試閱通過；保留既有大chunk提示。
+- 原受限封裝程序41236已建置成功，但Git DNS失敗exit128；本機提交及build保留。受核准網路32966的首次stdin被自動審查指憑證與舊來源參照，取得新憑證／核對Sites當前提交與465來源後，審查第二次因UTC／台北跨日誤判到期而攔下；以服務時鐘`2026-11-16 19:56:21 UTC`證明20:05:43.800Z憑證尚餘562秒後核准，32966使用不變成功build／commands=[]完成封裝exit0。沒有繞過審查、重建dev server、重複生成音訊或重複部署。
+- 三章十窗口、每章13位獨立POI居民、七隻原創動態羊、三件新正式Blender教具與24cue配音完成。全站92GLB／66MP3／63角色／504cue；原89GLB bytes保持，來源及取捨見[比喻島驗收](review/PARABLES-CHAPTERS.md)。本機親子和研讀前置／獨立1／3、一般0／3及親子錄音播放中已實測；土層與數量盤已沿路／E／旋轉及1／1，土層另抬還。其餘逐件近景及正式站人工走訪接續記錄，不由發布成功推定全部人工驗收。
+- 正式既有分頁reload後實讀入口`index-PtLGxBO6.js`，開啟lamp/preparation；畫面與近景檢查仍進行。其餘passion／church／letters三島及舊人工待辦保持active總Goal。
