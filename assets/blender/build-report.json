@@ -407,7 +407,7 @@
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "05318cbb429d39d04ac70abe7e0e35554ff063b330dfbf06a56459df56eb10cb",
+      "sha256": "4297fe8ea36300b6ace5a70d89f0b3265b311c3f7d10966191eb066da57ff8d9",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -416,7 +416,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "2e747db1dc93fda660164936e472d2bb7a467b72b2de3acf3f27fce96a666934",
+      "sha256": "de5664cf76861f55715caee8949993114d71f604fc943d5945e11e986566f769",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -434,7 +434,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "65cceba883cd77613ea5247eb826102c91661411bbf23f856a0de35296ea359a",
+      "sha256": "5191bcddf75c1265e127b28e7224cc18f535b1e95b39ee7e1c5ac8484a200eee",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -459,7 +459,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "f14216942d0f643b788a4a230666ccab0903a96b421c63851c593eb51f162837",
+      "sha256": "00bb3c3e8225d5ac5b29587fd290cf948a85cd71fa984866d599f71eb1a89d4c",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -468,7 +468,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "46e66517ddb3b393dd97bd6eefec684cba1e3cdabab73d23b7269b0042cd88c9",
+      "sha256": "6ec9fb564bdff4ef0297094858bfab6a19091f69484e2d748e2437d44dbb8b96",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -477,7 +477,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "59bfcaabcc228eee2862346ef9c829260629a22153494f68809321a6691bfa13",
+      "sha256": "2faceab04c03eb060b45af706b6d51174046cdcba0864c2b79288664d8fea63c",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -488,7 +488,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "8dda62273bb7377496adaf98205c003aa99f01b6384b735121bd65180daa3d64",
+      "sha256": "3357b479e80c0802ba18e813aa2b3bc593106bd88686985fefcbf8bc95b4776e",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -499,7 +499,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "474e31713dac854aa06d7bdec4c8c695695ad089c5fe09e704fc0a3f48227aa0",
+      "sha256": "c156e7f0f8865660975627b0299a1d283a83a983919a2f16695588601537968d",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -517,7 +517,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "7ea7ea1a698b0eb29e51ba87c3f7667403d32f4c947ebfc85744fad375725aa9",
+      "sha256": "f02f04cd195064fe6e7600b5a2844112034d9627f5050a2481d92e94f16f2587",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
@@ -558,7 +558,7 @@
     "return-masonry": {
       "file": "models/return-masonry.glb",
       "bytes": 200972,
-      "sha256": "c8221784d7bf3453f2881ec0a1d14d0d5f859ac80a4dc5fa57c4632ee0e3ae78",
+      "sha256": "8ea0eb54386032f2a46ad8839bbd64fc8e14a03edafe03308908b37aa2383ae7",
       "triangles": 2068,
       "animations": [],
       "height": 0.513,
@@ -586,7 +586,7 @@
     "paul-ship": {
       "file": "models/paul-ship.glb",
       "bytes": 946292,
-      "sha256": "957c65e16c1dd1079444fb6f946a100c2048d05050d03babe340b9534e9aa75f",
+      "sha256": "a3dafd02031ac42a41e1bf55643a7c08ec5499db1934ea965b0ac4187c2add37",
       "triangles": 28360,
       "animations": [],
       "height": 1.12,
@@ -605,7 +605,7 @@
     "paul-silverwork": {
       "file": "models/paul-silverwork.glb",
       "bytes": 73844,
-      "sha256": "8e7446a219c076e13e607086c2b382adf89f0f8a618898110941f5e2d870d9c5",
+      "sha256": "182cea6354df9a1adf69e23b2566d8c6edee0fbe194f43ce7849bd451d174d3a",
       "triangles": 1596,
       "animations": [],
       "height": 0.34,
@@ -668,7 +668,7 @@
     "joseph-granary": {
       "file": "models/joseph-granary.glb",
       "bytes": 852148,
-      "sha256": "7e00161d559dfa9935c1ae658bd5d5289b76e52a413ecec9267517ebc07cd6aa",
+      "sha256": "7596c6deb7c2eaa5aa903fd9377a905be1ed58cbc37396928f925078e97d624f",
       "triangles": 17996,
       "animations": [],
       "height": 0.651,
@@ -715,7 +715,7 @@
     "sinai-boundary": {
       "file": "models/sinai-boundary.glb",
       "bytes": 849724,
-      "sha256": "3fbd4168195d4cb05b36f393ea2b38d44d18de229701489664fc893d0d8aa510",
+      "sha256": "31219fa663488469c3021c7bfd13175cac591bc7ad8f70ee9b893db68aae2aec",
       "triangles": 17768,
       "animations": [],
       "height": 0.632,
@@ -737,7 +737,7 @@
     "ruth-grain": {
       "file": "models/ruth-grain.glb",
       "bytes": 775124,
-      "sha256": "d3cd598c020a97790c36190e30ef34dfb49b06a07699af50166616d8a0e65f5e",
+      "sha256": "cbfa173ccb8afa99001eff5e3a8707df4549307073474f0f464bd8c6394a2909",
       "triangles": 18402,
       "animations": [],
       "height": 0.363,
@@ -753,7 +753,7 @@
     "ruth-witness": {
       "file": "models/ruth-witness.glb",
       "bytes": 515776,
-      "sha256": "fb073f90c8765789404bde2e176add95aaa360a668678ed84a2497bbf1cd12b2",
+      "sha256": "11b8d24cec47813b976e828a36a2e0236e036402f0281635d768680f3639bf5a",
       "triangles": 11268,
       "animations": [],
       "height": 0.45,
@@ -768,7 +768,7 @@
     "david-shepherd": {
       "file": "models/david-shepherd.glb",
       "bytes": 532476,
-      "sha256": "b5566cfb894662668655a14c8e99c08dd279f54bc1a8d0bf51ab3d5aacd0fe17",
+      "sha256": "0eba4aa128acc1e5c62b65303a03262071392d207c922d7e4d7531bb0fed6e79",
       "triangles": 20368,
       "animations": [],
       "height": 0.52,
@@ -780,7 +780,7 @@
     "david-city": {
       "file": "models/david-city.glb",
       "bytes": 1405104,
-      "sha256": "9f9c324c4ef703f3b48299fbe58aa2264872e903cb50bfd0cc9ce4df87c98093",
+      "sha256": "aad421af70e96b70fa64777d21d094ce6a11c5d8bcb4dd799c13a63a398946b5",
       "triangles": 22624,
       "animations": [],
       "height": 0.306,
@@ -791,7 +791,7 @@
     "david-ark": {
       "file": "models/david-ark.glb",
       "bytes": 859428,
-      "sha256": "d17e64ed264216793150d196c33c6e6739b8555bca63d9b479d7f3eeed079a61",
+      "sha256": "cc7eca5f726100b2a0d0a01351ca1464ecb8bc0aff8987191796f22b72039795",
       "triangles": 29520,
       "animations": [],
       "height": 0.682,
@@ -843,7 +843,7 @@
     "kingdom-assembly": {
       "file": "models/kingdom-assembly.glb",
       "bytes": 604316,
-      "sha256": "f5fc5b86ffb84561560fdbf21d45c66d7f3db2ab4474f58dc360e84e0a562b91",
+      "sha256": "d7e86c2516b3ba942a8ce6ff69c2775305dfd4fb1eb8467dfd1e679c7447be8d",
       "triangles": 17116,
       "animations": [],
       "height": 0.209,
@@ -856,7 +856,6 @@
         0.8999999761581421,
         0.20900000631809235
       ],
-      "modern_removable_layer": "kingdom-assembly-modern-date-layer",
       "source_scene": "Kingdoms \u2014 modern negotiation reading tray, 1 Kings 12:1-24",
       "semantic_groups": [
         "kingdom-assembly-modern-reading-tray",
@@ -869,13 +868,14 @@
         "kingdom-assembly-place-shechem",
         "kingdom-assembly-place-later-jerusalem"
       ],
+      "modern_removable_layer": "kingdom-assembly-modern-date-layer",
       "modern_layer_lift_m": 0.14,
       "modern_layer_axis": "glTF +Y; Blender +Z"
     },
     "kingdom-sites": {
       "file": "models/kingdom-sites.glb",
       "bytes": 564708,
-      "sha256": "15298c0ce2e834fc6bc993710956a34ef30174de54a9a7f979508cc23619123c",
+      "sha256": "466b3c9f742180b8d77b2cf7740d9dfdaca524f963d038fe379cf2d4c8d9546b",
       "triangles": 18760,
       "animations": [],
       "height": 0.493,
@@ -888,7 +888,6 @@
         0.8600000143051147,
         0.49300000071525574
       ],
-      "modern_removable_layer": "kingdom-sites-modern-comparison-layer",
       "source_scene": "Kingdoms \u2014 physically separated two-place comparison, 1 Kings",
       "semantic_groups": [
         "kingdom-sites-bethel-separate-base",
@@ -897,13 +896,14 @@
         "kingdom-sites-dan-calf",
         "kingdom-sites-modern-comparison-layer"
       ],
+      "modern_removable_layer": "kingdom-sites-modern-comparison-layer",
       "modern_layer_lift_m": 0.14,
       "modern_layer_axis": "glTF +Y; Blender +Z"
     },
     "kingdom-measures": {
       "file": "models/kingdom-measures.glb",
       "bytes": 800388,
-      "sha256": "6299ee90ceaa5eeda3fc25eb3e205ed1d84a8c5c87c01e2eed6af2770ab39492",
+      "sha256": "a199ea18163ed97500d20f0234beebbce607c316f1ccba38b8c7538e7412fc9f",
       "triangles": 18628,
       "animations": [],
       "height": 0.68,
@@ -916,10 +916,6 @@
         0.8999999761581421,
         0.6800000071525574
       ],
-      "modern_removable_layer": "kingdom-measures-modern-capacity-layer",
-      "extension_group": "kingdom-measures-amos8-extension",
-      "core_reference": "AMO.5.CSBT",
-      "extension_reference": "AMO.8.4-6.CSBT",
       "source_scene": "Kingdoms \u2014 public gate and separate Amos 8 capacity-weight co",
       "semantic_groups": [
         "kingdom-measures-modern-display-base",
@@ -935,8 +931,130 @@
         "kingdom-measures-uninscribed-weight-comparison",
         "kingdom-measures-amos8-extension"
       ],
+      "modern_removable_layer": "kingdom-measures-modern-capacity-layer",
       "modern_layer_lift_m": 0.25,
-      "modern_layer_axis": "glTF +Y; Blender +Z"
+      "modern_layer_axis": "glTF +Y; Blender +Z",
+      "extension_group": "kingdom-measures-amos8-extension",
+      "core_reference": "AMO.5.CSBT",
+      "extension_reference": "AMO.8.4-6.CSBT"
+    },
+    "exile-sequence": {
+      "file": "models/exile-sequence.glb",
+      "bytes": 291792,
+      "sha256": "5813379bd32edc3f33260b880a6fbc26a46f15df03c10971e4f4edc616d00944",
+      "triangles": 5304,
+      "animations": [],
+      "height": 0.089,
+      "teaching_model": true,
+      "prototype_only": false,
+      "interpretation": "Four different modern recess/insert positions: Jehoiachin deportation; later siege/destruction; those left and later Egypt; Jehoiachin late release. Not a map, equal human groups, one day, full population, or universal return.",
+      "source_scene": "Exile \u2014 original modern event tray, 2 Kings 24\u201325",
+      "bottom_m": 0.0,
+      "top_m": 0.08900000154972076,
+      "dimensions_blender_xyz_m": [
+        1.2000000476837158,
+        0.8999999761581421,
+        0.08900000154972076
+      ],
+      "semantic_groups": [
+        "exile-sequence-modern-support",
+        "exile-sequence-recess-jehoiachin-deportation",
+        "exile-sequence-event-jehoiachin-deportation",
+        "exile-sequence-recess-later-siege-destruction",
+        "exile-sequence-event-later-siege-destruction",
+        "exile-sequence-recess-left-land-and-later-egypt",
+        "exile-sequence-event-left-land-and-later-egypt",
+        "exile-sequence-recess-jehoiachin-late-release",
+        "exile-sequence-event-jehoiachin-late-release",
+        "exile-sequence-modern-event-layer",
+        "exile-sequence-support-surface-detail"
+      ],
+      "modern_removable_layer": "exile-sequence-modern-event-layer",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.14,
+        0
+      ],
+      "units": "metres; Blender Z / glTF Y is height"
+    },
+    "exile-waterbank": {
+      "file": "models/exile-waterbank.glb",
+      "bytes": 542124,
+      "sha256": "7d64da7b62e7721c979497ac5cd43de06494f950fa5c0b41a6e0471af2b54406",
+      "triangles": 14652,
+      "animations": [],
+      "height": 0.475382,
+      "teaching_model": true,
+      "prototype_only": false,
+      "interpretation": "Original generic channel/banks/soil section for separate readings of Ezekiel 1 and Psalm 137. Does not identify their settings, an ancient surveyed river, gate, wheel, palace, mechanism or flow rate.",
+      "source_scene": "Exile \u2014 generic waterbank section, separate Ezekiel 1 / Psalm",
+      "bottom_m": 0.0,
+      "top_m": 0.47538235783576965,
+      "dimensions_blender_xyz_m": [
+        1.2000000476837158,
+        0.8999999761581421,
+        0.47538235783576965
+      ],
+      "semantic_groups": [
+        "exile-waterbank-modern-support",
+        "exile-waterbank-channel-floor",
+        "exile-waterbank-fixed-bank",
+        "exile-waterbank-modern-cutaway-layer",
+        "exile-waterbank-modern-end-left",
+        "exile-waterbank-modern-end-right",
+        "exile-waterbank-contained-water"
+      ],
+      "modern_removable_layer": "exile-waterbank-modern-cutaway-layer",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.12,
+        0.25
+      ],
+      "units": "metres; Blender Z / glTF Y is height"
+    },
+    "exile-dwelling": {
+      "file": "models/exile-dwelling.glb",
+      "bytes": 829160,
+      "sha256": "693e55919eebd1c4533ca10fa53ae2cd44a1acb56fb0c8ede1651f3e7f256b84",
+      "triangles": 21300,
+      "animations": [],
+      "height": 0.453,
+      "teaching_model": true,
+      "prototype_only": false,
+      "interpretation": "Original house, through doorway, interior floor, removable roof, recessed orchard bed, grounded unidentified plants and modern folding reading panels. Jeremiah 29 life/planting/long-term communal hope comparison, not excavated plan, original letter, equal property, immediate prosperity or a marriage/fertility game.",
+      "source_scene": "Exile \u2014 original house and orchard reading section, Jeremiah ",
+      "bottom_m": 0.0,
+      "top_m": 0.453000009059906,
+      "dimensions_blender_xyz_m": [
+        1.25,
+        0.8999999761581421,
+        0.453000009059906
+      ],
+      "semantic_groups": [
+        "exile-dwelling-modern-support",
+        "exile-dwelling-interior-floor",
+        "exile-dwelling-wall-back",
+        "exile-dwelling-wall-left",
+        "exile-dwelling-wall-right",
+        "exile-dwelling-wall-front-left-jamb",
+        "exile-dwelling-wall-front-right-jamb",
+        "exile-dwelling-wall-door-lintel",
+        "exile-dwelling-thick-walls-and-through-door",
+        "exile-dwelling-original-wall-surface-detail",
+        "exile-dwelling-roof-layer",
+        "exile-dwelling-orchard-bed-shell",
+        "exile-dwelling-orchard-soil",
+        "exile-dwelling-grounded-orchard-plant-1",
+        "exile-dwelling-grounded-orchard-plant-2",
+        "exile-dwelling-modern-folding-reading-panels"
+      ],
+      "modern_removable_layer": "exile-dwelling-roof-layer",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.2,
+        0
+      ],
+      "units": "metres; Blender Z / glTF Y is height"
     }
   }
 }

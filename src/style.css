@@ -244,9 +244,9 @@ body[data-reading-mode] .journey-art{background:var(--learning-surface);color:va
 .exodus-chapters button[aria-pressed=true]{background:#355b46;color:#fff8e4;border-color:#355b46}
 .exodus-chapters button[aria-pressed=true] small{color:#ebd39a}
 .exodus-chapters p{font-size:10px!important;line-height:1.7!important;color:#657358;margin:6px 0 0!important}
-.walk-mission .exodus-chapters{margin:0 0 10px;padding-top:0;border-top:0}.walk-mission:has(.exodus-chapters){width:340px}
+.walk-mission .exodus-chapters{margin:0 0 10px;padding-top:0;border-top:0}.walk-mission:has(.exodus-chapters){width:340px;max-height:calc(100% - 132px);overflow-y:auto;scrollbar-width:thin}
 .walk-mission:has(.exodus-chapters) #mission-body{max-height:30vh;overflow:auto;scrollbar-width:thin}
-@media(max-width:760px){.walk-mission:has(.exodus-chapters){width:calc(100% - 112px)}.walk-mission .exodus-chapters button{min-height:42px;font-size:10px;gap:3px;padding:5px 2px}.walk-mission .exodus-chapters>span{font-size:9px}.walk-mission .exodus-chapters p{font-size:9px!important}.walk-mission:has(.exodus-chapters) #mission-body{max-height:24vh}}
+@media(max-width:760px){.walk-mission:has(.exodus-chapters){width:calc(100% - 112px);max-height:calc(100% - 285px)}.walk-mission .exodus-chapters button{min-height:42px;font-size:10px;gap:3px;padding:5px 2px}.walk-mission .exodus-chapters>span{font-size:9px}.walk-mission .exodus-chapters p{font-size:9px!important}.walk-mission:has(.exodus-chapters) #mission-body{max-height:24vh}}
 
 .exodus-chapters p a{text-decoration:underline;text-underline-offset:3px;display:inline-block;min-height:28px;line-height:28px}
 

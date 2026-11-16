@@ -1,4 +1,3 @@
-// Unregistered next-island draft. The released site still has fourteen detailed islands.
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 export function exileFloor(s,x,z){return s==='road'?.6+.7*smooth((z+14)/40):s==='canal'?.6+.25*smooth((x+10)/36):.65+.3*smooth((z+14)/40);}
 export const exilePosition=(s,x,z,h=0)=>[x,exileFloor(s,x,z)+h,z];

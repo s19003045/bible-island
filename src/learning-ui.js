@@ -17,7 +17,7 @@ const voiceControls = () => `<div class="learning-voice"><button data-read-learn
 export function learningPanel(state, theme) {
   const mode = readingModes[state.mode], config = learningIslands[theme.id];
   if (state.actor) return '';
-  if (!config) return `<section class="learning-panel learning-basic"><span class="learning-eyebrow">${mode.name}</span><h3>${mode.title}</h3><p>本島可切換文字導讀。完整觀察任務、故事流程與對讀工作台，已在十四座詳細島嶼開放。</p><button data-learning-island="tabernacle" class="learning-primary">到摩西會幕體驗 ${icon('arrow', 15)}</button></section>`;
+  if (!config) return `<section class="learning-panel learning-basic"><span class="learning-eyebrow">${mode.name}</span><h3>${mode.title}</h3><p>本島可切換文字導讀。完整觀察任務、故事流程與對讀工作台，已在十五座詳細島嶼開放。</p><button data-learning-island="tabernacle" class="learning-primary">到摩西會幕體驗 ${icon('arrow', 15)}</button></section>`;
   const { task, tasks, record, done, index } = currentLearning(state);
   const stop = theme.stops.find(s => s.id === task.stop), complete = record.completed.includes(task.id);
   const feedback = state.learningFeedback?.key === learningKey(state) && state.learningFeedback.id === task.id ? state.learningFeedback : null;

@@ -6,6 +6,7 @@ export function residentAppearance(island,options,index,height=1.7) {
     const modelId=options.id==='water-carrier'?'resident-carrier':child?'resident-child':woman?'roman-woman':['stone-worker','street-vendor'].includes(options.id)?'resident-worker':'resident';
     return {modelId,height:!child&&woman?1.64:height};
   }
+  if(island==='exile'){const female=woman||options.id==='exile-waterbank-resident';return {modelId:child?'wilderness-child':female?'iron-woman':'iron-resident',height:child?height:female?1.64:height};}
   if(island==='kingdoms'){const female=woman||options.id==='kingdoms-assembly-resident';return {modelId:child?'wilderness-child':female?'iron-woman':'iron-resident',height:child?height:female?1.64:height};}
   if(island==='david'){const female=woman||options.id==='david-pasture-resident';return {modelId:child?'wilderness-child':options.id==='david-building-resident'?'bronze-artisan':female?'iron-woman':'iron-resident',height:child?height:female?1.64:height};}
   if(island==='judges'){const female=woman||options.id==='ruth-field-resident';return {modelId:child?'wilderness-child':female?'wilderness-woman':'wilderness-resident',height:child?height:female?1.64:height};}
