@@ -215,3 +215,12 @@
 - Deployment：`appgdep_6afad6423f2c8191a17ca69470a39917`，`succeeded`，`2026-11-16T10:09:19.956651+00:00`。
 - 覆布改為旁移 .68 m、抬 .18 m，讓內部容器可見。約瑟／近景專測 12／12、內容／語法與離線封裝通過，入口 `index-B5ISoDSq.js`。正式 DOM 已核對此入口；倉院對話、售糧追問及 `GEN.41.46-57.CSBT` 正確，配音已播放並回到可重播，console warning／error 為空，未宣稱完整聽驗。
 - 正式頁在暫停狀態切換近處人物時發現舊簡化模型未被替換，另修正共用暫停視角的細節更新；修正後完整回歸 172／172，保留零時間步進、獨立時鐘與無移動。
+
+
+### 共用暫停視角的 Blender 人物細節
+
+- 本機來源：`d4676e28246bf33db644293875064d46620334d2`，266 個追蹤來源逐檔相符。
+- Sites source：`1df3eb91f25eca8f14f22a465afd0d5431624ce8`；saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_01fc165d4988819197fe953bc465782f`。
+- Deployment：`appgdep_6afad88d4a5c819185dfa9961a918408`，`succeeded`，`2026-11-16T10:19:06.554097+00:00`。
+- 完整 172／172、內容／語法、正式建置及 112,585 KiB 離線試閱通過。入口 `index-RLjtQavZ.js`，world `world-BXgbalmM.js`、vessels `vessels-DLgfJJ1Y.js`。
+- 本機在暫停狀態靠近工作解說者，已顯示真實 Blender 腰裹布、五官及裸足；`.qa/joseph-grain-paused-detail-local.png` 已檢視。正式 DOM 已核對新入口；後續手動結果另記約瑟文件。維持原私人權限，不重新生成音訊或改動其逐字時間碼。

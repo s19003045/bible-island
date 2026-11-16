@@ -49,3 +49,6 @@ Sites 已成功發佈至 [原私人網址](https://bible-island.starryswift8.cha
 覆布旁移版已發佈：本機 `cf1eae60fc2333d56a57627d2548703864864370`，Sites source `ea0e73987020a9f5835b59f46f16873194c82a44`，部署 `appgdep_6afad6423f2c8191a17ca69470a39917`，於 `2026-11-16T10:09:19.956651+00:00` 成功。正式 DOM 已核對 `index-B5ISoDSq.js`；切倉院同步第二幕與唯一工作解說者。儲糧回答與售糧追問、`GEN.41.46-57.CSBT` 及配音播放已確認，console warning／error 為空。
 
 正式頁暫停時靠近人物仍顯示簡化模型，原因是原框架一併略過鏡頭距離的 LOD 更新。共用更新已改為：相機或素材使畫面需要重繪時，用零時間步進更新近處人物；行為、位置與動作時鐘仍暫停，靜止畫面不持續重繪。另有近遠相機下掛載／移除細節且時間不變的回歸；修正後完整 172／172 與內容／語法通過。`.qa/joseph-grain-dialogue-sites.png` 是此修正前的暫停簡化人物畫面，不冒充 Blender 完整人物驗收。
+
+
+共用暫停細節版已發布：本機 `d4676e28246bf33db644293875064d46620334d2`，Sites source `1df3eb91f25eca8f14f22a465afd0d5431624ce8`，部署 `appgdep_6afad88d4a5c819185dfa9961a918408`，於 `2026-11-16T10:19:06.554097+00:00` 成功。正式 DOM 已核對入口 `index-RLjtQavZ.js`；本機暫停時已能在近處看到 Blender 工作者，`.qa/joseph-grain-paused-detail-local.png` 已檢視。最新完整回歸為 172／172，離線試閱 112,585 KiB。其餘十四島與人工驗證持續。
