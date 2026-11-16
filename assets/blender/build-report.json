@@ -4,9 +4,22 @@
   "assets": {
     "resident": {
       "file": "models/judean-resident.glb",
-      "bytes": 691132,
-      "sha256": "076db4ccbd34d496c683073c81d09736460e825c61739196cf7b90164bf78acf",
-      "triangles": 16552,
+      "bytes": 1257964,
+      "sha256": "1a1ef60ac2726850bda9307e624e9d88252e60cfb2873224822a66e661fe6c8b",
+      "triangles": 32888,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ]
+    },
+    "resident-worker": {
+      "file": "models/judean-worker.glb",
+      "bytes": 1203608,
+      "sha256": "adba81fd7d0dcac038482bea3311d82316410d49536203bcf7f1ec84d495bd6e",
+      "triangles": 31328,
       "animations": [
         "Idle",
         "Walk",
@@ -32,7 +45,7 @@
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "d4ad0d42e02828dfea27841dc24ba385c365a563e9952fc3a272300e968c9382",
+      "sha256": "686af8ffc8ecdba2d19901cd60357c4b52af7b854560f72fbc3d9ffb9523a790",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -41,7 +54,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "14630a343ac645ac0e8f46e2cc07c5046a94cfc0c0b6e8dfb01a4178e2639c68",
+      "sha256": "d03ef1171a80c8500a41a0bb9abd5e76f5fdbd5024d5dd490d5325ef67c1a5cb",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -59,7 +72,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "54671acebafa94713f89629700459ca5cc7fde157a4cb022308919e23569935c",
+      "sha256": "e7093ce023f4905f437c99d6ec88e5704b577954a832ade683244d046218a1d9",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -84,7 +97,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "3bb459a522eb415d82ef3f7045e5d3e3f402c65b4c3c8afcc3d41183504a2dd2",
+      "sha256": "e5b4dec4cc32626ce4ebb0c9b145dc2fc4297afad0ac3a069b611e1337fc6d84",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -93,7 +106,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "4d603a920983467ee3d411ce841b06b8e1f75a2e99bf91339ab92e66ac64a079",
+      "sha256": "4c5853f9c2496bfc86ce72cf6f72cf3c63a3ec5d35e40b059480e46f36dee716",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -102,7 +115,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "b1ebd6b07c54b6de28fac542d362bda213c4f12d46ddf6cdeae713a26356143c",
+      "sha256": "1ada3449b0eb8c49cc4f18767be835af82d34452da0f6fe6b3fc0838358f024e",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -113,7 +126,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "0ccad849210aabd0fd3ad3377d92784921bff5d47d63246ceac53266cb6884da",
+      "sha256": "5303ffe42edff94c1b9f04a4d9081e86c60a004141bcda0758f60ba0497967c1",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -124,7 +137,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "97aa020790462a47d25e2a37146b61d16589bcc542db1add25cbb53a079a4e39",
+      "sha256": "c2dfef68bccee5c20e509baddb5deb9d8ba1f2031112b49a33f75fde4f6b9179",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -142,7 +155,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "f260a44107b327937f73cd259215b2eee68c69337649a2450b437b2538a8ab7c",
+      "sha256": "3061c3994bd950d1ec96786a9a4bab709b7126478d6075b47d8c97d13c95165a",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,

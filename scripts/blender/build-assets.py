@@ -145,53 +145,55 @@ def cloth_weights(x,z,f):
     q=min(1,abs(x)/.09)
     return {'hips':1-leg,'thigh'+side:leg*(.5+.5*q),'thigh'+('R' if side=='L' else 'L'):leg*(.5-.5*q)}
 
+exec(compile((ROOT/'scripts/blender/resident-refinement.py').read_text(),str(ROOT/'scripts/blender/resident-refinement.py'),'exec'),globals())
+
 # Knee-length woven tunic: shaped shoulder opening, tied waist and gravity folds.
-rings('tunic-body',[(.47,.245,.155,0),(.49,.246,.156,0),(.60,.232,.146,0),(.77,.214,.137,0),(.93,.178,.115,0),(.97,.164,.108,0),(1.02,.176,.12,0),(1.15,.20,.13,0),(1.28,.211,.126,0),(1.36,.18,.108,0),(1.39,.06,.052,0)],cloth,64,.0105,cloth_weights)
-rings('hem-seam',[(.476,.248,.159,0),(.487,.248,.159,0)],cloth,64,.0105,cloth_weights)
-rings('neck-opening',[(1.385,.061,.053,0),(1.394,.059,.052,0)],leather,40,0,lambda x,z,f:{'spine':1})
+rings('tunic-body',refine_profile([(.47,.235,.148,0),(.49,.236,.149,0),(.60,.225,.14,0),(.77,.207,.13,0),(.93,.178,.115,0),(.97,.164,.108,0),(1.02,.176,.12,0),(1.15,.20,.13,0),(1.28,.211,.126,0),(1.36,.191,.108,0),(1.39,.187,.101,0),(1.42,.065,.052,0)]),cloth,80,.0075,cloth_weights)
+rings('hem-seam',[(.476,.237,.151,0),(.487,.237,.151,0)],cloth,64,.0075,cloth_weights)
+rings('neck-opening',[(1.415,.071,.055,0),(1.423,.064,.052,0)],cloth,48,0,lambda x,z,f:{'spine':1})
 rings('neck',[(1.365,.054,.052,0),(1.43,.048,.046,0),(1.485,.05,.048,0)],skin,32,0,lambda x,z,f:{'neck':1})
 rings('belt',[(.964,.172,.12,0),(.99,.172,.12,0)],leather,64,.001,lambda x,z,f:{'hips':1})
 tube('belt-tie',[(-.008,.981,.125),(.015,.955,.137),(.012,.84,.145)],[.006,.005,.0035],leather,'hips')
 
 for side,sign in [('L',-1),('R',1)]:
     # Deltoid and sleeve are surfaces, with a separate open cuff.
-    sleeve=rings('sleeve-'+side,[(1.398,.004,.006,0),(1.38,.044,.056,0),(1.34,.070,.075,.005),(1.25,.066,.07,.01),(1.135,.058,.061,.012)],cloth,40,.004,lambda x,z,f,s=side:{'arm'+s:1},center=(sign*.205,0))
+    sleeve=rings('sleeve-'+side,refine_profile([(1.398,.004,.006,0),(1.38,.044,.056,0),(1.34,.070,.075,.005),(1.25,.063,.067,.01),(1.135,.054,.058,.012)]),cloth,48,.003,lambda x,z,f,s=side:{'arm'+s:1},center=(sign*.205,0))
     for v in sleeve.data.vertices:v.co.x+=sign*max(0,1.36-v.co.z)*.22
     tube('upper-arm-'+side,[(sign*.257,1.19,.012),(sign*.268,1.08,.015)],[.047,.039],skin,'arm'+side,16)
-    tube('forearm-'+side,[(sign*.268,1.085,.015),(sign*.28,.97,.022),(sign*.28,.85,.025)],[.042,.038,.026],skin,'forearm'+side,20)
-    ellipsoid('palm-'+side,(sign*.28,.797,.024),(.035,.057,.021),skin,'hand'+side)
+    ellipsoid('elbow-transition-'+side,(sign*.268,1.08,.015),(.039,.041,.037),skin,'forearm'+side,seg=20,rows=12)
+    tube('forearm-'+side,[(sign*.268,1.085,.015),(sign*.272,1.035,.019),(sign*.277,.96,.022),(sign*.28,.865,.025),(sign*.28,.837,.025)],[.040,.041,.035,.026,.025],skin,'forearm'+side,24)
+    ellipsoid('palm-'+side,(sign*.28,.799,.025),(.034,.060,.021),skin,'hand'+side)
     for j in range(4):
         x=sign*.28+(j-1.5)*.016
         length=[.070,.081,.076,.058][j]
         tube('finger-'+side+str(j),[(x,.775,.026),(x,.75,.03),(x,.775-length,.039)],[.008,.007,.0055],skin,'hand'+side,8)
     tube('thumb-'+side,[(sign*.25,.823,.032),(sign*.231,.787,.043),(sign*.233,.761,.06)],[.011,.01,.007],skin,'hand'+side,10)
     tube('calf-'+side,[(sign*.095,.51,0),(sign*.095,.34,-.006),(sign*.095,.095,.002)],[.057,.055,.030],skin,'shin'+side,20)
-    ellipsoid('foot-'+side,(sign*.095,.069,.074),(.048,.04,.105),skin,'foot'+side)
-    ellipsoid('sandal-sole-'+side,(sign*.095,.029,.072),(.053,.018,.115),leather,'foot'+side)
-    for f,z in [(.065,.098),(.13,.087)]:
-        tube('sandal-strap-'+side+str(f),[(sign*.095-.046,z-.025,f),(sign*.095,z,f+.005),(sign*.095+.046,z-.025,f)],[.008,.008,.008],leather,'foot'+side,8)
+    adult_foot(side,sign)
 
 # Continuous shaped cranium and face. A non-spherical jaw, cheekbones, brow and muzzle
 # replace the prior ball head; ears, eyelids, lips and nose are separately sculpted.
 headprof=[(1.466,.034,.039,.025),(1.48,.047,.047,.028),(1.505,.064,.061,.013),(1.54,.076,.078,.002),(1.58,.079,.087,-.002),(1.62,.076,.085,-.005),(1.66,.067,.074,-.008),(1.69,.047,.053,-.009),(1.706,.004,.005,-.009)]
-rings('head-sculpt',headprof,skin,64,0,lambda x,z,f:{'head':1})
-ellipsoid('nose-bridge',(0,1.565,.086),(.012,.036,.016),skin,'head')
-ellipsoid('nose-tip',(0,1.539,.106),(.019,.013,.018),skin,'head',24,12)
+head_surface=rings('head-sculpt',refine_profile(headprof),skin,80,0,lambda x,z,f:{'head':1});refine_face(head_surface)
+ellipsoid('nose-bridge',(0,1.565,.084),(.011,.027,.014),skin,'head')
+ellipsoid('nose-tip',(0,1.539,.098),(.015,.011,.014),skin,'head',24,12)
 for sign in [-1,1]:
-    ellipsoid('nostril-wing'+str(sign),(sign*.014,1.536,.096),(.012,.008,.01),skin,'head',16,8)
-    ellipsoid('nostril'+str(sign),(sign*.011,1.532,.106),(.004,.002,.003),lip,'head',12,6)
+    ellipsoid('nostril-wing'+str(sign),(sign*.013,1.536,.091),(.009,.007,.009),skin,'head',16,8)
+    ellipsoid('nostril'+str(sign),(sign*.010,1.532,.101),(.003,.0018,.002),lip,'head',12,6)
     ellipsoid('ear'+str(sign),(sign*.079,1.564,-.003),(.016,.032,.018),skin,'head',20,12)
     ellipsoid('inner-ear'+str(sign),(sign*.087,1.563,.006),(.006,.020,.009),lip,'head',16,10)
     # Eyes stay small within the adult 225 mm head. No oversized cartoon eyeballs.
     ellipsoid('eye'+str(sign),(sign*.031,1.582,.075),(.0145,.0055,.008),eye,'head',24,10)
     ellipsoid('iris'+str(sign),(sign*.031,1.582,.082),(.006,.006,.002),iris,'head',16,10)
+    pupil=ellipsoid('pupil'+str(sign),(sign*.031,1.582,.084),(.0025,.0025,.001),iris,'head',16,10)
+    for c in pupil.data.color_attributes['surface'].data:c.color=(.003,.002,.001,1)
     for edge in [-1,1]:
         pts=[(sign*.031+(t-4)*.0036,1.582+edge*sin(pi*t/8)*.006,.079+sin(pi*t/8)*.004) for t in range(9)]
         tube('eyelid'+str(sign)+str(edge),pts,[.0025]*9,skin,'head',6)
     tube('brow'+str(sign),[(sign*.012,1.602,.079),(sign*.031,1.608,.077),(sign*.052,1.600,.066)],[.0035,.004,.002],hair,'head',8)
 tube('upper-lip',[(-.025,1.512,.078),(-.010,1.516,.084),(0,1.514,.086),(.010,1.516,.084),(.025,1.512,.078)],[.002,.003,.0025,.003,.002],lip,'head',8)
 tube('lower-lip',[(-.024,1.509,.079),(0,1.506,.086),(.024,1.509,.079)],[.002,.0035,.002],lip,'head',8)
-rings('hair-cap',[(1.637,.074,.081,-.010),(1.66,.069,.076,-.009),(1.69,.049,.056,-.009),(1.71,.005,.006,-.009)],hair,48,.0015,lambda x,z,f:{'head':1})
+rings('hair-cap',refine_profile([(1.637,.077,.086,-.008),(1.66,.071,.078,-.008),(1.69,.051,.057,-.009),(1.71,.008,.009,-.009)]),hair,64,.0008,lambda x,z,f:{'head':1})
 for sign in [-1,1]:
     tube('sideburn'+str(sign),[(sign*.071,1.654,.007),(sign*.075,1.61,.013),(sign*.070,1.573,.031)],[.011,.009,.004],hair,'head',10)
 
@@ -224,21 +226,19 @@ actions=[]
 durations={'Idle':4,'Walk':1,'LookAround':5,'Interact':3,'Talk':3}
 for name,seconds in durations.items():
     action=bpy.data.actions.new(name);rig.animation_data_create();rig.animation_data.action=action
-    for frame in range(1,seconds*30+2,3):
+    for frame in range(1,seconds*30+2,1 if name=='Walk' else 3):
+        scene.frame_set(frame)
         t=(frame-1)/30;phase=2*pi*t/seconds
         for b in rig.pose.bones:
             b.rotation_mode='XYZ';b.rotation_euler=(0,0,0);b.location=(0,0,0)
         rig.pose.bones['spine'].rotation_euler.x=.006*sin(phase)
         rig.pose.bones['head'].rotation_euler.y=.035*sin(phase)
         if name=='Walk':
+            planted_walk(t,frame)
             for s,sign in [('L',1),('R',-1)]:
                 stride=sin(phase)*sign
-                rig.pose.bones['thigh'+s].rotation_euler.x=.28*stride
-                rig.pose.bones['shin'+s].rotation_euler.x=-max(0,-stride)*.40
-                rig.pose.bones['foot'+s].rotation_euler.x=.08*stride
                 rig.pose.bones['arm'+s].rotation_euler.x=-.20*stride
                 rig.pose.bones['forearm'+s].rotation_euler.x=-.10
-            rig.pose.bones['hips'].location.y=.009*(1-cos(phase*2))
         elif name=='LookAround':rig.pose.bones['head'].rotation_euler.y=.30*sin(phase)
         elif name in ['Talk','Interact']:
             for s,sign in [('L',1),('R',-1)]:
@@ -261,15 +261,31 @@ def export_asset(scene, asset_id, filename, animations=False):
     bpy.context.window.scene=scene;bpy.ops.object.select_all(action='DESELECT')
     objs=[o for o in scene.objects if o.type in ['MESH','ARMATURE','EMPTY']]
     for o in objs:o.select_set(True)
+    armatures=[o for o in scene.objects if o.type=='ARMATURE' and o.animation_data]
     if animations:
-        for tr in rig.animation_data.nla_tracks:tr.mute=False
-    bpy.ops.export_scene.gltf(filepath=str(OUT/filename),export_format='GLB',use_selection=True,use_active_scene=True,export_animations=animations,export_animation_mode='NLA_TRACKS',export_nla_strips=True,export_force_sampling=True,export_skins=animations,export_yup=True,export_apply=False,export_extras=True)
+        for armature in armatures:
+            for tr in armature.animation_data.nla_tracks:tr.mute=False
+    bpy.ops.export_scene.gltf(filepath=str(OUT/filename),export_format='GLB',use_selection=True,use_active_scene=True,export_animations=animations,export_animation_mode='NLA_TRACKS',export_nla_strips=True,export_force_sampling=True,export_anim_slide_to_zero=True,export_skins=animations,export_yup=True,export_apply=False,export_extras=True)
     if animations:
-        for tr in rig.animation_data.nla_tracks:tr.mute=True
+        for armature in armatures:
+            for tr in armature.animation_data.nla_tracks:tr.mute=True
     triangles=sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in objs if o.type=='MESH')
     report['assets'][asset_id]={'file':'models/'+filename,'bytes':(OUT/filename).stat().st_size,'sha256':hashlib.sha256((OUT/filename).read_bytes()).hexdigest(),'triangles':triangles,'animations':list(durations) if animations else []}
 
 export_asset(scene,'resident','judean-resident.glb',True)
+
+# The artisan has an actual shorter garment ensemble: the loose mantle is absent.
+# It is a teaching clothing choice, not a claimed occupational uniform.
+worker_scene=new_scene('Judean artisan — plain tunic without the loose mantle')
+copies={}
+for original in scene.objects:
+    if original.type=='MESH' and original.data.materials[0]==mantle:continue
+    copy=original.copy();copy.data=original.data.copy();worker_scene.collection.objects.link(copy);copies[original]=copy
+for original,copy in copies.items():
+    copy.parent=copies.get(original.parent)
+    for modifier in copy.modifiers:
+        if modifier.type=='ARMATURE':modifier.object=copies[modifier.object]
+export_asset(worker_scene,'resident-worker','judean-worker.glb',True)
 
 # Closed cross-sections include the interior, true rim thickness, foot and bottom.
 pot_scene=new_scene('Domestic vessels — typological comparison, not scanned finds')
@@ -333,6 +349,7 @@ def render_preview(s, target, location, filename, orthographic):
     s.render.film_transparent=True;s.render.filepath=str(QA/filename)
     bpy.ops.render.render(write_still=True)
 render_preview(scene,(0,0,.88),(2.2,-5,2.3),'blender-resident.png',1.95)
+render_preview(worker_scene,(0,0,.88),(2.2,-5,2.3),'blender-resident-worker.png',1.95)
 render_preview(pot_scene,(0,0,.27),(1.4,-2,1.3),'blender-clay-vessel.png',.75)
 render_preview(woven_scene,(0,0,.37),(1.4,-4,1.7),'blender-woven-sample.png',1.5)
 render_preview(joint_scene,(0,0,.42),(1.8,-4,1.8),'blender-board-joint.png',1.03)

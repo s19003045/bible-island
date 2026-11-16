@@ -36,7 +36,7 @@ test('individual skeletons and clocks animate independently, freeze at zero time
   const scene=new THREE.Scene();scene.add(one.root,two.root);one.update(.1);two.update(.1);scene.updateMatrixWorld(true);
   const bone1=one.root.getObjectByName('thighL'),bone2=two.root.getObjectByName('thighL');
   assert.notEqual(bone1,bone2);assert.notDeepEqual(bone1.quaternion.toArray(),bone2.quaternion.toArray());
-  const before=bone1.quaternion.toArray(),other=bone2.quaternion.toArray();a.state.time=.65;one.update(.2);
+  const before=bone1.quaternion.toArray(),other=bone2.quaternion.toArray();a.state.time=.65;a.state.position=[0,0,.16];one.update(.2);
   assert.notDeepEqual(bone1.quaternion.toArray(),before);assert.deepEqual(bone2.quaternion.toArray(),other);
   const frozen=bone1.quaternion.toArray();one.update(0);assert.deepEqual(bone1.quaternion.toArray(),frozen);
   a.state.position=[30,2,0];a.state.yaw=.2;one.update(0);scene.updateMatrixWorld(true);

@@ -13,7 +13,7 @@ import {tabernacleSurfaces,tabernacleFloor,tabernaclePOIs,tabernacleAllowed,tabe
 import {herodSurfaces,herodFloor,herodProxies,herodPOIs,herodAllowed,herodSpawnCandidates,herodObjects,herodSpawn} from './herod-exploration.js';
 import {solomonSurfaces,solomonFloor,solomonProxies,solomonPOIs,solomonAllowed,solomonSpawnCandidates,solomonObjects,solomonSpawn} from './solomon-exploration.js';
 import {explorationFor} from './exploration-data.js';
-import {mountBlenderResidents} from './blender-assets.js';
+import {mountBlenderResidents,residentEligible} from './blender-assets.js';
 
 // Detailed scenes use one Three unit per metre. Geometry is batched by material, not by building.
 const G = {
@@ -656,10 +656,12 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   // Keep authored street journeys on their navigation surface, rather than climbing
   // successive stair edges and blocking the alley at unintended heights.
   if(id==='jerusalem')prepareJerusalemResidents(k.actors,walkModel);
+  // Body clearance is independent of the camera's LOD selection.
+  if(['jerusalem','herod'].includes(id))for(const a of k.actors)if(residentEligible(a))a.collisionRadius=.33*(a.scale||1);
   const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs,allowRetreat:true,allowedPosition:(a,p)=>jerusalemAllowed(a,p,walkModel)}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
   let npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
-  const detailedResidents=blenderAssets&&id==='jerusalem'?mountBlenderResidents(scene,k.actors,onAssetsReady):null;
+  const detailedResidents=blenderAssets&&['jerusalem','herod'].includes(id)?mountBlenderResidents(scene,k.actors,onAssetsReady,{assetLoader,groundAt:(x,z)=>walkModel.heightAt(x,z)}):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);
   const occluders=[];
@@ -681,7 +683,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
     return best;
   }
   return {
-    scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,npcSystem,segment:section?.id||null,exploration:explorationFor(id,section?.id),
+    scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,npcSystem,detailedResidents,segment:section?.id||null,exploration:explorationFor(id,section?.id),
     animate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});detailedResidents?.update(cameraPosition,dt);k.animate(dt,cameraPosition);},
     updateRaycastBounds(){scene.traverse(o=>{if(o.isInstancedMesh&&o.userData.people)o.computeBoundingSphere();});},
     converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },

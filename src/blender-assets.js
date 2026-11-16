@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {clone} from 'three/addons/utils/SkeletonUtils.js';
 import {blenderModels} from './blender-manifest.js';
+import {createResidentGrounding} from './resident-grounding.js';
 
 const cache=new Map();
 const loader=new GLTFLoader();
@@ -32,6 +33,7 @@ export function attachBlenderObject(root,id,onReady=()=>{},load=loadBlenderAsset
 }
 
 export const residentEligible=actor=>(actor.scale||1)>=.9&&actor.id!=='water-carrier';
+export const residentModelFor=actor=>['stone-worker','street-vendor'].includes(actor.id)?'resident-worker':'resident';
 export function selectDetailedResidents(actors,camera,previous=new Set(),limit=8) {
   if(!camera)return [];
   return actors.filter(a=>residentEligible(a)&&a.state.visible!==false).map((a,index)=>{
@@ -47,7 +49,7 @@ export function residentAction(state) {
   return state.idleAction==='LookAround'?'LookAround':'Idle';
 }
 
-export function createResidentInstance(gltf,actor,index=0) {
+export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.state.position[1]}={}) {
   const root=clone(gltf.scene),materials=new Set(),mixer=new THREE.AnimationMixer(root);
   const actions=new Map(gltf.animations.map(clip=>{const a=mixer.clipAction(clip);a.play();a.paused=true;a.setEffectiveWeight(0);return [clip.name,a];}));
   const weights=new Map([...actions.keys()].map(n=>[n,n==='Idle'?1:0]));
@@ -68,32 +70,45 @@ export function createResidentInstance(gltf,actor,index=0) {
     }
   });
   root.scale.setScalar((actor.scale||1)*1.70/blenderModels.resident.height);
-  let first=true;
+  const groundFeet=createResidentGrounding(root,groundAt),lastPosition=[...actor.state.position];
+  const bones=[];root.traverse(o=>{if(o.isBone)bones.push({bone:o,position:o.position.clone(),quaternion:o.quaternion.clone(),scale:o.scale.clone()});});
+  let first=true,gaitTime=actor.state.time%1;
   return {root,actions,mixer,
     update(dt=0){
       const state=actor.state,target=residentAction(state),blend=first?1:1-Math.exp(-Math.max(0,dt)*7);
+      if(!first&&dt>0)gaitTime+=Math.hypot(state.position[0]-lastPosition[0],state.position[2]-lastPosition[2])/(.8*root.scale.x);
+      lastPosition.splice(0,3,...state.position);
       for(const [name,action] of actions){
         const weight=weights.get(name)+((name===target?1:0)-weights.get(name))*blend;weights.set(name,weight);
-        action.setEffectiveWeight(weight);action.time=(state.time%action.getClip().duration+action.getClip().duration)%action.getClip().duration;
+        const clock=name==='Walk'?gaitTime:state.time;
+        action.setEffectiveWeight(weight);action.time=(clock%action.getClip().duration+action.getClip().duration)%action.getClip().duration;
       }
-      mixer.update(0);root.position.fromArray(state.position);root.rotation.y=state.yaw;root.visible=state.visible!==false;first=false;
+      // Restore the pre-IK pose: AnimationMixer may skip unchanged properties.
+      for(const p of bones){p.bone.position.copy(p.position);p.bone.quaternion.copy(p.quaternion);p.bone.scale.copy(p.scale);}
+      mixer.update(0);
+      for(const p of bones){p.position.copy(p.bone.position);p.quaternion.copy(p.bone.quaternion);p.scale.copy(p.bone.scale);}
+      root.position.fromArray(state.position);root.rotation.y=state.yaw;root.visible=state.visible!==false;
+      groundFeet({position:state.position,phase:gaitTime%1,walkWeight:weights.get('Walk')||0});first=false;
     },
-    dispose(){mixer.stopAllAction();mixer.uncacheRoot(root);root.removeFromParent();for(const m of materials)m.dispose();},
+    dispose(){mixer.stopAllAction();mixer.uncacheRoot(root);root.removeFromParent();const skeletons=new Set();root.traverse(o=>{if(o.isSkinnedMesh)skeletons.add(o.skeleton);});for(const s of skeletons)s.dispose();for(const m of materials)m.dispose();},
   };
 }
 
 // Each instance samples its existing NPC clock. This renderer never picks POIs,
 // starts behaviour timers or modifies movement, collision, dialogue or progression.
-export function mountBlenderResidents(scene,actors,onReady=()=>{}) {
-  let disposed=false,template=null;const visible=new Map();
-  const ready=loadBlenderAsset('resident').then(gltf=>{if(!disposed){template=gltf;onReady();}return !disposed;}).catch(error=>{console.warn('Resident detail unavailable',error.message);return false;});
+export function mountBlenderResidents(scene,actors,onReady=()=>{},{assetLoader=loadBlenderAsset,groundAt}={}) {
+  let disposed=false;const templates=new Map(),visible=new Map();
+  const ready=Promise.all([...new Set(actors.filter(residentEligible).map(residentModelFor))].map(async id=>{
+    try{const gltf=await assetLoader(id);if(disposed)return false;templates.set(id,gltf);onReady();return true;}
+    catch(error){console.warn('Resident detail unavailable: '+id,error.message);return false;}
+  })).then(results=>results.every(Boolean));
   return {ready,visible,
     update(camera,dt){
-      if(!template||disposed)return;
-      const selected=new Set(selectDetailedResidents(actors,camera,new Set(visible.keys())));
+      if(!templates.size||disposed)return;
+      const selected=new Set(selectDetailedResidents(actors,camera,new Set(visible.keys())).filter(actor=>templates.has(residentModelFor(actor))));
       for(const [actor,instance] of visible)if(!selected.has(actor)){actor.blenderVisual=false;instance.dispose();visible.delete(actor);}
       for(const actor of selected){
-        if(!visible.has(actor)){const instance=createResidentInstance(template,actor,actors.indexOf(actor));visible.set(actor,instance);scene.add(instance.root);}
+        if(!visible.has(actor)){const id=residentModelFor(actor),instance=createResidentInstance(templates.get(id),actor,actors.indexOf(actor),{groundAt});instance.root.userData.modelId=id;visible.set(actor,instance);scene.add(instance.root);}
         actor.blenderVisual=true;visible.get(actor).update(dt);
       }
     },

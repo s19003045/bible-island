@@ -7,10 +7,11 @@ import {createHistoricalScene} from '../src/historical-scenes.js';
 import {createVessel} from '../src/vessels.js';
 import {setArtifactSeparation} from '../src/artifact-inspection.js';
 import {herodObjects,herodSpawn} from '../src/herod-exploration.js';
+import {blenderModels} from '../src/blender-manifest.js';
 
 const ctx=new Proxy({},{get:()=>()=>{},set:()=>true});
 globalThis.document={createElement:()=>({getContext:()=>ctx})};
-async function asset(id){const b=await readFile(new URL('../public/models/'+id+'.glb',import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');}
+async function asset(id){const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');}
 function meshes(root){const all=[];root.traverse(o=>{if(o.isMesh)all.push(o);});return all;}
 
 test('exported Herod stones have physically recessed margins and separate along the actual joint after rotation',async()=>{

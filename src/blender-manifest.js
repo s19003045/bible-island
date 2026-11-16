@@ -1,6 +1,7 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
-  resident:{type:'character',src:'models/judean-resident.glb',height:1.71,era:'Early Roman Judea; composite teaching resident'},
+  resident:{type:'character',src:'models/judean-resident.glb',height:1.71,triangleBudget:38000,byteBudget:1500000,era:'Early Roman Judea; composite teaching resident'},
+  'resident-worker':{type:'character',src:'models/judean-worker.glb',height:1.71,triangleBudget:38000,byteBudget:1500000,era:'Early Roman Judea; plain-tunic artisan teaching type'},
   'clay-vessel':{type:'object',src:'models/clay-vessel.glb',height:.548},
   'stone-vessel':{type:'object',src:'models/stone-vessel.glb',height:.328},
   'woven-sample':{type:'object',src:'models/woven-sample.glb',height:.7315,triangleBudget:40000,byteBudget:1100000},

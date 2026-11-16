@@ -14,7 +14,7 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{},spa
   const agents=actors.map((actor,index)=>{
     const key=actor.id||`resident-${index}`,individualSeed=npcSeed(`${seed}:${key}`),random=seededNPC(individualSeed);
     const speedFactor=.85+random()*.3;
-    const a={key,actor,seed:individualSeed,random,speedFactor,speed:.8*speedFactor,radius:.29*(actor.scale||1),
+    const a={key,actor,seed:individualSeed,random,speedFactor,speed:.8*speedFactor,radius:actor.collisionRadius??.29*(actor.scale||1),
       role:actor.role||(actor.id==='householder'?'householder':actor.id==='street-vendor'?'vendor':actor.id==='water-carrier'?'carrier':'resident'),
       state:'rest',action:'Idle',age:0,timer:.4+(index+random())/actors.length*4.5,socialCheck:.25+random()*1.7,
       cooldown:3+random()*12,velocity:[0,0],path:[],poi:null,slot:null,lastPOI:null,partner:null,chatLeft:0,
