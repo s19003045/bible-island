@@ -581,12 +581,15 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     candidates.sort((a,b)=>{const priority=p=>p.id===(interactionTarget?.id||walkObjective?.id)?-1:0;return priority(a)-priority(b)||a.distance-b.distance;});return candidates[0]||null;
   }
   function interactWalk() {const n=nearby();if(!n)return;interactionTarget=null;if(n.type==='person')onActor?.(n.id);else onInspect?.(n.id);}
+  function updateHistorical(timeStep) {
+    activeHistorical.animate(timeStep,camera.position.toArray(),walk.active?walk.position:null,p=>{v.set(p[0],p[1]+1,p[2]);if(camera.position.distanceTo(v)>(activeHistorical.scene.fog?.far||camera.far))return false;v.project(camera);return v.z>-1&&v.z<1&&Math.abs(v.x)<1.15&&Math.abs(v.y)<1.15;});
+  }
   function animate(now) {
     raf = requestAnimationFrame(animate); if (hidden||modalOpen) {last=now;return;}
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
     if(!activeHistorical){if(!paused){elapsed+=dt;dirty=true;}ocean.update(elapsed,nightMode,camera);boats.forEach((b,i)=>{if(b.userData.routeId){const curve=network.curve(b.userData.routeId),t=(elapsed*.014+b.userData.routeOffset)%1,p=curve.getPoint(t),d=curve.getTangent(t);b.position.set(p.x,.15,p.z);b.rotation.y=Math.atan2(d.x,d.z);}b.rotation.z=Math.sin(elapsed*.8+i)*.025;b.rotation.x=Math.cos(elapsed*.6+i)*.02;});}
     if(activeHistorical && !paused) {
-      activeHistorical.animate(dt,camera.position.toArray(),walk.active?walk.position:null,p=>{v.set(p[0],p[1]+1,p[2]);if(camera.position.distanceTo(v)>(activeHistorical.scene.fog?.far||camera.far))return false;v.project(camera);return v.z>-1&&v.z<1&&Math.abs(v.x)<1.15&&Math.abs(v.y)<1.15;});dirty=true;
+      updateHistorical(dt);dirty=true;
     }
     if(atlasFlight){const flight=atlasFlight,t=Math.min(1,(now-flight.start)/flight.duration),ease=t*t*(3-2*t),p=flight.curve.getPoint(ease),dest=p.clone().add(new THREE.Vector3(9,13,14)),blend=Math.min(1,t*4);camera.position.lerpVectors(flight.from,dest,blend);controls.target.lerpVectors(flight.oldTarget,p,blend);camera.lookAt(controls.target);dirty=true;if(t===1){const done=flight.done;cancelAtlasFlight();done();}}
     if (fly) {
@@ -607,6 +610,10 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
       }
       if(now-lastWalkUI>220){lastWalkUI=now;const target=goalPosition(walkObjective),p=walk.position;const close=nearby();activeHistorical.attend(close?.type==='person'?close.id:null);onWalkUpdate?.({position:p,locomotion:walk.groundState,nearby:close,navigating:walk.navigating,distance:target?Math.hypot(target[0]-p[0],target[2]-p[2]):null});}
     }else if(!atlasFlight){controls.update();if(!activeHistorical){const before=controls.target.clone();controls.target.x=THREE.MathUtils.clamp(controls.target.x,atlasBounds.x1,atlasBounds.x2);controls.target.y=0;controls.target.z=THREE.MathUtils.clamp(controls.target.z,atlasBounds.z1,atlasBounds.z2);camera.position.add(controls.target.clone().sub(before));container.dataset.atlasTarget=controls.target.toArray().map(n=>n.toFixed(2)).join(',');}}
+    // Pausing freezes behaviour clocks, not camera-dependent detail selection.
+    // Asset completion and camera changes already invalidate dirty; idle paused
+    // scenes still avoid continuous rendering or NPC decisions.
+    if(activeHistorical&&paused&&dirty)updateHistorical(0);
     if(activeHistorical?.exploration)audio?.update(camera,activeHistorical?.people||[],now);
     if(activeHistorical && !walk.active) { const floor=activeHistorical.groundHeight(camera.position.x,camera.position.z)+.3; if(camera.position.y<floor) {camera.position.y=floor;dirty=true;} }
     // Lower DPR only after sustained slow frames. No promise of a particular frame rate.

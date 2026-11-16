@@ -5,11 +5,18 @@ import {createHash} from 'node:crypto';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import {blenderModels} from '../src/blender-manifest.js';
-import {createResidentInstance,selectDetailedResidents,residentAction,attachBlenderObject} from '../src/blender-assets.js';
+import {createResidentInstance,selectDetailedResidents,residentAction,attachBlenderObject,mountBlenderResidents} from '../src/blender-assets.js';
 
 async function asset(id){const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');}
 const resident=await asset('resident');
 const actor=(id,x=0,time=0)=>({id,scale:1,state:{position:[x,0,0],yaw:0,time,stride:0,visible:true,idleAction:'Idle'}});
+
+test('paused camera changes load and retire detailed residents without advancing their pose clocks',async()=>{
+  const scene=new THREE.Scene(),person=actor('paused-resident',0,.65),position=[...person.state.position],details=mountBlenderResidents(scene,[person],()=>{},{assetLoader:async()=>resident});
+  await details.ready;details.update([0,1.62,4],0);const first=details.visible.get(person);assert.ok(first);assert.equal(person.blenderVisual,true);
+  details.update([100,1.62,100],0);assert.equal(details.visible.size,0);assert.equal(person.blenderVisual,false);
+  details.update([0,1.62,4],0);assert.ok(details.visible.has(person));assert.notEqual(details.visible.get(person),first);assert.deepEqual(person.state.position,position);assert.equal(person.state.time,.65);details.dispose();
+});
 
 test('actual Blender exports match their recorded hashes, metre scales, geometry budgets and five animation clips',async()=>{
   const report=JSON.parse(await readFile(new URL('../assets/blender/build-report.json',import.meta.url),'utf8'));
