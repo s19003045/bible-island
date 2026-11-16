@@ -329,7 +329,8 @@ function tabernacle(k,roof) {
   for(let i=0;i<5;i++) k.cyl('gold',-1.5,2.25,-2.1+i*1.05,.06,4.5);
   for(let i=0;i<6;i++) roof.box(['red','purple','blue'][i%3],-1.45,2.3,-1.875+i*.75,.06,4.5,.75);
   altar(k,12,0,0,...[dim.altar[0],dim.altar[1],dim.altar[2]]);
-  k.cyl('bronze',4,.35,0,.18,.7); k.part('bowl','bronze',4,.93,0,.95,.62,.95);
+  // The laver is a separate inspectable object; retain its solid collision proxy.
+  k.collisionBoxes.push({min:[3.51,0,-.49],max:[4.49,1.24,.49]});
   menorah(k,-6,0,1.45,1); k.box('gold',-6,.7,-1.45,.9,.07,.45);
   for(const dx of [-.35,.35]) for(const dz of [-.15,.15]) k.box('gold',-6+dx,.34,-1.45+dz,.045,.68,.045);
   for(let i=0;i<12;i++) k.ball('linen',-6+(i%2-.5)*.4,.78+Math.floor(i/2)*.055,-1.45,.28,.055,.28);
@@ -565,7 +566,7 @@ function jerusalem(k,roof,height) {
   k.box('water',-8,6.35,44,3,.04,2.4);
   for(let i=0;i<5;i++) {k.box('wood',-56+i*2.3,12.9,5.2,2,.1,1);k.box('linen',-56+i*2.3,14.4,5.2,2,.04,2);k.cyl('wood',-56+i*2.3,13.6,6,.035,1.6);k.jar(-56+i*2.3,12.1,5.5,.45);}
 }
-export function createHistoricalScene(id, environment,{segment='all',blenderAssets=false,onAssetsReady=()=>{}}={}) {
+export function createHistoricalScene(id, environment,{segment='all',blenderAssets=false,onAssetsReady=()=>{},assetLoader}={}) {
   if(id==='exodus'&&segment!=='all'&&!exodusSegmentById.has(segment))segment='bricks';
   const base=historicalScenes[id];if(!base)return null;const section=id==='exodus'?exodusSegmentById.get(segment):null;
   const config=section?{...base,...section}:base;
@@ -602,7 +603,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
     stairStone('entry-stair-landing',21,(9.225+6.8)/2,6.55,5.2,9.225-6.8,4.1);
     stairStone('entry-stair-back',21,9.55,8.6,5.2,.65,.25,true);
     for(const x of [18.4,23.6])stairStone('entry-stair-parapet',x,9.55,6.6,.25,.65,4.2,true);
-    for(const definition of vesselDefinitions){const root=createVessel(definition.id,{blenderAssets,onReady:onAssetsReady});root.position.fromArray(definition.position);scene.add(root);objects.push({...definition,root});}
+    for(const definition of vesselDefinitions){const root=createVessel(definition.id,{blenderAssets,onReady:assetsChanged,assetLoader});root.position.fromArray(definition.position);scene.add(root);objects.push({...definition,root});}
     const table=new THREE.Mesh(new THREE.BoxGeometry(1.1,.08,.6),p.wood);table.position.set(-33.4,10.92,25.6);table.castShadow=true;scene.add(table);
     for(const x of [-33.85,-32.95]) {const leg=new THREE.Mesh(new THREE.BoxGeometry(.07,.7,.45),p.wood);leg.position.set(x,10.56,25.6);scene.add(leg);}
     k.collisionBoxes.push({min:[-33.98,10.21,25.27],max:[-32.82,11.5,25.93]});
@@ -611,7 +612,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   if(id==='tabernacle') {
     // Solid tent footprints and court screens are navigation obstacles even when fabric is thin.
     k.collisionBoxes.push(...roof.collisionBoxes);
-    for(const z of [6,-6])k.collisionBoxes.push({min:[29.85,0,z-.55],max:[32.15,1.55,z+.55]});
+    for(const z of [6,-6])k.collisionBoxes.push({min:[29.85,0,z-.55],max:[32.15,1.7,z+.55]});
     for(let i=0;i<46;i++) {
       const a=i/46*Math.PI*2,r=36+(i%3)*10,x=Math.cos(a)*r,z=Math.sin(a)*r*.8,s=.8+(i%4)*.1;
       if(x>24&&x<45&&Math.abs(z)<12)continue;
@@ -620,8 +621,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
     k.collisionBoxes.push({min:[-16,-.05,-5],max:[0,5,5]});
     walkModel=createWalkModel(k.collisionBoxes,tabernacleSurfaces,tabernacleFloor,{proxies:[]});
     for(const definition of tabernacleObjects){
-      let root=null;
-      if(!definition.sceneOnly){root=createVessel(definition.id);root.position.fromArray(definition.position);scene.add(root);}
+      const root=createVessel(definition.id,{blenderAssets,onReady:assetsChanged,assetLoader});root.position.fromArray(definition.modelPosition||definition.position);scene.add(root);
       objects.push({...definition,root});
     }
   }
@@ -660,7 +660,10 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   const detailedResidents=blenderAssets&&id==='jerusalem'?mountBlenderResidents(scene,k.actors,onAssetsReady):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);
-  const occluders=[];scene.updateMatrixWorld(true);scene.traverseVisible(o=>{if(o.isMesh&&!o.userData.people)occluders.push(o);});
+  const occluders=[];
+  function refreshOccluders(){occluders.length=0;scene.updateMatrixWorld(true);scene.traverseVisible(o=>{if(o.isMesh&&!o.userData.people)occluders.push(o);});}
+  function assetsChanged(){refreshOccluders();onAssetsReady();}
+  refreshOccluders();
   const sight=new THREE.Raycaster();
   function conversationOffset(actor) {
     const origin=new THREE.Vector3(...actor.state.position).add(new THREE.Vector3(0,1.1,0));

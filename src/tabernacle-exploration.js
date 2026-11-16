@@ -30,12 +30,12 @@ export const tabernaclePOIs = [
 ];
 export const tabernacleObjects = [
   {id:'woven-sample',name:'織物與染線',position:[31,.84,6],approach:[31,.02,4.3],lookAt:[31,1.2,6],stop:'incense',
-    description:'以織線和布面比較材料與工序。這是工藝教學樣本，色澤與織法不能視為古代原物的精確復原。',
+    description:'以放大的經緯交錯和染線比較材料與工序。框架與粗線是現代教具，不表示細麻原來的線徑或織造機具；色澤與織法也不是古代原物的精確復原。',
     observation:'轉動看看線的交錯與不同顏色。經文提到哪些材料？哪些細節是模型補足的？',passage:'Exodus 35:20-35;26:1-14'},
-  {id:'board-joint',name:'板架與座的接合示意',position:[31,.72,-6],approach:[31,.02,-4.3],lookAt:[31,1.25,-6],stop:'ark',
-    description:'可拆卸板架與座的教學拆解模型。此處放大接口便於觀察，沒有把原來的會幕構件移出來，也不是考古出土原物。',
+  {id:'board-joint',name:'板架與座的接合示意',position:[31,.84,-6],approach:[31,.02,-4.3],lookAt:[31,1.25,-6],stop:'ark',
+    description:'只展示板架下段、兩個榫與兩個銀座，不是整塊十肘長板的等比縮小。局部金覆面打開，讓你比較木芯與包金；卯孔形狀、截短的閂與拆合距離都是教學安排。這不是考古出土原物，也沒有搬出原來的會幕構件。',
     observation:'比較板、榫與座如何配合。可拆卸的構造，會如何影響搬運與安營？',passage:'Exodus 26:15-30;Numbers 4'},
-  {id:'tabernacle-basin',name:'洗濯盆近景',position:[4,.93,0],approach:[4,.02,2],lookAt:[4,1.4,0],stop:'basin',sceneOnly:true,
+  {id:'tabernacle-basin',name:'洗濯盆近景',position:[4,.93,0],modelPosition:[4,0,0],approach:[4,.02,2],lookAt:[4,1.4,0],stop:'basin',sceneOnly:true,
     description:'會幕洗濯盆與後來所羅門聖殿的銅海不同。經文沒有交代這個盆的完整尺寸，畫面外形屬示意。',
     observation:'看器物位置，再查供職前洗手洗腳的規定；不要由盆的外形推定經文未提供的尺寸。',passage:'Exodus 30:17-21'},
 ];

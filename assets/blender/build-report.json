@@ -4,8 +4,8 @@
   "assets": {
     "resident": {
       "file": "models/judean-resident.glb",
-      "bytes": 691152,
-      "sha256": "d3360c47108f4ef886c8df71ae90d1fcf65134766cdd50ca5ecbe8a3b1d8bbc9",
+      "bytes": 691132,
+      "sha256": "076db4ccbd34d496c683073c81d09736460e825c61739196cf7b90164bf78acf",
       "triangles": 16552,
       "animations": [
         "Idle",
@@ -17,17 +17,44 @@
     },
     "clay-vessel": {
       "file": "models/clay-vessel.glb",
-      "bytes": 630816,
-      "sha256": "9e7d96e49147f6f03d31873538307b4e29edaee3424cf3ee41da4b2568fe3ef8",
+      "bytes": 189584,
+      "sha256": "e566d71336ed2209e2781840dabf705d904226702ed71d3c62895fa9bf49fdd4",
       "triangles": 7552,
       "animations": []
     },
     "stone-vessel": {
       "file": "models/stone-vessel.glb",
-      "bytes": 729616,
-      "sha256": "d546d3856cf38f40e889d1eb36cd839aa70ecdb690d8c16318972efaa901a83a",
+      "bytes": 98912,
+      "sha256": "a2ab242b593d1116218d48fc2eaf438d3ee58c208e05a6e49c063f9b392da0b1",
       "triangles": 3224,
       "animations": []
+    },
+    "woven-sample": {
+      "file": "models/woven-sample.glb",
+      "bytes": 918948,
+      "sha256": "8b6b8a33233a28adb44c72cb78c18efceb075789fca976506ab506a5f4dccf66",
+      "triangles": 37096,
+      "animations": [],
+      "height": 0.7315,
+      "teaching_model": true
+    },
+    "board-joint": {
+      "file": "models/board-joint.glb",
+      "bytes": 338572,
+      "sha256": "3b6d5655c146d4e2ddd4235c90d554564a5d0d754de0f708bc9b04544a10002e",
+      "triangles": 4516,
+      "animations": [],
+      "height": 0.846,
+      "teaching_model": true
+    },
+    "tabernacle-basin": {
+      "file": "models/tabernacle-basin.glb",
+      "bytes": 237080,
+      "sha256": "8c6eb9d584de7d78392588270a2d1e72d71995f0886f97de611bd40a54e1497b",
+      "triangles": 9624,
+      "animations": [],
+      "height": 1.24,
+      "teaching_model": true
     }
   }
 }

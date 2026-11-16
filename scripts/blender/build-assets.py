@@ -259,11 +259,11 @@ for b in rig.pose.bones:b.rotation_euler=(0,0,0);b.location=(0,0,0)
 report={'blender':bpy.app.version_string,'source':'assets/blender/bible-assets.blend','assets':{}}
 def export_asset(scene, asset_id, filename, animations=False):
     bpy.context.window.scene=scene;bpy.ops.object.select_all(action='DESELECT')
-    objs=[o for o in scene.objects if o.type in ['MESH','ARMATURE']]
+    objs=[o for o in scene.objects if o.type in ['MESH','ARMATURE','EMPTY']]
     for o in objs:o.select_set(True)
     if animations:
         for tr in rig.animation_data.nla_tracks:tr.mute=False
-    bpy.ops.export_scene.gltf(filepath=str(OUT/filename),export_format='GLB',use_selection=True,export_animations=animations,export_animation_mode='NLA_TRACKS',export_nla_strips=True,export_force_sampling=True,export_skins=animations,export_yup=True,export_apply=False,export_extras=True)
+    bpy.ops.export_scene.gltf(filepath=str(OUT/filename),export_format='GLB',use_selection=True,use_active_scene=True,export_animations=animations,export_animation_mode='NLA_TRACKS',export_nla_strips=True,export_force_sampling=True,export_skins=animations,export_yup=True,export_apply=False,export_extras=True)
     if animations:
         for tr in rig.animation_data.nla_tracks:tr.mute=True
     triangles=sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in objs if o.type=='MESH')
@@ -309,6 +309,8 @@ for j in range(28):
     tube('tool-trace'+str(j),[(r*cos(a),.069,r*sin(a)),((r+.001)*cos(a),.16,(r+.001)*sin(a)),(.148*cos(a),.255,.148*sin(a))],[.0008,.0012,.0007],chalk,sides=5)
 export_asset(stone_scene,'stone-vessel','stone-vessel.glb')
 
+exec(compile((ROOT/'scripts/blender/tabernacle-props.py').read_text(),str(ROOT/'scripts/blender/tabernacle-props.py'),'exec'),globals())
+
 bpy.context.window.scene=scene
 scene.frame_set(1)
 bpy.ops.wm.save_as_mainfile(filepath=str(SOURCE/'bible-assets.blend'),compress=True)
@@ -329,4 +331,7 @@ def render_preview(s, target, location, filename, orthographic):
     bpy.ops.render.render(write_still=True)
 render_preview(scene,(0,0,.88),(2.2,-5,2.3),'blender-resident.png',1.95)
 render_preview(pot_scene,(0,0,.27),(1.4,-2,1.3),'blender-clay-vessel.png',.75)
+render_preview(woven_scene,(0,0,.37),(1.4,-4,1.7),'blender-woven-sample.png',1.5)
+render_preview(joint_scene,(0,0,.42),(1.8,-4,1.8),'blender-board-joint.png',1.03)
+render_preview(basin_scene,(0,0,.65),(2.5,-4,3.4),'blender-tabernacle-basin.png',1.62)
 print('BIBLE_ASSETS_COMPLETE',json.dumps(report))

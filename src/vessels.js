@@ -1,9 +1,13 @@
 import * as THREE from 'three';
 import {attachBlenderObject} from './blender-assets.js';
-export function createVessel(id,{blenderAssets=false,onReady=()=>{}}={}) {
+import {blenderModels} from './blender-manifest.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {artifactFraming,setBoardSeparation} from './artifact-inspection.js';
+export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader}={}) {
   const root=createProceduralVessel(id);
-  if(blenderAssets&&['clay-vessel','stone-vessel'].includes(id)) {
-    const detail=attachBlenderObject(root,id,onReady);root.userData.releaseBlender=()=>detail.dispose();root.userData.assetReady=detail.ready;
+  root.userData.objectId=id;root.name=`observation:${id}`;
+  if(blenderAssets&&blenderModels[id]?.type==='object') {
+    const detail=attachBlenderObject(root,id,onReady,assetLoader);root.userData.releaseBlender=()=>detail.dispose();root.userData.assetReady=detail.ready;
   }
   return root;
 }
@@ -99,7 +103,7 @@ function createSolomonObject(id) {
 }
 function createCraftObject(id) {
   const group=new THREE.Group(),wood=new THREE.MeshStandardMaterial({color:'#69503b',roughness:.92}),silver=new THREE.MeshStandardMaterial({color:'#aba89d',metalness:.65,roughness:.4});
-  const box=(w,h,d,x,y,z,mat)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);group.add(m);};
+  const box=(w,h,d,x,y,z,mat)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);group.add(m);return m;};
   if(id==='woven-sample') {
     box(.94,.045,.045,0,.035,0,wood);box(.94,.045,.045,0,.69,0,wood);
     for(const x of [-.45,.45])box(.045,.7,.045,x,.35,0,wood);
@@ -109,23 +113,39 @@ function createCraftObject(id) {
     for(let i=0;i<34;i++)box(.004,.57,.005,-.418+i*.025,.35,.009,thread);
     for(let i=0;i<22;i++)box(.855,.004,.004,0,.08+i*.025,.013,thread);
   } else if(id==='board-joint') {
-    box(.65,.14,.34,0,.07,0,silver);box(.43,.61,.075,0,.49,0,wood);
-    for(const x of [-.13,.13])box(.08,.2,.075,x,.18,0,wood);
-    box(.6,.055,.06,0,.58,.08,wood);
+    const board=new THREE.Group();board.name='joint-board';group.add(board);
+    board.add(box(.44,.61,.078,0,.535,0,wood));
+    const gold=new THREE.MeshStandardMaterial({color:'#c39b48',metalness:.8,roughness:.36});
+    board.add(box(.272,.61,.006,.081,.535,.043,gold));board.add(box(.59,.031,.03,0,.602,-.059,gold));
+    for(const x of [-.13,.13]){
+      board.add(box(.074,.11,.063,x,.175,0,wood));
+      box(.237,.05,.25,x,.025,0,silver);
+      for(const f of [-.079,.079])box(.237,.10,.092,x,.10,f,silver);
+      for(const side of [-1,1])box(.079,.10,.066,x+side*.079,.10,0,silver);
+    }
   } else {
     const bronze=new THREE.MeshStandardMaterial({color:'#92734c',metalness:.65,roughness:.4});
-    const bowl=new THREE.Mesh(new THREE.LatheGeometry([[.04,0],[.16,.06],[.18,.16],[.1,.24],[.08,.33],[.32,.38],[.46,.6],[.48,.74],[.44,.74],[.42,.61],[.29,.42],[.04,.4]].map(p=>new THREE.Vector2(...p)),48),bronze);group.add(bowl);
+    const bowl=new THREE.Mesh(new THREE.LatheGeometry([[0,0],[.225,0],[.245,.025],[.24,.072],[.155,.102],[.117,.142],[.102,.3],[.104,.55],[.118,.64],[.155,.684],[.25,.738],[.35,.855],[.425,1.02],[.465,1.18],[.48,1.215],[.482,1.232],[.471,1.24],[.451,1.235],[.442,1.218],[.435,1.18],[.399,1.025],[.325,.866],[.23,.762],[.135,.712],[0,.712]].map(p=>new THREE.Vector2(...p)),64),bronze);group.add(bowl);
   }
   group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});return group;
 }
 export function mountVesselViewer(container,id) {
-  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(container.clientWidth||300,220);renderer.setClearColor('#e8e6d9',1);renderer.outputColorSpace=THREE.SRGBColorSpace;
-  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,(container.clientWidth||300)/220,.01,10);camera.position.set(1.15,.9,1.35);camera.lookAt(0,.35,0);
+  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(container.clientWidth||300,container.clientHeight||280);renderer.setClearColor('#e8e6d9',1);renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,(container.clientWidth||300)/(container.clientHeight||280),.01,10);
+  const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment(),environment=pmrem.fromScene(room,.04);room.dispose();pmrem.dispose();scene.environment=environment.texture;scene.environmentIntensity=.65;
   scene.add(new THREE.HemisphereLight('#fff9e7','#665340',2.5));const light=new THREE.DirectionalLight('#ffffff',3);light.position.set(2,3,2);scene.add(light);
-  const vessel=createVessel(id,{blenderAssets:true,onReady:()=>render()});scene.add(vessel);container.appendChild(renderer.domElement);const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','可旋轉的器物近景；拖曳或按左右方向鍵觀察');let drag=null;
-  function render(){renderer.render(scene,camera);}function down(e){drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);canvas.focus();}function move(e){if(drag?.id!==e.pointerId)return;vessel.rotation.y+=(e.clientX-drag.x)*.012;vessel.rotation.x=THREE.MathUtils.clamp(vessel.rotation.x+(e.clientY-drag.y)*.006,-.45,.45);drag.x=e.clientX;drag.y=e.clientY;render();}const up=()=>drag=null;
-  function key(e){if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();vessel.rotation.y+=(e.key==='ArrowLeft'?1:-1)*.18;render();}}
+  const vessel=new THREE.Group();let exploded=false;
+  const object=createVessel(id,{blenderAssets:true,onReady:()=>{setBoardSeparation(object,exploded ? .18 : 0);fit();render();}});vessel.add(object);scene.add(vessel);container.appendChild(renderer.domElement);const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','可旋轉的器物近景；拖曳或按上下左右方向鍵觀察');let drag=null;
+  function fit(){
+    const rotation=vessel.rotation.clone();vessel.rotation.set(0,0,0);object.position.set(0,0,0);scene.updateMatrixWorld(true);
+    const framing=artifactFraming(new THREE.Box3().setFromObject(object),camera.aspect,camera.fov);
+    object.position.copy(framing.center).negate();vessel.rotation.copy(rotation);
+    camera.position.set(1.15,.9,1.35).normalize().multiplyScalar(framing.distance);camera.far=Math.max(10,framing.distance+framing.radius*3);camera.lookAt(0,0,0);camera.updateProjectionMatrix();
+  }
+  function render(){renderer.render(scene,camera);}function down(e){drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);canvas.focus();}function move(e){if(drag?.id!==e.pointerId)return;vessel.rotation.y+=(e.clientX-drag.x)*.012;vessel.rotation.x=THREE.MathUtils.clamp(vessel.rotation.x+(e.clientY-drag.y)*.006,-1.2,1.2);drag.x=e.clientX;drag.y=e.clientY;render();}const up=()=>drag=null;
+  function key(e){if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();if(e.key==='ArrowLeft'||e.key==='ArrowRight')vessel.rotation.y+=(e.key==='ArrowLeft'?1:-1)*.18;else vessel.rotation.x=THREE.MathUtils.clamp(vessel.rotation.x+(e.key==='ArrowUp'?1:-1)*.15,-1.2,1.2);render();}}
   canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);canvas.addEventListener('keydown',key);
-  const observer=new ResizeObserver(()=>{const width=container.clientWidth;if(!width)return;renderer.setSize(width,220);camera.aspect=width/220;camera.updateProjectionMatrix();render();});observer.observe(container);render();
-  return {rotate(amount){vessel.rotation.y+=amount;render();},dispose(){vessel.userData.releaseBlender?.();observer.disconnect();scene.traverse(o=>{if(o.userData.blenderShared)return;o.geometry?.dispose();if(o.material)o.material.dispose();});renderer.dispose();canvas.remove();}};
+  const observer=new ResizeObserver(()=>{const width=container.clientWidth,height=container.clientHeight||280;if(!width)return;renderer.setSize(width,height);camera.aspect=width/height;fit();render();});observer.observe(container);fit();render();
+  return {rotate(amount){vessel.rotation.y+=amount;render();},setExploded(value){exploded=!!value;setBoardSeparation(object,exploded ? .18 : 0);fit();render();},dispose(){object.userData.releaseBlender?.();observer.disconnect();scene.traverse(o=>{if(o.userData.blenderShared)return;o.geometry?.dispose();if(o.material)o.material.dispose();});environment.dispose();renderer.dispose();canvas.remove();}};
 }

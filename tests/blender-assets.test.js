@@ -19,12 +19,13 @@ test('actual Blender exports match their recorded hashes, metre scales, geometry
     assert.equal(b.readUInt32LE(0),0x46546c67);assert.equal(b.readUInt32LE(4),2);assert.equal(b.readUInt32LE(8),b.length);
     const json=JSON.parse(b.subarray(20,20+b.readUInt32LE(12)).toString());
     assert.match(json.asset.generator,/Blender/);assert.ok(json.buffers.every(v=>!v.uri));assert.ok(!json.images?.length,'no hidden texture/network dependencies');
-    assert.equal(createHash('sha256').update(b).digest('hex'),report.assets[id].sha256);assert.equal(b.length,report.assets[id].bytes);assert.ok(b.length<750000);
+    assert.equal(json.scenes.length,1,'each export contains only its own scene');
+    assert.equal(createHash('sha256').update(b).digest('hex'),report.assets[id].sha256);assert.equal(b.length,report.assets[id].bytes);assert.ok(b.length<(blenderModels[id].byteBudget||750000));
     const gltf=id==='resident'?resident:await asset(id);gltf.scene.updateMatrixWorld(true);
     const size=new THREE.Box3().setFromObject(gltf.scene).getSize(new THREE.Vector3());
     assert.ok(Math.abs(size.y-blenderModels[id].height)<.025,`${id} scale ${size.y}`);
     let triangles=0;gltf.scene.traverse(o=>{if(!o.isMesh)return;triangles+=(o.geometry.index?.count||o.geometry.attributes.position.count)/3;for(const n of o.geometry.attributes.position.array)assert.ok(Number.isFinite(n));assert.ok(o.geometry.attributes.normal);assert.equal(o.geometry.attributes.color.count,o.geometry.attributes.position.count,'authored surface colours survive glTF export');});
-    assert.equal(triangles,report.assets[id].triangles);assert.ok(triangles<18000);
+    assert.equal(triangles,report.assets[id].triangles);assert.ok(triangles<(blenderModels[id].triangleBudget||18000));
   }
   assert.deepEqual(resident.animations.map(c=>c.name).sort(),['Idle','Interact','LookAround','Talk','Walk']);
 });

@@ -22,7 +22,7 @@ export function attachBlenderObject(root,id,onReady=()=>{},load=loadBlenderAsset
   let disposed=false;
   const ready=load(id).then(gltf=>{
     if(disposed)return false;
-    const instance=clone(gltf.scene);instance.traverse(o=>{if(o.isMesh){o.userData.objectId=id;o.userData.blenderShared=true;}});
+    const instance=clone(gltf.scene);instance.traverse(o=>{if(o.isMesh){o.userData.objectId=id;o.userData.blenderShared=true;o.castShadow=true;}});
     const geometry=new Set(),materials=new Set();
     for(const old of [...root.children]){old.traverse(o=>{if(o.isMesh){geometry.add(o.geometry);for(const m of [].concat(o.material))materials.add(m);}});root.remove(old);}
     for(const g of geometry)g.dispose();for(const m of materials)m.dispose();

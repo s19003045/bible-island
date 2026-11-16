@@ -388,7 +388,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
         environment = pmrem.fromScene(room, .04).texture; room.dispose(); pmrem.dispose();
       }
       const key=id==='exodus'&&segment?`${id}:${segment}`:id;
-      if (!historicalCache.has(key)) historicalCache.set(key, createHistoricalScene(id, environment,{segment:segment||'all',blenderAssets:true,onAssetsReady:()=>{dirty=true;}}));
+      if (!historicalCache.has(key)) historicalCache.set(key, createHistoricalScene(id, environment,{segment:segment||'all',blenderAssets:true,onAssetsReady:()=>{renderer.shadowMap.needsUpdate=true;dirty=true;}}));
       activeHistorical = historicalCache.get(key); activeHistorical.roof.visible = !cutaway; activeHistorical.setTime(nightMode);
     }
     camera.fov = activeHistorical ? 48 : 39; camera.updateProjectionMatrix();
