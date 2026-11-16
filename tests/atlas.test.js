@@ -54,7 +54,7 @@ test('continuous sea extends past the camera far plane at every permitted atlas 
  assert.ok(atlasBounds.waterSize/2>1800+atlasBounds.maxDistance+Math.max(...Object.values(atlasBounds).filter(n=>n<1000)));
  const texture=u.uShore.value.image,{width,height,data}=texture,[x0,z0,w,h]=u.uBounds.value.toArray();
  const sample=(x,z)=>data[(Math.round((z-z0)/h*(height-1))*width+Math.round((x-x0)/w*(width-1)))*4];
- const t=themeById.get('tabernacle');assert.ok(sample(...t.position)<10);assert.ok(sample(-62,-49)>240);
+ const t=themeById.get('tabernacle');assert.ok(sample(...t.position)<10);assert.ok(sample(-2,-42)>240);
  const shore=sample(t.position[0]+t.radius+1,t.position[1]),deep=sample(t.position[0]+t.radius+5,t.position[1]);assert.ok(shore<deep);
  environment.update(17,true);assert.equal(u.uTime.value,17);assert.equal(u.uDark.value,1);assert.equal('#'+u.uHorizon.value.getHexString(),atlasSkyColor(true));
  environment.dispose();

@@ -315,7 +315,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   const sun = new THREE.DirectionalLight('#fff0cf', 4); sun.position.set(-18, 40, 24); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); sun.shadow.camera.left = -45; sun.shadow.camera.right = 45; sun.shadow.camera.top = 45; sun.shadow.camera.bottom = -45;
   sun.shadow.camera.far = 140; sun.shadow.normalBias = .075; sun.shadow.bias = -.0002; scene.add(sun);
-  const ocean=createAtlasEnvironment(themes);scene.add(ocean.water);
+  const ocean=createAtlasEnvironment(themes);scene.add(ocean.root);
   const roots = new Map(), roofs = new Map(), boats = [], markers = new Map();
   const labelsLayer = document.createElement('div'); labelsLayer.className = 'world-labels'; container.appendChild(labelsLayer);
   const labels = [],regionLabels=[];
@@ -581,7 +581,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   function animate(now) {
     raf = requestAnimationFrame(animate); if (hidden) return;
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
-    if(!activeHistorical){if(!paused){elapsed+=dt;dirty=true;}ocean.update(elapsed,nightMode);boats.forEach((b,i)=>{if(b.userData.routeId){const curve=network.curve(b.userData.routeId),t=(elapsed*.014+b.userData.routeOffset)%1,p=curve.getPoint(t),d=curve.getTangent(t);b.position.set(p.x,.15,p.z);b.rotation.y=Math.atan2(d.x,d.z);}b.rotation.z=Math.sin(elapsed*.8+i)*.025;b.rotation.x=Math.cos(elapsed*.6+i)*.02;});}
+    if(!activeHistorical){if(!paused){elapsed+=dt;dirty=true;}ocean.update(elapsed,nightMode,camera);boats.forEach((b,i)=>{if(b.userData.routeId){const curve=network.curve(b.userData.routeId),t=(elapsed*.014+b.userData.routeOffset)%1,p=curve.getPoint(t),d=curve.getTangent(t);b.position.set(p.x,.15,p.z);b.rotation.y=Math.atan2(d.x,d.z);}b.rotation.z=Math.sin(elapsed*.8+i)*.025;b.rotation.x=Math.cos(elapsed*.6+i)*.02;});}
     if(activeHistorical && !paused) {
       activeHistorical.animate(dt,camera.position.toArray(),walk.active?walk.position:null,p=>{v.set(p[0],p[1]+1,p[2]);if(camera.position.distanceTo(v)>(activeHistorical.scene.fog?.far||camera.far))return false;v.project(camera);return v.z>-1&&v.z<1&&Math.abs(v.x)<1.15&&Math.abs(v.y)<1.15;});dirty=true;
     }
@@ -666,7 +666,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
       nightMode = night; activeHistorical?.setTime(night);
       ambient.intensity = night ? 1.35 : 2.6; sun.intensity = night ? 1.2 : 4;
       sun.color.set(night ? '#a3b9e2' : '#fff0cf'); scene.background.set(atlasSkyColor(night)); scene.fog.color.copy(scene.background);
-      ocean.update(elapsed,night); renderer.shadowMap.needsUpdate = true; dirty = true;
+      ocean.update(elapsed,night,camera); renderer.shadowMap.needsUpdate = true; dirty = true;
     },
     setVisible(ids) {cancelAtlasFlight();visibleIds = new Set(ids); for (const [id, root] of roots) root.visible = visibleIds.has(id); boats.forEach(b => { const id = b.children.find(c => c.userData.themeId)?.userData.themeId; b.visible = !id || visibleIds.has(id); }); updateNetwork();dirty = true; },
     zoom(amount) {cancelAtlasFlight();if(!activeHistorical)onAtlasInteract();fly = null; const off = camera.position.clone().sub(controls.target); const distance = THREE.MathUtils.clamp(off.length() * amount, controls.minDistance, controls.maxDistance); camera.position.copy(controls.target).add(off.setLength(distance)); controls.update(); dirty = true; },

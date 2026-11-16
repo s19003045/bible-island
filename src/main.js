@@ -27,7 +27,7 @@ state.learning=readLearning(storage);state.mode=state.learning.mode;state.learni
 state.exodusSegment=exodusSegmentById.has(new URLSearchParams(location.hash.slice(1)).get('chapter'))?new URLSearchParams(location.hash.slice(1)).get('chapter'):'bricks';
 state.actor=null;state.dialogue=[];state.walking=false;state.soundEnabled=false;
 state.explorationSeen=readExploration(storage);
-state.atlasJourney='all';state.atlasRoute=null;state.atlasCompact=matchMedia('(max-width:760px)').matches;
+state.atlasJourney='all';state.atlasRoute=null;state.atlasCompact=true;
 state.mission=readMission(storage);
 let world = null, restoreFocus = null, toastTimer,modalCleanup=null,feedbackTimer;
 let soundPreferences={};try{soundPreferences=JSON.parse(storage?.getItem('bible-island:audio:v1')||'{}')||{};}catch{}

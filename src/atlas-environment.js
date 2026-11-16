@@ -1,11 +1,12 @@
 import * as THREE from 'three';
 import {atlasBounds,coastRadius} from './atlas-data.js';
+import {createMountainBasin,basinShoreDistance} from './atlas-landscape.js';
 export const atlasSkyColor=night=>night?'#304d55':'#b9cec5';
 export function createAtlasEnvironment(themes){
-  const size=256,bounds=[-64,-52,132,114],data=new Uint8Array(size*size*4);
+  const size=384,bounds=[-140,-130,280,260],data=new Uint8Array(size*size*4);
   // One static shore-distance texture avoids 24 trigonometric island tests per screen pixel.
   for(let z=0;z<size;z++)for(let x=0;x<size;x++){
-    const wx=bounds[0]+x/(size-1)*bounds[2],wz=bounds[1]+z/(size-1)*bounds[3];let nearest=8;
+    const wx=bounds[0]+x/(size-1)*bounds[2],wz=bounds[1]+z/(size-1)*bounds[3];let nearest=Math.min(8,-basinShoreDistance(wx,wz));
     for(const t of themes){const dx=wx-t.position[0],dz=wz-t.position[1],d=Math.hypot(dx,dz);if(d-t.radius>nearest+.5)continue;nearest=Math.min(nearest,d-coastRadius(t.radius,Math.atan2(dz,dx),t.number));}
     const i=(z*size+x)*4;data[i]=Math.round(Math.max(0,Math.min(1,nearest/8))*255);data[i+1]=data[i+2]=0;data[i+3]=255;
   }
@@ -28,5 +29,6 @@ export function createAtlasEnvironment(themes){
       #include <colorspace_fragment>
     }`});
   const water=new THREE.Mesh(new THREE.PlaneGeometry(atlasBounds.waterSize,atlasBounds.waterSize),material);water.name='atlas-continuous-ocean';water.rotation.x=-Math.PI/2;water.position.y=-.13;water.frustumCulled=false;
-  return {water,update(time,night){material.uniforms.uTime.value=time;material.uniforms.uDark.value=night?1:0;material.uniforms.uHorizon.value.set(atlasSkyColor(night));},dispose(){water.geometry.dispose();material.dispose();shore.dispose();}};
+  const landscape=createMountainBasin(),root=new THREE.Group();root.name='atlas-mountain-lake-environment';root.add(water,landscape.root);
+  return {root,water,landscape,update(time,night,camera){material.uniforms.uTime.value=time;material.uniforms.uDark.value=night?1:0;material.uniforms.uHorizon.value.set(atlasSkyColor(night));landscape.update(time,night,camera);},dispose(){water.geometry.dispose();material.dispose();shore.dispose();landscape.dispose();}};
 }

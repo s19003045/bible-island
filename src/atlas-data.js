@@ -61,13 +61,13 @@ export const atlasBounds={x1:-62,x2:65,z1:-49,z2:57,maxDistance:210,waterSize:12
 // Fit projected island extents at the real aspect ratio, including room for labels.
 export function atlasFrame(list,aspect,fov=39){
   const center=[list.reduce((n,t)=>n+t.position[0],0)/list.length,0,list.reduce((n,t)=>n+t.position[1],0)/list.length];
-  const length=Math.hypot(.5,1.4,1.45),direction=[.5/length,1.4/length,1.45/length],sideLength=Math.hypot(direction[0],direction[2]);
+  const length=Math.hypot(.5,1.2,1.45),direction=[.5/length,1.2/length,1.45/length],sideLength=Math.hypot(direction[0],direction[2]);
   const right=[direction[2]/sideLength,0,-direction[0]/sideLength],up=[direction[1]*right[2],direction[2]*right[0]-direction[0]*right[2],-direction[1]*right[0]];
   const tanY=Math.tan(fov*Math.PI/360),tanX=tanY*aspect;let distance=30;
   for(const t of list){const dx=t.position[0]-center[0],dz=t.position[1]-center[2],depth=dx*direction[0]+dz*direction[2],padding=t.radius+2.5;
     distance=Math.max(distance,depth+(Math.abs(dx*right[0]+dz*right[2])+padding)/tanX,depth+(Math.abs(dx*up[0]+dz*up[2])+padding)/tanY);
   }
-  return {center,offset:direction.map(n=>n*distance)};
+  return {center,offset:direction.map(n=>n*distance*(list.length===24?1.6:1))};
 }
 export function coastRadius(radius,angle,seed){return radius*(.94+.055*Math.sin(angle*3+seed)+.035*Math.sin(angle*5-seed*.4));}
 export function visibleRoutes({journey='all',focus=null,ids=null}={}){
