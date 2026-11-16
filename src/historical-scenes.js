@@ -16,6 +16,7 @@ import {explorationFor} from './exploration-data.js';
 import {mountBlenderResidents} from './blender-assets.js';
 import {residentAppearance,residentClearance} from './resident-appearance.js';
 import {exodusFloor} from './exodus-exploration.js';
+import {buildJordanScene,attachJordanExploration} from './jordan-scenes.js';
 
 // Detailed scenes use one Three unit per metre. Geometry is batched by material, not by building.
 const G = {
@@ -581,14 +582,14 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   sun.shadow.mapSize.set(2048,2048);sun.shadow.normalBias=.035;sun.shadow.bias=-.00013;scene.add(sun);
   const roofGroup=new THREE.Group();scene.add(roofGroup);
   const k=builder(scene,p,id.length*113,true,id), roof=builder(roofGroup,p,83,true,id);
-  const height=terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id),id==='exodus'?exodusSegments.flatMap(s=>s.surfaces):[]);
+  const height=id==='jordan'?buildJordanScene(k,scene,p):terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);if(id!=='jordan')landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id),id==='exodus'?exodusSegments.flatMap(s=>s.surfaces):[]);
   if(id==='tabernacle')tabernacle(k,roof);
   else if(id==='solomon')solomon(k,roof,height);
   else if(id==='herod')herod(k,roof);
   else if(id==='exodus')buildExodusScene(k,roof,scene,p,segment);
-  else jerusalem(k,roof,height);
+  else if(id!=='jordan')jerusalem(k,roof,height);
   const roles=id==='tabernacle'?{weaver:'weaver',priest:'priest','camp-parent':'parent'}:id==='solomon'?{'bronze-worker':'bronze-worker',singer:'singer','temple-visitor':'visitor'}:id==='herod'?{pilgrim:'pilgrim','stone-worker':'stone-worker',listener:'listener'}:id==='exodus'?{'brick-maker':'brick-guide','passover-parent':'departure-parent',traveler:'crossing-guide'}:{};
-  for(const person of peopleByIsland[id].filter(p=>!section||p.id===section.person)) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:roles[person.id]});
+  for(const person of peopleByIsland[id].filter(p=>!section||p.id===section.person)) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:id==='jordan'?(person.id==='jordan-parent'?'west-resident':'east-resident'):roles[person.id]});
   k.finish();roof.finish();
   const people=k.actors.filter(a=>a.id);
   let walkModel=null;const objects=[];
@@ -664,6 +665,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs,allowRetreat:true,allowedPosition:(a,p)=>jerusalemAllowed(a,p,walkModel)}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
   let npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
+  if(id==='jordan'){const exploration=attachJordanExploration(scene,k,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   const detailedResidents=blenderAssets?mountBlenderResidents(scene,k.actors,onAssetsReady,{assetLoader,groundAt:id==='exodus'?exodusFloor:(x,z)=>walkModel.heightAt(x,z)}):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);

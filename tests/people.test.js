@@ -10,7 +10,7 @@ import { createHistoricalScene } from '../src/historical-scenes.js';
 const context=new Proxy({},{get:()=>()=>{},set:()=>true});
 globalThis.document={createElement:()=>({width:256,height:256,getContext:()=>context})};
 
-test('15 scene-specific characters have sourced questions, follow-ups and valid learning destinations',()=>{
+test('18 scene-specific characters have sourced questions, follow-ups and valid learning destinations',()=>{
   assert.deepEqual(Object.keys(peopleByIsland).sort(),Object.keys(historicalScenes).sort());
   let count=0;
   for(const [island,people] of Object.entries(peopleByIsland)) {
@@ -27,7 +27,7 @@ test('15 scene-specific characters have sourced questions, follow-ups and valid 
       assert.ok(p.topics.some(t=>t.followup));
     }
   }
-  assert.equal(count,15);
+  assert.equal(count,18);
 });
 
 test('walking stays on its authored route and turns without wrapping to a different location',()=>{

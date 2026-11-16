@@ -1,5 +1,6 @@
 import { scriptureSource as bible } from './scripture.js';
 import {residentClothingEvidence} from './resident-clothing-data.js';
+import {jordanHistorical} from './jordan-content.js';
 
 // Metres throughout. A 0.45 m cubit is a declared modelling convention, not a resolved historical unit.
 export const CUBIT = .45;
@@ -10,6 +11,7 @@ export const dimensions = {
   herod: { facade: [100 * CUBIT, 100 * CUBIT], holy: [40 * CUBIT, 40 * CUBIT, 20 * CUBIT], inner: 20 * CUBIT },
 };
 export const historicalScenes = {
+  jordan:jordanHistorical,
   tabernacle: {
     edition: '曠野的會幕與營地', category: '依經文尺度重建', scale: '外院 45 × 22.5 m · 成人 1.70 m',
     extent: 150, shadow: 65, target: [0, 1, 0], overview: [48, 31, 48], human: { target: [-3, 2.2, 0], offset: [22, -.45, 7] },

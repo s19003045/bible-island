@@ -22,6 +22,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader}
   return root;
 }
 function createProceduralVessel(id) {
+  if(['jordan-bed','jordan-carrying','jordan-stones'].includes(id))return createJordanObject(id);
   if(['brick-mould','passover-kit','crossing-ground'].includes(id))return createExodusObject(id);
   if(['herod-stone','herod-boundary','herod-capital'].includes(id))return createHerodObject(id);
   if(['pillar-capital','solomon-sea','temple-masonry'].includes(id))return createSolomonObject(id);
@@ -34,6 +35,20 @@ function createProceduralVessel(id) {
   // Fine horizontal tooling marks, shared with the inspectable object rather than a second representation.
   for(let i=0;i<6;i++){const radius=clay?.218-Math.abs(i-2)*.004:.15;const mark=new THREE.Mesh(new THREE.TorusGeometry(radius,.0013,3,40),new THREE.MeshStandardMaterial({color:clay?'#805237':'#b2aa94',roughness:1}));mark.rotation.x=Math.PI/2;mark.position.y=clay?.16+i*.023:.08+i*.035;group.add(mark);}
   group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});group.userData.objectId=id;return group;
+}
+function createJordanObject(id){
+ const g=new THREE.Group(),stone=new THREE.MeshStandardMaterial({color:'#97917b',roughness:1}),blue=new THREE.MeshStandardMaterial({color:'#31566b',roughness:.98}),wood=new THREE.MeshStandardMaterial({color:'#735039',roughness:.96});
+ const add=(geometry,material,x,y,z)=>{const m=new THREE.Mesh(geometry,material);m.position.set(x,y,z);g.add(m);return m;};
+ if(id==='jordan-stones')for(let i=0;i<12;i++){const m=add(new THREE.IcosahedronGeometry(1,2),stone,(i%4-1.5)*.66,.20,(Math.floor(i/4)-1)*.58);m.scale.set(.26,.20+(i%4)*.025,.23);}
+ if(id==='jordan-carrying'){
+  add(new THREE.BoxGeometry(.363,.363,.587),blue,0,.1815,0);
+  for(const x of [-.215,.215]){const pole=add(new THREE.CylinderGeometry(.012,.012,1.66,16),wood,x,.1325,0);pole.rotation.x=Math.PI/2;}
+ }
+ if(id==='jordan-bed'){
+  const geo=new THREE.PlaneGeometry(1.54,.68,60,4);geo.rotateX(-Math.PI/2);const p=geo.attributes.position;
+  for(let i=0;i<p.count;i++){const t=THREE.MathUtils.clamp((Math.abs(p.getX(i))-.21)/.35,0,1);p.setY(i,.065+.23*t*t*(3-2*t));}geo.computeVertexNormals();add(geo,stone,0,0,0);
+ }
+ g.traverse(o=>{if(o.isMesh){o.castShadow=o.receiveShadow=true;o.userData.objectId=id;}});return g;
 }
 function createExodusObject(id){
  const g=new THREE.Group(),wood=new THREE.MeshStandardMaterial({color:'#756047',roughness:.96}),mud=new THREE.MeshStandardMaterial({color:'#987d60',roughness:1}),straw=new THREE.MeshStandardMaterial({color:'#b2a17b',roughness:1});

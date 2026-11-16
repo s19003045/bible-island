@@ -7,6 +7,7 @@ export function residentAppearance(island,options,index,height=1.7) {
     return {modelId,height:!child&&woman?1.64:height};
   }
   if(child)return {modelId:'wilderness-child',height};
+  if(island==='jordan'){const female=woman||options.id==='jordan-parent';return {modelId:options.role==='ark-bearer'?'priest-bearer':options.id==='jordan-priest'?'ordinary-priest':female?'wilderness-woman':'wilderness-resident',height:options.role==='ark-bearer'?1.735:female?1.64:height};}
   if(island==='tabernacle')return {modelId:options.id==='priest'?'ordinary-priest':woman?'wilderness-woman':'wilderness-resident',height:options.id==='priest'?1.725:woman?1.64:height};
   if(island==='solomon')return {modelId:options.id==='singer'?'temple-singer':options.id==='bronze-worker'?'bronze-artisan':woman?'iron-woman':'iron-resident',height:woman?1.64:height};
   if(island==='exodus') {

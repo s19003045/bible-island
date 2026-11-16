@@ -332,6 +332,7 @@ exec(compile((ROOT/'scripts/blender/tabernacle-props.py').read_text(),str(ROOT/'
 exec(compile((ROOT/'scripts/blender/solomon-props.py').read_text(),str(ROOT/'scripts/blender/solomon-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/herod-props.py').read_text(),str(ROOT/'scripts/blender/herod-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/exodus-props.py').read_text(),str(ROOT/'scripts/blender/exodus-props.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/jordan-props.py').read_text(),str(ROOT/'scripts/blender/jordan-props.py'),'exec'),globals())
 
 bpy.context.window.scene=scene
 scene.frame_set(1)
@@ -371,4 +372,7 @@ render_preview(portico_scene,(0,0,.38),(1.6,-3,1.4),'blender-herod-capital.png',
 render_preview(brick_scene,(-.02,0,.06),(1.2,-2,1.5),'blender-brick-mould.png',1.75)
 render_preview(departure_scene,(0,0,.14),(1.1,-2,1.3),'blender-passover-kit.png',1.55)
 render_preview(crossing_scene,(0,0,.20),(1.2,-1.8,4.8),'blender-crossing-ground.png',1.95)
+render_preview(bed_scene,(0,0,.15),(1.6,-3,2.1),'blender-jordan-bed.png',2.5)
+render_preview(carrying_scene,(0,0,.19),(1.6,-3,1.8),'blender-jordan-carrying.png',1.9)
+render_preview(stones_scene,(0,0,.23),(1.6,-3,3.3),'blender-jordan-stones.png',4.3)
 print('BIBLE_ASSETS_COMPLETE',json.dumps(report))

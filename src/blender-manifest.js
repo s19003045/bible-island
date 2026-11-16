@@ -1,5 +1,9 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'priest-bearer':{type:'character',src:'models/priest-bearer.glb',height:1.735,triangleBudget:44000,byteBudget:1700000,era:'Joshua 3:17 standing phase; original covered pole grip teaching pose'},
+  'jordan-bed':{type:'object',src:'models/jordan-bed.glb',height:.300,triangleBudget:18000,byteBudget:750000},
+  'jordan-carrying':{type:'object',src:'models/jordan-carrying.glb',height:.363,triangleBudget:18000,byteBudget:750000},
+  'jordan-stones':{type:'object',src:'models/jordan-stones.glb',height:.500,triangleBudget:18000,byteBudget:900000},
   resident:{type:'character',src:'models/judean-resident.glb',height:1.71,triangleBudget:38000,byteBudget:1500000,era:'Early Roman Judea; composite teaching resident'},
   'resident-worker':{type:'character',src:'models/judean-worker.glb',height:1.71,triangleBudget:38000,byteBudget:1500000,era:'Early Roman Judea; plain-tunic artisan teaching type'},
   'resident-child':{type:'character',src:'models/judean-child.glb',height:1.10,ankleHeight:.075,cycleDistance:.4903,liftHeight:.046,triangleBudget:38000,byteBudget:1500000,era:'Early Roman Judea; original child proportions, no precise age claim'},

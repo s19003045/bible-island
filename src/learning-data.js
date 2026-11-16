@@ -1,3 +1,4 @@
+import {jordanLearning} from './jordan-content.js';
 // Authored learning activities share the existing historically qualified scenes.
 const quest = (stop, actor, question, options, correct, hint, explanation) => ({ id: stop, stop, actor, question, options, correct, hint, explanation });
 const inquiry = (stop, claim, kind, basis, limit, reference) => ({ id: stop, stop, claim, kind, basis, limit, reference });
@@ -9,6 +10,7 @@ export const readingModes = {
 export const evidenceKinds = { text: '經文描述', research: '歷史研究', reconstruction: '復原推定' };
 
 export const learningIslands = {
+  jordan:jordanLearning,
   tabernacle: {
     opening: '從營地走進外院，再看帳幕內部。每向前一步，都留意空間、器物和人的角色如何改變。',
     closing: '從祭壇、洗濯盆到幔子與約櫃，空間呈現不同的用途與進入規範；剖面是觀察工具，不是歷史上的通行許可。',

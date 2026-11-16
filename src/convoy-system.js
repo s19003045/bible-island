@@ -38,12 +38,12 @@ export function createConvoySystem({actors,pois,model,playerModel,spawn=[4,.03,-
   roll=a.random()*slots.reduce((n,s)=>n+s.weight,0);let slot=slots.at(-1);for(const s of slots){roll-=s.weight;if(roll<=0){slot=s;break;}}
   release(a);a.poi=chosen.p;a.slot=slot;reservations.get(a.poi.id).set(a.key,slot.index);a.state='travel';a.action='Walk';emit(a,'depart',{poi:a.poi.id});
  }
- function swept(from,dx,dz,radius,exclude=null,player=null){
+ function swept(from,dx,dz,radius,exclude=null,player=null,navigation=model){
   let p=[...from];const count=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.035));
   for(let i=0;i<count;i++){
-   const q=model.move(p,dx/count,dz/count);
+   const q=navigation.move(p,dx/count,dz/count);
    if(clearAt(q,radius,exclude,player)){p=q;continue;}
-   const x=model.move(p,dx/count,0),z=model.move(p,0,dz/count);
+   const x=navigation.move(p,dx/count,0),z=navigation.move(p,0,dz/count);
    if(clearAt(x,radius,exclude,player)&&distance(x,p)>.000001)p=x;else if(clearAt(z,radius,exclude,player))p=z;
   }return p;
  }
@@ -55,7 +55,7 @@ export function createConvoySystem({actors,pois,model,playerModel,spawn=[4,.03,-
   const options=[-6.6,-3.3,0,3.3,6.6].map(z=>[-28,.03,z]);
   const free=options.filter(p=>!isVisible(p)&&(!camera||distance(p,camera)>15)&&(!player||distance(p,player)>25)&&clearAt(p,a.radius,a,player));
   if(!free.length){a.entryDelay=range(a,1.2,3.7);return;}
-  const p=free[Math.floor(a.random()*free.length)];a.actor.state.position=[...p];a.actor.state.visible=true;a.actor.state.stride=0;
+  const p=free[Math.floor(a.random()*free.length)];a.actor.state.position=[p[0],model.heightAt(p[0],p[2]),p[2]];a.actor.state.visible=true;a.actor.state.stride=0;
   a.hidden=false;a.lap++;a.state='rest';a.action='LookAround';a.timer=range(a,.3,2.4);a.lastPOI=null;a.velocity=[0,0];emit(a,'enter');
  }
  function integrate(dt,{player,camera,isVisible}){
@@ -87,7 +87,7 @@ export function createConvoySystem({actors,pois,model,playerModel,spawn=[4,.03,-
  }
  return {agents,pois,reservations,
   update(dt,{player=null,camera=null,isVisible=()=>true}={}){let left=Math.min(.25,Math.max(0,dt));while(left>1e-8){const d=Math.min(left,1/30);integrate(d,{player,camera,isVisible});left-=d;}},
-  constrainPlayer(from,to){return swept(from,to[0]-from[0],to[2]-from[2],.32);},
+  constrainPlayer(from,to){return swept(from,to[0]-from[0],to[2]-from[2],.32,null,null,playerModel);},
   safePlayerSpawn(preferred){const options=[preferred];for(const x of [2,4,6,8,10])for(const z of [-7,-4,0,4,7])options.push([x,.03,z]);return options.filter(p=>playerModel.valid(p[0],p[2])&&clearAt(p,.4)).sort((a,b)=>distance(a,preferred)-distance(b,preferred))[0]||null;},
   suspend(){for(const a of agents){release(a);a.velocity=[0,0];if(!a.hidden){a.state='rest';a.action='LookAround';a.timer=range(a,.3,2.8);}}},
   dispose(){this.suspend();},

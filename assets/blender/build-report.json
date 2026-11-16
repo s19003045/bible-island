@@ -208,10 +208,24 @@
       ],
       "height": 1.71
     },
+    "priest-bearer": {
+      "file": "models/priest-bearer.glb",
+      "bytes": 1225012,
+      "sha256": "24c0f0dffcfdefd319cfa0e05bdd4acb85e80753f433a97073b605cd8dcb4df2",
+      "triangles": 31752,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.735
+    },
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "f437a71d0b86287afddacf8a2b2c977fdeebca203b0179896e6899ba01e0f650",
+      "sha256": "b3436bfe458e214bb6e46a0ba8f4397a3bd3b5f9680035d4994caa269aa104ef",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -220,7 +234,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "bc001d11f2c32a0f4602c4ca461aa97b09c85ad4f5eee375261e08da3ee76a19",
+      "sha256": "34dd15bf2fa2d12a2bee34af8dc24394334ee8b765fb7d907798149e1b8d5117",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -238,7 +252,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "265870516e97d554a0222e34a326b477c53b1824fa986040c0a3879213e1f88b",
+      "sha256": "288d57f397e747edb14b1d3353d3fd3416ddf954354e1da8dd04e750654cd296",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -263,7 +277,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "3defc96c2fea1bd77a369b7e8b6543bec106f0467c4b0b633485b327cc21effd",
+      "sha256": "62f6df278f1b415e11506d3d2cf355c60bb3eb726c66782d7ea05fc9a8cb487b",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -272,7 +286,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "a7dbb4cb44a30773572350479434da54885a87822bdb5755534a5a06e7152b74",
+      "sha256": "ad9474405e9b7879c1c113233f336df3d10b46b8946568e1e73704bcf55b7dc6",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -281,7 +295,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "60bd4a48f906d2b84074a3ec45d24454f493904e17936f35de16a87f090156bf",
+      "sha256": "2798ecdaac7c5faac13f9fa72a570b038334912caea5c9e0f81c6db623213330",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -292,7 +306,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "1f87fc1e4f3fc3e734a3d8bdc2ebabc4a104cb97a98d2f34089b9cb89ce56632",
+      "sha256": "6a1e0d391c624e872172c8a7072b1b29e95aa5196defa021480bd8e2219cdb4a",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -303,7 +317,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "85614fa2335de2bd7e1b8639668738608fad761be7713bdac3828cbdcfe28460",
+      "sha256": "960a65a7a9b21364b7df29eeef90c77c5782944565e5305df4a7de27952cc469",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -321,13 +335,43 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "c940731913e30fa89b010a61d51609a4b50f5fb4e7206d50ad1a50b9fe5acb44",
+      "sha256": "bd46dd07cd2c2df500c8b84f04e05b29b8a5aadd7e82d52f233c6d3501f19f6a",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
       "teaching_model": true,
       "uniform_scale": false,
       "use": "inspection cutaway only; full scene water and moving convoy remain separate"
+    },
+    "jordan-bed": {
+      "file": "models/jordan-bed.glb",
+      "bytes": 273504,
+      "sha256": "57d80248a376780b00498912d2754797c5b08814b3b251d94566627b0089613e",
+      "triangles": 11284,
+      "animations": [],
+      "height": 0.3,
+      "teaching_model": true,
+      "uniform_scale": false
+    },
+    "jordan-carrying": {
+      "file": "models/jordan-carrying.glb",
+      "bytes": 172820,
+      "sha256": "10f60b7e89b249bd49385d7efd3d7a10edf40392ba2c5b5ab99b732f9fce197b",
+      "triangles": 7044,
+      "animations": [],
+      "height": 0.363,
+      "teaching_model": true
+    },
+    "jordan-stones": {
+      "file": "models/jordan-stones.glb",
+      "bytes": 121996,
+      "sha256": "900b7a4b8e7db3cd8a4341ce648acacccbea488555a12061e9664da2e6af08cc",
+      "triangles": 3840,
+      "animations": [],
+      "height": 0.5,
+      "teaching_model": true,
+      "count": 12,
+      "use": "Gilgal narrative teaching group; not the separate in-river stones of Joshua 4:9"
     }
   }
 }

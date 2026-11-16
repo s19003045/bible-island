@@ -9,7 +9,7 @@ const turn=(m,target,dt)=>{const d=angleDelta(m.yaw,target);m.yaw+=clamp(d*(1-Ma
 
 // Every decision, social check, dwell, cooldown, animation phase and PRNG belongs to one agent.
 // The shared update is only a physics integrator, never a behaviour clock or random walk.
-export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{},spawnCandidates:customSpawns=null,allowedPosition=()=>true,spawnExclusion=[20,0,0],allowRetreat=false}) {
+export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,onEvent=()=>{},spawnCandidates:customSpawns=null,allowedPosition=()=>true,spawnExclusion=[20,0,0],allowRetreat=false}) {
   const reservations=new Map(pois.map(p=>[p.id,new Map()]));
   const agents=actors.map((actor,index)=>{
     const key=actor.id||`resident-${index}`,individualSeed=npcSeed(`${seed}:${key}`),random=seededNPC(individualSeed);
@@ -123,13 +123,14 @@ export function createNPCSystem({actors,pois,model,seed=78431,onEvent=()=>{},spa
     const blend=1-Math.exp(-4*dt);return [a.velocity[0]+(vx-a.velocity[0])*blend,a.velocity[1]+(vz-a.velocity[1])*blend];
   }
   function dynamicMove(from,to,radius,exclude=null,player=null) {
+    const navigation=exclude?model:playerModel;
     const dx=to[0]-from[0],dz=to[2]-from[2],steps=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.035));let p=[...from];
     const blocked=q=>exclude&&!allowedPosition(exclude,q)||agents.some(b=>b!==exclude&&Math.abs(q[1]-b.actor.state.position[1])<1.7&&distance(q,b.actor.state.position)<radius+b.radius+.025)||
       player&&Math.abs(q[1]-player[1])<1.7&&distance(q,player)<radius+.32+.025;
     for(let i=0;i<steps;i++) {
-      const next=model.move(p,dx/steps,dz/steps);
+      const next=navigation.move(p,dx/steps,dz/steps);
       if(!blocked(next)){p=next;continue;}
-      const x=model.move(p,dx/steps,0),z=model.move(p,0,dz/steps);
+      const x=navigation.move(p,dx/steps,0),z=navigation.move(p,0,dz/steps);
       if(!blocked(x)&&distance(x,p)>.0001)p=x;else if(!blocked(z))p=z;
     }
     return p;

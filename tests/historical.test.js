@@ -10,7 +10,7 @@ const context = new Proxy({}, { get: () => () => {}, set: () => true });
 globalThis.document = { createElement: () => ({ width: 256, height: 256, getContext: () => context }) };
 
 test('five previews cover every authored stop and declare sources and uncertainty', () => {
-  assert.deepEqual(Object.keys(historicalScenes).sort(), ['exodus','herod','jerusalem','solomon','tabernacle']);
+  assert.deepEqual(Object.keys(historicalScenes).sort(), ['exodus','herod','jerusalem','jordan','solomon','tabernacle']);
   for (const [id,config] of Object.entries(historicalScenes)) {
     assert.deepEqual(Object.keys(config.stops).sort(), themes.find(t=>t.id===id).stops.map(s=>s.id).sort());
     assert.ok(config.limits.length > 60);
@@ -23,7 +23,7 @@ test('all five generated scenes have finite geometry, positive instance scales a
   const transform = new THREE.Matrix4(), point = new THREE.Vector3(), rotation = new THREE.Quaternion(), scale = new THREE.Vector3();
   for (const id of Object.keys(historicalScenes)) {
     const built = createHistoricalScene(id,null); let instances=0,triangles=0;
-    assert.ok(built.roof.children.length > 0, `${id}: removable roof`);
+    if(built.config.cutaway!==false)assert.ok(built.roof.children.length > 0, `${id}: removable roof`);else assert.equal(built.roof.children.length,0,'open river scene needs no fake cutaway');
     built.scene.updateMatrixWorld(true);
     built.scene.traverse(o => {
       if (!o.isMesh) return;

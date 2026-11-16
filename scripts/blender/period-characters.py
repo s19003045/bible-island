@@ -135,8 +135,8 @@ def head_shawl(mat,point=lambda p:p,short=False):
     obj=mesh('head-and-shoulder-shawl',vs,faces,mat,weights,.035)
     mod=obj.modifiers.new('shawl-thickness','SOLIDIFY');mod.thickness=.0025;bpy.context.view_layer.objects.active=obj;bpy.ops.object.modifier_apply(modifier=mod.name)
 
-def finish_type(target,armature,asset_id,filename,height,activity=None):
-    bind_and_join(target,armature);character_actions(target,armature,activity=activity)
+def finish_type(target,armature,asset_id,filename,height,activity=None,carrying=False):
+    bind_and_join(target,armature);character_actions(target,armature,carrying=carrying,activity=activity)
     armature['teachingType']=asset_id;armature['clothingStatus']='original teaching choice; see assets/blender/README.md'
     export_asset(target,asset_id,filename,True);report['assets'][asset_id]['height']=height;period_scenes[asset_id]=target
 
@@ -225,3 +225,41 @@ for index,(x,y,h) in enumerate(coordinates):
 color=data.color_attributes.new(name='surface',type='FLOAT_COLOR',domain='POINT')
 for entry in color.data:entry.color=skin.diffuse_color
 finish_type(labor_scene,labor_rig,'brick-laborer','brick-laborer.glb',1.71,activity='labor')
+
+# Standing Ark bearer: right forearm and fingers hold a longitudinal pole.
+# This pose is separate from a priest freely gesturing in a bank conversation.
+bearer_scene,bearer_rig=clone_character(priest_scene,'Jordan priest bearer — standing phase and maintained pole grip')
+old_bind={b.name:b.matrix_local.copy() for b in bearer_rig.data.bones};old_lengths={b.name:b.length for b in bearer_rig.data.bones}
+bpy.context.view_layer.objects.active=bearer_rig;bearer_rig.select_set(True);bpy.ops.object.mode_set(mode='EDIT')
+for name,head,tail in [('armR',(.205,1.35,0),(.39,1.18,.04)),('forearmR',(.39,1.18,.04),(.25,1.47,.125)),('handR',(.25,1.47,.125),(.25,1.36,.125))]:
+    b=bearer_rig.data.edit_bones[name];b.head=xyz(*head);b.tail=xyz(*tail)
+bpy.ops.object.mode_set(mode='OBJECT');bearer_rig.select_set(False)
+transforms={b.name:b.matrix_local@Matrix.Diagonal((1,b.length/old_lengths[b.name],1,1))@old_bind[b.name].inverted() for b in bearer_rig.data.bones}
+for obj in bearer_scene.objects:
+    if obj.type!='MESH':continue
+    groups={g.index:g.name for g in obj.vertex_groups}
+    for vertex in obj.data.vertices:
+        point=Vector((0,0,0));total=0
+        for group in vertex.groups:
+            if groups[group.group] in transforms:point+=(transforms[groups[group.group]]@vertex.co)*group.weight;total+=group.weight
+        if total:vertex.co=point/total
+    if obj.data.materials[0]==skin:delete_weighted(obj,['handR'])
+    if obj.data.materials[0]==linen_cloth:delete_weighted(obj,['armR','forearmR'])
+    obj.data.update()
+# Rebuild the bent sleeve in its own rest pose. Simply rebinding the straight
+# cloth tube collapses the inside elbow and exposes the underlying arm.
+sleeve=tube('bearer-bent-linen-sleeve',[(.185,1.385,0),(.225,1.345,.005),(.315,1.26,.020),(.39,1.18,.04),(.352,1.27,.070),(.30,1.37,.105),(.25,1.47,.125)],[.035,.073,.071,.065,.060,.048,.034],linen_cloth,sides=32)
+groups={name:sleeve.vertex_groups.new(name=name) for name in ['armR','forearmR']}
+for v in sleeve.data.vertices:
+    ring=v.index//32;fore=[0,0,0,.5,1,1,1][min(6,ring)]
+    for name,weight in [('armR',1-fore),('forearmR',fore)]:
+        if weight:groups[name].add([v.index],weight,'REPLACE')
+elbow_cloth=ellipsoid('bearer-folded-elbow-cloth',(.39,1.18,.04),(.076,.076,.076),linen_cloth,seg=32,rows=20)
+for name in ['armR','forearmR']:
+    group=elbow_cloth.vertex_groups.new(name=name);group.add(list(range(len(elbow_cloth.data.vertices))),.5,'REPLACE')
+ellipsoid('pole-grip-palm',(.25,1.430,.125),(.034,.051,.021),skin,'handR')
+for j in range(4):
+    f=.125+(j-1.5)*.016
+    tube('pole-curled-finger-'+str(j),[(.25,1.407,f),(.226,1.410,f),(.197,1.423,f),(.203,1.447,f)],[.008,.0075,.007,.006],skin,'handR',10)
+tube('pole-opposed-thumb',[(.257,1.449,.145),(.237,1.459,.153),(.214,1.454,.148)],[.011,.01,.007],skin,'handR',10)
+finish_type(bearer_scene,bearer_rig,'priest-bearer','priest-bearer.glb',1.735,carrying=True)
