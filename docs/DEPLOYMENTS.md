@@ -33,4 +33,5 @@
 - Deployment：`appgdep_6afa579eef8c8191a138f39714c216ea`。
 - 平台結果：`succeeded`，`2026-11-16T01:08:59.530607+00:00`。
 - 已通過 100 項回歸、內容／語法檢查、正式建置與單檔試閱；封裝包含三份本機 GLB。本機畫面已確認耶路撒冷住戶與兩件器皿，見 [首批驗收](review/BLENDER-FIRST-PASS.md)。
+- 正式頁已重新載入核對新腳本與 Blender 住戶造型，對話仍可使用，console error／warning 為空；截圖 `.qa/blender-sites-published.png`。
 - 沿用既有擁有者私人權限。這是管線與初步替換：其他職分、年代、器具及十九座詳細島嶼仍持續進行。
