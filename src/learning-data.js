@@ -1,3 +1,4 @@
+import {paulLearning} from './paul-content.js';
 import {returnLearning} from './return-content.js';
 import {jordanLearning} from './jordan-content.js';
 // Authored learning activities share the existing historically qualified scenes.
@@ -11,6 +12,7 @@ export const readingModes = {
 export const evidenceKinds = { text: '經文描述', research: '歷史研究', reconstruction: '復原推定' };
 
 export const learningIslands = {
+  paul:paulLearning,
   'second-temple':returnLearning,
   jordan:jordanLearning,
   tabernacle: {

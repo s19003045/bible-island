@@ -1,3 +1,4 @@
+import {createPaulObject} from './paul-objects.js';
 import * as THREE from 'three';
 import {attachBlenderObject} from './blender-assets.js';
 import {blenderModels} from './blender-manifest.js';
@@ -22,6 +23,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader}
   return root;
 }
 function createProceduralVessel(id) {
+  if(['paul-ship','paul-textiles','paul-silverwork'].includes(id))return createPaulObject(id);
   if(['return-masonry','return-scroll','return-vessels'].includes(id))return createReturnObject(id);
   if(['jordan-bed','jordan-carrying','jordan-stones'].includes(id))return createJordanObject(id);
   if(['brick-mould','passover-kit','crossing-ground'].includes(id))return createExodusObject(id);

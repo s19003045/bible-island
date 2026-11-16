@@ -1,5 +1,11 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'port-worker':{type:'character',src:'models/port-worker.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Early Roman composite port worker; original garment and shoulder reinforcement'},
+  'paul-trader':{type:'character',src:'models/paul-trader.glb',height:1.65,ankleHeight:.10059,cycleDistance:.7664,liftHeight:.07185,triangleBudget:48000,byteBudget:1900000,era:'Early Roman composite cloth trader; chosen layered garment, not Lydia likeness'},
+  'asian-artisan':{type:'character',src:'models/asian-artisan.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Early Roman composite artisan; separately weighted working apron'},
+  'paul-ship':{type:'object',src:'models/paul-ship.glb',height:1.12,triangleBudget:42000,byteBudget:2400000,inspectionView:[2,1.4,1.8],articulation:{part:'paul-ship-deck',offset:[0,.19,0],openLabel:'分開甲板看貨艙',closeLabel:'還原甲板',note:'現代船體構造教具 · 非保羅座船原物'}},
+  'paul-textiles':{type:'object',src:'models/paul-textiles.glb',height:.23,triangleBudget:42000,byteBudget:2200000,inspectionView:[1.4,2.4,1.6]},
+  'paul-silverwork':{type:'object',src:'models/paul-silverwork.glb',height:.34,triangleBudget:18000,byteBudget:900000,inspectionView:[1.4,1.8,1.7]},
   'return-mason':{type:'character',src:'models/return-mason.glb',height:1.71,triangleBudget:46000,byteBudget:1800000,era:'Ezra narrative; original working tunic and shoulder cloth, no surviving uniform claim'},
   'return-elder':{type:'character',src:'models/return-elder.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Ezra narrative; aged composite face and long teaching garment'},
   'return-woman':{type:'character',src:'models/return-woman.glb',height:1.65,ankleHeight:.10059,cycleDistance:.7664,liftHeight:.07185,triangleBudget:46000,byteBudget:1800000,era:'Ezra narrative; long garment and optional shoulder covering, chosen reconstruction'},

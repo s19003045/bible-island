@@ -1,3 +1,4 @@
+import {paulWalkConfig,paulObjects} from './paul-exploration.js';
 import {returnWalkConfig,returnObjects} from './return-exploration.js';
 import {exodusObjects,exodusSegments,exodusWalkConfig} from './exodus-exploration.js';
 import {walkSpawn,vesselDefinitions} from './walk-data.js';
@@ -6,6 +7,7 @@ import {solomonSpawn,solomonObjects} from './solomon-exploration.js';
 import {herodSpawn,herodObjects} from './herod-exploration.js';
 import {jordanSpawn,jordanObjects} from './jordan-exploration.js';
 export const explorationByIsland = {
+  paul:{...paulWalkConfig(),objects:paulObjects},
   'second-temple':{...returnWalkConfig(),objects:returnObjects},
   jordan:{title:'走過河谷，讀懂十二石',shortTitle:'約旦河與西岸記念',heading:'看乾地，也聽下一代的問題',era:'JORDAN / 約書亞記 3–4 章',spawn:jordanSpawn,startLookAt:[0,1,-10],objects:jordanObjects,destinations:true,recordedChild:true,teachingInspection:true,
     intro:'從東岸降到河床、上到西岸，向人物提問，旋轉剖面與十二石教具，再與渡海敘事對讀。',enter:'開啟聲音，走進河谷',hint:'距離與不同時刻經過壓縮；約櫃旁不開放步行。此處沒有左右水牆，不指認現代渡口或吉甲遺址。',inspectionNote:'現代教學模型；旋轉不表示可以拿取聖物。石頭、覆布與河床的形制仍須分清文字依據與補足。',region:p=>p[0]<-24?'東岸準備區':p[0]>24?'西岸記念區':'河中乾地教學區'},
@@ -28,4 +30,4 @@ export const explorationByIsland = {
     hint:'教學觀察區 · 平台、階梯與院落格局屬推定；內殿與祭壇不開放步行。角色串聯建殿與獻殿經文，不表示兩事同時發生，也不代表古代身分皆可進入。',
     region:p=>p[0]<=18.5&&Math.abs(p[2])<5.4?'銅柱與教學平台':p[2]>7?'銅海與南側院區':p[2]<-8?'工藝解說與院中聚集區':'院中觀察通道'},
 };
-export const explorationFor=(id,segment=null)=>id==='second-temple'&&segment?returnWalkConfig(segment):id==='exodus'&&segment?exodusWalkConfig(segment):explorationByIsland[id];
+export const explorationFor=(id,segment=null)=>id==='paul'&&segment?paulWalkConfig(segment):id==='second-temple'&&segment?returnWalkConfig(segment):id==='exodus'&&segment?exodusWalkConfig(segment):explorationByIsland[id];

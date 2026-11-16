@@ -1,3 +1,5 @@
+import {paulSegmentById} from './paul-exploration.js';
+import {buildPaulScene,attachPaulExploration} from './paul-scenes.js';
 import {returnSegmentById} from './return-exploration.js';
 import {buildReturnScene,attachReturnExploration} from './return-scenes.js';
 import * as THREE from 'three';
@@ -573,7 +575,7 @@ function jerusalem(k,roof,height) {
 }
 export function createHistoricalScene(id, environment,{segment='all',blenderAssets=false,onAssetsReady=()=>{},assetLoader}={}) {
   if(id==='exodus'&&segment!=='all'&&!exodusSegmentById.has(segment))segment='bricks';
-  const base=historicalScenes[id];if(!base)return null;const section=id==='exodus'?exodusSegmentById.get(segment):id==='second-temple'?(returnSegmentById.get(segment)||returnSegmentById.get('foundation')):null;
+  const base=historicalScenes[id];if(!base)return null;const section=id==='paul'?(paulSegmentById.get(segment)||paulSegmentById.get('ship')):id==='exodus'?exodusSegmentById.get(segment):id==='second-temple'?(returnSegmentById.get(segment)||returnSegmentById.get('foundation')):null;
   const config=section?{...base,...section}:base;
   const scene=new THREE.Scene(), p=palette();
   const sky=id==='exodus'?'#a5b2b0':'#b4bdb8';
@@ -584,14 +586,14 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   sun.shadow.mapSize.set(2048,2048);sun.shadow.normalBias=.035;sun.shadow.bias=-.00013;scene.add(sun);
   const roofGroup=new THREE.Group();scene.add(roofGroup);
   const k=builder(scene,p,id.length*113,true,id), roof=builder(roofGroup,p,83,true,id);
-  const height=id==='second-temple'?buildReturnScene(k,scene,section.id):id==='jordan'?buildJordanScene(k,scene,p):terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);if(!['jordan','second-temple'].includes(id))landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id),id==='exodus'?exodusSegments.flatMap(s=>s.surfaces):[]);
+  const height=id==='paul'?buildPaulScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):id==='second-temple'?buildReturnScene(k,scene,section.id):id==='jordan'?buildJordanScene(k,scene,p):terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);if(!['jordan','second-temple','paul'].includes(id))landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id),id==='exodus'?exodusSegments.flatMap(s=>s.surfaces):[]);
   if(id==='tabernacle')tabernacle(k,roof);
   else if(id==='solomon')solomon(k,roof,height);
   else if(id==='herod')herod(k,roof);
   else if(id==='exodus')buildExodusScene(k,roof,scene,p,segment);
-  else if(!['jordan','second-temple'].includes(id))jerusalem(k,roof,height);
+  else if(!['jordan','second-temple','paul'].includes(id))jerusalem(k,roof,height);
   const roles=id==='tabernacle'?{weaver:'weaver',priest:'priest','camp-parent':'parent'}:id==='solomon'?{'bronze-worker':'bronze-worker',singer:'singer','temple-visitor':'visitor'}:id==='herod'?{pilgrim:'pilgrim','stone-worker':'stone-worker',listener:'listener'}:id==='exodus'?{'brick-maker':'brick-guide','passover-parent':'departure-parent',traveler:'crossing-guide'}:{};
-  for(const person of peopleByIsland[id].filter(p=>!section||p.id===section.person)) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:id==='second-temple'?'return-resident':id==='jordan'?(person.id==='jordan-parent'?'west-resident':'east-resident'):roles[person.id]});
+  for(const person of peopleByIsland[id].filter(p=>!section||p.id===section.person)) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:id==='paul'?'paul-resident':id==='second-temple'?'return-resident':id==='jordan'?(person.id==='jordan-parent'?'west-resident':'east-resident'):roles[person.id]});
   k.finish();roof.finish();
   const people=k.actors.filter(a=>a.id);
   let walkModel=null;const objects=[];
@@ -669,6 +671,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='jordan'){const exploration=attachJordanExploration(scene,k,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='second-temple'){const exploration=attachReturnExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
+  if(id==='paul'){const exploration=attachPaulExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   const detailedResidents=blenderAssets?mountBlenderResidents(scene,k.actors,onAssetsReady,{assetLoader,groundAt:id==='exodus'?exodusFloor:(x,z)=>walkModel.heightAt(x,z)}):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);

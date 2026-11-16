@@ -251,3 +251,5 @@ body[data-reading-mode] .journey-art{background:var(--learning-surface);color:va
 .exodus-chapters p a{text-decoration:underline;text-underline-offset:3px;display:inline-block;min-height:28px;line-height:28px}
 
 .vessel-joint-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 16px}.vessel-joint-controls button{min-height:44px;padding:9px 14px;border:1px solid #aebba0;border-radius:3px;font-size:12px;background:#edf0e4;color:#304b38}.vessel-joint-controls button[aria-pressed=true]{background:#355844;color:#fff9e8}.vessel-joint-controls span{font-size:11px;color:#53634c}
+
+.journey-itinerary{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}.journey-itinerary summary{cursor:pointer;font-size:12px}.journey-itinerary p{line-height:1.9;font-size:12px}.journey-itinerary small{display:block;font-size:11px;line-height:1.7;color:var(--muted)}

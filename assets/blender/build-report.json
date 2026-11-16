@@ -278,10 +278,52 @@
       ],
       "height": 1.102
     },
+    "port-worker": {
+      "file": "models/port-worker.glb",
+      "bytes": 1196036,
+      "sha256": "27a2defc4a0caa12aa2a76ec07c01a7cf2239b6f511681b4408be7eb6239d7fc",
+      "triangles": 31080,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.71
+    },
+    "paul-trader": {
+      "file": "models/paul-trader.glb",
+      "bytes": 1265680,
+      "sha256": "510b981176345dd0e286c887bb02c86260deeaf3149889ff6fad132823e68c25",
+      "triangles": 33124,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.65
+    },
+    "asian-artisan": {
+      "file": "models/asian-artisan.glb",
+      "bytes": 1265296,
+      "sha256": "59f8ddb25876d3e70a6e57170f73a6e4a3b42df58a495cb0db82793fe14d9d10",
+      "triangles": 33120,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.71
+    },
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "d895daeaf78eb580ea0e8c955cf8d1be37d0d9798caa06569161097d0a487b58",
+      "sha256": "4b679ff71d687c95fe8705d00d2dc8ef2f00080234b7fe94685c518884a6a4ad",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -290,7 +332,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "810a2842af8fd8f4baee5cb8d063301705e75d60cdd9b46d671edefbbc864b0b",
+      "sha256": "e634f6b5ae5bc8b7c7f03f856b2ac46060eee86a82494d6bed2af4f1d627b77f",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -308,7 +350,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "5b6e990d7c462acbd17888dedcb6aa8fd370d94686a589cdca7bcf59aa1a48db",
+      "sha256": "c59639dd4c004e90dac6e439b7b1c31ffdc5e4ac46f91b7b058e899b3abdaf95",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -333,7 +375,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "8a6b07b97c4559dea00f67cb9d28501c73d6c34e0e8ea0a16daee5b37cdae1a0",
+      "sha256": "bb99dae83eb6270fb1ba52e9447828f7bf4919de832bdd82544fb3e7d79ca690",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -342,7 +384,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "decbf46db257960323abd3cec2555546b1f258b740ea503b6ea9c6341d11e129",
+      "sha256": "85cc7c4c988a8f366902ba14a0a239999d99dc9b067fe4d0703ccfb27e20a9d8",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -351,7 +393,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "72924ce459ce2bb9817a93cfdddf35e9f48a80da0329c8d2c78956f3a060d196",
+      "sha256": "b9ece8e85f152bddaf0a2f21288dc6b4c45679cc6b7e93ddebac14f9bd39c769",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -362,7 +404,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "aba38eaa032b68d2de7c33b9a3c8a11fc30a16b66a3091b251e4e0f4d9731902",
+      "sha256": "6c42dba24a3c0f5d394cde9b3ae6a6546d4331fbc5edf2e1bc9c9a1779438bb9",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -373,7 +415,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "c24e63438bb9864f0b202b232a9f6d7af7dd0c57a5268f6e0ae934e629820d22",
+      "sha256": "773d5013b5991babdebeb52710294d0f5c8b20c3df4d238a428b6d2ba7ba7ea4",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -391,7 +433,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "60056d4279120e5d19a79acd3a1ccdde8b73d453819b2aa01b24456d69326809",
+      "sha256": "c6c144831163e3ba620d57743a5683959afe6390f9eabecfa46780e67d10d54d",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
@@ -432,7 +474,7 @@
     "return-masonry": {
       "file": "models/return-masonry.glb",
       "bytes": 200972,
-      "sha256": "0693a1ab6d55c1b2fc81a698c285926d76244bb58e1f3a0a24cac8cddee8dae3",
+      "sha256": "7cfced76c2ac9264d5b0314de335c527cad6840e4c171f1174cef75d84bc3408",
       "triangles": 2068,
       "animations": [],
       "height": 0.513,
@@ -455,6 +497,34 @@
       "triangles": 11452,
       "animations": [],
       "height": 0.286,
+      "teaching_model": true
+    },
+    "paul-ship": {
+      "file": "models/paul-ship.glb",
+      "bytes": 946292,
+      "sha256": "592a4d1c16530b883664c13739cfebd3a69206da04089fe822408ed2e1b87924",
+      "triangles": 28360,
+      "animations": [],
+      "height": 1.12,
+      "teaching_model": true,
+      "interpretation": "Original comparative hull and rigging; no identified ship or wreck association"
+    },
+    "paul-textiles": {
+      "file": "models/paul-textiles.glb",
+      "bytes": 914788,
+      "sha256": "cba7d1cc69c20ae1cbf282d236eef8f8951f8a409a1f6484f08f6377c297ac6b",
+      "triangles": 37756,
+      "animations": [],
+      "height": 0.23,
+      "teaching_model": true
+    },
+    "paul-silverwork": {
+      "file": "models/paul-silverwork.glb",
+      "bytes": 73844,
+      "sha256": "0e03d9eefae70ad25a86ddccb8024b749972090104cd8cd7fb986cc92e7ae19b",
+      "triangles": 1596,
+      "animations": [],
+      "height": 0.34,
       "teaching_model": true
     }
   }
