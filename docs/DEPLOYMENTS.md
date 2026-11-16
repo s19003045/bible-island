@@ -312,3 +312,15 @@
 
 
 第15島發布後追加：正式水岸教具已實際沿路走訪，旋轉、移近岸、還原及雙CSBT入口均確認；觀察1／1而研讀仍0／3。`.qa/exile-waterbank-split-sites.png`已實際檢視。正式恢復一般閱讀／第一章／場景全景及自主動畫，console warning／error=[]；最終 `.qa/exile-road-final-sites.png`。本機維持研讀／住居全景及安靜偏好。後續文件與第16島未註冊草稿不改本次153d765／80c5de1來源。
+
+
+## 2026-11-16：尼希米第十六座詳細島（第29版）
+
+- 原始來源commit：`820ccfb1471e2a351584017dfe1f272e5e03c9ae`；Sites來源commit：`63b34d6dff8b69ff185500c95c6cc3f506e5f000`。365個Git追蹤來源檔逐一SHA256相等；發佈checkout原有node_modules依賴連結另保留。
+- 同一Sites專案`appgprj_6af95ea0dac4819182957156725483aa`。已確認owner及custom僅擁有者，0群組／0外部訪客；沒有改分享。
+- 第29版ID：`appgprj_6af95ea0dac4819182957156725483aa~appgver_6f1cadce0f188191b8d1a87d06983781`。部署`appgdep_6afb15be13a4819185c386458e4e0ab5`於`2026-11-16T14:40:21.448548+00:00`回傳succeeded。正式入口：[尼希米](https://bible-island.starryswift8.chatgpt.site/#island=nehemiah&chapter=wall&phase=survey)。終態成功未重複poll或部署。
+- 封裝`/tmp/bible-island-820ccfb-nehemiah-sites.tar.gz`，82,636,080bytes，gzip SHA256=`5d83f82923a23a9b093c23618815535fd4cf77fa0514b1d93f679d19c3cebb4d`；平台內容136檔／124,620,800bytes，內容SHA256=`d31a2055f851621904c0ed4c0c2b8deeb3f0225dcc82e7476f985ca8a861d76d`。
+- 231／231全站回歸、內容／語法、103模組建置及164,202KiB離線試閱通過；Sites checkout同源建置1.29s。入口`index-DAMnOVn8.js`、world`world-C002OkLG.js`、vessels`vessels-Czi51pVc.js`、three`three-BKWy6DnJ.js`、CSS`index-zmRD_4cI.css`。既有500kB級chunk提示保留。
+- 三章八時刻、三件正式Blender教具、三位居民與24cue已整合。正式來源SHA256=`231ff1835fee8227aacab21463df20bf06d098da1e08f1092bf482ca5c6abdb5`；77非空場景／77GLB、28人類×5動作、另羊×3動作驗證。詳細史料、幾何及操作另記 [尼希米驗收](review/NEHEMIAH-CHAPTERS.md)。正式頁三模式、配音與近景走訪接續追加，不以發布成功視為全部人工驗收。
+
+- 發布後人工追加：正式DOM已核對第29版入口；一般／親子對話播放、研讀資料前置及0／3隔離均實際操作，三件本機器物走訪／旋轉／拆還完成。正式最後恢復一般／wall survey全景、動畫開，兩個分頁保留且console warning／error=[]。正式三件器物沿路補驗及完整真人聽驗仍另列，沒有因發布成功或本機操作而宣稱完成。正式對話截圖僅拍到左側人物，面板與播放由可存取樹核對；具體證據及擷取限制見尼希米驗收。
