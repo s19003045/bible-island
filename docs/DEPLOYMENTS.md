@@ -239,3 +239,11 @@
 - 初版完整回歸 180／180；實際畫面發現裁峰，鏡頭與原創山體比例修正後的西奈／場景專測 11／11 通過。內容／語法、正式建置及最終 121,598 KiB 離線試閱通過。來源重開 61 個非空場景、28 套獨立骨架及五條動作，三件新教具實際渲染檢視。
 - 入口 `index-D4wECbtx.js`，world `world-Ci5nfjg1.js`、vessels `vessels-C8OJbmuE.js`、three `three-Zxw-5wWh.js`。Three.js 的大於 500 kB 建置提示仍在，沒有宣稱真實手機 FPS 已驗收。
 - 本機第三章、研讀題、唯一家人角色及 CSBT 已確認，校正後 `.qa/sinai-mountain-wide-local.png` 已實際檢視，營地與完整山峰同框；安靜路線走訪中。正式入口與手動近景結果接續 [西奈驗收](review/SINAI-WILDERNESS.md)，不能由發布成功推定已完成全部 UI 驗收。完整 Goal、獨立歷史審稿、真人聽驗及裝置驗收持續。
+
+### 西奈追問的完整對讀連結
+
+- 本機來源 `f20ec86`，283 個追蹤檔逐檔同步；Sites source `5ac2b3fa7415d2de45e91d1b50270be16117d2a5`。
+- Saved version `appgprj_6af95ea0dac4819182957156725483aa~appgver_02faf47953048191be721c9d04d094e2`；deployment `appgdep_6afae433a8988191893fb457c7e812e1`，於 `2026-11-16T11:08:49.318284+00:00` 回傳 succeeded。
+- 供水追問補民 20、石版追問補出 24／31，不改台詞及音檔。新增實際對話 HTML 回歸；西奈／場景專測 12／12、內容／語法、正式建置及 121,598 KiB 離線封裝通過。
+- 正式 DOM 核對 `index-wCzpYEXY.js`，world `world-DKckMyY5.js`、vessels `vessels-BwYOQ63K.js`。兩組追問的多個 CSBT 連結皆已實際確認，console warning／error 為空，正式頁恢復一般閱讀／山前全景及自主動畫；`.qa/sinai-mountain-final-sites.png` 已檢視。本機山前拆還及每日份額旋轉走訪完成，供水近景接續。
+- 供水 GLB 的本機走訪／旋轉／返回也已完成，三件器物各章觀察 1／1，研讀仍 0／3；山前另完成抬升圖層與還原。最新 `.qa/sinai-water-inspection-local.png` 已檢視。正式站維持一般閱讀／山前全景，本機維持深入研讀／供水全景與安靜偏好；兩頁動畫正常、未留在對話／近景／自動行走，console warning／error 皆為空。其他十三島及完整人工補驗仍在 Goal 範圍。
