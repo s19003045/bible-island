@@ -359,3 +359,15 @@
 - 第32版頁面回讀：正式既有分頁已reload並核對`index-I9B82J-T.js`；一般／manger／birth、動畫開、modal寬0。兩頁warning／error=[]，原兩個分頁保留。沒有為同一素材重跑三件已完成本機走訪；正式家屋及接合待辦繼續。
 
 - 第32版人工補驗追加：正式家屋／木接合均沿路抵達、E近景、向右旋轉及抬層還原完成；第18島原兩件沿路待辦已完成，完整真人聽驗與實體裝置界線保留。
+
+## 2026-11-17：加利利，第十九座詳細島（第33版）
+
+- root來源 `c0cf8e31a4e3da0b6a16947567eaa2f3a5e6e99c`；Sites來源 `c5f9b476ccee261766e5faeb54a6ba8674b3fd0c`。421個追蹤來源逐檔SHA256相同，既有node_modules連結保留。首次同步只因額外追蹤的依賴連結而在寫入前停止；已保留該連結後完成，無檔案遺失。
+- 同一owner-private專案 `appgprj_6af95ea0dac4819182957156725483aa`，單一使用者／0群組／0外部訪客，分享未改。第33版 `appgprj_6af95ea0dac4819182957156725483aa~appgver_ccfb95b5bea88191b0d086575980239b`；部署 `appgdep_6afb41191a688191aadd160882b234a8` 於 `2026-11-16T17:45:15.543901+00:00` 返回succeeded，沒有重複部署或terminal後poll。平台回讀source SHA相符。
+- 正式入口：[加利利](https://bible-island.starryswift8.chatgpt.site/#island=galilee&chapter=boat&phase=casting)。封裝 `/tmp/bible-island-c0cf8e3-galilee-sites.tar.gz`，96,266,794bytes，SHA256 `8d77a24c3c508dd7b790b56649a23631d69ad4f18ec046a2a8f3415a72de8b1c`。平台154內容檔／140,666,880bytes，內容hash `6284d2084351d84ce405789dbf8749ce8e64aff143c602bf9e4b4b284250c5b7`。
+- 同源建置116模組1.45s，入口 `index-CJNgMSik.js`、world `world-DnRsQGx7.js`、vessels `vessels-G20Pqd2B.js`、three `three-mMLzPufP.js`、CSS `index-zmRD_4cI.css`。262項全站回歸、內容／語法、185102KiB離線試閱通過；既有大chunk提示及實體裝置限制保留。
+- 三章11窗口、各13位POI居民、三件正式教具及24cue配音完成。全站86GLB／60MP3／57角色／456cue，詳見 [加利利驗收](review/GALILEE-CHAPTERS.md)。三模式與三件教具人工補驗接續追加，發布本身不代表完整聽驗或外部專家簽核；其餘五島仍在active總Goal。
+
+- 第33版人工追加：正式獨立reload已核對`index-CJNgMSik.js`；親子錄音播放、研讀資料前置disabled→enabled、一般問候播放及三模式0／3隔離，storm夜色／鎖定與casting還原均核對。本機船段已沿路／旋轉／抬肋／還原及1／1紀錄；本機另兩件、正式三件與完整真人聽驗等待辦保留。
+
+- 本機石材已沿路／E開啟／旋轉及1／1；本機剩屋面，正式三物件仍待沿路。正式最後一般／boat casting／全景、動畫開、交談結束；兩頁console warning／error=[]，本機聲音關閉並保留屋面自動沿路狀態。
