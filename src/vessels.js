@@ -1,3 +1,4 @@
+import {createKingdomsObject} from './kingdoms-objects.js';
 import {createDavidObject} from './david-objects.js';
 import {setDavidArtifactPhase} from './artifact-phases.js';
 import {createRuthObject} from './ruth-objects.js';
@@ -9,7 +10,7 @@ import * as THREE from 'three';
 import {attachBlenderObject} from './blender-assets.js';
 import {blenderModels} from './blender-manifest.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {artifactFraming,setArtifactSeparation} from './artifact-inspection.js';
+import {artifactFraming,setArtifactSeparation,setArtifactReadingLayer} from './artifact-inspection.js';
 import {createInspectionRuntime} from './inspection-runtime.js';
 
 const inspectionRuntime=createInspectionRuntime(generation=>{
@@ -30,6 +31,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader,
   return root;
 }
 function createProceduralVessel(id) {
+  if(['kingdom-assembly','kingdom-sites','kingdom-measures'].includes(id))return createKingdomsObject(id);
   if(['david-shepherd','david-city','david-ark'].includes(id))return createDavidObject(id);
   if(['ruth-gleaning','ruth-grain','ruth-witness'].includes(id))return createRuthObject(id);
   if(['sinai-manna','sinai-water','sinai-boundary'].includes(id))return createSinaiObject(id);
@@ -201,9 +203,9 @@ export function mountVesselViewer(container,id,{phase='cart'}={}) {
   scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(35,(container.clientWidth||300)/(container.clientHeight||280),.01,10);
   scene.environment=environment.texture;scene.environmentIntensity=.65;
   scene.add(new THREE.HemisphereLight('#fff9e7','#665340',2.5));const light=new THREE.DirectionalLight('#ffffff',3);light.position.set(2,3,2);scene.add(light);
-  const vessel=new THREE.Group(),articulation=blenderModels[id]?.articulation;let exploded=false;
+  const vessel=new THREE.Group(),articulation=blenderModels[id]?.articulation,readingLayer=blenderModels[id]?.readingLayer;let exploded=false,extensionVisible=true;
   object=createVessel(id,{blenderAssets:true,phase,onReady:()=>{separate();fit();render();}});vessel.add(object);scene.add(vessel);container.appendChild(renderer.domElement);canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','可旋轉的器物近景；拖曳或按上下左右方向鍵觀察');let drag=null;
-  function separate(){if(articulation)setArtifactSeparation(object,articulation.part,exploded?articulation.offset:[0,0,0]);}
+  function separate(){if(articulation)setArtifactSeparation(object,articulation.part,exploded?articulation.offset:[0,0,0]);if(readingLayer)setArtifactReadingLayer(object,readingLayer.part,extensionVisible);}
   function fit(){
     const rotation=vessel.rotation.clone();vessel.rotation.set(0,0,0);object.position.set(0,0,0);scene.updateMatrixWorld(true);
     const bounds=new THREE.Box3();object.traverseVisible(o=>{if(o.isMesh){o.geometry.computeBoundingBox();bounds.union(o.geometry.boundingBox.clone().applyMatrix4(o.matrixWorld));}});
@@ -216,5 +218,5 @@ export function mountVesselViewer(container,id,{phase='cart'}={}) {
   canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);canvas.addEventListener('keydown',key);
   observer=new ResizeObserver(()=>{const width=container.clientWidth,height=container.clientHeight||280;if(disposed||!width)return;renderer.setSize(width,height);camera.aspect=width/height;fit();render();});observer.observe(container);fit();render();
   function cleanup(){if(disposed)return;disposed=true;object?.userData.releaseBlender?.();observer?.disconnect();canvas?.removeEventListener('pointerdown',down);canvas?.removeEventListener('pointermove',move);canvas?.removeEventListener('pointerup',up);canvas?.removeEventListener('pointercancel',up);canvas?.removeEventListener('keydown',key);scene?.traverse(o=>{if(o.userData.blenderShared)return;o.geometry?.dispose();if(o.material)o.material.dispose();});canvas?.remove();renderer.renderLists.dispose();}
-  return {rotate(amount){vessel.rotation.y+=amount;render();},setExploded(value){exploded=!!value;separate();fit();render();},dispose(){lease.release();}};
+  return {rotate(amount){vessel.rotation.y+=amount;render();},setExploded(value){exploded=!!value;separate();fit();render();},setReadingLayer(value){extensionVisible=!!value;separate();fit();render();},dispose(){lease.release();}};
 }

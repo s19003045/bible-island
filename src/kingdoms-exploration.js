@@ -1,4 +1,3 @@
-// Unregistered next-island draft; not part of the released thirteen scenes.
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 export function kingdomsFloor(s,x,z){return s==='south'?.6+.65*smooth((z+14)/40):s==='north'?.6+1.1*smooth((-z+8)/38):.7+.8*smooth((x+10)/36);}
 export const kingdomsPosition=(s,x,z,h=0)=>[x,kingdomsFloor(s,x,z)+h,z];
@@ -11,7 +10,7 @@ export const kingdomsSegments=[
 export const kingdomsSegmentById=new Map(kingdomsSegments.map(s=>[s.id,s]));
 export const kingdomsObjects=[
  {id:'kingdom-assembly',segment:'south',stop:'south',name:'請求與三日回覆的閱讀盤',description:'三個日期籌與請求、兩組建議、回應的不同位置，幫助跟隨示劍交涉的先後。兩個地名座另分示劍與後續耶路撒冷，不是出土公文、原座席或古地圖。',observation:'三天是回來的時間，不是三位建議者。兩組建議按這一段內容比較，不把所有長者或年輕人定為善惡群體；後續止戰另讀示瑪雅的話。',passage:'1 Kings 12:1-24'},
- {id:'kingdom-sites',segment:'north',stop:'north',name:'伯特利與但的兩處比較',description:'兩個分離底座各有一個原創金色牛犢輪廓，地點和數量連回王上12。姿態、角、尺寸與金色處理為補足；目前來源未認證這就是已找到的兩隻原件。',observation:'兩處不是同一院落。但的聖區有不同階段與現代修復，不能把現存平台或現代金屬框全當尼八之子耶羅波安一次建造，也不能搬去認證伯特利。',passage:'1 Kings 12:25-33'},
+ {id:'kingdom-sites',segment:'north',stop:'north',name:'伯特利與但的兩處比較',description:'兩個分離底座各有一個原創金色牛犢輪廓，地點和數量連回王上12。姿態、尺寸與金色處理為補足；目前來源未認證這就是已找到的兩隻原件。',observation:'兩處不是同一院落。但的聖區有不同階段與現代修復，不能把現存平台或現代金屬框全當尼八之子耶羅波安一次建造，也不能搬去認證伯特利。',passage:'1 Kings 12:25-33'},
  {id:'kingdom-measures',segment:'prophet',stop:'prophet',name:'城門、容量與重量',description:'原創城門輪廓、盛穀容器與雙盤天平分別提示公共處境、容量與重量。摩5是核心，器物比較明標摩8延伸，沒有認定阿摩司實際站過的原城門。',observation:'糧食容積與金屬重量是不同的量。摩8的謝克爾按重量理解，不能直接拿後期硬幣替代；模型形制、砝碼與容器大小不是經文給出的原器規格。',passage:'Amos 5:10-15;5:21-24;8:4-6'},
 ].map(o=>({...o,position:kingdomsPosition(o.segment,-5,7,.82),approach:kingdomsPosition(o.segment,-5,9.4),lookAt:kingdomsPosition(o.segment,-5,7,1.5)}));
 export function kingdomsWalkConfig(segment='south'){

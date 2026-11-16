@@ -1,5 +1,8 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'kingdom-assembly':{type:'object',src:'models/kingdom-assembly.glb',height:.209,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.5,1.8],articulation:{part:'kingdom-assembly-modern-date-layer',offset:[0,.14,0],openLabel:'抬起三日比較層',closeLabel:'還原日期籌',note:'現代閱讀方法 · 非原公文或座席圖'}},
+  'kingdom-sites':{type:'object',src:'models/kingdom-sites.glb',height:.493,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,1.7,2],articulation:{part:'kingdom-sites-modern-comparison-layer',offset:[0,.14,0],openLabel:'抬起兩地比較層',closeLabel:'還原比較層',note:'伯特利與但各自分開 · 牛犢本體保持原位'}},
+  'kingdom-measures':{type:'object',src:'models/kingdom-measures.glb',height:.68,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,1.8,2],readingLayer:{part:'kingdom-measures-amos8-extension',hideLabel:'只看摩5的城門處境',showLabel:'加入摩8的量衡比較',note:'城門為摩5核心；容器、天平與砝碼另讀摩8:4–6。'},articulation:{part:'kingdom-measures-modern-capacity-layer',offset:[0,.25,0],openLabel:'抬起容量比較層',closeLabel:'還原容量比較層',note:'容量與重量分開觀察 · 非原器標準或古代機械'}},
   'david-shepherd':{type:'object',src:'models/david-shepherd.glb',height:.52,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.2,1.8]},
   'david-city':{type:'object',src:'models/david-city.glb',height:.30516246,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.6,1.8],articulation:{part:'david-city-timber-layer',offset:[0,.22,0],openLabel:'抬起木梁比較層',closeLabel:'還原木石教具',note:'現代構造比較 · 非已確認的大衛宮殿'}},
   'david-ark':{type:'object',src:'models/david-ark.glb',height:.681657434,triangleBudget:36000,byteBudget:1800000,inspectionView:[1.4,1.8,2.0]},

@@ -1,3 +1,4 @@
+import {kingdomsLearning} from './kingdoms-content.js';
 import {davidLearning} from './david-content.js';
 import {ruthLearning} from './ruth-content.js';
 import {sinaiLearning} from './sinai-content.js';
@@ -17,6 +18,7 @@ export const readingModes = {
 export const evidenceKinds = { text: '經文描述', research: '歷史研究', reconstruction: '復原推定' };
 
 export const learningIslands = {
+  kingdoms:kingdomsLearning,
   david:davidLearning,
   judges:ruthLearning,
   sinai:sinaiLearning,

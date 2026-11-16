@@ -17,3 +17,4 @@ export function setArtifactSeparation(root,partName,offset) {
   part.position.copy(part.parent.worldToLocal(destination));part.updateMatrixWorld(true);return true;
 }
 export function setBoardSeparation(root,amount=0){return setArtifactSeparation(root,'joint-board',[0,THREE.MathUtils.clamp(amount,0,.20),0]);}
+export function setArtifactReadingLayer(root,partName,visible){const part=root.getObjectByName(partName);if(!part)return false;part.visible=!!visible;return true;}

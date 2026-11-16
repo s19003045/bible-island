@@ -1,3 +1,5 @@
+import {kingdomsSegmentById} from './kingdoms-exploration.js';
+import {buildKingdomsScene,attachKingdomsExploration} from './kingdoms-scenes.js';
 import {davidSegmentById} from './david-exploration.js';
 import {buildDavidScene,attachDavidExploration} from './david-scenes.js';
 import {normalizeDavidPhase} from './artifact-phases.js';
@@ -586,7 +588,7 @@ function jerusalem(k,roof,height) {
 }
 export function createHistoricalScene(id, environment,{segment='all',phase=null,blenderAssets=false,onAssetsReady=()=>{},assetLoader}={}) {
   if(id==='exodus'&&segment!=='all'&&!exodusSegmentById.has(segment))segment='bricks';
-  const base=historicalScenes[id];if(!base)return null;const section=id==='david'?(davidSegmentById.get(segment)||davidSegmentById.get('sheep')):id==='judges'?(ruthSegmentById.get(segment)||ruthSegmentById.get('field')):id==='sinai'?(sinaiSegmentById.get(segment)||sinaiSegmentById.get('manna')):id==='joseph'?(josephSegmentById.get(segment)||josephSegmentById.get('caravan')):id==='abraham'?(abrahamSegmentById.get(segment)||abrahamSegmentById.get('altar')):id==='paul'?(paulSegmentById.get(segment)||paulSegmentById.get('ship')):id==='exodus'?exodusSegmentById.get(segment):id==='second-temple'?(returnSegmentById.get(segment)||returnSegmentById.get('foundation')):null;
+  const base=historicalScenes[id];if(!base)return null;const section=id==='kingdoms'?(kingdomsSegmentById.get(segment)||kingdomsSegmentById.get('south')):id==='david'?(davidSegmentById.get(segment)||davidSegmentById.get('sheep')):id==='judges'?(ruthSegmentById.get(segment)||ruthSegmentById.get('field')):id==='sinai'?(sinaiSegmentById.get(segment)||sinaiSegmentById.get('manna')):id==='joseph'?(josephSegmentById.get(segment)||josephSegmentById.get('caravan')):id==='abraham'?(abrahamSegmentById.get(segment)||abrahamSegmentById.get('altar')):id==='paul'?(paulSegmentById.get(segment)||paulSegmentById.get('ship')):id==='exodus'?exodusSegmentById.get(segment):id==='second-temple'?(returnSegmentById.get(segment)||returnSegmentById.get('foundation')):null;
   const config=section?{...base,...section}:base;
   const scene=new THREE.Scene(), p=palette();
   const sky=id==='exodus'?'#a5b2b0':'#b4bdb8';
@@ -600,14 +602,14 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
   const davidScene=id==='david'?buildDavidScene(k,scene,section.id,{phase,blenderAssets,onReady:assetsChanged,assetLoader}):null;
   const sinaiScene=id==='sinai'?buildSinaiScene(k,scene,section.id):null;
   const abrahamScene=id==='abraham'?buildAbrahamScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):null;
-  const height=id==='david'?davidScene.height:id==='judges'?buildRuthScene(k,scene,section.id):id==='sinai'?sinaiScene.height:id==='joseph'?buildJosephScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):id==='abraham'?abrahamScene.height:id==='paul'?buildPaulScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):id==='second-temple'?buildReturnScene(k,scene,section.id):id==='jordan'?buildJordanScene(k,scene,p):terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);if(!['jordan','second-temple','paul','abraham','joseph','sinai','judges','david'].includes(id))landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id),id==='exodus'?exodusSegments.flatMap(s=>s.surfaces):[]);
+  const height=id==='kingdoms'?buildKingdomsScene(k,scene,section.id):id==='david'?davidScene.height:id==='judges'?buildRuthScene(k,scene,section.id):id==='sinai'?sinaiScene.height:id==='joseph'?buildJosephScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):id==='abraham'?abrahamScene.height:id==='paul'?buildPaulScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):id==='second-temple'?buildReturnScene(k,scene,section.id):id==='jordan'?buildJordanScene(k,scene,p):terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);if(!['jordan','second-temple','paul','abraham','joseph','sinai','judges','david','kingdoms'].includes(id))landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id),id==='exodus'?exodusSegments.flatMap(s=>s.surfaces):[]);
   if(id==='tabernacle')tabernacle(k,roof);
   else if(id==='solomon')solomon(k,roof,height);
   else if(id==='herod')herod(k,roof);
   else if(id==='exodus')buildExodusScene(k,roof,scene,p,segment);
-  else if(!['jordan','second-temple','paul','abraham','joseph','sinai','judges','david'].includes(id))jerusalem(k,roof,height);
+  else if(!['jordan','second-temple','paul','abraham','joseph','sinai','judges','david','kingdoms'].includes(id))jerusalem(k,roof,height);
   const roles=id==='tabernacle'?{weaver:'weaver',priest:'priest','camp-parent':'parent'}:id==='solomon'?{'bronze-worker':'bronze-worker',singer:'singer','temple-visitor':'visitor'}:id==='herod'?{pilgrim:'pilgrim','stone-worker':'stone-worker',listener:'listener'}:id==='exodus'?{'brick-maker':'brick-guide','passover-parent':'departure-parent',traveler:'crossing-guide'}:{};
-  for(const person of peopleByIsland[id].filter(p=>!section||p.id===section.person)) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:id==='david'?'david-resident':id==='judges'?'ruth-resident':id==='sinai'?'sinai-resident':id==='joseph'?'joseph-resident':id==='abraham'?'abraham-resident':id==='paul'?'paul-resident':id==='second-temple'?'return-resident':id==='jordan'?(person.id==='jordan-parent'?'west-resident':'east-resident'):roles[person.id]});
+  for(const person of peopleByIsland[id].filter(p=>!section||p.id===section.person)) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:id==='kingdoms'?'kingdoms-resident':id==='david'?'david-resident':id==='judges'?'ruth-resident':id==='sinai'?'sinai-resident':id==='joseph'?'joseph-resident':id==='abraham'?'abraham-resident':id==='paul'?'paul-resident':id==='second-temple'?'return-resident':id==='jordan'?(person.id==='jordan-parent'?'west-resident':'east-resident'):roles[person.id]});
   k.finish();roof.finish();
   const people=k.actors.filter(a=>a.id);
   let walkModel=null;const objects=[];
@@ -685,6 +687,7 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='jordan'){const exploration=attachJordanExploration(scene,k,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='second-temple'){const exploration=attachReturnExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
+  if(id==='kingdoms'){const exploration=attachKingdomsExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='david'){const exploration=attachDavidExploration(scene,k,section.id,{phase,blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='judges'){const exploration=attachRuthExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='sinai'){const exploration=attachSinaiExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}

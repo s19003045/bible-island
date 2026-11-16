@@ -407,7 +407,7 @@
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "0cd265facebaa895e9dcfaf2fcc4568e3b7096994ebb69c5ced6764638119f9c",
+      "sha256": "05318cbb429d39d04ac70abe7e0e35554ff063b330dfbf06a56459df56eb10cb",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -416,7 +416,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "58886e2e628ddf9ddb9b283159e354b5a0d8d71d50416cf0ac717e6eb1305e3b",
+      "sha256": "2e747db1dc93fda660164936e472d2bb7a467b72b2de3acf3f27fce96a666934",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -434,7 +434,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "f00ff310cdc43bcbc0fd04ee52410b42f960c7128d2cf2637574e911e0094a3d",
+      "sha256": "65cceba883cd77613ea5247eb826102c91661411bbf23f856a0de35296ea359a",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -459,7 +459,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "c6723a9e59225f230b5e7ff81733cdd58528c275ca72c1bb83db3630c19c0c4d",
+      "sha256": "f14216942d0f643b788a4a230666ccab0903a96b421c63851c593eb51f162837",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -468,7 +468,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "2181f0054876a494949b4bc9e808e39676f6cd93316b962ef7f9005257dbd652",
+      "sha256": "46e66517ddb3b393dd97bd6eefec684cba1e3cdabab73d23b7269b0042cd88c9",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -477,7 +477,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "f0bc33ba263aa83a0ed40563bffa073c0571afb8761af88e0475f9fb196d353e",
+      "sha256": "59bfcaabcc228eee2862346ef9c829260629a22153494f68809321a6691bfa13",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -488,7 +488,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "f0ecb3d0d8a4839cae1ac210ed90002527f12415f7f895829dda531c2cafa85e",
+      "sha256": "8dda62273bb7377496adaf98205c003aa99f01b6384b735121bd65180daa3d64",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -499,7 +499,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "ac3db2154ee72211ca4e4bf1021b40f3fb1174a10026a376f593dd3a6f30587a",
+      "sha256": "474e31713dac854aa06d7bdec4c8c695695ad089c5fe09e704fc0a3f48227aa0",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -517,7 +517,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "c1b5ff303dff0f295e392a214afab2e49c6e4ca5698de5fc841e946cca0779df",
+      "sha256": "7ea7ea1a698b0eb29e51ba87c3f7667403d32f4c947ebfc85744fad375725aa9",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
@@ -558,7 +558,7 @@
     "return-masonry": {
       "file": "models/return-masonry.glb",
       "bytes": 200972,
-      "sha256": "ef7673d17c1b8b6fcd9f5f549112806220b4a5d1070a525838f5f2e3429ab89e",
+      "sha256": "c8221784d7bf3453f2881ec0a1d14d0d5f859ac80a4dc5fa57c4632ee0e3ae78",
       "triangles": 2068,
       "animations": [],
       "height": 0.513,
@@ -586,7 +586,7 @@
     "paul-ship": {
       "file": "models/paul-ship.glb",
       "bytes": 946292,
-      "sha256": "bbbdd751283c6fada2da31913061bb6da6f84b5fa0acac91c7bd5057e38d0ba2",
+      "sha256": "957c65e16c1dd1079444fb6f946a100c2048d05050d03babe340b9534e9aa75f",
       "triangles": 28360,
       "animations": [],
       "height": 1.12,
@@ -605,7 +605,7 @@
     "paul-silverwork": {
       "file": "models/paul-silverwork.glb",
       "bytes": 73844,
-      "sha256": "2453601a72ce6212ace913c02ac26695bbf4f21edb5f776a9a3ee17a3dba1f46",
+      "sha256": "8e7446a219c076e13e607086c2b382adf89f0f8a618898110941f5e2d870d9c5",
       "triangles": 1596,
       "animations": [],
       "height": 0.34,
@@ -668,7 +668,7 @@
     "joseph-granary": {
       "file": "models/joseph-granary.glb",
       "bytes": 852148,
-      "sha256": "6364bb663d70438a98823604d832e2485b93e2022fb702f1b099f41f40f1ab92",
+      "sha256": "7e00161d559dfa9935c1ae658bd5d5289b76e52a413ecec9267517ebc07cd6aa",
       "triangles": 17996,
       "animations": [],
       "height": 0.651,
@@ -715,7 +715,7 @@
     "sinai-boundary": {
       "file": "models/sinai-boundary.glb",
       "bytes": 849724,
-      "sha256": "66a65db51556ddc4f5af78aa9e8b3fd9235fb82dda34be2e3f5573641a018d62",
+      "sha256": "3fbd4168195d4cb05b36f393ea2b38d44d18de229701489664fc893d0d8aa510",
       "triangles": 17768,
       "animations": [],
       "height": 0.632,
@@ -737,7 +737,7 @@
     "ruth-grain": {
       "file": "models/ruth-grain.glb",
       "bytes": 775124,
-      "sha256": "983188103a2395e58a295a922d463eb11a99450ee6addb5df750a91df7d837e8",
+      "sha256": "d3cd598c020a97790c36190e30ef34dfb49b06a07699af50166616d8a0e65f5e",
       "triangles": 18402,
       "animations": [],
       "height": 0.363,
@@ -753,7 +753,7 @@
     "ruth-witness": {
       "file": "models/ruth-witness.glb",
       "bytes": 515776,
-      "sha256": "f03364e920f7c420d18141413fa173c7ff9bb6b6f5b7dbf40282d824a4880986",
+      "sha256": "fb073f90c8765789404bde2e176add95aaa360a668678ed84a2497bbf1cd12b2",
       "triangles": 11268,
       "animations": [],
       "height": 0.45,
@@ -768,7 +768,7 @@
     "david-shepherd": {
       "file": "models/david-shepherd.glb",
       "bytes": 532476,
-      "sha256": "10c37578966200866a917b8c0544915fed685ec28da00fefcc487bced685de49",
+      "sha256": "b5566cfb894662668655a14c8e99c08dd279f54bc1a8d0bf51ab3d5aacd0fe17",
       "triangles": 20368,
       "animations": [],
       "height": 0.52,
@@ -780,7 +780,7 @@
     "david-city": {
       "file": "models/david-city.glb",
       "bytes": 1405104,
-      "sha256": "1c5fe4ebc5f0514d2cc00ad6bbe5e17df063e2b36596a5289ec13e9253595682",
+      "sha256": "9f9c324c4ef703f3b48299fbe58aa2264872e903cb50bfd0cc9ce4df87c98093",
       "triangles": 22624,
       "animations": [],
       "height": 0.306,
@@ -791,7 +791,7 @@
     "david-ark": {
       "file": "models/david-ark.glb",
       "bytes": 859428,
-      "sha256": "24f13b77059a29221d452004f27aacbd71348cb2018d64f6b62e2bb39aa09938",
+      "sha256": "d17e64ed264216793150d196c33c6e6739b8555bca63d9b479d7f3eeed079a61",
       "triangles": 29520,
       "animations": [],
       "height": 0.682,
@@ -839,6 +839,104 @@
       "walk_stance_fraction": 0.75,
       "walk_root_motion": false,
       "interpretation": "Original animated life illustration; selected breed-neutral shape, gait and scale; not an identified biblical animal or selection ritual"
+    },
+    "kingdom-assembly": {
+      "file": "models/kingdom-assembly.glb",
+      "bytes": 604316,
+      "sha256": "f5fc5b86ffb84561560fdbf21d45c66d7f3db2ab4474f58dc360e84e0a562b91",
+      "triangles": 17116,
+      "animations": [],
+      "height": 0.209,
+      "teaching_model": true,
+      "interpretation": "1 Kings 12:1-24 modern sequence tray: request, two distinct advice positions, response, three date counters and separate Shechem/later Jerusalem markers. No archaeological document, original seat, map, ancient writing, countdown, violence or added labour choice.",
+      "prototype_only": false,
+      "bottom": 0.0,
+      "dimensions": [
+        1.2999999523162842,
+        0.8999999761581421,
+        0.20900000631809235
+      ],
+      "modern_removable_layer": "kingdom-assembly-modern-date-layer",
+      "source_scene": "Kingdoms \u2014 modern negotiation reading tray, 1 Kings 12:1-24",
+      "semantic_groups": [
+        "kingdom-assembly-modern-reading-tray",
+        "kingdom-assembly-modern-wood-surface-grain",
+        "kingdom-assembly-request",
+        "kingdom-assembly-advice-elders",
+        "kingdom-assembly-advice-peers",
+        "kingdom-assembly-response",
+        "kingdom-assembly-modern-date-layer",
+        "kingdom-assembly-place-shechem",
+        "kingdom-assembly-place-later-jerusalem"
+      ],
+      "modern_layer_lift_m": 0.14,
+      "modern_layer_axis": "glTF +Y; Blender +Z"
+    },
+    "kingdom-sites": {
+      "file": "models/kingdom-sites.glb",
+      "bytes": 564708,
+      "sha256": "15298c0ce2e834fc6bc993710956a34ef30174de54a9a7f979508cc23619123c",
+      "triangles": 18760,
+      "animations": [],
+      "height": 0.493,
+      "teaching_model": true,
+      "interpretation": "1 Kings 12:25-33 supplies two calves and two places. These independently based original calf silhouettes, scale, posture, horn omission and gold colour are modern choices. No recovered originals, horned altar, known manufacturing method, shared court, measured geography or devotional/sacrificial action.",
+      "prototype_only": false,
+      "bottom": 0.0,
+      "dimensions": [
+        1.2999999523162842,
+        0.8600000143051147,
+        0.49300000071525574
+      ],
+      "modern_removable_layer": "kingdom-sites-modern-comparison-layer",
+      "source_scene": "Kingdoms \u2014 physically separated two-place comparison, 1 Kings",
+      "semantic_groups": [
+        "kingdom-sites-bethel-separate-base",
+        "kingdom-sites-bethel-calf",
+        "kingdom-sites-dan-separate-base",
+        "kingdom-sites-dan-calf",
+        "kingdom-sites-modern-comparison-layer"
+      ],
+      "modern_layer_lift_m": 0.14,
+      "modern_layer_axis": "glTF +Y; Blender +Z"
+    },
+    "kingdom-measures": {
+      "file": "models/kingdom-measures.glb",
+      "bytes": 800388,
+      "sha256": "6299ee90ceaa5eeda3fc25eb3e205ed1d84a8c5c87c01e2eed6af2770ab39492",
+      "triangles": 18628,
+      "animations": [],
+      "height": 0.68,
+      "teaching_model": true,
+      "interpretation": "Amos 5 generic public-gate context; the separately grouped Amos 8:4-6 extension compares container capacity and weight. Original true hollow grain vessel, removable modern volume, two hollow pans, actual connected cords and uninscribed weights. No identified gate/standard, unit conversion, false bottom, cheating mechanism, coin or ancient writing.",
+      "prototype_only": false,
+      "bottom": 0.0,
+      "dimensions": [
+        1.3221222758293152,
+        0.8999999761581421,
+        0.6800000071525574
+      ],
+      "modern_removable_layer": "kingdom-measures-modern-capacity-layer",
+      "extension_group": "kingdom-measures-amos8-extension",
+      "core_reference": "AMO.5.CSBT",
+      "extension_reference": "AMO.8.4-6.CSBT",
+      "source_scene": "Kingdoms \u2014 public gate and separate Amos 8 capacity-weight co",
+      "semantic_groups": [
+        "kingdom-measures-modern-display-base",
+        "kingdom-measures-original-public-gate-outline",
+        "kingdom-measures-hollow-grain-container",
+        "kingdom-measures-selected-grain-sample",
+        "kingdom-measures-modern-capacity-layer",
+        "kingdom-measures-balance-frame",
+        "kingdom-measures-left-pan",
+        "kingdom-measures-left-suspension",
+        "kingdom-measures-right-pan",
+        "kingdom-measures-right-suspension",
+        "kingdom-measures-uninscribed-weight-comparison",
+        "kingdom-measures-amos8-extension"
+      ],
+      "modern_layer_lift_m": 0.25,
+      "modern_layer_axis": "glTF +Y; Blender +Z"
     }
   }
 }

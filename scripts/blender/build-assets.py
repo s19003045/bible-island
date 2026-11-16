@@ -347,6 +347,7 @@ exec(compile((ROOT/'scripts/blender/sinai-props.py').read_text(),str(ROOT/'scrip
 exec(compile((ROOT/'scripts/blender/ruth-props.py').read_text(),str(ROOT/'scripts/blender/ruth-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/david-props.py').read_text(),str(ROOT/'scripts/blender/david-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/david-animal.py').read_text(),str(ROOT/'scripts/blender/david-animal.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/kingdoms-props.py').read_text(),str(ROOT/'scripts/blender/kingdoms-props.py'),'exec'),globals())
 
 bpy.context.window.scene=scene
 scene.frame_set(1)
