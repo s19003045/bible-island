@@ -101,3 +101,16 @@
 - 完整 123 項回歸、內容、語法、正式建置、離線試閱與 Blender 來源重新開啟通過，詳見 [成人驗收](review/BLENDER-RESIDENT-REFINEMENT.md)。正式產物為 `index-9UVA9uk5.js`。
 - 正式頁重新載入並核對該腳本，可見新石作成人；選擇問題後，回答與 `MRK.13.1-2.CSBT` 連結更新，console error／warning 為空，截圖 `.qa/resident-herod-refined-sites.png`。檢查後本機／正式頁恢復全景與自主活動，閱讀偏好不變。
 - 保留既有擁有者私人權限。婦女／孩童、持物、舊約人物、十九座詳細島嶼及先前未完成的手動驗收仍持續。
+
+## 2026-11-16：孩童比例與持壺居民
+
+- 本機來源：`0ab2a4b`，160 個追蹤來源逐檔相符。
+- Sites source commit：`80957767b62429f10b70707b1cab33855fa74fa2`。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_eab7f76da72c8191ad4a12bfe8ee2fe3`。
+- Deployment：`appgdep_6afa8b83cc088191bbdedcb49a2eb6ca`。
+- 平台結果：`succeeded`，`2026-11-16T04:50:25.880405+00:00`。
+- 耶路撒冷原有四位孩童使用獨立臉部／身形與短步幅；提水居民使用彎肘、彎指與空心陶壺，五種動畫維持握持。原有對話／錄音與 CSBT 不變。
+- 完整 128 項回歸、內容／語法、建置、39,867 KiB 離線試閱與十八場景／四骨架的 Blender 來源開啟檢查通過。開發伺服器另修正啟動後新增 GLB 未登錄的問題，以真正 Vite、檔案與 HTTP 回歸檢查。見 [孩童與持物驗收](review/BLENDER-CHILD-AND-CARRIER.md)。
+- 正式產物為 `index-DYrjaM5a.js`，四種人物加十四件觀察物，共十八份 GLB，另有十八份 MP3。
+- 正式頁重新載入核對該腳本後，可見新提水人物、側壺與握把；地勢提問的回答及 `JHN.18.1.CSBT`／`LUK.19.29-37.CSBT` 入口正常，console error／warning 為空，截圖 `.qa/carrier-jerusalem-sites.png`。兩個檢視分頁已恢復全景與自主活動，閱讀偏好不變。
+- 保留既有擁有者私人權限。婦女服裝、舊約年代／職分、十九座詳細島嶼及尚未完成的手動驗收仍持續。

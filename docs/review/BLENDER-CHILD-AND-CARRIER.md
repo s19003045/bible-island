@@ -27,4 +27,6 @@ Blender 4.5.16 LTS 腳本 `scripts/blender/resident-variants.py` 由可編輯網
 
 修正後本機從角色清單選提水居民，可見新臉部、手指、彎肘、涼鞋與側壺；提問地勢後，對話、研讀旁註和 `JHN.18.1.CSBT`／`LUK.19.29-37.CSBT` 更新，console error／warning 為空，畫面 `.qa/carrier-jerusalem-local.png`。四位孩童的嵌入與尺寸由實際場景檢查及 Blender 圖像支持，未宣稱瀏覽器逐一手動尋訪四人。
 
-正式頁與發佈結果仍在本輪接續確認；沒有固定 FPS、所有實體裝置或獨立歷史／美術專家驗收的主張。
+Sites 已於 `2026-11-16T04:50:25.880405+00:00` 成功發佈，完整 ID 見 [部署紀錄](../DEPLOYMENTS.md)。正式頁重新載入並核對 `index-DYrjaM5a.js`，可見新提水人物的臉部、彎肘／彎指、涼鞋與陶壺；同一地勢問題正常更新回答與兩個 CSBT 連結，console error／warning 為空。畫面 `.qa/carrier-jerusalem-sites.png`。檢查後兩個分頁皆結束交談、恢復場景全景，暫停旗標為否，閱讀模式與私人分享範圍未改變。
+
+沒有固定 FPS、所有實體裝置或獨立歷史／美術專家驗收的主張。婦女服裝、舊約人物、十九座詳細島嶼及先前未完成的手動驗收仍待接續。
