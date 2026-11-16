@@ -24,3 +24,13 @@
 - 平台結果：`succeeded`，`2026-11-16T00:40:59.296150+00:00`。
 - 96 項測試、內容檢查、正式建置與試閱封裝通過。正式頁可見環山湖盆、林木、流雲與收合閱讀路線卡，瀏覽器無 console error；截圖 `.qa/mountains-sites-published.png`。
 - 保留既有私人分享範圍。此版本尚未包含 Blender 素材或其餘十九座詳細島嶼。
+
+## 2026-11-16：Blender 首批素材整合
+
+- 本機來源：`86e59b5`，與 Sites 來源逐檔比對，共 122 個追蹤檔案。
+- Sites source commit：`9975a908656daf558baf028da148de60555a2ff7`。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_46427bdd94588191867da16f91720b5b`。
+- Deployment：`appgdep_6afa579eef8c8191a138f39714c216ea`。
+- 平台結果：`succeeded`，`2026-11-16T01:08:59.530607+00:00`。
+- 已通過 100 項回歸、內容／語法檢查、正式建置與單檔試閱；封裝包含三份本機 GLB。本機畫面已確認耶路撒冷住戶與兩件器皿，見 [首批驗收](review/BLENDER-FIRST-PASS.md)。
+- 沿用既有擁有者私人權限。這是管線與初步替換：其他職分、年代、器具及十九座詳細島嶼仍持續進行。
