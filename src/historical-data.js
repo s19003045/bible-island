@@ -1,3 +1,4 @@
+import {abrahamHistorical} from './abraham-content.js';
 import {paulHistorical} from './paul-content.js';
 import {returnHistorical} from './return-content.js';
 import { scriptureSource as bible } from './scripture.js';
@@ -13,6 +14,7 @@ export const dimensions = {
   herod: { facade: [100 * CUBIT, 100 * CUBIT], holy: [40 * CUBIT, 40 * CUBIT, 20 * CUBIT], inner: 20 * CUBIT },
 };
 export const historicalScenes = {
+  abraham:abrahamHistorical,
   paul:paulHistorical,
   'second-temple':returnHistorical,
   jordan:jordanHistorical,

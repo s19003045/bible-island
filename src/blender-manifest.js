@@ -1,5 +1,12 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'patriarch-traveler':{type:'character',src:'models/patriarch-traveler.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Undated patriarchal narrative composite; original garment and fringed overwrap'},
+  'camp-host':{type:'character',src:'models/camp-host.glb',height:1.65,ankleHeight:.10059,cycleDistance:.7664,liftHeight:.07185,triangleBudget:48000,byteBudget:1900000,era:'Undated composite camp host; selected garment, not Sarah likeness'},
+  'well-keeper':{type:'character',src:'models/well-keeper.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Undated composite well keeper; new front beard and working garment'},
+  'abraham-altar':{type:'object',src:'models/abraham-altar.glb',height:.500,triangleBudget:30000,byteBudget:1600000,articulation:{part:'abraham-altar-top',offset:[0,.18,0],openLabel:'分開頂層看石縫',closeLabel:'還原石壇',note:'原創構造教具 · 非已辨識的亞伯蘭祭壇'}},
+  'abraham-hospitality':{type:'object',src:'models/abraham-hospitality.glb',height:.263,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.6,1.6]},
+  'abraham-well':{type:'object',src:'models/abraham-well.glb',height:.787,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.8,1.8],articulation:{part:'abraham-well-rim',offset:[0,.2,0],openLabel:'抬起井圈看井壁',closeLabel:'還原井圈',note:'現代剖面教具 · 非已確認的別是巴古井'}},
+  'abraham-ewe':{type:'object',subtype:'animal',src:'models/abraham-ewe.glb',height:.757,triangleBudget:20000,byteBudget:1000000},
   'port-worker':{type:'character',src:'models/port-worker.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Early Roman composite port worker; original garment and shoulder reinforcement'},
   'paul-trader':{type:'character',src:'models/paul-trader.glb',height:1.65,ankleHeight:.10059,cycleDistance:.7664,liftHeight:.07185,triangleBudget:48000,byteBudget:1900000,era:'Early Roman composite cloth trader; chosen layered garment, not Lydia likeness'},
   'asian-artisan':{type:'character',src:'models/asian-artisan.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Early Roman composite artisan; separately weighted working apron'},

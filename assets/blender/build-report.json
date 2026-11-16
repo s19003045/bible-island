@@ -320,10 +320,52 @@
       ],
       "height": 1.71
     },
+    "patriarch-traveler": {
+      "file": "models/patriarch-traveler.glb",
+      "bytes": 1233372,
+      "sha256": "c761ee8d649c54ec3f2550c0049883a930ff5ce345bff87d47532da65db2f74e",
+      "triangles": 32104,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.71
+    },
+    "camp-host": {
+      "file": "models/camp-host.glb",
+      "bytes": 1260860,
+      "sha256": "a544b22a801d8ae415e7a0c524485b8aa9d653a4646244e7c23d084009f190fe",
+      "triangles": 32988,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.65
+    },
+    "well-keeper": {
+      "file": "models/well-keeper.glb",
+      "bytes": 1232332,
+      "sha256": "64260fb02f2b9a2ae2c9494e8aa83488eeffa776a126e8550e50fe966c145ced",
+      "triangles": 32072,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.71
+    },
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "4b679ff71d687c95fe8705d00d2dc8ef2f00080234b7fe94685c518884a6a4ad",
+      "sha256": "cc6b261f27d3f6896eabed3fa5a9c28c1c5f21c1ac5758ac9ae3f00bf1d097cb",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -332,7 +374,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "e634f6b5ae5bc8b7c7f03f856b2ac46060eee86a82494d6bed2af4f1d627b77f",
+      "sha256": "ba8ea87a996d726a58f53e2775cb6c586cf263651c23136f2b2f8ade43f5948f",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -350,7 +392,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "c59639dd4c004e90dac6e439b7b1c31ffdc5e4ac46f91b7b058e899b3abdaf95",
+      "sha256": "e229d5bd48c405dcd8fba5117a737ec2b6b50d1a78afe1a4a93fafe8f231a4a8",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -375,7 +417,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "bb99dae83eb6270fb1ba52e9447828f7bf4919de832bdd82544fb3e7d79ca690",
+      "sha256": "21394ff11de128f001afbddbaf2c1f289fe75bccbcc28981a7cddb6993da2a5b",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -384,7 +426,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "85cc7c4c988a8f366902ba14a0a239999d99dc9b067fe4d0703ccfb27e20a9d8",
+      "sha256": "7c60efecaf05218b6124d3797593acea25de4fa076726859c2d18b7cbdcd574c",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -393,7 +435,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "b9ece8e85f152bddaf0a2f21288dc6b4c45679cc6b7e93ddebac14f9bd39c769",
+      "sha256": "01cb9d3ff88c0c142bf88dd2ad29183b4da336c35ffc27ea5b8c646d9acc0b87",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -404,7 +446,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "6c42dba24a3c0f5d394cde9b3ae6a6546d4331fbc5edf2e1bc9c9a1779438bb9",
+      "sha256": "89102ff78147962a617d6a0f2c621cf3733f827e53a413124d8751041854af9e",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -415,7 +457,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "773d5013b5991babdebeb52710294d0f5c8b20c3df4d238a428b6d2ba7ba7ea4",
+      "sha256": "64dadfcd62b2ddd15c616f3c0a31e98b67398835540fe9a1401a8cbc3d91d4ff",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -433,7 +475,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "c6c144831163e3ba620d57743a5683959afe6390f9eabecfa46780e67d10d54d",
+      "sha256": "fa58b5486a8d1f852219e1d093b8aaa1211382a6eda4fcd2f19b4a97b636bd1f",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
@@ -474,7 +516,7 @@
     "return-masonry": {
       "file": "models/return-masonry.glb",
       "bytes": 200972,
-      "sha256": "7cfced76c2ac9264d5b0314de335c527cad6840e4c171f1174cef75d84bc3408",
+      "sha256": "13542018338990fb6b013a40e20462bc5e5f88366743e651c1cc4aed4feb9bd8",
       "triangles": 2068,
       "animations": [],
       "height": 0.513,
@@ -502,7 +544,7 @@
     "paul-ship": {
       "file": "models/paul-ship.glb",
       "bytes": 946292,
-      "sha256": "592a4d1c16530b883664c13739cfebd3a69206da04089fe822408ed2e1b87924",
+      "sha256": "c075e69f0229665297c6c0ac555f4c0bac938669247b094bdfd5c19d58fe6342",
       "triangles": 28360,
       "animations": [],
       "height": 1.12,
@@ -521,10 +563,53 @@
     "paul-silverwork": {
       "file": "models/paul-silverwork.glb",
       "bytes": 73844,
-      "sha256": "0e03d9eefae70ad25a86ddccb8024b749972090104cd8cd7fb986cc92e7ae19b",
+      "sha256": "cccea966cafddc3fb3474eab68665fdc6bf9c2bfa6e0f5652bb8d5bc074ccd99",
       "triangles": 1596,
       "animations": [],
       "height": 0.34,
+      "teaching_model": true
+    },
+    "abraham-altar": {
+      "file": "models/abraham-altar.glb",
+      "bytes": 876304,
+      "sha256": "a49671e3f823a0b26c8f23aace281890dde4ebd9ffe9e9a18d8ae5b11a7c4d11",
+      "triangles": 11664,
+      "animations": [],
+      "height": 0.5,
+      "teaching_model": true,
+      "interpretation": "Genesis 12:6\u20139 altar teaching type; selected irregular stone and low arrangement, not a specified stone material, identified altar, or later altar-law reconstruction",
+      "removable_group": "abraham-altar-top"
+    },
+    "abraham-hospitality": {
+      "file": "models/abraham-hospitality.glb",
+      "bytes": 670796,
+      "sha256": "35e0c4b8ba9cc601778b6bb11ba2fc8a0344e2a15ac4a13837974cad32756e3a",
+      "triangles": 27408,
+      "animations": [],
+      "height": 0.263,
+      "teaching_model": true,
+      "interpretation": "Genesis 18:1\u201315 hospitality comparison; vessel forms, woven display and two thick breads are teaching choices; two breads do not convert the stated flour quantity",
+      "bread_count_is_teaching_choice": true
+    },
+    "abraham-well": {
+      "file": "models/abraham-well.glb",
+      "bytes": 589784,
+      "sha256": "060932031169c632ab3a28260de7c2bc16116fe1087d4a9aa4c98617d3d46541",
+      "triangles": 15974,
+      "animations": [],
+      "height": 0.787,
+      "teaching_model": true,
+      "interpretation": "Genesis 21:22\u201334 modern teaching cutaway; annular masonry, rope and container are comparative choices, not an identified Abraham well or proven lifting installation",
+      "removable_group": "abraham-well-rim",
+      "modern_cutaway": true
+    },
+    "abraham-ewe": {
+      "file": "models/abraham-ewe.glb",
+      "bytes": 275012,
+      "sha256": "e35fcaaf55d625d5fb1b829094f7da30f9e0a24f1e9f4193c2735b4a04e6de6c",
+      "triangles": 10660,
+      "animations": [],
+      "height": 0.757,
       "teaching_model": true
     }
   }

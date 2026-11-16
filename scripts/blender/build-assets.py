@@ -329,6 +329,7 @@ exec(compile((ROOT/'scripts/blender/resident-variants.py').read_text(),str(ROOT/
 exec(compile((ROOT/'scripts/blender/period-characters.py').read_text(),str(ROOT/'scripts/blender/period-characters.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/return-characters.py').read_text(),str(ROOT/'scripts/blender/return-characters.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/paul-characters.py').read_text(),str(ROOT/'scripts/blender/paul-characters.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/abraham-characters.py').read_text(),str(ROOT/'scripts/blender/abraham-characters.py'),'exec'),globals())
 
 exec(compile((ROOT/'scripts/blender/tabernacle-props.py').read_text(),str(ROOT/'scripts/blender/tabernacle-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/solomon-props.py').read_text(),str(ROOT/'scripts/blender/solomon-props.py'),'exec'),globals())
@@ -337,6 +338,8 @@ exec(compile((ROOT/'scripts/blender/exodus-props.py').read_text(),str(ROOT/'scri
 exec(compile((ROOT/'scripts/blender/jordan-props.py').read_text(),str(ROOT/'scripts/blender/jordan-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/return-props.py').read_text(),str(ROOT/'scripts/blender/return-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/paul-props.py').read_text(),str(ROOT/'scripts/blender/paul-props.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/abraham-props.py').read_text(),str(ROOT/'scripts/blender/abraham-props.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/abraham-animals.py').read_text(),str(ROOT/'scripts/blender/abraham-animals.py'),'exec'),globals())
 
 bpy.context.window.scene=scene
 scene.frame_set(1)

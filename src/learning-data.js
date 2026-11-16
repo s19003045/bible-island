@@ -1,3 +1,4 @@
+import {abrahamLearning} from './abraham-content.js';
 import {paulLearning} from './paul-content.js';
 import {returnLearning} from './return-content.js';
 import {jordanLearning} from './jordan-content.js';
@@ -12,6 +13,7 @@ export const readingModes = {
 export const evidenceKinds = { text: '經文描述', research: '歷史研究', reconstruction: '復原推定' };
 
 export const learningIslands = {
+  abraham:abrahamLearning,
   paul:paulLearning,
   'second-temple':returnLearning,
   jordan:jordanLearning,

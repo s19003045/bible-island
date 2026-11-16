@@ -1,0 +1,10 @@
+import * as THREE from 'three';
+// Geometric fallbacks remain usable before the local Blender export is loaded.
+export function createAbrahamObject(id){const root=new THREE.Group(),stone=new THREE.MeshStandardMaterial({color:'#8c8270',roughness:1}),clay=new THREE.MeshStandardMaterial({color:'#9b6e51',roughness:1}),wool=new THREE.MeshStandardMaterial({color:'#b5a58a',roughness:1});
+ const add=(geo,mat,x,y,z,parent=root)=>{const o=new THREE.Mesh(geo,mat);o.position.set(x,y,z);parent.add(o);return o;};
+ if(id==='abraham-altar'){for(let row=0;row<2;row++)for(let j=0;j<5;j++)add(new THREE.DodecahedronGeometry(.19),stone,(j%3-1)*.36,.14+row*.18,Math.floor(j/3)*.39-.2);const top=new THREE.Group();top.name='abraham-altar-top';root.add(top);add(new THREE.BoxGeometry(1.05,.10,.72),stone,0,.45,0,top);}
+ else if(id==='abraham-well'){const wall=new THREE.Mesh(new THREE.CylinderGeometry(.53,.54,.58,36,1,true),stone);wall.material.side=THREE.DoubleSide;wall.position.y=.34;root.add(wall);const rim=new THREE.Group();rim.name='abraham-well-rim';root.add(rim);const ring=add(new THREE.TorusGeometry(.49,.075,8,48),stone,0,.68,0,rim);ring.rotation.x=Math.PI/2;add(new THREE.CircleGeometry(.44,36),new THREE.MeshStandardMaterial({color:'#456d68',side:THREE.DoubleSide}),0,.07,0).rotation.x=-Math.PI/2;}
+ else if(id==='abraham-ewe'){add(new THREE.SphereGeometry(.33,24,16),wool,0,.46,0).scale.set(.66,.82,1.24);for(const x of [-.13,.13])for(const z of [-.24,.24])add(new THREE.CylinderGeometry(.027,.025,.34,10),stone,x,.17,z);const head=new THREE.Group();head.name='ewe-head';head.position.set(0,.6,.32);root.add(head);add(new THREE.SphereGeometry(.13,16,12),wool,0,0,.06,head).scale.set(.8,1,1.35);}
+ else{const bowl=add(new THREE.TorusGeometry(.19,.045,10,40),clay,-.24,.15,0);bowl.rotation.x=Math.PI/2;add(new THREE.CylinderGeometry(.18,.14,.04,32),clay,-.24,.035,0);for(const x of [.15,.32])add(new THREE.CylinderGeometry(.1,.11,.025,24),wool,x,.05,.13);}
+ root.traverse(o=>{if(o.isMesh){o.castShadow=o.receiveShadow=true;o.userData.objectId=id;}});return root;
+}
