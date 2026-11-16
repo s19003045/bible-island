@@ -384,3 +384,12 @@
 - 本機三模式前置與播放已核對，旅店新院落已實際看圖，warning／error=[]。正式原分頁hash先仍使用第33版舊程式，已明確送reload；瀏覽器控制逾時後接續確認新程式與手動操作，未把URL改變當新版載入。沒有重啟dev server或重複發布。
 
 - 第34版人工追加：正式已回讀`index-56qrFRBg.js`；親子情境配音、研讀資料前後分類disabled→enabled、一般問候語音播放及三模式0／3已實測。井旁正式截圖有既有右側裁切，DOM另核對。本機照顧組沿路／E近景／旋轉／關閉及1／1完成；本機道路沿路狀態保留，水罐及正式三近景待補驗。兩頁warning／error=[]，正式恢復一般／well water全景、動畫開、交談結束；完整真人聽驗等界線保留，詳驗收文件。
+
+## 2026-11-17：自動步行保留失焦路線（第35版）
+
+- 在撒馬利亞補驗時確認切換視窗會取消路線：`blur`／`visibilitychange`清除了`route`。修正後只釋放鍵盤、觸控軸、轉向及拖曳；自動路線保留，隱藏頁面仍由world暫停模擬，停止、手動接管及交談鎖定維持。來源及先失敗後成功的回歸見 [步行修正](review/WALK-FOCUS-RESUME.md)。沒有改模型、配音或經文內容。
+- root來源`39db6b98bc954c2256e939915b99be9989bdb220`；Sites來源`ab4b1af067fd343ad18eb62e6f5697f3944247f7`。445個追蹤來源逐檔SHA256相同，保留原node_modules連結；當時尚未追蹤的下一島研究不在此版封裝。
+- 同站`appgprj_6af95ea0dac4819182957156725483aa` owner／custom單一使用者、0群組／0外部訪客。第35版`appgprj_6af95ea0dac4819182957156725483aa~appgver_66db131a2cec8191b9d129ca9e6de13e`；部署`appgdep_6afb55c13a2081919a53912b7ecec544`於`2026-11-16T19:13:19.737636+00:00`回傳succeeded，未在終態後poll或重發。平台回讀source SHA相符。
+- 封裝`/tmp/bible-island-39db6b9-walk-focus-sites.tar.gz`，101,743,587bytes，SHA256=`6efc1234be906510c04a6d607f29cb096c3b3d92d0a4a6207b6714a67f4ce290`；平台160內容檔／146,831,360bytes，內容hash=`b1f2cf8186eeb8520a7d7111073937db5bc600ebff2b353f8a99714cabe98700`。
+- 全站42檔274項回歸、內容／語法及193121KiB離線試閱通過。Sites同源建置120模組／1.37s，入口`index-DItO92S8.js`、world`world-CJV1yj4x.js`、vessels`vessels-BdjFY_KH.js`、three`three-qqpqWelr.js`、CSS`index-zmRD_4cI.css`；保留既有大chunk提示。
+- 網址仍為 [讀聖經順起來](https://bible-island.starryswift8.chatgpt.site)。正式既有分頁已送reload，頁面回讀與沿路近景接續追加；不能由發布成功推定全部手動操作通過。
