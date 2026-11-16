@@ -68,3 +68,14 @@
 - 115 項測試、內容／語法、正式建置與離線封裝通過。希律三件觀察物接入場景／近景；石塊接縫與院界低欄可拆合，內院限制保持有效，見 [希律器具驗收](review/BLENDER-HEROD.md)。
 - 正式頁重新載入取得 `index-BdJHuZeQ.js`；石作角色對話與語音入口可用，console error／warning 為空，截圖 `.qa/herod-sites-published.png`。本機工作桌可見新雙石塊加工面，截圖 `.qa/herod-stone-local.png`。本輪未完成三件近景的全程手動走訪，不將對話截圖當成該項驗收；兩個分頁已恢復場景全景與人物動畫。
 - 保留既有擁有者私人權限。此版已有十一件 Blender 觀察物；出埃及三件、人物細化與十九座詳細島嶼仍待接續。
+
+## 2026-11-16：出埃及 Blender 器具與渡海剖面
+
+- 本機來源：`d7143d3`，與 Sites 來源逐檔比對，共 149 個追蹤檔案。
+- Sites source commit：`e1ec95eb3f4cc92726a2764fecb0a5b571eefa33`。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_1cfff23c3e9c819187c93eb029eaa221`。
+- Deployment：`appgdep_6afa76a646788191a8fd943ca392ceb7`。
+- 平台結果：`succeeded`，`2026-11-16T03:21:23.766950+00:00`。
+- 119 項測試、內容／語法、正式建置與離線封裝通過。五島十四項觀察物都有 Blender 近景，其中十三項同時在場景使用；渡海剖面不取代大場景水體與動態隊伍，見 [出埃及器具驗收](review/BLENDER-EXODUS.md)。
+- 正式頁已重新載入並取得 `index-DneE-ZEX.js`；畫面檢視於本輪接續記錄。
+- 保留既有擁有者私人權限。NPC 細化／年代職分變體、十九座詳細島嶼與尚未完成的手動驗收仍持續。

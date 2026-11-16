@@ -13,6 +13,6 @@ export const blenderModels = {
   'herod-boundary':{type:'object',src:'models/herod-boundary.glb',height:.692,byteBudget:900000,articulation:{part:'boundary-layer',offset:[0,0,.14],openLabel:'分開低欄層',closeLabel:'還原層次',note:'空間關係示意 · 非通行操作'}},
   'herod-capital':{type:'object',src:'models/herod-capital.glb',height:.760,triangleBudget:26000,byteBudget:1300000},
   'brick-mould':{type:'object',src:'models/brick-mould.glb',height:.120,articulation:{part:'brick-frame',offset:[0,.18,0],openLabel:'抬起磚模',closeLabel:'還原磚模',note:'成形構造教具 · 可還原'}},
-  'passover-kit':{type:'object',src:'models/passover-kit.glb',height:.283,triangleBudget:26000,byteBudget:1400000,articulation:{part:'kneading-wrap',offset:[0,.17,.08],openLabel:'移開布包',closeLabel:'還原包裹',note:'布包與器皿教學剖看 · 可還原'}},
+  'passover-kit':{type:'object',src:'models/passover-kit.glb',height:.283,triangleBudget:26000,byteBudget:1400000,inspectionView:[1.05,2.1,1.25],articulation:{part:'kneading-wrap',offset:[.26,.24,-.22],openLabel:'移開布包',closeLabel:'還原包裹',note:'布包與器皿教學剖看 · 可還原'}},
   'crossing-ground':{type:'object',src:'models/crossing-ground.glb',height:.391,triangleBudget:20000,byteBudget:1100000,inspectionView:[.8,2.7,1.0]},
 };

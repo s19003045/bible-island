@@ -5,7 +5,8 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {createVessel} from '../src/vessels.js';
 import {createHistoricalScene} from '../src/historical-scenes.js';
-import {setArtifactSeparation} from '../src/artifact-inspection.js';
+import {setArtifactSeparation,artifactFraming} from '../src/artifact-inspection.js';
+import {blenderModels} from '../src/blender-manifest.js';
 import {exodusSegments} from '../src/exodus-exploration.js';
 
 const ctx=new Proxy({},{get:()=>()=>{},set:()=>true});globalThis.document={createElement:()=>({getContext:()=>ctx})};
@@ -39,7 +40,12 @@ test('actual kneading vessel has an inner floor and the cloth stays outside its 
     assert.ok(vessel&&cloth);assert.ok(cloth.distance>vessel.distance+.001,`cloth does not intersect rim at ${y}/${j}`);
   }
   const before=wrap.getWorldPosition(new THREE.Vector3()),fixed=new THREE.Box3().setFromObject(bowl);
-  setArtifactSeparation(root,'kneading-wrap',[0,.17,.08]);assert.ok(wrap.getWorldPosition(new THREE.Vector3()).distanceTo(before)>.18);
+  const settings=blenderModels['passover-kit'];
+  setArtifactSeparation(root,'kneading-wrap',settings.articulation.offset);assert.ok(wrap.getWorldPosition(new THREE.Vector3()).distanceTo(before)>.4);
+  const framing=artifactFraming(new THREE.Box3().setFromObject(root),1.5),target=new THREE.Vector3(.255,.044,-.055);
+  const camera=framing.center.clone().add(new THREE.Vector3(...settings.inspectionView).normalize().multiplyScalar(framing.distance));
+  const visible=new THREE.Raycaster(camera,target.clone().sub(camera).normalize()).intersectObjects(meshes(root),false)[0];
+  assert.ok(bowlMeshes.includes(visible?.object)&&visible.point.distanceTo(target)<.005,'initial inspection view sees the inner floor after unwrapping');
   assert.ok(new THREE.Box3().setFromObject(bowl).equals(fixed));setArtifactSeparation(root,'kneading-wrap',[0,0,0]);
   assert.ok(wrap.getWorldPosition(new THREE.Vector3()).distanceTo(before)<1e-6);
 });
