@@ -2,6 +2,8 @@
 
 2026-11-17。正式網站：[Bible Island](https://bible-island.starryswift8.chatgpt.site)。延用既有Sites專案與擁有者私人分享範圍；第41版已成功發布，執行期來源`62e60b09e9ade7d36fd2bcc845da6692045e7090`，Sites來源`786e7663cc052e35c64d94b2999969f2f59e0032`。精確版本、封裝雜湊與部署時間見[部署紀錄](DEPLOYMENTS.md)。後補文件不表示另有一個應用版本。
 
+完整原始碼、Blender來源與交付文件已同步到使用者指定倉庫的[codex/complete-bible-islands工作分支](https://github.com/s19003045/bible-island/tree/codex/complete-bible-islands)，保留原提交歷史；main分支未合併。這次同步沒有另開Site或改變分享權限。
+
 ![第41版正式群島全景](review/images/final-atlas-sites.png)
 
 最後交付分頁已實讀入口index-DwC2hrCZ.js，一般閱讀、動畫開啟；上圖為正式網站1280×720實際截圖。暫存素材驗證分頁已關閉，使用者原分頁保留；沒有為截圖更動viewport或重啟伺服器。
