@@ -24,6 +24,8 @@ Blender 4.5.16 LTS 的可編輯來源有十六個非空素材場景、兩套獨�
 
 最終 `.blend` 再經 Blender 開啟，確認十六場景、兩套骨架與五動作；預覽 `.qa/blender-resident.png`、`.qa/blender-resident-worker.png`、`.qa/blender-resident-walk.png`。離線試閱 36,641 KiB，含十六份 GLB 與十八份 MP3。
 
-本機從希律角色清單選石作工人，可見無披布、手指與新皮底的細節模型。實際提問後，對話紀錄和 CSBT 連結更新，console error／warning 為空；畫面 `.qa/resident-herod-refined-local.png`。對話姿態與角色停留另以實際場景物件的獨立骨架驗證。這些證據不等同所有真實裝置或整段公共階梯的手動影片驗收；沒有固定 FPS 保證。Sites 發佈結果於本輪接續記錄。
+本機從希律角色清單選石作工人，可見無披布、手指與新皮底的細節模型。實際提問後，對話紀錄和 CSBT 連結更新，console error／warning 為空；畫面 `.qa/resident-herod-refined-local.png`。對話姿態與角色停留另以實際場景物件的獨立骨架驗證。這些證據不等同所有真實裝置或整段公共階梯的手動影片驗收；沒有固定 FPS 保證。
+
+Sites 已於 `2026-11-16T04:18:15.914048+00:00` 成功發佈，完整 ID 見 [部署紀錄](../DEPLOYMENTS.md)。正式頁重新載入並核對 `index-9UVA9uk5.js`，可見新石作人物；提問「這裡的石頭真的很大嗎？」後，畫面顯示回答與 `MRK.13.1-2.CSBT` 連結，console error／warning 為空。截圖 `.qa/resident-herod-refined-sites.png`。檢查後兩個分頁都結束交談並回到場景全景，未暫停人物動畫；閱讀偏好及私人分享範圍維持原值。
 
 開發監看忽略整批模型與 Blender／檢視／Sites 產物，匯出完成手動重載一次，避免逐檔重建場景；正式建置照常包含所有素材。人物外觀及其他職分會在後續繼續細化。
