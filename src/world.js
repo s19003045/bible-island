@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { themes, themeById } from './content.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { createHistoricalScene } from './historical-scenes.js';
+import {disposeBlenderAssets} from './blender-assets.js';
 import { historicalScenes } from './historical-data.js';
 import { peopleByIsland } from './people-data.js';
 import {createWalkControls} from './walk-controls.js';
@@ -387,7 +388,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
         environment = pmrem.fromScene(room, .04).texture; room.dispose(); pmrem.dispose();
       }
       const key=id==='exodus'&&segment?`${id}:${segment}`:id;
-      if (!historicalCache.has(key)) historicalCache.set(key, createHistoricalScene(id, environment,{segment:segment||'all'}));
+      if (!historicalCache.has(key)) historicalCache.set(key, createHistoricalScene(id, environment,{segment:segment||'all',blenderAssets:true,onAssetsReady:()=>{dirty=true;}}));
       activeHistorical = historicalCache.get(key); activeHistorical.roof.visible = !cutaway; activeHistorical.setTime(nightMode);
     }
     camera.fov = activeHistorical ? 48 : 39; camera.updateProjectionMatrix();
@@ -505,7 +506,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
       activeHistorical.scene.updateMatrixWorld(true);activeHistorical.updateRaycastBounds();
       const meshes=[];activeHistorical.scene.traverseVisible(o=>{if(o.isMesh)meshes.push(o);});
       const hit=ray.intersectObjects(meshes,false)[0];
-      const actorId=hit?.object.userData.actorInstances?.[hit.instanceId];
+      const actorId=hit?.object.userData.actorId||hit?.object.userData.actorInstances?.[hit.instanceId];
       if(walk.active) {
         if(conversationId||document.querySelector('dialog[open]'))return;
         if(actorId){if(canTalk(actorId))onActor?.(actorId);else onWalkMessage?.('再靠近角色一些，就能交談。');}
@@ -672,6 +673,6 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     zoom(amount) {cancelAtlasFlight();if(!activeHistorical)onAtlasInteract();fly = null; const off = camera.position.clone().sub(controls.target); const distance = THREE.MathUtils.clamp(off.length() * amount, controls.minDistance, controls.maxDistance); camera.position.copy(controls.target).add(off.setLength(distance)); controls.update(); dirty = true; },
     topView() { if (activeHistorical) { activeView='plan'; controls.maxPolarAngle=Math.PI/2-.018; const c = activeHistorical.config; focus(new THREE.Vector3(...c.target),new THREE.Vector3(.1,c.plan,.1)); return; } const target=selected?new THREE.Vector3(selected.position[0],.2,selected.position[1]):new THREE.Vector3(0,0,4);focus(target,new THREE.Vector3(.1,selected?18:120,4)); },
     getStats() { return { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, pixelRatio, selected: selected?.id, stop: selectedStop, historical: !!activeHistorical }; },
-    dispose() { cancelAnimationFrame(raf);walk.dispose();observer.disconnect();controls.dispose(); document.removeEventListener('visibilitychange', onVisibility); historicalCache.forEach(s => s.dispose());ocean.dispose();network.dispose();environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
+    dispose() { cancelAnimationFrame(raf);walk.dispose();observer.disconnect();controls.dispose(); document.removeEventListener('visibilitychange', onVisibility); historicalCache.forEach(s => s.dispose());void disposeBlenderAssets();ocean.dispose();network.dispose();environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
   };
 }

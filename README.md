@@ -76,3 +76,5 @@ Sites 專案識別與靜態產物設定保存在 `.openai/hosting.json`；`.site
 執行 `npm run review:bundle` 可產生不依賴本機伺服器的單檔互動試閱版；預設輸出為 `.qa/five-islands-review.html`。
 
 後續 Blender 人物／器物替換及十九座島的完整工作清單見 [後續實作範圍](docs/BLENDER-AND-REMAINING-ISLANDS.md)。
+
+Blender 首批素材已接入耶路撒冷：近處一般成人居民的獨立骨架動畫，以及院落陶罐／石皿的場景與近景共用 GLB。可編輯來源、重建方式、考古資料與尚待改善處見 [Blender 素材說明](assets/blender/README.md)；這是初步替換，尚未完成其他年代與全部器物。

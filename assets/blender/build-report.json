@@ -1,0 +1,33 @@
+{
+  "blender": "4.5.16 LTS",
+  "source": "assets/blender/bible-assets.blend",
+  "assets": {
+    "resident": {
+      "file": "models/judean-resident.glb",
+      "bytes": 691152,
+      "sha256": "d3360c47108f4ef886c8df71ae90d1fcf65134766cdd50ca5ecbe8a3b1d8bbc9",
+      "triangles": 16552,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ]
+    },
+    "clay-vessel": {
+      "file": "models/clay-vessel.glb",
+      "bytes": 630816,
+      "sha256": "9e7d96e49147f6f03d31873538307b4e29edaee3424cf3ee41da4b2568fe3ef8",
+      "triangles": 7552,
+      "animations": []
+    },
+    "stone-vessel": {
+      "file": "models/stone-vessel.glb",
+      "bytes": 729616,
+      "sha256": "d546d3856cf38f40e889d1eb36cd839aa70ecdb690d8c16318972efaa901a83a",
+      "triangles": 3224,
+      "animations": []
+    }
+  }
+}

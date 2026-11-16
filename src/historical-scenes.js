@@ -13,6 +13,7 @@ import {tabernacleSurfaces,tabernacleFloor,tabernaclePOIs,tabernacleAllowed,tabe
 import {herodSurfaces,herodFloor,herodProxies,herodPOIs,herodAllowed,herodSpawnCandidates,herodObjects,herodSpawn} from './herod-exploration.js';
 import {solomonSurfaces,solomonFloor,solomonProxies,solomonPOIs,solomonAllowed,solomonSpawnCandidates,solomonObjects,solomonSpawn} from './solomon-exploration.js';
 import {explorationFor} from './exploration-data.js';
+import {mountBlenderResidents} from './blender-assets.js';
 
 // Detailed scenes use one Three unit per metre. Geometry is batched by material, not by building.
 const G = {
@@ -230,7 +231,7 @@ function builder(parent, p, seed = 31, collectCollision = false) {
           if(bone.startsWith('forearm'))posing[bone].premultiply(posing[bone==='forearmL'?'armL':'armR']);
       }
       for(const part of a.parts) {
-        matrix.copy(root);if(part.bone)matrix.multiply(posing[part.bone]);matrix.multiply(part.bind);if(m.visible===false)matrix.scale(hiddenScale);
+        matrix.copy(root);if(part.bone)matrix.multiply(posing[part.bone]);matrix.multiply(part.bind);if(m.visible===false||a.blenderVisual&&part.bone!=='ground')matrix.scale(hiddenScale);
         if(part.bone==='ground')matrix.elements[13]=m.position[1]+.035*s;
         part.mesh.setMatrixAt(part.index,matrix);touched.add(part.mesh);
       }
@@ -564,7 +565,7 @@ function jerusalem(k,roof,height) {
   k.box('water',-8,6.35,44,3,.04,2.4);
   for(let i=0;i<5;i++) {k.box('wood',-56+i*2.3,12.9,5.2,2,.1,1);k.box('linen',-56+i*2.3,14.4,5.2,2,.04,2);k.cyl('wood',-56+i*2.3,13.6,6,.035,1.6);k.jar(-56+i*2.3,12.1,5.5,.45);}
 }
-export function createHistoricalScene(id, environment,{segment='all'}={}) {
+export function createHistoricalScene(id, environment,{segment='all',blenderAssets=false,onAssetsReady=()=>{}}={}) {
   if(id==='exodus'&&segment!=='all'&&!exodusSegmentById.has(segment))segment='bricks';
   const base=historicalScenes[id];if(!base)return null;const section=id==='exodus'?exodusSegmentById.get(segment):null;
   const config=section?{...base,...section}:base;
@@ -601,7 +602,7 @@ export function createHistoricalScene(id, environment,{segment='all'}={}) {
     stairStone('entry-stair-landing',21,(9.225+6.8)/2,6.55,5.2,9.225-6.8,4.1);
     stairStone('entry-stair-back',21,9.55,8.6,5.2,.65,.25,true);
     for(const x of [18.4,23.6])stairStone('entry-stair-parapet',x,9.55,6.6,.25,.65,4.2,true);
-    for(const definition of vesselDefinitions){const root=createVessel(definition.id);root.position.fromArray(definition.position);scene.add(root);objects.push({...definition,root});}
+    for(const definition of vesselDefinitions){const root=createVessel(definition.id,{blenderAssets,onReady:onAssetsReady});root.position.fromArray(definition.position);scene.add(root);objects.push({...definition,root});}
     const table=new THREE.Mesh(new THREE.BoxGeometry(1.1,.08,.6),p.wood);table.position.set(-33.4,10.92,25.6);table.castShadow=true;scene.add(table);
     for(const x of [-33.85,-32.95]) {const leg=new THREE.Mesh(new THREE.BoxGeometry(.07,.7,.45),p.wood);leg.position.set(x,10.56,25.6);scene.add(leg);}
     k.collisionBoxes.push({min:[-33.98,10.21,25.27],max:[-32.82,11.5,25.93]});
@@ -656,6 +657,7 @@ export function createHistoricalScene(id, environment,{segment='all'}={}) {
   const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs,allowRetreat:true,allowedPosition:(a,p)=>jerusalemAllowed(a,p,walkModel)}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
   let npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment);walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
+  const detailedResidents=blenderAssets&&id==='jerusalem'?mountBlenderResidents(scene,k.actors,onAssetsReady):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);
   const occluders=[];scene.updateMatrixWorld(true);scene.traverseVisible(o=>{if(o.isMesh&&!o.userData.people)occluders.push(o);});
@@ -675,12 +677,12 @@ export function createHistoricalScene(id, environment,{segment='all'}={}) {
   }
   return {
     scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,npcSystem,segment:section?.id||null,exploration:explorationFor(id,section?.id),
-    animate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});k.animate(dt,cameraPosition);},
+    animate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});detailedResidents?.update(cameraPosition,dt);k.animate(dt,cameraPosition);},
     updateRaycastBounds(){scene.traverse(o=>{if(o.isInstancedMesh&&o.userData.people)o.computeBoundingSphere();});},
     converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },
     attend(personId) {people.forEach(a=>a.state.attending=a.id===personId);},
     groundHeight(x,z) { return Math.max(height(x,z),id==='herod' && Math.abs(x)<121 && Math.abs(z)<101 ? 8 : -.14); },
     setTime(night) {ambient.intensity=night?.55:1.1;sun.intensity=night?.75:2.65;sun.color.set(night?'#a9bdd5':'#fff0d9');scene.background.set(night?'#394650':sky);scene.fog.color.copy(scene.background);},
-    dispose() {npcSystem?.dispose();scene.traverse(o=>{if(o.isInstancedMesh)o.dispose();if(o.geometry&&!Object.values(G).includes(o.geometry))o.geometry.dispose();});sun.shadow.dispose();},
+    dispose() {npcSystem?.dispose();detailedResidents?.dispose();scene.traverse(o=>{o.userData.releaseBlender?.();if(o.isInstancedMesh)o.dispose();if(o.geometry&&!o.userData.blenderShared&&!Object.values(G).includes(o.geometry))o.geometry.dispose();});sun.shadow.dispose();},
   };
 }

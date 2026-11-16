@@ -7,3 +7,5 @@ dist/
 test-results/
 .qa/
 .sites/
+*.blend1
+*.blend2
