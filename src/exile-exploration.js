@@ -1,0 +1,19 @@
+// Unregistered next-island draft. The released site still has fourteen detailed islands.
+const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
+export function exileFloor(s,x,z){return s==='road'?.6+.7*smooth((z+14)/40):s==='canal'?.6+.25*smooth((x+10)/36):.65+.3*smooth((z+14)/40);}
+export const exilePosition=(s,x,z,h=0)=>[x,exileFloor(s,x,z)+h,z];
+const surfaces=[{id:'exile-public-observation-route',x1:-15,x2:29,z1:-18,z2:30}];
+export const exileSegments=[
+ {id:'road',number:1,name:'離鄉的不同時刻',reference:'列王紀下 24–25 章',passage:'2 Kings 24-25',person:'exile-sequence-guide',heading:'先總覽，再分清不同的人與去向',intro:'先總覽約雅斤被擄、後來毀城與留在當地的人，以及更後續的變化。記序盤呈現不同事件，不是一次出發或已知精確路線；後面會分開閱讀以西結、詩歌與書信的不同處境。'},
+ {id:'canal',number:2,name:'異象與哀歌的水邊',reference:'以西結書 1:1–3；詩篇 137',passage:'Ezekiel 1:1-3;Psalms 137',person:'exile-waterbank-resident',heading:'回看擄民中的以西結，另聽哀歌',intro:'結1回到約雅斤被擄第五年、迦巴魯河邊的處境。詩137另有追想錫安與被要求唱歌的聲音，沒有點名同一河址；兩個閱讀入口不合成一次相遇。'},
+ {id:'home',number:3,name:'書信中的安居與盼望',reference:'耶利米書 29:1–14',passage:'Jeremiah 29:1-14',person:'exile-dwelling-resident',heading:'回看送來的信，也看眼前的生活',intro:'再回看西底加仍派遣使者時，從耶路撒冷送給巴比倫擄民的信。住下、栽種果園、為那城求平安與長期盼望同讀；不是毀城總覽結束後才寄出，也不是每戶已經立即安穩。'},
+].map(s=>({...s,spawn:exilePosition(s.id,17,24),startLookAt:exilePosition(s.id,-5,7,1),surfaces,target:[0,4,-6],overview:[41,29,45],human:{target:exilePosition(s.id,-4,7,1.4),offset:[7,.4,7]},extent:120,shadow:72,plan:94}));
+export const exileSegmentById=new Map(exileSegments.map(s=>[s.id,s]));
+export const exileObjects=[
+ {id:'exile-sequence',segment:'road',stop:'road',name:'不同事件與去向的記序盤',description:'分離的凹槽、托片與事件籌，幫助總覽約雅斤被擄、後來毀城、留地與不同去向、晚年獲釋。四個位置是現代閱讀分組，不表示四批相同人數、原文書或古代路線圖。',observation:'先讀誰、什麼時刻，再讀去向。約雅敬、約雅斤和西底加要分清；有人被擄，也有人留下，約雅斤後來獲釋不等於所有人都回家。',passage:'2 Kings 24-25'},
+ {id:'exile-waterbank',segment:'canal',stop:'canal',name:'水岸與渠道的剖面比較',description:'真開口槽底、兩岸土層與內部水體，讓人觀察水面和岸頂的高差；一側可移開。這是現代剖面教具，沒有測得的迦巴魯河寬、已認證河址或古代水工機械。',observation:'結1:1–3與詩137有各自的聲音和時序。看見同一剖面不能證明兩段就在同一現場；詩篇的豎琴與哀痛，也不能化為逼人唱歌或立刻開心的任務。',passage:'Ezekiel 1:1-3;Psalms 137'},
+ {id:'exile-dwelling',segment:'home',stop:'home',name:'住居、果園與書信的閱讀組',description:'移開原創家屋屋頂，觀察門洞、室內地面與旁邊果園土床，再看現代閱讀片。房屋布局、樹形和分件都是補足，閱讀片不冒充耶利米原信的載體或古字。',observation:'信從耶路撒冷送給在巴比倫的擄民；耶利米不是親自在這個模型旁帶大家蓋房。居住、果園、求平安與長期盼望連著讀，不把每戶土地、自由或立即成功當已知事實。',passage:'Jeremiah 29:1-14'},
+].map(o=>({...o,position:exilePosition(o.segment,-5,7,.82),approach:exilePosition(o.segment,-5,9.4),lookAt:exilePosition(o.segment,-5,7,1.5)}));
+export function exileWalkConfig(segment='road'){const s=exileSegmentById.get(segment)||exileSegments[0];return {...s,objects:exileObjects.filter(o=>o.segment===s.id),segments:exileSegments,segment:s.id,title:s.name,shortTitle:`${s.number} / 3 · ${s.name}`,era:'EXILE / 總覽與不同文本處境',destinations:true,recordedChild:true,teachingInspection:true,enter:'開啟聲音，走進本段',inspectionNote:'原創現代閱讀、地形及生活比較教具；不是原路線、古河測繪、原房屋或原信。',hint:'沿公共路線觀察並提問。先總覽、再分別閱讀不同時刻與文類；模型位置不表示古代距離，悲傷也不是必須克服才能完成閱讀的條件。',region:p=>p[0]<0?'記序與生活觀察區':'公共停留與導讀區'};}
+export function exilePOIs(s){const P=(id,name,action,slots,lookAt)=>({id:'exile-'+id,name,action,tags:['exile-resident'],weight:action==='Interact'?1.4:1,capacity:slots.length,slots:slots.map(([x,z])=>exilePosition(s,x,z)),lookAt,dwell:action==='Interact'?[7,18]:[4,14]});return [P('west','閱讀物件旁','Interact',[[-9,3],[-7.6,3]],[-5,7]),P('rest','安靜停留處','Idle',[[-12,21],[-10.6,21]],[-22,15]),P('north','遠處外望','LookAround',[[-9,-13],[-7.6,-13]],[-18,-28]),P('court','同行相遇','Idle',[[4,17],[5.4,17]],[0,3]),P('east','生活準備','Interact',[[23,4],[24.4,4]],[33,5]),P('shade','歇息區','Idle',[[23,25],[24.4,25]],[12,10]),P('look','背景觀察','LookAround',[[23,-12],[24.4,-12]],[31,-25]),P('south','公共通道','LookAround',[[0,27],[1.4,27]],[2,8])];}
+export function exileSpawnCandidates(s){const out=[];for(let x=-13;x<29;x+=2)for(let z=-16;z<30;z+=2)out.push(exilePosition(s,x,z));return out;}
