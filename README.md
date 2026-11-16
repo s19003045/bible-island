@@ -55,7 +55,7 @@ npm run preview
 
 ## 發佈
 
-Sites 網址：[讀聖經順起來](https://bible-island.starryswift8.chatgpt.site)。維持擁有者私人權限。五島整合已於 2026-11-16 部署；後續發布與來源證據見 [Sites 部署紀錄](docs/DEPLOYMENTS.md)。
+Sites 網址：[讀聖經順起來](https://bible-island.starryswift8.chatgpt.site)。維持擁有者私人權限。第六座詳細島「過約旦河」已於 2026-11-16 部署；後續發布與來源證據見 [Sites 部署紀錄](docs/DEPLOYMENTS.md)。
 
 Sites 專案識別與靜態產物設定保存在 `.openai/hosting.json`；`.sites/` 是本機發佈用的獨立來源倉庫，不提交至 GitHub。
 
