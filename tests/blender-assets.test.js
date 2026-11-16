@@ -47,12 +47,12 @@ test('individual skeletons and clocks animate independently, freeze at zero time
   one.dispose();two.dispose();assert.equal(scene.children.length,0);
 });
 
-test('detail selection caps eight nearby adults, preserves carrier/child silhouettes and prioritises dialogue',()=>{
+test('detail selection caps eight nearby people, includes the new child/carrier models and prioritises dialogue',()=>{
   const actors=Array.from({length:20},(_,i)=>actor('resident-'+i,i+1));
   const child=actor('child');child.scale=.66;const carrier=actor('water-carrier');const hidden=actor('hidden');hidden.state.visible=false;
   const far=actor('far',60),talker=actor('talker',15);talker.state.talking=true;
   const chosen=selectDetailedResidents([...actors,child,carrier,hidden,far,talker],[0,1.7,0]);
-  assert.equal(chosen.length,8);assert.ok(chosen.includes(talker));for(const a of [child,carrier,hidden,far])assert.ok(!chosen.includes(a));
+  assert.equal(chosen.length,8);assert.ok(chosen.includes(talker));for(const a of [child,carrier])assert.ok(chosen.includes(a));for(const a of [hidden,far])assert.ok(!chosen.includes(a));
   assert.deepEqual(selectDetailedResidents(actors,null),[]);
   assert.deepEqual(selectDetailedResidents(actors,[0,1.7,0]),selectDetailedResidents(actors,[0,1.7,0]));
 });

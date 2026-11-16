@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 // Appearance only. Behaviour, collision and clocks stay with the NPC system.
-export function createResidentGrounding(root,groundAt) {
+export function createResidentGrounding(root,groundAt,{ankleHeight=.105,liftHeight=.075}={}) {
   root.updateMatrixWorld(true);
   const hips=root.getObjectByName('hips'),legs=['L','R'].map(side=>{
     const thigh=root.getObjectByName('thigh'+side),shin=root.getObjectByName('shin'+side),foot=root.getObjectByName('foot'+side);
@@ -22,8 +22,8 @@ export function createResidentGrounding(root,groundAt) {
       const leg=legs[i],target=leg.foot.getWorldPosition(new THREE.Vector3()),h=groundAt(target.x,target.z);
       const normal=new THREE.Vector3(-(groundAt(target.x+.1,target.z)-groundAt(target.x-.1,target.z))/.2,1,-(groundAt(target.x,target.z+.1)-groundAt(target.x,target.z-.1))/.2).normalize();
       if(!Number.isFinite(h)||!Number.isFinite(normal.y)||normal.y<.65)normal.copy(up);
-      const u=((phase+i*.5)%1+1)%1,t=(u-.58)/.42,lift=u<.58?0:.075*Math.sin(Math.PI*t)**2*walkWeight;
-      target.y=(Number.isFinite(h)?h:base[1])+.105*scale/normal.y+lift*scale;
+      const u=((phase+i*.5)%1+1)%1,t=(u-.58)/.42,lift=u<.58?0:liftHeight*Math.sin(Math.PI*t)**2*walkWeight;
+      target.y=(Number.isFinite(h)?h:base[1])+ankleHeight*scale/normal.y+lift*scale;
       targets.push({target,normal,orientation:leg.foot.getWorldQuaternion(new THREE.Quaternion())});
     }
     // Lower the visible pelvis only when a rear foot on a slope needs more reach.

@@ -32,8 +32,8 @@ export function attachBlenderObject(root,id,onReady=()=>{},load=loadBlenderAsset
   return {ready,dispose(){disposed=true;}};
 }
 
-export const residentEligible=actor=>(actor.scale||1)>=.9&&actor.id!=='water-carrier';
-export const residentModelFor=actor=>['stone-worker','street-vendor'].includes(actor.id)?'resident-worker':'resident';
+export const residentEligible=actor=>(actor.scale??1)>=.5;
+export const residentModelFor=actor=>actor.id==='water-carrier'?'resident-carrier':(actor.scale??1)<.9?'resident-child':['stone-worker','street-vendor'].includes(actor.id)?'resident-worker':'resident';
 export function selectDetailedResidents(actors,camera,previous=new Set(),limit=8) {
   if(!camera)return [];
   return actors.filter(a=>residentEligible(a)&&a.state.visible!==false).map((a,index)=>{
@@ -50,6 +50,7 @@ export function residentAction(state) {
 }
 
 export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.state.position[1]}={}) {
+  const definition=blenderModels[residentModelFor(actor)];
   const root=clone(gltf.scene),materials=new Set(),mixer=new THREE.AnimationMixer(root);
   const actions=new Map(gltf.animations.map(clip=>{const a=mixer.clipAction(clip);a.play();a.paused=true;a.setEffectiveWeight(0);return [clip.name,a];}));
   const weights=new Map([...actions.keys()].map(n=>[n,n==='Idle'?1:0]));
@@ -69,14 +70,14 @@ export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.st
       if(source.name==='tunic')o.material.color.offsetHSL((index%3-1)*.025,0,(index%4-1.5)*.018);
     }
   });
-  root.scale.setScalar((actor.scale||1)*1.70/blenderModels.resident.height);
-  const groundFeet=createResidentGrounding(root,groundAt),lastPosition=[...actor.state.position];
+  root.scale.setScalar((actor.scale??1)*1.70/definition.height);
+  const groundFeet=createResidentGrounding(root,groundAt,{ankleHeight:definition.ankleHeight??.105,liftHeight:definition.liftHeight??.075}),lastPosition=[...actor.state.position];
   const bones=[];root.traverse(o=>{if(o.isBone)bones.push({bone:o,position:o.position.clone(),quaternion:o.quaternion.clone(),scale:o.scale.clone()});});
   let first=true,gaitTime=actor.state.time%1;
   return {root,actions,mixer,
     update(dt=0){
       const state=actor.state,target=residentAction(state),blend=first?1:1-Math.exp(-Math.max(0,dt)*7);
-      if(!first&&dt>0)gaitTime+=Math.hypot(state.position[0]-lastPosition[0],state.position[2]-lastPosition[2])/(.8*root.scale.x);
+      if(!first&&dt>0)gaitTime+=Math.hypot(state.position[0]-lastPosition[0],state.position[2]-lastPosition[2])/((definition.cycleDistance??.8)*root.scale.x);
       lastPosition.splice(0,3,...state.position);
       for(const [name,action] of actions){
         const weight=weights.get(name)+((name===target?1:0)-weights.get(name))*blend;weights.set(name,weight);

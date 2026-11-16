@@ -325,6 +325,8 @@ for j in range(28):
     tube('tool-trace'+str(j),[(r*cos(a),.069,r*sin(a)),((r+.001)*cos(a),.16,(r+.001)*sin(a)),(.148*cos(a),.255,.148*sin(a))],[.0008,.0012,.0007],chalk,sides=5)
 export_asset(stone_scene,'stone-vessel','stone-vessel.glb')
 
+exec(compile((ROOT/'scripts/blender/resident-variants.py').read_text(),str(ROOT/'scripts/blender/resident-variants.py'),'exec'),globals())
+
 exec(compile((ROOT/'scripts/blender/tabernacle-props.py').read_text(),str(ROOT/'scripts/blender/tabernacle-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/solomon-props.py').read_text(),str(ROOT/'scripts/blender/solomon-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/herod-props.py').read_text(),str(ROOT/'scripts/blender/herod-props.py'),'exec'),globals())
@@ -350,6 +352,8 @@ def render_preview(s, target, location, filename, orthographic):
     bpy.ops.render.render(write_still=True)
 render_preview(scene,(0,0,.88),(2.2,-5,2.3),'blender-resident.png',1.95)
 render_preview(worker_scene,(0,0,.88),(2.2,-5,2.3),'blender-resident-worker.png',1.95)
+render_preview(child_scene,(0,0,.56),(2.2,-5,2.1),'blender-resident-child.png',1.33)
+render_preview(carrier_scene,(.06,0,.88),(2.2,-5,2.3),'blender-resident-carrier.png',1.95)
 render_preview(pot_scene,(0,0,.27),(1.4,-2,1.3),'blender-clay-vessel.png',.75)
 render_preview(woven_scene,(0,0,.37),(1.4,-4,1.7),'blender-woven-sample.png',1.5)
 render_preview(joint_scene,(0,0,.42),(1.8,-4,1.8),'blender-board-joint.png',1.03)

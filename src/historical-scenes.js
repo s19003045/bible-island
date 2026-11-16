@@ -657,7 +657,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   // successive stair edges and blocking the alley at unintended heights.
   if(id==='jerusalem')prepareJerusalemResidents(k.actors,walkModel);
   // Body clearance is independent of the camera's LOD selection.
-  if(['jerusalem','herod'].includes(id))for(const a of k.actors)if(residentEligible(a))a.collisionRadius=.33*(a.scale||1);
+  if(['jerusalem','herod'].includes(id))for(const a of k.actors)if(residentEligible(a))a.collisionRadius=(a.id==='water-carrier'?.49:.33)*(a.scale||1);
   const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs,allowRetreat:true,allowedPosition:(a,p)=>jerusalemAllowed(a,p,walkModel)}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
   let npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}

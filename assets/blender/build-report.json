@@ -4,8 +4,8 @@
   "assets": {
     "resident": {
       "file": "models/judean-resident.glb",
-      "bytes": 1257964,
-      "sha256": "1a1ef60ac2726850bda9307e624e9d88252e60cfb2873224822a66e661fe6c8b",
+      "bytes": 1258100,
+      "sha256": "03184317784f2020235ba31f7533a2056053cd0c2788e54b0ed09c28b0c15eaa",
       "triangles": 32888,
       "animations": [
         "Idle",
@@ -17,8 +17,8 @@
     },
     "resident-worker": {
       "file": "models/judean-worker.glb",
-      "bytes": 1203608,
-      "sha256": "adba81fd7d0dcac038482bea3311d82316410d49536203bcf7f1ec84d495bd6e",
+      "bytes": 1203748,
+      "sha256": "fdb1eb98aef4f47545b1260370d58805d8b5b41a60738df0ed9f6d8f0be3dd40",
       "triangles": 31328,
       "animations": [
         "Idle",
@@ -42,10 +42,36 @@
       "triangles": 3224,
       "animations": []
     },
+    "resident-child": {
+      "file": "models/judean-child.glb",
+      "bytes": 1152832,
+      "sha256": "a142bc5cc3f874a3fbc8d67ed2c69dc7b8b8a0a220298b1031cc1685c82712be",
+      "triangles": 29952,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ]
+    },
+    "resident-carrier": {
+      "file": "models/judean-carrier.glb",
+      "bytes": 1324040,
+      "sha256": "9325a964db22aa86ae08735540c032cf820732040b49550d8d31f1a454641030",
+      "triangles": 34636,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ]
+    },
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "686af8ffc8ecdba2d19901cd60357c4b52af7b854560f72fbc3d9ffb9523a790",
+      "sha256": "eafbd63a181e9e3dd704cfe445948840542d93674214b1cf023a71c3610876ef",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -54,7 +80,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "d03ef1171a80c8500a41a0bb9abd5e76f5fdbd5024d5dd490d5325ef67c1a5cb",
+      "sha256": "a5fad4a97d0d889cbf7fa31ec5c6498e4dd7865386eb925dd277ddbc6c286173",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -72,7 +98,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "e7093ce023f4905f437c99d6ec88e5704b577954a832ade683244d046218a1d9",
+      "sha256": "d5344a0fad21abd8ec1942682e8d523d15e8e43198e2e85c111d65d94aa022ee",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -97,7 +123,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "e5b4dec4cc32626ce4ebb0c9b145dc2fc4297afad0ac3a069b611e1337fc6d84",
+      "sha256": "7915a16a81c327ea7bb4f822960fd1f0a0cb5ea1dc6a7ea3705ec8d703ae07d6",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -106,7 +132,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "4c5853f9c2496bfc86ce72cf6f72cf3c63a3ec5d35e40b059480e46f36dee716",
+      "sha256": "ad815d48666e06ac121c8ed325de54314f9991d089be3d0364bc45251ff6386b",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -115,7 +141,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "1ada3449b0eb8c49cc4f18767be835af82d34452da0f6fe6b3fc0838358f024e",
+      "sha256": "604bec67b4ed50e2d5e60f2e1a088e3de91370e512ecd862b1106921523d750c",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -126,7 +152,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "5303ffe42edff94c1b9f04a4d9081e86c60a004141bcda0758f60ba0497967c1",
+      "sha256": "09c286fa60fcd2f19e96901e751bfd0eeda77d182d93c3f7f970254a9f896344",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -137,7 +163,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "c2dfef68bccee5c20e509baddb5deb9d8ba1f2031112b49a33f75fde4f6b9179",
+      "sha256": "a341a0ee2a1a1fbace5a69020bf49cd55c7bc3e9037f5c4045bbfec0acf04832",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -155,7 +181,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "3061c3994bd950d1ec96786a9a4bab709b7126478d6075b47d8c97d13c95165a",
+      "sha256": "ff92e531c5374b3cee7103c42ead2ea0c6bcb5236b14bb46bb1fd05d3b4f3fa8",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,

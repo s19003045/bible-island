@@ -61,7 +61,10 @@ def refine_face(head):
 def planted_walk(t,frame):
     # A 0.464 m stroke over 58% of a one-second cycle plants a foot at 0.8 m/s.
     # Both feet briefly support the body. No behavioural timer is introduced.
-    shift=-.044+.006*cos(4*pi*t)
+    rest_hip=rig.data.bones['thighL'].head_local
+    adult_length=sum((Vector(xyz(*bones[name][1]))-Vector(xyz(*bones[name][0]))).length for name in ['thighL','shinL'])
+    leg_scale=(rig.data.bones['thighL'].length+rig.data.bones['shinL'].length)/adult_length
+    shift=-.05*rest_hip.z+.006*leg_scale*cos(4*pi*t)
     rig.pose.bones['hips'].location.y=shift
     rig.pose.bones['hips'].keyframe_insert(data_path='location',frame=frame)
     bpy.context.view_layer.update()
@@ -69,7 +72,8 @@ def planted_walk(t,frame):
         if phase<.58:f=.232-.464*phase/.58;lift=0
         else:
             u=(phase-.58)/.42;s=u*u*(3-2*u);f=-.232+.464*s;lift=.075*sin(pi*u)**2
-        hip=Vector(xyz(sign*.092,.88+shift,0));ankle=Vector(xyz(sign*.095,.105+lift,f))
+        hip=rig.data.bones['thigh'+side].head_local.copy();hip.z+=shift
+        ankle=rig.data.bones['foot'+side].head_local.copy();ankle.y-=f*leg_scale;ankle.z+=lift*leg_scale
         upper=rig.data.bones['thigh'+side];lower=rig.data.bones['shin'+side]
         l1=upper.length;l2=lower.length;delta=ankle-hip;distance=min(delta.length,l1+l2-.00001);axis=delta.normalized()
         bend=Vector((0,-1,0));bend=(bend-axis*bend.dot(axis)).normalized()
