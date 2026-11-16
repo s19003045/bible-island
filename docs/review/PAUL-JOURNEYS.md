@@ -45,3 +45,5 @@
 河岸修正已另行發佈：Sites 來源 `554ae67850b0be219dc3d759dc7d7a3bb0f8077c`，部署 `appgdep_6afac03ef8cc8191b53d6ae126457b92`，`2026-11-16T08:35:24.450642+00:00` succeeded。完整來源及版本見部署紀錄；最終單檔試閱 86,828 KiB。正式頁也已確認親子模式的第二題及未解鎖選項，然後恢復一般閱讀。
 
 最終正式入口 `index-CvQi4r4E.js` 已在頁面 DOM 核對，console warning／error 為空；`.qa/paul-philippi-final-sites.png` 已檢視河岸及遠景。兩個預覽頁恢復全景與自主動畫，本機研讀、正式一般，未停在交談或自動行走中。三件近景完整 UI 走訪仍待補驗，沒有將這個里程碑寫成全 Goal 完成。
+
+亞伯拉罕批次期間補驗（同一正式站先前入口 `index-CvQi4r4E.js`）：腓立比從安靜探索沿路到布料，E 互動開啟真正 GLB，旋轉後返回，紀錄顯示 1／1；帕弗同樣完整走到商船教具，E 開近景，拆開甲板、旋轉、還原，再返回顯示 1／1。畫面 `.qa/paul-textiles-site-inspection.png`、`.qa/paul-ship-site-inspection.png` 已實際檢視。以弗所也已從安靜探索走到銀匠工位，E 開啟實際 GLB、旋轉，再返回顯示 1／1；`.qa/paul-silverwork-site-inspection.png` 已檢視。三件完整 UI 走訪補驗完成，商船拆合後已還原，觀察紀錄仍與已讀經文分開。

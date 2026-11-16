@@ -178,3 +178,17 @@
 - 先前完整 155 項回歸通過；視覺修正後，保羅與全詳細場景專測 10／10、內容／語法、正式建置及 86,828 KiB 離線試閱通過。本機 `.qa/paul-philippi-river-final-local.png` 已檢視。最終正式入口產物 `index-CvQi4r4E.js`。
 - 第一版正式頁的親子模式已確認第二題與三個未解鎖選項，未誤記為已完成；一般閱讀偏好已恢復。完整近景手動走訪／拆合與真人審聽仍接續。
 - 最終正式頁重新載入後已核對 `index-CvQi4r4E.js`，console warning／error 為空；`.qa/paul-philippi-final-sites.png` 已實際檢視，河道遠景無前述黑色遮擋。正式頁保持一般閱讀／全景、自主動畫及名稱顯示；本機保持研讀／全景與安靜偏好。兩頁皆未留在自動行走或交談中。
+
+## 2026-11-16：亞伯拉罕三章，第九座詳細島
+
+- 本機來源：`c55e8c80ff416ae26c38f2ba0df0b2f9d0ed1b2a`，246 個追蹤來源與 Sites checkout 逐檔相符。
+- Sites source commit：`cb1cfab41a75cca3fcdffffa42a651950d5450bd`。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_6f0522c1e4d881918f5540a004f79917`。
+- Deployment：`appgdep_6afac8d58c0c819193c678fdbae0d135`。
+- 平台結果：`succeeded`，`2026-11-16T09:12:08.472654+00:00`。
+- 正式網址：[亞伯拉罕的旅程](https://bible-island.starryswift8.chatgpt.site/#island=abraham&chapter=altar)。保留既有擁有者私人權限，發佈前核對只允許 owner、無群組及外部訪客。
+- 三章按創 12、18、21 排序，保留原 stop ID；各有不同人物、觀察物、地面及空間聲音。每章 13 位自主人物；新增三種獨立 Blender 人物、三件器物、一種羊及 24 段配音。全站 52 份 GLB、30 份 MP3、27 位可交談角色與 216 段 cue。
+- 完整回歸 163／163；後續地表、帳棚與山徑／岩群修正的場景／聲音專測 13／13，研讀旁註的內容／模式專測 18／18；內容、語法、正式建置及 99,820 KiB 離線試閱正常。來源重開確認 52 個非空 Blender 場景、25 份獨立骨架及五條動作，七份新素材逐張渲染檢視；旅人手布穿插另修正。正式入口 `index-D-4PlCti.js`。
+- 本機全景、研讀題、單一對話入口及 CSBT 已檢視，安靜探索已實際啟動；三件器物完整 UI 走訪及正式頁結果接續記錄於 [亞伯拉罕驗收](review/ABRAHAM-JOURNEY.md)。其餘十五島、尚未完成的 UI 補驗、完整真人聽驗、獨立歷史審稿及實體手機驗收繼續，Goal 保持進行。
+
+- 正式頁已核對 `index-D-4PlCti.js`，接待角色問答與 `GEN.18.1-8.CSBT` 正確，切井水章會結束舊對話並同步第三幕、牧群照顧者與全景。親子第三題未解鎖狀態及一般模式恢復均已看到，console warning／error 為空。畫面 `.qa/abraham-host-sites.png`、`.qa/abraham-well-sites.png` 已檢視。保羅三件近景的正式 UI 走訪、旋轉、商船拆還與各章 1／1 紀錄已全數補驗，見保羅文件；亞伯拉罕石壇的本機完整走訪與拆還也已通過。

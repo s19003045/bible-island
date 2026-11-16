@@ -32,3 +32,9 @@
 完整回歸 163／163 通過；其後近地表顏色、近帳棚與營地層次修正的場景／音效專測 13／13 通過，研讀旁註與內容／模式專測 18／18 通過；內容及語法檢查正常，最終自包含離線試閱 99,820 KiB。亞伯拉罕八項測試包含長時間 NPC 行程／容量／間距、穿越移動人群的實際控制器、三種更新率下坡、真正 GLB 的可拆構造與空心井、抵達後互動視線、獨立角色與羊頭節點、24 段逐字音訊及跨島／跨模式資料隔離。這些檢查不替代獨立歷史審稿、完整人工聽驗或實體手機驗收。
 
 本機：[築壇](http://127.0.0.1:5173/#island=abraham&chapter=altar)、[接待](http://127.0.0.1:5173/#island=abraham&chapter=tent)、[井水](http://127.0.0.1:5173/#island=abraham&chapter=well)。本機全景、研讀題目、章節、單一對話角色和 CSBT 入口已檢視；`.qa/abraham-local-overview-final.png` 是地表黑面修正後畫面，後續再加入山徑與岩群。三件器物完整 UI 走訪／拆合尚待接續，不能以模型射線測試替代手動通過。正式結果見 [部署紀錄](../DEPLOYMENTS.md)。
+
+Sites 已成功發佈至 [原私人網址](https://bible-island.starryswift8.chatgpt.site/#island=abraham&chapter=altar)。本機來源 `c55e8c80ff416ae26c38f2ba0df0b2f9d0ed1b2a` 的 246 個追蹤檔案逐檔同步；Sites 來源 `cb1cfab41a75cca3fcdffffa42a651950d5450bd`，部署 `appgdep_6afac8d58c0c819193c678fdbae0d135`，於 `2026-11-16T09:12:08.472654+00:00` 回傳 succeeded。正式入口為 `index-D-4PlCti.js`，保留擁有者私人權限，無新增群組或外部訪客。完整建置成功；Three.js 主程式仍有大於 500 kB 提示，未宣稱手機 FPS 或資源效能已驗收。
+
+本機手動補驗：安靜探索後沿路走到石壇，E 開啟實際 GLB、抬頂層、旋轉、還原並返回；紀錄為 1／1，未誤記為已讀經文。`.qa/abraham-altar-inspection-local.png` 已檢視。切至接待章後，人物、第二項研讀任務、器物與章節連結同步，已開始前往接待器皿。其餘兩件近景仍接續。
+
+正式頁重新載入後 DOM 已核對 `index-D-4PlCti.js`。接待章只有本段家中居民；提問接待需要後顯示水、樹蔭、食物及亞伯拉罕／撒拉／僕人分工，連到 `GEN.18.1-8.CSBT`，並有餅數的追問。配音按鈕完成載入後回到可重播狀態，console warning／error 為空；沒有由此宣稱完整人工聽驗。切到井水章會結束舊對話、回到全景並同步第三幕與牧群照顧者；親子模式顯示第三題及未解鎖選項，之後已恢復一般閱讀。正式畫面 `.qa/abraham-host-sites.png`、`.qa/abraham-well-sites.png` 已檢視，後者包含最終山徑與岩群。
