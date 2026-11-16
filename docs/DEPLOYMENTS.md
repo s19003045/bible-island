@@ -346,3 +346,14 @@
 - 本機已核對三模式前置／0／3隔離、親子提示與一般問答錄音播放、沿路抵達並開啟木接合近景。旋轉拆層操作遇瀏覽器CDP逾時，未算人工通過。正式新程式載入與模式、配音、三教具沿路走訪接續補驗；發布成功不替代這些手動結果。
 
 - 第31版人工追加：正式reload已核對`index-DZeVQOH-.js`；三模式前置／進度隔離、親子與一般配音播放、field／visit夜色、空槽沿路抵達／旋轉及1／1紀錄完成。本機三件教具均沿路、旋轉，家屋與接合拆還完成。正式家屋與接合兩件仍待沿路補驗；完整真人聽驗等限制保留。兩頁最後回一般／manger birth／全景、動畫開、安靜，warning／error=[]。正式近景截圖失敗及2133／1244右側裁切記在驗收；未重啟dev server或重發網站。
+
+
+## 2026-11-17：第十八島載入備援修正（第32版）
+
+- root來源`63c18e60020f483e3b43fa59ebc0d9540e2d8ff8`，Sites來源`0806bbb3847445a6d33d1150438ec96da1a42611`。401個追蹤來源逐檔SHA256相等；此封裝不含第19島未註冊的研究／教具草稿。83份GLB及正式Blender來源未改，只修正簡化空槽備援的面繞序、增加4方向正面射線回歸與維護第31版驗收文件。
+- 同站owner-private及原分享範圍保留。第32版`appgprj_6af95ea0dac4819182957156725483aa~appgver_d4a2b890c49c81919c31c145a0a2f47e`；部署`appgdep_6afb375e89988191aa86ab79ae993ee8`於`2026-11-16T17:03:40.550817+00:00`返回succeeded，未重複poll／部署。平台回讀source SHA相符。
+- archive`/tmp/bible-island-63c18e6-nativity-fallback-sites.tar.gz`，91,612,552bytes，SHA256=`bcd681f61c90769c224bfd314447194bdfe96409bfaaabab62e4f8c9239c2d89`；平台148檔／135,229,440bytes，內容hash=`d7f4ebe4ee883f780e665c0dc7b13c265d29a9e2fbfdd82d6c90690b4fe250bd`。
+- 252／252全站回歸、內容／語法、112模組正式建置及178,013KiB離線試閱通過。Sites同源建置1.39s；入口`index-I9B82J-T.js`、world`world-Mk5-ndkd.js`、vessels`vessels-D3wzyh6F.js`、three`three-DWw92ymX.js`、CSS`index-zmRD_4cI.css`。既有大chunk提示與實體裝置驗證限制保留。
+- 正式原分頁已送reload；本次修正不把第31版人工操作追稱為第32版的新一輪全套操作。教具／配音及頁面行為未改；原正式家屋、接合兩件沿路補驗繼續。正式入口仍為 [第十八島](https://bible-island.starryswift8.chatgpt.site/#island=nativity&chapter=manger&phase=birth)。
+
+- 第32版頁面回讀：正式既有分頁已reload並核對`index-I9B82J-T.js`；一般／manger／birth、動畫開、modal寬0。兩頁warning／error=[]，原兩個分頁保留。沒有為同一素材重跑三件已完成本機走訪；正式家屋及接合待辦繼續。
