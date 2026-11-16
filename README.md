@@ -1,80 +1,50 @@
 # 讀聖經順起來 · Bible Island
 
-給兒童到成人的 3D 聖經主題群島。從建築、器物與古代生活背景，走回經文。
+給兒童到成人的3D聖經主題群島，從建築、器物與古代生活背景走回經文。
 
-## 本版功能
+[正式Sites](https://bible-island.starryswift8.chatgpt.site)維持擁有者私人權限。2026-11-17已發布第39版：24座詳細島、74探索點；最新來源、封裝及實際操作證據見[部署紀錄](docs/DEPLOYMENTS.md)。
 
-- 24 座可選取的主題島、74 個有經文出處的探索點。
-- 摩西會幕、所羅門聖殿、第二聖殿初期、希律擴建聖殿、出埃及、過約旦河、耶路撒冷、保羅旅程等程序化模型。
-- 依五個時代組織的連續海域群島；橋、閱讀航線、五組路線、關係卡、比較與可取消跨島轉場，另有旋轉、縮放、鳥瞰及日夜控制。群山與流雲環繞中央水域；橋與航線表示閱讀關係。
-- 會幕與聖殿剖面、逐站導覽、經文外連及復原依據。
-- 十九座詳細島提供三種學習流程：親子觀察任務與人物提示、一般故事逐幕導覽、研讀資料對讀與跨場景比較。模式、各島各模式進度及研讀札記分別保存在目前瀏覽器。
-- 其餘島嶼保留三種文字導讀，並標明完整互動流程的適用範圍；支援書卷、器物、主題搜尋與時代及舊新約篩選。
-- 十九島五十七位角色的一般／研讀與親子對話皆有對應本機配音，共 456 段、60 份 MP3；學習導讀另用選按的瀏覽器中文朗讀，無可用聲音時仍可閱讀。
-- 十九座詳細島皆可在指定區域第一人稱步行，沿路尋找自主 NPC、交談及觀察器物；提供地面吸附、矮階跨越、空間音效與獨立音樂控制。出埃及以製磚、預備出發、渡海三個獨立章節探索；渡海隊伍單向前進。保羅以帕弗、腓立比、以弗所分別選取三次旅程的代表片段，附各次行程摘要及赴羅馬另讀入口。亞伯拉罕以築壇、帳棚接待與井水協議分章探索，七隻母羊羔另放作挖井見證。約瑟以被帶離家鄉、儲糧與饑荒、相認及返鄉安排分章，不指定法老或王朝。西奈依嗎哪、供水與山前預備分章，不混同出 17 與民 20，也不指認現代山址。路得依拾穗、夜與黎明、城門見證分章，分清得 4 與申 25／利 25 的條文範圍。大衛依牧地、王城、遷移與安放分章；第三章新車、中止、三個月停留、後段運送與帳篷按時刻顯示，牧地有獨立 POI 羊群。分裂王國依示劍交涉、兩處設立、阿摩司較後世代分章；摩5城門處境與摩8量衡延伸可在近景分層比較。被擄以多次事件總覽、水邊的異象與哀歌、書信中的安居分章；三件教具可移托片、側岸及屋頂，分清不同時刻與文類。尼希米依夜察／提出／工段、警戒／牆完工／安門、誦讀講解分章與時刻，不把城牆、門扇、房屋及後來節期合為同時。新約背景以諭令與家庭移動、銀幣交涉、向不同聽眾發言三章觀察；旁置書寫材料不冒充保羅講稿。降生與成長分三章七個閱讀窗口：馬槽／夜間牧地／前往、拿撒勒成長／另地節期對讀／返回，以及馬可的成年返鄉；不用同一佈景合併人生階段。加利利有湖岸五時刻、聚集院落三時刻與家屋三時刻，呼召與較後風浪、教導與權柄、通達及完整回應分清；船段、屋面及並置石材是原創比較。各島入口及驗證見 [五島套用計畫](docs/FOCUS-ISLAND-ROLLOUT.md)。
-- localStorage 收藏與閱讀足跡；支援手機版、鍵盤、減少動態效果與 WebGL 失敗時的文字閱讀。
+## 功能
 
-## 開發
+- 群山、流雲與連續水域環繞群島；橋與閱讀航線、關係卡、搜尋、篩選及跨島轉場表示閱讀關係，不冒充古代地圖。
+- 24座島均有成人公尺尺度的詳細場景、鳥瞰／人物尺度／平面視角、可行走公共區、器物觀察、自主NPC與情境對話。章節與時刻按文本分開地方、先後和文類。
+- 三種不同學習流程：一般閱讀逐幕回讀；親子先觀察、人物提示再作答；深入研讀先核對資料、辨別依據並記札記。各島各模式進度獨立，器物觀察不等於讀經完成。
+- NPC採每個實例獨立種子與計時、加權POI、容量預約、分離避讓、平滑朝向及偶發短談；主角有矮階跨越、坡度限制、地面吸附及視覺高度平滑。
+- 101份本機GLB：28種人物、71件觀察物及2種羊。獨立骨架與動作、距離步態、斜坡足部IK、近遠景細節分級；指定教具能拆層／還原。可編輯來源在assets/blender/bible-assets.blend。
+- 72位可交談角色、576個對應一般／親子cue、75份本機MP3；另有合成環境音、腳步、獨立音量與選用現代原創音樂。學習導讀可選瀏覽器中文朗讀，無語音時保留字幕。
+- 經文外連統一YouVersion 312 CSBT；跨章跨卷各有入口。收藏、足跡與札記只存目前瀏覽器，無跨裝置同步或流量追蹤。支援鍵盤、窄螢幕、減少動態與WebGL失敗時文字閱讀。
 
-需求：Node.js 18 或以上；建議 Node.js 22 LTS。
+最新四島見[比喻](docs/review/PARABLES-CHAPTERS.md)、[同席苦難與清晨](docs/review/PASSION-CHAPTERS.md)、[聚集日常與安提阿](docs/review/CHURCH-CHAPTERS.md)、[書信](docs/review/LETTERS-CHAPTERS.md)。逐島入口及範圍見[完整工作表](docs/BLENDER-AND-REMAINING-ISLANDS.md)。
+
+## 開發與驗證
+
+需求Node.js18以上，建議22LTS。
 
 ```sh
 npm ci
 npm run dev
-```
-
-瀏覽 http://localhost:5173 。
-
-```sh
 npm run check
 npm test
 npm run build
 npm run preview
 ```
 
-建置產物位於 `dist/`，可放在一般靜態網站主機。Vite 使用相對資源路徑，支援 GitHub Pages 的專案子目錄。
+開發入口http://localhost:5173，建置輸出dist/。採原生JavaScript ES Modules、Three.js0.180.0與Vite6；相對資源路徑可供靜態主機使用，不依賴外部模型服務或CDN。`npm run review:bundle -- .qa/review.html`可產生自包含離線試閱；目前24島包在.qa/twenty-four-islands-review.html。
 
-## 架構
+最新全來源回歸51檔319項通過（含低幀率修正）；內容24島74點、語法、正式建置與離線試閱亦通過。各島文件分開記錄程式驗證與實際瀏覽器操作，未完成項及觀察環境限制如實保留。
 
-完整的產品原則、歷史復原規範、技術架構、NPC／移動／音訊機制、三種學習流程、功能適用範圍與驗收方式，見 [實作原則與技術總整理](docs/IMPLEMENTATION-PRINCIPLES.md)。
+## 原則與架構
 
-- `src/content.js`：主題、經文、閱讀深度、熱點、空間位置與關係的單一內容來源。
-- `src/world.js`：Three.js 場景、程序化模型、InstancedMesh 批次、OrbitControls、射線點選、鏡頭與環境。
-- `src/main.js`：DOM 介面、篩選、導覽、深連結、收藏與 WebGL 失敗回退。
-- `src/progress.js`：本機進度與導覽步驟的純函式。
-- `scripts/check-content.js`：內容完整性與關係連結驗證。
-- `docs/PLAN.md`：內容、互動、階段規劃與已知限制。
+[實作原則與技術](docs/IMPLEMENTATION-PRINCIPLES.md)涵蓋證據分層、模式、NPC、移動與音訊。[Blender來源說明](assets/blender/README.md)與逐島素材交接列原創幾何、研究界線與驗證。
 
-技術為原生 JavaScript ES Modules、Three.js 0.180.0 與 Vite 6。模型是本專案自行製作，未複製參考網站的程式或美術素材。字型優先使用系統中文字型；3D 與介面不依賴外部 CDN。
+- src/content.js與各島content／exploration模組：主題、經文、關係、章節、時刻及公共路線。
+- src/world.js、historical-scenes.js與各島scenes：Three.js、批次幾何、鏡頭、場景及詳細素材載入。
+- src/main.js、learning-model.js與narrative-chapters.js：互動、三模式、進度、札記及深連結。
+- npc-system.js、walk-controls.js與character-controller.js：自主行為、玩家路線及地面控制。
+- scene-audio.js、voice-manifest.json與blender-manifest.js：本機媒體、cue及觀察控制。
 
-## 內容原則
+模型與文字為本專案原創，未複製參考網站程式或美術。經文描述、考古／文獻研究、現代復原和詮釋分層；不把模型當原物認證，不強指定出埃及年代、路線或未確認原址。人物仍有風格化選擇；獨立歷史專家簽核、完整真人聽驗與實體手機效能未宣稱完成。
 
-本網站為閱讀輔助教材；群島全景是閱讀關係示意，十九座詳細場景使用公尺尺度的程序模型與 Blender 素材。經文描述、考古參考、示意復原與經文詮釋分別標示。新約時期的希律聖殿仍屬第二聖殿；出埃及年代與路線不強制指定為單一考證結論。網站文字為自行撰寫的摘要，完整經文透過外連閱讀。
+## 發布
 
-閱讀足跡與收藏僅保存在目前瀏覽器，無登入、無跨裝置同步。無流量追蹤。經文連結由讀者自行開啟第三方網站。
-
-## 發佈
-
-Sites 網址：[讀聖經順起來](https://bible-island.starryswift8.chatgpt.site)。維持擁有者私人權限。第十九座詳細島「加利利的湖與村落」已於2026-11-17發布第33版；後續發布與來源證據見 [Sites 部署紀錄](docs/DEPLOYMENTS.md)。
-
-Sites 專案識別與靜態產物設定保存在 `.openai/hosting.json`；`.sites/` 是本機發佈用的獨立來源倉庫，不提交至 GitHub。
-
-附 `CI` 工作流程驗證內容、測試及建置。另附手動觸發的 GitHub Pages 部署流程；倉庫擁有者需先在 Settings → Pages 將來源設為 GitHub Actions，再執行該流程。未啟用 Pages 時，推送原始碼不等於網站已上線。
-
-## 研究來源
-
-- 經文連結統一採用 [YouVersion CSBT 中文標準譯本](https://www.bible.com/zh-TW/versions/312)。跨章、跨書卷參照提供各段的獨立連結；主題入口可展開「選擇章節」。
-- [St Andrews Encyclopaedia of Theology — The Temple in the Christian Bible](https://www.saet.ac.uk/Christianity/TheTempleintheChristianBible)
-- [The Israel Museum — Collection Galleries / Jerusalem Model](https://www.imj.org.il/ar/node/104)
-- [Bible Gateway — Exodus route](https://www.biblegateway.com/learn/topics-themes/commentaries/exodus-route-from-egypt/)
-- 各探索點列示的聖經書卷與章節。
-
-## 詳細歷史場景試閱
-
-會幕、所羅門聖殿、新約聖殿、出埃及、耶路撒冷、過約旦河、歸回後第二聖殿、保羅旅程、亞伯拉罕、約瑟、西奈、路得、大衛、分裂王國、被擄、尼希米、新約背景與降生成長提供公尺尺度的詳細場景與三種視角。其餘六主題保留原版。約旦河另有分層河谷、單向隊伍、兩岸居民、三件 Blender 教具及三位情境對話角色，見 [約旦河驗收](docs/review/JORDAN-WALK.md)。復原依據、取捨與驗證記錄見 [試閱說明](docs/review/HISTORICAL-FIVE.md)。
-
-執行 `npm run review:bundle` 可產生不依賴本機伺服器的單檔互動試閱版；預設輸出為 `.qa/five-islands-review.html`。
-
-後續 Blender 人物／器物替換及原十九座島的完整工作清單見 [後續實作範圍](docs/BLENDER-AND-REMAINING-ISLANDS.md)。
-
-五島十四項觀察物已有 Blender 近景，後續約旦河、歸回第二聖殿、保羅旅程、亞伯拉罕與約瑟也已接入。西奈另以每日需要、供水與山前聆聽分章，三件教具及曠野人物均接入。全站目前有二十八種人物、五十三件觀察物及兩種羊模型，共八十三份 GLB；五十二件實體展品在場景共用，渡海剖面供近景比較。人物使用獨立骨架、距離步態與斜坡足部 IK，每場景最多八位近處細節人物，遠景沿用較輕模型；保留個別 POI、自主行為、對話及配音。器物可以旋轉，指定構造可拆合，近景重用渲染資源。服裝、面容、動物類型與身高仍有復原選擇及風格化特徵。其餘六島繼續；可編輯來源及限制見 [Blender 素材說明](assets/blender/README.md)，最新實作與驗證見 [降生與成長驗收](docs/review/NATIVITY-CHAPTERS.md)。
+.openai/hosting.json保留Sites識別與dist靜態設定；.sites/是忽略的獨立發布檢出，憑證不存檔。Sites發布使用精確推送來源與相符建置封裝。CI驗證內容、測試及建置；另有手動GitHub Pages流程，須由倉庫設定啟用。推送原始碼不等於Pages已上線。

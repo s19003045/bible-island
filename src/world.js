@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {frameStepSeconds,frameSimulationSteps} from './frame-time.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { themes, themeById } from './content.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
@@ -586,10 +587,11 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   }
   function animate(now) {
     raf = requestAnimationFrame(animate); if (hidden||modalOpen) {last=now;return;}
-    const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
+    const dt = frameStepSeconds(now,last); last = now;
     if(!activeHistorical){if(!paused){elapsed+=dt;dirty=true;}ocean.update(elapsed,nightMode,camera);boats.forEach((b,i)=>{if(b.userData.routeId){const curve=network.curve(b.userData.routeId),t=(elapsed*.014+b.userData.routeOffset)%1,p=curve.getPoint(t),d=curve.getTangent(t);b.position.set(p.x,.15,p.z);b.rotation.y=Math.atan2(d.x,d.z);}b.rotation.z=Math.sin(elapsed*.8+i)*.025;b.rotation.x=Math.cos(elapsed*.6+i)*.02;});}
-    if(activeHistorical && !paused) {
-      updateHistorical(dt);dirty=true;
+    if(activeHistorical)for(const step of frameSimulationSteps(dt)) {
+      if(!paused){updateHistorical(step);dirty=true;}
+      if(walk.active&&walk.update(step))dirty=true;
     }
     if(atlasFlight){const flight=atlasFlight,t=Math.min(1,(now-flight.start)/flight.duration),ease=t*t*(3-2*t),p=flight.curve.getPoint(ease),dest=p.clone().add(new THREE.Vector3(9,13,14)),blend=Math.min(1,t*4);camera.position.lerpVectors(flight.from,dest,blend);controls.target.lerpVectors(flight.oldTarget,p,blend);camera.lookAt(controls.target);dirty=true;if(t===1){const done=flight.done;cancelAtlasFlight();done();}}
     if (fly) {
@@ -597,7 +599,6 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
       camera.position.lerpVectors(fly.from, fly.to, ease); controls.target.lerpVectors(fly.old, fly.target, ease); if (t === 1) fly = null; dirty = true;
     }
     if(walk.active) {
-      if(walk.update(dt))dirty=true;
       if(autoGoal && now-lastRepath>900) {
         lastRepath=now;const target=goalPosition(autoGoal);
         const targetDistance=target?Math.hypot(target[0]-walk.position[0],target[2]-walk.position[2]):Infinity;

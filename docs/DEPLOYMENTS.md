@@ -421,3 +421,11 @@
 - [正式入口](https://bible-island.starryswift8.chatgpt.site/#island=church)。封裝`/tmp/bible-island-b36a756-church-sites.tar.gz`，116516312bytes，SHA256 `c9686c65f2a0e85bfed832770c9b9ae7b3fdd0cbe05a29c2b8f2cc431b04637f`；平台178內容檔／163102720bytes，內容hash `267b86746fd8b147cdd29f26c1c2cdbbe0a881606dc7d0317edc3c569f5c09d1`。
 - 同源建置132模組／1.69s，入口index-Cq-EbWL_.js、world-DQHUfVhm.js、vessels-DLsYcpv2.js、three-o24aeEZ1.js、CSS index-zmRD_4cI.css；保留既有大chunk提示。48檔309測試、check及214307KiB離線包通過。98GLB／72MP3／69角色／552cue；舊95GLB及報告條目保留。
 - 正式reload核對入口，三教具皆沿路／E／旋轉／各1／1，屋頂另移還；親子及研讀前置與各1／3、一般0／3、一般與親子錄音播放中已實測，最後全景無行走／交談／modal，warning／error=[]。證據、歷史界線及人工驗證限度見[第23島驗收](review/CHURCH-CHAPTERS.md)。尚有第24島與總Goal最後整體核對。
+
+## 2026-11-17：書寫、消息與群體閱讀，第二十四座詳細島（第39版）
+
+- root來源`608779a97b0ccfe99fde4b828909acb2a35a01c4`；Sites來源`40ae3e5e98c4391b708c7479b6aa691df04f8691`。525追蹤來源逐檔相同，node_modules連結保留。
+- 同一owner-private專案、owner／custom單一使用者、0群組／0外部訪客不變。第39版`appgprj_6af95ea0dac4819182957156725483aa~appgver_e53f206ca04c8191a40cf07aaddb1349`；部署`appgdep_6afb7c6414848191bed1e64a6bca3609`於`2026-11-16T21:58:11.855156+00:00`終態succeeded，不再poll終態或重發。平台source SHA相符。
+- [正式書信島](https://bible-island.starryswift8.chatgpt.site/#island=letters)。封裝`/tmp/bible-island-608779a-letters-sites.tar.gz`，120924317bytes，SHA256 `6fb79192738b15203f7e91254e446688cf9eef2fb310703ed763bcf6ece64e8e`；平台184內容檔／167720960bytes，內容hash `93b16f0d9936d68aab1bb5879076e4bb5a89c128b9114db26a67cc8b2b2a127d`。
+- 同源建置136模組／1.45s，入口index-BxVh6iuK.js、world-Bur_rwVJ.js、vessels-Ct8zT5_W.js、three-o24aeEZ1.js、CSS index-zmRD_4cI.css；保留既有大chunk提示。50檔318項來源回歸、check、diff及220323KiB離線包通過。
+- 全24座詳細島已發布，101GLB／75MP3／72角色／576cue；原98GLB bytes與報告條目保留。第24島本機三件沿路及材料抬還、三模式前置／獨立進度、一般與親子錄音播放中實測通過，詳[書信驗收](review/LETTERS-CHAPTERS.md)。正式入口已讀index-BxVh6iuK.js，正式近景與7個舊特定近景補驗仍進行，不把發布成功當成全部人工驗收通過。
