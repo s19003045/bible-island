@@ -6,7 +6,7 @@ import {explorationFor} from './exploration-data.js';
 import {peopleByIsland} from './people-data.js';
 export const walkEntry = (ready,island='jerusalem',segment=null,phase=null) => {
   const config=explorationFor(island,segment,phase);if(!config)return '';
-  return `<section class="walk-entry"><span class="eyebrow">WALK & DISCOVER · 自由探索</span><h3>${config.title}</h3>${narrativeChapterPicker(island,segment,phase)}<p>${config.intro}<br>可隨時回到全景與閱讀流程。</p><button id="enter-walk-sound" class="primary-button" ${ready?'':'disabled'}>${icon('footprints',16)}${config.enter}</button><button id="enter-walk-quiet" class="walk-quiet" ${ready?'':'disabled'}>安靜探索</button><small>WASD 移動 · 拖曳環顧 · 點地沿路前往<br>${config.hint}</small></section>`;
+  return `<section class="walk-entry"><span class="eyebrow">WALK & DISCOVER · 自由探索</span><h3>${config.title}</h3>${narrativeChapterPicker(island,segment,phase)}<p>${config.moment?'':config.intro+'<br>'}可隨時回到全景與閱讀流程。</p><button id="enter-walk-sound" class="primary-button" ${ready?'':'disabled'}>${icon('footprints',16)}${config.enter}</button><button id="enter-walk-quiet" class="walk-quiet" ${ready?'':'disabled'}>安靜探索</button><small>WASD 移動 · 拖曳環顧 · 點地沿路前往<br>${config.hint}</small></section>`;
 };
 function freeExploration(state,config){
   const island=state.selected||'jerusalem',mode=readingModes[state.mode||'general'],seen=(state.explorationSeen?.[island]||[]).filter(id=>config.objects.some(o=>o.id===id));

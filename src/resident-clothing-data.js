@@ -5,6 +5,11 @@ import {scriptureSource} from './scripture.js';
 const linenSource={title:'IAA：Nahal ʽArugot 紡織物報告',url:'https://hadashot.iaa.org.il/report_detail_eng.aspx?id=25101&mag_id=124',note:'材料與織作的比較資料，含多個時期；不能把所有布片都當成第一世紀衣裝。'};
 const roman={fact:'人群包含不同身高、長衣與披布類型；婦女及孩童使用相應身形與衣裝。',limits:'婦女長衣、頭背披布、髮型和衣色是類型選擇，不表示當時所有女性都包頭或穿相同衣服；畫面中的人物組成不是人口比例。',sources:[linenSource]};
 export const residentClothingEvidence={
+  nehemiah:{
+    fact:'修牆與聆聽人群包含不同身形的居民；夜察僅少數成人，後續工段與誦讀聚集另呈現。',
+    limits:'沿用歸回敘事的普通衣裝類型；袖形、披布、髮型與衣色為教學選擇，不認證波斯時期制服。無名角色不是尼希米或以斯拉肖像，人物數量不表示人口比例或經文人名清單。',
+    sources:[{title:'尼希米記 2:11–16；3:1–32；8:1–12',...scriptureSource('Nehemiah 2:11-16;3:1-32;8:1-12'),note:'少數人夜察、不同群體修建及能聽明白者聚集，不能當成完整服裝裁縫圖。'}],
+  },
   jerusalem:roman,
   herod:roman,
   tabernacle:{

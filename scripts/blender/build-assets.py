@@ -349,6 +349,9 @@ exec(compile((ROOT/'scripts/blender/david-props.py').read_text(),str(ROOT/'scrip
 exec(compile((ROOT/'scripts/blender/david-animal.py').read_text(),str(ROOT/'scripts/blender/david-animal.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/kingdoms-props.py').read_text(),str(ROOT/'scripts/blender/kingdoms-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/exile-props.py').read_text(),str(ROOT/'scripts/blender/exile-props.py'),'exec'),globals())
+NEHEMIAH_OFFICIAL_BUILD = True
+exec(compile((ROOT/'scripts/blender/nehemiah-props.py').read_text(),str(ROOT/'scripts/blender/nehemiah-props.py'),'exec'),globals())
+del NEHEMIAH_OFFICIAL_BUILD
 
 bpy.context.window.scene=scene
 scene.frame_set(1)

@@ -407,7 +407,7 @@
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "4297fe8ea36300b6ace5a70d89f0b3265b311c3f7d10966191eb066da57ff8d9",
+      "sha256": "f9fd9ec08bff909fbd2465d7a048871b1197f3957cf0f9d4b83b5c1b9b49f2e7",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -416,7 +416,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "de5664cf76861f55715caee8949993114d71f604fc943d5945e11e986566f769",
+      "sha256": "ad89d5fac46b3b8b1b602cacf6abf7623ea0340962ceb1a28720750c34f4a79c",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -434,7 +434,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "5191bcddf75c1265e127b28e7224cc18f535b1e95b39ee7e1c5ac8484a200eee",
+      "sha256": "f5bb7ba30fb8eff5fb5dfadd9732507cf1109e05bd4ca27402bd7a859ef4b542",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -459,7 +459,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "00bb3c3e8225d5ac5b29587fd290cf948a85cd71fa984866d599f71eb1a89d4c",
+      "sha256": "5916191ea5c4e4106d956627a3081a0ce8196d2d79881c3965b052c3c389fd43",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -468,7 +468,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "6ec9fb564bdff4ef0297094858bfab6a19091f69484e2d748e2437d44dbb8b96",
+      "sha256": "0c03d8fbdbb8f59b641617a2ec54b83ae122c07291ffb41e0d9828b621cd0984",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -477,7 +477,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "2faceab04c03eb060b45af706b6d51174046cdcba0864c2b79288664d8fea63c",
+      "sha256": "e97f34f0165e9a5defb34c42d41afb78d118ab5cc0e7a5fbd06c1a5dca160ec9",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -488,7 +488,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "3357b479e80c0802ba18e813aa2b3bc593106bd88686985fefcbf8bc95b4776e",
+      "sha256": "647a53bb987848ed268fe5d2c86a2ed2fe007083aa9d1ab9aa24ac4a21388488",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -499,7 +499,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "c156e7f0f8865660975627b0299a1d283a83a983919a2f16695588601537968d",
+      "sha256": "73473baf255fc2a5738bfaec0c04ad5f82d79283c7244737232021d654847e29",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -517,7 +517,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "f02f04cd195064fe6e7600b5a2844112034d9627f5050a2481d92e94f16f2587",
+      "sha256": "60056d4279120e5d19a79acd3a1ccdde8b73d453819b2aa01b24456d69326809",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
@@ -558,7 +558,7 @@
     "return-masonry": {
       "file": "models/return-masonry.glb",
       "bytes": 200972,
-      "sha256": "8ea0eb54386032f2a46ad8839bbd64fc8e14a03edafe03308908b37aa2383ae7",
+      "sha256": "c13053ead24abb177ffad0f576b0e2178c145f48704d4f27baac84976b19cd95",
       "triangles": 2068,
       "animations": [],
       "height": 0.513,
@@ -586,7 +586,7 @@
     "paul-ship": {
       "file": "models/paul-ship.glb",
       "bytes": 946292,
-      "sha256": "a3dafd02031ac42a41e1bf55643a7c08ec5499db1934ea965b0ac4187c2add37",
+      "sha256": "2c6604747c8ed902c261f0357654fa6c41149c0fef6738ae80a0287a862950a8",
       "triangles": 28360,
       "animations": [],
       "height": 1.12,
@@ -605,7 +605,7 @@
     "paul-silverwork": {
       "file": "models/paul-silverwork.glb",
       "bytes": 73844,
-      "sha256": "182cea6354df9a1adf69e23b2566d8c6edee0fbe194f43ce7849bd451d174d3a",
+      "sha256": "492b4001fa0b1b2db0168d885cd41569a86e8d6fb7128c28db2695f3b95a5558",
       "triangles": 1596,
       "animations": [],
       "height": 0.34,
@@ -668,7 +668,7 @@
     "joseph-granary": {
       "file": "models/joseph-granary.glb",
       "bytes": 852148,
-      "sha256": "7596c6deb7c2eaa5aa903fd9377a905be1ed58cbc37396928f925078e97d624f",
+      "sha256": "919197ac0a2b35c8cb99e4f33320a84ad5c7663fe427c439e9624c7898afef73",
       "triangles": 17996,
       "animations": [],
       "height": 0.651,
@@ -715,7 +715,7 @@
     "sinai-boundary": {
       "file": "models/sinai-boundary.glb",
       "bytes": 849724,
-      "sha256": "31219fa663488469c3021c7bfd13175cac591bc7ad8f70ee9b893db68aae2aec",
+      "sha256": "f2405ce357742faf748e4cfe6fa147f5916d598cca02efd38a8f68f2c6db0536",
       "triangles": 17768,
       "animations": [],
       "height": 0.632,
@@ -737,7 +737,7 @@
     "ruth-grain": {
       "file": "models/ruth-grain.glb",
       "bytes": 775124,
-      "sha256": "cbfa173ccb8afa99001eff5e3a8707df4549307073474f0f464bd8c6394a2909",
+      "sha256": "e439b7ba631acd60f46ef1eccece0ec8bb3543be3146e3b14df08cb090e25846",
       "triangles": 18402,
       "animations": [],
       "height": 0.363,
@@ -753,7 +753,7 @@
     "ruth-witness": {
       "file": "models/ruth-witness.glb",
       "bytes": 515776,
-      "sha256": "11b8d24cec47813b976e828a36a2e0236e036402f0281635d768680f3639bf5a",
+      "sha256": "29efa820dfeaa96fb7bd674de92545717b250d6681e63e3e6ff1758422031df3",
       "triangles": 11268,
       "animations": [],
       "height": 0.45,
@@ -768,7 +768,7 @@
     "david-shepherd": {
       "file": "models/david-shepherd.glb",
       "bytes": 532476,
-      "sha256": "0eba4aa128acc1e5c62b65303a03262071392d207c922d7e4d7531bb0fed6e79",
+      "sha256": "04b3ff50f087ed2206beef281b29cbe5740c9b5e1e0d117bad3e9de760be1e27",
       "triangles": 20368,
       "animations": [],
       "height": 0.52,
@@ -780,7 +780,7 @@
     "david-city": {
       "file": "models/david-city.glb",
       "bytes": 1405104,
-      "sha256": "aad421af70e96b70fa64777d21d094ce6a11c5d8bcb4dd799c13a63a398946b5",
+      "sha256": "f4a44f2bc89e9b8631c204f88f5b0870ba902ccd0b0c5c6aeec75af6dc34ee18",
       "triangles": 22624,
       "animations": [],
       "height": 0.306,
@@ -791,7 +791,7 @@
     "david-ark": {
       "file": "models/david-ark.glb",
       "bytes": 859428,
-      "sha256": "cc7eca5f726100b2a0d0a01351ca1464ecb8bc0aff8987191796f22b72039795",
+      "sha256": "ad85e386f166fe4f2de7cc89e6f453a71997af48149193779cf461a4b42f387d",
       "triangles": 29520,
       "animations": [],
       "height": 0.682,
@@ -843,7 +843,7 @@
     "kingdom-assembly": {
       "file": "models/kingdom-assembly.glb",
       "bytes": 604316,
-      "sha256": "d7e86c2516b3ba942a8ce6ff69c2775305dfd4fb1eb8467dfd1e679c7447be8d",
+      "sha256": "1d41e8d92e75b90e5fa4df9a9331ec456a8bff9de1d0793f1c1338d61ed9dfb6",
       "triangles": 17116,
       "animations": [],
       "height": 0.209,
@@ -875,7 +875,7 @@
     "kingdom-sites": {
       "file": "models/kingdom-sites.glb",
       "bytes": 564708,
-      "sha256": "466b3c9f742180b8d77b2cf7740d9dfdaca524f963d038fe379cf2d4c8d9546b",
+      "sha256": "1ab1db39b8cf64e86a7fe095f314be3393eae3c0f6752683bc177ac71c69dad2",
       "triangles": 18760,
       "animations": [],
       "height": 0.493,
@@ -903,7 +903,7 @@
     "kingdom-measures": {
       "file": "models/kingdom-measures.glb",
       "bytes": 800388,
-      "sha256": "a199ea18163ed97500d20f0234beebbce607c316f1ccba38b8c7538e7412fc9f",
+      "sha256": "4d528688c10c88b917c797f4d406aad87929c824e3b1a7b3f3dfabeabb88b281",
       "triangles": 18628,
       "animations": [],
       "height": 0.68,
@@ -941,7 +941,7 @@
     "exile-sequence": {
       "file": "models/exile-sequence.glb",
       "bytes": 291792,
-      "sha256": "5813379bd32edc3f33260b880a6fbc26a46f15df03c10971e4f4edc616d00944",
+      "sha256": "6b19ea4f910fa13afec35493866b040cc99c6f378381a1b274510888ea2f0066",
       "triangles": 5304,
       "animations": [],
       "height": 0.089,
@@ -980,7 +980,7 @@
     "exile-waterbank": {
       "file": "models/exile-waterbank.glb",
       "bytes": 542124,
-      "sha256": "7d64da7b62e7721c979497ac5cd43de06494f950fa5c0b41a6e0471af2b54406",
+      "sha256": "55616504e7cd72ca131ff4c8faef2f59b475e1d7fe4e49d97c1a8a97eb47c83e",
       "triangles": 14652,
       "animations": [],
       "height": 0.475382,
@@ -1015,7 +1015,7 @@
     "exile-dwelling": {
       "file": "models/exile-dwelling.glb",
       "bytes": 829160,
-      "sha256": "693e55919eebd1c4533ca10fa53ae2cd44a1acb56fb0c8ede1651f3e7f256b84",
+      "sha256": "f90a8d6191f4eaee189ebaa3ea2fa2c4717f75642e4c1c37a672e0070096de8b",
       "triangles": 21300,
       "animations": [],
       "height": 0.453,
@@ -1055,6 +1055,130 @@
         0
       ],
       "units": "metres; Blender Z / glTF Y is height"
+    },
+    "nehemiah-wall": {
+      "file": "models/nehemiah-wall.glb",
+      "bytes": 538220,
+      "sha256": "bca18de70959c883f19ebfe5f1d0b26afcb536f6bb666f1574103780ea004906",
+      "triangles": 6312,
+      "animations": [],
+      "height": 0.543925,
+      "teaching_model": true,
+      "prototype_only": false,
+      "interpretation": "Original thick wall/through portal, fixed fully open leaf, functional lintel and separate fixed bar/bore sample. Nehemiah 2 and later 3 are distinct readings. No identified gate, exact circuit, dated bond/joint, original tool, animated door/bar, mallet or basket.",
+      "source_scene": "Nehemiah \u2014 original thick wall and fixed open gate samples",
+      "bottom_m": 0.0,
+      "top_m": 0.5439249873161316,
+      "dimensions_blender_xyz_m": [
+        1.2000000476837158,
+        0.800000011920929,
+        0.5439249873161316
+      ],
+      "semantic_groups": [
+        "nehemiah-wall-modern-support",
+        "nehemiah-wall-recessed-support-floor",
+        "nehemiah-wall-left-closed-section",
+        "nehemiah-wall-right-closed-section",
+        "nehemiah-wall-through-opening-and-lintel",
+        "nehemiah-wall-fixed-modern-section-supports",
+        "nehemiah-wall-original-upper-course-specimens",
+        "nehemiah-wall-modern-section-layer",
+        "nehemiah-wall-fixed-open-door-leaf",
+        "nehemiah-wall-fixed-open-door-bearing",
+        "nehemiah-wall-side-bar-sample-support",
+        "nehemiah-wall-bar-through-brackets",
+        "nehemiah-wall-fixed-bar-function-sample",
+        "nehemiah-wall-grounded-loose-stones"
+      ],
+      "modern_removable_layer": "nehemiah-wall-modern-section-layer",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.16,
+        0
+      ],
+      "runtime_operations": 1,
+      "units": "metres; height Blender +Z / glTF +Y"
+    },
+    "nehemiah-watch": {
+      "file": "models/nehemiah-watch.glb",
+      "bytes": 457668,
+      "sha256": "e6ae06f01e1da6044c5772331b59d5ea05384fd9ab7624aa9f3cb4b93e98bb10",
+      "triangles": 7012,
+      "animations": [],
+      "height": 0.149914,
+      "teaching_model": true,
+      "prototype_only": false,
+      "interpretation": "Three functional recesses carry/build/watch and separate half-height/closed-gaps-no-doors/wall-complete/gate-management tabs. One lift only. Counts are neither population ratios nor the seven app reading states; no weapons, enemies or 52-second/day counter.",
+      "source_scene": "Nehemiah \u2014 modern work watch and completion comparison tray",
+      "bottom_m": 0.0,
+      "top_m": 0.14991438388824463,
+      "dimensions_blender_xyz_m": [
+        1.2000000476837158,
+        0.699999988079071,
+        0.14991438388824463
+      ],
+      "semantic_groups": [
+        "nehemiah-watch-modern-support",
+        "nehemiah-watch-recess-carry",
+        "nehemiah-watch-role-insert-carry",
+        "nehemiah-watch-recess-build",
+        "nehemiah-watch-role-insert-build",
+        "nehemiah-watch-recess-watch",
+        "nehemiah-watch-role-insert-watch",
+        "nehemiah-watch-four-state-carrier",
+        "nehemiah-watch-phase-half-height",
+        "nehemiah-watch-phase-closed-gaps-no-doors",
+        "nehemiah-watch-phase-wall-complete",
+        "nehemiah-watch-phase-gate-management",
+        "nehemiah-watch-modern-comparison-layer"
+      ],
+      "modern_removable_layer": "nehemiah-watch-modern-comparison-layer",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.14,
+        0
+      ],
+      "runtime_operations": 1,
+      "units": "metres; height Blender +Z / glTF +Y"
+    },
+    "nehemiah-reading": {
+      "file": "models/nehemiah-reading.glb",
+      "bytes": 1011460,
+      "sha256": "455b3fc6c744da44c48c07698a4657cc2fa1908fecbe14edc56fafade42dea50",
+      "triangles": 20632,
+      "animations": [],
+      "height": 0.326256,
+      "teaching_model": true,
+      "prototype_only": false,
+      "interpretation": "Original supported platform and fixed cradle with genuinely thick blank expanded/spiral sheet sections; distinct modern reader/explainer/listener markers. One support-side lift, no unroll animation or stairs. Not original platform/scroll/substrate/axis count, named people, compulsory emotion or later festival booths.",
+      "source_scene": "Nehemiah \u2014 original platform blank curves and understanding m",
+      "bottom_m": 0.0,
+      "top_m": 0.3262563943862915,
+      "dimensions_blender_xyz_m": [
+        1.100000023841858,
+        0.800000011920929,
+        0.3262563943862915
+      ],
+      "semantic_groups": [
+        "nehemiah-reading-modern-support",
+        "nehemiah-reading-fixed-deck-and-posts",
+        "nehemiah-reading-modern-support-layer",
+        "nehemiah-reading-blank-unrolled-sheet",
+        "nehemiah-reading-blank-rolled-end-left",
+        "nehemiah-reading-blank-rolled-end-right",
+        "nehemiah-reading-fixed-scroll-cradle",
+        "nehemiah-reading-modern-reader-marker",
+        "nehemiah-reading-modern-explainer-markers",
+        "nehemiah-reading-modern-listener-markers"
+      ],
+      "modern_removable_layer": "nehemiah-reading-modern-support-layer",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.14,
+        0
+      ],
+      "runtime_operations": 1,
+      "units": "metres; height Blender +Z / glTF +Y"
     }
   }
 }

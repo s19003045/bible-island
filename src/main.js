@@ -1,6 +1,6 @@
 import './style.css';
 import {exodusSegmentById} from './exodus-exploration.js';
-import {narrativeChapters,chapterById,stateChapter,setNarrativeChapter,chapterForPerson,stateNarrativePhase,setNarrativePhase} from './narrative-chapters.js';
+import {narrativeChapters,chapterById,stateChapter,setNarrativeChapter,chapterForPerson,stateNarrativePhase,setNarrativePhase,narrativePhasesFor} from './narrative-chapters.js';
 import {atlasPanel,atlasJourneyOptions} from './atlas-ui.js';
 import {atlasRouteById} from './atlas-data.js';
 import { themes, themeById, eras, sources, evidenceLabels, filterThemes } from './content.js';
@@ -107,7 +107,7 @@ function updateFilters() {
 
 function selectTheme(id, { updateHash = true,chapter=null,phase=null } = {}) {
   setNarrativeChapter(state,id,chapter);
-  if(id==='david'&&stateChapter(state,id)==='ark')setNarrativePhase(state,id,['cart','pause','carry','tent'].includes(phase)?phase:'cart');
+  const moments=narrativePhasesFor(id,stateChapter(state,id));if(moments.length)setNarrativePhase(state,id,moments.some(p=>p.id===phase)?phase:moments[0].id);
   const t = themeById.get(id); if (!t) return;
   if($('#modal').open)closeModal();
   if (!filterThemes(state).some(x => x.id === id) || state.visitedOnly) resetFilters();
@@ -132,7 +132,7 @@ function selectTheme(id, { updateHash = true,chapter=null,phase=null } = {}) {
 }
 function overview() {
   if(state.walking)exitWalk(false);endConversation(false);state.selected = null; state.stop = null; state.tour = false;
-  document.body.classList.remove('historical-view'); $('#scene-caption').hidden = true; $('#scene-views').hidden = true; $('#scene-menu').hidden = true;
+  $('#time-button').disabled=false;$('#time-button').setAttribute('aria-label',state.night?'切換白天':'切換夜晚');$('#time-button').title=state.night?'切換白天':'切換夜晚';$('#time-button').innerHTML=icon(state.night?'moon':'sun');document.body.classList.toggle('night',state.night);document.body.classList.remove('historical-view'); $('#scene-caption').hidden = true; $('#scene-views').hidden = true; $('#scene-menu').hidden = true;
   $('#connections-button').hidden = false; $('#pause-button').hidden = false;
   $('#labels-button').setAttribute('aria-label','顯示島嶼名稱'); $('#labels-button').title='島嶼名稱'; $('.compass-rose').hidden = false; $('.map-note').textContent = '主題位置示意 · 非實際地圖';
   $('#map-layout').classList.remove('has-selection'); $('#map-intro').hidden = false; $('#journey-card').hidden = false; $('#breadcrumb').hidden = true; $('#detail').hidden = true;
@@ -141,7 +141,7 @@ function overview() {
 function syncChapterLearningCursor(){const chapter=stateChapter(state);if(!chapter)return;const task=learningTasks(state.selected,state.mode).find(t=>t.id===chapter||t.stop===chapter);if(task)state.learningCursor[learningKey(state)]=task.id;}
 function currentExploration(){return explorationFor(state.selected,stateChapter(state),stateNarrativePhase(state));}
 function islandHash(id){const chapter=stateChapter(state,id),phase=stateNarrativePhase(state,id);return `#island=${encodeURIComponent(id)}${chapter?`&chapter=${chapter}`:''}${phase?`&phase=${phase}`:''}`;}
-function selectCurrentScene(id=state.selected){world?.select(id,stateChapter(state,id),stateNarrativePhase(state,id));}
+function selectCurrentScene(id=state.selected){world?.select(id,stateChapter(state,id),stateNarrativePhase(state,id));const config=explorationFor(id,stateChapter(state,id),stateNarrativePhase(state,id)),locked=!!config?.timeLocked,night=locked?config.night:state.night;$('#time-button').disabled=locked;$('#time-button').title=locked?'光線隨閱讀時刻切換':night?'切換白天':'切換夜晚';$('#time-button').setAttribute('aria-label',$('#time-button').title);$('#time-button').innerHTML=icon(night?'moon':'sun');document.body.classList.toggle('night',night);}
 function setCurrentAudioScene(){sceneAudio.setScene(state.selected,stateChapter(state),stateNarrativePhase(state));}
 function bindNarrativeChapters(){document.querySelectorAll('[data-exodus-segment],[data-narrative-segment]').forEach(b=>b.onclick=()=>changeNarrativeChapter(b.dataset.exodusSegment||b.dataset.narrativeSegment));document.querySelectorAll('[data-narrative-phase]').forEach(b=>b.onclick=()=>changeNarrativePhase(b.dataset.narrativePhase));}
 function changeNarrativePhase(phase){
