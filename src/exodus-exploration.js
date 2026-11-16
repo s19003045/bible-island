@@ -2,13 +2,13 @@
 export const exodusFloor=()=>.03;
 export const exodusObjects=[
  {id:'brick-mould',name:'磚模、泥與草料',segment:'bricks',position:[-46,.84,-24],approach:[-46,.03,-22.1],lookAt:[-46,1.12,-24],stop:'bricks',
-  description:'用磚模、泥磚與草料的近景理解經文提到的工作。形制、配比、工位與尺寸都是教學示意，不是已確認的出埃及工場或出土原物。',
-  observation:'草的供應被取消，磚數卻沒有減少。這些材料如何幫助理解人的負擔，而不是把勞役當成生產競賽？',passage:'Exodus 5:6-19'},
+  description:'觀察單格無底木模、泥磚與切碎草料，再抬起模框看成形關係。博物館木磚模及埃及泥磚工法提供比較背景；教具高約 0.12 m，木種、配比、刀痕與尺寸為選擇，不用比較資料認定出埃及年代、工場或特定法老。',
+  observation:'草的供應被取消，磚數卻沒有減少。這些材料如何幫助理解人的負擔，而不是把勞役當成生產競賽？',passage:'Exodus 5:6-19',source:{label:'大都會博物館：木磚模 25.3.108（類型比較）',url:'https://www.metmuseum.org/art/collection/search/568270'}},
  {id:'passover-kit',name:'無酵餅、行囊與杖',segment:'passover',position:[-35,.68,21],approach:[-35,.03,23.1],lookAt:[-35,1,21],stop:'passover',
-  description:'以桌上的無酵餅及預備行路的物件呈現筵席與出發的關係。食物擺法、袋子、桌子和住家格局是教學安排，並非特定家庭的考古復原。',
+  description:'以不規則薄餅、布包裹的和麵器皿與杖對讀筵席和出發。近景可移開布包觀察器皿，這是現代剖看操作；餅形、熟色、木器曲線、衣料、繩結與桌上擺法均為教學補足，不是特定家庭的考古復原。',
   observation:'閱讀束腰、穿鞋、拿杖的吩咐，再比較麵未發起與匆忙離開的敘事。哪些是經文明說，哪些是畫面的補足？',passage:'Exodus 12:8-14;12:34;12:39'},
  {id:'crossing-ground',name:'乾地與左右水牆',segment:'crossing',position:[38,.03,0],approach:[38,.03,-2.2],lookAt:[45,2,9.7],viewTarget:[45,2,9.7],stop:'crossing',sceneOnly:true,
-  description:'近景以縮小剖面幫助比較乾地、左右水牆與前進方向。水高、通道寬、地面形狀及隊伍間距都是敘事示意，不是經文給出的測量值。',
+  description:'近景以縮小剖面比較乾地與左右兩個有厚度的波紋水體；小木人只提示前進方向。教具不採全體統一縮尺；水高、通道寬、地面及人數均為敘事示意，不據此判定海域或尺寸。大場景中的隊伍仍各自前進，與靜態剖面不同。',
   observation:'先看正在前進的人，再回到百姓害怕、呼求與走乾地的敘事；不要由模型判定現代海域或精確出埃及路線。',passage:'Exodus 14:10-22;14:29-31'},
 ];
 export const exodusSegments=[

@@ -37,18 +37,23 @@ function createProceduralVessel(id) {
 }
 function createExodusObject(id){
  const g=new THREE.Group(),wood=new THREE.MeshStandardMaterial({color:'#756047',roughness:.96}),mud=new THREE.MeshStandardMaterial({color:'#987d60',roughness:1}),straw=new THREE.MeshStandardMaterial({color:'#b2a17b',roughness:1});
- const add=(geo,mat,x,y,z)=>{const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);g.add(m);return m;};
+ let part=g;
+ const add=(geo,mat,x,y,z)=>{const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);part.add(m);return m;};
  const box=(w,h,d,x,y,z,mat)=>add(new THREE.BoxGeometry(w,h,d),mat,x,y,z);
  if(id==='brick-mould'){
-  for(const z of [-.23,.23])box(.86,.12,.045,0,.06,z,wood);for(const x of [-.41,.41])box(.045,.12,.46,x,.06,0,wood);
-  box(.34,.09,.38,-.18,.045,0,mud);box(.035,.12,.46,0,.06,0,wood);
-  for(let i=0;i<24;i++){const reed=box(.003,.003,.16+(i%4)*.015,-.32+(i%7)*.045,.092,-.12+Math.floor(i/7)*.075,straw);reed.rotation.y=i*2.4;}
-  for(const x of [-.49,.49])box(.15,.04,.09,x,.06,0,wood);
+  part=new THREE.Group();part.name='brick-frame';g.add(part);
+  for(const z of [-.137,.137])box(.464,.12,.034,-.24,.06,z,wood);for(const x of [-.455,-.025])box(.034,.12,.24,x,.06,0,wood);
+  box(.19,.048,.046,-.55,.06,.137,wood);part=g;
+  box(.392,.094,.23,-.24,.047,0,mud);box(.38,.108,.23,.285,.054,0,mud);
+  for(let i=0;i<24;i++){const reed=box(.002,.002,.04+(i%4)*.006,-.37+(i%6)*.045+(i>=12?.52:0),i>=12?.109:.095,-.07+Math.floor((i%12)/6)*.12,straw);reed.rotation.y=i*2.4;}
  }else if(id==='passover-kit'){
   const bread=new THREE.MeshStandardMaterial({color:'#bd9c6c',roughness:1}),cloth=new THREE.MeshStandardMaterial({color:'#9c9277',roughness:1}),rope=new THREE.MeshStandardMaterial({color:'#665946',roughness:1});
   for(let i=0;i<3;i++){const b=add(new THREE.CylinderGeometry(.17,.18,.025,40),bread,-.27+i*.025,.025+i*.027,-.06);b.rotation.z=(i-1)*.025;for(let n=0;n<12;n++)box(.008,.002,.008,-.38+(n%4)*.07,.039+i*.027,-.15+Math.floor(n/4)*.075,wood);}
+  const bowl=add(new THREE.LatheGeometry([[0,.025],[.10,.025],[.15,.15],[.14,.17],[.12,.15],[.08,.05],[0,.05]].map(p=>new THREE.Vector2(...p)),32),wood,.31,0,-.04);
+  part=new THREE.Group();part.name='kneading-wrap';g.add(part);
   const bundle=add(new THREE.SphereGeometry(1,24,16),cloth,.31,.15,-.04);bundle.scale.set(.2,.15,.17);
   const strap=add(new THREE.TorusGeometry(.155,.009,8,40),rope,.31,.15,-.04);strap.rotation.y=Math.PI/2;
+  part=g;
   const staff=add(new THREE.CylinderGeometry(.012,.016,1.13,12),wood,0,.022,.25);staff.rotation.z=Math.PI/2;
  }else{
   box(1,.04,.7,0,.02,0,mud);const water=new THREE.MeshPhysicalMaterial({color:'#52777a',transparent:true,opacity:.72,roughness:.25,metalness:.15});
@@ -159,7 +164,7 @@ export function mountVesselViewer(container,id) {
     const rotation=vessel.rotation.clone();vessel.rotation.set(0,0,0);object.position.set(0,0,0);scene.updateMatrixWorld(true);
     const framing=artifactFraming(new THREE.Box3().setFromObject(object),camera.aspect,camera.fov);
     object.position.copy(framing.center).negate();vessel.rotation.copy(rotation);
-    camera.position.set(1.15,.9,1.35).normalize().multiplyScalar(framing.distance);camera.far=Math.max(10,framing.distance+framing.radius*3);camera.lookAt(0,0,0);camera.updateProjectionMatrix();
+    camera.position.fromArray(blenderModels[id]?.inspectionView||[1.15,.9,1.35]).normalize().multiplyScalar(framing.distance);camera.far=Math.max(10,framing.distance+framing.radius*3);camera.lookAt(0,0,0);camera.updateProjectionMatrix();
   }
   function render(){if(!disposed)renderer.render(scene,camera);}function down(e){drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);canvas.focus();}function move(e){if(drag?.id!==e.pointerId)return;vessel.rotation.y+=(e.clientX-drag.x)*.012;vessel.rotation.x=THREE.MathUtils.clamp(vessel.rotation.x+(e.clientY-drag.y)*.006,-1.2,1.2);drag.x=e.clientX;drag.y=e.clientY;render();}function up(){drag=null;}
   function key(e){if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();if(e.key==='ArrowLeft'||e.key==='ArrowRight')vessel.rotation.y+=(e.key==='ArrowLeft'?1:-1)*.18;else vessel.rotation.x=THREE.MathUtils.clamp(vessel.rotation.x+(e.key==='ArrowUp'?1:-1)*.15,-1.2,1.2);render();}}

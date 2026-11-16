@@ -32,7 +32,7 @@
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "0de4db463fcc6ccbd96a1dc010f8799b6f7f2009d12239dca07e29da9b1c13b4",
+      "sha256": "d4ad0d42e02828dfea27841dc24ba385c365a563e9952fc3a272300e968c9382",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -41,7 +41,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "45d6c5ea8aff6479200c23243d26db4fc68cde0f43b72532e2b63fafb46485fd",
+      "sha256": "14630a343ac645ac0e8f46e2cc07c5046a94cfc0c0b6e8dfb01a4178e2639c68",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -59,7 +59,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "1b51681b2037c18d7b4140b694e10824e4082bf8ead7d97e143534a6c90ee75f",
+      "sha256": "54671acebafa94713f89629700459ca5cc7fde157a4cb022308919e23569935c",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -84,7 +84,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "09502343c98ac9d9abfa191aef1c0f10772b526253e414fda7aa4331d73a61a0",
+      "sha256": "3bb459a522eb415d82ef3f7045e5d3e3f402c65b4c3c8afcc3d41183504a2dd2",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -93,7 +93,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "92911c9b58d1607c5ed8c7a836cfe6a4436ba40de6941439188b4e7b96b13832",
+      "sha256": "4d603a920983467ee3d411ce841b06b8e1f75a2e99bf91339ab92e66ac64a079",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -102,7 +102,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "d0f86ce7b11d50a6faa0f834d8b96e43e123cca25824bd1c6307509840b7c02a",
+      "sha256": "b1ebd6b07c54b6de28fac542d362bda213c4f12d46ddf6cdeae713a26356143c",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -113,13 +113,42 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "f44c42cffaedcedccf9489bbc0f7f6adb395ce891e0ed2960facd2ef6a553d34",
+      "sha256": "0ccad849210aabd0fd3ad3377d92784921bff5d47d63246ceac53266cb6884da",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
       "teaching_model": true,
       "comparison_order": "Corinthian; south royal portico reference only",
       "leaf_rows": 2
+    },
+    "brick-mould": {
+      "file": "models/brick-mould.glb",
+      "bytes": 204944,
+      "sha256": "97aa020790462a47d25e2a37146b61d16589bcc542db1add25cbb53a079a4e39",
+      "triangles": 4076,
+      "animations": [],
+      "height": 0.12,
+      "teaching_model": true
+    },
+    "passover-kit": {
+      "file": "models/passover-kit.glb",
+      "bytes": 514896,
+      "sha256": "1a2069f035b68181f1781388ea757549a40e20501c6bda228cf53b1aeea5439d",
+      "triangles": 20540,
+      "animations": [],
+      "height": 0.283,
+      "teaching_model": true
+    },
+    "crossing-ground": {
+      "file": "models/crossing-ground.glb",
+      "bytes": 266936,
+      "sha256": "f260a44107b327937f73cd259215b2eee68c69337649a2450b437b2538a8ab7c",
+      "triangles": 10336,
+      "animations": [],
+      "height": 0.391,
+      "teaching_model": true,
+      "uniform_scale": false,
+      "use": "inspection cutaway only; full scene water and moving convoy remain separate"
     }
   }
 }

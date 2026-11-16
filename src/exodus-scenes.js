@@ -43,7 +43,7 @@ export function buildExodusScene(k,roof,scene,p,segment='all'){
   for(let i=0;i<58;i++){const x=-18+(i/58)*215,z=(k.rand()-.5)*12;k.person(x,.03,z,i,Math.PI/2,i%11===0?1.12:HUMAN_HEIGHT,{role:'crossing-person'});}
  }
 }
-export function attachExodusExploration(scene,k,roof,segment){
+export function attachExodusExploration(scene,k,roof,segment,{blenderAssets=false,onReady=()=>{},assetLoader}={}){
  const objects=[],models=new Map(),systems=[];k.collisionBoxes.push(...roof.collisionBoxes);
  if(segment==='all'||segment==='bricks')k.collisionBoxes.push({min:[-46.73,0,-24.52],max:[-45.27,1.5,-23.48]});
  if(segment==='all'||segment==='passover')k.collisionBoxes.push(
@@ -52,7 +52,7 @@ export function attachExodusExploration(scene,k,roof,segment){
   {min:[-30.7,0,20.5],max:[-29.5,4,25]});
  for(const s of exodusSegments){
   if(segment!=='all'&&segment!==s.id)continue;
-  for(const d of exodusObjects.filter(o=>o.segment===s.id)){let root=null;if(!d.sceneOnly){root=createVessel(d.id);root.position.fromArray(d.position);scene.add(root);}objects.push({...d,root});}
+  for(const d of exodusObjects.filter(o=>o.segment===s.id)){let root=null;if(!d.sceneOnly){root=createVessel(d.id,{blenderAssets,onReady,assetLoader});root.position.fromArray(d.position);scene.add(root);}objects.push({...d,root});}
   const model=createWalkModel(k.collisionBoxes,s.surfaces,exodusFloor,{proxies:[],navigationStep:s.id==='crossing'?.8:.4});models.set(s.id,model);
   const actors=k.actors.filter(a=>s.id==='bricks'?a.role==='brick-worker'||a.role==='brick-guide':s.id==='passover'?a.role?.startsWith('departure-'):a.role==='crossing-person'||a.role==='crossing-guide');
   if(s.id==='crossing'){
