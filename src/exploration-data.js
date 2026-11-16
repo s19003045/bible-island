@@ -1,3 +1,4 @@
+import {churchWalkConfig,churchObjects} from './church-exploration.js';
 import {passionWalkConfig,passionObjects} from './passion-exploration.js';
 import {parablesWalkConfig,parablesObjects} from './parables-exploration.js';
 import {samariaWalkConfig,samariaObjects} from './samaria-exploration.js';
@@ -21,6 +22,7 @@ import {solomonSpawn,solomonObjects} from './solomon-exploration.js';
 import {herodSpawn,herodObjects} from './herod-exploration.js';
 import {jordanSpawn,jordanObjects} from './jordan-exploration.js';
 export const explorationByIsland = {
+  church:{...churchWalkConfig(),objects:churchObjects},
   passion:{...passionWalkConfig(),objects:passionObjects},
   parables:{...parablesWalkConfig(),objects:parablesObjects},
   samaria:{...samariaWalkConfig(),objects:samariaObjects},
@@ -58,4 +60,4 @@ export const explorationByIsland = {
     hint:'教學觀察區 · 平台、階梯與院落格局屬推定；內殿與祭壇不開放步行。角色串聯建殿與獻殿經文，不表示兩事同時發生，也不代表古代身分皆可進入。',
     region:p=>p[0]<=18.5&&Math.abs(p[2])<5.4?'銅柱與教學平台':p[2]>7?'銅海與南側院區':p[2]<-8?'工藝解說與院中聚集區':'院中觀察通道'},
 };
-export const explorationFor=(id,segment=null,phase=null)=>id==='passion'&&segment?passionWalkConfig(segment,phase):id==='parables'&&segment?parablesWalkConfig(segment,phase):id==='samaria'&&segment?samariaWalkConfig(segment,phase):id==='galilee'&&segment?galileeWalkConfig(segment,phase):id==='nativity'&&segment?nativityWalkConfig(segment,phase):id==='intertestament'&&segment?intertestamentWalkConfig(segment):id==='nehemiah'&&segment?nehemiahWalkConfig(segment,phase):id==='exile'&&segment?exileWalkConfig(segment):id==='kingdoms'&&segment?kingdomsWalkConfig(segment):id==='david'&&segment?davidWalkConfig(segment,phase):id==='judges'&&segment?ruthWalkConfig(segment):id==='sinai'&&segment?sinaiWalkConfig(segment):id==='joseph'&&segment?josephWalkConfig(segment):id==='abraham'&&segment?abrahamWalkConfig(segment):id==='paul'&&segment?paulWalkConfig(segment):id==='second-temple'&&segment?returnWalkConfig(segment):id==='exodus'&&segment?exodusWalkConfig(segment):explorationByIsland[id];
+export const explorationFor=(id,segment=null,phase=null)=>id==='church'&&segment?churchWalkConfig(segment,phase):id==='passion'&&segment?passionWalkConfig(segment,phase):id==='parables'&&segment?parablesWalkConfig(segment,phase):id==='samaria'&&segment?samariaWalkConfig(segment,phase):id==='galilee'&&segment?galileeWalkConfig(segment,phase):id==='nativity'&&segment?nativityWalkConfig(segment,phase):id==='intertestament'&&segment?intertestamentWalkConfig(segment):id==='nehemiah'&&segment?nehemiahWalkConfig(segment,phase):id==='exile'&&segment?exileWalkConfig(segment):id==='kingdoms'&&segment?kingdomsWalkConfig(segment):id==='david'&&segment?davidWalkConfig(segment,phase):id==='judges'&&segment?ruthWalkConfig(segment):id==='sinai'&&segment?sinaiWalkConfig(segment):id==='joseph'&&segment?josephWalkConfig(segment):id==='abraham'&&segment?abrahamWalkConfig(segment):id==='paul'&&segment?paulWalkConfig(segment):id==='second-temple'&&segment?returnWalkConfig(segment):id==='exodus'&&segment?exodusWalkConfig(segment):explorationByIsland[id];

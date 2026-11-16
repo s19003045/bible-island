@@ -6,6 +6,7 @@ export function residentAppearance(island,options,index,height=1.7) {
     const modelId=options.id==='water-carrier'?'resident-carrier':child?'resident-child':woman?'roman-woman':['stone-worker','street-vendor'].includes(options.id)?'resident-worker':'resident';
     return {modelId,height:!child&&woman?1.64:height};
   }
+  if(island==='church'){const female=woman||options.id==='church-meals-resident';return {modelId:child?'resident-child':female?'roman-woman':options.id==='church-antioch-resident'?'resident-worker':'resident',height:child?height:female?1.64:height};}
   if(island==='passion'){const female=woman||options.id==='passion-meal-resident';return {modelId:child?'resident-child':female?'roman-woman':options.id==='passion-journey-resident'?'resident-worker':'resident',height:child?height:female?1.64:height};}
   if(island==='parables'){const female=woman||options.id==='parables-light-resident';return {modelId:child?'resident-child':female?'roman-woman':options.id==='parables-field-resident'?'resident-worker':'resident',height:child?height:female?1.64:height};}
   if(island==='samaria'){const female=woman||options.id==='samaria-well-resident';return {modelId:child?'resident-child':female?'roman-woman':options.id==='samaria-care-resident'?'resident-worker':'resident',height:child?height:female?1.64:height};}

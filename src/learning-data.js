@@ -1,3 +1,4 @@
+import {churchLearning} from './church-content.js';
 import {passionLearning} from './passion-content.js';
 import {parablesLearning} from './parables-content.js';
 import {samariaLearning} from './samaria-content.js';
@@ -26,6 +27,7 @@ export const readingModes = {
 export const evidenceKinds = { text: '經文描述', research: '歷史研究', reconstruction: '復原推定' };
 
 export const learningIslands = {
+  church:churchLearning,
   passion:passionLearning,
   parables:parablesLearning,
   samaria:samariaLearning,

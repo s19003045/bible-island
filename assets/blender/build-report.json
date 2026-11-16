@@ -2372,6 +2372,106 @@
       "selected_open_front_margin_m": 0.01,
       "nominal_shell_thickness_m": 0.05,
       "required_sampled_min_shell_thickness_m": 0.04
+    },
+    "church-house": {
+      "file": "models/church-house.glb",
+      "bytes": 72664,
+      "sha256": "b8004512dd09ca1edfaa63a46097617640e38b1e2567595d6ecb66a7457b5b43",
+      "triangles": 1304,
+      "animations": [],
+      "height": 0.3199999928474426,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Church \u2014 original local house interior and exterior compariso",
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.800000011920929,
+        0.3199999928474426
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.3199999928474426,
+      "semantic_groups": [
+        "church-house-modern-continuous-floor",
+        "church-house-fixed-back-wall",
+        "church-house-fixed-left-wall",
+        "church-house-fixed-front-portal",
+        "church-house-roof-beam-left",
+        "church-house-roof-beam-right",
+        "church-house-roof-panel",
+        "church-house-modern-roof-section"
+      ],
+      "runtime_operations": 1,
+      "main_layer": "church-house-modern-roof-section",
+      "translation_gltf_xyz_m": [
+        0,
+        0.16,
+        0
+      ],
+      "interpretation": "Original modern approx1:20local house comparison,not original gathering house/upperroom/complete plan. Three fixed faces:front portal,back,left;right open as modern section. Continuous35mmmodernfloor connectsinside/outside. Two20mmbeams genuinely bear front/backwalltops andcarry25mmpanel. Whole roof group liftsY+.16as suspended observation only,not ancient roof machinery. No120/3000occupancy,firetongues,Dura baptistery or known apostle house.",
+      "units": "metres;BlenderZup/glTFYup"
+    },
+    "church-table": {
+      "file": "models/church-table.glb",
+      "bytes": 444396,
+      "sha256": "0cf0674b08a7c9cbe2c7ae2131b925d6e6e5cfac19d8ef98bfb1c92f39f6449c",
+      "triangles": 19292,
+      "animations": [],
+      "height": 0.125,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Church \u2014 original ordinary common meal vessel comparison",
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.800000011920929,
+        0.125
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.125,
+      "semantic_groups": [
+        "church-table-modern-base",
+        "church-table-fixed-open-bowl",
+        "church-table-fixed-cup-left",
+        "church-table-fixed-cup-right",
+        "church-table-fixed-whole-bread"
+      ],
+      "runtime_operations": 0,
+      "main_layer": null,
+      "translation_gltf_xyz_m": null,
+      "interpretation": "Static original modern comparison:ordinary open bowl,two same plaincups andone solidwholebread.14mmrealmaterialfloors,selectedwallthicknesses11/10mm. Reuses team-original functional geometry without Passion dinner identity. No ritual,menu,recipe,wine,allocationgame,Princetonimage copy or fixedattendance claim. No splitbread or operation.",
+      "units": "metres;BlenderZup/glTFYup"
+    },
+    "church-relations": {
+      "file": "models/church-relations.glb",
+      "bytes": 53228,
+      "sha256": "2906097d1a55deed489524970085163067a0df6ec686f39967e2fbacd6acd749",
+      "triangles": 1492,
+      "animations": [],
+      "height": 0.10999999940395355,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Church \u2014 modern scattering teaching and aid relation diagram",
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.800000011920929,
+        0.10999999940395355
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.10999999940395355,
+      "semantic_groups": [
+        "church-relations-modern-base",
+        "church-relations-fixed-left-platform",
+        "church-relations-fixed-left-neutral-group",
+        "church-relations-fixed-right-platform",
+        "church-relations-fixed-right-neutral-group",
+        "church-relations-fixed-modern-double-arrow",
+        "church-relations-fixed-neutral-teaching-tile",
+        "church-relations-fixed-neutral-aid-bundle"
+      ],
+      "runtime_operations": 0,
+      "main_layer": null,
+      "translation_gltf_xyz_m": null,
+      "interpretation": "Static original modern relation diagram,not ancientmap. Separate left combinedreadingend(scattered/Judea)andright SyrianAntioch,not a precise sharedorigin/group or all destinations. Two same counters pergroup are selected groupingmarks,not population. Thick independent modern doublearrow;UI must separately explain outwardscattering,oneyearteaching andaid towardJudea,not originalroute/roundtrip. Blankteachingtile andclosedclothbulk do not authenticate originalletter,package,content,amount,seal orcraft. No runtime movement,rankings or delivery game.",
+      "units": "metres;BlenderZup/glTFYup"
     }
   }
 }

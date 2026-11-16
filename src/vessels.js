@@ -1,3 +1,4 @@
+import {createChurchObject} from './church-objects.js';
 import {createPassionObject} from './passion-objects.js';
 import {createParablesObject} from './parables-objects.js';
 import {createSamariaObject} from './samaria-objects.js';
@@ -39,6 +40,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader,
   return root;
 }
 function createProceduralVessel(id) {
+  if(['church-house','church-table','church-relations'].includes(id))return createChurchObject(id);
   if(['passion-table','passion-context','passion-tomb'].includes(id))return createPassionObject(id);
   if(['parables-soil','parables-flock','parables-light'].includes(id))return createParablesObject(id);
   if(['samaria-jar','samaria-road','samaria-care'].includes(id))return createSamariaObject(id);

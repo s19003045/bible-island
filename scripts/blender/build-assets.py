@@ -386,6 +386,13 @@ try:
 finally:
     globals().pop('PASSION_OFFICIAL_BUILD',None)
 
+# Scope the metadata flag to the authorised original Church3 assets only.
+CHURCH_OFFICIAL_BUILD = True
+try:
+    exec(compile((ROOT/'scripts/blender/church-props.py').read_text(),str(ROOT/'scripts/blender/church-props.py'),'exec'),globals())
+finally:
+    globals().pop('CHURCH_OFFICIAL_BUILD',None)
+
 bpy.context.window.scene=scene
 scene.frame_set(1)
 bpy.ops.wm.save_as_mainfile(filepath=str(SOURCE/'bible-assets.blend'),compress=True)

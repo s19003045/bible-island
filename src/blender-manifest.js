@@ -1,5 +1,8 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'church-house':{type:'object',src:'models/church-house.glb',height:.32,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,1.4,2.1],articulation:{part:'church-house-modern-roof-section',offset:[0,.16,0],openLabel:'抬起現代屋頂剖示',closeLabel:'還原家屋比較',note:'約1:20原創局部 · 屋頂與兩梁整組抬起，右側為現代剖開；非原屋、容量或升頂機構'}},
+  'church-table':{type:'object',src:'models/church-table.glb',height:.125,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.5,1.9]},
+  'church-relations':{type:'object',src:'models/church-relations.glb',height:.11,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.8,1.9]},
   'passion-table':{type:'object',src:'models/passion-table.glb',height:.14,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.5,1.9]},
   'passion-context':{type:'object',src:'models/passion-context.glb',height:.145,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.9,1.9]},
   'passion-tomb':{type:'object',src:'models/passion-tomb.glb',height:.45,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,1.3,2.2],articulation:{part:'passion-tomb-modern-front-section',offset:[0,0,.18],openLabel:'移開現代前部剖示',closeLabel:'還原墓穴比較剖示',note:'約1:10原創類型比較 · 前部沿現代承盤移開，不是原墓石、古代滑軌或復活原因'}},
