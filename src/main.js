@@ -147,6 +147,7 @@ function changeNarrativeChapter(segment,{resume=true,announce=true}={}){
   if(!chapterById(state.selected,segment)||segment===stateChapter(state))return;
   const walking=state.walking,sound=sceneAudio.enabled;if(walking)exitWalk(false);else endConversation(false);
   setNarrativeChapter(state,state.selected,segment);syncChapterLearningCursor();state.stop=null;state.tour=false;selectCurrentScene();setCurrentAudioScene();renderDetail();
+  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view==='overview'));
   history.replaceState(null,'',islandHash(state.selected));
   if(walking&&resume)startWalk(sound);
   if(announce){const s=chapterById(state.selected,segment);toast(`第 ${s.number} 段：${s.name} · ${s.reference}，切換至另一段敘事。`);}
