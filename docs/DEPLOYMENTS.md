@@ -224,3 +224,4 @@
 - Deployment：`appgdep_6afad88d4a5c819185dfa9961a918408`，`succeeded`，`2026-11-16T10:19:06.554097+00:00`。
 - 完整 172／172、內容／語法、正式建置及 112,585 KiB 離線試閱通過。入口 `index-RLjtQavZ.js`，world `world-BXgbalmM.js`、vessels `vessels-DLgfJJ1Y.js`。
 - 本機在暫停狀態靠近工作解說者，已顯示真實 Blender 腰裹布、五官及裸足；`.qa/joseph-grain-paused-detail-local.png` 已檢視。正式 DOM 已核對新入口；後續手動結果另記約瑟文件。維持原私人權限，不重新生成音訊或改動其逐字時間碼。
+- 正式暫停近景也已確認 Blender 人物；切第三章會結束舊對話，親子第三題維持未解鎖且進度 0／3。正式站恢復一般閱讀／家屋全景與自主動畫，console warning／error 為空；本機三件器物走訪及旋轉均已完成，糧倉另有拆還驗證，各章觀察 1／1，未誤算讀經。詳見約瑟驗收文件中的截圖及覆布修正驗證界線。

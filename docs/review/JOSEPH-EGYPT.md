@@ -52,3 +52,7 @@ Sites 已成功發佈至 [原私人網址](https://bible-island.starryswift8.cha
 
 
 共用暫停細節版已發布：本機 `d4676e28246bf33db644293875064d46620334d2`，Sites source `1df3eb91f25eca8f14f22a465afd0d5431624ce8`，部署 `appgdep_6afad88d4a5c819185dfa9961a918408`，於 `2026-11-16T10:19:06.554097+00:00` 成功。正式 DOM 已核對入口 `index-RLjtQavZ.js`；本機暫停時已能在近處看到 Blender 工作者，`.qa/joseph-grain-paused-detail-local.png` 已檢視。最新完整回歸為 172／172，離線試閱 112,585 KiB。其餘十四島與人工驗證持續。
+
+三件器物的本機實際走訪已完成：倉院與家屋均由角色控制器沿路抵達，E 開啟真實 GLB，旋轉後返回，各章顯示器物觀察 1／1，讀經仍為 0／3。糧倉另完成抬起上層與還原，畫面 `.qa/joseph-granary-inspection-local.png`、`.qa/joseph-provisions-inspection-local.png` 均已逐張檢視。商路覆布旁移修正以實際 Blender 分離渲染 `.qa/blender-joseph-cargo-open.png` 與兩個容器射線補驗，沒有宣稱重走修正後的商路 UI。
+
+最新正式頁暫停時的 Blender 工作者已實際確認，保存 `.qa/joseph-grain-paused-detail-sites.png`。對話中切換家屋章會結束舊人物對話、同步第三章及 `GEN.45.1-28.CSBT`；親子第三題的三個未解鎖選項維持 disabled、進度 0／3。正式頁已恢復一般閱讀、家屋全景、自主動畫及名稱顯示，console warning／error 為空，`.qa/joseph-family-sites.png` 已檢視；本機恢復深入研讀、家屋全景與安靜偏好。兩頁沒有留在自動行走或交談中。
