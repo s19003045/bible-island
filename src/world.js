@@ -389,7 +389,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
         const pmrem = new THREE.PMREMGenerator(renderer), room = new RoomEnvironment();
         environment = pmrem.fromScene(room, .04).texture; room.dispose(); pmrem.dispose();
       }
-      const key=id==='exodus'&&segment?`${id}:${segment}`:id;
+      const key=segment?`${id}:${segment}`:id;
       if (!historicalCache.has(key)) historicalCache.set(key, createHistoricalScene(id, environment,{segment:segment||'all',blenderAssets:true,onAssetsReady:()=>{renderer.shadowMap.needsUpdate=true;dirty=true;}}));
       activeHistorical = historicalCache.get(key); activeHistorical.roof.visible = !cutaway; activeHistorical.setTime(nightMode);
     }

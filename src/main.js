@@ -1,5 +1,6 @@
 import './style.css';
-import {exodusSegmentById,exodusSegmentForPerson} from './exodus-exploration.js';
+import {exodusSegmentById} from './exodus-exploration.js';
+import {narrativeChapters,chapterById,stateChapter,setNarrativeChapter,chapterForPerson} from './narrative-chapters.js';
 import {atlasPanel,atlasJourneyOptions} from './atlas-ui.js';
 import {atlasRouteById} from './atlas-data.js';
 import { themes, themeById, eras, sources, evidenceLabels, filterThemes } from './content.js';
@@ -105,11 +106,11 @@ function updateFilters() {
 }
 
 function selectTheme(id, { updateHash = true,chapter=null } = {}) {
-  if(id==='exodus'&&exodusSegmentById.has(chapter))state.exodusSegment=chapter;
+  setNarrativeChapter(state,id,chapter);
   const t = themeById.get(id); if (!t) return;
   if($('#modal').open)closeModal();
   if (!filterThemes(state).some(x => x.id === id) || state.visitedOnly) resetFilters();
-  if(state.walking)exitWalk(false);endConversation(false);state.selected = id; state.stop = null; state.tour = false;if(id==='exodus')syncExodusLearningCursor();
+  if(state.walking)exitWalk(false);endConversation(false);state.selected = id; state.stop = null; state.tour = false;if(narrativeChapters[id])syncChapterLearningCursor();
   const sceneInfo = historicalScenes[id];
   document.body.classList.toggle('historical-view', !!sceneInfo);
   $('#scene-caption').hidden = !sceneInfo; $('#scene-views').hidden = !sceneInfo; $('#scene-menu').hidden = !sceneInfo;
@@ -136,24 +137,24 @@ function overview() {
   $('#map-layout').classList.remove('has-selection'); $('#map-intro').hidden = false; $('#journey-card').hidden = false; $('#breadcrumb').hidden = true; $('#detail').hidden = true;
   resetFilters();$('#atlas-travel-status').hidden=true;state.atlasRoute=null;renderAtlasPanel();world?.home(); history.replaceState(null, '', location.pathname + location.search); document.title = '讀聖經順起來 — Bible Island';
 }
-function syncExodusLearningCursor(){if(state.selected!=='exodus')return;const task=learningTasks('exodus',state.mode).find(t=>t.id===state.exodusSegment||t.stop===state.exodusSegment);if(task)state.learningCursor[learningKey(state)]=task.id;}
-function currentExploration(){return explorationFor(state.selected,state.selected==='exodus'?state.exodusSegment:null);}
-function islandHash(id){return `#island=${encodeURIComponent(id)}${id==='exodus'?`&chapter=${state.exodusSegment}`:''}`;}
-function selectCurrentScene(id=state.selected){world?.select(id,id==='exodus'?state.exodusSegment:null);}
-function setCurrentAudioScene(){sceneAudio.setScene(state.selected,state.selected==='exodus'?state.exodusSegment:null);}
-function bindExodusChapters(){document.querySelectorAll('[data-exodus-segment]').forEach(b=>b.onclick=()=>changeExodusSegment(b.dataset.exodusSegment));}
-function changeExodusSegment(segment,{resume=true,announce=true}={}){
-  if(state.selected!=='exodus'||!exodusSegmentById.has(segment)||segment===state.exodusSegment)return;
+function syncChapterLearningCursor(){const chapter=stateChapter(state);if(!chapter)return;const task=learningTasks(state.selected,state.mode).find(t=>t.id===chapter||t.stop===chapter);if(task)state.learningCursor[learningKey(state)]=task.id;}
+function currentExploration(){return explorationFor(state.selected,stateChapter(state));}
+function islandHash(id){const chapter=stateChapter(state,id);return `#island=${encodeURIComponent(id)}${chapter?`&chapter=${chapter}`:''}`;}
+function selectCurrentScene(id=state.selected){world?.select(id,stateChapter(state,id));}
+function setCurrentAudioScene(){sceneAudio.setScene(state.selected,stateChapter(state));}
+function bindNarrativeChapters(){document.querySelectorAll('[data-exodus-segment],[data-narrative-segment]').forEach(b=>b.onclick=()=>changeNarrativeChapter(b.dataset.exodusSegment||b.dataset.narrativeSegment));}
+function changeNarrativeChapter(segment,{resume=true,announce=true}={}){
+  if(!chapterById(state.selected,segment)||segment===stateChapter(state))return;
   const walking=state.walking,sound=sceneAudio.enabled;if(walking)exitWalk(false);else endConversation(false);
-  state.exodusSegment=segment;syncExodusLearningCursor();state.stop=null;state.tour=false;selectCurrentScene();setCurrentAudioScene();renderDetail();
-  history.replaceState(null,'',islandHash('exodus'));
+  setNarrativeChapter(state,state.selected,segment);syncChapterLearningCursor();state.stop=null;state.tour=false;selectCurrentScene();setCurrentAudioScene();renderDetail();
+  history.replaceState(null,'',islandHash(state.selected));
   if(walking&&resume)startWalk(sound);
-  if(announce){const s=exodusSegmentById.get(segment);toast(`第 ${s.number} 段：${s.name} · ${s.reference}，切換至另一段敘事。`);}
+  if(announce){const s=chapterById(state.selected,segment);toast(`第 ${s.number} 段：${s.name} · ${s.reference}，切換至另一段敘事。`);}
   $('#map-layout').classList.add('scene-arriving');setTimeout(()=>$('#map-layout').classList.remove('scene-arriving'),320);
 }
 function selectStop(id, { focus = true } = {}) {
   const t = themeById.get(state.selected), s = t?.stops.find(s => s.id === id); if (!s) return;
-  if(t.id==='exodus'&&state.exodusSegment!==id)changeExodusSegment(id,{resume:false,announce:false});
+  if(narrativeChapters[t.id]&&stateChapter(state)!==id)changeNarrativeChapter(id,{resume:false,announce:false});
   if(state.walking)exitWalk(false);
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',false));
   endConversation(false);state.stop = id;
@@ -180,13 +181,13 @@ function renderDetail() {
   $('#detail').innerHTML = `
     <div class="detail-sticky"><div class="detail-top"><span class="eyebrow">ISLAND ${number(t.number)} <i>/</i> ${oldNew(t)}</span><div><button class="icon-button ${saved ? 'saved' : ''}" id="save-theme" aria-label="${saved ? '取消收藏' : '收藏主題'}" aria-pressed="${saved}">${icon('bookmark', 18)}</button><button class="icon-button" id="close-detail" aria-label="${state.walking?'結束交談':'返回群島全景'}">${icon('close', 20)}</button></div></div>
     <p class="detail-english">${t.english}</p><h2>${t.name}</h2><p class="detail-subtitle">${t.subtitle}</p><div class="detail-meta"><span>${icon('clock', 13)}${t.period}</span><span>${icon('compass', 13)}${t.stops.length} 個探索點</span></div>${modeStatus(state.mode)}</div>
-    <div class="detail-scroll">${learningPanel(state,t)}${explorationFor(t.id)&&!state.walking?walkEntry(state.worldReady,t.id,t.id==='exodus'?state.exodusSegment:null):''}${peopleMarkup(state)}${sceneInfo ? `<section class="reconstruction-card"><span>詳細場景 · 復原預覽</span><strong>${sceneInfo.scale}</strong><button id="scene-evidence">查看尺度與復原取捨 ${icon('arrow',13)}</button></section>` : ''}<p class="detail-intro">${t.intro}</p>${scriptureReading(t.book, t.reference)}
+    <div class="detail-scroll">${learningPanel(state,t)}${explorationFor(t.id)&&!state.walking?walkEntry(state.worldReady,t.id,stateChapter(state,t.id)):''}${peopleMarkup(state)}${sceneInfo ? `<section class="reconstruction-card"><span>詳細場景 · 復原預覽</span><strong>${sceneInfo.scale}</strong><button id="scene-evidence">查看尺度與復原取捨 ${icon('arrow',13)}</button></section>` : ''}<p class="detail-intro">${t.intro}</p>${scriptureReading(t.book, t.reference)}
     <div class="detail-actions"><button class="primary-button" id="start-tour">${icon(state.tour ? 'compass' : 'play', 15)}${learningIslands[t.id]?readingModes[state.mode].action:state.tour ? '重新開始導覽' : '跟著導覽走一趟'}<small>${learningIslands[t.id]?(state.mode==='general'?`${t.stops.length} 幕故事`:state.mode==='child'?'3 個觀察任務':'3 項資料對讀'):`約 ${t.stops.length} 分鐘`}</small></button>${canCut ? '<button class="secondary-button" id="cutaway-button" aria-pressed="false"></button>' : ''}</div>
     ${current ? `<section class="stop-card" aria-labelledby="stop-heading"><div class="stop-card-top"><span>${state.tour ? '跟著導覽' : '正在探索'} ${number(index + 1)} / ${number(t.stops.length)}</span><button id="close-stop" aria-label="收合探索點">${icon('close', 15)}</button></div><h3 id="stop-heading" tabindex="-1">${icon(current.icon, 21)}${current.name}</h3><p class="stop-question">${current.question}</p><p>${state.mode === 'child' ? current.child : current.summary}</p>${state.mode === 'study' ? `<div class="study-note"><span>進一步觀察</span><p>${current.study}</p></div>` : ''}${scriptureReferences(current.reference)}<button class="evidence-chip" id="stop-evidence">${icon('info', 12)}${evidenceLabels[current.evidence]}</button><div class="tour-navigation"><button id="previous-stop" ${index === 0 ? 'disabled' : ''}>上一站</button><span>${index + 1} / ${t.stops.length}</span><button id="next-stop">${index === t.stops.length - 1 ? '完成探索' : '下一站'}${icon(index === t.stops.length - 1 ? 'check' : 'arrow', 15)}</button></div></section>` : `<div class="guiding-question"><span>帶著一個問題出發</span><p>${t.question}</p></div>`}
     <div class="section-heading"><h3>這座島的探索點</h3><span>${done} / ${t.stops.length}</span></div><div class="stop-progress"><i style="width:${done / t.stops.length * 100}%"></i></div><div class="stop-list">${t.stops.map((s,i) => `<button data-stop="${s.id}" class="stop-row ${s.id === state.stop ? 'active' : ''}"><span>${state.progress.stops.includes(`${t.id}/${s.id}`) ? icon('check', 13) : number(i+1)}</span><strong>${s.name}<small>${s.reference}</small></strong>${icon('chevron', 14)}</button>`).join('')}</div>
     <div class="section-heading related-heading"><h3>從這裡，繼續閱讀</h3>${icon('route', 16)}</div><div class="related-list">${t.connections.map(c => { const other = themeById.get(c.id); return `<button class="related-row" data-related="${c.id}"><span class="related-number">${number(other.number)}</span><span><small>${c.type}</small><strong>${other.name}</strong></span>${icon('arrow', 16)}</button>`; }).join('')}</div>
     <button class="context-button" id="context-button">${icon('info', 15)}這個場景如何復原？${icon('chevron', 13)}</button><p class="detail-footnote">觀察場景 · 回到經文 · 連起故事</p></div>`;
-  bindPeople();bindLearning();bindExodusChapters();
+  bindPeople();bindLearning();bindNarrativeChapters();
   $('#enter-walk-sound')?.addEventListener('click',()=>startWalk(true));$('#enter-walk-quiet')?.addEventListener('click',()=>startWalk(false));
   updateCutawayButton();
   $('#scene-evidence')?.addEventListener('click',()=>openContext(t));
@@ -213,7 +214,7 @@ function renderDetail() {
 
 function selectActor(id) {
   if(!personById(state.selected,id))return;
-  if(state.selected==='exodus'&&!state.walking){const segment=exodusSegmentForPerson(id);if(segment&&segment!==state.exodusSegment)changeExodusSegment(segment,{resume:false,announce:false});}
+  if(narrativeChapters[state.selected]&&!state.walking){const segment=chapterForPerson(state.selected,id);if(segment&&segment!==stateChapter(state))changeNarrativeChapter(segment,{resume:false,announce:false});}
   if(state.walking&&!world?.canTalk(id)){walkFeedback('再靠近角色一些，就能開始交談。');return;}
   readingSpeech.stop();sceneAudio.stopVoice();
   state.actor=id;state.dialogue=[];state.stop=null;state.tour=false;
@@ -338,7 +339,7 @@ function chooseAtlasRoute(id){if(!atlasRouteById.has(id))return;state.atlasRoute
 function changeReadingMode(mode) {
   if(!Object.hasOwn(readingModes,mode))return;
   if(state.walking)exitWalk(false);endConversation(false);state.stop=null;state.tour=false;
-  state.mode=mode;syncExodusLearningCursor();state.learning={...state.learning,mode};state.learningFeedback=null;writeLearning(storage,state.learning);
+  state.mode=mode;syncChapterLearningCursor();state.learning={...state.learning,mode};state.learningFeedback=null;writeLearning(storage,state.learning);
   updateModePresentation();renderDetail();if($('#detail .detail-scroll'))$('#detail .detail-scroll').scrollTop=0;
   toast(`${modes[mode]}：${readingModes[mode].title}`);
 }
@@ -380,7 +381,7 @@ function exitWalk(render=true) {
   if(render){renderDetail();$('#enter-walk-quiet')?.focus({preventScroll:true});}
 }
 function renderWalk() {
-  if(!state.walking)return;const root=$('#walk-interface');root.hidden=false;root.innerHTML=walkMarkup(state);bindExodusChapters();
+  if(!state.walking)return;const root=$('#walk-interface');root.hidden=false;root.innerHTML=walkMarkup(state);bindNarrativeChapters();
   const step=missionSteps[missionStage(state.mission)];world?.setWalkObjective(state.selected==='jerusalem'&&state.mode==='general'?step?.target||null:null);
   document.querySelectorAll('[data-walk-person]').forEach(b=>b.onclick=()=>world?.guideWalk({type:'person',id:b.dataset.walkPerson}));
   document.querySelectorAll('[data-walk-object]').forEach(b=>b.onclick=()=>{const o=currentExploration().objects.find(o=>o.id===b.dataset.walkObject);world?.guideWalk({type:'object',id:o.id,position:o.approach||o.position});});

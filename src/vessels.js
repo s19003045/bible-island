@@ -22,6 +22,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader}
   return root;
 }
 function createProceduralVessel(id) {
+  if(['return-masonry','return-scroll','return-vessels'].includes(id))return createReturnObject(id);
   if(['jordan-bed','jordan-carrying','jordan-stones'].includes(id))return createJordanObject(id);
   if(['brick-mould','passover-kit','crossing-ground'].includes(id))return createExodusObject(id);
   if(['herod-stone','herod-boundary','herod-capital'].includes(id))return createHerodObject(id);
@@ -35,6 +36,20 @@ function createProceduralVessel(id) {
   // Fine horizontal tooling marks, shared with the inspectable object rather than a second representation.
   for(let i=0;i<6;i++){const radius=clay?.218-Math.abs(i-2)*.004:.15;const mark=new THREE.Mesh(new THREE.TorusGeometry(radius,.0013,3,40),new THREE.MeshStandardMaterial({color:clay?'#805237':'#b2aa94',roughness:1}));mark.rotation.x=Math.PI/2;mark.position.y=clay?.16+i*.023:.08+i*.035;group.add(mark);}
   group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});group.userData.objectId=id;return group;
+}
+function createReturnObject(id){
+ const root=new THREE.Group(),stone=new THREE.MeshStandardMaterial({color:'#a1967e',roughness:1}),wood=new THREE.MeshStandardMaterial({color:'#765234',roughness:.97}),paper=new THREE.MeshStandardMaterial({color:'#c0a878',roughness:1});
+ const box=(parent,x,y,z,w,h,d,mat)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);parent.add(m);};
+ if(id==='return-masonry'){
+  for(let r=0;r<3;r++)for(let c=0;c<3;c++)box(root,(c-1)*.45+(r%2?.06:0),.075+r*.15,0,.438,.144,.42,stone);
+  const layer=new THREE.Group();layer.name='return-timber-layer';root.add(layer);for(const z of [-.13,.13])box(layer,.03,.48,z,1.47,.066,.11,wood);
+ }else if(id==='return-scroll'){
+  box(root,0,.026,0,1.08,.004,.46,paper);
+  const roll=new THREE.Mesh(new THREE.CylinderGeometry(.059,.059,.54,32),paper);roll.rotation.x=Math.PI/2;roll.position.set(.06,.064,.67);root.add(roll);
+ }else for(const [x,scale,color] of [[-.30,1,'#b98a33'],[.31,.84,'#aaa79d']]){
+  const p=[[0,0],[.12,0],[.17,.06],[.24,.25],[.24,.28],[.215,.28],[.20,.16],[.15,.075],[0,.038]];const bowl=new THREE.Mesh(new THREE.LatheGeometry(p.map(([r,y])=>new THREE.Vector2(r*scale,y*scale)),48),new THREE.MeshStandardMaterial({color,metalness:.85,roughness:.35}));bowl.position.x=x;root.add(bowl);
+ }
+ root.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});return root;
 }
 function createJordanObject(id){
  const g=new THREE.Group(),stone=new THREE.MeshStandardMaterial({color:'#97917b',roughness:1}),blue=new THREE.MeshStandardMaterial({color:'#31566b',roughness:.98}),wood=new THREE.MeshStandardMaterial({color:'#735039',roughness:.96});

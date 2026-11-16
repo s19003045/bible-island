@@ -1,3 +1,4 @@
+import {returnLearning} from './return-content.js';
 import {jordanLearning} from './jordan-content.js';
 // Authored learning activities share the existing historically qualified scenes.
 const quest = (stop, actor, question, options, correct, hint, explanation) => ({ id: stop, stop, actor, question, options, correct, hint, explanation });
@@ -10,6 +11,7 @@ export const readingModes = {
 export const evidenceKinds = { text: '經文描述', research: '歷史研究', reconstruction: '復原推定' };
 
 export const learningIslands = {
+  'second-temple':returnLearning,
   jordan:jordanLearning,
   tabernacle: {
     opening: '從營地走進外院，再看帳幕內部。每向前一步，都留意空間、器物和人的角色如何改變。',

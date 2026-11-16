@@ -1,5 +1,12 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'return-mason':{type:'character',src:'models/return-mason.glb',height:1.71,triangleBudget:46000,byteBudget:1800000,era:'Ezra narrative; original working tunic and shoulder cloth, no surviving uniform claim'},
+  'return-elder':{type:'character',src:'models/return-elder.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Ezra narrative; aged composite face and long teaching garment'},
+  'return-woman':{type:'character',src:'models/return-woman.glb',height:1.65,ankleHeight:.10059,cycleDistance:.7664,liftHeight:.07185,triangleBudget:46000,byteBudget:1800000,era:'Ezra narrative; long garment and optional shoulder covering, chosen reconstruction'},
+  'return-child':{type:'character',src:'models/return-child.glb',height:1.102,ankleHeight:.075,cycleDistance:.4903,liftHeight:.046,triangleBudget:42000,byteBudget:1600000,era:'Ezra narrative; independent child body and simple woven garment'},
+  'return-masonry':{type:'object',src:'models/return-masonry.glb',height:.513,triangleBudget:18000,byteBudget:800000,articulation:{part:'return-timber-layer',offset:[0,.18,0],openLabel:'分開木料層',closeLabel:'還原石木層',note:'王令文字的教學比較 · 非原牆拆解'}},
+  'return-scroll':{type:'object',src:'models/return-scroll.glb',height:.133,triangleBudget:18000,byteBudget:900000,inspectionView:[1,2.7,1.2]},
+  'return-vessels':{type:'object',src:'models/return-vessels.glb',height:.286,triangleBudget:18000,byteBudget:800000,inspectionView:[1,2.2,1.3]},
   'priest-bearer':{type:'character',src:'models/priest-bearer.glb',height:1.735,triangleBudget:44000,byteBudget:1700000,era:'Joshua 3:17 standing phase; original covered pole grip teaching pose'},
   'jordan-bed':{type:'object',src:'models/jordan-bed.glb',height:.300,triangleBudget:18000,byteBudget:750000},
   'jordan-carrying':{type:'object',src:'models/jordan-carrying.glb',height:.363,triangleBudget:18000,byteBudget:750000},

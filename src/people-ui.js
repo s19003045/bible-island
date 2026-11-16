@@ -1,3 +1,4 @@
+import {stateChapter} from './narrative-chapters.js';
 import { peopleByIsland, personById, dialogueNotice, dialogueSources } from './people-data.js';
 import {explorationFor} from './exploration-data.js';
 import { icon } from './icons.js';
@@ -5,7 +6,7 @@ import { themeById } from './content.js';
 import { personForMode } from './learning-model.js';
 
 export function peopleMarkup(state) {
-  const all=peopleByIsland[state.selected];if(!all)return '';const person=explorationFor(state.selected,state.exodusSegment)?.person,people=person?all.filter(p=>p.id===person):all;
+  const all=peopleByIsland[state.selected];if(!all)return '';const person=explorationFor(state.selected,stateChapter(state))?.person,people=person?all.filter(p=>p.id===person):all;
   const actor=personForMode(personById(state.selected,state.actor),state.selected,state.mode);
   if(!actor) return `<section class="people-panel" aria-label="場景人物"><div class="people-heading"><span>${icon('chat',17)}遇見這裡的人</span><small>${people.length} 位可交談角色${person?' · 本段':''}</small></div><div class="people-list">${people.map(p=>`<button class="people-row" data-person="${p.id}"><span class="person-avatar">${icon(p.motion==='work'?'hammer':p.motion==='walk'?'footprints':'chat',18)}</span><span><strong>${p.name}</strong><small>${p.role}</small></span>${icon('chevron',14)}</button>`).join('')}</div><p class="people-hint">點對話標記或選角色；交談時停下，結束後繼續活動。</p></section>`;
   const last=state.dialogue.at(-1), pending=last&&!last.isFollowup ? actor.topics.find(t=>t.id===last.topic)?.followup : null;

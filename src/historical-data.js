@@ -1,3 +1,4 @@
+import {returnHistorical} from './return-content.js';
 import { scriptureSource as bible } from './scripture.js';
 import {residentClothingEvidence} from './resident-clothing-data.js';
 import {jordanHistorical} from './jordan-content.js';
@@ -11,6 +12,7 @@ export const dimensions = {
   herod: { facade: [100 * CUBIT, 100 * CUBIT], holy: [40 * CUBIT, 40 * CUBIT, 20 * CUBIT], inner: 20 * CUBIT },
 };
 export const historicalScenes = {
+  'second-temple':returnHistorical,
   jordan:jordanHistorical,
   tabernacle: {
     edition: '曠野的會幕與營地', category: '依經文尺度重建', scale: '外院 45 × 22.5 m · 成人 1.70 m',

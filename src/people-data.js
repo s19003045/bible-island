@@ -1,3 +1,4 @@
+import {returnPeople} from './return-content.js';
 import { scriptureLinks } from './scripture.js';
 import {jordanPeople} from './jordan-content.js';
 
@@ -7,6 +8,7 @@ const npc = (id, name, role, era, position, style, motion, greeting, topics, rou
   ({id,name,role,era,position,style,motion,greeting,topics,route,routeMode});
 export const dialogueNotice = '角色為綜合設計；對白依經文與歷史背景編寫，並非經文原話。';
 export const peopleByIsland = {
+  'second-temple':returnPeople,
   jordan:jordanPeople,
   tabernacle: [
     npc('weaver','織作工匠','營地裡的織作與材料','會幕建成後的曠野營地',[29,0,5],2,'walk',

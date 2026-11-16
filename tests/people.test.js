@@ -10,7 +10,7 @@ import { createHistoricalScene } from '../src/historical-scenes.js';
 const context=new Proxy({},{get:()=>()=>{},set:()=>true});
 globalThis.document={createElement:()=>({width:256,height:256,getContext:()=>context})};
 
-test('18 scene-specific characters have sourced questions, follow-ups and valid learning destinations',()=>{
+test('21 scene-specific characters have sourced questions, follow-ups and valid learning destinations',()=>{
   assert.deepEqual(Object.keys(peopleByIsland).sort(),Object.keys(historicalScenes).sort());
   let count=0;
   for(const [island,people] of Object.entries(peopleByIsland)) {
@@ -27,7 +27,7 @@ test('18 scene-specific characters have sourced questions, follow-ups and valid 
       assert.ok(p.topics.some(t=>t.followup));
     }
   }
-  assert.equal(count,18);
+  assert.equal(count,21);
 });
 
 test('walking stays on its authored route and turns without wrapping to a different location',()=>{
@@ -67,11 +67,11 @@ test('the Exodus procession advances and stops at the end without reversing or t
   assert.equal(built.people.find(a=>a.id==='traveler').state.routeMode,'forward');built.dispose();
 });
 
-test('all five scenes animate real instance matrices and bind only their three intended interlocutors',()=>{
+test('all detailed scenes animate real instance matrices and bind only their intended interlocutors',()=>{
   const matrix=new THREE.Matrix4();
   for(const island of Object.keys(peopleByIsland)) {
     const built=createHistoricalScene(island,null);
-    assert.deepEqual(built.people.map(a=>a.id),peopleByIsland[island].map(p=>p.id));
+    assert.deepEqual(built.people.map(a=>a.id),peopleByIsland[island].filter(p=>!built.exploration?.person||p.id===built.exploration.person).map(p=>p.id));
     const actor=built.people[0],head=actor.parts.find(p=>p.bone==='head');
     head.mesh.getMatrixAt(head.index,matrix);const before=[...matrix.elements];
     for(let i=0;i<30;i++)built.animate(1/30,[actor.state.position[0],actor.state.position[1]+2,actor.state.position[2]+5]);

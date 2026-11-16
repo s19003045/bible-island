@@ -222,10 +222,66 @@
       ],
       "height": 1.735
     },
+    "return-mason": {
+      "file": "models/return-mason.glb",
+      "bytes": 1205284,
+      "sha256": "fe674188d701b4bf1e08e5a498c21e945dd90d7130ff967b571d2340235bc803",
+      "triangles": 31400,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.71
+    },
+    "return-elder": {
+      "file": "models/return-elder.glb",
+      "bytes": 1402596,
+      "sha256": "f8187d4962db3df8792b493bea81c86fc464fc0c14b6f6846b0dd736ccdd4d0b",
+      "triangles": 37064,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.71
+    },
+    "return-woman": {
+      "file": "models/return-woman.glb",
+      "bytes": 1224216,
+      "sha256": "28d95e2a16d6347de77e9ec47ea94e43e858a7c5fd5ed35adf23a23fda39a1c8",
+      "triangles": 31964,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.65
+    },
+    "return-child": {
+      "file": "models/return-child.glb",
+      "bytes": 1133576,
+      "sha256": "35ef6c4d20f5af53ea65e1a8f15ef41977e7276370107bc8534464dc3d99ceab",
+      "triangles": 29416,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.102
+    },
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "b3436bfe458e214bb6e46a0ba8f4397a3bd3b5f9680035d4994caa269aa104ef",
+      "sha256": "d895daeaf78eb580ea0e8c955cf8d1be37d0d9798caa06569161097d0a487b58",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -234,7 +290,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "34dd15bf2fa2d12a2bee34af8dc24394334ee8b765fb7d907798149e1b8d5117",
+      "sha256": "810a2842af8fd8f4baee5cb8d063301705e75d60cdd9b46d671edefbbc864b0b",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -252,7 +308,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "288d57f397e747edb14b1d3353d3fd3416ddf954354e1da8dd04e750654cd296",
+      "sha256": "5b6e990d7c462acbd17888dedcb6aa8fd370d94686a589cdca7bcf59aa1a48db",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -277,7 +333,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "62f6df278f1b415e11506d3d2cf355c60bb3eb726c66782d7ea05fc9a8cb487b",
+      "sha256": "8a6b07b97c4559dea00f67cb9d28501c73d6c34e0e8ea0a16daee5b37cdae1a0",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -286,7 +342,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "ad9474405e9b7879c1c113233f336df3d10b46b8946568e1e73704bcf55b7dc6",
+      "sha256": "decbf46db257960323abd3cec2555546b1f258b740ea503b6ea9c6341d11e129",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -295,7 +351,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "2798ecdaac7c5faac13f9fa72a570b038334912caea5c9e0f81c6db623213330",
+      "sha256": "72924ce459ce2bb9817a93cfdddf35e9f48a80da0329c8d2c78956f3a060d196",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -306,7 +362,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "6a1e0d391c624e872172c8a7072b1b29e95aa5196defa021480bd8e2219cdb4a",
+      "sha256": "aba38eaa032b68d2de7c33b9a3c8a11fc30a16b66a3091b251e4e0f4d9731902",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -317,7 +373,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "960a65a7a9b21364b7df29eeef90c77c5782944565e5305df4a7de27952cc469",
+      "sha256": "c24e63438bb9864f0b202b232a9f6d7af7dd0c57a5268f6e0ae934e629820d22",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -335,7 +391,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "bd46dd07cd2c2df500c8b84f04e05b29b8a5aadd7e82d52f233c6d3501f19f6a",
+      "sha256": "60056d4279120e5d19a79acd3a1ccdde8b73d453819b2aa01b24456d69326809",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
@@ -372,6 +428,34 @@
       "teaching_model": true,
       "count": 12,
       "use": "Gilgal narrative teaching group; not the separate in-river stones of Joshua 4:9"
+    },
+    "return-masonry": {
+      "file": "models/return-masonry.glb",
+      "bytes": 200972,
+      "sha256": "0693a1ab6d55c1b2fc81a698c285926d76244bb58e1f3a0a24cac8cddee8dae3",
+      "triangles": 2068,
+      "animations": [],
+      "height": 0.513,
+      "teaching_model": true,
+      "interpretation": "Ezra 6:4 decree comparison; not an as-built survey or proven seismic system"
+    },
+    "return-scroll": {
+      "file": "models/return-scroll.glb",
+      "bytes": 255344,
+      "sha256": "08e2def2552f7b7034c3b195fdbb2a60826410cf18b31c0c713855228a3aec7e",
+      "triangles": 10536,
+      "animations": [],
+      "height": 0.133,
+      "teaching_model": true
+    },
+    "return-vessels": {
+      "file": "models/return-vessels.glb",
+      "bytes": 250344,
+      "sha256": "17fda36c60af1f84f2697ce73f814504a40a632f170dcc831e15ce2195670674",
+      "triangles": 11452,
+      "animations": [],
+      "height": 0.286,
+      "teaching_model": true
     }
   }
 }

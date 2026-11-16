@@ -4,7 +4,7 @@ blender --background --factory-startup --python scripts/blender/build-assets.py
 Editable scenes, GLB exports and a machine-readable build report are generated together.
 Front is Blender -Y, exported glTF +Z. Anatomy/cloth/handles are authored surfaces.
 """
-import bpy, bmesh, math, json, pathlib, hashlib
+import bpy, bmesh, math, json, pathlib, hashlib, sys
 from mathutils import Vector
 from math import sin, cos, pi, exp
 
@@ -327,12 +327,14 @@ export_asset(stone_scene,'stone-vessel','stone-vessel.glb')
 
 exec(compile((ROOT/'scripts/blender/resident-variants.py').read_text(),str(ROOT/'scripts/blender/resident-variants.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/period-characters.py').read_text(),str(ROOT/'scripts/blender/period-characters.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/return-characters.py').read_text(),str(ROOT/'scripts/blender/return-characters.py'),'exec'),globals())
 
 exec(compile((ROOT/'scripts/blender/tabernacle-props.py').read_text(),str(ROOT/'scripts/blender/tabernacle-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/solomon-props.py').read_text(),str(ROOT/'scripts/blender/solomon-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/herod-props.py').read_text(),str(ROOT/'scripts/blender/herod-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/exodus-props.py').read_text(),str(ROOT/'scripts/blender/exodus-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/jordan-props.py').read_text(),str(ROOT/'scripts/blender/jordan-props.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/return-props.py').read_text(),str(ROOT/'scripts/blender/return-props.py'),'exec'),globals())
 
 bpy.context.window.scene=scene
 scene.frame_set(1)
@@ -352,6 +354,10 @@ def render_preview(s, target, location, filename, orthographic):
     s.render.engine='CYCLES';s.cycles.samples=24;s.render.resolution_x=768;s.render.resolution_y=1000;s.render.resolution_percentage=100
     s.render.film_transparent=True;s.render.filepath=str(QA/filename)
     bpy.ops.render.render(write_still=True)
+# Asset export and QA rendering can be run separately on memory-limited hosts.
+if '--no-previews' in sys.argv:
+    print('BIBLE_ASSETS_EXPORTED',len(report['assets']))
+    sys.exit(0)
 render_preview(scene,(0,0,.88),(2.2,-5,2.3),'blender-resident.png',1.95)
 render_preview(worker_scene,(0,0,.88),(2.2,-5,2.3),'blender-resident-worker.png',1.95)
 render_preview(child_scene,(0,0,.56),(2.2,-5,2.1),'blender-resident-child.png',1.33)
@@ -375,4 +381,7 @@ render_preview(crossing_scene,(0,0,.20),(1.2,-1.8,4.8),'blender-crossing-ground.
 render_preview(bed_scene,(0,0,.15),(1.6,-3,2.1),'blender-jordan-bed.png',2.5)
 render_preview(carrying_scene,(0,0,.19),(1.6,-3,1.8),'blender-jordan-carrying.png',1.9)
 render_preview(stones_scene,(0,0,.23),(1.6,-3,3.3),'blender-jordan-stones.png',4.3)
+render_preview(return_masonry_scene,(0,0,.26),(1.6,-3,1.7),'blender-return-masonry.png',2.0)
+render_preview(return_scroll_scene,(0,-.3,.07),(1.6,-3,3.4),'blender-return-scroll.png',1.9)
+render_preview(return_vessels_scene,(0,0,.14),(1.4,-3,2.1),'blender-return-vessels.png',1.6)
 print('BIBLE_ASSETS_COMPLETE',json.dumps(report))
