@@ -1,3 +1,4 @@
+import {josephPeople} from './joseph-content.js';
 import {abrahamPeople} from './abraham-content.js';
 import {paulPeople} from './paul-content.js';
 import {returnPeople} from './return-content.js';
@@ -10,6 +11,7 @@ const npc = (id, name, role, era, position, style, motion, greeting, topics, rou
   ({id,name,role,era,position,style,motion,greeting,topics,route,routeMode});
 export const dialogueNotice = '角色為綜合設計；對白依經文與歷史背景編寫，並非經文原話。';
 export const peopleByIsland = {
+  joseph:josephPeople,
   abraham:abrahamPeople,
   paul:paulPeople,
   'second-temple':returnPeople,

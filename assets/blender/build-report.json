@@ -362,10 +362,52 @@
       ],
       "height": 1.71
     },
+    "caravan-traveler": {
+      "file": "models/caravan-traveler.glb",
+      "bytes": 1225376,
+      "sha256": "aaef52f60ea06be9bd63f97b7202b367dbebb26a74a4367cac2d347a7e084bde",
+      "triangles": 31912,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.71
+    },
+    "egypt-grain-worker": {
+      "file": "models/egypt-grain-worker.glb",
+      "bytes": 1015592,
+      "sha256": "fef1db421a22b1b75e157a30c8fd61d55892bb5ce985bc1e7e8772fbfab3e394",
+      "triangles": 25866,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.71
+    },
+    "egypt-householder": {
+      "file": "models/egypt-householder.glb",
+      "bytes": 1154764,
+      "sha256": "70021e1c3471bd71af5db2a077cc63fb3b690abb71b10d9808d7eff6e974550c",
+      "triangles": 30378,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "height": 1.65
+    },
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "cc6b261f27d3f6896eabed3fa5a9c28c1c5f21c1ac5758ac9ae3f00bf1d097cb",
+      "sha256": "e9431a4c30ebe96da970d05945e80027d461cd1126c74a23ed10f9c1fb0b855b",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -374,7 +416,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "ba8ea87a996d726a58f53e2775cb6c586cf263651c23136f2b2f8ade43f5948f",
+      "sha256": "56ffbaec65f69e7fe2d19d8db819e98f348a39b4288ad8cc26cf948215b8bb84",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -392,7 +434,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "e229d5bd48c405dcd8fba5117a737ec2b6b50d1a78afe1a4a93fafe8f231a4a8",
+      "sha256": "936ceb9161d7bd4c679504109400deb41d8fcd61faf17a0ea5fa1134b50d1ba7",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -417,7 +459,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "21394ff11de128f001afbddbaf2c1f289fe75bccbcc28981a7cddb6993da2a5b",
+      "sha256": "93be421dd6169759c7af6e3b9fa57358b54e8d34b917f7eca93fe10331b96e5f",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -426,7 +468,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "7c60efecaf05218b6124d3797593acea25de4fa076726859c2d18b7cbdcd574c",
+      "sha256": "8f38ce00cb275c90a05d0c47a68e969bc51b266c571a94116132d2dcdc3951e4",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -435,7 +477,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "01cb9d3ff88c0c142bf88dd2ad29183b4da336c35ffc27ea5b8c646d9acc0b87",
+      "sha256": "b0bcd6f43c32cbae86170ed747196487312368d57f44e612617f092e653b0e0d",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -446,7 +488,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "89102ff78147962a617d6a0f2c621cf3733f827e53a413124d8751041854af9e",
+      "sha256": "b14dd0a73d473986c5a6927408cf0298308ac579f3fa063f9ed46fcb9239f58f",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -457,7 +499,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "64dadfcd62b2ddd15c616f3c0a31e98b67398835540fe9a1401a8cbc3d91d4ff",
+      "sha256": "6363f7c1c59c8471ea267112c7d088c5c6dc73f3e227d1c79750e52e93c9d214",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -475,7 +517,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "fa58b5486a8d1f852219e1d093b8aaa1211382a6eda4fcd2f19b4a97b636bd1f",
+      "sha256": "6ab30148ff5b52462208ec8533524d57ea1047980204f93647b82f4ffb8aa205",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
@@ -516,7 +558,7 @@
     "return-masonry": {
       "file": "models/return-masonry.glb",
       "bytes": 200972,
-      "sha256": "13542018338990fb6b013a40e20462bc5e5f88366743e651c1cc4aed4feb9bd8",
+      "sha256": "4a7432a48db27a787337aa676cfc0419c383795af80427e5601c6b9549603f27",
       "triangles": 2068,
       "animations": [],
       "height": 0.513,
@@ -544,7 +586,7 @@
     "paul-ship": {
       "file": "models/paul-ship.glb",
       "bytes": 946292,
-      "sha256": "c075e69f0229665297c6c0ac555f4c0bac938669247b094bdfd5c19d58fe6342",
+      "sha256": "9e99998e6f365d2f13baeca4504fc18b64f182577e7b2600009a215d7e873f06",
       "triangles": 28360,
       "animations": [],
       "height": 1.12,
@@ -563,7 +605,7 @@
     "paul-silverwork": {
       "file": "models/paul-silverwork.glb",
       "bytes": 73844,
-      "sha256": "cccea966cafddc3fb3474eab68665fdc6bf9c2bfa6e0f5652bb8d5bc074ccd99",
+      "sha256": "f7f5b3ad73961d440aacb5718b48672e50d082f239ed25197080208b2a8f2e75",
       "triangles": 1596,
       "animations": [],
       "height": 0.34,
@@ -611,6 +653,39 @@
       "animations": [],
       "height": 0.757,
       "teaching_model": true
+    },
+    "joseph-cargo": {
+      "file": "models/joseph-cargo.glb",
+      "bytes": 631032,
+      "sha256": "589260dc13202cc9bca626be649a28c97dca95746996338846d35c3be4cfa246",
+      "triangles": 15620,
+      "animations": [],
+      "height": 0.451,
+      "teaching_model": true,
+      "interpretation": "Genesis 37 original commodity-type cargo; resin/spice appearance, container forms and cloth arrangement are comparisons, not identified original goods",
+      "removable_group": "joseph-cargo-wrap"
+    },
+    "joseph-granary": {
+      "file": "models/joseph-granary.glb",
+      "bytes": 852148,
+      "sha256": "0ab5f319eaaef3e54910cf0781aabad64d0e95abda47d47cfc29cf62eb79a553",
+      "triangles": 17996,
+      "animations": [],
+      "height": 0.651,
+      "teaching_model": true,
+      "interpretation": "Original modern function section informed by Met 20.3.11, Museo Egizio Suppl.8651 and ARCE funerary-model discussion; no copied ensemble layout, identified Joseph granary, dynasty, pharaoh, or engineering-plan claim",
+      "removable_group": "joseph-granary-roof",
+      "modern_cutaway": true
+    },
+    "joseph-provisions": {
+      "file": "models/joseph-provisions.glb",
+      "bytes": 711920,
+      "sha256": "1f3441056af159ab0ca401f7504c5e3782ad2769129a08c40e43df6de4080ff5",
+      "triangles": 28636,
+      "animations": [],
+      "height": 0.325,
+      "teaching_model": true,
+      "interpretation": "Genesis 45:21\u201323 travel-provision comparison; sack and vessel forms, selected cloth colours, and display quantities are teaching choices, not royal originals"
     }
   }
 }

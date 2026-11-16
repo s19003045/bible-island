@@ -6,6 +6,7 @@ export function residentAppearance(island,options,index,height=1.7) {
     const modelId=options.id==='water-carrier'?'resident-carrier':child?'resident-child':woman?'roman-woman':['stone-worker','street-vendor'].includes(options.id)?'resident-worker':'resident';
     return {modelId,height:!child&&woman?1.64:height};
   }
+  if(island==='joseph'){const female=woman||options.id==='joseph-family-host',road=options.id==='joseph-road-traveler'||options.wardrobe==='caravan';return {modelId:child?'wilderness-child':road?(female?'camp-host':'caravan-traveler'):female?'egypt-householder':'egypt-grain-worker',height:child?height:female?1.64:height};}
   if(island==='abraham'){const female=woman||options.id==='abraham-camp-host';return {modelId:child?'wilderness-child':female?'camp-host':options.id==='abraham-well-keeper'?'well-keeper':'patriarch-traveler',height:child?height:female?1.64:height};}
   if(island==='paul'){const female=woman||options.id==='paul-cloth-trader';return {modelId:child?'resident-child':options.id==='paul-port-worker'?'port-worker':options.id==='paul-metal-worker'?'asian-artisan':female?'paul-trader':index%3===0?'resident-worker':'resident',height:child?height:female?1.64:height};}
   if(island==='second-temple'){const female=woman||options.id==='return-parent';return {modelId:child?'return-child':options.id==='return-elder'?'return-elder':female?'return-woman':'return-mason',height:child?height:female?1.64:height};}

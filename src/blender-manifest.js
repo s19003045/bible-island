@@ -1,5 +1,11 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'caravan-traveler':{type:'character',src:'models/caravan-traveler.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Undated composite road observer; original woven garment, not Joseph likeness'},
+  'egypt-grain-worker':{type:'character',src:'models/egypt-grain-worker.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Egyptian functional comparison; chosen plain waist wrap, not a dated uniform'},
+  'egypt-householder':{type:'character',src:'models/egypt-householder.glb',height:1.65,ankleHeight:.10059,cycleDistance:.7664,liftHeight:.07185,triangleBudget:48000,byteBudget:1900000,era:'Egyptian composite householder; original long linen garment and shoulder straps'},
+  'joseph-cargo':{type:'object',src:'models/joseph-cargo.glb',height:.450,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.2,1.7],articulation:{part:'joseph-cargo-wrap',offset:[0,.18,0],openLabel:'移開覆布看貨包',closeLabel:'還原覆布',note:'原創商路教具 · 非約瑟時代出土貨物'}},
+  'joseph-granary':{type:'object',src:'models/joseph-granary.glb',height:.6504,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.5,2.4,1.8],articulation:{part:'joseph-granary-roof',offset:[0,.22,0],openLabel:'抬起上層看儲藏格',closeLabel:'還原糧倉上層',note:'埃及模型的功能比較 · 非約瑟原倉工程圖'}},
+  'joseph-provisions':{type:'object',src:'models/joseph-provisions.glb',height:.3241,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.2,1.7]},
   'patriarch-traveler':{type:'character',src:'models/patriarch-traveler.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Undated patriarchal narrative composite; original garment and fringed overwrap'},
   'camp-host':{type:'character',src:'models/camp-host.glb',height:1.65,ankleHeight:.10059,cycleDistance:.7664,liftHeight:.07185,triangleBudget:48000,byteBudget:1900000,era:'Undated composite camp host; selected garment, not Sarah likeness'},
   'well-keeper':{type:'character',src:'models/well-keeper.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Undated composite well keeper; new front beard and working garment'},

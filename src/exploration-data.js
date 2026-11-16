@@ -1,3 +1,4 @@
+import {josephWalkConfig,josephObjects} from './joseph-exploration.js';
 import {abrahamWalkConfig,abrahamObjects} from './abraham-exploration.js';
 import {paulWalkConfig,paulObjects} from './paul-exploration.js';
 import {returnWalkConfig,returnObjects} from './return-exploration.js';
@@ -8,6 +9,7 @@ import {solomonSpawn,solomonObjects} from './solomon-exploration.js';
 import {herodSpawn,herodObjects} from './herod-exploration.js';
 import {jordanSpawn,jordanObjects} from './jordan-exploration.js';
 export const explorationByIsland = {
+  joseph:{...josephWalkConfig(),objects:josephObjects},
   abraham:{...abrahamWalkConfig(),objects:abrahamObjects},
   paul:{...paulWalkConfig(),objects:paulObjects},
   'second-temple':{...returnWalkConfig(),objects:returnObjects},
@@ -32,4 +34,4 @@ export const explorationByIsland = {
     hint:'教學觀察區 · 平台、階梯與院落格局屬推定；內殿與祭壇不開放步行。角色串聯建殿與獻殿經文，不表示兩事同時發生，也不代表古代身分皆可進入。',
     region:p=>p[0]<=18.5&&Math.abs(p[2])<5.4?'銅柱與教學平台':p[2]>7?'銅海與南側院區':p[2]<-8?'工藝解說與院中聚集區':'院中觀察通道'},
 };
-export const explorationFor=(id,segment=null)=>id==='abraham'&&segment?abrahamWalkConfig(segment):id==='paul'&&segment?paulWalkConfig(segment):id==='second-temple'&&segment?returnWalkConfig(segment):id==='exodus'&&segment?exodusWalkConfig(segment):explorationByIsland[id];
+export const explorationFor=(id,segment=null)=>id==='joseph'&&segment?josephWalkConfig(segment):id==='abraham'&&segment?abrahamWalkConfig(segment):id==='paul'&&segment?paulWalkConfig(segment):id==='second-temple'&&segment?returnWalkConfig(segment):id==='exodus'&&segment?exodusWalkConfig(segment):explorationByIsland[id];
