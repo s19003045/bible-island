@@ -403,3 +403,13 @@
 - 原受限封裝程序41236已建置成功，但Git DNS失敗exit128；本機提交及build保留。受核准網路32966的首次stdin被自動審查指憑證與舊來源參照，取得新憑證／核對Sites當前提交與465來源後，審查第二次因UTC／台北跨日誤判到期而攔下；以服務時鐘`2026-11-16 19:56:21 UTC`證明20:05:43.800Z憑證尚餘562秒後核准，32966使用不變成功build／commands=[]完成封裝exit0。沒有繞過審查、重建dev server、重複生成音訊或重複部署。
 - 三章十窗口、每章13位獨立POI居民、七隻原創動態羊、三件新正式Blender教具與24cue配音完成。全站92GLB／66MP3／63角色／504cue；原89GLB bytes保持，來源及取捨見[比喻島驗收](review/PARABLES-CHAPTERS.md)。本機親子和研讀前置／獨立1／3、一般0／3及親子錄音播放中已實測；土層與數量盤已沿路／E／旋轉及1／1，土層另抬還。其餘逐件近景及正式站人工走訪接續記錄，不由發布成功推定全部人工驗收。
 - 正式既有分頁reload後實讀入口`index-PtLGxBO6.js`，開啟lamp/preparation；畫面與近景檢查仍進行。其餘passion／church／letters三島及舊人工待辦保持active總Goal。
+
+## 2026-11-17：同席、苦難與清晨，第二十二座詳細島（第37版）
+
+- root來源`f061a1e0ac48e9f56230e59cf1cc8677bc53c2b5`；Sites來源`758d2f6ff91e5a48938ac89206af15a69f0e8d79`。485個追蹤來源逐檔SHA256相同，既有node_modules連結保留；未追蹤的第23／24島規劃未納入此版。
+- 同一owner-private專案`appgprj_6af95ea0dac4819182957156725483aa`，owner／custom單一使用者、0群組／0外部訪客。第37版`appgprj_6af95ea0dac4819182957156725483aa~appgver_bd7215547b8c81918218f4da04a84ac2`；部署`appgdep_6afb6f69dfa88191b9acb080faa4f157`於`2026-11-16T21:02:49.586044+00:00`返回succeeded，未在終態後poll或重發。版本回讀source SHA相符。
+- 正式入口：[同席、苦難與清晨](https://bible-island.starryswift8.chatgpt.site/#island=passion&chapter=table&phase=preparation)。壓縮封裝`/tmp/bible-island-f061a1e-passion-sites.tar.gz`，111,877,579bytes，SHA256=`2ecca577c27cd77a5d7a15fa2df9eaa555dff88d51f54e0c7a716cc686231e2e`；平台172內容檔／158,074,880bytes，內容hash=`036ee1018a8299bf9fa013c9a3da48e5fd51437b2ede23c293608867a0a1b4bb`。
+- 同源建置128模組／1.67s；入口`index-SZzS5_W8.js`、world`world-BoXNBplC.js`、vessels`vessels--iRNWinZ.js`、three`three-Dixju_SV.js`、CSS`index-zmRD_4cI.css`。46檔300測試、內容／語法與207762KiB離線包通過，保留既有大chunk提示。第一次測試啟動器在31檔後被環境終止143，來源未改，僅接續15檔；完整TAP及沒有略過的結果已保存。
+- 三章十窗口／七場域，每窗13獨立POI居民，三件正式Blender及24cue配音。全站95GLB／69MP3／66角色／528cue，原92GLB bytes及report條目保留；詳見[第22島驗收](review/PASSION-CHAPTERS.md)。本機三件都已沿路／E／旋轉及1／1，墓穴另移還前部剖示；三模式前置、親子播放及進度隔離通過。正式頁hash初仍用第36版，已明確reload並讀到`index-SZzS5_W8.js`；正式沿路及模式操作接續記錄。其餘church／letters及歷史人工待辦仍屬active總Goal。
+
+- 第37版人工追加：正式三教具都已沿路抵達／E開啟／旋轉／關閉及各1／1，墓穴前部另移還；親子觀察前置及1／3、研讀資料前置及1／3、一般故事0／3隔離核對，一般及親子錄音皆實見播放中。最後一般／table preparation全景、動畫開、交談與行走結束，warning／error=[]。正式墓穴截圖有既有右側裁切限制。第16島正式分工盤／木臺兩件待辦也已完成，逐件結果追加尼希米驗收；未追稱早期即已完成。
