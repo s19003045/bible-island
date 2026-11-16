@@ -1,3 +1,5 @@
+import {createDavidObject} from './david-objects.js';
+import {setDavidArtifactPhase} from './artifact-phases.js';
 import {createRuthObject} from './ruth-objects.js';
 import {createSinaiObject} from './sinai-objects.js';
 import {createJosephObject} from './joseph-objects.js';
@@ -18,15 +20,17 @@ const inspectionRuntime=createInspectionRuntime(generation=>{
   return {renderer,environment,dispose(){environment.dispose();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();}};
 });
 export function disposeVesselViewerResources(){inspectionRuntime.dispose();}
-export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader}={}) {
+export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader,phase='cart'}={}) {
   const root=createProceduralVessel(id);
   root.userData.objectId=id;root.name=`observation:${id}`;
+  const applyPhase=()=>{if(id==='david-ark')setDavidArtifactPhase(root,phase);};applyPhase();
   if(blenderAssets&&blenderModels[id]?.type==='object') {
-    const detail=attachBlenderObject(root,id,onReady,assetLoader);root.userData.releaseBlender=()=>detail.dispose();root.userData.assetReady=detail.ready;
+    const detail=attachBlenderObject(root,id,()=>{applyPhase();onReady();},assetLoader);root.userData.releaseBlender=()=>detail.dispose();root.userData.assetReady=detail.ready;
   }
   return root;
 }
 function createProceduralVessel(id) {
+  if(['david-shepherd','david-city','david-ark'].includes(id))return createDavidObject(id);
   if(['ruth-gleaning','ruth-grain','ruth-witness'].includes(id))return createRuthObject(id);
   if(['sinai-manna','sinai-water','sinai-boundary'].includes(id))return createSinaiObject(id);
   if(['joseph-cargo','joseph-granary','joseph-provisions'].includes(id))return createJosephObject(id);
@@ -190,7 +194,7 @@ function createCraftObject(id) {
   }
   group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});return group;
 }
-export function mountVesselViewer(container,id) {
+export function mountVesselViewer(container,id,{phase='cart'}={}) {
   let object=null,scene=null,observer=null,canvas=null,disposed=false;
   const lease=inspectionRuntime.acquire(()=>cleanup());
   const {renderer,environment}=lease.resource;renderer.setSize(container.clientWidth||300,container.clientHeight||280);
@@ -198,11 +202,12 @@ export function mountVesselViewer(container,id) {
   scene.environment=environment.texture;scene.environmentIntensity=.65;
   scene.add(new THREE.HemisphereLight('#fff9e7','#665340',2.5));const light=new THREE.DirectionalLight('#ffffff',3);light.position.set(2,3,2);scene.add(light);
   const vessel=new THREE.Group(),articulation=blenderModels[id]?.articulation;let exploded=false;
-  object=createVessel(id,{blenderAssets:true,onReady:()=>{separate();fit();render();}});vessel.add(object);scene.add(vessel);container.appendChild(renderer.domElement);canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','可旋轉的器物近景；拖曳或按上下左右方向鍵觀察');let drag=null;
+  object=createVessel(id,{blenderAssets:true,phase,onReady:()=>{separate();fit();render();}});vessel.add(object);scene.add(vessel);container.appendChild(renderer.domElement);canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','可旋轉的器物近景；拖曳或按上下左右方向鍵觀察');let drag=null;
   function separate(){if(articulation)setArtifactSeparation(object,articulation.part,exploded?articulation.offset:[0,0,0]);}
   function fit(){
     const rotation=vessel.rotation.clone();vessel.rotation.set(0,0,0);object.position.set(0,0,0);scene.updateMatrixWorld(true);
-    const framing=artifactFraming(new THREE.Box3().setFromObject(object),camera.aspect,camera.fov);
+    const bounds=new THREE.Box3();object.traverseVisible(o=>{if(o.isMesh){o.geometry.computeBoundingBox();bounds.union(o.geometry.boundingBox.clone().applyMatrix4(o.matrixWorld));}});
+    const framing=artifactFraming(bounds,camera.aspect,camera.fov);
     object.position.copy(framing.center).negate();vessel.rotation.copy(rotation);
     camera.position.fromArray(blenderModels[id]?.inspectionView||[1.15,.9,1.35]).normalize().multiplyScalar(framing.distance);camera.far=Math.max(10,framing.distance+framing.radius*3);camera.lookAt(0,0,0);camera.updateProjectionMatrix();
   }

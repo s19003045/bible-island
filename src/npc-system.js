@@ -9,7 +9,7 @@ const turn=(m,target,dt)=>{const d=angleDelta(m.yaw,target);m.yaw+=clamp(d*(1-Ma
 
 // Every decision, social check, dwell, cooldown, animation phase and PRNG belongs to one agent.
 // The shared update is only a physics integrator, never a behaviour clock or random walk.
-export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,onEvent=()=>{},spawnCandidates:customSpawns=null,allowedPosition=()=>true,spawnExclusion=[20,0,0],allowRetreat=false}) {
+export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,onEvent=()=>{},spawnCandidates:customSpawns=null,allowedPosition=()=>true,spawnExclusion=[20,0,0],allowRetreat=false,socialProbability=.2}) {
   const reservations=new Map(pois.map(p=>[p.id,new Map()]));
   const agents=actors.map((actor,index)=>{
     const key=actor.id||`resident-${index}`,individualSeed=npcSeed(`${seed}:${key}`),random=seededNPC(individualSeed);
@@ -85,12 +85,12 @@ export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,
   }
   const wandering=a=>!a.held&&!a.partner&&(a.state==='travel'||a.state==='rest'&&a.action!=='Interact');
   function social(a,player) {
-    a.socialCheck=ranged(a,.7,1.7);if(a.cooldown>0||!wandering(a)||player&&distance(player,a.actor.state.position)<2)return;
+    a.socialCheck=ranged(a,.7,1.7);if(socialProbability<=0||a.cooldown>0||!wandering(a)||player&&distance(player,a.actor.state.position)<2)return;
     const b=agents.filter(b=>b!==a&&b.cooldown<=0&&wandering(b)&&Math.abs(a.actor.state.position[1]-b.actor.state.position[1])<.6&&distance(a.actor.state.position,b.actor.state.position)<1.65&&
       (!player||distance(player,b.actor.state.position)>2)&&traverse(a.actor.state.position,b.actor.state.position)).sort((b,c)=>distance(a.actor.state.position,b.actor.state.position)-distance(a.actor.state.position,c.actor.state.position))[0];
     if(!b)return;
     // Exactly one 20% attempt for this encounter. Even a miss consumes BOTH cooldowns.
-    const accepted=a.random()<.2;for(const n of [a,b])n.cooldown=ranged(n,8,16);
+    const accepted=a.random()<socialProbability;for(const n of [a,b])n.cooldown=ranged(n,8,16);
     emit(a,'social-attempt',{other:b.key,accepted});if(!accepted)return;
     const duration=ranged(a,3,6);
     for(const [n,other] of [[a,b],[b,a]]){n.partner=other;n.state='chat';n.action='Chat';n.chatLeft=duration;n.velocity=[0,0];emit(n,'chat-start',{other:other.key,duration});}

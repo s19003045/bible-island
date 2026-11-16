@@ -49,3 +49,9 @@ test('one character switches between preserved original and child recordings wit
  await audio.speak('householder','child-observe-house',[0,1.5,0]);assert.equal(f.fetched.length,2);assert.equal(f.context.sources.at(-1).buffer,child.buffer);
  await audio.speak('householder','greeting',[0,1.5,0]);assert.equal(f.fetched.length,2);assert.equal(f.context.sources.at(-1).buffer,original.buffer);audio.dispose();
 });
+
+test('David time changes cancel the former moment and retain separate spatial ambience',async()=>{
+ const f=fixture(),audio=createSceneAudio();audio.setScene('david','ark','cart');await audio.enable();audio.setActive(true);await audio.speak('david-arrival-guide','greeting',[3,2,13]);const old=f.context.sources.at(-1),cloth=f.context.sources[1];
+ audio.setScene('david','ark','pause');assert.equal(audio.playing,null);assert.equal(old.stopped,true);assert.equal(cloth.stopped,true);assert.ok(f.context.panners.some(p=>p.positionX.value===34&&p.positionZ.value===12));
+ await audio.speak('david-arrival-guide','waiting',[3,2,13]);assert.equal(f.fetched.length,1,'one accepted character recording is reused');audio.setScene('david','ark','carry');assert.equal(audio.playing,null);assert.ok(f.context.panners.some(p=>p.positionX.value===-25&&p.positionZ.value===-12));audio.setScene('david','ark','tent');assert.equal(audio.volumes.voice,.9);audio.dispose();
+});

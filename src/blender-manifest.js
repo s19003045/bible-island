@@ -1,5 +1,9 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'david-shepherd':{type:'object',src:'models/david-shepherd.glb',height:.52,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.2,1.8]},
+  'david-city':{type:'object',src:'models/david-city.glb',height:.30516246,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.6,1.8],articulation:{part:'david-city-timber-layer',offset:[0,.22,0],openLabel:'抬起木梁比較層',closeLabel:'還原木石教具',note:'現代構造比較 · 非已確認的大衛宮殿'}},
+  'david-ark':{type:'object',src:'models/david-ark.glb',height:.681657434,triangleBudget:36000,byteBudget:1800000,inspectionView:[1.4,1.8,2.0]},
+  'david-flock-sheep':{type:'animal',src:'models/david-flock-sheep.glb',height:.750,cycleDistance:.24,walkDuration:1.2,triangleBudget:20000,byteBudget:1100000,era:'Original undated grazing sheep, no biblical breed or flock count claim'},
   'ruth-gleaning':{type:'object',src:'models/ruth-gleaning.glb',height:.415369,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.8,1.7]},
   'ruth-grain':{type:'object',src:'models/ruth-grain.glb',height:.353901,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.7,1.8],articulation:{part:'ruth-grain-chaff-layer',offset:[0,.22,.32],openLabel:'分開殼屑教學層',closeLabel:'還原穀物教具',note:'現代分層比較 · 非古代機械或六簸箕量器'}},
   'ruth-witness':{type:'object',src:'models/ruth-witness.glb',height:.4495,triangleBudget:18000,byteBudget:1000000,inspectionView:[1.4,2.5,1.8],articulation:{part:'ruth-witness-shoe-fastening-layer',offset:[0,.18,.18],openLabel:'分開鞋的固定帶',closeLabel:'還原普通單鞋',note:'現代構造教具 · 非原鞋或脫鞋儀式操作'}},

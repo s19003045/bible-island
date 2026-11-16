@@ -407,7 +407,7 @@
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "0266891a6106e5ef549f5336de596d8b69f7e9f1eb5bfe51b2c84584903b4f86",
+      "sha256": "0cd265facebaa895e9dcfaf2fcc4568e3b7096994ebb69c5ced6764638119f9c",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -416,7 +416,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "f638d04826a2021bc75b6e5c7a48c0ad84ff7bbfcde13f8fc191ac1cb1b0d522",
+      "sha256": "58886e2e628ddf9ddb9b283159e354b5a0d8d71d50416cf0ac717e6eb1305e3b",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -434,7 +434,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "b3401198c081002b2182d28566288ef1b1043f85f391a01d1b7aa961694fe256",
+      "sha256": "f00ff310cdc43bcbc0fd04ee52410b42f960c7128d2cf2637574e911e0094a3d",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -459,7 +459,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "26eb85dec650d11045777980b359c5a2ac70ef63b04e939535ed62d13ebc735f",
+      "sha256": "c6723a9e59225f230b5e7ff81733cdd58528c275ca72c1bb83db3630c19c0c4d",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -468,7 +468,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "02b278e89310b1aa94e04fdf39e2b4cbd8becf67239315ce7603ffdb0f4be6be",
+      "sha256": "2181f0054876a494949b4bc9e808e39676f6cd93316b962ef7f9005257dbd652",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -477,7 +477,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "f18fb6e6565a53e85ced5493616b64c7f3bbf6d73ab9921a91e26c2c2ce510bb",
+      "sha256": "f0bc33ba263aa83a0ed40563bffa073c0571afb8761af88e0475f9fb196d353e",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -488,7 +488,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "13710032ea97108243b0ca7452636b3f818a4bf5e1496699ed1240595e0a7ae2",
+      "sha256": "f0ecb3d0d8a4839cae1ac210ed90002527f12415f7f895829dda531c2cafa85e",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -499,7 +499,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "e798511cc58b59b8421301e9887e10618c8c65a46654dc90b1298eba39a86376",
+      "sha256": "ac3db2154ee72211ca4e4bf1021b40f3fb1174a10026a376f593dd3a6f30587a",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -517,7 +517,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "da74030bca57e1289db86e97b452b338c89d56284aba526ce45d88afe7465c75",
+      "sha256": "c1b5ff303dff0f295e392a214afab2e49c6e4ca5698de5fc841e946cca0779df",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
@@ -558,7 +558,7 @@
     "return-masonry": {
       "file": "models/return-masonry.glb",
       "bytes": 200972,
-      "sha256": "1df190a2c128515f3189c2e3d29155e095906e477be9e6d869720330b9e96946",
+      "sha256": "ef7673d17c1b8b6fcd9f5f549112806220b4a5d1070a525838f5f2e3429ab89e",
       "triangles": 2068,
       "animations": [],
       "height": 0.513,
@@ -586,7 +586,7 @@
     "paul-ship": {
       "file": "models/paul-ship.glb",
       "bytes": 946292,
-      "sha256": "182e84d9b2fd8195f0e276f78b191711a96ded86b39bd82cd356c58536eea2d6",
+      "sha256": "bbbdd751283c6fada2da31913061bb6da6f84b5fa0acac91c7bd5057e38d0ba2",
       "triangles": 28360,
       "animations": [],
       "height": 1.12,
@@ -605,7 +605,7 @@
     "paul-silverwork": {
       "file": "models/paul-silverwork.glb",
       "bytes": 73844,
-      "sha256": "c86cfc1c11c02bfdd5e4cdcc986f52114ba0b9498d7d6537ed583bde7896b8ff",
+      "sha256": "2453601a72ce6212ace913c02ac26695bbf4f21edb5f776a9a3ee17a3dba1f46",
       "triangles": 1596,
       "animations": [],
       "height": 0.34,
@@ -668,7 +668,7 @@
     "joseph-granary": {
       "file": "models/joseph-granary.glb",
       "bytes": 852148,
-      "sha256": "b569adb3d30a42dcf2fde8c82f3ae067f28d1a1c5b8772b2ed444cf80419491c",
+      "sha256": "6364bb663d70438a98823604d832e2485b93e2022fb702f1b099f41f40f1ab92",
       "triangles": 17996,
       "animations": [],
       "height": 0.651,
@@ -715,7 +715,7 @@
     "sinai-boundary": {
       "file": "models/sinai-boundary.glb",
       "bytes": 849724,
-      "sha256": "8d7d4141779a00f7e8e05470a68f4c0d19ac4983229d17fffbe0e81bc36b8b83",
+      "sha256": "66a65db51556ddc4f5af78aa9e8b3fd9235fb82dda34be2e3f5573641a018d62",
       "triangles": 17768,
       "animations": [],
       "height": 0.632,
@@ -737,7 +737,7 @@
     "ruth-grain": {
       "file": "models/ruth-grain.glb",
       "bytes": 775124,
-      "sha256": "cdbb9deb37bf7f8a16be5a95daee140b786d7fba6206e90a98ff2cdbbe08ecdc",
+      "sha256": "983188103a2395e58a295a922d463eb11a99450ee6addb5df750a91df7d837e8",
       "triangles": 18402,
       "animations": [],
       "height": 0.363,
@@ -753,7 +753,7 @@
     "ruth-witness": {
       "file": "models/ruth-witness.glb",
       "bytes": 515776,
-      "sha256": "809abbc0e6dad5f9bf202c255f7100b5d7654f2f9a509b43bdbd09e1ab78ca63",
+      "sha256": "f03364e920f7c420d18141413fa173c7ff9bb6b6f5b7dbf40282d824a4880986",
       "triangles": 11268,
       "animations": [],
       "height": 0.45,
@@ -764,6 +764,81 @@
         "ruth-witness-shoe-fastening-layer"
       ],
       "witness_marker_count": 10
+    },
+    "david-shepherd": {
+      "file": "models/david-shepherd.glb",
+      "bytes": 532476,
+      "sha256": "10c37578966200866a917b8c0544915fed685ec28da00fefcc487bced685de49",
+      "triangles": 20368,
+      "animations": [],
+      "height": 0.52,
+      "teaching_model": true,
+      "interpretation": "1 Samuel 16 life-object comparison; authored ewe copied and uniformly scaled from abraham-animals.py, with flattened cloven contact patches; no identified breed, original flock, chosen-king game or blowing-instrument claim",
+      "reused_original_source": "scripts/blender/abraham-animals.py",
+      "removable_group": "david-shepherd-oil-surface"
+    },
+    "david-city": {
+      "file": "models/david-city.glb",
+      "bytes": 1405104,
+      "sha256": "1c5fe4ebc5f0514d2cc00ad6bbe5e17df063e2b36596a5289ec13e9253595682",
+      "triangles": 22624,
+      "animations": [],
+      "height": 0.306,
+      "teaching_model": true,
+      "interpretation": "2 Samuel 5 original ridge, generic enclosure and separate wood-stone construction comparison; no identified palace, measured topography, attack route, water shaft, later city wall or proven joinery reconstruction",
+      "removable_group": "david-city-timber-layer"
+    },
+    "david-ark": {
+      "file": "models/david-ark.glb",
+      "bytes": 859428,
+      "sha256": "24f13b77059a29221d452004f27aacbd71348cb2018d64f6b62e2bb39aa09938",
+      "triangles": 29520,
+      "animations": [],
+      "height": 0.682,
+      "teaching_model": true,
+      "interpretation": "2 Samuel 6 four mutually exclusive modern time comparisons: new cart, three-month stay, later fixed-pole bearing and tent placement. Covered volumes/poles additionally cite Exodus 25:10\u201322 and 1 Chronicles 15:11\u201315; no actual engineering plan, bearer count, pole removal, opened contents, death mechanism, uninterrupted procession or future Temple is supplied",
+      "phase_groups": [
+        "david-ark-phase-cart",
+        "david-ark-phase-pause",
+        "david-ark-phase-carry",
+        "david-ark-phase-tent"
+      ],
+      "default_phase": "david-ark-phase-cart",
+      "phase_ids": [
+        "cart",
+        "pause",
+        "carry",
+        "tent"
+      ],
+      "mutually_exclusive_phases": true,
+      "phase_switch_required_before_display": true,
+      "cross_references": [
+        "2SA.6.CSBT",
+        "EXO.25.10-22.CSBT",
+        "1CH.15.11-15.CSBT"
+      ]
+    },
+    "david-flock-sheep": {
+      "file": "models/david-flock-sheep.glb",
+      "bytes": 508764,
+      "sha256": "f09bfecccc662bf0bdabaa095f75176b1ca35890672224dd4aca936d76809044",
+      "triangles": 12312,
+      "animations": [
+        "Idle",
+        "Walk",
+        "Graze"
+      ],
+      "height": 0.75,
+      "teaching_model": true,
+      "reused_original_source": "scripts/blender/abraham-animals.py",
+      "bones": 16,
+      "walk_cycle_seconds": 1.2,
+      "walk_cycle_distance_m": 0.24,
+      "walk_speed_m_per_second": 0.2,
+      "walk_forward_gltf_axis": "+Z",
+      "walk_stance_fraction": 0.75,
+      "walk_root_motion": false,
+      "interpretation": "Original animated life illustration; selected breed-neutral shape, gait and scale; not an identified biblical animal or selection ritual"
     }
   }
 }

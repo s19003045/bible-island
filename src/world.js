@@ -374,7 +374,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   function clearConnections() {
     for (const obj of [...connectionGroup.children]) { obj.geometry.dispose(); obj.material.dispose(); connectionGroup.remove(obj); }
   }
-  function select(id,segment=null) {
+  function select(id,segment=null,phase=null) {
     cancelAtlasFlight();
     if(walk.active)exitWalk();
     activeHistorical?.npcSystem?.suspend();
@@ -389,8 +389,8 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
         const pmrem = new THREE.PMREMGenerator(renderer), room = new RoomEnvironment();
         environment = pmrem.fromScene(room, .04).texture; room.dispose(); pmrem.dispose();
       }
-      const key=segment?`${id}:${segment}`:id;
-      if (!historicalCache.has(key)) historicalCache.set(key, createHistoricalScene(id, environment,{segment:segment||'all',blenderAssets:true,onAssetsReady:()=>{renderer.shadowMap.needsUpdate=true;dirty=true;}}));
+      const key=segment?`${id}:${segment}${phase?`:${phase}`:''}`:id;
+      if (!historicalCache.has(key)) historicalCache.set(key, createHistoricalScene(id, environment,{segment:segment||'all',phase,blenderAssets:true,onAssetsReady:()=>{renderer.shadowMap.needsUpdate=true;dirty=true;}}));
       activeHistorical = historicalCache.get(key); activeHistorical.roof.visible = !cutaway; activeHistorical.setTime(nightMode);
     }
     camera.fov = activeHistorical ? 48 : 39; camera.updateProjectionMatrix();

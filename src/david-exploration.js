@@ -1,4 +1,4 @@
-// Next-island preparation only. Not registered in the application yet.
+// David chapters: distinct narrative periods and mutually exclusive ark moments.
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 export function davidFloor(s,x,z){return s==='sheep'?.55+.9*smooth((z+15)/40):s==='city'?.6+1.5*smooth((-z+8)/36):.6+.7*smooth((x+9)/32);}
 export const davidPosition=(s,x,z,h=0)=>[x,davidFloor(s,x,z)+h,z];
@@ -6,7 +6,7 @@ const surfaces=[{id:'david-public-observation-route',x1:-15,x2:29,z1:-18,z2:30}]
 export const davidArkPhases=[
  {id:'cart',name:'新車與中止',reference:'撒母耳記下 6:1–10',passage:'2 Samuel 6:1-10',heading:'先讀遷移為何中止',intro:'先有新車運送，烏撒之死使大衛懼怕，遷移中止。讀文字中的轉折，再看這一時刻；後面的三個月與抬入城尚未發生。'},
  {id:'pause',name:'停留三個月',reference:'撒母耳記下 6:10–12',passage:'2 Samuel 6:10-12',heading:'把停留的時間讀出來',intro:'約櫃在迦特人俄別·以東家停留三個月。這是敘事中的一段時間，不是隊伍沿同一路線不停走過幾秒；家屋形制與位置仍屬原創。'},
- {id:'carry',name:'後來由抬者前進',reference:'撒母耳記下 6:12–16',passage:'2 Samuel 6:12-16;1 Chronicles 15:11-15',heading:'再看後一段的運送方式',intro:'後段改記抬約櫃的人前進；六步不是六位抬者。若觀察肩扛與固定杠，分別對讀代上 15 與出 25，不把跨卷細節都說成撒下 6 的工程圖。'},
+ {id:'carry',name:'後來由抬者前進',reference:'撒母耳記下 6:12–16',passage:'2 Samuel 6:12-16;Exodus 25:10-22;1 Chronicles 15:11-15',heading:'再看後一段的運送方式',intro:'後段改記抬約櫃的人前進；六步不是六位抬者。若觀察肩扛與固定杠，分別對讀代上 15 與出 25，不把跨卷細節都說成撒下 6 的工程圖。'},
  {id:'tent',name:'安放在帳篷中',reference:'撒母耳記下 6:17–19；7 章',passage:'2 Samuel 6:17-19;7',heading:'帳篷的安放與未來建殿分開',intro:'約櫃安放在大衛預備的帳篷中。下一章另讀拿單、建殿與家室應許的對話；眼前尚未完成所羅門的殿，帳篷也沒有被給出完整院落平面。'},
 ];
 export const davidSegments=[
@@ -22,7 +22,7 @@ export const davidObjects=[
 ].map(o=>({...o,position:davidPosition(o.segment,-5,7,.82),approach:davidPosition(o.segment,-5,9.4),lookAt:davidPosition(o.segment,-5,7,1.5)}));
 export function davidWalkConfig(segment='sheep',phase='cart'){
  const s=davidSegmentById.get(segment)||davidSegments[0],moment=s.id==='ark'?(davidArkPhases.find(p=>p.id===phase)||davidArkPhases[0]):null;
- return {...s,objects:davidObjects.filter(o=>o.segment===s.id),segments:davidSegments,segment:s.id,phases:moment?davidArkPhases:null,phase:moment?.id||null,moment,title:s.name,shortTitle:`${s.number} / 3 · ${s.name}`,era:'DAVID / 分章與分時敘事',destinations:true,recordedChild:true,teachingInspection:true,enter:'開啟聲音，走進本段',inspectionNote:'原創生活、構造與分時教具；不是大衛原宮殿、原牧場或約櫃。',hint:'沿公共觀察路線，分清故事先後。第三章也有中止與停留；時間卡不能當作同時發生的相鄰景點。',region:p=>s.id==='sheep'?(p[0]<0?'牧養生活觀察區':'召回與受膏的導讀區'):s.id==='city'?(p[2]<0?'山脊與構造比較':'木石工作觀察區'):(p[0]<0?'分時教具觀察區':'遷移與等待的導讀區')};
+ return {...s,objects:davidObjects.filter(o=>o.segment===s.id),segments:davidSegments,segment:s.id,phases:moment?davidArkPhases:null,phase:moment?.id||null,moment,title:s.name,heading:moment?.heading||s.heading,intro:moment?.intro||s.intro,shortTitle:`${s.number} / 3 · ${s.name}`,era:'DAVID / 分章與分時敘事',destinations:true,recordedChild:true,teachingInspection:true,enter:'開啟聲音，走進本段',inspectionNote:'原創生活、構造與分時教具；不是大衛原宮殿、原牧場或約櫃。',hint:'沿公共觀察路線，分清故事先後。第三章也有中止與停留；時間卡不能當作同時發生的相鄰景點。',region:p=>s.id==='sheep'?(p[0]<0?'牧養生活觀察區':'召回與受膏的導讀區'):s.id==='city'?(p[2]<0?'山脊與構造比較':'木石工作觀察區'):(p[0]<0?'分時教具觀察區':'遷移與等待的導讀區')};
 }
 export function davidPOIs(s){const P=(id,name,action,slots,lookAt)=>({id:'david-'+id,name,action,tags:['david-resident'],weight:action==='Interact'?1.4:1,capacity:slots.length,slots:slots.map(([x,z])=>davidPosition(s,x,z)),lookAt,dwell:action==='Interact'?[7,18]:[4,14]});return [P('west','教具旁的觀察','Interact',[[-9,3],[-7.6,3]],[-5,7]),P('rest','公共停留處','Idle',[[-12,21],[-10.6,21]],[-22,15]),P('north','遠處外望','LookAround',[[-9,-13],[-7.6,-13]],[-18,-28]),P('court','同行相遇','Idle',[[4,17],[5.4,17]],[0,3]),P('east','生活準備','Interact',[[23,4],[24.4,4]],[33,5]),P('shade','公共歇息區','Idle',[[23,25],[24.4,25]],[12,10]),P('look','背景觀察','LookAround',[[23,-12],[24.4,-12]],[31,-25]),P('south','往來通道','LookAround',[[0,27],[1.4,27]],[2,8])];}
 export function davidSpawnCandidates(s){const out=[];for(let x=-13;x<29;x+=2)for(let z=-16;z<30;z+=2)out.push(davidPosition(s,x,z));return out;}
