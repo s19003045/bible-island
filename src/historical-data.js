@@ -1,3 +1,4 @@
+import {lettersHistorical} from './letters-content.js';
 import {churchHistorical} from './church-content.js';
 import {passionHistorical} from './passion-content.js';
 import {parablesHistorical} from './parables-content.js';
@@ -28,6 +29,7 @@ export const dimensions = {
   herod: { facade: [100 * CUBIT, 100 * CUBIT], holy: [40 * CUBIT, 40 * CUBIT, 20 * CUBIT], inner: 20 * CUBIT },
 };
 export const historicalScenes = {
+  letters:lettersHistorical,
   church:churchHistorical,
   passion:passionHistorical,
   parables:parablesHistorical,

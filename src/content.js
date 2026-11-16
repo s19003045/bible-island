@@ -1,3 +1,4 @@
+import {lettersStopCopy} from './letters-content.js';
 import {churchStopCopy} from './church-content.js';
 import {passionStopCopy} from './passion-content.js';
 import {parablesStopCopy} from './parables-content.js';
@@ -133,7 +134,7 @@ const more = [
   ['parables', '比喻中的日常世界', '聆聽、尋回與預備', 'HEARING, FINDING & PREPARATION', 'jesus', 'new', '第一世紀生活比較 · 三段獨立比喻', '馬可福音 4:1–20；路加福音 15:1–7；馬太福音 25:1–13', 'Mark 4:1-20;Luke 15:1-7;Matthew 25:1-13', 'farm', [-22, 29], '#9baf73', '日常物件如何帶我們回到比喻的處境與回應？', '田野、曠野羊群與照明院落分開觀察；連讀講述背景、敘事先後與結語。', [['seed', '撒種：從聆聽讀到解明', '馬可福音 4:1–20', '先聽湖邊講述，保留後來詢問與解明；田野是另設的生活比較。'], ['sheep', '迷羊：從接待讀到同樂', '路加福音 15:1–7', '九十九留在曠野，尋回後還有回家、邀人同樂與悔改的喜樂。'], ['lamp', '燈火：遲延、預備與結語', '馬太福音 25:1–13', '十人都曾睡著；分清半夜呼喊、交談、門關與未知時刻。']], ['judges', 'samaria', 'galilee']],
   ['passion', '耶穌最後一週與復活', '同席、苦難與清晨', 'MEAL, SUFFERING & MORNING', 'jesus', 'new', '第一世紀 · 按馬可分時閱讀', '馬可福音 14:12–16:8', 'Mark 14:12-16:8', 'garden', [14, 23], '#8c9a80', '分清地方、時刻和說話的人，會怎樣改變我們的閱讀？', '從預備與同席，讀到園中、不同受審場域、死亡與見證，再分安放、較後準備與第一日清晨。', [['table', '預備與同席：聽見餅杯的話', '馬可福音 14:12–26', '生活器具帶回同席的人、憂傷、耶穌的話與離開。'], ['garden', '從園中到受審、十架與見證', '馬可福音 14:27–15:41', '每窗換到相應場域，分清禱告、離散、不同受審、死亡與見證。'], ['tomb', '安放、較後準備與清晨的信息', '馬可福音 15:42–16:8', '現代墓穴類型比較，按馬可分清先後、信息與8節當時的驚恐。']], ['jerusalem', 'herod', 'church']],
   ['church', '五旬節與初代教會', '聚集、日常與安提阿', 'GATHERING, DAILY LIFE & ANTIOCH', 'church', 'new', '第一世紀 · 分時與跨地閱讀', '使徒行傳 2；11:19–30', 'Acts 2;11:19-30', 'gathering', [23, 25], '#9da591', '聽見之後的回應，如何走進日常和跨地照顧？', '從聚集和彼得講論，讀到持續生活與按需要分享，再轉到較後安提阿的分散、整年教導和援助。', [['gathering', '聚集、聆聽與回應', '使徒行傳 2:1–41', '不同反應、彼得完整講論與聽眾回應連讀；家屋不是原樓房認證。'], ['table', '持續生活與按需要分享', '使徒行傳 2:42–47', '教導、契合、掰餅、禱告、聖殿與各家生活一起看，不只一桌飯。'], ['road', '較後分散、教導與安提阿援助', '使徒行傳 11:19–30', '分清較後敘事、敘利亞安提阿、整年教導與送向猶太地的援助。']], ['jerusalem', 'passion', 'paul', 'letters']],
-  ['letters', '書信如何抵達教會', '一封信，一群聽眾', 'LETTERS & COMMUNITIES', 'church', 'new', '第一世紀', '歌羅西書 4；羅馬書 16', 'Colossians 4;Romans 16', 'letters', [34, 20], '#ad9479', '寫下來的信，怎樣成為大家聽見的話？', '從書寫、送信到公開誦讀，將書信放回作者、讀者與群體的處境。', [['desk', '書寫與文書', '羅馬書 16:22', '書信背後也有代筆與協作的人。'], ['messenger', '送信的人', '歌羅西書 4:7–9', '送信者也帶來近況、解釋與鼓勵。'], ['reading', '在群體中朗讀', '歌羅西書 4:16', '信件在群體中被讀出，也可能與其他群體交換閱讀。']], ['paul', 'church']],
+  ['letters', '書信如何抵達教會', '書寫、消息與群體閱讀', 'WRITING, NEWS & COMMUNAL READING', 'church', 'new', '第一世紀 · 分卷與跨地閱讀', '羅馬書 1、15–16；歌羅西書 1–4', 'Romans 1;15-16;Colossians 1-4', 'letters', [34, 20], '#ad9479', '寫下來的信，怎樣成為大家聽見的話？', '從書寫、送信到公開誦讀，將書信放回作者、讀者與群體的處境。', [['desk', '羅馬書：書寫、代筆與問候', '羅馬書 1；15–16', '從自署、計畫、推薦與問候辨認參與者；不是原稿或原桌。'], ['messenger', '轉讀歌羅西書：被派、消息與安慰', '歌羅西書 1–2；4:2–14', '明示換卷，分清被派、同行、近況和安慰，交通與原封裝未給。'], ['reading', '群體宣讀、跨地指示與生活', '歌羅西書 4:15–18；3:12–17', '兩地閱讀的指示連回生活；不杜撰轉來信卷名或履行紀錄。']], ['paul', 'church']],
 ];
 
 for (const [i, row] of more.entries()) {
@@ -225,3 +226,7 @@ for(const stop of passionTheme.stops)Object.assign(stop,passionStopCopy[stop.id]
 const churchTheme=themes.find(t=>t.id==='church');
 churchTheme.context='核心徒2與11:19–30；五旬節、持續日常及較後安提阿分時分地。房子、普通器具與關係盤是現代原創比較，沒有認證原樓房、原餐具、原容量或古路線；保留彼得講論、眾人回應、不同需要與援助方向。';
 for(const stop of churchTheme.stops)Object.assign(stop,churchStopCopy[stop.id]);
+
+const lettersTheme=themes.find(t=>t.id==='letters');
+lettersTheme.context='先讀羅馬書的自署、代筆、推薦與問候，再明示轉讀歌羅西書的消息、宣讀與生活。三處原創比較不裁定寫作年代、城市、原稿或交通；收到文件之後，理解仍要繼續。';
+for(const stop of lettersTheme.stops)Object.assign(stop,lettersStopCopy[stop.id]);

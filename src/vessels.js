@@ -1,3 +1,4 @@
+import {createLettersObject} from './letters-objects.js';
 import {createChurchObject} from './church-objects.js';
 import {createPassionObject} from './passion-objects.js';
 import {createParablesObject} from './parables-objects.js';
@@ -40,6 +41,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader,
   return root;
 }
 function createProceduralVessel(id) {
+  if(['letters-materials','letters-delivery','letters-reading'].includes(id))return createLettersObject(id);
   if(['church-house','church-table','church-relations'].includes(id))return createChurchObject(id);
   if(['passion-table','passion-context','passion-tomb'].includes(id))return createPassionObject(id);
   if(['parables-soil','parables-flock','parables-light'].includes(id))return createParablesObject(id);

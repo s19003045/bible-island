@@ -87,3 +87,12 @@ test('Church ten windows cancel old cues and preserve quiet listening/cross-plac
   await audio.speak(person,'greeting',[3,2,13]);const old=f.context.sources.at(-1),complete=old.onended;await audio.speak(person,'child-greeting',[3,2,13]);assert.equal(old.stopped,true);complete();assert.equal(audio.playing.key,'child-greeting');prior=f.context.sources.at(-1);
  }assert.equal(f.fetched.length,3,'the three accepted recordings are reused across all windows');audio.dispose();
 });
+
+test('Letters ten windows cancel old cues and preserve quiet listening/cross-place context',async()=>{
+ const f=fixture(),audio=createSceneAudio();await audio.enable();audio.setActive(true);let prior=null;
+ for(const [chapter,phases,person,position]of [['desk',['address','people','scribe'],'letters-writing-resident',[-5,-16]],['messenger',['letter','prayer','sent','greetings'],'letters-dispatch-resident',[17,-8]],['reading',['house','exchange','living'],'letters-listening-resident',[15,-10]]])for(const phase of phases){
+  audio.setScene('letters',chapter,phase);assert.equal(audio.playing,null);if(prior)assert.equal(prior.stopped,true);assert.ok(f.context.panners.some(p=>p.positionX.value===position[0]&&p.positionZ.value===position[1]));
+  {const count=f.context.sources.length;audio.update(new PerspectiveCamera(),[],500000);assert.equal(f.context.sources.length,count,'quiet reading has no generic celebration or work effect');}
+  await audio.speak(person,'greeting',[3,2,13]);const old=f.context.sources.at(-1),complete=old.onended;await audio.speak(person,'child-greeting',[3,2,13]);assert.equal(old.stopped,true);complete();assert.equal(audio.playing.key,'child-greeting');prior=f.context.sources.at(-1);
+ }assert.equal(f.fetched.length,3,'the three accepted recordings are reused across all windows');audio.dispose();
+});

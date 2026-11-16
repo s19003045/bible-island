@@ -2472,6 +2472,125 @@
       "translation_gltf_xyz_m": null,
       "interpretation": "Static original modern relation diagram,not ancientmap. Separate left combinedreadingend(scattered/Judea)andright SyrianAntioch,not a precise sharedorigin/group or all destinations. Two same counters pergroup are selected groupingmarks,not population. Thick independent modern doublearrow;UI must separately explain outwardscattering,oneyearteaching andaid towardJudea,not originalroute/roundtrip. Blankteachingtile andclosedclothbulk do not authenticate originalletter,package,content,amount,seal orcraft. No runtime movement,rankings or delivery game.",
       "units": "metres;BlenderZup/glTFYup"
+    },
+    "letters-materials": {
+      "file": "models/letters-materials.glb",
+      "bytes": 75108,
+      "sha256": "188f0edb6300874a0b8f04975126e008c75f9180ebb1b0ff2ffb99af6ea7106e",
+      "triangles": 1208,
+      "animations": [],
+      "height": 0.07500000298023224,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Letters \u2014 original modern writing material and action compari",
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.800000011920929,
+        0.07500000298023224
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.07500000298023224,
+      "semantic_groups": [
+        "letters-materials-modern-base",
+        "letters-materials-upper-fiber-strip-1",
+        "letters-materials-upper-fiber-strip-2",
+        "letters-materials-upper-fiber-strip-3",
+        "letters-materials-upper-fiber-strip-4",
+        "letters-materials-upper-fiber-strip-5",
+        "letters-materials-upper-fiber-strip-6",
+        "letters-materials-upper-fiber-strip-7",
+        "letters-materials-upper-fiber-strip-8",
+        "letters-materials-upper-fiber-strip-9",
+        "letters-materials-upper-fiber-strip-10",
+        "letters-materials-fixed-lower-fiber-layer",
+        "letters-materials-modern-upper-fiber-layer",
+        "letters-materials-fixed-thin-wood-ink-surface",
+        "letters-materials-fixed-recessed-wood-wax-frame",
+        "letters-materials-fixed-blank-wax-inset",
+        "letters-materials-fixed-empty-open-ink-container",
+        "letters-materials-fixed-reed-ink-pen",
+        "letters-materials-fixed-pointed-stylus"
+      ],
+      "runtime_operations": 1,
+      "main_layer": "letters-materials-modern-upper-fiber-layer",
+      "translation_gltf_xyz_m": [
+        0,
+        0.1,
+        0
+      ],
+      "interpretation": "Original modern function comparison,not Romans16originaldesk or all lettersusingallmaterials.10+10orthogonallyglued strips,NOTinterwoven;6mmeachlayerisdeliberateexaggeration. Upper10stripdescendantsliftY+.10for suspendedsectiononly.8mmblankwoodinkface,true12mmwoodbottom/32mmframe/16mmwaxsurface;emptyordinaryinkvessel6mmfloor/nominal6mmwall. Originalflatlaidreed/stylus silhouettes,not ancienttoolmeasurements. No ancientwriting/Severa/Tertius/Paul/P46copies.",
+      "units": "metres;BlenderZup/glTFYup"
+    },
+    "letters-delivery": {
+      "file": "models/letters-delivery.glb",
+      "bytes": 29736,
+      "sha256": "778b19d5ba304715eac29a75a538456502da6e85a88ccde07e408b8ccd4bf4f1",
+      "triangles": 596,
+      "animations": [],
+      "height": 0.07999999821186066,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Letters \u2014 modern sent companion and recipient relation compar",
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.800000011920929,
+        0.07999999821186066
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.07999999821186066,
+      "semantic_groups": [
+        "letters-delivery-modern-base",
+        "letters-delivery-fixed-dispatch-platform",
+        "letters-delivery-fixed-recipient-platform",
+        "letters-delivery-fixed-two-neutral-sent-companion-marks",
+        "letters-delivery-fixed-single-collective-recipient-tile",
+        "letters-delivery-fixed-modern-direction-arrow",
+        "letters-delivery-fixed-blank-document-symbol"
+      ],
+      "runtime_operations": 0,
+      "main_layer": null,
+      "translation_gltf_xyz_m": null,
+      "interpretation": "Staticoriginalmodernrelations:two same neutralselectedmarks forsent/companion andone collectivemarker forrecipients,not portraits/population. Col4:7-9states dispatch,companion,news,comfort;letterdelivery participationiscontextualinference,not originalhandoverphoto. Separatedplaces/arroware notmap,route/transport/time.4mmblankfileismodernsymbol,not authenticatedoriginalmaterial/form. No seal,address,coin,persontradeor movinghuman.",
+      "units": "metres;BlenderZup/glTFYup"
+    },
+    "letters-reading": {
+      "file": "models/letters-reading.glb",
+      "bytes": 28528,
+      "sha256": "0db42be14d0b98b445cc93a697eb4058d88dddf0f601ad339c3a73493e4fd9a0",
+      "triangles": 192,
+      "animations": [],
+      "height": 0.20999999344348907,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Letters \u2014 modern separate community reading instruction compa",
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.800000011920929,
+        0.20999999344348907
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.20999999344348907,
+      "semantic_groups": [
+        "letters-reading-modern-base",
+        "letters-reading-fixed-left-foot",
+        "letters-reading-fixed-left-front-support",
+        "letters-reading-fixed-left-back-support",
+        "letters-reading-fixed-left-sloped-reading-board",
+        "letters-reading-fixed-left-blank-document",
+        "letters-reading-fixed-left-listening-tile",
+        "letters-reading-fixed-right-foot",
+        "letters-reading-fixed-right-front-support",
+        "letters-reading-fixed-right-back-support",
+        "letters-reading-fixed-right-sloped-reading-board",
+        "letters-reading-fixed-right-blank-document",
+        "letters-reading-fixed-right-listening-tile",
+        "letters-reading-fixed-modern-double-arrow"
+      ],
+      "runtime_operations": 0,
+      "main_layer": null,
+      "translation_gltf_xyz_m": null,
+      "interpretation": "Staticoriginalmodern readingcomparison:two separate stands withrealfeet/frontandbacksupports/slopingboards/blankclosedfiles;not originalapostoliclectern/churchplan. Col4:16instruction firstreadthere,thenLaodicea,andreadlettercomingfromthere;not simultaneoussameletterteleport,same-roomallaudienceor independentproofinstructionswerefulfilled. Thickdoublearrowandlisteningtilesmodern;UIseparatelyexplainsreadingdirections. No inventedreturnlettertext,noP46codexidentity,no readableancientwriting.",
+      "units": "metres;BlenderZup/glTFYup"
     }
   }
 }

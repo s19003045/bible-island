@@ -1,3 +1,4 @@
+import {lettersPeople} from './letters-content.js';
 import {churchPeople} from './church-content.js';
 import {passionPeople} from './passion-content.js';
 import {parablesPeople} from './parables-content.js';
@@ -24,6 +25,7 @@ const npc = (id, name, role, era, position, style, motion, greeting, topics, rou
   ({id,name,role,era,position,style,motion,greeting,topics,route,routeMode});
 export const dialogueNotice = '角色為綜合設計；對白依經文與歷史背景編寫，並非經文原話。';
 export const peopleByIsland = {
+  letters:lettersPeople,
   church:churchPeople,
   passion:passionPeople,
   parables:parablesPeople,

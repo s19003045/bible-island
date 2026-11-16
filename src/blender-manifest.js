@@ -1,5 +1,8 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'letters-materials':{type:'object',src:'models/letters-materials.glb',height:.075,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.5,1.9],articulation:{part:'letters-materials-modern-upper-fiber-layer',offset:[0,.10,0],openLabel:'抬起現代紙草上層',closeLabel:'還原紙草層次比較',note:'正交黏合、非編織 · 每層6mm為現代誇示，懸置只供剖示，非原紙厚或古代剝紙機構'}},
+  'letters-delivery':{type:'object',src:'models/letters-delivery.glb',height:.08,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.8,1.9]},
+  'letters-reading':{type:'object',src:'models/letters-reading.glb',height:.21,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.2,1.9]},
   'church-house':{type:'object',src:'models/church-house.glb',height:.32,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,1.4,2.1],articulation:{part:'church-house-modern-roof-section',offset:[0,.16,0],openLabel:'抬起現代屋頂剖示',closeLabel:'還原家屋比較',note:'約1:20原創局部 · 屋頂與兩梁整組抬起，右側為現代剖開；非原屋、容量或升頂機構'}},
   'church-table':{type:'object',src:'models/church-table.glb',height:.125,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.5,1.9]},
   'church-relations':{type:'object',src:'models/church-relations.glb',height:.11,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.8,1.9]},
