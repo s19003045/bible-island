@@ -43,6 +43,10 @@ test('mountain overview frames both the near camp and the actual highest terrain
  s.dispose();
 });
 
+test('cross-chapter follow-ups expose CSBT links to the passages they actually discuss',()=>{
+ for(const [actor,topic,segment,urls] of [['sinai-road-companion','witness','water',['EXO.17.1-7.CSBT','NUM.20.1-13.CSBT']],['sinai-camp-parent','prepare','mountain',['EXO.19.10-25.CSBT','EXO.24.12-18.CSBT','EXO.31.18.CSBT']]]){const p=sinaiPeople.find(p=>p.id===actor),t=p.topics.find(t=>t.id===topic),html=peopleMarkup({selected:'sinai',mode:'general',actor,narrativeSegments:{sinai:segment},dialogue:[{topic,isFollowup:true,question:t.followup.question,answer:t.followup.answer,reference:t.reference,passage:t.passage,stop:t.stop}]});for(const url of urls)assert.ok(html.includes('https://www.bible.com/zh-TW/bible/312/'+url));}
+});
+
 test('thirteen residents sustain individual POI decisions, separation and short social encounters',()=>{
  for(const c of sinaiSegments){const s=createHistoricalScene('sinai',null,{segment:c.id}),n=s.npcSystem;assert.equal(new Set(n.agents.map(a=>a.seed)).size,13);assert.equal(new Set(n.agents.map(a=>a.timer)).size,13);let social=false;
   for(let frame=0;frame<4800;frame++){n.update(.05,{player:c.spawn});for(const [j,a] of n.agents.entries()){const p=a.actor.state.position;assert.ok(s.walkModel.valid(p[0],p[2]));assert.ok(Math.abs(p[1]-sinaiFloor(c.id,p[0],p[2]))<.001);assert.ok(a.speedFactor>=.85&&a.speedFactor<=1.15);assert.ok(distance(p,c.spawn)>=a.radius+.32+.024);social ||=!!a.partner;for(const b of n.agents.slice(j+1))assert.ok(distance(p,b.actor.state.position)>=a.radius+b.radius+.024);}for(const p of n.pois)assert.ok(n.reservations.get(p.id).size<=p.capacity);}
