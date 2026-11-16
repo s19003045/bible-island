@@ -6,6 +6,7 @@ export function residentAppearance(island,options,index,height=1.7) {
     const modelId=options.id==='water-carrier'?'resident-carrier':child?'resident-child':woman?'roman-woman':['stone-worker','street-vendor'].includes(options.id)?'resident-worker':'resident';
     return {modelId,height:!child&&woman?1.64:height};
   }
+  if(island==='intertestament'){const female=woman||options.id==='intertestament-coin-resident';return {modelId:child?'resident-child':female?'roman-woman':options.id==='intertestament-road-resident'?'resident-worker':'resident',height:child?height:female?1.64:height};}
   if(island==='nehemiah'){const female=woman||options.id==='nehemiah-listening-resident';return {modelId:child?'return-child':female?'return-woman':options.id==='nehemiah-watch-resident'?'return-elder':'return-mason',height:child?height:female?1.65:height};}
   if(island==='exile'){const female=woman||options.id==='exile-waterbank-resident';return {modelId:child?'wilderness-child':female?'iron-woman':'iron-resident',height:child?height:female?1.64:height};}
   if(island==='kingdoms'){const female=woman||options.id==='kingdoms-assembly-resident';return {modelId:child?'wilderness-child':female?'iron-woman':'iron-resident',height:child?height:female?1.64:height};}

@@ -1,3 +1,4 @@
+import {createIntertestamentObject} from './intertestament-objects.js';
 import {createNehemiahObject} from './nehemiah-objects.js';
 import {createExileObject} from './exile-objects.js';
 import {createKingdomsObject} from './kingdoms-objects.js';
@@ -33,6 +34,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader,
   return root;
 }
 function createProceduralVessel(id) {
+  if(['intertestament-road','intertestament-coin','intertestament-languages'].includes(id))return createIntertestamentObject(id);
   if(['nehemiah-wall','nehemiah-watch','nehemiah-reading'].includes(id))return createNehemiahObject(id);
   if(['exile-sequence','exile-waterbank','exile-dwelling'].includes(id))return createExileObject(id);
   if(['kingdom-assembly','kingdom-sites','kingdom-measures'].includes(id))return createKingdomsObject(id);

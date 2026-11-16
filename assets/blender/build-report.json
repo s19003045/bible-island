@@ -1179,6 +1179,118 @@
       ],
       "runtime_operations": 1,
       "units": "metres; height Blender +Z / glTF +Y"
+    },
+    "intertestament-road": {
+      "file": "models/intertestament-road.glb",
+      "bytes": 761000,
+      "sha256": "03297a0a1dad2a5f2405291122ee2944ca8abc7ed7befde009e9d20a232ff5f9",
+      "triangles": 9908,
+      "animations": [],
+      "height": 0.166,
+      "teaching_model": true,
+      "prototype_only": false,
+      "isolated_provenance": "root-approved Intertestament17 brief, isolated original geometry; not yet official",
+      "source_scene": "Intertestament \u2014 original road drainage and selected section ",
+      "bottom_m": 0.0,
+      "top_m": 0.16599999368190765,
+      "dimensions_blender_xyz_m": [
+        1.2000000476837158,
+        0.699999988079071,
+        0.16599999368190765
+      ],
+      "interpretation": "LUK2 decree/movement, separate from selected modern earth/gravel section and actual drainage. No unique Judaean four-layer road, identified itinerary, census office, checkpoint, mileage, animal, ancient text or chronological solution.",
+      "semantic_groups": [
+        "intertestament-road-fixed-base",
+        "intertestament-road-fixed-roadbed",
+        "intertestament-road-fixed-selected-surface",
+        "intertestament-road-modern-section-carrier",
+        "intertestament-road-selected-fill-sample",
+        "intertestament-road-selected-surface-segment",
+        "intertestament-road-modern-cutaway-layer",
+        "intertestament-road-fixed-drain-near",
+        "intertestament-road-fixed-drain-far",
+        "intertestament-road-alternative-surface-sample",
+        "intertestament-road-modern-administration-card"
+      ],
+      "modern_removable_layer": "intertestament-road-modern-cutaway-layer",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.16,
+        0
+      ],
+      "runtime_operations": 1,
+      "units": "metres; Blender +Z / glTF +Y"
+    },
+    "intertestament-coin": {
+      "file": "models/intertestament-coin.glb",
+      "bytes": 449132,
+      "sha256": "8181d5b3148f70af0b4085fe2be4bd1c3404df40906d306d1dbc7dd70c7b8650",
+      "triangles": 16160,
+      "animations": [],
+      "height": 0.3,
+      "teaching_model": true,
+      "prototype_only": false,
+      "isolated_provenance": "root-approved Intertestament17 brief, isolated original geometry; not yet official",
+      "source_scene": "Intertestament \u2014 original two-faced modern coin observation d",
+      "bottom_m": 0.0,
+      "top_m": 0.30000001192092896,
+      "dimensions_blender_xyz_m": [
+        0.6499999761581421,
+        0.44999998807907104,
+        0.30000001192092896
+      ],
+      "interpretation": "MRK12 image/title question, not Tiberius portrait or unique Gospel denarius. Original 230mm,14mm teaching disc; museum 18mm/3.6g/14\u201337CE belong only to external source. No calibrated mass, ancient lettering, reverse-person identification, flip or removable layer.",
+      "semantic_groups": [
+        "intertestament-coin-modern-observation-base",
+        "intertestament-coin-modern-edge-cradle",
+        "intertestament-coin-observation-disc",
+        "intertestament-coin-modern-reference-panel"
+      ],
+      "modern_removable_layer": null,
+      "modern_layer_translation_gltf_xyz_m": null,
+      "runtime_operations": 0,
+      "units": "metres; Blender +Z / glTF +Y"
+    },
+    "intertestament-languages": {
+      "file": "models/intertestament-languages.glb",
+      "bytes": 362988,
+      "sha256": "200bbfd1553929709daf26c7f735ba66847a025a28e74c96a12339d6b56e2578",
+      "triangles": 10712,
+      "animations": [],
+      "height": 0.151776,
+      "teaching_model": true,
+      "prototype_only": false,
+      "isolated_provenance": "root-approved Intertestament17 brief, isolated original geometry; not yet official",
+      "source_scene": "Intertestament \u2014 modern audiences and separate blank writing ",
+      "bottom_m": 0.0,
+      "top_m": 0.15177614986896515,
+      "dimensions_blender_xyz_m": [
+        1.100000023841858,
+        0.699999988079071,
+        0.15177614986896515
+      ],
+      "interpretation": "ACT21:37\u201340/22:1\u20132 recipients/languages, Greek and Hebrew as CSBT. One modern audience board layer; separately fixed true-thick blank curved/flat materials with real bearing. No Paul reading, original scroll, ancient script, language=ethnicity/citizenship or population ratio.",
+      "semantic_groups": [
+        "intertestament-languages-fixed-base",
+        "intertestament-languages-core-recess",
+        "intertestament-languages-modern-commander-comparison",
+        "intertestament-languages-modern-crowd-comparison",
+        "intertestament-languages-fixed-bearing-rails",
+        "intertestament-languages-modern-audience-layer",
+        "intertestament-languages-blank-curved-sheet",
+        "intertestament-languages-fixed-roll-cradle",
+        "intertestament-languages-blank-flat-sample",
+        "intertestament-languages-external-writing-comparison",
+        "intertestament-languages-modern-zone-annotation"
+      ],
+      "modern_removable_layer": "intertestament-languages-modern-audience-layer",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.14,
+        0
+      ],
+      "runtime_operations": 1,
+      "units": "metres; Blender +Z / glTF +Y"
     }
   }
 }

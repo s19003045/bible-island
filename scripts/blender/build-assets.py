@@ -352,6 +352,9 @@ exec(compile((ROOT/'scripts/blender/exile-props.py').read_text(),str(ROOT/'scrip
 NEHEMIAH_OFFICIAL_BUILD = True
 exec(compile((ROOT/'scripts/blender/nehemiah-props.py').read_text(),str(ROOT/'scripts/blender/nehemiah-props.py'),'exec'),globals())
 del NEHEMIAH_OFFICIAL_BUILD
+INTERTESTAMENT_OFFICIAL_BUILD = True
+exec(compile((ROOT/'scripts/blender/intertestament-props.py').read_text(),str(ROOT/'scripts/blender/intertestament-props.py'),'exec'),globals())
+del INTERTESTAMENT_OFFICIAL_BUILD
 
 bpy.context.window.scene=scene
 scene.frame_set(1)
