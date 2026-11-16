@@ -124,7 +124,9 @@ test('mode panels provide different actions immediately, preserve safe notes and
   const data = learningEvent(freshLearning(), selected, 'study', { type: 'note', text: '</textarea><script>alert(1)</script>' }).data;
   const markup = learningPanel({ selected, mode: 'study', learning: data }, themeById.get(selected));
   assert.ok(markup.includes('&lt;script&gt;')); assert.ok(!markup.includes('<script>'));
-  assert.match(learningPanel({ selected: 'nativity', mode: 'child' }, themeById.get('nativity')), /已在十七座詳細島嶼開放/);
+  const basic=[...themeById.values()].find(t=>!learningIslands[t.id]);
+  if(basic)assert.match(learningPanel({ selected:basic.id, mode:'child' },basic),new RegExp(`已在 ${Object.keys(learningIslands).length} 座詳細島嶼開放`));
+  else assert.equal(Object.keys(learningIslands).length,themeById.size);
 });
 
 test('spoken guidance follows the current mode and never exposes a hidden task answer as a different recorded line', () => {

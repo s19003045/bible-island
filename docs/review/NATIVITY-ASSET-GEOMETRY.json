@@ -1,0 +1,5568 @@
+{
+  "stage": "reopened official source and fresh actual canonical GLB QA",
+  "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+  "source_sha256": "50b87ca2fc2937d7b4b1b10389c6a2ef08876276847f7feb2cfd78087d06e04b",
+  "authoring_source_sha256": "d64a68534f1b704ec396085f677b74461f0b2a11a73418244235f595d9e39412",
+  "builder_sha256": "b557e1be054965f69c60f177456ffd8e98735f0018bbdfad533efd317ca653a9",
+  "blender": "4.5.16 LTS",
+  "source_geometry": {
+    "nativity-manger": {
+      "source_scene": "Nativity — original empty thick stone container comparison",
+      "metrics": {
+        "triangles": 4028,
+        "bounds": [
+          [
+            -0.550000011920929,
+            -0.3199999928474426,
+            0.0
+          ],
+          [
+            0.550000011920929,
+            0.3199999928474426,
+            0.47999998927116394
+          ]
+        ],
+        "dimensions_blender_xyz_m": [
+          1.100000023841858,
+          0.6399999856948853,
+          0.47999998927116394
+        ],
+        "bottom_m": 0.0,
+        "top_m": 0.47999998927116394
+      },
+      "checks": {
+        "inner_floor_and_bottom": [
+          {
+            "x": 0,
+            "front": 0,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": -7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.06000000983476639
+          },
+          {
+            "x": -0.3,
+            "front": 0,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": -1.4901161193847656e-08,
+            "vertical_bottom_thickness_m": 0.060000017285346985
+          },
+          {
+            "x": 0.3,
+            "front": 0,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": 7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.059999994933605194
+          },
+          {
+            "x": 0,
+            "front": -0.15,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": 7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.059999994933605194
+          },
+          {
+            "x": 0,
+            "front": 0.15,
+            "inner_floor_m": 0.060000061988830566,
+            "outer_floor_m": 7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.06000005453824997
+          },
+          {
+            "x": 0.43,
+            "front": 0.18,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": -7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.06000000983476639
+          },
+          {
+            "x": -0.43,
+            "front": -0.18,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": -7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.06000000983476639
+          }
+        ],
+        "wall_normal_samples": [
+          {
+            "surface_point": [
+              0.4947327971458435,
+              -0.1847584843635559,
+              0.3799999952316284
+            ],
+            "normal": [
+              -0.9984266757965088,
+              0.05607184022665024,
+              0.0
+            ],
+            "thickness_m": 0.05491345848070286
+          },
+          {
+            "surface_point": [
+              0.3807142972946167,
+              -0.26499998569488525,
+              0.3799999952316284
+            ],
+            "normal": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "thickness_m": 0.055000006200914685
+          },
+          {
+            "surface_point": [
+              -0.41475850343704224,
+              -0.2647327780723572,
+              0.3799999952316284
+            ],
+            "normal": [
+              0.05606863647699356,
+              0.9984269738197327,
+              0.0
+            ],
+            "thickness_m": 0.05491350697517734
+          },
+          {
+            "surface_point": [
+              -0.4950000047683716,
+              -0.1671428680419922,
+              0.3799999952316284
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "thickness_m": 0.055000006200914685
+          },
+          {
+            "surface_point": [
+              -0.4947327971458435,
+              0.1847584843635559,
+              0.3799999952316284
+            ],
+            "normal": [
+              0.9984266757965088,
+              -0.05607184022665024,
+              0.0
+            ],
+            "thickness_m": 0.05491345848070286
+          },
+          {
+            "surface_point": [
+              -0.3807142972946167,
+              0.26499998569488525,
+              0.3799999952316284
+            ],
+            "normal": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "thickness_m": 0.055000006200914685
+          },
+          {
+            "surface_point": [
+              0.41475850343704224,
+              0.2647327780723572,
+              0.3799999952316284
+            ],
+            "normal": [
+              -0.05606863647699356,
+              -0.9984269738197327,
+              -0.0
+            ],
+            "thickness_m": 0.05491350697517734
+          },
+          {
+            "surface_point": [
+              0.4950000047683716,
+              0.1671428680419922,
+              0.3799999952316284
+            ],
+            "normal": [
+              -1.0,
+              0.0,
+              -0.0
+            ],
+            "thickness_m": 0.055000006200914685
+          },
+          {
+            "surface_point": [
+              0.4922327995300293,
+              -0.1822584867477417,
+              0.28999999165534973
+            ],
+            "normal": [
+              -0.9970418810844421,
+              0.05599398538470268,
+              0.052651744335889816
+            ],
+            "thickness_m": 0.05483728986709857
+          },
+          {
+            "surface_point": [
+              0.37839287519454956,
+              -0.26249998807907104,
+              0.28999999165534973
+            ],
+            "normal": [
+              0.0,
+              0.9987523555755615,
+              0.04993756487965584
+            ],
+            "thickness_m": 0.05493139307476266
+          },
+          {
+            "surface_point": [
+              -0.412258505821228,
+              -0.26223278045654297,
+              0.28999999165534973
+            ],
+            "normal": [
+              0.05599088594317436,
+              0.9970421195030212,
+              0.05265159159898758
+            ],
+            "thickness_m": 0.05483730957047039
+          },
+          {
+            "surface_point": [
+              -0.4925000071525574,
+              -0.16482143104076385,
+              0.28999999165534973
+            ],
+            "normal": [
+              0.9987524151802063,
+              0.0,
+              0.04993756115436554
+            ],
+            "thickness_m": 0.05493139307476266
+          },
+          {
+            "surface_point": [
+              -0.4922327995300293,
+              0.1822584867477417,
+              0.28999999165534973
+            ],
+            "normal": [
+              0.9970418810844421,
+              -0.05599398538470268,
+              0.052651744335889816
+            ],
+            "thickness_m": 0.05483728986709857
+          },
+          {
+            "surface_point": [
+              -0.37839287519454956,
+              0.26249998807907104,
+              0.28999999165534973
+            ],
+            "normal": [
+              0.0,
+              -0.9987523555755615,
+              0.04993756487965584
+            ],
+            "thickness_m": 0.05493139307476266
+          },
+          {
+            "surface_point": [
+              0.412258505821228,
+              0.26223278045654297,
+              0.28999999165534973
+            ],
+            "normal": [
+              -0.05599088594317436,
+              -0.9970421195030212,
+              0.05265159159898758
+            ],
+            "thickness_m": 0.05483730957047039
+          },
+          {
+            "surface_point": [
+              0.4925000071525574,
+              0.16482143104076385,
+              0.28999999165534973
+            ],
+            "normal": [
+              -0.9987524151802063,
+              0.0,
+              0.04993756115436554
+            ],
+            "thickness_m": 0.05493139307476266
+          },
+          {
+            "surface_point": [
+              0.48724061250686646,
+              -0.17961852252483368,
+              0.19999998807907104
+            ],
+            "normal": [
+              -0.9964885115623474,
+              0.05596271529793739,
+              0.062280476093292236
+            ],
+            "thickness_m": 0.05480685006954821
+          },
+          {
+            "surface_point": [
+              0.37607142329216003,
+              -0.2574999928474426,
+              0.19999998807907104
+            ],
+            "normal": [
+              0.0,
+              0.9980525374412537,
+              0.06237822771072388
+            ],
+            "thickness_m": 0.05489289687364456
+          },
+          {
+            "surface_point": [
+              -0.4096185564994812,
+              -0.2572406232357025,
+              0.19999998807907104
+            ],
+            "normal": [
+              0.055959492921829224,
+              0.996488630771637,
+              0.062280479818582535
+            ],
+            "thickness_m": 0.05480686896243365
+          },
+          {
+            "surface_point": [
+              -0.48750001192092896,
+              -0.16249999403953552,
+              0.19999998807907104
+            ],
+            "normal": [
+              0.9980525374412537,
+              0.0,
+              0.06237822771072388
+            ],
+            "thickness_m": 0.05489292656444533
+          },
+          {
+            "surface_point": [
+              -0.48724061250686646,
+              0.17961852252483368,
+              0.19999998807907104
+            ],
+            "normal": [
+              0.9964885115623474,
+              -0.05596271529793739,
+              0.062280476093292236
+            ],
+            "thickness_m": 0.05480685006954821
+          },
+          {
+            "surface_point": [
+              -0.37607142329216003,
+              0.2574999928474426,
+              0.19999998807907104
+            ],
+            "normal": [
+              0.0,
+              -0.9980525374412537,
+              0.06237822771072388
+            ],
+            "thickness_m": 0.05489289687364456
+          },
+          {
+            "surface_point": [
+              0.4096185564994812,
+              0.2572406232357025,
+              0.19999998807907104
+            ],
+            "normal": [
+              -0.055959492921829224,
+              -0.996488630771637,
+              0.062280479818582535
+            ],
+            "thickness_m": 0.05480686896243365
+          },
+          {
+            "surface_point": [
+              0.48750001192092896,
+              0.16249999403953552,
+              0.19999998807907104
+            ],
+            "normal": [
+              -0.9980525374412537,
+              0.0,
+              0.06237822771072388
+            ],
+            "thickness_m": 0.05489292656444533
+          },
+          {
+            "surface_point": [
+              0.48100635409355164,
+              -0.17808862030506134,
+              0.12999999523162842
+            ],
+            "normal": [
+              -0.9904539585113525,
+              0.05562005937099457,
+              0.12612462043762207
+            ],
+            "thickness_m": 0.05447495013503527
+          },
+          {
+            "surface_point": [
+              0.37491071224212646,
+              -0.2512499988079071,
+              0.12999999523162842
+            ],
+            "normal": [
+              0.0,
+              0.9922778606414795,
+              0.12403462082147598
+            ],
+            "thickness_m": 0.054575294764548345
+          },
+          {
+            "surface_point": [
+              -0.4080886244773865,
+              -0.2510063648223877,
+              0.12999999523162842
+            ],
+            "normal": [
+              0.05562359467148781,
+              0.9904537796974182,
+              0.12612426280975342
+            ],
+            "thickness_m": 0.05447495807381627
+          },
+          {
+            "surface_point": [
+              -0.48124998807907104,
+              -0.16133928298950195,
+              0.12999999523162842
+            ],
+            "normal": [
+              0.9922778606414795,
+              0.0,
+              0.12403512746095657
+            ],
+            "thickness_m": 0.054575298464167706
+          },
+          {
+            "surface_point": [
+              -0.48100635409355164,
+              0.17808862030506134,
+              0.12999999523162842
+            ],
+            "normal": [
+              0.9904539585113525,
+              -0.05562005937099457,
+              0.12612462043762207
+            ],
+            "thickness_m": 0.05447495013503527
+          },
+          {
+            "surface_point": [
+              -0.37491071224212646,
+              0.2512499988079071,
+              0.12999999523162842
+            ],
+            "normal": [
+              0.0,
+              -0.9922778606414795,
+              0.12403462082147598
+            ],
+            "thickness_m": 0.054575294764548345
+          },
+          {
+            "surface_point": [
+              0.4080886244773865,
+              0.2510063648223877,
+              0.12999999523162842
+            ],
+            "normal": [
+              -0.05562359467148781,
+              -0.9904537796974182,
+              0.12612426280975342
+            ],
+            "thickness_m": 0.05447495807381627
+          },
+          {
+            "surface_point": [
+              0.48124998807907104,
+              0.16133928298950195,
+              0.12999999523162842
+            ],
+            "normal": [
+              -0.9922778606414795,
+              0.0,
+              0.12403512746095657
+            ],
+            "thickness_m": 0.054575298464167706
+          }
+        ],
+        "near_lip_four_section_thickness_m": [
+          0.055000006200914685,
+          0.05499997656791903,
+          0.055000006200914685,
+          0.055000006200914685
+        ],
+        "rim_min_max_m": [
+          0.4650000035762787,
+          0.47999998927116394
+        ],
+        "depth_to_min_max_rim_m": [
+          0.4050000035762787,
+          0.41999998927116394
+        ],
+        "runtime_layers": 0,
+        "closed_static_contact_audit": {
+          "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+          "tested_components": 1,
+          "candidate_contact_or_intersection_pairs": [],
+          "deep_penetration_pairs": [],
+          "all_coordinates_finite": true
+        }
+      },
+      "closed_positive_components": 1,
+      "ground_contact_area_m2": 0.530463450696316,
+      "invalid_components": [],
+      "prototype_only": false,
+      "primary_layers": 0
+    },
+    "nativity-home": {
+      "source_scene": "Nativity — modern one tenth home courtyard and supported roof",
+      "metrics": {
+        "triangles": 8012,
+        "bounds": [
+          [
+            -0.550000011920929,
+            -0.4000000059604645,
+            0.0
+          ],
+          [
+            0.550000011920929,
+            0.4000000059604645,
+            0.3999999761581421
+          ]
+        ],
+        "dimensions_blender_xyz_m": [
+          1.100000023841858,
+          0.800000011920929,
+          0.3999999761581421
+        ],
+        "bottom_m": 0.0,
+        "top_m": 0.3999999761581421
+      },
+      "checks": {
+        "door": {
+          "width_m": 0.10999999940395355,
+          "clear_height_m": 0.20499997586011887,
+          "floor_m": 0.03999999910593033,
+          "lintel_underside_m": 0.2449999749660492,
+          "25_two_direction_clearance_rays": [
+            {
+              "x": -0.22,
+              "height": 0.05,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.22,
+              "height": 0.1,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.22,
+              "height": 0.16,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.22,
+              "height": 0.23,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.22,
+              "height": 0.244,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.195,
+              "height": 0.05,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.195,
+              "height": 0.1,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.195,
+              "height": 0.16,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.195,
+              "height": 0.23,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.195,
+              "height": 0.244,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.17,
+              "height": 0.05,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.17,
+              "height": 0.1,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.17,
+              "height": 0.16,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.17,
+              "height": 0.23,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.17,
+              "height": 0.244,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.145,
+              "height": 0.05,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.145,
+              "height": 0.1,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.145,
+              "height": 0.16,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.145,
+              "height": 0.23,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.145,
+              "height": 0.244,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.12,
+              "height": 0.05,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.12,
+              "height": 0.1,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.12,
+              "height": 0.16,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.12,
+              "height": 0.23,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.12,
+              "height": 0.244,
+              "both_directions_clear": true
+            }
+          ]
+        },
+        "lintel_bearings": [
+          {
+            "rays": [
+              {
+                "x": -0.235,
+                "front": 0.256,
+                "gap_m": -1.4901161193847656e-08
+              },
+              {
+                "x": -0.235,
+                "front": 0.269,
+                "gap_m": -1.4901161193847656e-08
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.245,
+              "actual_polygon_intersection_area_m2": 0.0004999997913834875,
+              "upper_patches": 1,
+              "lower_patches": 11,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": -0.105,
+                "front": 0.256,
+                "gap_m": -1.4901161193847656e-08
+              },
+              {
+                "x": -0.105,
+                "front": 0.269,
+                "gap_m": -1.4901161193847656e-08
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.245,
+              "actual_polygon_intersection_area_m2": 0.0004999995119869816,
+              "upper_patches": 1,
+              "lower_patches": 11,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          }
+        ],
+        "above_lintel_contact": {
+          "rays": [
+            {
+              "x": -0.225,
+              "front": 0.26,
+              "gap_m": 2.9802322387695312e-08
+            },
+            {
+              "x": -0.17,
+              "front": 0.26,
+              "gap_m": 2.9802322387695312e-08
+            },
+            {
+              "x": -0.115,
+              "front": 0.26,
+              "gap_m": 2.9802322387695312e-08
+            }
+          ],
+          "contact": {
+            "plane_height_m": 0.27,
+            "actual_polygon_intersection_area_m2": 0.0037499965727327833,
+            "upper_patches": 27,
+            "lower_patches": 1,
+            "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+          }
+        },
+        "beam_wall_bearings": [
+          {
+            "rays": [
+              {
+                "x": -0.435,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.435,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.435,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.435,
+                "front": 0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.425,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.425,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.425,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.425,
+                "front": 0.269,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.36,
+              "actual_polygon_intersection_area_m2": 0.0010430393030924634,
+              "upper_patches": 1,
+              "lower_patches": 94,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": -0.275,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.275,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.275,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.275,
+                "front": 0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.265,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.265,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.265,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.265,
+                "front": 0.269,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.36,
+              "actual_polygon_intersection_area_m2": 0.0010430393948173133,
+              "upper_patches": 1,
+              "lower_patches": 94,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": -0.115,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.115,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.115,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.115,
+                "front": 0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.105,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.105,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.105,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.105,
+                "front": 0.269,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.36,
+              "actual_polygon_intersection_area_m2": 0.00104303950861806,
+              "upper_patches": 1,
+              "lower_patches": 94,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": 0.045000000000000005,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.045000000000000005,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.045000000000000005,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.045000000000000005,
+                "front": 0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.055,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.055,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.055,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.055,
+                "front": 0.269,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.36,
+              "actual_polygon_intersection_area_m2": 0.0010430393251681935,
+              "upper_patches": 1,
+              "lower_patches": 94,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          }
+        ],
+        "panel_beam_bearings": [
+          {
+            "rays": [
+              {
+                "x": -0.43,
+                "front": -0.2,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.43,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.43,
+                "front": 0.2,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.38,
+              "actual_polygon_intersection_area_m2": 0.01164304064651489,
+              "upper_patches": 1,
+              "lower_patches": 1,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": -0.27,
+                "front": -0.2,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.27,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.27,
+                "front": 0.2,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.38,
+              "actual_polygon_intersection_area_m2": 0.01164304064651489,
+              "upper_patches": 1,
+              "lower_patches": 1,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": -0.11,
+                "front": -0.2,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.11,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.11,
+                "front": 0.2,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.38,
+              "actual_polygon_intersection_area_m2": 0.011643044738373742,
+              "upper_patches": 1,
+              "lower_patches": 1,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": 0.05,
+                "front": -0.2,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.05,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.05,
+                "front": 0.2,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.38,
+              "actual_polygon_intersection_area_m2": 0.011643045761338455,
+              "upper_patches": 1,
+              "lower_patches": 1,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          }
+        ],
+        "roof_panel_thickness_m": 0.019999980926513672,
+        "wall_thickness_samples": [
+          {
+            "node": "back",
+            "normal_thickness_m": 0.025179356551606732
+          },
+          {
+            "node": "front-left-jamb",
+            "normal_thickness_m": 0.025176554589198392
+          },
+          {
+            "node": "left",
+            "normal_thickness_m": 0.02503591831286653
+          },
+          {
+            "node": "right",
+            "normal_thickness_m": 0.02503591831286653
+          }
+        ],
+        "floor_base_support": [
+          {
+            "bottom_m": 0.02499999850988388,
+            "contact_samples": 11,
+            "tested_samples": 11,
+            "gap_m": [
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09
+            ]
+          }
+        ],
+        "container_floor_support": [
+          {
+            "bottom_m": 0.03999999910593033,
+            "contact_samples": 100,
+            "tested_samples": 100,
+            "gap_m": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "closed_static_contact_audit": {
+          "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+          "tested_components": 18,
+          "candidate_contact_or_intersection_pairs": [],
+          "deep_penetration_pairs": [],
+          "all_coordinates_finite": true
+        },
+        "actual_layer_motion": {
+          "node": "nativity-home-modern-roof-layer",
+          "blender_delta_xyz_m": [
+            0.0,
+            0.0,
+            0.18000000715255737
+          ],
+          "gltf_delta_xyz_m": [
+            0.0,
+            0.18000000715255737,
+            -0.0
+          ],
+          "moving_meshes": 5,
+          "all_vertex_max_error_m": 2.9802322387695312e-08,
+          "stationary_vertex_max_error_m": 0,
+          "restored_vertex_max_error_m": 0.0,
+          "moved_layer_bounds_blender_xyz_m": [
+            [
+              -0.5300000309944153,
+              -0.29499998688697815,
+              0.5400000214576721
+            ],
+            [
+              0.1900000125169754,
+              0.29499998688697815,
+              0.5799999833106995
+            ]
+          ]
+        },
+        "twenty_sample_path": {
+          "samples": 20,
+          "noncontact_intersection_samples": [],
+          "moving_mesh_count": 5,
+          "fixed_mesh_count": 13
+        }
+      },
+      "closed_positive_components": 18,
+      "ground_contact_area_m2": 0.8686360179557795,
+      "invalid_components": [],
+      "prototype_only": false,
+      "primary_layers": 1
+    },
+    "nativity-joinery": {
+      "source_scene": "Nativity — modern complementary half lap timber comparison",
+      "metrics": {
+        "triangles": 948,
+        "bounds": [
+          [
+            -0.4749999940395355,
+            -0.3100000023841858,
+            0.0
+          ],
+          [
+            0.4749999940395355,
+            0.3100000023841858,
+            0.1899999976158142
+          ]
+        ],
+        "dimensions_blender_xyz_m": [
+          0.949999988079071,
+          0.6200000047683716,
+          0.1899999976158142
+        ],
+        "bottom_m": 0.0,
+        "top_m": 0.1899999976158142
+      },
+      "checks": {
+        "fixed_top_notch_floor_m": 0.10999999940395355,
+        "upper_bottom_notch_underside_m": 0.10999999940395355,
+        "residual_lower_upper_thickness_m": [
+          0.0800000000745058,
+          0.07999999821186066
+        ],
+        "four_side_clearances_m": [
+          0.0019999965868671985,
+          0.0019999965868671985,
+          0.001999989197196484,
+          0.001999989197196484
+        ],
+        "base_supports": [
+          {
+            "rays": [
+              {
+                "x": -0.3,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.3,
+                "front": 0,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.03,
+              "actual_polygon_intersection_area_m2": 0.1158854331472492,
+              "upper_patches": 1,
+              "lower_patches": 1,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": 0,
+                "front": -0.17,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0,
+                "front": 0.17,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.03,
+              "actual_polygon_intersection_area_m2": 0.045175682138986595,
+              "upper_patches": 2,
+              "lower_patches": 1,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          }
+        ],
+        "joint_contact": {
+          "rays": [
+            {
+              "x": -0.05,
+              "front": -0.05,
+              "gap_m": 0.0
+            },
+            {
+              "x": -0.05,
+              "front": 0,
+              "gap_m": 0.0
+            },
+            {
+              "x": -0.05,
+              "front": 0.05,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0,
+              "front": -0.05,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0,
+              "front": 0,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0,
+              "front": 0.05,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0.05,
+              "front": -0.05,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0.05,
+              "front": 0,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0.05,
+              "front": 0.05,
+              "gap_m": 0.0
+            }
+          ],
+          "contact": {
+            "plane_height_m": 0.11,
+            "actual_polygon_intersection_area_m2": 0.02214143960886955,
+            "upper_patches": 1,
+            "lower_patches": 1,
+            "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+          }
+        },
+        "upper_bottom_notch_requires_underside_view": true,
+        "closed_static_contact_audit": {
+          "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+          "tested_components": 3,
+          "candidate_contact_or_intersection_pairs": [
+            {
+              "components": [
+                1,
+                2
+              ],
+              "surface_overlap_pairs": 2,
+              "deep_vertex_samples": 0,
+              "max_depth_m": 0
+            }
+          ],
+          "deep_penetration_pairs": [],
+          "all_coordinates_finite": true
+        },
+        "actual_layer_motion": {
+          "node": "nativity-joinery-modern-upper-timber",
+          "blender_delta_xyz_m": [
+            0.0,
+            0.0,
+            0.18000000715255737
+          ],
+          "gltf_delta_xyz_m": [
+            0.0,
+            0.18000000715255737,
+            -0.0
+          ],
+          "moving_meshes": 1,
+          "all_vertex_max_error_m": 1.4901161193847656e-08,
+          "stationary_vertex_max_error_m": 0,
+          "restored_vertex_max_error_m": 0.0,
+          "moved_layer_bounds_blender_xyz_m": [
+            [
+              -0.07500000298023224,
+              -0.23000000417232513,
+              0.21000000834465027
+            ],
+            [
+              0.07500000298023224,
+              0.23000000417232513,
+              0.3700000047683716
+            ]
+          ]
+        },
+        "twenty_sample_path": {
+          "samples": 20,
+          "noncontact_intersection_samples": [],
+          "moving_mesh_count": 1,
+          "fixed_mesh_count": 2
+        }
+      },
+      "closed_positive_components": 3,
+      "ground_contact_area_m2": 0.5765039720020297,
+      "invalid_components": [],
+      "prototype_only": false,
+      "primary_layers": 1
+    }
+  },
+  "assets": {
+    "nativity-manger": {
+      "file": "/home/garywu/dev/bible-island/public/models/nativity-manger.glb",
+      "sha256": "3771c7182fa238aad878bdcd75d04bcb20f69ec8e4854bf6711845110011dedf",
+      "bytes": 98256,
+      "triangles": 4028,
+      "metrics": {
+        "triangles": 4028,
+        "bounds": [
+          [
+            -0.550000011920929,
+            -0.3199999928474426,
+            0.0
+          ],
+          [
+            0.550000011920929,
+            0.3199999928474426,
+            0.47999998927116394
+          ]
+        ],
+        "dimensions_blender_xyz_m": [
+          1.100000023841858,
+          0.6399999856948853,
+          0.47999998927116394
+        ],
+        "bottom_m": 0.0,
+        "top_m": 0.47999998927116394
+      },
+      "roundtrip_bbox_error_m": 0.0,
+      "semantic_groups": [
+        "nativity-manger-continuous-empty-shell"
+      ],
+      "nodes": [
+        "nativity-manger-nativity-original-matte-selected-stone",
+        "nativity-manger-continuous-empty-shell"
+      ],
+      "closed_positive_components": 1,
+      "component_summary": [
+        {
+          "bounds": [
+            [
+              -0.550000011920929,
+              -0.3199999928474426,
+              0.0
+            ],
+            [
+              0.550000011920929,
+              0.3199999928474426,
+              0.47999998927116394
+            ]
+          ],
+          "volume_m3": 0.1021394143906347,
+          "nonmanifold_edges": 0,
+          "vertices": 2016,
+          "bottom_center": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "material": "nativity-original-matte-selected-stone"
+        }
+      ],
+      "invalid_components": [],
+      "ground_contact_area_m2": 0.530463450696316,
+      "actual_ground_polygons": 110,
+      "checks": {
+        "inner_floor_and_bottom": [
+          {
+            "x": 0,
+            "front": 0,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": -7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.06000000983476639
+          },
+          {
+            "x": -0.3,
+            "front": 0,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": -1.4901161193847656e-08,
+            "vertical_bottom_thickness_m": 0.060000017285346985
+          },
+          {
+            "x": 0.3,
+            "front": 0,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": 7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.059999994933605194
+          },
+          {
+            "x": 0,
+            "front": -0.15,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": 7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.059999994933605194
+          },
+          {
+            "x": 0,
+            "front": 0.15,
+            "inner_floor_m": 0.060000061988830566,
+            "outer_floor_m": 7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.06000005453824997
+          },
+          {
+            "x": 0.43,
+            "front": 0.18,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": -7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.06000000983476639
+          },
+          {
+            "x": -0.43,
+            "front": -0.18,
+            "inner_floor_m": 0.06000000238418579,
+            "outer_floor_m": -7.450580596923828e-09,
+            "vertical_bottom_thickness_m": 0.06000000983476639
+          }
+        ],
+        "wall_normal_samples": [
+          {
+            "surface_point": [
+              0.4948218762874603,
+              -0.1831723302602768,
+              0.36666667461395264
+            ],
+            "normal": [
+              -0.9984266757965088,
+              0.05607184022665024,
+              0.0
+            ],
+            "thickness_m": 0.05491348816038632
+          },
+          {
+            "surface_point": [
+              0.39047619700431824,
+              -0.26499998569488525,
+              0.36666667461395264
+            ],
+            "normal": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "thickness_m": 0.055000006200914685
+          },
+          {
+            "surface_point": [
+              -0.41317233443260193,
+              -0.264821857213974,
+              0.36666667461395264
+            ],
+            "normal": [
+              0.05606863647699356,
+              0.9984269738197327,
+              0.0
+            ],
+            "thickness_m": 0.054913477295504054
+          },
+          {
+            "surface_point": [
+              -0.4950000047683716,
+              -0.1714285910129547,
+              0.36666667461395264
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "thickness_m": 0.055000006200914685
+          },
+          {
+            "surface_point": [
+              -0.4948218762874603,
+              0.1831723302602768,
+              0.36666667461395264
+            ],
+            "normal": [
+              0.9984266757965088,
+              -0.05607184022665024,
+              0.0
+            ],
+            "thickness_m": 0.05491348816038632
+          },
+          {
+            "surface_point": [
+              -0.39047619700431824,
+              0.26499998569488525,
+              0.36666667461395264
+            ],
+            "normal": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "thickness_m": 0.055000006200914685
+          },
+          {
+            "surface_point": [
+              0.41317233443260193,
+              0.264821857213974,
+              0.36666667461395264
+            ],
+            "normal": [
+              -0.05606863647699356,
+              -0.9984269738197327,
+              -0.0
+            ],
+            "thickness_m": 0.054913477295504054
+          },
+          {
+            "surface_point": [
+              0.4950000047683716,
+              0.1714285910129547,
+              0.36666667461395264
+            ],
+            "normal": [
+              -1.0,
+              0.0,
+              -0.0
+            ],
+            "thickness_m": 0.055000006200914685
+          },
+          {
+            "surface_point": [
+              0.4914885461330414,
+              -0.17983900010585785,
+              0.273333340883255
+            ],
+            "normal": [
+              -0.9970418810844421,
+              0.05599398538470268,
+              0.052651744335889816
+            ],
+            "thickness_m": 0.05483731958800688
+          },
+          {
+            "surface_point": [
+              0.3873809576034546,
+              -0.2616666555404663,
+              0.273333340883255
+            ],
+            "normal": [
+              0.0,
+              0.9987523555755615,
+              0.04993756487965584
+            ],
+            "thickness_m": 0.05493139307476266
+          },
+          {
+            "surface_point": [
+              -0.409839004278183,
+              -0.26148852705955505,
+              0.273333340883255
+            ],
+            "normal": [
+              0.05599088594317436,
+              0.9970421195030212,
+              0.05265159159898758
+            ],
+            "thickness_m": 0.05483730957047039
+          },
+          {
+            "surface_point": [
+              -0.49166667461395264,
+              -0.16833333671092987,
+              0.273333340883255
+            ],
+            "normal": [
+              0.9987524151802063,
+              0.0,
+              0.04993756115436554
+            ],
+            "thickness_m": 0.05493139307476266
+          },
+          {
+            "surface_point": [
+              -0.4914885461330414,
+              0.17983900010585785,
+              0.273333340883255
+            ],
+            "normal": [
+              0.9970418810844421,
+              -0.05599398538470268,
+              0.052651744335889816
+            ],
+            "thickness_m": 0.05483731958800688
+          },
+          {
+            "surface_point": [
+              -0.3873809576034546,
+              0.2616666555404663,
+              0.273333340883255
+            ],
+            "normal": [
+              0.0,
+              -0.9987523555755615,
+              0.04993756487965584
+            ],
+            "thickness_m": 0.05493139307476266
+          },
+          {
+            "surface_point": [
+              0.409839004278183,
+              0.26148852705955505,
+              0.273333340883255
+            ],
+            "normal": [
+              -0.05599088594317436,
+              -0.9970421195030212,
+              0.05265159159898758
+            ],
+            "thickness_m": 0.05483730957047039
+          },
+          {
+            "surface_point": [
+              0.49166667461395264,
+              0.16833333671092987,
+              0.273333340883255
+            ],
+            "normal": [
+              -0.9987524151802063,
+              0.0,
+              0.04993756115436554
+            ],
+            "thickness_m": 0.05493139307476266
+          },
+          {
+            "surface_point": [
+              0.48649901151657104,
+              -0.17798571288585663,
+              0.18666665256023407
+            ],
+            "normal": [
+              -0.9964885115623474,
+              0.05596271529793739,
+              0.062280476093292236
+            ],
+            "thickness_m": 0.05480687980696354
+          },
+          {
+            "surface_point": [
+              0.3857142925262451,
+              -0.2566666603088379,
+              0.18666665256023407
+            ],
+            "normal": [
+              0.0,
+              0.9980525374412537,
+              0.06237822771072388
+            ],
+            "thickness_m": 0.05489289687364456
+          },
+          {
+            "surface_point": [
+              -0.40798574686050415,
+              -0.2564989924430847,
+              0.18666665256023407
+            ],
+            "normal": [
+              0.055959492921829224,
+              0.996488630771637,
+              0.062280479818582535
+            ],
+            "thickness_m": 0.05480686896243365
+          },
+          {
+            "surface_point": [
+              -0.4866666793823242,
+              -0.1666666716337204,
+              0.18666665256023407
+            ],
+            "normal": [
+              0.9980525374412537,
+              0.0,
+              0.06237822771072388
+            ],
+            "thickness_m": 0.05489292656444533
+          },
+          {
+            "surface_point": [
+              -0.48649901151657104,
+              0.17798571288585663,
+              0.18666665256023407
+            ],
+            "normal": [
+              0.9964885115623474,
+              -0.05596271529793739,
+              0.062280476093292236
+            ],
+            "thickness_m": 0.05480687980696354
+          },
+          {
+            "surface_point": [
+              -0.3857142925262451,
+              0.2566666603088379,
+              0.18666665256023407
+            ],
+            "normal": [
+              0.0,
+              -0.9980525374412537,
+              0.06237822771072388
+            ],
+            "thickness_m": 0.05489289687364456
+          },
+          {
+            "surface_point": [
+              0.40798574686050415,
+              0.2564989924430847,
+              0.18666665256023407
+            ],
+            "normal": [
+              -0.055959492921829224,
+              -0.996488630771637,
+              0.062280479818582535
+            ],
+            "thickness_m": 0.05480686896243365
+          },
+          {
+            "surface_point": [
+              0.4866666793823242,
+              0.1666666716337204,
+              0.18666665256023407
+            ],
+            "normal": [
+              -0.9980525374412537,
+              0.0,
+              0.06237822771072388
+            ],
+            "thickness_m": 0.05489292656444533
+          },
+          {
+            "surface_point": [
+              0.4798428416252136,
+              -0.1761324405670166,
+              0.11999999731779099
+            ],
+            "normal": [
+              -0.9904539585113525,
+              0.05562005937099457,
+              0.12612462043762207
+            ],
+            "thickness_m": 0.05447495190477414
+          },
+          {
+            "surface_point": [
+              0.3841666877269745,
+              -0.25,
+              0.11999999731779099
+            ],
+            "normal": [
+              0.0,
+              0.9922778606414795,
+              0.12403462082147598
+            ],
+            "thickness_m": 0.05457529566445578
+          },
+          {
+            "surface_point": [
+              -0.40613245964050293,
+              -0.2498428076505661,
+              0.11999999731779099
+            ],
+            "normal": [
+              0.05562359467148781,
+              0.9904537796974182,
+              0.12612426280975342
+            ],
+            "thickness_m": 0.05447497400146173
+          },
+          {
+            "surface_point": [
+              -0.47999998927116394,
+              -0.16511905193328857,
+              0.11999999731779099
+            ],
+            "normal": [
+              0.9922778606414795,
+              0.0,
+              0.12403512746095657
+            ],
+            "thickness_m": 0.054575329227659494
+          },
+          {
+            "surface_point": [
+              -0.4798428416252136,
+              0.1761324405670166,
+              0.11999999731779099
+            ],
+            "normal": [
+              0.9904539585113525,
+              -0.05562005937099457,
+              0.12612462043762207
+            ],
+            "thickness_m": 0.05447495190477414
+          },
+          {
+            "surface_point": [
+              -0.3841666877269745,
+              0.25,
+              0.11999999731779099
+            ],
+            "normal": [
+              0.0,
+              -0.9922778606414795,
+              0.12403462082147598
+            ],
+            "thickness_m": 0.05457529566445578
+          },
+          {
+            "surface_point": [
+              0.40613245964050293,
+              0.2498428076505661,
+              0.11999999731779099
+            ],
+            "normal": [
+              -0.05562359467148781,
+              -0.9904537796974182,
+              0.12612426280975342
+            ],
+            "thickness_m": 0.05447497400146173
+          },
+          {
+            "surface_point": [
+              0.47999998927116394,
+              0.16511905193328857,
+              0.11999999731779099
+            ],
+            "normal": [
+              -0.9922778606414795,
+              0.0,
+              0.12403512746095657
+            ],
+            "thickness_m": 0.054575329227659494
+          }
+        ],
+        "near_lip_four_section_thickness_m": [
+          0.055000006200914685,
+          0.05499997656791903,
+          0.055000006200914685,
+          0.055000006200914685
+        ],
+        "rim_min_max_m": [
+          0.4650000035762787,
+          0.47999998927116394
+        ],
+        "depth_to_min_max_rim_m": [
+          0.4050000035762787,
+          0.41999998927116394
+        ],
+        "runtime_layers": 0,
+        "closed_static_contact_audit": {
+          "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+          "tested_components": 1,
+          "candidate_contact_or_intersection_pairs": [],
+          "deep_penetration_pairs": [],
+          "all_coordinates_finite": true
+        }
+      }
+    },
+    "nativity-home": {
+      "file": "/home/garywu/dev/bible-island/public/models/nativity-home.glb",
+      "sha256": "3ac02419f6a6342555fcfeb528f292c2b64512e3410ff9ca254d4a3e65a0b1fa",
+      "bytes": 445884,
+      "triangles": 8012,
+      "metrics": {
+        "triangles": 8012,
+        "bounds": [
+          [
+            -0.550000011920929,
+            -0.4000000059604645,
+            0.0
+          ],
+          [
+            0.550000011920929,
+            0.4000000059604645,
+            0.3999999761581421
+          ]
+        ],
+        "dimensions_blender_xyz_m": [
+          1.100000023841858,
+          0.800000011920929,
+          0.3999999761581421
+        ],
+        "bottom_m": 0.0,
+        "top_m": 0.3999999761581421
+      },
+      "roundtrip_bbox_error_m": 0.0,
+      "semantic_groups": [
+        "nativity-home-modern-base",
+        "nativity-home-fixed-floor",
+        "nativity-home-fixed-courtyard",
+        "nativity-home-fixed-wall-back",
+        "nativity-home-fixed-wall-left",
+        "nativity-home-fixed-wall-right",
+        "nativity-home-fixed-wall-front-left-jamb",
+        "nativity-home-fixed-wall-front-right-jamb",
+        "nativity-home-fixed-wall-front-left-fill",
+        "nativity-home-fixed-wall-front-right-fill",
+        "nativity-home-fixed-wall-above-lintel",
+        "nativity-home-fixed-walls",
+        "nativity-home-fixed-door-lintel",
+        "nativity-home-roof-beam-1",
+        "nativity-home-roof-beam-2",
+        "nativity-home-roof-beam-3",
+        "nativity-home-roof-beam-4",
+        "nativity-home-roof-thick-panel",
+        "nativity-home-modern-roof-layer",
+        "nativity-home-fixed-ordinary-comparison-object"
+      ],
+      "nodes": [
+        "nativity-home-nativity-modern-neutral-display-base",
+        "nativity-home-modern-base",
+        "nativity-home-nativity-original-selected-floor",
+        "nativity-home-fixed-floor",
+        "nativity-home-nativity-original-selected-courtyard-earth",
+        "nativity-home-fixed-courtyard",
+        "nativity-home-nativity-original-selected-earth-plaster.007",
+        "nativity-home-fixed-wall-above-lintel",
+        "nativity-home-nativity-original-selected-earth-plaster",
+        "nativity-home-fixed-wall-back",
+        "nativity-home-nativity-original-selected-earth-plaster.005",
+        "nativity-home-fixed-wall-front-left-fill",
+        "nativity-home-nativity-original-selected-earth-plaster.003",
+        "nativity-home-fixed-wall-front-left-jamb",
+        "nativity-home-nativity-original-selected-earth-plaster.006",
+        "nativity-home-fixed-wall-front-right-fill",
+        "nativity-home-nativity-original-selected-earth-plaster.004",
+        "nativity-home-fixed-wall-front-right-jamb",
+        "nativity-home-nativity-original-selected-earth-plaster.001",
+        "nativity-home-fixed-wall-left",
+        "nativity-home-nativity-original-selected-earth-plaster.002",
+        "nativity-home-fixed-wall-right",
+        "nativity-home-fixed-walls",
+        "nativity-home-nativity-original-selected-wood",
+        "nativity-home-fixed-door-lintel",
+        "nativity-home-nativity-original-selected-wood.001",
+        "nativity-home-roof-beam-1",
+        "nativity-home-nativity-original-selected-wood.002",
+        "nativity-home-roof-beam-2",
+        "nativity-home-nativity-original-selected-wood.003",
+        "nativity-home-roof-beam-3",
+        "nativity-home-nativity-original-selected-wood.004",
+        "nativity-home-roof-beam-4",
+        "nativity-home-nativity-modern-thick-roof-comparison",
+        "nativity-home-roof-thick-panel",
+        "nativity-home-modern-roof-layer",
+        "nativity-home-nativity-original-ordinary-container",
+        "nativity-home-fixed-ordinary-comparison-object"
+      ],
+      "closed_positive_components": 18,
+      "component_summary": [
+        {
+          "bounds": [
+            [
+              -0.550000011920929,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              0.550000011920929,
+              0.4000000059604645,
+              0.02500000037252903
+            ]
+          ],
+          "volume_m3": 0.021982722283965504,
+          "nonmanifold_edges": 0,
+          "vertices": 96,
+          "bottom_center": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "material": "nativity-modern-neutral-display-base"
+        },
+        {
+          "bounds": [
+            [
+              -0.5099999904632568,
+              -0.2750000059604645,
+              0.02499999850988388
+            ],
+            [
+              0.17000000178813934,
+              0.2750000059604645,
+              0.03999999910593033
+            ]
+          ],
+          "volume_m3": 0.005610000031689803,
+          "nonmanifold_edges": 0,
+          "vertices": 8,
+          "bottom_center": [
+            -0.16999999433755875,
+            0.0,
+            0.02499999850988388
+          ],
+          "material": "nativity-original-selected-floor"
+        },
+        {
+          "bounds": [
+            [
+              0.16999998688697815,
+              -0.35499998927116394,
+              0.02499999850988388
+            ],
+            [
+              0.5299999713897705,
+              0.35499998927116394,
+              0.03999999910593033
+            ]
+          ],
+          "volume_m3": 0.0038339991394119957,
+          "nonmanifold_edges": 0,
+          "vertices": 8,
+          "bottom_center": [
+            0.34999997913837433,
+            0.0,
+            0.02499999850988388
+          ],
+          "material": "nativity-original-selected-courtyard-earth"
+        },
+        {
+          "bounds": [
+            [
+              -0.5099999904632568,
+              -0.2755884528160095,
+              0.27000001072883606
+            ],
+            [
+              0.17000000178813934,
+              -0.25,
+              0.36000001430511475
+            ]
+          ],
+          "volume_m3": 0.0015375807304020379,
+          "nonmanifold_edges": 0,
+          "vertices": 280,
+          "bottom_center": [
+            -0.16999999947646366,
+            -0.26250000298023224,
+            0.27000001072883606
+          ],
+          "material": "nativity-original-selected-earth-plaster"
+        },
+        {
+          "bounds": [
+            [
+              -0.5099999904632568,
+              0.25,
+              0.03999999910593033
+            ],
+            [
+              0.17000000178813934,
+              0.2756337523460388,
+              0.36000001430511475
+            ]
+          ],
+          "volume_m3": 0.005468476033148029,
+          "nonmanifold_edges": 0,
+          "vertices": 784,
+          "bottom_center": [
+            -0.16999999947646366,
+            0.26250000298023224,
+            0.03999999910593033
+          ],
+          "material": "nativity-original-selected-earth-plaster"
+        },
+        {
+          "bounds": [
+            [
+              -0.5099999904632568,
+              -0.2755567729473114,
+              0.24500000476837158
+            ],
+            [
+              -0.24500000476837158,
+              -0.25,
+              0.27000001072883606
+            ]
+          ],
+          "volume_m3": 0.00016640696666551488,
+          "nonmanifold_edges": 0,
+          "vertices": 96,
+          "bottom_center": [
+            -0.3775000000993411,
+            -0.26250000298023224,
+            0.24500000476837158
+          ],
+          "material": "nativity-original-selected-earth-plaster"
+        },
+        {
+          "bounds": [
+            [
+              -0.5099999904632568,
+              -0.27554336190223694,
+              0.03999999910593033
+            ],
+            [
+              -0.22499999403953552,
+              -0.25,
+              0.24500000476837158
+            ]
+          ],
+          "volume_m3": 0.0014681846690685126,
+          "nonmanifold_edges": 0,
+          "vertices": 216,
+          "bottom_center": [
+            -0.3674999997019768,
+            -0.26250000298023224,
+            0.03999999910593033
+          ],
+          "material": "nativity-original-selected-earth-plaster"
+        },
+        {
+          "bounds": [
+            [
+              -0.0949999988079071,
+              -0.2755567729473114,
+              0.24500000476837158
+            ],
+            [
+              0.17000000178813934,
+              -0.25,
+              0.27000001072883606
+            ]
+          ],
+          "volume_m3": 0.00016640823071985744,
+          "nonmanifold_edges": 0,
+          "vertices": 96,
+          "bottom_center": [
+            0.037500000199846305,
+            -0.26250000298023224,
+            0.24500000476837158
+          ],
+          "material": "nativity-original-selected-earth-plaster"
+        },
+        {
+          "bounds": [
+            [
+              -0.11500000208616257,
+              -0.27554336190223694,
+              0.03999999910593033
+            ],
+            [
+              0.17000000178813934,
+              -0.25,
+              0.24500000476837158
+            ]
+          ],
+          "volume_m3": 0.0014681904411561288,
+          "nonmanifold_edges": 0,
+          "vertices": 216,
+          "bottom_center": [
+            0.027499999462937314,
+            -0.26250000298023224,
+            0.03999999910593033
+          ],
+          "material": "nativity-original-selected-earth-plaster"
+        },
+        {
+          "bounds": [
+            [
+              -0.5106295943260193,
+              -0.25,
+              0.03999999910593033
+            ],
+            [
+              -0.48500001430511475,
+              0.25,
+              0.36000001430511475
+            ]
+          ],
+          "volume_m3": 0.004020920972437855,
+          "nonmanifold_edges": 0,
+          "vertices": 588,
+          "bottom_center": [
+            -0.4975000023841858,
+            0.0,
+            0.03999999910593033
+          ],
+          "material": "nativity-original-selected-earth-plaster"
+        },
+        {
+          "bounds": [
+            [
+              0.14499999582767487,
+              -0.25,
+              0.03999999910593033
+            ],
+            [
+              0.1706296056509018,
+              0.25,
+              0.36000001430511475
+            ]
+          ],
+          "volume_m3": 0.004020930082279923,
+          "nonmanifold_edges": 0,
+          "vertices": 588,
+          "bottom_center": [
+            0.1574999988079071,
+            0.0,
+            0.03999999910593033
+          ],
+          "material": "nativity-original-selected-earth-plaster"
+        },
+        {
+          "bounds": [
+            [
+              -0.24500000476837158,
+              -0.2749999761581421,
+              0.2449999898672104
+            ],
+            [
+              -0.0949999988079071,
+              -0.2499999850988388,
+              0.26999998092651367
+            ]
+          ],
+          "volume_m3": 9.375042585209792e-05,
+          "nonmanifold_edges": 0,
+          "vertices": 8,
+          "bottom_center": [
+            -0.17000000178813934,
+            -0.26249998062849045,
+            0.2449999898672104
+          ],
+          "material": "nativity-original-selected-wood"
+        },
+        {
+          "bounds": [
+            [
+              -0.4410000145435333,
+              -0.2750000059604645,
+              0.36000001430511475
+            ],
+            [
+              -0.4189999997615814,
+              0.2750000059604645,
+              0.3799999952316284
+            ]
+          ],
+          "volume_m3": 0.00024190505253566622,
+          "nonmanifold_edges": 0,
+          "vertices": 96,
+          "bottom_center": [
+            -0.4300000071525574,
+            0.0,
+            0.36000001430511475
+          ],
+          "material": "nativity-original-selected-wood"
+        },
+        {
+          "bounds": [
+            [
+              -0.281000018119812,
+              -0.2750000059604645,
+              0.36000001430511475
+            ],
+            [
+              -0.2590000033378601,
+              0.2750000059604645,
+              0.3799999952316284
+            ]
+          ],
+          "volume_m3": 0.00024190367098716098,
+          "nonmanifold_edges": 0,
+          "vertices": 96,
+          "bottom_center": [
+            -0.27000001072883606,
+            0.0,
+            0.36000001430511475
+          ],
+          "material": "nativity-original-selected-wood"
+        },
+        {
+          "bounds": [
+            [
+              -0.12099999934434891,
+              -0.2750000059604645,
+              0.36000001430511475
+            ],
+            [
+              -0.0989999994635582,
+              0.2750000059604645,
+              0.3799999952316284
+            ]
+          ],
+          "volume_m3": 0.00024190576323472116,
+          "nonmanifold_edges": 0,
+          "vertices": 96,
+          "bottom_center": [
+            -0.10999999940395355,
+            0.0,
+            0.36000001430511475
+          ],
+          "material": "nativity-original-selected-wood"
+        },
+        {
+          "bounds": [
+            [
+              0.039000000804662704,
+              -0.2750000059604645,
+              0.36000001430511475
+            ],
+            [
+              0.061000000685453415,
+              0.2750000059604645,
+              0.3799999952316284
+            ]
+          ],
+          "volume_m3": 0.00024190479138042021,
+          "nonmanifold_edges": 0,
+          "vertices": 96,
+          "bottom_center": [
+            0.05000000074505806,
+            0.0,
+            0.36000001430511475
+          ],
+          "material": "nativity-original-selected-wood"
+        },
+        {
+          "bounds": [
+            [
+              -0.5300000309944153,
+              -0.29499998688697815,
+              0.3799999952316284
+            ],
+            [
+              0.1900000125169754,
+              0.29499998688697815,
+              0.3999999761581421
+            ]
+          ],
+          "volume_m3": 0.00849466272565754,
+          "nonmanifold_edges": 0,
+          "vertices": 96,
+          "bottom_center": [
+            -0.17000000923871994,
+            0.0,
+            0.3799999952316284
+          ],
+          "material": "nativity-modern-thick-roof-comparison"
+        },
+        {
+          "bounds": [
+            [
+              -0.4231063425540924,
+              0.10798252373933792,
+              0.03999999910593033
+            ],
+            [
+              -0.35674163699150085,
+              0.17398253083229065,
+              0.12399999797344208
+            ]
+          ],
+          "volume_m3": 9.292068653365975e-05,
+          "nonmanifold_edges": 0,
+          "vertices": 530,
+          "bottom_center": [
+            -0.38999998569488525,
+            0.1399999999878358,
+            0.03999999910593033
+          ],
+          "material": "nativity-original-ordinary-container"
+        }
+      ],
+      "invalid_components": [],
+      "ground_contact_area_m2": 0.8686360179557795,
+      "actual_ground_polygons": 2,
+      "checks": {
+        "door": {
+          "width_m": 0.10999999195337296,
+          "clear_height_m": 0.20499997586011887,
+          "floor_m": 0.03999999910593033,
+          "lintel_underside_m": 0.2449999749660492,
+          "25_two_direction_clearance_rays": [
+            {
+              "x": -0.22,
+              "height": 0.05,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.22,
+              "height": 0.1,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.22,
+              "height": 0.16,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.22,
+              "height": 0.23,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.22,
+              "height": 0.244,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.195,
+              "height": 0.05,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.195,
+              "height": 0.1,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.195,
+              "height": 0.16,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.195,
+              "height": 0.23,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.195,
+              "height": 0.244,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.17,
+              "height": 0.05,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.17,
+              "height": 0.1,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.17,
+              "height": 0.16,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.17,
+              "height": 0.23,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.17,
+              "height": 0.244,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.145,
+              "height": 0.05,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.145,
+              "height": 0.1,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.145,
+              "height": 0.16,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.145,
+              "height": 0.23,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.145,
+              "height": 0.244,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.12,
+              "height": 0.05,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.12,
+              "height": 0.1,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.12,
+              "height": 0.16,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.12,
+              "height": 0.23,
+              "both_directions_clear": true
+            },
+            {
+              "x": -0.12,
+              "height": 0.244,
+              "both_directions_clear": true
+            }
+          ]
+        },
+        "lintel_bearings": [
+          {
+            "rays": [
+              {
+                "x": -0.235,
+                "front": 0.256,
+                "gap_m": -1.4901161193847656e-08
+              },
+              {
+                "x": -0.235,
+                "front": 0.269,
+                "gap_m": -1.4901161193847656e-08
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.245,
+              "actual_polygon_intersection_area_m2": 0.0004999997913834875,
+              "upper_patches": 2,
+              "lower_patches": 22,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": -0.105,
+                "front": 0.256,
+                "gap_m": -1.4901161193847656e-08
+              },
+              {
+                "x": -0.105,
+                "front": 0.269,
+                "gap_m": -1.4901161193847656e-08
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.245,
+              "actual_polygon_intersection_area_m2": 0.0004999996646564142,
+              "upper_patches": 2,
+              "lower_patches": 22,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          }
+        ],
+        "above_lintel_contact": {
+          "rays": [
+            {
+              "x": -0.225,
+              "front": 0.26,
+              "gap_m": 2.9802322387695312e-08
+            },
+            {
+              "x": -0.17,
+              "front": 0.26,
+              "gap_m": 2.9802322387695312e-08
+            },
+            {
+              "x": -0.115,
+              "front": 0.26,
+              "gap_m": 2.9802322387695312e-08
+            }
+          ],
+          "contact": {
+            "plane_height_m": 0.27,
+            "actual_polygon_intersection_area_m2": 0.003749996761756469,
+            "upper_patches": 54,
+            "lower_patches": 2,
+            "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+          }
+        },
+        "beam_wall_bearings": [
+          {
+            "rays": [
+              {
+                "x": -0.435,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.435,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.435,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.435,
+                "front": 0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.425,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.425,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.425,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.425,
+                "front": 0.269,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.36,
+              "actual_polygon_intersection_area_m2": 0.0010430393563218843,
+              "upper_patches": 2,
+              "lower_patches": 188,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": -0.275,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.275,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.275,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.275,
+                "front": 0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.265,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.265,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.265,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.265,
+                "front": 0.269,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.36,
+              "actual_polygon_intersection_area_m2": 0.0010430396951872645,
+              "upper_patches": 2,
+              "lower_patches": 188,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": -0.115,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.115,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.115,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.115,
+                "front": 0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.105,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.105,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.105,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.105,
+                "front": 0.269,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.36,
+              "actual_polygon_intersection_area_m2": 0.001043039729951567,
+              "upper_patches": 2,
+              "lower_patches": 188,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": 0.045000000000000005,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.045000000000000005,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.045000000000000005,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.045000000000000005,
+                "front": 0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.055,
+                "front": -0.269,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.055,
+                "front": -0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.055,
+                "front": 0.256,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.055,
+                "front": 0.269,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.36,
+              "actual_polygon_intersection_area_m2": 0.0010430399822827785,
+              "upper_patches": 2,
+              "lower_patches": 188,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          }
+        ],
+        "panel_beam_bearings": [
+          {
+            "rays": [
+              {
+                "x": -0.43,
+                "front": -0.2,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.43,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.43,
+                "front": 0.2,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.38,
+              "actual_polygon_intersection_area_m2": 0.011643027973078368,
+              "upper_patches": 2,
+              "lower_patches": 2,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": -0.27,
+                "front": -0.2,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.27,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.27,
+                "front": 0.2,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.38,
+              "actual_polygon_intersection_area_m2": 0.011643041344712168,
+              "upper_patches": 2,
+              "lower_patches": 2,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": -0.11,
+                "front": -0.2,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.11,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": -0.11,
+                "front": 0.2,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.38,
+              "actual_polygon_intersection_area_m2": 0.01164304884043088,
+              "upper_patches": 2,
+              "lower_patches": 2,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": 0.05,
+                "front": -0.2,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.05,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.05,
+                "front": 0.2,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.38,
+              "actual_polygon_intersection_area_m2": 0.011643049018129709,
+              "upper_patches": 2,
+              "lower_patches": 2,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          }
+        ],
+        "roof_panel_thickness_m": 0.019999980926513672,
+        "wall_thickness_samples": [
+          {
+            "node": "back",
+            "normal_thickness_m": 0.025186688264910412
+          },
+          {
+            "node": "front-left-jamb",
+            "normal_thickness_m": 0.025162518120948427
+          },
+          {
+            "node": "left",
+            "normal_thickness_m": 0.02503591831286653
+          },
+          {
+            "node": "right",
+            "normal_thickness_m": 0.02503591831286653
+          }
+        ],
+        "floor_base_support": [
+          {
+            "bottom_m": 0.02499999850988388,
+            "contact_samples": 11,
+            "tested_samples": 11,
+            "gap_m": [
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09,
+              -1.862645149230957e-09
+            ]
+          }
+        ],
+        "container_floor_support": [
+          {
+            "bottom_m": 0.03999999910593033,
+            "contact_samples": 100,
+            "tested_samples": 100,
+            "gap_m": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "closed_static_contact_audit": {
+          "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+          "tested_components": 18,
+          "candidate_contact_or_intersection_pairs": [],
+          "deep_penetration_pairs": [],
+          "all_coordinates_finite": true
+        },
+        "actual_layer_motion": {
+          "node": "nativity-home-modern-roof-layer",
+          "blender_delta_xyz_m": [
+            0.0,
+            0.0,
+            0.18000000715255737
+          ],
+          "gltf_delta_xyz_m": [
+            0.0,
+            0.18000000715255737,
+            -0.0
+          ],
+          "moving_meshes": 5,
+          "all_vertex_max_error_m": 2.9802322387695312e-08,
+          "stationary_vertex_max_error_m": 0,
+          "restored_vertex_max_error_m": 0.0,
+          "moved_layer_bounds_blender_xyz_m": [
+            [
+              -0.5300000309944153,
+              -0.29499998688697815,
+              0.5400000214576721
+            ],
+            [
+              0.1900000125169754,
+              0.29499998688697815,
+              0.5799999833106995
+            ]
+          ]
+        },
+        "twenty_sample_path": {
+          "samples": 20,
+          "noncontact_intersection_samples": [],
+          "moving_mesh_count": 5,
+          "fixed_mesh_count": 13
+        }
+      }
+    },
+    "nativity-joinery": {
+      "file": "/home/garywu/dev/bible-island/public/models/nativity-joinery.glb",
+      "sha256": "c11d6f8fe4bcd9ba5ecee2f1b6bb78e55c4b6b63a29ef170d4af05f497189e8d",
+      "bytes": 81796,
+      "triangles": 948,
+      "metrics": {
+        "triangles": 948,
+        "bounds": [
+          [
+            -0.4749999940395355,
+            -0.3100000023841858,
+            0.0
+          ],
+          [
+            0.4749999940395355,
+            0.3100000023841858,
+            0.1899999976158142
+          ]
+        ],
+        "dimensions_blender_xyz_m": [
+          0.949999988079071,
+          0.6200000047683716,
+          0.1899999976158142
+        ],
+        "bottom_m": 0.0,
+        "top_m": 0.1899999976158142
+      },
+      "roundtrip_bbox_error_m": 0.0,
+      "semantic_groups": [
+        "nativity-joinery-modern-base",
+        "nativity-joinery-fixed-lower-timber",
+        "nativity-joinery-modern-upper-timber"
+      ],
+      "nodes": [
+        "nativity-joinery-nativity-modern-neutral-display-base",
+        "nativity-joinery-modern-base",
+        "nativity-joinery-nativity-original-selected-wood",
+        "nativity-joinery-fixed-lower-timber",
+        "nativity-joinery-nativity-original-selected-cross-grain-wood",
+        "nativity-joinery-modern-upper-timber"
+      ],
+      "closed_positive_components": 3,
+      "component_summary": [
+        {
+          "bounds": [
+            [
+              -0.4749999940395355,
+              -0.3100000023841858,
+              0.0
+            ],
+            [
+              0.4749999940395355,
+              0.3100000023841858,
+              0.029999999329447746
+            ]
+          ],
+          "volume_m3": 0.017644508136882568,
+          "nonmanifold_edges": 0,
+          "vertices": 96,
+          "bottom_center": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "material": "nativity-modern-neutral-display-base"
+        },
+        {
+          "bounds": [
+            [
+              -0.38999998569488525,
+              -0.07500000298023224,
+              0.029999999329447746
+            ],
+            [
+              0.38999998569488525,
+              0.07500000298023224,
+              0.1899999976158142
+            ]
+          ],
+          "volume_m3": 0.016871578109623978,
+          "nonmanifold_edges": 0,
+          "vertices": 192,
+          "bottom_center": [
+            0.0,
+            0.0,
+            0.029999999329447746
+          ],
+          "material": "nativity-original-selected-wood"
+        },
+        {
+          "bounds": [
+            [
+              -0.07500000298023224,
+              -0.23000000417232513,
+              0.029999999329447746
+            ],
+            [
+              0.07500000298023224,
+              0.23000000417232513,
+              0.1899999976158142
+            ]
+          ],
+          "volume_m3": 0.009191694537786352,
+          "nonmanifold_edges": 0,
+          "vertices": 192,
+          "bottom_center": [
+            0.0,
+            0.0,
+            0.029999999329447746
+          ],
+          "material": "nativity-original-selected-cross-grain-wood"
+        }
+      ],
+      "invalid_components": [],
+      "ground_contact_area_m2": 0.5765039720020297,
+      "actual_ground_polygons": 2,
+      "checks": {
+        "fixed_top_notch_floor_m": 0.10999999940395355,
+        "upper_bottom_notch_underside_m": 0.10999999940395355,
+        "residual_lower_upper_thickness_m": [
+          0.0800000000745058,
+          0.07999999821186066
+        ],
+        "four_side_clearances_m": [
+          0.0019999965868671985,
+          0.0019999965868671985,
+          0.001999989197196484,
+          0.001999989197196484
+        ],
+        "base_supports": [
+          {
+            "rays": [
+              {
+                "x": -0.3,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0,
+                "front": 0,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0.3,
+                "front": 0,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.03,
+              "actual_polygon_intersection_area_m2": 0.1158854331472492,
+              "upper_patches": 2,
+              "lower_patches": 2,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "rays": [
+              {
+                "x": 0,
+                "front": -0.17,
+                "gap_m": 0.0
+              },
+              {
+                "x": 0,
+                "front": 0.17,
+                "gap_m": 0.0
+              }
+            ],
+            "contact": {
+              "plane_height_m": 0.03,
+              "actual_polygon_intersection_area_m2": 0.045175682138986595,
+              "upper_patches": 4,
+              "lower_patches": 2,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          }
+        ],
+        "joint_contact": {
+          "rays": [
+            {
+              "x": -0.05,
+              "front": -0.05,
+              "gap_m": 0.0
+            },
+            {
+              "x": -0.05,
+              "front": 0,
+              "gap_m": 0.0
+            },
+            {
+              "x": -0.05,
+              "front": 0.05,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0,
+              "front": -0.05,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0,
+              "front": 0,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0,
+              "front": 0.05,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0.05,
+              "front": -0.05,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0.05,
+              "front": 0,
+              "gap_m": 0.0
+            },
+            {
+              "x": 0.05,
+              "front": 0.05,
+              "gap_m": 0.0
+            }
+          ],
+          "contact": {
+            "plane_height_m": 0.11,
+            "actual_polygon_intersection_area_m2": 0.022141439061801882,
+            "upper_patches": 2,
+            "lower_patches": 2,
+            "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+          }
+        },
+        "upper_bottom_notch_requires_underside_view": true,
+        "closed_static_contact_audit": {
+          "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+          "tested_components": 3,
+          "candidate_contact_or_intersection_pairs": [
+            {
+              "components": [
+                1,
+                2
+              ],
+              "surface_overlap_pairs": 2,
+              "deep_vertex_samples": 0,
+              "max_depth_m": 0
+            }
+          ],
+          "deep_penetration_pairs": [],
+          "all_coordinates_finite": true
+        },
+        "actual_layer_motion": {
+          "node": "nativity-joinery-modern-upper-timber",
+          "blender_delta_xyz_m": [
+            0.0,
+            0.0,
+            0.18000000715255737
+          ],
+          "gltf_delta_xyz_m": [
+            0.0,
+            0.18000000715255737,
+            -0.0
+          ],
+          "moving_meshes": 1,
+          "all_vertex_max_error_m": 1.4901161193847656e-08,
+          "stationary_vertex_max_error_m": 0,
+          "restored_vertex_max_error_m": 0.0,
+          "moved_layer_bounds_blender_xyz_m": [
+            [
+              -0.07500000298023224,
+              -0.23000000417232513,
+              0.21000000834465027
+            ],
+            [
+              0.07500000298023224,
+              0.23000000417232513,
+              0.3700000047683716
+            ]
+          ]
+        },
+        "twenty_sample_path": {
+          "samples": 20,
+          "noncontact_intersection_samples": [],
+          "moving_mesh_count": 1,
+          "fixed_mesh_count": 2
+        }
+      }
+    }
+  },
+  "counts": {
+    "all_scenes": 84,
+    "nonempty_scenes": 83,
+    "public_glbs": 83,
+    "build_assets": 83,
+    "armatures": 29,
+    "human_rigs": 28,
+    "animal_rigs": 1,
+    "human_action_slots": 140,
+    "animal_action_slots": 3
+  },
+  "rigs": [
+    {
+      "rig": "david-flock-sheep-rig",
+      "bones": 16,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "david-flock-Idle",
+          "curves": 160,
+          "changing_curves": 32,
+          "keyframes": 19360
+        },
+        {
+          "clip": "Walk",
+          "action": "david-flock-Walk",
+          "curves": 160,
+          "changing_curves": 56,
+          "keyframes": 5920
+        },
+        {
+          "clip": "Graze",
+          "action": "david-flock-Graze",
+          "curves": 160,
+          "changing_curves": 7,
+          "keyframes": 24160
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.001",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.002",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Judean child-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Judean child-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Judean child-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Judean child-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Judean child-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.003",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Water carrier-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Water carrier-Walk",
+          "curves": 54,
+          "changing_curves": 22,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Water carrier-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Water carrier-Interact",
+          "curves": 54,
+          "changing_curves": 5,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Water carrier-Talk",
+          "curves": 54,
+          "changing_curves": 5,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.004",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Roman woman-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Roman woman-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Roman woman-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Roman woman-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Roman woman-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.005",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Wilderness resident-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Wilderness resident-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Wilderness resident-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Wilderness resident-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Wilderness resident-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.006",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Wilderness woman-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Wilderness woman-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Wilderness woman-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Wilderness woman-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Wilderness woman-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.007",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Wilderness child-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Wilderness child-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Wilderness child-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Wilderness child-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Wilderness child-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.008",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Ordinary priest-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Ordinary priest-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Ordinary priest-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Ordinary priest-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Ordinary priest-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.009",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "First Temple visitor-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "First Temple visitor-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "First Temple visitor-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "First Temple visitor-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "First Temple visitor-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.010",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "First Temple woman-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "First Temple woman-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "First Temple woman-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "First Temple woman-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "First Temple woman-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.011",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Levitical singer-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Levitical singer-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Levitical singer-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Levitical singer-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Levitical singer-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.012",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Bronze artisan-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Bronze artisan-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Bronze artisan-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Bronze artisan-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Bronze artisan-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.013",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Brick labourer-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Brick labourer-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Brick labourer-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Brick labourer-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Brick labourer-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.014",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Jordan priest bearer-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Jordan priest bearer-Walk",
+          "curves": 54,
+          "changing_curves": 22,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Jordan priest bearer-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Jordan priest bearer-Interact",
+          "curves": 54,
+          "changing_curves": 5,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Jordan priest bearer-Talk",
+          "curves": 54,
+          "changing_curves": 5,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.015",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Return-period mason-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Return-period mason-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Return-period mason-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Return-period mason-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Return-period mason-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.016",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Return-period elder-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Return-period elder-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Return-period elder-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Return-period elder-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Return-period elder-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.017",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Return-period woman-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Return-period woman-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Return-period woman-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Return-period woman-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Return-period woman-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.018",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Return-period child-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Return-period child-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Return-period child-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Return-period child-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Return-period child-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.019",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Port worker-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Port worker-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Port worker-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Port worker-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Port worker-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.020",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Cloth trader-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Cloth trader-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Cloth trader-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Cloth trader-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Cloth trader-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.021",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Asian artisan-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Asian artisan-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Asian artisan-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Asian artisan-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Asian artisan-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.022",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Patriarchal narrative traveler-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Patriarchal narrative traveler-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Patriarchal narrative traveler-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Patriarchal narrative traveler-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Patriarchal narrative traveler-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.023",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Camp host-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Camp host-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Camp host-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Camp host-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Camp host-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.024",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Well keeper-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Well keeper-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Well keeper-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Well keeper-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Well keeper-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.025",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Caravan traveler-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Caravan traveler-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Caravan traveler-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Caravan traveler-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Caravan traveler-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.026",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Egyptian grain worker-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Egyptian grain worker-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Egyptian grain worker-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Egyptian grain worker-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Egyptian grain worker-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    },
+    {
+      "rig": "resident-rig.027",
+      "bones": 17,
+      "actions": [
+        {
+          "clip": "Idle",
+          "action": "Egyptian householder-Idle",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2214
+        },
+        {
+          "clip": "Walk",
+          "action": "Egyptian householder-Walk",
+          "curves": 54,
+          "changing_curves": 23,
+          "keyframes": 1674
+        },
+        {
+          "clip": "LookAround",
+          "action": "Egyptian householder-LookAround",
+          "curves": 54,
+          "changing_curves": 2,
+          "keyframes": 2754
+        },
+        {
+          "clip": "Interact",
+          "action": "Egyptian householder-Interact",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        },
+        {
+          "clip": "Talk",
+          "action": "Egyptian householder-Talk",
+          "curves": 54,
+          "changing_curves": 7,
+          "keyframes": 1674
+        }
+      ]
+    }
+  ],
+  "all_asset_files": [
+    {
+      "id": "resident",
+      "file": "/home/garywu/dev/bible-island/public/models/judean-resident.glb",
+      "sha256": "03184317784f2020235ba31f7533a2056053cd0c2788e54b0ed09c28b0c15eaa",
+      "bytes": 1258100,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "resident-worker",
+      "file": "/home/garywu/dev/bible-island/public/models/judean-worker.glb",
+      "sha256": "fdb1eb98aef4f47545b1260370d58805d8b5b41a60738df0ed9f6d8f0be3dd40",
+      "bytes": 1203748,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "clay-vessel",
+      "file": "/home/garywu/dev/bible-island/public/models/clay-vessel.glb",
+      "sha256": "e566d71336ed2209e2781840dabf705d904226702ed71d3c62895fa9bf49fdd4",
+      "bytes": 189584,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "stone-vessel",
+      "file": "/home/garywu/dev/bible-island/public/models/stone-vessel.glb",
+      "sha256": "a2ab242b593d1116218d48fc2eaf438d3ee58c208e05a6e49c063f9b392da0b1",
+      "bytes": 98912,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "resident-child",
+      "file": "/home/garywu/dev/bible-island/public/models/judean-child.glb",
+      "sha256": "a142bc5cc3f874a3fbc8d67ed2c69dc7b8b8a0a220298b1031cc1685c82712be",
+      "bytes": 1152832,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "resident-carrier",
+      "file": "/home/garywu/dev/bible-island/public/models/judean-carrier.glb",
+      "sha256": "9325a964db22aa86ae08735540c032cf820732040b49550d8d31f1a454641030",
+      "bytes": 1324040,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "roman-woman",
+      "file": "/home/garywu/dev/bible-island/public/models/roman-woman.glb",
+      "sha256": "0ee1d65fea631239654ddcc3b1d2b1abfb1f041654d8a3311530db5cf8192a7b",
+      "bytes": 1244880,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "wilderness-resident",
+      "file": "/home/garywu/dev/bible-island/public/models/wilderness-resident.glb",
+      "sha256": "54675045af858d9ac112d92219973851c3258e2c35c85c7fca7d739ca363d25f",
+      "bytes": 1375172,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "wilderness-woman",
+      "file": "/home/garywu/dev/bible-island/public/models/wilderness-woman.glb",
+      "sha256": "984351662a47646dc4a9aecb7f75004637f96fe6a51ffb40121724cf57ced516",
+      "bytes": 1414892,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "wilderness-child",
+      "file": "/home/garywu/dev/bible-island/public/models/wilderness-child.glb",
+      "sha256": "4f1c55cfe089d3664f514c1535f1fd22a13f6126b9e6c6c1597b76e3395356c3",
+      "bytes": 1324252,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "ordinary-priest",
+      "file": "/home/garywu/dev/bible-island/public/models/ordinary-priest.glb",
+      "sha256": "4f1a2bc1c2dbb6f569ada8465f881353e14667451cff0fc22061d46af19bb974",
+      "bytes": 1184024,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "iron-resident",
+      "file": "/home/garywu/dev/bible-island/public/models/iron-resident.glb",
+      "sha256": "9cd133b126eeab2561fcf1e45c079c95dabe7d7508fc8a7beb0ae2b35a75872b",
+      "bytes": 1385428,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "iron-woman",
+      "file": "/home/garywu/dev/bible-island/public/models/iron-woman.glb",
+      "sha256": "d5eb7a0733823e2fbaafcfcbf99c7ab001e88d4d446938ced94cc9641b4e7103",
+      "bytes": 1425156,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "temple-singer",
+      "file": "/home/garywu/dev/bible-island/public/models/temple-singer.glb",
+      "sha256": "186b4f990811245564e90bcc51d1ad17d37b0afd57faed66b1550068990b723b",
+      "bytes": 1133188,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "bronze-artisan",
+      "file": "/home/garywu/dev/bible-island/public/models/bronze-artisan.glb",
+      "sha256": "4183b4c6090521ae43460dbcd26ba8b428b3d273442f62fe86a2a6e97799cb81",
+      "bytes": 1216420,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "brick-laborer",
+      "file": "/home/garywu/dev/bible-island/public/models/brick-laborer.glb",
+      "sha256": "472deff6e359def142b425b4e859dfc67e03938491686721d54e7ed1fdd3490a",
+      "bytes": 965356,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "priest-bearer",
+      "file": "/home/garywu/dev/bible-island/public/models/priest-bearer.glb",
+      "sha256": "24c0f0dffcfdefd319cfa0e05bdd4acb85e80753f433a97073b605cd8dcb4df2",
+      "bytes": 1225012,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "return-mason",
+      "file": "/home/garywu/dev/bible-island/public/models/return-mason.glb",
+      "sha256": "fe674188d701b4bf1e08e5a498c21e945dd90d7130ff967b571d2340235bc803",
+      "bytes": 1205284,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "return-elder",
+      "file": "/home/garywu/dev/bible-island/public/models/return-elder.glb",
+      "sha256": "f8187d4962db3df8792b493bea81c86fc464fc0c14b6f6846b0dd736ccdd4d0b",
+      "bytes": 1402596,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "return-woman",
+      "file": "/home/garywu/dev/bible-island/public/models/return-woman.glb",
+      "sha256": "28d95e2a16d6347de77e9ec47ea94e43e858a7c5fd5ed35adf23a23fda39a1c8",
+      "bytes": 1224216,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "return-child",
+      "file": "/home/garywu/dev/bible-island/public/models/return-child.glb",
+      "sha256": "35ef6c4d20f5af53ea65e1a8f15ef41977e7276370107bc8534464dc3d99ceab",
+      "bytes": 1133576,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "port-worker",
+      "file": "/home/garywu/dev/bible-island/public/models/port-worker.glb",
+      "sha256": "27a2defc4a0caa12aa2a76ec07c01a7cf2239b6f511681b4408be7eb6239d7fc",
+      "bytes": 1196036,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "paul-trader",
+      "file": "/home/garywu/dev/bible-island/public/models/paul-trader.glb",
+      "sha256": "510b981176345dd0e286c887bb02c86260deeaf3149889ff6fad132823e68c25",
+      "bytes": 1265680,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "asian-artisan",
+      "file": "/home/garywu/dev/bible-island/public/models/asian-artisan.glb",
+      "sha256": "59f8ddb25876d3e70a6e57170f73a6e4a3b42df58a495cb0db82793fe14d9d10",
+      "bytes": 1265296,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "patriarch-traveler",
+      "file": "/home/garywu/dev/bible-island/public/models/patriarch-traveler.glb",
+      "sha256": "c761ee8d649c54ec3f2550c0049883a930ff5ce345bff87d47532da65db2f74e",
+      "bytes": 1233372,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "camp-host",
+      "file": "/home/garywu/dev/bible-island/public/models/camp-host.glb",
+      "sha256": "a544b22a801d8ae415e7a0c524485b8aa9d653a4646244e7c23d084009f190fe",
+      "bytes": 1260860,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "well-keeper",
+      "file": "/home/garywu/dev/bible-island/public/models/well-keeper.glb",
+      "sha256": "64260fb02f2b9a2ae2c9494e8aa83488eeffa776a126e8550e50fe966c145ced",
+      "bytes": 1232332,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "caravan-traveler",
+      "file": "/home/garywu/dev/bible-island/public/models/caravan-traveler.glb",
+      "sha256": "aaef52f60ea06be9bd63f97b7202b367dbebb26a74a4367cac2d347a7e084bde",
+      "bytes": 1225376,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "egypt-grain-worker",
+      "file": "/home/garywu/dev/bible-island/public/models/egypt-grain-worker.glb",
+      "sha256": "fef1db421a22b1b75e157a30c8fd61d55892bb5ce985bc1e7e8772fbfab3e394",
+      "bytes": 1015592,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "egypt-householder",
+      "file": "/home/garywu/dev/bible-island/public/models/egypt-householder.glb",
+      "sha256": "70021e1c3471bd71af5db2a077cc63fb3b690abb71b10d9808d7eff6e974550c",
+      "bytes": 1154764,
+      "animations": [
+        "Idle",
+        "Walk",
+        "LookAround",
+        "Interact",
+        "Talk"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "woven-sample",
+      "file": "/home/garywu/dev/bible-island/public/models/woven-sample.glb",
+      "sha256": "f9fd9ec08bff909fbd2465d7a048871b1197f3957cf0f9d4b83b5c1b9b49f2e7",
+      "bytes": 918948,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "board-joint",
+      "file": "/home/garywu/dev/bible-island/public/models/board-joint.glb",
+      "sha256": "ad89d5fac46b3b8b1b602cacf6abf7623ea0340962ceb1a28720750c34f4a79c",
+      "bytes": 338572,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "tabernacle-basin",
+      "file": "/home/garywu/dev/bible-island/public/models/tabernacle-basin.glb",
+      "sha256": "8c6eb9d584de7d78392588270a2d1e72d71995f0886f97de611bd40a54e1497b",
+      "bytes": 237080,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "solomon-sea",
+      "file": "/home/garywu/dev/bible-island/public/models/solomon-sea.glb",
+      "sha256": "f5bb7ba30fb8eff5fb5dfadd9732507cf1109e05bd4ca27402bd7a859ef4b542",
+      "bytes": 2079208,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "pillar-capital",
+      "file": "/home/garywu/dev/bible-island/public/models/pillar-capital.glb",
+      "sha256": "9f08d64553f116e4bf47ac8bba63a87e2d81030624b1cbb5ccddd15cafe55266",
+      "bytes": 827472,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "temple-masonry",
+      "file": "/home/garywu/dev/bible-island/public/models/temple-masonry.glb",
+      "sha256": "5916191ea5c4e4106d956627a3081a0ce8196d2d79881c3965b052c3c389fd43",
+      "bytes": 333740,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "herod-stone",
+      "file": "/home/garywu/dev/bible-island/public/models/herod-stone.glb",
+      "sha256": "0c03d8fbdbb8f59b641617a2ec54b83ae122c07291ffb41e0d9828b621cd0984",
+      "bytes": 165524,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "herod-boundary",
+      "file": "/home/garywu/dev/bible-island/public/models/herod-boundary.glb",
+      "sha256": "e97f34f0165e9a5defb34c42d41afb78d118ab5cc0e7a5fbd06c1a5dca160ec9",
+      "bytes": 814876,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "herod-capital",
+      "file": "/home/garywu/dev/bible-island/public/models/herod-capital.glb",
+      "sha256": "647a53bb987848ed268fe5d2c86a2ed2fe007083aa9d1ab9aa24ac4a21388488",
+      "bytes": 487136,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "brick-mould",
+      "file": "/home/garywu/dev/bible-island/public/models/brick-mould.glb",
+      "sha256": "73473baf255fc2a5738bfaec0c04ad5f82d79283c7244737232021d654847e29",
+      "bytes": 204944,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "passover-kit",
+      "file": "/home/garywu/dev/bible-island/public/models/passover-kit.glb",
+      "sha256": "1a2069f035b68181f1781388ea757549a40e20501c6bda228cf53b1aeea5439d",
+      "bytes": 514896,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "crossing-ground",
+      "file": "/home/garywu/dev/bible-island/public/models/crossing-ground.glb",
+      "sha256": "60056d4279120e5d19a79acd3a1ccdde8b73d453819b2aa01b24456d69326809",
+      "bytes": 266936,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "jordan-bed",
+      "file": "/home/garywu/dev/bible-island/public/models/jordan-bed.glb",
+      "sha256": "57d80248a376780b00498912d2754797c5b08814b3b251d94566627b0089613e",
+      "bytes": 273504,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "jordan-carrying",
+      "file": "/home/garywu/dev/bible-island/public/models/jordan-carrying.glb",
+      "sha256": "10f60b7e89b249bd49385d7efd3d7a10edf40392ba2c5b5ab99b732f9fce197b",
+      "bytes": 172820,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "jordan-stones",
+      "file": "/home/garywu/dev/bible-island/public/models/jordan-stones.glb",
+      "sha256": "900b7a4b8e7db3cd8a4341ce648acacccbea488555a12061e9664da2e6af08cc",
+      "bytes": 121996,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "return-masonry",
+      "file": "/home/garywu/dev/bible-island/public/models/return-masonry.glb",
+      "sha256": "c13053ead24abb177ffad0f576b0e2178c145f48704d4f27baac84976b19cd95",
+      "bytes": 200972,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "return-scroll",
+      "file": "/home/garywu/dev/bible-island/public/models/return-scroll.glb",
+      "sha256": "08e2def2552f7b7034c3b195fdbb2a60826410cf18b31c0c713855228a3aec7e",
+      "bytes": 255344,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "return-vessels",
+      "file": "/home/garywu/dev/bible-island/public/models/return-vessels.glb",
+      "sha256": "17fda36c60af1f84f2697ce73f814504a40a632f170dcc831e15ce2195670674",
+      "bytes": 250344,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "paul-ship",
+      "file": "/home/garywu/dev/bible-island/public/models/paul-ship.glb",
+      "sha256": "2c6604747c8ed902c261f0357654fa6c41149c0fef6738ae80a0287a862950a8",
+      "bytes": 946292,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "paul-textiles",
+      "file": "/home/garywu/dev/bible-island/public/models/paul-textiles.glb",
+      "sha256": "cba7d1cc69c20ae1cbf282d236eef8f8951f8a409a1f6484f08f6377c297ac6b",
+      "bytes": 914788,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "paul-silverwork",
+      "file": "/home/garywu/dev/bible-island/public/models/paul-silverwork.glb",
+      "sha256": "492b4001fa0b1b2db0168d885cd41569a86e8d6fb7128c28db2695f3b95a5558",
+      "bytes": 73844,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "abraham-altar",
+      "file": "/home/garywu/dev/bible-island/public/models/abraham-altar.glb",
+      "sha256": "a49671e3f823a0b26c8f23aace281890dde4ebd9ffe9e9a18d8ae5b11a7c4d11",
+      "bytes": 876304,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "abraham-hospitality",
+      "file": "/home/garywu/dev/bible-island/public/models/abraham-hospitality.glb",
+      "sha256": "35e0c4b8ba9cc601778b6bb11ba2fc8a0344e2a15ac4a13837974cad32756e3a",
+      "bytes": 670796,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "abraham-well",
+      "file": "/home/garywu/dev/bible-island/public/models/abraham-well.glb",
+      "sha256": "060932031169c632ab3a28260de7c2bc16116fe1087d4a9aa4c98617d3d46541",
+      "bytes": 589784,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "abraham-ewe",
+      "file": "/home/garywu/dev/bible-island/public/models/abraham-ewe.glb",
+      "sha256": "e35fcaaf55d625d5fb1b829094f7da30f9e0a24f1e9f4193c2735b4a04e6de6c",
+      "bytes": 275012,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "joseph-cargo",
+      "file": "/home/garywu/dev/bible-island/public/models/joseph-cargo.glb",
+      "sha256": "589260dc13202cc9bca626be649a28c97dca95746996338846d35c3be4cfa246",
+      "bytes": 631032,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "joseph-granary",
+      "file": "/home/garywu/dev/bible-island/public/models/joseph-granary.glb",
+      "sha256": "919197ac0a2b35c8cb99e4f33320a84ad5c7663fe427c439e9624c7898afef73",
+      "bytes": 852148,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "joseph-provisions",
+      "file": "/home/garywu/dev/bible-island/public/models/joseph-provisions.glb",
+      "sha256": "1f3441056af159ab0ca401f7504c5e3782ad2769129a08c40e43df6de4080ff5",
+      "bytes": 711920,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "sinai-manna",
+      "file": "/home/garywu/dev/bible-island/public/models/sinai-manna.glb",
+      "sha256": "23b86c1cd43c1a7d8dbcdd786bc3fde62abd11f7b9b883f8b14c17e997887ff4",
+      "bytes": 1212976,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "sinai-water",
+      "file": "/home/garywu/dev/bible-island/public/models/sinai-water.glb",
+      "sha256": "aea660997ffb1a102952b25e3e3ccf4d5077f8920b60b38ebfa223b979510bca",
+      "bytes": 572104,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "sinai-boundary",
+      "file": "/home/garywu/dev/bible-island/public/models/sinai-boundary.glb",
+      "sha256": "f2405ce357742faf748e4cfe6fa147f5916d598cca02efd38a8f68f2c6db0536",
+      "bytes": 849724,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "ruth-gleaning",
+      "file": "/home/garywu/dev/bible-island/public/models/ruth-gleaning.glb",
+      "sha256": "e5d08dcc1778e81687a3d71bb6b66cc9f8f9bf922826ece7f654b4e8bf27da99",
+      "bytes": 742180,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "ruth-grain",
+      "file": "/home/garywu/dev/bible-island/public/models/ruth-grain.glb",
+      "sha256": "e439b7ba631acd60f46ef1eccece0ec8bb3543be3146e3b14df08cb090e25846",
+      "bytes": 775124,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "ruth-witness",
+      "file": "/home/garywu/dev/bible-island/public/models/ruth-witness.glb",
+      "sha256": "29efa820dfeaa96fb7bd674de92545717b250d6681e63e3e6ff1758422031df3",
+      "bytes": 515776,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "david-shepherd",
+      "file": "/home/garywu/dev/bible-island/public/models/david-shepherd.glb",
+      "sha256": "04b3ff50f087ed2206beef281b29cbe5740c9b5e1e0d117bad3e9de760be1e27",
+      "bytes": 532476,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "david-city",
+      "file": "/home/garywu/dev/bible-island/public/models/david-city.glb",
+      "sha256": "f4a44f2bc89e9b8631c204f88f5b0870ba902ccd0b0c5c6aeec75af6dc34ee18",
+      "bytes": 1405104,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "david-ark",
+      "file": "/home/garywu/dev/bible-island/public/models/david-ark.glb",
+      "sha256": "ad85e386f166fe4f2de7cc89e6f453a71997af48149193779cf461a4b42f387d",
+      "bytes": 859428,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "david-flock-sheep",
+      "file": "/home/garywu/dev/bible-island/public/models/david-flock-sheep.glb",
+      "sha256": "f09bfecccc662bf0bdabaa095f75176b1ca35890672224dd4aca936d76809044",
+      "bytes": 508764,
+      "animations": [
+        "Idle",
+        "Walk",
+        "Graze"
+      ],
+      "skins": 1
+    },
+    {
+      "id": "kingdom-assembly",
+      "file": "/home/garywu/dev/bible-island/public/models/kingdom-assembly.glb",
+      "sha256": "1d41e8d92e75b90e5fa4df9a9331ec456a8bff9de1d0793f1c1338d61ed9dfb6",
+      "bytes": 604316,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "kingdom-sites",
+      "file": "/home/garywu/dev/bible-island/public/models/kingdom-sites.glb",
+      "sha256": "1ab1db39b8cf64e86a7fe095f314be3393eae3c0f6752683bc177ac71c69dad2",
+      "bytes": 564708,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "kingdom-measures",
+      "file": "/home/garywu/dev/bible-island/public/models/kingdom-measures.glb",
+      "sha256": "4d528688c10c88b917c797f4d406aad87929c824e3b1a7b3f3dfabeabb88b281",
+      "bytes": 800388,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "exile-sequence",
+      "file": "/home/garywu/dev/bible-island/public/models/exile-sequence.glb",
+      "sha256": "6b19ea4f910fa13afec35493866b040cc99c6f378381a1b274510888ea2f0066",
+      "bytes": 291792,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "exile-waterbank",
+      "file": "/home/garywu/dev/bible-island/public/models/exile-waterbank.glb",
+      "sha256": "55616504e7cd72ca131ff4c8faef2f59b475e1d7fe4e49d97c1a8a97eb47c83e",
+      "bytes": 542124,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "exile-dwelling",
+      "file": "/home/garywu/dev/bible-island/public/models/exile-dwelling.glb",
+      "sha256": "f90a8d6191f4eaee189ebaa3ea2fa2c4717f75642e4c1c37a672e0070096de8b",
+      "bytes": 829160,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "nehemiah-wall",
+      "file": "/home/garywu/dev/bible-island/public/models/nehemiah-wall.glb",
+      "sha256": "bca18de70959c883f19ebfe5f1d0b26afcb536f6bb666f1574103780ea004906",
+      "bytes": 538220,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "nehemiah-watch",
+      "file": "/home/garywu/dev/bible-island/public/models/nehemiah-watch.glb",
+      "sha256": "e6ae06f01e1da6044c5772331b59d5ea05384fd9ab7624aa9f3cb4b93e98bb10",
+      "bytes": 457668,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "nehemiah-reading",
+      "file": "/home/garywu/dev/bible-island/public/models/nehemiah-reading.glb",
+      "sha256": "455b3fc6c744da44c48c07698a4657cc2fa1908fecbe14edc56fafade42dea50",
+      "bytes": 1011460,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "intertestament-road",
+      "file": "/home/garywu/dev/bible-island/public/models/intertestament-road.glb",
+      "sha256": "03297a0a1dad2a5f2405291122ee2944ca8abc7ed7befde009e9d20a232ff5f9",
+      "bytes": 761000,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "intertestament-coin",
+      "file": "/home/garywu/dev/bible-island/public/models/intertestament-coin.glb",
+      "sha256": "8181d5b3148f70af0b4085fe2be4bd1c3404df40906d306d1dbc7dd70c7b8650",
+      "bytes": 449132,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "intertestament-languages",
+      "file": "/home/garywu/dev/bible-island/public/models/intertestament-languages.glb",
+      "sha256": "200bbfd1553929709daf26c7f735ba66847a025a28e74c96a12339d6b56e2578",
+      "bytes": 362988,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "nativity-manger",
+      "file": "/home/garywu/dev/bible-island/public/models/nativity-manger.glb",
+      "sha256": "3771c7182fa238aad878bdcd75d04bcb20f69ec8e4854bf6711845110011dedf",
+      "bytes": 98256,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "nativity-home",
+      "file": "/home/garywu/dev/bible-island/public/models/nativity-home.glb",
+      "sha256": "3ac02419f6a6342555fcfeb528f292c2b64512e3410ff9ca254d4a3e65a0b1fa",
+      "bytes": 445884,
+      "animations": [],
+      "skins": 0
+    },
+    {
+      "id": "nativity-joinery",
+      "file": "/home/garywu/dev/bible-island/public/models/nativity-joinery.glb",
+      "sha256": "c11d6f8fe4bcd9ba5ecee2f1b6bb78e55c4b6b63a29ef170d4af05f497189e8d",
+      "bytes": 81796,
+      "animations": [],
+      "skins": 0
+    }
+  ],
+  "failures": [],
+  "method": "Fresh actual GLB reimport; components welded at1e-7m individually; real floor/local normal thickness rays, positive polygon-plane contact areas from clipping actual coplanar polygons, bearing pair rays, nearest oriented surface probes with20um deep-contact tolerance, each descendant vertex movement and restoration,20 path samples. AABBs only filter/bounds. No source saved.",
+  "source_saved_by_QA": false
+}

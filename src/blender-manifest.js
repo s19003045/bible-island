@@ -1,5 +1,8 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'nativity-manger':{type:'object',src:'models/nativity-manger.glb',height:.48,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.3,2.7,1.8]},
+  'nativity-home':{type:'object',src:'models/nativity-home.glb',height:.40,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.3,1.9,2],articulation:{part:'nativity-home-modern-roof-layer',offset:[0,.18,0],openLabel:'抬起屋頂看室內與承托',closeLabel:'還原家屋屋頂',note:'約1:10原創家屋比較 · 非原宅或聖殿，拆層為教學方式'}},
+  'nativity-joinery':{type:'object',src:'models/nativity-joinery.glb',height:.19,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.3,2.2,1.8],articulation:{part:'nativity-joinery-modern-upper-timber',offset:[0,.18,0],openLabel:'抬起木料看互補凹口',closeLabel:'還原木接合教具',note:'現代半搭接比較 · 下料朝上，上料凹口需仰視，非古代原工法認證'}},
   'intertestament-road':{type:'object',src:'models/intertestament-road.glb',height:.166,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.4,1.8],articulation:{part:'intertestament-road-modern-cutaway-layer',offset:[0,.16,0],openLabel:'抬起剖面看路床與排水',closeLabel:'還原道路比較盤',note:'現代構造比較 · 非猶太原路或唯一鋪法'}},
   'intertestament-coin':{type:'object',src:'models/intertestament-coin.glb',height:.30,triangleBudget:30000,byteBudget:1600000,inspectionView:[.7,.5,2.4]},
   'intertestament-languages':{type:'object',src:'models/intertestament-languages.glb',height:.151776,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.6,1.8],articulation:{part:'intertestament-languages-modern-audience-layer',offset:[0,.14,0],openLabel:'抬起兩列說話對象比較板',closeLabel:'還原比較板',note:'兩個先後對象 · 旁置卷材保持原位，非保羅講稿'}},

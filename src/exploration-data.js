@@ -1,3 +1,4 @@
+import {nativityWalkConfig,nativityObjects} from './nativity-exploration.js';
 import {intertestamentWalkConfig,intertestamentObjects} from './intertestament-exploration.js';
 import {nehemiahWalkConfig,nehemiahObjects} from './nehemiah-exploration.js';
 import {exileWalkConfig,exileObjects} from './exile-exploration.js';
@@ -16,6 +17,7 @@ import {solomonSpawn,solomonObjects} from './solomon-exploration.js';
 import {herodSpawn,herodObjects} from './herod-exploration.js';
 import {jordanSpawn,jordanObjects} from './jordan-exploration.js';
 export const explorationByIsland = {
+  nativity:{...nativityWalkConfig(),objects:nativityObjects},
   intertestament:{...intertestamentWalkConfig(),objects:intertestamentObjects},
   nehemiah:{...nehemiahWalkConfig(),objects:nehemiahObjects},
   exile:{...exileWalkConfig(),objects:exileObjects},
@@ -48,4 +50,4 @@ export const explorationByIsland = {
     hint:'教學觀察區 · 平台、階梯與院落格局屬推定；內殿與祭壇不開放步行。角色串聯建殿與獻殿經文，不表示兩事同時發生，也不代表古代身分皆可進入。',
     region:p=>p[0]<=18.5&&Math.abs(p[2])<5.4?'銅柱與教學平台':p[2]>7?'銅海與南側院區':p[2]<-8?'工藝解說與院中聚集區':'院中觀察通道'},
 };
-export const explorationFor=(id,segment=null,phase=null)=>id==='intertestament'&&segment?intertestamentWalkConfig(segment):id==='nehemiah'&&segment?nehemiahWalkConfig(segment,phase):id==='exile'&&segment?exileWalkConfig(segment):id==='kingdoms'&&segment?kingdomsWalkConfig(segment):id==='david'&&segment?davidWalkConfig(segment,phase):id==='judges'&&segment?ruthWalkConfig(segment):id==='sinai'&&segment?sinaiWalkConfig(segment):id==='joseph'&&segment?josephWalkConfig(segment):id==='abraham'&&segment?abrahamWalkConfig(segment):id==='paul'&&segment?paulWalkConfig(segment):id==='second-temple'&&segment?returnWalkConfig(segment):id==='exodus'&&segment?exodusWalkConfig(segment):explorationByIsland[id];
+export const explorationFor=(id,segment=null,phase=null)=>id==='nativity'&&segment?nativityWalkConfig(segment,phase):id==='intertestament'&&segment?intertestamentWalkConfig(segment):id==='nehemiah'&&segment?nehemiahWalkConfig(segment,phase):id==='exile'&&segment?exileWalkConfig(segment):id==='kingdoms'&&segment?kingdomsWalkConfig(segment):id==='david'&&segment?davidWalkConfig(segment,phase):id==='judges'&&segment?ruthWalkConfig(segment):id==='sinai'&&segment?sinaiWalkConfig(segment):id==='joseph'&&segment?josephWalkConfig(segment):id==='abraham'&&segment?abrahamWalkConfig(segment):id==='paul'&&segment?paulWalkConfig(segment):id==='second-temple'&&segment?returnWalkConfig(segment):id==='exodus'&&segment?exodusWalkConfig(segment):explorationByIsland[id];

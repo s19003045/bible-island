@@ -1,7 +1,7 @@
 // Separate reading windows; the public routes are original teaching spaces, not surveyed sites.
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 const surfaces=[{id:'nativity-public-observation-route',x1:-15,x2:29,z1:-18,z2:30}];
-export const nativityFloor=(s,x,z)=>(s==='home'?.75:.65)+(s==='home'?.55:s==='manger'?.40:.25)*smooth((z+14)/40);
+export const nativityFloor=(s,x,z)=>{const base=(s==='home'?.75:.65)+(s==='home'?.55:s==='manger'?.40:.25)*smooth((z+14)/40);if(s!=='manger')return base;const flat=.65+.40*smooth(21/40),blend=smooth((Math.hypot(x+5,z-7)-1.2)/1.4);return flat+(base-flat)*blend;};
 export const nativityPosition=(s,x,z,h=0)=>[x,nativityFloor(s,x,z)+h,z];
 export const nativitySegments=[
  {id:'manger',number:1,name:'馬槽、牧地與前往',reference:'路加福音 2:1–20',passage:'Luke 2:1-20',person:'nativity-manger-resident',heading:'分清安放、聽見與前往',intro:'先讀家庭行程與降生，再分清牧人在野外聽見、後來才前往。空槽只供物件觀察；它的材質、形狀與尺寸沒有經文施工圖，也不指定唯一住宿屋型。'},

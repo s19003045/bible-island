@@ -1291,6 +1291,119 @@
       ],
       "runtime_operations": 1,
       "units": "metres; Blender +Z / glTF +Y"
+    },
+    "nativity-manger": {
+      "file": "models/nativity-manger.glb",
+      "bytes": 98256,
+      "sha256": "3771c7182fa238aad878bdcd75d04bcb20f69ec8e4854bf6711845110011dedf",
+      "triangles": 4028,
+      "animations": [],
+      "height": 0.48,
+      "teaching_model": true,
+      "prototype_only": false,
+      "isolated_provenance": "Root-approved final NATIVITY-ASSET-BRIEF, 2026-11-17 isolated prototype only",
+      "source_scene": "Nativity \u2014 original empty thick stone container comparison",
+      "bottom_m": 0.0,
+      "top_m": 0.47999998927116394,
+      "dimensions_blender_xyz_m": [
+        1.100000023841858,
+        0.6399999856948853,
+        0.47999998927116394
+      ],
+      "interpretation": "Original modern empty stone container. LUK2 narrative is not denied by an empty object-only teaching model. Material/dimensions not stated in scripture; no infant substitute, lining, hay, animal, cover, identified lodging or removable operation.",
+      "semantic_groups": [
+        "nativity-manger-continuous-empty-shell"
+      ],
+      "modern_removable_layer": null,
+      "modern_layer_translation_gltf_xyz_m": null,
+      "runtime_operations": 0,
+      "selected_scale": 1,
+      "units": "metres; Blender +Z / glTF +Y"
+    },
+    "nativity-home": {
+      "file": "models/nativity-home.glb",
+      "bytes": 445884,
+      "sha256": "3ac02419f6a6342555fcfeb528f292c2b64512e3410ff9ca254d4a3e65a0b1fa",
+      "triangles": 8012,
+      "animations": [],
+      "height": 0.4,
+      "teaching_model": true,
+      "prototype_only": false,
+      "isolated_provenance": "Root-approved final NATIVITY-ASSET-BRIEF, 2026-11-17 isolated prototype only",
+      "source_scene": "Nativity \u2014 modern one tenth home courtyard and supported roof",
+      "bottom_m": 0.0,
+      "top_m": 0.3999999761581421,
+      "dimensions_blender_xyz_m": [
+        1.100000023841858,
+        0.800000011920929,
+        0.3999999761581421
+      ],
+      "interpretation": "Original modern 1:10 room/courtyard comparison for Nazareth everyday growth/return. Not original home or Bethlehem lodging. Jerusalem age12 hearing/questions is separate reading; no teachers/platform, identified family possessions, pit, tools or people.",
+      "semantic_groups": [
+        "nativity-home-modern-base",
+        "nativity-home-fixed-floor",
+        "nativity-home-fixed-courtyard",
+        "nativity-home-fixed-wall-back",
+        "nativity-home-fixed-wall-left",
+        "nativity-home-fixed-wall-right",
+        "nativity-home-fixed-wall-front-left-jamb",
+        "nativity-home-fixed-wall-front-right-jamb",
+        "nativity-home-fixed-wall-front-left-fill",
+        "nativity-home-fixed-wall-front-right-fill",
+        "nativity-home-fixed-wall-above-lintel",
+        "nativity-home-fixed-walls",
+        "nativity-home-fixed-door-lintel",
+        "nativity-home-roof-beam-1",
+        "nativity-home-roof-beam-2",
+        "nativity-home-roof-beam-3",
+        "nativity-home-roof-beam-4",
+        "nativity-home-roof-thick-panel",
+        "nativity-home-modern-roof-layer",
+        "nativity-home-fixed-ordinary-comparison-object"
+      ],
+      "modern_removable_layer": "nativity-home-modern-roof-layer",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.18,
+        0
+      ],
+      "runtime_operations": 1,
+      "selected_scale": 0.1,
+      "units": "metres; Blender +Z / glTF +Y"
+    },
+    "nativity-joinery": {
+      "file": "models/nativity-joinery.glb",
+      "bytes": 81796,
+      "sha256": "c11d6f8fe4bcd9ba5ecee2f1b6bb78e55c4b6b63a29ef170d4af05f497189e8d",
+      "triangles": 948,
+      "animations": [],
+      "height": 0.19,
+      "teaching_model": true,
+      "prototype_only": false,
+      "isolated_provenance": "Root-approved final NATIVITY-ASSET-BRIEF, 2026-11-17 isolated prototype only",
+      "source_scene": "Nativity \u2014 modern complementary half lap timber comparison",
+      "bottom_m": 0.0,
+      "top_m": 0.1899999976158142,
+      "dimensions_blender_xyz_m": [
+        0.949999988079071,
+        0.6200000047683716,
+        0.1899999976158142
+      ],
+      "interpretation": "Original modern half-lap comparison, not MRK6 specified construction, Nazareth ancient technique, original tool or childhood workshop. Fixed top notch and selected upper bottom notch; no letters/tool/weapon/cutting animation or work scoring.",
+      "semantic_groups": [
+        "nativity-joinery-modern-base",
+        "nativity-joinery-fixed-lower-timber",
+        "nativity-joinery-modern-upper-timber"
+      ],
+      "modern_removable_layer": "nativity-joinery-modern-upper-timber",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.18,
+        0
+      ],
+      "runtime_operations": 1,
+      "selected_scale": 1,
+      "units": "metres; Blender +Z / glTF +Y"
     }
   }
 }

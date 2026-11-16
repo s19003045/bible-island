@@ -1,3 +1,4 @@
+import {nativityHistorical} from './nativity-content.js';
 import {intertestamentHistorical} from './intertestament-content.js';
 import {nehemiahHistorical} from './nehemiah-content.js';
 import {exileHistorical} from './exile-content.js';
@@ -22,6 +23,7 @@ export const dimensions = {
   herod: { facade: [100 * CUBIT, 100 * CUBIT], holy: [40 * CUBIT, 40 * CUBIT, 20 * CUBIT], inner: 20 * CUBIT },
 };
 export const historicalScenes = {
+  nativity:nativityHistorical,
   intertestament:intertestamentHistorical,
   nehemiah:nehemiahHistorical,
   exile:exileHistorical,
