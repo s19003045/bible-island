@@ -247,3 +247,16 @@
 - 供水追問補民 20、石版追問補出 24／31，不改台詞及音檔。新增實際對話 HTML 回歸；西奈／場景專測 12／12、內容／語法、正式建置及 121,598 KiB 離線封裝通過。
 - 正式 DOM 核對 `index-wCzpYEXY.js`，world `world-DKckMyY5.js`、vessels `vessels-BwYOQ63K.js`。兩組追問的多個 CSBT 連結皆已實際確認，console warning／error 為空，正式頁恢復一般閱讀／山前全景及自主動畫；`.qa/sinai-mountain-final-sites.png` 已檢視。本機山前拆還及每日份額旋轉走訪完成，供水近景接續。
 - 供水 GLB 的本機走訪／旋轉／返回也已完成，三件器物各章觀察 1／1，研讀仍 0／3；山前另完成抬升圖層與還原。最新 `.qa/sinai-water-inspection-local.png` 已檢視。正式站維持一般閱讀／山前全景，本機維持深入研讀／供水全景與安靜偏好；兩頁動畫正常、未留在對話／近景／自動行走，console warning／error 皆為空。其他十三島及完整人工補驗仍在 Goal 範圍。
+
+## 2026-11-16：士師與路得三章，第十二座詳細島
+
+- 本機來源 `0fd2bf34240845efc987deb40f6a89b732b9574b`，297個追蹤檔與Sites checkout逐檔相符。
+- Sites source `c5285585c4a6a23ec726bdc0a0bab6c930774bcb`。
+- Saved version `appgprj_6af95ea0dac4819182957156725483aa~appgver_33bffdc69c44819199c72ae2d51086df`。
+- Deployment `appgdep_6afaeb222d108191b125fae0b275452e`，平台於 `2026-11-16T11:38:30.244929+00:00` 回傳 `succeeded`。
+- 正式網址：[士師與路得](https://bible-island.starryswift8.chatgpt.site/#island=judges&chapter=field)。發布前確認owner、原單一使用者、無群組或外部訪客，沿用原私人權限。
+- 拾穗／夜與黎明／城門三章，每章13位POI居民，三位可交談角色與24段精確配音，新增三件Blender教具。全站64份GLB、39份MP3、36位角色與288段cue；其他十二島繼續。
+- 完整回歸191／191，內容／語法與正式建置、129,882KiB離線試閱通過。Blender正式來源重開64非空場景、28套骨架各五種動作；新教具實際渲染／幾何／拆還已驗證。本機三件器物完整走訪、旋轉與兩件拆還完成，各章觀察1／1且不誤算讀經。
+- 正式入口 `index-B8yNSFqx.js` 已經由DOM核對，world `world-B6HKSx60.js`、vessels `vessels-BBvNAIOM.js`、three `three-CKWGyh1c.js`。Three.js大於500kB的建置提示仍在，沒有宣稱實體手機FPS已驗收。
+- 正式對話／模式／配音及全景結果見 [路得驗收](review/RUTH-VILLAGE.md)。獨立歷史專家審稿、完整真人聽驗與實體裝置驗收及其他十二島仍保留在完整Goal範圍。
+- 正式田邊Blender人物、追問與一般／親子配音已實際確認播放狀態，三章切換正確清除舊對話；六簸箕與親屬問題的多段CSBT連結已核對。親子第三題仍未解鎖、0／3。正式恢復一般閱讀／第一章全景及自主動畫，console warning／error為空；`.qa/ruth-field-final-sites.png` 已檢視，本機保留研讀全景。詳見路得驗收的完整界線。

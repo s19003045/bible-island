@@ -47,3 +47,13 @@
 ### 三件本機走訪完成
 
 城門章也已實際沿路抵達、E開啟同份GLB、分開固定帶、旋轉、還原與關閉，`.qa/ruth-witness-separated-local.png` 已檢視。禾場已確認觀察1／1與研讀0／3分離；城門返回研讀全景，未留在近景或自動行走。整套三件均已完成實際抵達與旋轉，兩件有拆還者也完成。正式站發布與人物配音／親子切章仍接續。
+
+## 正式發布與手動驗收完成
+
+本機來源 `0fd2bf34240845efc987deb40f6a89b732b9574b`，297個追蹤檔與Sites checkout逐檔相符；Sites source `c5285585c4a6a23ec726bdc0a0bab6c930774bcb`。Deployment `appgdep_6afaeb222d108191b125fae0b275452e` 於 `2026-11-16T11:38:30.244929+00:00` 成功，saved version `appgprj_6af95ea0dac4819182957156725483aa~appgver_33bffdc69c44819199c72ae2d51086df`。同一原擁有者私人站，無新增群組或外部訪客；[正式入口](https://bible-island.starryswift8.chatgpt.site/#island=judges&chapter=field)。
+
+正式DOM已核對 `index-B8yNSFqx.js`。田邊居民實際顯示原創Blender長衣、披布、手部／五官／鞋履；拾穗主題及追問的RUT2／LEV19／DEU24連結正確。按重播後已看到「語音播放中」，`.qa/ruth-field-dialogue-sites.png` 保存此狀態；沒有把播放狀態當作完整真人聽驗。切禾場清除舊角色，夜間請求與等待的修正版及RUT3:6–13已確認，六簸箕追問另連RUT2:17–23及RUT3；城門親屬問題另連RUT4、LEV25:23–28及DEU25:5–10。
+
+正式親子第三題維持三個選項未解鎖、0／3；人物改用本章提示，已顯示「情境配音播放中」，未沿用一般模式答案。切回一般閱讀結束對話與音訊。城門全景 `.qa/ruth-gate-sites.png`、第一章最終全景 `.qa/ruth-field-final-sites.png` 皆已實際檢視，console warning／error為空。本機維持深入研讀／第一章全景與安靜偏好，正式維持一般閱讀／第一章全景；動畫開啟、沒有進行自動行走或保留對話。
+
+本機另實際打開研讀來源與跨場景比較，顯示不同經文、三份館方資料與約瑟場景的各自限度；未誤完成判讀。三件觀察各章1／1已保存，讀經0／3保留。其他十二島、獨立歷史專家審稿、完整真人聽驗與實體裝置驗收繼續，Goal不標完成。
