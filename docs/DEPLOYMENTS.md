@@ -371,3 +371,16 @@
 - 第33版人工追加：正式獨立reload已核對`index-CJNgMSik.js`；親子錄音播放、研讀資料前置disabled→enabled、一般問候播放及三模式0／3隔離，storm夜色／鎖定與casting還原均核對。本機船段已沿路／旋轉／抬肋／還原及1／1紀錄；本機另兩件、正式三件與完整真人聽驗等待辦保留。
 
 - 本機石材已沿路／E開啟／旋轉及1／1；本機剩屋面，正式三物件仍待沿路。正式最後一般／boat casting／全景、動畫開、交談結束；兩頁console warning／error=[]，本機聲音關閉並保留屋面自動沿路狀態。
+
+- 第33版人工補驗：本機屋面與正式三件均已沿路／E近景／旋轉，船肋與屋面各拆還完成；六件人工操作已完成，原歷史待辦狀態由此追加更新，見加利利驗收。
+
+## 2026-11-17：撒馬利亞，第二十座詳細島（第34版）
+
+- root來源`4180efaacc2d353d036e4488f9345c0ee1c8725d`（含前一應用commit`cc102d8`的全部來源與本次六個正式媒體檔）；Sites來源`e3417082c2562d85c1365aa33ed5e0cf277b47b9`。444個追蹤來源逐檔SHA256相同，保留原node_modules連結。主程式及媒體均先提交再同步封裝。
+- 同一owner-private專案`appgprj_6af95ea0dac4819182957156725483aa`；原owner／custom單一使用者、0群組／0外部訪客不變。第34版`appgprj_6af95ea0dac4819182957156725483aa~appgver_1c84218381f081918011a4b2b080355a`；部署`appgdep_6afb51d49d4881918f9a69a360b7af10`於`2026-11-16T18:56:36.584906+00:00`回傳succeeded，未在終態後poll或重複發布。平台版本回讀source SHA相同。
+- 正式入口：[井旁、道路與持續照顧](https://bible-island.starryswift8.chatgpt.site/#island=samaria&chapter=well&phase=water)。壓縮封裝`/tmp/bible-island-4180efa-samaria-sites.tar.gz`，101,741,930bytes，SHA256=`85e09b5b4aabde182a7bf72757ba382435d25dc52d3743f1c0a3a956a95473b1`；平台160內容檔／146,831,360bytes，內容hash=`a09ec7e31fe43377b3e3db0857dd2afd04ef198dbc3d3b85ecb941c8790a8f1d`。
+- 同源建置120模組／1.37s；入口`index-56qrFRBg.js`、world`world-Dp_vQfPQ.js`、vessels`vessels-CzWnN698.js`、three`three-qqpqWelr.js`、CSS`index-zmRD_4cI.css`。42檔273項最終回歸通過；原沙箱listen錯誤與57→60舊數量斷言的失敗及修正後結果保留。內容／語法、正式建置與193121KiB離線試閱通過，既有大chunk提示保留。
+- 三章十閱讀時刻、每章13位POI居民、三件正式Blender教具及24cue完成。全站89GLB／63MP3／60角色／480cue；來源、史料界線、幾何及人工結果見 [撒馬利亞驗收](review/SAMARIA-CHAPTERS.md)。其餘四島及人工補驗仍在active總Goal範圍。
+- 本機三模式前置與播放已核對，旅店新院落已實際看圖，warning／error=[]。正式原分頁hash先仍使用第33版舊程式，已明確送reload；瀏覽器控制逾時後接續確認新程式與手動操作，未把URL改變當新版載入。沒有重啟dev server或重複發布。
+
+- 第34版人工追加：正式已回讀`index-56qrFRBg.js`；親子情境配音、研讀資料前後分類disabled→enabled、一般問候語音播放及三模式0／3已實測。井旁正式截圖有既有右側裁切，DOM另核對。本機照顧組沿路／E近景／旋轉／關閉及1／1完成；本機道路沿路狀態保留，水罐及正式三近景待補驗。兩頁warning／error=[]，正式恢復一般／well water全景、動畫開、交談結束；完整真人聽驗等界線保留，詳驗收文件。
