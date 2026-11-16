@@ -35,3 +35,13 @@
 - 已通過 100 項回歸、內容／語法檢查、正式建置與單檔試閱；封裝包含三份本機 GLB。本機畫面已確認耶路撒冷住戶與兩件器皿，見 [首批驗收](review/BLENDER-FIRST-PASS.md)。
 - 正式頁已重新載入核對新腳本與 Blender 住戶造型，對話仍可使用，console error／warning 為空；截圖 `.qa/blender-sites-published.png`。
 - 沿用既有擁有者私人權限。這是管線與初步替換：其他職分、年代、器具及十九座詳細島嶼仍持續進行。
+
+## 2026-11-16：會幕 Blender 器具與拆合近景
+
+- 本機來源：`a9a78de`，與 Sites 來源逐檔比對，共 129 個追蹤檔案。
+- Sites source commit：`72d7bba4852e3695965e26899d6ccd06c6b387c0`。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_10fa17f588e88191bc5a3aba125ec21e`。
+- Deployment：`appgdep_6afa6057af7481918b01e9049ebb0f17`。
+- 平台結果：`succeeded`，`2026-11-16T01:46:14.927123+00:00`。
+- 104 項測試、內容／語法、正式建置與離線封裝通過；三件會幕觀察物及近景共用 GLB。板座拆合、方向鍵、手機尺寸與史料界線說明已在本機操作，見 [會幕器具驗收](review/BLENDER-TABERNACLE.md)。
+- 保留既有擁有者私人權限。此版已有五件 Blender 觀察物；其他九件、人物細化與十九座詳細島嶼仍待接續。

@@ -7,7 +7,7 @@
 - 五島版本已部署到原 Sites 網址，見 [部署紀錄](DEPLOYMENTS.md)。
 - 群山／流雲版已實作並發佈至 Sites，96 項回歸與本機／正式頁瀏覽器驗收完成；見 [山景試閱](review/ATLAS-MOUNTAINS.md) 與 [部署紀錄](DEPLOYMENTS.md)。
 - Blender 官方 4.5.16 LTS 已校驗、啟動，首批已實際製作並保存 `.blend`／GLB，且已發佈至 Sites：耶路撒冷一般成人居民與陶罐、石器兩件觀察物，見 [素材來源與限制](../assets/blender/README.md) 與 [部署紀錄](DEPLOYMENTS.md)。NPC 尚有風格化特徵，其他年代／職分、搬水持物與孩童尚未完成；下表十九島仍待升級。
-- 第二批已製作會幕三件觀察物（織線、板座與洗濯盆），場景／近景共用 GLB，並加入雙銀座拆合與全方向取景。現有十四項觀察物已有五項 Blender 替換；所羅門三項、希律三項、出埃及三項共九項仍待處理。第二批的實際發佈與瀏覽器驗收以 [部署紀錄](DEPLOYMENTS.md) 及 [會幕器具驗收](review/BLENDER-TABERNACLE.md) 為準，不把本機完成當作已上線。
+- 第二批會幕三件觀察物（織線、板座與洗濯盆）已實際製作並發佈至 Sites，場景／近景共用 GLB，並加入雙銀座拆合與全方向取景。現有十四項觀察物已有五項 Blender 替換；接續所羅門三項，再處理希律三項、出埃及三項，共九項。實際發佈與瀏覽器驗收見 [部署紀錄](DEPLOYMENTS.md) 及 [會幕器具驗收](review/BLENDER-TABERNACLE.md)。
 
 ## Blender 的交付條件
 
