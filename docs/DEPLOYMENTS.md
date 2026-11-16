@@ -44,4 +44,5 @@
 - Deployment：`appgdep_6afa6057af7481918b01e9049ebb0f17`。
 - 平台結果：`succeeded`，`2026-11-16T01:46:14.927123+00:00`。
 - 104 項測試、內容／語法、正式建置與離線封裝通過；三件會幕觀察物及近景共用 GLB。板座拆合、方向鍵、手機尺寸與史料界線說明已在本機操作，見 [會幕器具驗收](review/BLENDER-TABERNACLE.md)。
+- 正式頁已取得新 `index-CU7PYsbh.js`，由探索點清單檢視新洗濯盆本體，console error／warning 為空；截圖 `.qa/tabernacle-basin-sites.png`。
 - 保留既有擁有者私人權限。此版已有五件 Blender 觀察物；其他九件、人物細化與十九座詳細島嶼仍待接續。
