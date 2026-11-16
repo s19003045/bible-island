@@ -296,3 +296,19 @@
 
 
 第14島發布後補驗：正式第三章已實際沿路步行到教具，摩5核心／摩8延伸顯隱、容量層抬升／還原及旋轉均完成，觀察1／1而研讀仍0／3；證據 `.qa/kingdoms-measures-inspection-sites.png`。正式頁最後一般閱讀／示劍全景，本機研讀／城門全景，兩頁動畫正常、無對話／近景／導航，console warning／error皆[]。後續文件及下一島研究不改本次部署的d4e9e2b來源。
+
+
+## 2026-11-16：被擄與盼望，第十五座詳細島
+
+- 本機來源 `153d765c690964e98d95ebbeed38a2687921b9fd`；349個追蹤檔與Sites checkout逐檔SHA256相同。
+- Sites source `80c5de1d56049b9e3f71ff17677836cfebd74b30`。
+- Saved version 28：`appgprj_6af95ea0dac4819182957156725483aa~appgver_c3ec0b3598b0819195f4c48254bd5885`。
+- Deployment `appgdep_6afb0957bdec8191a87654461a17ba7c`，平台回傳 `succeeded`／`2026-11-16T13:47:20.588346+00:00`。
+- 網址：[被擄與盼望](https://bible-island.starryswift8.chatgpt.site/#island=exile&chapter=road)。原owner／custom單一使用者、0群組、0外部訪客範圍保留。
+- 來源helper推送後同版建置99模組／1.39s；入口 `index-D4me7EUS.js`、world `world-BN6r8owt.js`、vessels `vessels-B5Yxv7FI.js`、three `three-DCP9OO0t.js`、CSS `index-zmRD_4cI.css`。平台版本回讀source SHA相同；archive內容130files／118,292,480bytes，content SHA256 `d298661bcc60f86f8189de63cca9c7bb9ac7ac35aca7eacb565f42afa328be28`。保留壓縮封裝 `/tmp/bible-island-153d765-exile-sites.tar.gz`，77,969,090bytes，封裝檔SHA256 `9fe1a88ab572129645089a0deb3de6e3f1e35e8197e74bb8a72f2391fffcc26e`。
+- 221／221全站回歸、24主題74點內容／語法、正式建置及155,964KiB單檔離線試閱通過。全站74GLB／48MP3／45可交談角色／360cue。三章不同文本處境、各13位POI居民、三件Blender教具及24cue配音見 [被擄驗收](review/EXILE-CHAPTERS.md)。
+- 本機三件教具已完整沿路走訪、旋轉、拆層與還原，各章觀察1／1，研讀仍0／3，console warning／error=[]。正式一般問答追問詩137:1–6及語音播放中、親子專用提示與情境配音、研讀資料查閱前後判讀選項停用／啟用均已核對。正式水岸走訪與最終頁面狀態另追加。
+- 其餘九島、獨立歷史專家簽核、完整真人專名聽驗與實體手機性能及既有人工補驗仍在原Goal範圍。
+
+
+第15島發布後追加：正式水岸教具已實際沿路走訪，旋轉、移近岸、還原及雙CSBT入口均確認；觀察1／1而研讀仍0／3。`.qa/exile-waterbank-split-sites.png`已實際檢視。正式恢復一般閱讀／第一章／場景全景及自主動畫，console warning／error=[]；最終 `.qa/exile-road-final-sites.png`。本機維持研讀／住居全景及安靜偏好。後續文件與第16島未註冊草稿不改本次153d765／80c5de1來源。
