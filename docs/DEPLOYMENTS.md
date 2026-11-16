@@ -192,3 +192,17 @@
 - 本機全景、研讀題、單一對話入口及 CSBT 已檢視，安靜探索已實際啟動；三件器物完整 UI 走訪及正式頁結果接續記錄於 [亞伯拉罕驗收](review/ABRAHAM-JOURNEY.md)。其餘十五島、尚未完成的 UI 補驗、完整真人聽驗、獨立歷史審稿及實體手機驗收繼續，Goal 保持進行。
 
 - 正式頁已核對 `index-D-4PlCti.js`，接待角色問答與 `GEN.18.1-8.CSBT` 正確，切井水章會結束舊對話並同步第三幕、牧群照顧者與全景。親子第三題未解鎖狀態及一般模式恢復均已看到，console warning／error 為空。畫面 `.qa/abraham-host-sites.png`、`.qa/abraham-well-sites.png` 已檢視。保羅三件近景的正式 UI 走訪、旋轉、商船拆還與各章 1／1 紀錄已全數補驗，見保羅文件；亞伯拉罕三件器物的本機完整走訪、旋轉、石壇／井圈拆還及各章 1／1 紀錄也已通過。正式站恢復一般閱讀與全景、自主動畫，本機恢復研讀與全景，兩頁未停在交談或自動行走中。
+
+
+## 2026-11-16：約瑟與埃及三章，第十座詳細島
+
+- 本機來源：`053e389fd815ff6e9cc69f8ee044bcb9a9c48a57`，265 個追蹤來源與 Sites checkout 逐檔相符。
+- Sites source commit：`4116ac57031aa131cabff539126e69ec6150d339`。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_e2b9b6bc1ec88191a8cd893df32aac79`。
+- Deployment：`appgdep_6afad4b6cc308191afa971300623bc43`。
+- 平台結果：`succeeded`，`2026-11-16T10:02:51.591082+00:00`。
+- 正式網址：[約瑟與埃及](https://bible-island.starryswift8.chatgpt.site/#island=joseph&chapter=caravan)。沿用擁有者私人權限，無新增群組或外部訪客。
+- 三章按創 37、41、45 章排序，保留原 stop ID；山路、倉院及相認後返鄉準備為不同處境。每章 13 位自主人物；新增三種獨立 Blender 人物、三件功能比較教具和 24 段配音。全站 58 份 GLB、33 份 MP3、30 位可交談角色／240 段 cue。
+- 完整回歸 171／171；內容／語法、正式建置及 112,585 KiB 離線試閱通過。Blender 來源重開確認 58 個非空場景、28 套獨立骨架各五種動作，六件新素材已逐張渲染檢視。家屋小陶罐的整組碰撞修正後重新完整回歸通過。
+- 正式入口 `index-DuXkRh5Z.js`，world `world-CWr5IoQz.js`、vessels `vessels-BfrbSRw8.js`。Three.js 仍有大於 500 kB 的建置提示，沒有宣稱實體手機 FPS 已驗收。
+- 本機完整走訪與正式頁的瀏覽器結果另記 [約瑟驗收](review/JOSEPH-EGYPT.md)。其他十四島、未完成的 UI 補驗、完整真人聽驗、獨立歷史審稿及實體手機驗收繼續，Goal 保持進行。
