@@ -30,6 +30,11 @@ export const solomonPOIs=[
   node('court-west-north','殿側回望','LookAround',[[11,-10],[12.3,-10],[13.6,-10]],[8,0],['resident']),
   node('court-sea-side','銅海南側','LookAround',[[19,18],[20.3,18],[21.6,18]],[22,12],['resident']),
   node('court-southeast-rest','院邊停留','Idle',[[30,13],[31.3,13],[32.6,13]],[22,12],['resident']),
+  // Keep several places free while others dwell: wider adult bodies must not
+  // turn a full set of occupied POIs into a permanent waiting cycle.
+  node('court-north-middle','北側院中停步','LookAround',[[21,-20],[22.3,-20],[23.6,-20]],[8,0],['resident'],.9),
+  node('court-east-north','東側通道歇腳','Idle',[[37,-5],[38.3,-5],[39.3,-5]],[24,-2],['resident'],.9),
+  node('court-south-middle','南側院邊回望','LookAround',[[27,21],[28.3,21],[29.6,21]],[22,12],['resident'],.9),
 ];
 export const solomonObjects=[
   {id:'pillar-capital',name:'柱頂與石榴教學模型',position:[14.1,2.1,0],approach:[16,1.3,.8],lookAt:[14.1,2.5,.3],stop:'pillars',

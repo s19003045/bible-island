@@ -89,7 +89,11 @@ test('guided walking reaches the sea through a mature crowd rather than waiting 
  for(let i=0;i<9600;i++)s.update(.05);
  const canvas=Object.assign(new EventTarget(),{focus(){}}),messages=[];
  const control=createWalkControls(new PerspectiveCamera(),canvas,{onMessage:m=>messages.push(m),constrainMove:(a,b)=>s.constrainPlayer(a,b),navigationObstacles:()=>s.agents.map(a=>({position:a.actor.state.position,radius:a.radius+.39}))});
- control.start(scene.walkModel,solomonSpawn);assert.ok(control.navigate(solomonObjects[1].approach));
+ // The scene keeps running before entry, so use the same safe arrival lookup as
+ // world.startWalking rather than teleport into an NPC now crossing the gate.
+ const spawn=s.safePlayerSpawn(solomonSpawn);assert.ok(spawn);
+ assert.ok(s.agents.every(a=>distance(spawn,a.actor.state.position)>a.radius+.32+.1));
+ control.start(scene.walkModel,spawn);assert.ok(control.navigate(solomonObjects[1].approach));
  for(let i=0;i<2400;i++){
   s.update(.05,{player:control.position});control.update(.05);
   assert.equal(control.groundState.isGrounded,true);

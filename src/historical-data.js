@@ -1,4 +1,5 @@
 import { scriptureSource as bible } from './scripture.js';
+import {residentClothingEvidence} from './resident-clothing-data.js';
 
 // Metres throughout. A 0.45 m cubit is a declared modelling convention, not a resolved historical unit.
 export const CUBIT = .45;
@@ -30,7 +31,7 @@ export const historicalScenes = {
     edition: '希律擴建後的第二聖殿', category: '古代文獻參照復原', scale: '殿前立面約 45 m 高 · 成人 1.70 m',
     extent: 330, shadow: 155, target: [12, 15, 0], overview: [155, 104, 155], human: { target: [-2, 25, 0], offset: [92, -15.3, 45] }, plan: 285, close: [22, 18, 28],
     stops: { steps: [68, 7, 108], portico: [25, 15, -86], temple: [-17, 23, 0] },
-    facts: ['殿宇立面採古代文獻中高、寬各 100 肘的描述；此版換算為約 45 m。', '高台、分層院落、欄界、階梯與柱廊分別呈現；殿宇內不放置約櫃。', '人物保持 1.70 m 的參照尺寸，以院落中的步行者顯示建築量體。'],
+    facts: ['殿宇立面採古代文獻中高、寬各 100 肘的描述；此版換算為約 45 m。', '高台、分層院落、欄界、階梯與柱廊分別呈現；殿宇內不放置約櫃。', '成人以約 1.70 m 作比例參照，包含不同身高，以步行者顯示建築量體。'],
     limits: '這是聖殿核心與外院的教學截景，不是整座聖殿山的測量圖。約瑟夫斯與後編《米示拿》的記述在尺度和細節上有差異；柱廊外圈、地坪、院界與門樓配置為選擇性復原，不能指定為西元 30 年某日的完整現況。',
     sources: [{ title: '約瑟夫斯《猶太戰記》卷五，第五章', url: 'https://sacred-texts.com/jud/josephus/war-5.htm', note: '院落、柱廊、殿宇立面與內部空間的古代描述；是文本證詞，並非現代測繪。' }, { title: '《米示拿・Middot》4–5 章', url: 'https://www.sefaria.org/Mishnah_Middot.4?lang=bi', note: '對讀殿宇與院落尺度；成書晚於第二聖殿毀壞，使用時需保留差異。' }, { title: '以色列博物館：耶路撒冷模型', url: 'https://www.imj.org.il/en/wings/shrine-book/model-jerusalem-second-temple-period', note: '模型呈現西元 66 年；不能直接把完整城市狀態套用到耶穌活動年代。' }],
   },
@@ -51,3 +52,7 @@ export const historicalScenes = {
     sources: [{ title: 'Jerusalem: The Upper City during the Second Temple Period', url: 'https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period', note: '考古發掘中的內院住宅、潔淨池、石製器皿與生活遺存。' }, { title: '以色列文物局：耶路撒冷 Tif’eret Yisra’el 發掘報告', url: 'https://hadashot.iaa.org.il/Report_Detail_Eng.aspx?id=25692', note: '分辨第二聖殿晚期住區及潔淨設施，與後來羅馬、拜占庭層位。' }, { title: '約翰福音 18；路加福音 19', ...bible('John 18;Luke 19'), note: '谷地與山路的經文閱讀入口；模型未指認每個事件發生點。' }],
   },
 };
+for(const [id,evidence] of Object.entries(residentClothingEvidence)) {
+  const scene=historicalScenes[id];
+  scene.facts.push(evidence.fact);scene.limits+=' '+evidence.limits;scene.sources.push(...evidence.sources);
+}

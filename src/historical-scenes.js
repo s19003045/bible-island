@@ -13,7 +13,9 @@ import {tabernacleSurfaces,tabernacleFloor,tabernaclePOIs,tabernacleAllowed,tabe
 import {herodSurfaces,herodFloor,herodProxies,herodPOIs,herodAllowed,herodSpawnCandidates,herodObjects,herodSpawn} from './herod-exploration.js';
 import {solomonSurfaces,solomonFloor,solomonProxies,solomonPOIs,solomonAllowed,solomonSpawnCandidates,solomonObjects,solomonSpawn} from './solomon-exploration.js';
 import {explorationFor} from './exploration-data.js';
-import {mountBlenderResidents,residentEligible} from './blender-assets.js';
+import {mountBlenderResidents} from './blender-assets.js';
+import {residentAppearance,residentClearance} from './resident-appearance.js';
+import {exodusFloor} from './exodus-exploration.js';
 
 // Detailed scenes use one Three unit per metre. Geometry is batched by material, not by building.
 const G = {
@@ -59,7 +61,7 @@ function palette() {
     terra: material('earthenware', '#9c6650'), leaf: material('olive-foliage', '#4c5540'), trunk: material('olive-bark', '#635b4a','wood'), reed: material('dry-grass', '#8c8256'), black: material('door-shadow', '#2e2a23'), water: new THREE.MeshPhysicalMaterial({ color: '#416d6c', roughness: .26, metalness: .22, clearcoat: .7 }),
   };
 }
-function builder(parent, p, seed = 31, collectCollision = false) {
+function builder(parent, p, seed = 31, collectCollision = false,island=null) {
   const actors = [], collisionBoxes = []; let actor = null, bone = null;
   const batches = new Map(), rand = seeded(seed), dummy = new THREE.Object3D(),hiddenScale=new THREE.Vector3(1e-6,1e-6,1e-6);
   function part(kind, mat, x, y, z, w, h, d, rx = 0, ry = 0, rz = 0) {
@@ -94,7 +96,9 @@ function builder(parent, p, seed = 31, collectCollision = false) {
     }
   }
   function person(x,y,z,style = 0,yaw = 0,height = HUMAN_HEIGHT,options = {}) {
-    actor = {id:options.id, role:options.role,motion:options.motion || "idle", state:createMotion([x,y,z],yaw,options.route,actors.length,options.routeMode), parts:[], scale:height/HUMAN_HEIGHT};
+    const appearance=residentAppearance(island,options,actors.length,height);height=appearance.height;
+    actor = {id:options.id, role:options.role,modelId:appearance.modelId,motion:options.motion || "idle", state:createMotion([x,y,z],yaw,options.route,actors.length,options.routeMode), parts:[], scale:height/HUMAN_HEIGHT};
+    actor.collisionRadius=residentClearance(actor);
     actors.push(actor);
     const s = height / HUMAN_HEIGHT;
     const loc = (a,b,c) => [x+(a*Math.cos(yaw)+c*Math.sin(yaw))*s, y+b*s,z+(-a*Math.sin(yaw)+c*Math.cos(yaw))*s];
@@ -576,7 +580,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   const range=config.shadow;Object.assign(sun.shadow.camera,{left:-range,right:range,top:range,bottom:-range,near:1,far:450});
   sun.shadow.mapSize.set(2048,2048);sun.shadow.normalBias=.035;sun.shadow.bias=-.00013;scene.add(sun);
   const roofGroup=new THREE.Group();scene.add(roofGroup);
-  const k=builder(scene,p,id.length*113,['jerusalem','tabernacle','solomon','herod','exodus'].includes(id)), roof=builder(roofGroup,p,83,['jerusalem','tabernacle','solomon','herod','exodus'].includes(id));
+  const k=builder(scene,p,id.length*113,true,id), roof=builder(roofGroup,p,83,true,id);
   const height=terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id),id==='exodus'?exodusSegments.flatMap(s=>s.surfaces):[]);
   if(id==='tabernacle')tabernacle(k,roof);
   else if(id==='solomon')solomon(k,roof,height);
@@ -657,11 +661,10 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   // successive stair edges and blocking the alley at unintended heights.
   if(id==='jerusalem')prepareJerusalemResidents(k.actors,walkModel);
   // Body clearance is independent of the camera's LOD selection.
-  if(['jerusalem','herod'].includes(id))for(const a of k.actors)if(residentEligible(a))a.collisionRadius=(a.id==='water-carrier'?.49:.33)*(a.scale||1);
   const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs,allowRetreat:true,allowedPosition:(a,p)=>jerusalemAllowed(a,p,walkModel)}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
   let npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
-  const detailedResidents=blenderAssets&&['jerusalem','herod'].includes(id)?mountBlenderResidents(scene,k.actors,onAssetsReady,{assetLoader,groundAt:(x,z)=>walkModel.heightAt(x,z)}):null;
+  const detailedResidents=blenderAssets?mountBlenderResidents(scene,k.actors,onAssetsReady,{assetLoader,groundAt:id==='exodus'?exodusFloor:(x,z)=>walkModel.heightAt(x,z)}):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);
   const occluders=[];

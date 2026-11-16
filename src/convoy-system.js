@@ -9,7 +9,7 @@ export function createConvoySystem({actors,pois,model,playerModel,spawn=[4,.03,-
  const reservations=new Map(pois.map(p=>[p.id,new Map()]));
  const agents=actors.map((actor,index)=>{
   const key=actor.id||`crossing-person-${index}`,individualSeed=npcSeed(`${seed}:${key}`),random=seededNPC(individualSeed),speedFactor=.85+random()*.3;
-  const a={key,actor,seed:individualSeed,random,speedFactor,speed:.8*speedFactor,radius:.29*(actor.scale||1),role:'convoy',
+  const a={key,actor,seed:individualSeed,random,speedFactor,speed:.8*speedFactor,radius:actor.collisionRadius??.29*(actor.scale||1),role:'convoy',
    state:'rest',action:'LookAround',timer:.35+(index+random())/actors.length*4.5,age:0,cooldown:0,partner:null,poi:null,slot:null,lastPOI:null,
    velocity:[0,0],blockedFor:0,held:false,wasAttending:false,attentionLeft:0,visits:new Map(),lap:0,hidden:false,entryDelay:0,maxProgress:actor.id?80:520,lateralBias:random()<.5?-1:1};
   Object.assign(actor.state,{autonomous:true,animationSpeed:speedFactor,time:random()*80,behavior:a,visible:true});return a;

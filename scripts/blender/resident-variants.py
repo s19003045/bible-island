@@ -38,11 +38,11 @@ def reshape_character(target,armature,point):
         bone.head=point(bone.head);bone.tail=point(bone.tail)
     bpy.ops.object.mode_set(mode='OBJECT');armature.select_set(False)
 
-def character_actions(target,armature,carrying=False):
+def character_actions(target,armature,carrying=False,activity=None):
     global rig
     previous=rig;rig=armature
     for name,seconds in durations.items():
-        action=bpy.data.actions.new(('carrier-' if carrying else 'child-')+name)
+        action=bpy.data.actions.new(target.name.split(' — ')[0]+'-'+name)
         armature.animation_data_create();armature.animation_data.action=action
         for frame in range(1,seconds*30+2,1 if name=='Walk' else 3):
             target.frame_set(frame);t=(frame-1)/30;phase=2*pi*t/seconds
@@ -63,6 +63,11 @@ def character_actions(target,armature,carrying=False):
                     armature.pose.bones['arm'+s].rotation_euler.x=-.18-.10*sin(phase+sign)
                     armature.pose.bones['forearm'+s].rotation_euler.x=-.45-.15*sin(phase+sign*.6)
                 armature.pose.bones['head'].rotation_euler.x=.04*sin(phase*2)
+                if name=='Interact' and activity=='labor':
+                    armature.pose.bones['spine'].rotation_euler.x=.14+.045*sin(phase)
+                    for s,offset in [('L',0),('R',.35)]:
+                        armature.pose.bones['arm'+s].rotation_euler.x=-.52-.12*sin(phase+offset)
+                        armature.pose.bones['forearm'+s].rotation_euler.x=-.65+.15*sin(phase+offset)
             for bone in armature.pose.bones:
                 bone.keyframe_insert(data_path='rotation_euler',frame=frame,group=bone.name)
                 if bone.name=='hips':bone.keyframe_insert(data_path='location',frame=frame,group=bone.name)

@@ -33,7 +33,7 @@ export function attachBlenderObject(root,id,onReady=()=>{},load=loadBlenderAsset
 }
 
 export const residentEligible=actor=>(actor.scale??1)>=.5;
-export const residentModelFor=actor=>actor.id==='water-carrier'?'resident-carrier':(actor.scale??1)<.9?'resident-child':['stone-worker','street-vendor'].includes(actor.id)?'resident-worker':'resident';
+export const residentModelFor=actor=>actor.modelId??(actor.id==='water-carrier'?'resident-carrier':(actor.scale??1)<.9?'resident-child':['stone-worker','street-vendor'].includes(actor.id)?'resident-worker':'resident');
 export function selectDetailedResidents(actors,camera,previous=new Set(),limit=8) {
   if(!camera)return [];
   return actors.filter(a=>residentEligible(a)&&a.state.visible!==false).map((a,index)=>{
@@ -64,7 +64,7 @@ export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.st
       o.boundingSphere=o.boundingBox.getBoundingSphere(new THREE.Sphere());
     }
     const source=o.material;
-    if(['tunic','mantle','skin'].includes(source.name)) {
+    if(['tunic','mantle','skin'].includes(source.name)||source.name.endsWith('-cloth')) {
       o.material=source.clone();materials.add(o.material);
       o.material.color.multiplyScalar(tone);
       if(source.name==='tunic')o.material.color.offsetHSL((index%3-1)*.025,0,(index%4-1.5)*.018);

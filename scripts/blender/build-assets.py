@@ -326,6 +326,7 @@ for j in range(28):
 export_asset(stone_scene,'stone-vessel','stone-vessel.glb')
 
 exec(compile((ROOT/'scripts/blender/resident-variants.py').read_text(),str(ROOT/'scripts/blender/resident-variants.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/period-characters.py').read_text(),str(ROOT/'scripts/blender/period-characters.py'),'exec'),globals())
 
 exec(compile((ROOT/'scripts/blender/tabernacle-props.py').read_text(),str(ROOT/'scripts/blender/tabernacle-props.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/solomon-props.py').read_text(),str(ROOT/'scripts/blender/solomon-props.py'),'exec'),globals())
@@ -354,6 +355,9 @@ render_preview(scene,(0,0,.88),(2.2,-5,2.3),'blender-resident.png',1.95)
 render_preview(worker_scene,(0,0,.88),(2.2,-5,2.3),'blender-resident-worker.png',1.95)
 render_preview(child_scene,(0,0,.56),(2.2,-5,2.1),'blender-resident-child.png',1.33)
 render_preview(carrier_scene,(.06,0,.88),(2.2,-5,2.3),'blender-resident-carrier.png',1.95)
+for key,s in period_scenes.items():
+    h=report['assets'][key]['height']
+    render_preview(s,(0,0,h*.52),(2.2,-5,2.3),'blender-'+key+'.png',h*1.15)
 render_preview(pot_scene,(0,0,.27),(1.4,-2,1.3),'blender-clay-vessel.png',.75)
 render_preview(woven_scene,(0,0,.37),(1.4,-4,1.7),'blender-woven-sample.png',1.5)
 render_preview(joint_scene,(0,0,.42),(1.8,-4,1.8),'blender-board-joint.png',1.03)
