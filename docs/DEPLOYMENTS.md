@@ -275,3 +275,8 @@
 
 
 時間卡面板修正發布：本機 `a7c5cfcb2038fa940e6f90ca530cbb07484cdd72`；317追蹤檔逐檔相符。Sites source `76f1ac6db80e667d71dd5dc856711857545ec39b`，version `appgprj_6af95ea0dac4819182957156725483aa~appgver_d3b2521026a08191876212385b8efc41`，deployment `appgdep_6afaf610408481918b570f639fcd3237`，`succeeded`／`2026-11-16T12:25:10.378677+00:00`。入口 `index-Ddu7aViy.js`、world `world-BnJCm2-8.js`、vessels `vessels-DmBl57LE.js`、CSS `index-Gu4b_RX2.css`；來源與封裝核對，正式UI實際出現「時刻脈絡與經文」收合入口。完整201測試再通過，正式帳篷近景與1／1觀察、解說者語音播放已實際確認，讀經仍0／3。
+
+
+對話入口修正發布：本機 `1ecacf820dc2d4332104c01bb9b2acea159446ea`；317追蹤檔與Sites來源逐檔相符。Sites source `846da20e804f28c7fc188543aadabd2a94110186`，version `appgprj_6af95ea0dac4819182957156725483aa~appgver_c00438ceddf88191af951c9409ca18f0`，deployment `appgdep_6afaf98841e48191a6afac96f7abdd8e`，平台於 `2026-11-16T12:39:55.794332+00:00` 回傳 `succeeded`。入口 `index-tOeuEgUH.js`、world `world-Ci28UESq.js`、vessels `vessels-jTuxxaAr.js`，CSS維持 `index-Gu4b_RX2.css`。完整201測試再次通過，最新單檔試閱139,887KiB；建置1.53s／91模組。其後下一島研究與未註冊草稿、發布後紀錄各自提交，發布來源仍以上述精確版本為準。
+
+- 最終正式頁已重新載入核對交談期間探索入口收起，牧地豎琴問答／CSBT及`語音播放中`實際確認；`.qa/david-final-dialogue-sites.png`已檢視。console warning／error為空，恢復一般閱讀／牧地全景、動畫開啟，未留對話／近景／自動行走。三件器物走訪全部完成，其餘三個約櫃時刻近景與人工審驗仍按大衛驗收保留。
