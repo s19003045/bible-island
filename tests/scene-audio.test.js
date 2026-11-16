@@ -55,3 +55,11 @@ test('David time changes cancel the former moment and retain separate spatial am
  audio.setScene('david','ark','pause');assert.equal(audio.playing,null);assert.equal(old.stopped,true);assert.equal(cloth.stopped,true);assert.ok(f.context.panners.some(p=>p.positionX.value===34&&p.positionZ.value===12));
  await audio.speak('david-arrival-guide','waiting',[3,2,13]);assert.equal(f.fetched.length,1,'one accepted character recording is reused');audio.setScene('david','ark','carry');assert.equal(audio.playing,null);assert.ok(f.context.panners.some(p=>p.positionX.value===-25&&p.positionZ.value===-12));audio.setScene('david','ark','tent');assert.equal(audio.volumes.voice,.9);audio.dispose();
 });
+
+test('Samaria ten moments cancel old speech and select their own chapter ambience and exact child cue',async()=>{
+ const f=fixture(),audio=createSceneAudio();await audio.enable();audio.setActive(true);let prior=null;
+ for(const [chapter,phases,person,position] of [['well',['water','worship','witness','hearing'],'samaria-well-resident',[24,-9]],['road',['questions','passing','approach'],'samaria-road-resident',[22,20]],['inn',['care','entrust','promise'],'samaria-care-resident',[12,-23]]])for(const phase of phases){
+  audio.setScene('samaria',chapter,phase);assert.equal(audio.playing,null);if(prior)assert.equal(prior.stopped,true);assert.ok(f.context.panners.some(p=>p.positionX.value===position[0]&&p.positionZ.value===position[1]));await audio.speak(person,'greeting',[3,2,13]);const old=f.context.sources.at(-1),complete=old.onended;await audio.speak(person,'child-greeting',[3,2,13]);assert.equal(old.stopped,true);complete();assert.equal(audio.playing.key,'child-greeting');prior=f.context.sources.at(-1);
+ }
+ assert.equal(f.fetched.length,3,'one accepted recording per resident is reused');audio.dispose();
+});

@@ -1,0 +1,2019 @@
+{
+  "stage": "Samaria20 official Blender assets integrated;awaiting root formal image review and separate app registration/publication",
+  "created_at_utc": "2026-11-16T18:48:59.804045+00:00",
+  "official_builder_invocations": 1,
+  "official_source": {
+    "path": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+    "bytes": 21853517,
+    "sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a"
+  },
+  "authoring_source": {
+    "path": "/home/garywu/dev/bible-island/scripts/blender/samaria-props.py",
+    "bytes": 13514,
+    "sha256": "9d33663e15c3b5fa9b74908e2ed38f705f959e2a8c31045c7936a7de0f96f1b6"
+  },
+  "builder": {
+    "path": "/home/garywu/dev/bible-island/scripts/blender/build-assets.py",
+    "bytes": 27108,
+    "sha256": "03c1dda905c7ddf930ffac15621d0791585a9a17123becd6a23b40bf5f903f3b"
+  },
+  "build_report": {
+    "path": "/home/garywu/dev/bible-island/assets/blender/build-report.json",
+    "bytes": 61188,
+    "sha256": "81cbd4ab254bdcfd40528f876e02c3bfcf1456e92fbd8a425506e95a311e8644"
+  },
+  "asset_README": {
+    "path": "/home/garywu/dev/bible-island/assets/blender/README.md",
+    "bytes": 32167,
+    "sha256": "d018d4182edda0a694e89340f60f3de010727293a33aa04e2a8c8521cf218276"
+  },
+  "prebuild_backup": {
+    "path": "/tmp/samaria-before-official/baseline.json",
+    "bytes": 24051,
+    "sha256": "220c56829a4c168cd025f1f25b04f29404aabceeaad313be62e18c272d542023"
+  },
+  "accepted_isolated_handoff": {
+    "path": "/home/garywu/dev/bible-island/.qa/samaria-prototype/handoff.json",
+    "bytes": 58374,
+    "sha256": "6ada4bbd7f7553f3e5ed8aa3d965715340c635c602b003e87216cbd395690f4c"
+  },
+  "accepted_isolated_source": {
+    "path": "/home/garywu/dev/bible-island/.qa/samaria-prototype/samaria-props.py",
+    "bytes": 13160,
+    "sha256": "6949fea07896db9bf9cf569bde969f031ec6bbaa8641bce6e91c04bc0b3eafba"
+  },
+  "counts": {
+    "all_scenes": 90,
+    "nonempty_scenes": 89,
+    "public_glbs": 89,
+    "build_assets": 89,
+    "armatures": 29,
+    "human_rigs": 28,
+    "animal_rigs": 1,
+    "human_action_slots": 140,
+    "animal_action_slots": 3
+  },
+  "assets": {
+    "samaria-jar": {
+      "glb": {
+        "path": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+        "bytes": 448600,
+        "sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a"
+      },
+      "prototype_only": false,
+      "source_scene": "Samaria — original hollow jar and modern front section",
+      "semantic_groups": [
+        "samaria-jar-modern-base",
+        "samaria-jar-modern-front-section",
+        "samaria-jar-fixed-back-and-united-handle"
+      ],
+      "all_glb_nodes": [
+        "samaria-jar-samaria-modern-neutral-display",
+        "samaria-jar-modern-base",
+        "samaria-jar-samaria-original-matte-water-jar",
+        "samaria-jar-modern-front-section",
+        "samaria-jar-samaria-original-matte-water-jar.001",
+        "samaria-jar-fixed-back-and-united-handle"
+      ],
+      "dimensions_length_width_height_m": [
+        1.0499999523162842,
+        0.7200000286102295,
+        0.38499999046325684
+      ],
+      "dimensions_gltf_xyz_m": [
+        1.0499999523162842,
+        0.38499999046325684,
+        0.7200000286102295
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.38499999046325684,
+      "triangles": 18502,
+      "budget": {
+        "triangles": 30000,
+        "bytes": 1600000
+      },
+      "runtime_operations": 1,
+      "main_layer": "samaria-jar-modern-front-section",
+      "translation_gltf_xyz_m": [
+        0,
+        0,
+        0.16
+      ],
+      "source_GLB_bbox_max_error_m": 0.0,
+      "source_accepted_prototype_bbox_max_error_m": 0.0,
+      "closed_connected_positive_components": 3,
+      "invalid_source_components": [],
+      "invalid_glb_components": [],
+      "positive_ground_contact_area_m2": 0.7559999957084642,
+      "source_static_contact_audit": {
+        "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+        "tested_components": 3,
+        "candidate_contact_or_intersection_pairs": [],
+        "deep_penetration_pairs": [],
+        "all_coordinates_finite": true
+      },
+      "GLB_static_contact_audit": {
+        "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+        "tested_components": 3,
+        "candidate_contact_or_intersection_pairs": [],
+        "deep_penetration_pairs": [],
+        "all_coordinates_finite": true
+      },
+      "accepted_prototype_comparison": {
+        "id": "samaria-jar",
+        "all_binary_bytes_identical_to_accepted": true,
+        "all_json_identical_after_only_mesh_datablock_names_removed": true,
+        "mesh_datablock_name_changes": [
+          {
+            "mesh": 0,
+            "isolated": "Cube.001",
+            "formal": "Cube.446"
+          }
+        ],
+        "accessor_changes": [],
+        "semantic_nodes_and_extras_identical": true
+      },
+      "overview": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-overview.png",
+        "bytes": 2373014,
+        "sha256": "920422ac942d63913e0d8accc10705ea222b8c6d10eb3fbe88019e575b25a529"
+      },
+      "images": [
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-front.png",
+          "sha256": "51fb958a78c692fb56ab87ec1d28ce4a9ac7b125cf53596fd662f8bdcfbd9ebf",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+          "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "camera": [
+            1.100000023841858,
+            -2.200000047683716,
+            1.5
+          ],
+          "camera_rotation": [
+            1.0797616243362427,
+            6.743882607906926e-08,
+            0.4993468225002289
+          ],
+          "ortho_scale": 1.2200000286102295,
+          "layers": {
+            "samaria-jar-modern-front-section": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Original hollow360mm jar body; selected modern90mm feet,not museum copied"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-rear-side.png",
+          "sha256": "729a85e62c20187f361774b85cd5eb44241ba6a2889870cd850e864733bb2d38",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+          "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "camera": [
+            1.100000023841858,
+            2.0,
+            1.100000023841858
+          ],
+          "camera_rotation": [
+            1.1915388107299805,
+            3.4825465178300874e-08,
+            2.5778865814208984
+          ],
+          "ortho_scale": 0.7200000286102295,
+          "layers": {
+            "samaria-jar-modern-front-section": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Actual united rear handle; original functional outline"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-open.png",
+          "sha256": "ba9a84ab837214ce2f94360be9a4d49126c759a2f32a307922debcc80231aedb",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+          "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "camera": [
+            1.2000000476837158,
+            -2.0,
+            1.5
+          ],
+          "camera_rotation": [
+            1.0574036836624146,
+            4.710024725795847e-08,
+            0.593881368637085
+          ],
+          "ortho_scale": 1.0499999523162842,
+          "layers": {
+            "samaria-jar-modern-front-section": [
+              0.0,
+              -0.1599999964237213,
+              0.0
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Only entire front half translates glTFZ+.16m while sliding on base; fixed rear grip"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-interior.png",
+          "sha256": "bd6cd9fa9436348d49911dd75cac3270b4897947a4e2e66c591071acb5902c80",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+          "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "camera": [
+            0.8999999761581421,
+            -0.6000000238418579,
+            2.799999952316284
+          ],
+          "camera_rotation": [
+            0.4111447036266327,
+            -3.676713689060307e-08,
+            1.061204195022583
+          ],
+          "ortho_scale": 0.6899999976158142,
+          "layers": {
+            "samaria-jar-modern-front-section": [
+              0.0,
+              -0.1599999964237213,
+              0.0
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Actual inner floor,12mm nominal walls,25mm bottom; material-only cut caps"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-bottom.png",
+          "sha256": "42a9cde01f9c04516f1e6ffc1025ba6979a8ee408ca5b561eed5e092e2aac7c1",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+          "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "camera": [
+            0.699999988079071,
+            -1.2000000476837158,
+            -1.2999999523162842
+          ],
+          "camera_rotation": [
+            2.354668617248535,
+            -3.0720748611656745e-08,
+            0.6235606670379639
+          ],
+          "ortho_scale": 0.75,
+          "layers": {
+            "samaria-jar-modern-front-section": [
+              0.0,
+              -0.1599999964237213,
+              0.0
+            ]
+          },
+          "hidden_groups": [
+            "samaria-jar-modern-base"
+          ],
+          "inspection_note": "QA: base hidden; actual broad planar half feet,real material bottoms"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-cut-section.png",
+          "sha256": "528b0cd96d3cbd662b24280f3f49492b8f27e8fdcde1ed5b5c3eb942c4181cde",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+          "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "camera": [
+            1.7999999523162842,
+            -0.15000000596046448,
+            0.6000000238418579
+          ],
+          "camera_rotation": [
+            1.3607490062713623,
+            5.0625999392650556e-08,
+            1.5135672092437744
+          ],
+          "ortho_scale": 0.6600000262260437,
+          "layers": {
+            "samaria-jar-modern-front-section": [
+              0.0,
+              -0.1599999964237213,
+              0.0
+            ]
+          },
+          "hidden_groups": [
+            "samaria-jar-modern-base"
+          ],
+          "inspection_note": "QA: base hidden; true cut-material section,empty cavity not closed by a sheet"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-grip-hole.png",
+          "sha256": "be4f355d6f085caba9f203837fcc580e1ba6ed8e8eb64d1c87da3c4be8bbf648",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+          "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "camera": [
+            1.7999999523162842,
+            0.33000001311302185,
+            0.5600000023841858
+          ],
+          "camera_rotation": [
+            1.3959846496582031,
+            1.039042984984917e-08,
+            1.6435842514038086
+          ],
+          "ortho_scale": 0.3799999952316284,
+          "layers": {
+            "samaria-jar-modern-front-section": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [
+            "samaria-jar-modern-base"
+          ],
+          "inspection_note": "QA: base hidden; actual bidirectional grip hole and joined roots"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-contact.png",
+          "sha256": "a2c9145086cb1db565cb1f58dd311d6db36555177e5f3a90cf94cccdcb372a05",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+          "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+          "camera": [
+            0.6000000238418579,
+            -1.0,
+            0.08500000089406967
+          ],
+          "camera_rotation": [
+            1.528023362159729,
+            -8.459650757686177e-09,
+            0.6640463471412659
+          ],
+          "ortho_scale": 0.6600000262260437,
+          "layers": {
+            "samaria-jar-modern-front-section": [
+              0.0,
+              -0.1599999964237213,
+              0.0
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Actual half feet slide coplanar on base; measured front/rear support margins17.37/14.57mm"
+        }
+      ],
+      "interpretation": "Original modern hollow water-container comparison with selected90mm feet and real rear grip. Not a museum copy,identified Gospel jar,capacity claim or ancient separable vessel. Front half slides on modern base; no breaking or magic water.",
+      "measured_summary": {
+        "source_and_GLB_cut_material_positive_surface_area_m2": [
+          0.015057061306476745,
+          0.015057061306476745
+        ],
+        "GLB_half_COM_support_margins_m": [
+          0.017365580357849304,
+          0.014567888852005738
+        ],
+        "front_sampled_min_wall_m": 0.01197575098865049,
+        "rear_sampled_min_wall_m": 0.011975748178696614,
+        "inner_floor_and_bottom": [
+          {
+            "front_m": -0.02,
+            "inner_floor_m": 0.05000007152557373,
+            "outer_bottom_m": 0.02499999850988388,
+            "base_thickness_m": 0.02500007301568985
+          },
+          {
+            "front_m": 0.02,
+            "inner_floor_m": 0.05000007152557373,
+            "outer_bottom_m": 0.02499999850988388,
+            "base_thickness_m": 0.02500007301568985
+          }
+        ],
+        "grip_hole_bidirectional_ray_count": 35,
+        "grip_clear_tested_height_width_m": [
+          0.09,
+          0.038
+        ],
+        "actual_united_root_probes": [
+          {
+            "root_height_m": 0.145,
+            "x_offset_m": -0.002,
+            "continuous_material_distance_m": 0.015144437551498413
+          },
+          {
+            "root_height_m": 0.145,
+            "x_offset_m": 0,
+            "continuous_material_distance_m": 0.015057116746902466
+          },
+          {
+            "root_height_m": 0.145,
+            "x_offset_m": 0.002,
+            "continuous_material_distance_m": 0.015144437551498413
+          },
+          {
+            "root_height_m": 0.295,
+            "x_offset_m": -0.002,
+            "continuous_material_distance_m": 0.017258405685424805
+          },
+          {
+            "root_height_m": 0.295,
+            "x_offset_m": 0,
+            "continuous_material_distance_m": 0.017171084880828857
+          },
+          {
+            "root_height_m": 0.295,
+            "x_offset_m": 0.002,
+            "continuous_material_distance_m": 0.017258405685424805
+          }
+        ],
+        "source_all_vertex_motion": {
+          "node": "samaria-jar-modern-front-section",
+          "blender_delta_xyz_m": [
+            0.0,
+            -0.1599999964237213,
+            0.0
+          ],
+          "gltf_delta_xyz_m": [
+            0.0,
+            0.0,
+            0.1599999964237213
+          ],
+          "moving_meshes": 1,
+          "all_vertex_max_error_m": 1.4901161193847656e-08,
+          "stationary_vertex_max_error_m": 0,
+          "restored_vertex_max_error_m": 0.0,
+          "moved_layer_bounds_blender_xyz_m": [
+            [
+              -0.2750000059604645,
+              -0.3149999976158142,
+              0.02500000037252903
+            ],
+            [
+              0.03500000014901161,
+              -0.1599999964237213,
+              0.38499999046325684
+            ]
+          ]
+        },
+        "actual_GLB_all_vertex_motion": {
+          "node": "samaria-jar-modern-front-section",
+          "blender_delta_xyz_m": [
+            0.0,
+            -0.1599999964237213,
+            0.0
+          ],
+          "gltf_delta_xyz_m": [
+            0.0,
+            0.0,
+            0.1599999964237213
+          ],
+          "moving_meshes": 1,
+          "all_vertex_max_error_m": 1.4901161193847656e-08,
+          "stationary_vertex_max_error_m": 0,
+          "restored_vertex_max_error_m": 0.0,
+          "moved_layer_bounds_blender_xyz_m": [
+            [
+              -0.2750000059604645,
+              -0.3149999976158142,
+              0.02500000037252903
+            ],
+            [
+              0.03500000014901161,
+              -0.1599999964237213,
+              0.38499999046325684
+            ]
+          ]
+        },
+        "source20path": [
+          {
+            "step": 1,
+            "translation_gltf_z_m": 0.008,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307209069759,
+            "center_support_margin_m": 0.01736464582571238,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 2,
+            "translation_gltf_z_m": 0.016,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307303042748,
+            "center_support_margin_m": 0.017364774616586247,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 3,
+            "translation_gltf_z_m": 0.024,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730675571816,
+            "center_support_margin_m": 0.0173652783561424,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 4,
+            "translation_gltf_z_m": 0.032,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707306735729649,
+            "center_support_margin_m": 0.017365797421841845,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 5,
+            "translation_gltf_z_m": 0.04,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730699524264,
+            "center_support_margin_m": 0.01736478654588625,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 6,
+            "translation_gltf_z_m": 0.048,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307112127642,
+            "center_support_margin_m": 0.017363372665462354,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 7,
+            "translation_gltf_z_m": 0.05600000000000001,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730699524264,
+            "center_support_margin_m": 0.01736595552589192,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 8,
+            "translation_gltf_z_m": 0.064,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307194777764,
+            "center_support_margin_m": 0.017364490750719466,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 9,
+            "translation_gltf_z_m": 0.072,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730711934899,
+            "center_support_margin_m": 0.017363599870124754,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 10,
+            "translation_gltf_z_m": 0.08,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307131141418,
+            "center_support_margin_m": 0.017367499844627557,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 11,
+            "translation_gltf_z_m": 0.088,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730711934899,
+            "center_support_margin_m": 0.017362970455113983,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 12,
+            "translation_gltf_z_m": 0.096,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730717111844,
+            "center_support_margin_m": 0.01736779949891813,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 13,
+            "translation_gltf_z_m": 0.10400000000000001,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307079371968,
+            "center_support_margin_m": 0.017362419311955826,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 14,
+            "translation_gltf_z_m": 0.11200000000000002,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730717111844,
+            "center_support_margin_m": 0.017363423688126153,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 15,
+            "translation_gltf_z_m": 0.12,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307126225614,
+            "center_support_margin_m": 0.017364362482041897,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 16,
+            "translation_gltf_z_m": 0.128,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730717111844,
+            "center_support_margin_m": 0.017364323683237926,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 17,
+            "translation_gltf_z_m": 0.136,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307079371968,
+            "center_support_margin_m": 0.01736737642322678,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 18,
+            "translation_gltf_z_m": 0.144,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307079371968,
+            "center_support_margin_m": 0.017369080451387832,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 19,
+            "translation_gltf_z_m": 0.152,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730717111844,
+            "center_support_margin_m": 0.017364695082953397,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 20,
+            "translation_gltf_z_m": 0.16,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307079371968,
+            "center_support_margin_m": 0.01736716729250741,
+            "negative_base_vertex_depths_m": []
+          }
+        ],
+        "actual_GLB20path": [
+          {
+            "step": 1,
+            "translation_gltf_z_m": 0.008,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307142949537,
+            "center_support_margin_m": 0.017364622520266607,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 2,
+            "translation_gltf_z_m": 0.016,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707306271502888,
+            "center_support_margin_m": 0.017364817327560244,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 3,
+            "translation_gltf_z_m": 0.024,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707306473429002,
+            "center_support_margin_m": 0.01736522277426126,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 4,
+            "translation_gltf_z_m": 0.032,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707306721728508,
+            "center_support_margin_m": 0.017365754710909943,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 5,
+            "translation_gltf_z_m": 0.04,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707306834478703,
+            "center_support_margin_m": 0.01736456064132075,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 6,
+            "translation_gltf_z_m": 0.048,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707306859942098,
+            "center_support_margin_m": 0.0173632846120815,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 7,
+            "translation_gltf_z_m": 0.05600000000000001,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707306793126982,
+            "center_support_margin_m": 0.017365714734346747,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 8,
+            "translation_gltf_z_m": 0.064,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307825744987,
+            "center_support_margin_m": 0.0173645943095595,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 9,
+            "translation_gltf_z_m": 0.072,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307461718303,
+            "center_support_margin_m": 0.017363570096170275,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 10,
+            "translation_gltf_z_m": 0.08,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707305215463649,
+            "center_support_margin_m": 0.01736766165147627,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 11,
+            "translation_gltf_z_m": 0.088,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307279833005,
+            "center_support_margin_m": 0.017362731613477525,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 12,
+            "translation_gltf_z_m": 0.096,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707306927437947,
+            "center_support_margin_m": 0.017367772324850823,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 13,
+            "translation_gltf_z_m": 0.10400000000000001,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730711678604,
+            "center_support_margin_m": 0.017362537107772465,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 14,
+            "translation_gltf_z_m": 0.11200000000000002,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730700816712,
+            "center_support_margin_m": 0.017363515284898764,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 15,
+            "translation_gltf_z_m": 0.12,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307141182317,
+            "center_support_margin_m": 0.017364227199245477,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 16,
+            "translation_gltf_z_m": 0.128,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307179230506,
+            "center_support_margin_m": 0.017364381606220784,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 17,
+            "translation_gltf_z_m": 0.136,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307060233722,
+            "center_support_margin_m": 0.017367493244042465,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 18,
+            "translation_gltf_z_m": 0.144,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307081923594,
+            "center_support_margin_m": 0.01736896353300964,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 19,
+            "translation_gltf_z_m": 0.152,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.01270730717111844,
+            "center_support_margin_m": 0.017364628710329216,
+            "negative_base_vertex_depths_m": []
+          },
+          {
+            "step": 20,
+            "translation_gltf_z_m": 0.16,
+            "rear_noncontact_triangle_crossings": 0,
+            "sliding_real_contact_area_m2": 0.012707307079371968,
+            "center_support_margin_m": 0.017367566965890632,
+            "negative_base_vertex_depths_m": []
+          }
+        ]
+      }
+    },
+    "samaria-road": {
+      "glb": {
+        "path": "/home/garywu/dev/bible-island/public/models/samaria-road.glb",
+        "bytes": 106244,
+        "sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26"
+      },
+      "prototype_only": false,
+      "source_scene": "Samaria — original real slope and neutral reading positions",
+      "semantic_groups": [
+        "samaria-road-modern-base",
+        "samaria-road-fixed-solid-slope",
+        "samaria-road-fixed-marker-1",
+        "samaria-road-fixed-marker-2",
+        "samaria-road-fixed-marker-3"
+      ],
+      "all_glb_nodes": [
+        "samaria-road-samaria-modern-neutral-display",
+        "samaria-road-modern-base",
+        "samaria-road-samaria-original-selected-slope-earth",
+        "samaria-road-fixed-solid-slope",
+        "samaria-road-samaria-modern-neutral-reading-marker",
+        "samaria-road-fixed-marker-1",
+        "samaria-road-samaria-modern-neutral-reading-marker.001",
+        "samaria-road-fixed-marker-2",
+        "samaria-road-samaria-modern-neutral-reading-marker.002",
+        "samaria-road-fixed-marker-3"
+      ],
+      "dimensions_length_width_height_m": [
+        1.100000023841858,
+        0.7200000286102295,
+        0.30000001192092896
+      ],
+      "dimensions_gltf_xyz_m": [
+        1.100000023841858,
+        0.30000001192092896,
+        0.7200000286102295
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.30000001192092896,
+      "triangles": 4042,
+      "budget": {
+        "triangles": 30000,
+        "bytes": 1600000
+      },
+      "runtime_operations": 0,
+      "main_layer": null,
+      "translation_gltf_xyz_m": null,
+      "source_GLB_bbox_max_error_m": 0.0,
+      "source_accepted_prototype_bbox_max_error_m": 0.0,
+      "closed_connected_positive_components": 5,
+      "invalid_source_components": [],
+      "invalid_glb_components": [],
+      "positive_ground_contact_area_m2": 0.7920000486373908,
+      "source_static_contact_audit": {
+        "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+        "tested_components": 5,
+        "candidate_contact_or_intersection_pairs": [
+          {
+            "components": [
+              1,
+              2
+            ],
+            "surface_overlap_pairs": 124,
+            "deep_vertex_samples": 0,
+            "max_depth_m": 0
+          },
+          {
+            "components": [
+              1,
+              3
+            ],
+            "surface_overlap_pairs": 115,
+            "deep_vertex_samples": 0,
+            "max_depth_m": 0
+          },
+          {
+            "components": [
+              1,
+              4
+            ],
+            "surface_overlap_pairs": 94,
+            "deep_vertex_samples": 0,
+            "max_depth_m": 0
+          }
+        ],
+        "deep_penetration_pairs": [],
+        "all_coordinates_finite": true
+      },
+      "GLB_static_contact_audit": {
+        "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+        "tested_components": 5,
+        "candidate_contact_or_intersection_pairs": [
+          {
+            "components": [
+              1,
+              2
+            ],
+            "surface_overlap_pairs": 186,
+            "deep_vertex_samples": 0,
+            "max_depth_m": 0
+          },
+          {
+            "components": [
+              1,
+              3
+            ],
+            "surface_overlap_pairs": 167,
+            "deep_vertex_samples": 0,
+            "max_depth_m": 0
+          },
+          {
+            "components": [
+              1,
+              4
+            ],
+            "surface_overlap_pairs": 164,
+            "deep_vertex_samples": 0,
+            "max_depth_m": 0
+          }
+        ],
+        "deep_penetration_pairs": [],
+        "all_coordinates_finite": true
+      },
+      "accepted_prototype_comparison": {
+        "id": "samaria-road",
+        "all_binary_bytes_identical_to_accepted": true,
+        "all_json_identical_after_only_mesh_datablock_names_removed": true,
+        "mesh_datablock_name_changes": [
+          {
+            "mesh": 0,
+            "isolated": "Cube",
+            "formal": "Cube.447"
+          }
+        ],
+        "accessor_changes": [],
+        "semantic_nodes_and_extras_identical": true
+      },
+      "overview": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-road-overview.png",
+        "bytes": 1119493,
+        "sha256": "e32dbc2c407ffef9808c5802fc6e51e8a49e8d45afb323d92b35c4fcb7592dbf"
+      },
+      "images": [
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-road-front.png",
+          "sha256": "cd85b15fc2fd33615aeb544d3d6fb552531a0deff8be5228077e8c06b6269aa4",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-road.glb",
+          "glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+          "camera": [
+            1.7000000476837158,
+            -2.799999952316284,
+            2.0999999046325684
+          ],
+          "camera_rotation": [
+            1.0293450355529785,
+            -3.5587937929904e-08,
+            0.5456550121307373
+          ],
+          "ortho_scale": 1.4299999475479126,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "Curved main earth path and shorter approach branch on original11.309932degree solid slope;3same-colour neutral markers"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-road-side.png",
+          "sha256": "6a4c5d8473140b620c55470e43942ae5402f3864ee15f19da0ce286af9b7ae51",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-road.glb",
+          "glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+          "camera": [
+            0.15000000596046448,
+            -3.0,
+            0.6200000047683716
+          ],
+          "camera_rotation": [
+            1.4123358726501465,
+            1.5273804443438621e-09,
+            0.049958400428295135
+          ],
+          "ortho_scale": 1.350000023841858,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "Actual height fall0.300to0.080m; marker base planes follow slope"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-road-bottom.png",
+          "sha256": "9850f6c915ac142e98b3323b1611bdec2788bded670688ebe5f45e889bb01584",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-road.glb",
+          "glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+          "camera": [
+            1.399999976158142,
+            -2.0,
+            -1.5
+          ],
+          "camera_rotation": [
+            2.1566576957702637,
+            1.2084603895345936e-07,
+            0.6107261180877686
+          ],
+          "ortho_scale": 1.3700000047683716,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "Actual closed bottom and real supporting display base"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-road-marker-contact.png",
+          "sha256": "0951d05daa1f2c0c8a925be1b1fe720a3880abd5dc79db93f4f4ae39b586188b",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-road.glb",
+          "glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+          "camera": [
+            0.4000000059604645,
+            -0.75,
+            0.46000000834465027
+          ],
+          "camera_rotation": [
+            1.3149666786193848,
+            -5.820801618483529e-08,
+            0.4141385555267334
+          ],
+          "ortho_scale": 0.3799999952316284,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "Middle marker14mm normal thickness; planar bottom genuinely coplanar with slope"
+        }
+      ],
+      "interpretation": "Original modern solid11.309932degree slope with3same-colour neutral positions and material paths. Not an ancient map,measured Jericho road,people/ethnic tokens or rescue game. No removable layer.",
+      "measured_summary": {
+        "actual_slope_sections": [
+          {
+            "x": -0.55,
+            "top_y_gltf_m": 0.30000001192092896,
+            "bottom_y_gltf_m": 0.02499999850988388,
+            "solid_thickness_m": 0.2750000134110451
+          },
+          {
+            "x": -0.3,
+            "top_y_gltf_m": 0.2499999701976776,
+            "bottom_y_gltf_m": 0.02500000037252903,
+            "solid_thickness_m": 0.22499996982514858
+          },
+          {
+            "x": 0,
+            "top_y_gltf_m": 0.1899999976158142,
+            "bottom_y_gltf_m": 0.02499999850988388,
+            "solid_thickness_m": 0.16499999910593033
+          },
+          {
+            "x": 0.3,
+            "top_y_gltf_m": 0.12999996542930603,
+            "bottom_y_gltf_m": 0.02500000037252903,
+            "solid_thickness_m": 0.104999965056777
+          },
+          {
+            "x": 0.55,
+            "top_y_gltf_m": 0.07999998331069946,
+            "bottom_y_gltf_m": 0.02499999850988388,
+            "solid_thickness_m": 0.05499998480081558
+          }
+        ],
+        "slope_angle_degrees": 11.309933906927025,
+        "actual_marker_surface_contacts": [
+          {
+            "surface_contact_area_m2": 0.0018072618059556062,
+            "positive_polygon_pairs": 167,
+            "min_pair_area_m2": 2.149690525485098e-08,
+            "normal_examples": [
+              [
+                -0.19611603021621704,
+                0.0,
+                -0.9805806875228882
+              ],
+              [
+                -0.1961108148097992,
+                1.2047631798850489e-06,
+                -0.9805817604064941
+              ],
+              [
+                -0.1961139291524887,
+                -1.6305126564475358e-06,
+                -0.9805810451507568
+              ],
+              [
+                -0.1961212158203125,
+                6.5220783653785475e-06,
+                -0.980579674243927
+              ],
+              [
+                -0.19611592590808868,
+                0.0,
+                -0.9805806875228882
+              ],
+              [
+                -0.1961180716753006,
+                -5.2176501412759535e-06,
+                -0.9805802702903748
+              ],
+              [
+                -0.19611386954784393,
+                1.5942773643473629e-06,
+                -0.9805811643600464
+              ],
+              [
+                -0.19611360132694244,
+                -1.05077185708069e-06,
+                -0.9805811643600464
+              ],
+              [
+                -0.19611524045467377,
+                -2.6088105187227484e-06,
+                -0.9805808663368225
+              ]
+            ],
+            "method": "Actual evaluated mesh loop triangles,including concave source n-gons,projected to their plane and clipped; AABB only candidate filter",
+            "actual_cap_plane_max_deviation_m": 1.4305114759416426e-08
+          },
+          {
+            "surface_contact_area_m2": 0.0018072615331906578,
+            "positive_polygon_pairs": 168,
+            "min_pair_area_m2": 2.610396384793029e-08,
+            "normal_examples": [
+              [
+                -0.19611607491970062,
+                -1.4493463140752283e-07,
+                -0.980580747127533
+              ],
+              [
+                -0.19611398875713348,
+                1.5218111002468504e-06,
+                -0.9805811643600464
+              ],
+              [
+                -0.19611859321594238,
+                -1.1775595962155868e-17,
+                -0.9805801510810852
+              ],
+              [
+                -0.19611307978630066,
+                -2.2464826088253176e-06,
+                -0.9805812239646912
+              ],
+              [
+                -0.1961156129837036,
+                -1.4493421076622326e-06,
+                -0.980580747127533
+              ],
+              [
+                -0.19611604511737823,
+                -1.4493463140752283e-07,
+                -0.980580747127533
+              ],
+              [
+                -0.19611859321594238,
+                -3.532678954082883e-17,
+                -0.9805801510810852
+              ],
+              [
+                -0.19611307978630066,
+                -2.2464826088253176e-06,
+                -0.9805812239646912
+              ]
+            ],
+            "method": "Actual evaluated mesh loop triangles,including concave source n-gons,projected to their plane and clipped; AABB only candidate filter",
+            "actual_cap_plane_max_deviation_m": 9.8347663901599e-09
+          },
+          {
+            "surface_contact_area_m2": 0.0018072616130285263,
+            "positive_polygon_pairs": 205,
+            "min_pair_area_m2": 1.2668469795208812e-08,
+            "normal_examples": [
+              [
+                -0.19611600041389465,
+                0.0,
+                -0.9805806875228882
+              ],
+              [
+                -0.19611907005310059,
+                -2.9711509341723286e-06,
+                -0.9805800914764404
+              ],
+              [
+                -0.1961107701063156,
+                1.204764316753426e-06,
+                -0.9805817604064941
+              ],
+              [
+                -0.19611972570419312,
+                1.8479101981938584e-06,
+                -0.9805799722671509
+              ],
+              [
+                -0.19611568748950958,
+                -1.304409806834883e-06,
+                -0.980580747127533
+              ],
+              [
+                -0.1961141973733902,
+                1.9566191440389957e-06,
+                -0.9805810451507568
+              ],
+              [
+                -0.19611616432666779,
+                -2.400487062459433e-07,
+                -0.9805806279182434
+              ],
+              [
+                -0.19611912965774536,
+                2.971147523567197e-06,
+                -0.9805800914764404
+              ],
+              [
+                -0.19611616432666779,
+                1.3044094657743699e-06,
+                -0.9805806875228882
+              ]
+            ],
+            "method": "Actual evaluated mesh loop triangles,including concave source n-gons,projected to their plane and clipped; AABB only candidate filter",
+            "actual_cap_plane_max_deviation_m": 1.132488250399355e-08
+          }
+        ],
+        "actual_slope_base_contact": {
+          "plane_height_m": 0.025,
+          "actual_polygon_intersection_area_m2": 0.7920000614151347,
+          "upper_patches": 126,
+          "lower_patches": 2,
+          "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+        },
+        "runtime_operations": 0,
+        "static_contact_audit": {
+          "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+          "tested_components": 5,
+          "candidate_contact_or_intersection_pairs": [
+            {
+              "components": [
+                1,
+                2
+              ],
+              "surface_overlap_pairs": 186,
+              "deep_vertex_samples": 0,
+              "max_depth_m": 0
+            },
+            {
+              "components": [
+                1,
+                3
+              ],
+              "surface_overlap_pairs": 167,
+              "deep_vertex_samples": 0,
+              "max_depth_m": 0
+            },
+            {
+              "components": [
+                1,
+                4
+              ],
+              "surface_overlap_pairs": 164,
+              "deep_vertex_samples": 0,
+              "max_depth_m": 0
+            }
+          ],
+          "deep_penetration_pairs": [],
+          "all_coordinates_finite": true
+        }
+      }
+    },
+    "samaria-care": {
+      "glb": {
+        "path": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+        "bytes": 601988,
+        "sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773"
+      },
+      "prototype_only": false,
+      "source_scene": "Samaria — original ordinary care entrusted discs and continue",
+      "semantic_groups": [
+        "samaria-care-modern-base",
+        "samaria-care-fixed-real-bottom-tray",
+        "samaria-care-fixed-neutral-disc-1",
+        "samaria-care-fixed-neutral-disc-2",
+        "samaria-care-fixed-small-empty-container",
+        "samaria-care-fixed-tall-empty-container",
+        "samaria-care-fixed-folded-cloth"
+      ],
+      "all_glb_nodes": [
+        "samaria-care-samaria-modern-neutral-display",
+        "samaria-care-modern-base",
+        "samaria-care-samaria-modern-true-bottom-tray",
+        "samaria-care-fixed-real-bottom-tray",
+        "samaria-care-samaria-modern-uninscribed-neutral-metal",
+        "samaria-care-fixed-neutral-disc-1",
+        "samaria-care-samaria-modern-uninscribed-neutral-metal.001",
+        "samaria-care-fixed-neutral-disc-2",
+        "samaria-care-samaria-original-ordinary-small-container",
+        "samaria-care-fixed-small-empty-container",
+        "samaria-care-samaria-original-ordinary-tall-container",
+        "samaria-care-fixed-tall-empty-container",
+        "samaria-care-samaria-original-folded-cloth-comparison",
+        "samaria-care-fixed-folded-cloth"
+      ],
+      "dimensions_length_width_height_m": [
+        1.100000023841858,
+        0.75,
+        0.25999999046325684
+      ],
+      "dimensions_gltf_xyz_m": [
+        1.100000023841858,
+        0.25999999046325684,
+        0.75
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.25999999046325684,
+      "triangles": 25100,
+      "budget": {
+        "triangles": 30000,
+        "bytes": 1600000
+      },
+      "runtime_operations": 0,
+      "main_layer": null,
+      "translation_gltf_xyz_m": null,
+      "source_GLB_bbox_max_error_m": 0.0,
+      "source_accepted_prototype_bbox_max_error_m": 0.0,
+      "closed_connected_positive_components": 7,
+      "invalid_source_components": [],
+      "invalid_glb_components": [],
+      "positive_ground_contact_area_m2": 0.8250000178813934,
+      "source_static_contact_audit": {
+        "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+        "tested_components": 7,
+        "candidate_contact_or_intersection_pairs": [
+          {
+            "components": [
+              1,
+              2
+            ],
+            "surface_overlap_pairs": 80,
+            "deep_vertex_samples": 0,
+            "max_depth_m": 0
+          },
+          {
+            "components": [
+              1,
+              3
+            ],
+            "surface_overlap_pairs": 80,
+            "deep_vertex_samples": 0,
+            "max_depth_m": 0
+          }
+        ],
+        "deep_penetration_pairs": [],
+        "all_coordinates_finite": true
+      },
+      "GLB_static_contact_audit": {
+        "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+        "tested_components": 7,
+        "candidate_contact_or_intersection_pairs": [
+          {
+            "components": [
+              1,
+              2
+            ],
+            "surface_overlap_pairs": 160,
+            "deep_vertex_samples": 0,
+            "max_depth_m": 0
+          },
+          {
+            "components": [
+              1,
+              3
+            ],
+            "surface_overlap_pairs": 160,
+            "deep_vertex_samples": 0,
+            "max_depth_m": 0
+          }
+        ],
+        "deep_penetration_pairs": [],
+        "all_coordinates_finite": true
+      },
+      "accepted_prototype_comparison": {
+        "id": "samaria-care",
+        "all_binary_bytes_identical_to_accepted": true,
+        "all_json_identical_after_only_mesh_datablock_names_removed": true,
+        "mesh_datablock_name_changes": [
+          {
+            "mesh": 0,
+            "isolated": "Cube.002",
+            "formal": "Cube.448"
+          }
+        ],
+        "accessor_changes": [],
+        "semantic_nodes_and_extras_identical": true
+      },
+      "overview": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-overview.png",
+        "bytes": 1611662,
+        "sha256": "c1771a562927625cc28ffd3d731e200c703889d840ce7dbb607f060cfdaa6dd0"
+      },
+      "images": [
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-front.png",
+          "sha256": "14d850847ae7af2743759af5090fa09d323f40b17c3c6968ac34a719496a1b8e",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+          "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "camera": [
+            1.7999999523162842,
+            -3.0,
+            2.4000000953674316
+          ],
+          "camera_rotation": [
+            0.9892287254333496,
+            2.884435446048883e-08,
+            0.5404194593429565
+          ],
+          "ortho_scale": 1.4800000190734863,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "Original ordinary empty vessels,folded cloth and2enlarged neutral discs; no coin copying"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-back.png",
+          "sha256": "81ca70d6050e884b99c723f365db5136953e32777b9dc290c2c68a7ee0abf0d6",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+          "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "camera": [
+            -1.600000023841858,
+            2.4000000953674316,
+            1.5
+          ],
+          "camera_rotation": [
+            1.118927001953125,
+            2.8314195432699307e-08,
+            -2.5535900592803955
+          ],
+          "ortho_scale": 1.4800000190734863,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "Original selected life objects and true supported tray; no removable mechanism"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-inner-floors.png",
+          "sha256": "ec1a6a548f6ee620db4ad5f14169f6b997c683d3380bf5e7d2da5156d72b10bc",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+          "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "camera": [
+            0.0,
+            0.019999999552965164,
+            4.0
+          ],
+          "camera_rotation": [
+            0.005123551469296217,
+            4.483160231938399e-10,
+            3.141592502593994
+          ],
+          "ortho_scale": 1.2999999523162842,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "Actual open ceramic mouths. Dark interior photo alone does not resolve floors; paired geometry rays prove14mm bottoms"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-tray-inner-bottom.png",
+          "sha256": "be7112cbbb7ac21447044ccbe316a0f5f6505d2dae2325e7be6415efa12d0896",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+          "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "camera": [
+            1.100000023841858,
+            -1.7000000476837158,
+            2.5
+          ],
+          "camera_rotation": [
+            0.6546511650085449,
+            8.162464482097675e-09,
+            0.6233339309692383
+          ],
+          "ortho_scale": 0.8600000143051147,
+          "layers": {},
+          "hidden_groups": [
+            "samaria-care-fixed-neutral-disc-1",
+            "samaria-care-fixed-neutral-disc-2"
+          ],
+          "inspection_note": "QA: discs hidden; actual18mm continuous tray floor and15mm walls"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-disc-bottom.png",
+          "sha256": "47f8ca86615d6f4bb1ed2fc6645f89706cb9c8114f284848426e8fc294a601d4",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+          "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "camera": [
+            0.8999999761581421,
+            -1.399999976158142,
+            -1.2999999523162842
+          ],
+          "camera_rotation": [
+            2.2956910133361816,
+            -1.7298585675007416e-08,
+            0.6316906809806824
+          ],
+          "ortho_scale": 0.6000000238418579,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "QA: all other meshes hidden; complete plain disc bottoms and10mm thick dull edges"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-bottom.png",
+          "sha256": "d3b8246652fd647805b860121b52fc142d0aae3820cd59dfdb994cfd6868cdea",
+          "source": "fresh canonical public GLB imported by independent official preview process",
+          "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+          "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+          "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+          "camera": [
+            1.2999999523162842,
+            -2.200000047683716,
+            -1.600000023841858
+          ],
+          "camera_rotation": [
+            2.1578257083892822,
+            1.9780964422011493e-08,
+            0.5337083339691162
+          ],
+          "ortho_scale": 1.3700000047683716,
+          "layers": {},
+          "hidden_groups": [
+            "samaria-care-modern-base"
+          ],
+          "inspection_note": "QA: base hidden; actual vessel feet,tray bottom and broad folded-cloth bottom"
+        }
+      ],
+      "interpretation": "Original modern ordinary2empty ceramic containers,folded cloth envelope and2enlarged uninscribed neutral metal discs in a true-bottom tray. Selected functional forms,not Gospel vessels,original coins,medical treatment or a known inn plan. Payment does not define recovery or final return. No removable layer.",
+      "measured_summary": {
+        "tray_actual_floor_thickness_m": 0.018000012263655663,
+        "tray_four_wall_thickness_m": [
+          0.01499998580430894,
+          0.015000045467099184,
+          0.01499999599065578,
+          0.015000015393202056
+        ],
+        "tray_base_contact": {
+          "plane_height_m": 0.025,
+          "actual_polygon_intersection_area_m2": 0.2041802057653156,
+          "upper_patches": 50,
+          "lower_patches": 2,
+          "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+        },
+        "discs": [
+          {
+            "top_m": 0.05300001800060272,
+            "bottom_m": 0.0429999977350235,
+            "thickness_m": 0.010000020265579224,
+            "real_tray_contact": {
+              "plane_height_m": 0.043,
+              "actual_polygon_intersection_area_m2": 0.0075352111347722905,
+              "upper_patches": 80,
+              "lower_patches": 50,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "top_m": 0.05300001800060272,
+            "bottom_m": 0.0429999977350235,
+            "thickness_m": 0.010000020265579224,
+            "real_tray_contact": {
+              "plane_height_m": 0.043,
+              "actual_polygon_intersection_area_m2": 0.0075352111347722905,
+              "upper_patches": 80,
+              "lower_patches": 50,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          }
+        ],
+        "ordinary_empty_containers": [
+          {
+            "inner_floor_m": 0.03900003433227539,
+            "outer_bottom_m": 0.02499999850988388,
+            "floor_thickness_m": 0.01400003582239151,
+            "sampled_normal_wall_min_max_m": [
+              0.009972906453632021,
+              0.014290324132628951
+            ],
+            "normal_sample_count": 4824,
+            "four_actual_mouth_radii_m": [
+              0.02399998951051155,
+              0.02400001861433708,
+              0.024000004062428727,
+              0.024000004062428727
+            ],
+            "base_contact": {
+              "plane_height_m": 0.025,
+              "actual_polygon_intersection_area_m2": 0.0028238462270198106,
+              "upper_patches": 72,
+              "lower_patches": 2,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          },
+          {
+            "inner_floor_m": 0.03900003433227539,
+            "outer_bottom_m": 0.02499999850988388,
+            "floor_thickness_m": 0.01400003582239151,
+            "sampled_normal_wall_min_max_m": [
+              0.009976316259896416,
+              0.014619204413974641
+            ],
+            "normal_sample_count": 4896,
+            "four_actual_mouth_radii_m": [
+              0.027999997463542852,
+              0.028000004739500182,
+              0.027999997463542852,
+              0.027999997463542852
+            ],
+            "base_contact": {
+              "plane_height_m": 0.025,
+              "actual_polygon_intersection_area_m2": 0.003843568072180059,
+              "upper_patches": 72,
+              "lower_patches": 2,
+              "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+            }
+          }
+        ],
+        "folded_cloth_base_contact": {
+          "plane_height_m": 0.025,
+          "actual_polygon_intersection_area_m2": 0.055875097516009,
+          "upper_patches": 50,
+          "lower_patches": 2,
+          "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+        },
+        "actual_footprint_separations": [
+          {
+            "nodes": [
+              "samaria-care-fixed-real-bottom-tray",
+              "samaria-care-fixed-small-empty-container"
+            ],
+            "actual_convex_projected_footprint_gap_m": 0.13391709336165875,
+            "method": "Actual GLB vertex projections,2Dconvex hull edges and point-segment minimum; positive conservative horizontal separation,not3Dexactminimum or AABB"
+          },
+          {
+            "nodes": [
+              "samaria-care-fixed-real-bottom-tray",
+              "samaria-care-fixed-tall-empty-container"
+            ],
+            "actual_convex_projected_footprint_gap_m": 0.1150000015289887,
+            "method": "Actual GLB vertex projections,2Dconvex hull edges and point-segment minimum; positive conservative horizontal separation,not3Dexactminimum or AABB"
+          },
+          {
+            "nodes": [
+              "samaria-care-fixed-real-bottom-tray",
+              "samaria-care-fixed-folded-cloth"
+            ],
+            "actual_convex_projected_footprint_gap_m": 0.09000000116725762,
+            "method": "Actual GLB vertex projections,2Dconvex hull edges and point-segment minimum; positive conservative horizontal separation,not3Dexactminimum or AABB"
+          },
+          {
+            "nodes": [
+              "samaria-care-fixed-small-empty-container",
+              "samaria-care-fixed-tall-empty-container"
+            ],
+            "actual_convex_projected_footprint_gap_m": 0.09000000116725762,
+            "method": "Actual GLB vertex projections,2Dconvex hull edges and point-segment minimum; positive conservative horizontal separation,not3Dexactminimum or AABB"
+          },
+          {
+            "nodes": [
+              "samaria-care-fixed-small-empty-container",
+              "samaria-care-fixed-folded-cloth"
+            ],
+            "actual_convex_projected_footprint_gap_m": 0.43500000358998087,
+            "method": "Actual GLB vertex projections,2Dconvex hull edges and point-segment minimum; positive conservative horizontal separation,not3Dexactminimum or AABB"
+          },
+          {
+            "nodes": [
+              "samaria-care-fixed-tall-empty-container",
+              "samaria-care-fixed-folded-cloth"
+            ],
+            "actual_convex_projected_footprint_gap_m": 0.1950000075040718,
+            "method": "Actual GLB vertex projections,2Dconvex hull edges and point-segment minimum; positive conservative horizontal separation,not3Dexactminimum or AABB"
+          },
+          {
+            "nodes": [
+              "samaria-care-fixed-neutral-disc-1",
+              "samaria-care-fixed-neutral-disc-2"
+            ],
+            "actual_convex_projected_footprint_gap_m": 0.18000000233451524,
+            "method": "Actual GLB vertex projections,2Dconvex hull edges and point-segment minimum; positive conservative horizontal separation,not3Dexactminimum or AABB"
+          }
+        ],
+        "runtime_operations": 0,
+        "static_contact_audit": {
+          "method": "AABB candidate pairs, actual BVH triangle overlaps and outward-nearest-surface probes of component vertices; <=20um contact tolerance; intended bearing surfaces may coincide",
+          "tested_components": 7,
+          "candidate_contact_or_intersection_pairs": [
+            {
+              "components": [
+                1,
+                2
+              ],
+              "surface_overlap_pairs": 160,
+              "deep_vertex_samples": 0,
+              "max_depth_m": 0
+            },
+            {
+              "components": [
+                1,
+                3
+              ],
+              "surface_overlap_pairs": 160,
+              "deep_vertex_samples": 0,
+              "max_depth_m": 0
+            }
+          ],
+          "deep_penetration_pairs": [],
+          "all_coordinates_finite": true
+        }
+      }
+    }
+  },
+  "formal_geometry": {
+    "path": "/home/garywu/dev/bible-island/.qa/samaria-official/geometry.json",
+    "bytes": 2058310,
+    "sha256": "9cddf2366c7b0879dfc052e30220b97dd693cc08add8107798462b55067b05f1"
+  },
+  "existing86_rebuild_diff": {
+    "path": "/home/garywu/dev/bible-island/.qa/samaria-official/existing-glb-rebuild-diff.json",
+    "bytes": 1774992,
+    "sha256": "9750c04a84b7f4916cea9618e2227d6dcb4c2ac616f49d06caec7921c7c3a54b"
+  },
+  "existing86_final_preservation": {
+    "path": "/home/garywu/dev/bible-island/.qa/samaria-official/existing-glb-final-preservation.json",
+    "bytes": 23346,
+    "sha256": "1d90a1c29f6b94e27e46b92195d672bf6587a6ad95eca41a712d2f5b962cf64a"
+  },
+  "existing86_summary": {
+    "stage": "before restoring verified old bytes; full single-builder rebuild diff",
+    "before_directory": "/tmp/samaria-before-official",
+    "old_asset_count": 86,
+    "new_asset_count": 89,
+    "byte_identical_count": 50,
+    "changed_count": 36,
+    "changes_only_uv_float_rounding": true,
+    "all_positions_indices_skin_animations_json_identical": true,
+    "changed_uv_components": 57328,
+    "max_uv_delta": 2.980232238769531e-07,
+    "added_files": [
+      "samaria-care.glb",
+      "samaria-jar.glb",
+      "samaria-road.glb"
+    ],
+    "unexpected_changes": [],
+    "method": "Byte identity shortcuts equal files; JSON object and exact JSON chunk bytes equal; every accessor checked and per-accessor max delta reported. Changed files additionally require every changed BIN byte to fall within a TEXCOORD_0 component range. POSITION/indices/normals/colors/JOINTS/WEIGHTS/inverseBindMatrices/animations and all other binary bytes must remain identical."
+  },
+  "final86of86_original_bytes_preserved": true,
+  "old86_build_report_entries_identical": true,
+  "source_contact_measurement_diagnosis": {
+    "path": "/home/garywu/dev/bible-island/.qa/samaria-official/source-contact-diagnosis.json",
+    "bytes": 2025,
+    "sha256": "5f9eb93691eac6de49c7f6d8bda1cedd85a2cb24f5bcb6394f764f5ac6093b6d"
+  },
+  "initial_measurement_failed_report": {
+    "path": "/home/garywu/dev/bible-island/.qa/samaria-official/geometry-initial-failed.json",
+    "bytes": 2057520,
+    "sha256": "b489e4ade0d2afa5e87bd63f235c2413ad08c35e613c4ecc5856ce8cf5efe0c8"
+  },
+  "source_contact_correction": "Editable concave profile caps are queried through actual evaluated mesh loop triangles. No source mesh change,tolerance change or skipped source contact check. Same positive cut material surface is verified in source and fresh GLB.",
+  "controlled_builder_context": "SAMARIA_OFFICIAL_BUILD=True only immediately around the new exec;finally globals().pop. sam_finish defaults prototype_onlyTrue and official3False. All other construction function ASTs match the accepted isolated source.",
+  "preview_provenance": {
+    "path": "/home/garywu/dev/bible-island/.qa/samaria-official/preview-provenance.json",
+    "bytes": 20906,
+    "sha256": "6efc058d43ce425e13cd18257321e08f08c5f799dea2f35aec5c275d0e837743"
+  },
+  "contact_provenance": {
+    "path": "/home/garywu/dev/bible-island/.qa/samaria-official/contact-provenance.json",
+    "bytes": 23052,
+    "sha256": "6254006ed852019870b696b65fe696bd29d41708a986bfee3b9c9d4ffb7699fc"
+  },
+  "all_processes_terminal": true,
+  "live_handles": [],
+  "process_records": [
+    {
+      "stage": "prebuild86/source/builder/report/READMEbackup",
+      "synchronous_tool_chunk": "00b6d4",
+      "terminal": true,
+      "exit_code": 0,
+      "evidence": {
+        "path": "/tmp/samaria-before-official/baseline.json",
+        "bytes": 24051,
+        "sha256": "220c56829a4c168cd025f1f25b04f29404aabceeaad313be62e18c272d542023"
+      }
+    },
+    {
+      "stage": "only official builder invocation",
+      "handle": 18273,
+      "terminal": true,
+      "exit_code": 0,
+      "command": "/tmp/bible-blender-runtime/blender-4.5.16-linux-x64/blender --background --factory-startup --python-exit-code 1 --python scripts/blender/build-assets.py -- --no-previews",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/build.log",
+        "bytes": 104293,
+        "sha256": "4de6ed4525b4646ce0188d43a25567feb3aff69e6268ff46333f0d76b4a3391e"
+      }
+    },
+    {
+      "stage": "old86exactJSON/allaccessor/nonUVbytesdiff",
+      "handle": 90409,
+      "terminal": true,
+      "exit_code": 0,
+      "command": "python3 .qa/samaria-official/existing-glb-diff.py",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/existing-glb-diff.log",
+        "bytes": 936,
+        "sha256": "bdcdd88b03d9c885e3b654abb0e771ef26646b786a43fd89db2a352f0c526eca"
+      }
+    },
+    {
+      "stage": "accepted prototype comparison;allBINbytesidentical/onlymeshdatablocknameschanged",
+      "synchronous_tool_chunk": "e35868",
+      "terminal": true,
+      "exit_code": 0,
+      "evidence": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/accepted-prototype-exact-geometry-compare.json",
+        "bytes": 1123,
+        "sha256": "d43535cb02a22de0bf7cbcb306c4aacec02e10b1f5b5bc6a9702a96379c5e295"
+      }
+    },
+    {
+      "stage": "restore36provenUV-onlyoldfiles/reportSHA/86hashcheck",
+      "synchronous_tool_chunk": "1cf74a-python-child-before-QA",
+      "terminal": true,
+      "exit_code": 0,
+      "evidence": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/existing-glb-final-preservation.json",
+        "bytes": 23346,
+        "sha256": "1d90a1c29f6b94e27e46b92195d672bf6587a6ad95eca41a712d2f5b962cf64a"
+      }
+    },
+    {
+      "stage": "initial source/GLB QA;diagnosed concave-ngon measurement assumption",
+      "handle": 52321,
+      "terminal": true,
+      "exit_code": 1,
+      "command": "/tmp/bible-blender-runtime/blender-4.5.16-linux-x64/blender --background assets/blender/bible-assets.blend --python-exit-code 1 --python .qa/samaria-official/verify.py",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/verify-initial-failed.log",
+        "bytes": 2981,
+        "sha256": "ff0ccc5b2d6abc61f6550e5e044f94a2ef024d9214d477917debd4ce8067fd60"
+      },
+      "evidence": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/geometry-initial-failed.json",
+        "bytes": 2057520,
+        "sha256": "b489e4ade0d2afa5e87bd63f235c2413ad08c35e613c4ecc5856ce8cf5efe0c8"
+      },
+      "result": "Source concave cap queried through convex polygon clip gave0;freshGLB passed. Diagnostic/source triangulation verified same positive contact;no geometry/tolerance change."
+    },
+    {
+      "stage": "targeted evaluated-source triangulation contact diagnosis",
+      "handle": 74304,
+      "terminal": true,
+      "exit_code": 0,
+      "command": "/tmp/bible-blender-runtime/blender-4.5.16-linux-x64/blender --background assets/blender/bible-assets.blend --python-exit-code 1 --python .qa/samaria-official/diagnose-source-contact.py",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/source-contact-diagnosis.log",
+        "bytes": 2182,
+        "sha256": "ed572f72e86d099e13ac581bb176698381477441006ca6246e37c4d6cd2cedad"
+      }
+    },
+    {
+      "stage": "final same official source/freshpublicGLB full geometry verification",
+      "handle": 31365,
+      "terminal": true,
+      "exit_code": 0,
+      "command": "/tmp/bible-blender-runtime/blender-4.5.16-linux-x64/blender --background assets/blender/bible-assets.blend --python-exit-code 1 --python .qa/samaria-official/verify.py",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/verify.log",
+        "bytes": 2093,
+        "sha256": "cc6d31c03f47791c3d94704c2de9818184b1ae2a93216ab986f2453a19d52872"
+      },
+      "failures": []
+    },
+    {
+      "stage": "formal fresh publicGLB18views render",
+      "handle": 34364,
+      "terminal": true,
+      "exit_code": 0,
+      "command": "/tmp/bible-blender-runtime/blender-4.5.16-linux-x64/blender --background --factory-startup --python-exit-code 1 --python .qa/samaria-official/render.py",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/render.log",
+        "bytes": 121466,
+        "sha256": "5583411baadeb9635104b4c6ef1ded8dfddb9176fc138f7345d110b3cdd4e69c"
+      }
+    },
+    {
+      "stage": "premature contact-sheet read;no provenance yet",
+      "synchronous_tool_chunk": "410583",
+      "terminal": true,
+      "exit_code": 1,
+      "command": "python3 .qa/samaria-official/contact-sheets.py",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/contact-sheets-premature.log",
+        "bytes": 1058,
+        "sha256": "2844c18540bae652b0620745534916e36f3d63895ab507477a66594be85982b3"
+      },
+      "result": "Started before render wrote18-frame manifest;immediateFileNotFoundError,nooutput. Completed render34364before31937restart. NoBlender/modelchange."
+    },
+    {
+      "stage": "threecontactsheetafterrenderterminal0",
+      "handle": 31937,
+      "terminal": true,
+      "exit_code": 0,
+      "command": "python3 .qa/samaria-official/contact-sheets.py",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/samaria-official/contact-sheets.log",
+        "bytes": 272,
+        "sha256": "d0ed5a212ad12f55c9d2623edada082ef1d8c248407f38429b3bb8893e816c00"
+      }
+    },
+    {
+      "stage": "actual three official overview inspection by asset agent",
+      "synchronous_tool_call": "functions.exec/tools.view_image3images",
+      "terminal": true,
+      "exit_code": 0,
+      "result": "Jar8angles,Road4,Care6opened;darkcarefloorlimitationretained;rootstillmustinspect."
+    }
+  ],
+  "failures": [],
+  "qa_limits": [
+    "Original modern forms,not a museum copy,identified jar/coins/road/inn,capacity proof or historical colour code.",
+    "COM uses actual signed tetrahedral uniform-solid centres and true contact convex hulls; it is geometric stability screening,not ceramic strength/load certification.",
+    "Jar sampled front/rear wall minima about11.976mm,carepot sampled wall minima are in geometryreport. Not exhaustive infinitesimal thickness proof at every edge.",
+    "Jar Exact Boolean joins both roots; rear1closedconnectedpositivecomponent and through-root internal-face probes. Grip90x38mm clear region tested by35bidirectional rays,not an entire ancient adult hand specification.",
+    "Jar front slidesZ+.16 along legal zero-depth coplanar base contact.20finite samples and every descendant vertex/fixed0/restoration are measured; not an exhaustive continuous collision solver.",
+    "Static audit uses real surface overlap and oriented nearest-surface probes; contact areas use actual polygon clipping,not AABBs.",
+    "Caretopview mouth interiors remain dark: this image does not visually resolve inner bottoms. Actual floorY.039 and14mm bottom are established by paired rays; do not claim a clear photographed view of the floor.",
+    "Carecloth is a closed folded-envelope comparison with actual creased sides and broad real underside;35mm is folded envelope,not single fibre sheet thickness.",
+    "Actual projected-footprint gaps are conservative horizontal separations from real vertex hulls,not exact3Dminimum distances.",
+    "Road revision only changesCOLOR_0. All JSON bytes and non-colour accessors remain identical; main120mm and branch75mm are modern colour reading paths on the same solid slope,not added slabs.",
+    "All QA hide states are labelled and recorded; only jar has one runtime slide. Jar/care accepted14PNGbytes are preserved after road revision.",
+    "Official3GLB differ from accepted isolation only in automatic mesh datablock Cube suffixes; all BIN bytes,semantic nodes,materials and other JSON are identical.",
+    "Formal previews are newly rendered from canonical publicGLB and record officialsourceSHA,build-reportGLBSHA,cameras,hide/layer states andPNGSHA. Isolated pixels are not reused.",
+    "Builder ran once. Old86 reexport differences were50byteidentical+36UV-only,then36restored;all86finalbytes andoldreportentries remain exact. Source.blend retains89nonempty scenes.",
+    "No app/manifest/audio/Git/Sites altered. README and the three asset-delivery JSON artifacts are within root authorisation. Root still owns formal visual acceptance,registration andpublication; this report does not declare island20complete."
+  ],
+  "program_sources": [
+    {
+      "path": "/home/garywu/dev/bible-island/.qa/samaria-official/existing-glb-diff.py",
+      "bytes": 5227,
+      "sha256": "b0c1881439404f64241ed52f535139cd5d77bb693a68a47af7607ba1de84821c"
+    },
+    {
+      "path": "/home/garywu/dev/bible-island/.qa/samaria-official/verify.py",
+      "bytes": 32216,
+      "sha256": "306dc4eeeebe087b26e117c1888b37c15ac6a270f98c8543888691917e388d2d"
+    },
+    {
+      "path": "/home/garywu/dev/bible-island/.qa/samaria-official/diagnose-source-contact.py",
+      "bytes": 2113,
+      "sha256": "d97ffd2f7dc2280c580e43186ac5db9aacd92671582ad064e2d74aec5dae2f9c"
+    },
+    {
+      "path": "/home/garywu/dev/bible-island/.qa/samaria-official/render.py",
+      "bytes": 7095,
+      "sha256": "9657c9c1e1e02e06db5f62f59af90b843ac3e7dc2eef80cdd567f605c01e0cd8"
+    },
+    {
+      "path": "/home/garywu/dev/bible-island/.qa/samaria-official/contact-sheets.py",
+      "bytes": 3035,
+      "sha256": "308f0b95cbd1494f000e034d3e22dbc4c2bbcdf257c15eb4b0c899abad5e46e8"
+    },
+    {
+      "path": "/home/garywu/dev/bible-island/.qa/samaria-official/make-handoff.py",
+      "bytes": 7947,
+      "sha256": "3714e433dbddca04ec56075bc659a1ab36a979309d7fc85427c0d0c668a8f823"
+    }
+  ]
+}

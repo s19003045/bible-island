@@ -1,0 +1,483 @@
+{
+  "stage": "official fresh actual canonical GLB render only",
+  "source_saved": false,
+  "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+  "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+  "source_script_sha256": "9d33663e15c3b5fa9b74908e2ed38f705f959e2a8c31045c7936a7de0f96f1b6",
+  "runtime": "Jar1primaryZ+.16m sliding layer,road0,care0; all QA inspection hides recorded and not runtime mechanisms.",
+  "frames": [
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-front.png",
+      "sha256": "51fb958a78c692fb56ab87ec1d28ce4a9ac7b125cf53596fd662f8bdcfbd9ebf",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+      "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "camera": [
+        1.100000023841858,
+        -2.200000047683716,
+        1.5
+      ],
+      "camera_rotation": [
+        1.0797616243362427,
+        6.743882607906926e-08,
+        0.4993468225002289
+      ],
+      "ortho_scale": 1.2200000286102295,
+      "layers": {
+        "samaria-jar-modern-front-section": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "hidden_groups": [],
+      "inspection_note": "Original hollow360mm jar body; selected modern90mm feet,not museum copied"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-rear-side.png",
+      "sha256": "729a85e62c20187f361774b85cd5eb44241ba6a2889870cd850e864733bb2d38",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+      "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "camera": [
+        1.100000023841858,
+        2.0,
+        1.100000023841858
+      ],
+      "camera_rotation": [
+        1.1915388107299805,
+        3.4825465178300874e-08,
+        2.5778865814208984
+      ],
+      "ortho_scale": 0.7200000286102295,
+      "layers": {
+        "samaria-jar-modern-front-section": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "hidden_groups": [],
+      "inspection_note": "Actual united rear handle; original functional outline"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-open.png",
+      "sha256": "ba9a84ab837214ce2f94360be9a4d49126c759a2f32a307922debcc80231aedb",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+      "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "camera": [
+        1.2000000476837158,
+        -2.0,
+        1.5
+      ],
+      "camera_rotation": [
+        1.0574036836624146,
+        4.710024725795847e-08,
+        0.593881368637085
+      ],
+      "ortho_scale": 1.0499999523162842,
+      "layers": {
+        "samaria-jar-modern-front-section": [
+          0.0,
+          -0.1599999964237213,
+          0.0
+        ]
+      },
+      "hidden_groups": [],
+      "inspection_note": "Only entire front half translates glTFZ+.16m while sliding on base; fixed rear grip"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-interior.png",
+      "sha256": "bd6cd9fa9436348d49911dd75cac3270b4897947a4e2e66c591071acb5902c80",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+      "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "camera": [
+        0.8999999761581421,
+        -0.6000000238418579,
+        2.799999952316284
+      ],
+      "camera_rotation": [
+        0.4111447036266327,
+        -3.676713689060307e-08,
+        1.061204195022583
+      ],
+      "ortho_scale": 0.6899999976158142,
+      "layers": {
+        "samaria-jar-modern-front-section": [
+          0.0,
+          -0.1599999964237213,
+          0.0
+        ]
+      },
+      "hidden_groups": [],
+      "inspection_note": "Actual inner floor,12mm nominal walls,25mm bottom; material-only cut caps"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-bottom.png",
+      "sha256": "42a9cde01f9c04516f1e6ffc1025ba6979a8ee408ca5b561eed5e092e2aac7c1",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+      "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "camera": [
+        0.699999988079071,
+        -1.2000000476837158,
+        -1.2999999523162842
+      ],
+      "camera_rotation": [
+        2.354668617248535,
+        -3.0720748611656745e-08,
+        0.6235606670379639
+      ],
+      "ortho_scale": 0.75,
+      "layers": {
+        "samaria-jar-modern-front-section": [
+          0.0,
+          -0.1599999964237213,
+          0.0
+        ]
+      },
+      "hidden_groups": [
+        "samaria-jar-modern-base"
+      ],
+      "inspection_note": "QA: base hidden; actual broad planar half feet,real material bottoms"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-cut-section.png",
+      "sha256": "528b0cd96d3cbd662b24280f3f49492b8f27e8fdcde1ed5b5c3eb942c4181cde",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+      "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "camera": [
+        1.7999999523162842,
+        -0.15000000596046448,
+        0.6000000238418579
+      ],
+      "camera_rotation": [
+        1.3607490062713623,
+        5.0625999392650556e-08,
+        1.5135672092437744
+      ],
+      "ortho_scale": 0.6600000262260437,
+      "layers": {
+        "samaria-jar-modern-front-section": [
+          0.0,
+          -0.1599999964237213,
+          0.0
+        ]
+      },
+      "hidden_groups": [
+        "samaria-jar-modern-base"
+      ],
+      "inspection_note": "QA: base hidden; true cut-material section,empty cavity not closed by a sheet"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-grip-hole.png",
+      "sha256": "be4f355d6f085caba9f203837fcc580e1ba6ed8e8eb64d1c87da3c4be8bbf648",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+      "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "camera": [
+        1.7999999523162842,
+        0.33000001311302185,
+        0.5600000023841858
+      ],
+      "camera_rotation": [
+        1.3959846496582031,
+        1.039042984984917e-08,
+        1.6435842514038086
+      ],
+      "ortho_scale": 0.3799999952316284,
+      "layers": {
+        "samaria-jar-modern-front-section": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "hidden_groups": [
+        "samaria-jar-modern-base"
+      ],
+      "inspection_note": "QA: base hidden; actual bidirectional grip hole and joined roots"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-jar-contact.png",
+      "sha256": "a2c9145086cb1db565cb1f58dd311d6db36555177e5f3a90cf94cccdcb372a05",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-jar.glb",
+      "glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "camera": [
+        0.6000000238418579,
+        -1.0,
+        0.08500000089406967
+      ],
+      "camera_rotation": [
+        1.528023362159729,
+        -8.459650757686177e-09,
+        0.6640463471412659
+      ],
+      "ortho_scale": 0.6600000262260437,
+      "layers": {
+        "samaria-jar-modern-front-section": [
+          0.0,
+          -0.1599999964237213,
+          0.0
+        ]
+      },
+      "hidden_groups": [],
+      "inspection_note": "Actual half feet slide coplanar on base; measured front/rear support margins17.37/14.57mm"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-road-front.png",
+      "sha256": "cd85b15fc2fd33615aeb544d3d6fb552531a0deff8be5228077e8c06b6269aa4",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-road.glb",
+      "glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+      "camera": [
+        1.7000000476837158,
+        -2.799999952316284,
+        2.0999999046325684
+      ],
+      "camera_rotation": [
+        1.0293450355529785,
+        -3.5587937929904e-08,
+        0.5456550121307373
+      ],
+      "ortho_scale": 1.4299999475479126,
+      "layers": {},
+      "hidden_groups": [],
+      "inspection_note": "Curved main earth path and shorter approach branch on original11.309932degree solid slope;3same-colour neutral markers"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-road-side.png",
+      "sha256": "6a4c5d8473140b620c55470e43942ae5402f3864ee15f19da0ce286af9b7ae51",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-road.glb",
+      "glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+      "camera": [
+        0.15000000596046448,
+        -3.0,
+        0.6200000047683716
+      ],
+      "camera_rotation": [
+        1.4123358726501465,
+        1.5273804443438621e-09,
+        0.049958400428295135
+      ],
+      "ortho_scale": 1.350000023841858,
+      "layers": {},
+      "hidden_groups": [],
+      "inspection_note": "Actual height fall0.300to0.080m; marker base planes follow slope"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-road-bottom.png",
+      "sha256": "9850f6c915ac142e98b3323b1611bdec2788bded670688ebe5f45e889bb01584",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-road.glb",
+      "glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+      "camera": [
+        1.399999976158142,
+        -2.0,
+        -1.5
+      ],
+      "camera_rotation": [
+        2.1566576957702637,
+        1.2084603895345936e-07,
+        0.6107261180877686
+      ],
+      "ortho_scale": 1.3700000047683716,
+      "layers": {},
+      "hidden_groups": [],
+      "inspection_note": "Actual closed bottom and real supporting display base"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-road-marker-contact.png",
+      "sha256": "0951d05daa1f2c0c8a925be1b1fe720a3880abd5dc79db93f4f4ae39b586188b",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-road.glb",
+      "glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+      "camera": [
+        0.4000000059604645,
+        -0.75,
+        0.46000000834465027
+      ],
+      "camera_rotation": [
+        1.3149666786193848,
+        -5.820801618483529e-08,
+        0.4141385555267334
+      ],
+      "ortho_scale": 0.3799999952316284,
+      "layers": {},
+      "hidden_groups": [],
+      "inspection_note": "Middle marker14mm normal thickness; planar bottom genuinely coplanar with slope"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-front.png",
+      "sha256": "14d850847ae7af2743759af5090fa09d323f40b17c3c6968ac34a719496a1b8e",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+      "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "camera": [
+        1.7999999523162842,
+        -3.0,
+        2.4000000953674316
+      ],
+      "camera_rotation": [
+        0.9892287254333496,
+        2.884435446048883e-08,
+        0.5404194593429565
+      ],
+      "ortho_scale": 1.4800000190734863,
+      "layers": {},
+      "hidden_groups": [],
+      "inspection_note": "Original ordinary empty vessels,folded cloth and2enlarged neutral discs; no coin copying"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-back.png",
+      "sha256": "81ca70d6050e884b99c723f365db5136953e32777b9dc290c2c68a7ee0abf0d6",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+      "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "camera": [
+        -1.600000023841858,
+        2.4000000953674316,
+        1.5
+      ],
+      "camera_rotation": [
+        1.118927001953125,
+        2.8314195432699307e-08,
+        -2.5535900592803955
+      ],
+      "ortho_scale": 1.4800000190734863,
+      "layers": {},
+      "hidden_groups": [],
+      "inspection_note": "Original selected life objects and true supported tray; no removable mechanism"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-inner-floors.png",
+      "sha256": "ec1a6a548f6ee620db4ad5f14169f6b997c683d3380bf5e7d2da5156d72b10bc",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+      "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "camera": [
+        0.0,
+        0.019999999552965164,
+        4.0
+      ],
+      "camera_rotation": [
+        0.005123551469296217,
+        4.483160231938399e-10,
+        3.141592502593994
+      ],
+      "ortho_scale": 1.2999999523162842,
+      "layers": {},
+      "hidden_groups": [],
+      "inspection_note": "Actual open ceramic mouths. Dark interior photo alone does not resolve floors; paired geometry rays prove14mm bottoms"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-tray-inner-bottom.png",
+      "sha256": "be7112cbbb7ac21447044ccbe316a0f5f6505d2dae2325e7be6415efa12d0896",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+      "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "camera": [
+        1.100000023841858,
+        -1.7000000476837158,
+        2.5
+      ],
+      "camera_rotation": [
+        0.6546511650085449,
+        8.162464482097675e-09,
+        0.6233339309692383
+      ],
+      "ortho_scale": 0.8600000143051147,
+      "layers": {},
+      "hidden_groups": [
+        "samaria-care-fixed-neutral-disc-1",
+        "samaria-care-fixed-neutral-disc-2"
+      ],
+      "inspection_note": "QA: discs hidden; actual18mm continuous tray floor and15mm walls"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-disc-bottom.png",
+      "sha256": "47f8ca86615d6f4bb1ed2fc6645f89706cb9c8114f284848426e8fc294a601d4",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+      "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "camera": [
+        0.8999999761581421,
+        -1.399999976158142,
+        -1.2999999523162842
+      ],
+      "camera_rotation": [
+        2.2956910133361816,
+        -1.7298585675007416e-08,
+        0.6316906809806824
+      ],
+      "ortho_scale": 0.6000000238418579,
+      "layers": {},
+      "hidden_groups": [],
+      "inspection_note": "QA: all other meshes hidden; complete plain disc bottoms and10mm thick dull edges"
+    },
+    {
+      "image": "/home/garywu/dev/bible-island/.qa/samaria-official/samaria-care-bottom.png",
+      "sha256": "d3b8246652fd647805b860121b52fc142d0aae3820cd59dfdb994cfd6868cdea",
+      "source": "fresh canonical public GLB imported by independent official preview process",
+      "glb": "/home/garywu/dev/bible-island/public/models/samaria-care.glb",
+      "glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "official_source_sha256": "dc4b002f17f5acb6bd2adc766685ec7e9594cee1984cac2ae3f43b0d0918727a",
+      "build_report_glb_sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "camera": [
+        1.2999999523162842,
+        -2.200000047683716,
+        -1.600000023841858
+      ],
+      "camera_rotation": [
+        2.1578257083892822,
+        1.9780964422011493e-08,
+        0.5337083339691162
+      ],
+      "ortho_scale": 1.3700000047683716,
+      "layers": {},
+      "hidden_groups": [
+        "samaria-care-modern-base"
+      ],
+      "inspection_note": "QA: base hidden; actual vessel feet,tray bottom and broad folded-cloth bottom"
+    }
+  ]
+}

@@ -60,9 +60,9 @@ export function personForMode(person, island, mode) {
   const task = learningIslands[island].child.find(t => t.actor === person.id);
   if (!task) return person;
   const stop = themeById.get(island).stops.find(s => s.id === task.stop);
-  return { ...person, greeting: `一起看看「${stop.name}」吧。先找物件，再說說你發現了什麼。`, topics: [{
+  return { ...person, greeting: task.greeting || `一起看看「${stop.name}」吧。先找物件，再說說你發現了什麼。`, topics: [{
     id: `observe-${task.id}`, question: `觀察${stop.name}時，我該注意什麼？`, answer: task.hint,
     reference: stop.reference, passage: stop.reference, stop: stop.id,
-    followup: { question: '可以再給我一個提示嗎？', answer: `${stop.child} 看過之後，回到觀察任務試著回答。` },
+    followup: { question: '可以再給我一個提示嗎？', answer: task.followup || `${stop.child} 看過之後，回到觀察任務試著回答。` },
   }] };
 }

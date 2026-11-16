@@ -365,6 +365,13 @@ try:
 finally:
     globals().pop('GALILEE_OFFICIAL_BUILD',None)
 
+# Samaria is authorised only here; the flag changes this new report metadata only.
+SAMARIA_OFFICIAL_BUILD = True
+try:
+    exec(compile((ROOT/'scripts/blender/samaria-props.py').read_text(),str(ROOT/'scripts/blender/samaria-props.py'),'exec'),globals())
+finally:
+    globals().pop('SAMARIA_OFFICIAL_BUILD',None)
+
 bpy.context.window.scene=scene
 scene.frame_set(1)
 bpy.ops.wm.save_as_mainfile(filepath=str(SOURCE/'bible-assets.blend'),compress=True)

@@ -1525,6 +1525,100 @@
       "runtime_operations": 0,
       "selected_scale": 1,
       "units": "metres; Blender +Z / glTF +Y"
+    },
+    "samaria-jar": {
+      "file": "models/samaria-jar.glb",
+      "bytes": 448600,
+      "sha256": "6b63ac6140b3531b2431ed75a0feabf76617684f8795a31c2a11acdcdc3bb23a",
+      "triangles": 18502,
+      "animations": [],
+      "height": 0.385,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Samaria \u2014 original hollow jar and modern front section",
+      "bottom_m": 0.0,
+      "top_m": 0.38499999046325684,
+      "dimensions_blender_xyz_m": [
+        1.0499999523162842,
+        0.7200000286102295,
+        0.38499999046325684
+      ],
+      "interpretation": "Original modern hollow water-container comparison with selected90mm feet and real rear grip. Not a museum copy,identified Gospel jar,capacity claim or ancient separable vessel. Front half slides on modern base; no breaking or magic water.",
+      "semantic_groups": [
+        "samaria-jar-modern-base",
+        "samaria-jar-modern-front-section",
+        "samaria-jar-fixed-back-and-united-handle"
+      ],
+      "modern_removable_layer": "samaria-jar-modern-front-section",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0,
+        0.16
+      ],
+      "runtime_operations": 1,
+      "units": "metres; BlenderZup / glTFYup"
+    },
+    "samaria-road": {
+      "file": "models/samaria-road.glb",
+      "bytes": 106244,
+      "sha256": "23027b53c112585f73bdbb437173290c348deb1ef1808f4352224ddcdfce1a26",
+      "triangles": 4042,
+      "animations": [],
+      "height": 0.3,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Samaria \u2014 original real slope and neutral reading positions",
+      "bottom_m": 0.0,
+      "top_m": 0.30000001192092896,
+      "dimensions_blender_xyz_m": [
+        1.100000023841858,
+        0.7200000286102295,
+        0.30000001192092896
+      ],
+      "interpretation": "Original modern solid11.309932degree slope with3same-colour neutral positions and material paths. Not an ancient map,measured Jericho road,people/ethnic tokens or rescue game. No removable layer.",
+      "semantic_groups": [
+        "samaria-road-modern-base",
+        "samaria-road-fixed-solid-slope",
+        "samaria-road-fixed-marker-1",
+        "samaria-road-fixed-marker-2",
+        "samaria-road-fixed-marker-3"
+      ],
+      "modern_removable_layer": null,
+      "modern_layer_translation_gltf_xyz_m": null,
+      "runtime_operations": 0,
+      "units": "metres; BlenderZup / glTFYup"
+    },
+    "samaria-care": {
+      "file": "models/samaria-care.glb",
+      "bytes": 601988,
+      "sha256": "b98393227945527df58bd243ba6cc752abd746e48d8c3d813fe3899b453ee773",
+      "triangles": 25100,
+      "animations": [],
+      "height": 0.26,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Samaria \u2014 original ordinary care entrusted discs and continue",
+      "bottom_m": 0.0,
+      "top_m": 0.25999999046325684,
+      "dimensions_blender_xyz_m": [
+        1.100000023841858,
+        0.75,
+        0.25999999046325684
+      ],
+      "interpretation": "Original modern ordinary2empty ceramic containers,folded cloth envelope and2enlarged uninscribed neutral metal discs in a true-bottom tray. Selected functional forms,not Gospel vessels,original coins,medical treatment or a known inn plan. Payment does not define recovery or final return. No removable layer.",
+      "semantic_groups": [
+        "samaria-care-modern-base",
+        "samaria-care-fixed-real-bottom-tray",
+        "samaria-care-fixed-neutral-disc-1",
+        "samaria-care-fixed-neutral-disc-2",
+        "samaria-care-fixed-small-empty-container",
+        "samaria-care-fixed-tall-empty-container",
+        "samaria-care-fixed-folded-cloth"
+      ],
+      "modern_removable_layer": null,
+      "modern_layer_translation_gltf_xyz_m": null,
+      "runtime_operations": 0,
+      "units": "metres; BlenderZup / glTFYup"
     }
   }
 }

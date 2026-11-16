@@ -1,5 +1,8 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'samaria-jar':{type:'object',src:'models/samaria-jar.glb',height:.385,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.1,2],articulation:{part:'samaria-jar-modern-front-section',offset:[0,0,.16],openLabel:'移開現代前半剖面',closeLabel:'還原水罐剖面',note:'原創現代剖示 · 前半沿承盤移開，非古代拆罐或摔罐動作'}},
+  'samaria-road':{type:'object',src:'models/samaria-road.glb',height:.30,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.6,1.9]},
+  'samaria-care':{type:'object',src:'models/samaria-care.glb',height:.26,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.8,1.9]},
   'galilee-hull':{type:'object',src:'models/galilee-hull.glb',height:.45,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.4,1.9],articulation:{part:'galilee-hull-modern-removable-frame',offset:[0,.18,0],openLabel:'抬起曲肋看船殼接觸',closeLabel:'還原船段曲肋',note:'原創局部比較 · 曲肋離開接觸面，仍低於船緣；非原船拆修機構'}},
   'galilee-stones':{type:'object',src:'models/galilee-stones.glb',height:.131,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.9,1.9]},
   'galilee-roof':{type:'object',src:'models/galilee-roof.glb',height:.422,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.3,2.1,2],articulation:{part:'galilee-roof-modern-cutaway-layer',offset:[0,.18,0],openLabel:'抬起屋面看梁與室內',closeLabel:'還原屋面比較層',note:'約1:10原創比較 · 整層抬起為現代剖示，非原宅活動天窗'}},
