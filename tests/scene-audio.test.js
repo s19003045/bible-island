@@ -71,3 +71,10 @@ test('Parables ten moments cancel old speech and select their own chapter ambien
  }
  assert.equal(f.fetched.length,3,'one accepted recording per resident is reused');audio.dispose();
 });
+
+test('Passion ten windows stop former audio, preserve quiet ambience and switch original/child cues',async()=>{
+ const f=fixture(),audio=createSceneAudio();await audio.enable();audio.setActive(true);let prior=null;
+ for(const [chapter,phases,person,position]of [['table',['preparation','meal'],'passion-meal-resident',[-3,-23]],['garden',['prayer','arrest','council','governor','cross'],'passion-journey-resident',[-15,16]],['tomb',['burial','spices','morning'],'passion-tomb-resident',[-5,8]]])for(const phase of phases){
+  audio.setScene('passion',chapter,phase);assert.equal(audio.playing,null);if(prior)assert.equal(prior.stopped,true);assert.ok(f.context.panners.some(p=>p.positionX.value===position[0]&&p.positionZ.value===position[1]));const count=f.context.sources.length;audio.update(new PerspectiveCamera(),[],500000);assert.equal(f.context.sources.length,count,'quiet window has no generic work or celebration effect');await audio.speak(person,'greeting',[3,2,13]);const old=f.context.sources.at(-1),complete=old.onended;await audio.speak(person,'child-greeting',[3,2,13]);assert.equal(old.stopped,true);complete();assert.equal(audio.playing.key,'child-greeting');prior=f.context.sources.at(-1);
+ }assert.equal(f.fetched.length,3);audio.dispose();
+});

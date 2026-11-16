@@ -1,5 +1,8 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'passion-table':{type:'object',src:'models/passion-table.glb',height:.14,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.5,1.9]},
+  'passion-context':{type:'object',src:'models/passion-context.glb',height:.145,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.9,1.9]},
+  'passion-tomb':{type:'object',src:'models/passion-tomb.glb',height:.45,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,1.3,2.2],articulation:{part:'passion-tomb-modern-front-section',offset:[0,0,.18],openLabel:'移開現代前部剖示',closeLabel:'還原墓穴比較剖示',note:'約1:10原創類型比較 · 前部沿現代承盤移開，不是原墓石、古代滑軌或復活原因'}},
   'parables-soil':{type:'object',src:'models/parables-soil.glb',height:.29955,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.4,1.9],articulation:{part:'parables-soil-modern-shallow-layer',offset:[0,.14,0],openLabel:'抬起薄土比較層',closeLabel:'還原薄土剖示',note:'原創現代剖示 · 薄土與幼苗整組抬起，根線為現代材質圖示，非古代機構或原田土深'}},
   'parables-flock':{type:'object',src:'models/parables-flock.glb',height:.09,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,3,1.9]},
   'parables-light':{type:'object',src:'models/parables-light.glb',height:.62,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.5,1.9]},

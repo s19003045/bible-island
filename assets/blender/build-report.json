@@ -2252,6 +2252,126 @@
         0.62
       ],
       "museum_geometry_copied": false
+    },
+    "passion-table": {
+      "file": "models/passion-table.glb",
+      "bytes": 241996,
+      "sha256": "1c4f6c1bf0302d3fccf31e4e6579e151fff2aa1299623b63519a75134ca9bbdd",
+      "triangles": 9696,
+      "animations": [],
+      "height": 0.14000000059604645,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Passion \u2014 original ordinary cup and static bread comparison",
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.800000011920929,
+        0.14000000059604645
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.14000000059604645,
+      "semantic_groups": [
+        "passion-table-modern-base",
+        "passion-table-fixed-cup",
+        "passion-table-fixed-whole-loaf",
+        "passion-table-fixed-broken-piece-a",
+        "passion-table-fixed-broken-piece-b"
+      ],
+      "runtime_operations": 0,
+      "main_layer": null,
+      "translation_gltf_xyz_m": null,
+      "interpretation": "Static original modern whole/broken-bread and ordinary cup comparison. Cup115mm on25mm support gives140mm overall,not an invented pedestal. Whole loaf plus2pieces are parallel teaching display copies,not3simultaneous originalloaves. No sacredcup,Princetonshape copy,menu,seating,ritualgame or modelledliquid.",
+      "units": "metres;BlenderZup/glTFYup"
+    },
+    "passion-context": {
+      "file": "models/passion-context.glb",
+      "bytes": 45548,
+      "sha256": "4d008331dab6c7dd9543bf55bc1ee56f31e487a4c1df0f64af72f0371be2d55b",
+      "triangles": 976,
+      "animations": [],
+      "height": 0.14499999582767487,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Passion \u2014 original separated settings and companions reading ",
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.800000011920929,
+        0.14499999582767487
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.14499999582767487,
+      "semantic_groups": [
+        "passion-context-modern-base",
+        "passion-context-fixed-garden",
+        "passion-context-fixed-night-courtyard",
+        "passion-context-fixed-morning-governor",
+        "passion-context-fixed-field-symbol",
+        "passion-context-fixed-garden-tree-symbol",
+        "passion-context-fixed-garden-three",
+        "passion-context-fixed-garden-separate-one",
+        "passion-context-fixed-courtyard-outline",
+        "passion-context-fixed-governor-outline",
+        "passion-context-fixed-modern-cross-symbol"
+      ],
+      "runtime_operations": 0,
+      "main_layer": null,
+      "translation_gltf_xyz_m": null,
+      "interpretation": "Four separated modern reading patches for garden,nightcouncil,morninggovernor andfield.3samecounters plusseparate1only show selected companion relation;notallpopulation,distanceorancientstations. Plain equal-material silhouettes are modern symbols,notoriginalbuildings,trees,woodjoints,nails,bodyorweapons. No bridges,mapnavigation or executionoperation.",
+      "units": "metres;BlenderZup/glTFYup"
+    },
+    "passion-tomb": {
+      "file": "models/passion-tomb.glb",
+      "bytes": 221428,
+      "sha256": "65ccec4131b339b681b0a5c9a35f83660c44e35a7c516871feb236417c21961e",
+      "triangles": 4516,
+      "animations": [],
+      "height": 0.44999998807907104,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Passion \u2014 non-located original chamber and modern front disse",
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.800000011920929,
+        0.44999998807907104
+      ],
+      "bottom_m": 0.0,
+      "top_m": 0.44999998807907104,
+      "semantic_groups": [
+        "passion-tomb-modern-floor-base",
+        "passion-tomb-fixed-left-rock",
+        "passion-tomb-fixed-right-rock",
+        "passion-tomb-fixed-back-rock",
+        "passion-tomb-fixed-roof-rock",
+        "passion-tomb-fixed-side-platform",
+        "passion-tomb-modern-front-section"
+      ],
+      "runtime_operations": 1,
+      "main_layer": "passion-tomb-modern-front-section",
+      "translation_gltf_xyz_m": [
+        0,
+        0,
+        0.18
+      ],
+      "interpretation": "Original non-located approx1:10modern chamber comparison,not originaltombengineering. Continuous35mm modern support doublesas real innerfloor;nominal50mm shell,emptyplatform andtrue224x230mm portal. ModernUfront movesZ+.18onfloorwith10mmfrontmargin;fixedside/backwalls independently supportroof. Never a rollingstone,groove,hinge,sealingdoor or causeofresurrection. No body,bones,nails,ossuaryorborrowedgravecloth.",
+      "units": "metres;BlenderZup/glTFYup",
+      "selected_body_dimensions_m": [
+        0.8,
+        0.6,
+        0.45
+      ],
+      "selected_clear_chamber_x_y_z_m": [
+        0.7,
+        0.365,
+        0.5
+      ],
+      "selected_clear_portal_width_height_m": [
+        0.224,
+        0.23
+      ],
+      "modern_continuous_floor_thickness_m": 0.035,
+      "selected_open_front_margin_m": 0.01,
+      "nominal_shell_thickness_m": 0.05,
+      "required_sampled_min_shell_thickness_m": 0.04
     }
   }
 }

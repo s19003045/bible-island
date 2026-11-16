@@ -10,6 +10,7 @@ export const residentClothingEvidence={
     limits:'沿用歸回敘事的普通衣裝類型；袖形、披布、髮型與衣色為教學選擇，不認證波斯時期制服。無名角色不是尼希米或以斯拉肖像，人物數量不表示人口比例或經文人名清單。',
     sources:[{title:'尼希米記 2:11–16；3:1–32；8:1–12',...scriptureSource('Nehemiah 2:11-16;3:1-32;8:1-12'),note:'少數人夜察、不同群體修建及能聽明白者聚集，不能當成完整服裝裁縫圖。'}],
   },
+  passion:roman,
   parables:roman,
   samaria:roman,
   galilee:roman,
