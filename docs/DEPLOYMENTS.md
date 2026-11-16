@@ -46,3 +46,14 @@
 - 104 項測試、內容／語法、正式建置與離線封裝通過；三件會幕觀察物及近景共用 GLB。板座拆合、方向鍵、手機尺寸與史料界線說明已在本機操作，見 [會幕器具驗收](review/BLENDER-TABERNACLE.md)。
 - 正式頁已取得新 `index-CU7PYsbh.js`，由探索點清單檢視新洗濯盆本體，console error／warning 為空；截圖 `.qa/tabernacle-basin-sites.png`。
 - 保留既有擁有者私人權限。此版已有五件 Blender 觀察物；其他九件、人物細化與十九座詳細島嶼仍待接續。
+
+## 2026-11-16：所羅門 Blender 器具與近景資源重用
+
+- 本機來源：`d02245f`，與 Sites 來源逐檔比對，共 137 個追蹤檔案。
+- Sites source commit：`7c8ecad5dd53f91a0026332a8b720c5ac1783330`。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_c590b3aa92088191ace9432d0c364ef7`。
+- Deployment：`appgdep_6afa6aab8994819183c74a236d966213`。
+- 平台結果：`succeeded`，`2026-11-16T02:30:22.173894+00:00`。
+- 111 項測試、內容／語法、正式建置與離線封裝通過；所羅門三件觀察物以及場景銅海／兩座大柱頂共用 GLB。近景拆合、背景暫停／恢復及重開時 renderer 重用均已在本機實際操作，見 [所羅門器具驗收](review/BLENDER-SOLOMON.md)。
+- 正式頁已重新載入，DOM 取得新 `index-D4VKyUMe.js`；選擇銅海探索點後，可見新盆體、牛座及後方兩座柱頂，導讀與 CSBT 連結仍可操作，console error／warning 為空。截圖 `.qa/solomon-sea-sites.png`，拍攝後已恢復名稱顯示。
+- 保留既有擁有者私人權限。此版已有八件 Blender 觀察物；希律／出埃及六件、人物細化與十九座詳細島嶼仍待接續。
