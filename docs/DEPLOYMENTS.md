@@ -413,3 +413,11 @@
 - 三章十窗口／七場域，每窗13獨立POI居民，三件正式Blender及24cue配音。全站95GLB／69MP3／66角色／528cue，原92GLB bytes及report條目保留；詳見[第22島驗收](review/PASSION-CHAPTERS.md)。本機三件都已沿路／E／旋轉及1／1，墓穴另移還前部剖示；三模式前置、親子播放及進度隔離通過。正式頁hash初仍用第36版，已明確reload並讀到`index-SZzS5_W8.js`；正式沿路及模式操作接續記錄。其餘church／letters及歷史人工待辦仍屬active總Goal。
 
 - 第37版人工追加：正式三教具都已沿路抵達／E開啟／旋轉／關閉及各1／1，墓穴前部另移還；親子觀察前置及1／3、研讀資料前置及1／3、一般故事0／3隔離核對，一般及親子錄音皆實見播放中。最後一般／table preparation全景、動畫開、交談與行走結束，warning／error=[]。正式墓穴截圖有既有右側裁切限制。第16島正式分工盤／木臺兩件待辦也已完成，逐件結果追加尼希米驗收；未追稱早期即已完成。
+
+## 2026-11-17：聚集、日常與安提阿，第二十三座詳細島（第38版）
+
+- root來源`b36a7566d6a3ce8696f0f48e78f676a8ed06fbd6`；Sites來源`e80a592346cac9c5200477d12cb76022c8fd6fe7`。505追蹤來源逐檔相同、node_modules連結保留；第24島當時未追蹤，未納此版。
+- 同一owner-private專案，owner／custom單一使用者、0群組／0外部訪客不變。第38版`appgprj_6af95ea0dac4819182957156725483aa~appgver_b7ed50ac84208191afef78ae8ac4d541`；部署`appgdep_6afb773cef648191aa7353868b993eef`於`2026-11-16T21:36:14.449172+00:00`終態succeeded，未poll終態或重發。平台source SHA相符。
+- [正式入口](https://bible-island.starryswift8.chatgpt.site/#island=church)。封裝`/tmp/bible-island-b36a756-church-sites.tar.gz`，116516312bytes，SHA256 `c9686c65f2a0e85bfed832770c9b9ae7b3fdd0cbe05a29c2b8f2cc431b04637f`；平台178內容檔／163102720bytes，內容hash `267b86746fd8b147cdd29f26c1c2cdbbe0a881606dc7d0317edc3c569f5c09d1`。
+- 同源建置132模組／1.69s，入口index-Cq-EbWL_.js、world-DQHUfVhm.js、vessels-DLsYcpv2.js、three-o24aeEZ1.js、CSS index-zmRD_4cI.css；保留既有大chunk提示。48檔309測試、check及214307KiB離線包通過。98GLB／72MP3／69角色／552cue；舊95GLB及報告條目保留。
+- 正式reload核對入口，三教具皆沿路／E／旋轉／各1／1，屋頂另移還；親子及研讀前置與各1／3、一般0／3、一般與親子錄音播放中已實測，最後全景無行走／交談／modal，warning／error=[]。證據、歷史界線及人工驗證限度見[第23島驗收](review/CHURCH-CHAPTERS.md)。尚有第24島與總Goal最後整體核對。
