@@ -260,3 +260,15 @@
 - 正式入口 `index-B8yNSFqx.js` 已經由DOM核對，world `world-B6HKSx60.js`、vessels `vessels-BBvNAIOM.js`、three `three-CKWGyh1c.js`。Three.js大於500kB的建置提示仍在，沒有宣稱實體手機FPS已驗收。
 - 正式對話／模式／配音及全景結果見 [路得驗收](review/RUTH-VILLAGE.md)。獨立歷史專家審稿、完整真人聽驗與實體裝置驗收及其他十二島仍保留在完整Goal範圍。
 - 正式田邊Blender人物、追問與一般／親子配音已實際確認播放狀態，三章切換正確清除舊對話；六簸箕與親屬問題的多段CSBT連結已核對。親子第三題仍未解鎖、0／3。正式恢復一般閱讀／第一章全景及自主動畫，console warning／error為空；`.qa/ruth-field-final-sites.png` 已檢視，本機保留研讀全景。詳見路得驗收的完整界線。
+
+
+## 2026-11-16：撒母耳與大衛三章及約櫃四時刻
+
+- 本機來源：`dc7438ce956f74bed999d0978219453bef18e8aa`，與 Sites 來源逐檔位元組比對，共317個追蹤檔案。
+- Sites source commit：`4c2d6a84234c42c1be6d8668a1955f2593c65795`。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_8a7bc47e6af88191b852a9c4fd94b005`。
+- Deployment：`appgdep_6afaf42affa481918adfd539847ef88e`。
+- 平台結果：`succeeded`，`2026-11-16T12:16:59.682948+00:00`。
+- 201／201測試、內容／語法檢查、正式建置及單檔試閱通過。91模組建置1.68s，入口 `index-Cmwk0w92.js`；Three主chunk仍有既有500kB提示。
+- 第十三座依牧地、王城、遷移與安放分章；約櫃另有四個互斥時刻，URL、場景、近景與音訊同步。三位角色24段配音、三件新Blender教具與獨立POI動態羊群接入。正式來源68個非空場景、28人類骨架及另1羊骨架，詳見 [大衛驗收](review/DAVID-CHAPTERS.md)。
+- 原擁有者私人分享範圍保留，沒有新建Site或擴大受眾。發布後瀏覽器結果接續追加；尚餘十一座詳細島與人工補驗，總Goal保持進行中。
