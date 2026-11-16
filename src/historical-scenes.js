@@ -393,9 +393,7 @@ function solomon(k,roof,height) {
   for(const z of [-3.4,3.4]) {
     const x=front+6.2,base=1.3,r=5.4/(2*Math.PI);
     k.cyl('bronze',x,base+dim.pillar/2,z,r,dim.pillar);
-    k.part('bowl','bronze',x,base+dim.pillar+dim.capital/2,z,r*2.8,dim.capital,r*2.8);
-    for(let row=0;row<2;row++) for(let n=0;n<100;n++) { const a=(n+row*.5)/100*Math.PI*2; k.ball('bronze',x+Math.cos(a)*r*1.2,base+dim.pillar+.45+row*.2,z+Math.sin(a)*r*1.2,.064); }
-    for(let n=0;n<4;n++) k.part('ring','bronze',x,base+dim.pillar+.2+n*.25,z,r*2.6,r*2.6,r*2.6,Math.PI/2);
+    // Capitals are mounted below from the same asset as the teaching close-up.
   }
   // Sea is added below from the same continuous bowl / twelve-ox model as its teaching close-up.
   altar(k,24,.3,-2,9,4.5,9); // 2 Chronicles 4:1; dimensions do not derive from Kings.
@@ -626,20 +624,24 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
     }
   }
   if(id==='solomon') {
-    const sea=createVessel('solomon-sea');sea.scale.setScalar(5);sea.position.set(22,.3,12);scene.add(sea);
+    const sea=createVessel('solomon-sea',{blenderAssets,onReady:assetsChanged,assetLoader});sea.scale.setScalar(5);sea.position.set(22,.3,12);scene.add(sea);
+    for(const z of [-3.4,3.4]){
+      const capital=createVessel('pillar-capital',{blenderAssets,onReady:assetsChanged,assetLoader});capital.name=`solomon-full-capital:${z}`;
+      const scale=dimensions.solomon.capital/.60;capital.scale.setScalar(scale);capital.position.set(14.2,1.3+dimensions.solomon.pillar-.20*scale,z);scene.add(capital);
+    }
     k.collisionBoxes.push(...roof.collisionBoxes,
       {min:[19.6,.3,9.6],max:[24.4,3.8,14.4]},
       {min:[-22,-.1,-8.3],max:[12.5,16,8.3]}, // Inner building stays observation-only, including in cutaway view.
       {min:[19.5,.3,-6.6],max:[29.5,5,2.6]}, // Ritual altar and its illustrative steps are not a public route.
       {min:[31.25,.3,-12.6],max:[32.75,1.85,-11.4]},
-      {min:[13.5,1.3,-.6],max:[14.7,2.85,.6]});
+      {min:[13.5,1.3,-.6],max:[14.7,2.95,.6]});
     // Four rendered risers, separate from the continuous collision ramp.
     for(let i=0;i<4;i++) {
       const top=.31+(i+1)*.2475,mesh=new THREE.Mesh(new THREE.BoxGeometry(.5,top,4.4),p.stone);
       mesh.name=`solomon-court-tread-${i}`;mesh.position.set(18.25-i*.5,top/2,0);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.collisionProxy='solomon-court-flight';scene.add(mesh);
     }
     walkModel=createWalkModel(k.collisionBoxes,solomonSurfaces,solomonFloor,{proxies:solomonProxies});
-    for(const definition of solomonObjects){let root=null;if(!definition.sceneOnly){root=createVessel(definition.id);root.position.fromArray(definition.position);scene.add(root);}objects.push({...definition,root});}
+    for(const definition of solomonObjects){let root=sea;if(!definition.sceneOnly){root=createVessel(definition.id,{blenderAssets,onReady:assetsChanged,assetLoader});root.position.fromArray(definition.position);scene.add(root);}objects.push({...definition,root});}
   }
   if(id==='herod'){
     k.collisionBoxes.push(...roof.collisionBoxes);

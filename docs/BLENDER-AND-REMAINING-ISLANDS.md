@@ -7,7 +7,8 @@
 - 五島版本已部署到原 Sites 網址，見 [部署紀錄](DEPLOYMENTS.md)。
 - 群山／流雲版已實作並發佈至 Sites，96 項回歸與本機／正式頁瀏覽器驗收完成；見 [山景試閱](review/ATLAS-MOUNTAINS.md) 與 [部署紀錄](DEPLOYMENTS.md)。
 - Blender 官方 4.5.16 LTS 已校驗、啟動，首批已實際製作並保存 `.blend`／GLB，且已發佈至 Sites：耶路撒冷一般成人居民與陶罐、石器兩件觀察物，見 [素材來源與限制](../assets/blender/README.md) 與 [部署紀錄](DEPLOYMENTS.md)。NPC 尚有風格化特徵，其他年代／職分、搬水持物與孩童尚未完成；下表十九島仍待升級。
-- 第二批會幕三件觀察物（織線、板座與洗濯盆）已實際製作並發佈至 Sites，場景／近景共用 GLB，並加入雙銀座拆合與全方向取景。現有十四項觀察物已有五項 Blender 替換；接續所羅門三項，再處理希律三項、出埃及三項，共九項。實際發佈與瀏覽器驗收見 [部署紀錄](DEPLOYMENTS.md) 及 [會幕器具驗收](review/BLENDER-TABERNACLE.md)。
+- 第二批會幕三件觀察物（織線、板座與洗濯盆）已實際製作並發佈至 Sites，場景／近景共用 GLB，並加入雙銀座拆合與全方向取景。該批使十四項觀察物達到五項 Blender 替換；其後接續所羅門、希律與出埃及。實際發佈與瀏覽器驗收見 [部署紀錄](DEPLOYMENTS.md) 及 [會幕器具驗收](review/BLENDER-TABERNACLE.md)。
+- 第三批所羅門三件已製作並接入本機，包括實際銅海與兩座大柱頂；石木覆面可以拆合。現有十四項觀察物已有八項 Blender 替換，其餘希律／出埃及共六項待完成。近景改為重用 WebGL／反射資源，彈窗期間暫停背景 3D。這一批的驗收與發佈結果另見 [所羅門素材驗收](review/BLENDER-SOLOMON.md) 和部署紀錄。
 
 ## Blender 的交付條件
 

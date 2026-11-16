@@ -2,7 +2,17 @@ import * as THREE from 'three';
 import {attachBlenderObject} from './blender-assets.js';
 import {blenderModels} from './blender-manifest.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {artifactFraming,setBoardSeparation} from './artifact-inspection.js';
+import {artifactFraming,setArtifactSeparation} from './artifact-inspection.js';
+import {createInspectionRuntime} from './inspection-runtime.js';
+
+const inspectionRuntime=createInspectionRuntime(generation=>{
+  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor('#e8e6d9',1);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.domElement.dataset.rendererGeneration=String(generation);
+  const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment(),environment=pmrem.fromScene(room,.04);room.dispose();pmrem.dispose();
+  return {renderer,environment,dispose(){environment.dispose();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();}};
+});
+export function disposeVesselViewerResources(){inspectionRuntime.dispose();}
 export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader}={}) {
   const root=createProceduralVessel(id);
   root.userData.objectId=id;root.name=`observation:${id}`;
@@ -77,7 +87,7 @@ function createSolomonObject(id) {
   const sphere=new THREE.SphereGeometry(1,12,8);
   if(id==='pillar-capital') {
     add(new THREE.CylinderGeometry(.14,.15,.2,32),bronze,0,.1,0);
-    add(new THREE.LatheGeometry([[.13,.18],[.23,.26],[.3,.39],[.24,.5],[.17,.58],[.31,.76]].map(p=>new THREE.Vector2(...p)),48),bronze,0,0,0);
+    add(new THREE.LatheGeometry([[.23,.18],[.23,.20],[.3,.31],[.3,.39],[.24,.5],[.17,.58],[.34,.80]].map(p=>new THREE.Vector2(...p)),48),bronze,0,0,0);
     for(const y of [.3,.4,.5]){const ring=add(new THREE.TorusGeometry(.265,.008,6,64),bronze,0,y,0);ring.rotation.x=Math.PI/2;}
     const fruit=new THREE.InstancedMesh(sphere,bronze,200),transform=new THREE.Object3D();group.add(fruit);
     for(let row=0;row<2;row++)for(let n=0;n<100;n++){
@@ -96,8 +106,9 @@ function createSolomonObject(id) {
     const water=add(new THREE.CircleGeometry(.405,64),new THREE.MeshStandardMaterial({color:'#5e7b77',roughness:.25,transparent:true,opacity:.7,side:THREE.DoubleSide}),0,.66,0);water.rotation.x=-Math.PI/2;
   } else {
     for(let row=0;row<2;row++)for(let n=0;n<3;n++)box(.255,.2,.25,-.27+n*.27+(row?.06:0),.1+row*.205,0,stone);
-    for(let n=0;n<5;n++)box(.15,.6,.035,-.3+n*.155,.3,-.17,cedar);
-    for(const y of [.07,.52])box(.84,.045,.045,0,y,-.21,cedar);
+    const facing=new THREE.Group();facing.name='cedar-facing';group.add(facing);
+    for(let n=0;n<5;n++)facing.add(box(.15,.6,.035,-.3+n*.155,.3,.17,cedar));
+    for(const y of [.07,.52])facing.add(box(.84,.045,.045,0,y,.21,cedar));
   }
   group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});group.userData.objectId=id;return group;
 }
@@ -130,22 +141,25 @@ function createCraftObject(id) {
   group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.userData.objectId=id;}});return group;
 }
 export function mountVesselViewer(container,id) {
-  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(container.clientWidth||300,container.clientHeight||280);renderer.setClearColor('#e8e6d9',1);renderer.outputColorSpace=THREE.SRGBColorSpace;
-  renderer.toneMapping=THREE.ACESFilmicToneMapping;
-  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,(container.clientWidth||300)/(container.clientHeight||280),.01,10);
-  const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment(),environment=pmrem.fromScene(room,.04);room.dispose();pmrem.dispose();scene.environment=environment.texture;scene.environmentIntensity=.65;
+  let object=null,scene=null,observer=null,canvas=null,disposed=false;
+  const lease=inspectionRuntime.acquire(()=>cleanup());
+  const {renderer,environment}=lease.resource;renderer.setSize(container.clientWidth||300,container.clientHeight||280);
+  scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(35,(container.clientWidth||300)/(container.clientHeight||280),.01,10);
+  scene.environment=environment.texture;scene.environmentIntensity=.65;
   scene.add(new THREE.HemisphereLight('#fff9e7','#665340',2.5));const light=new THREE.DirectionalLight('#ffffff',3);light.position.set(2,3,2);scene.add(light);
-  const vessel=new THREE.Group();let exploded=false;
-  const object=createVessel(id,{blenderAssets:true,onReady:()=>{setBoardSeparation(object,exploded ? .18 : 0);fit();render();}});vessel.add(object);scene.add(vessel);container.appendChild(renderer.domElement);const canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','可旋轉的器物近景；拖曳或按上下左右方向鍵觀察');let drag=null;
+  const vessel=new THREE.Group(),articulation=blenderModels[id]?.articulation;let exploded=false;
+  object=createVessel(id,{blenderAssets:true,onReady:()=>{separate();fit();render();}});vessel.add(object);scene.add(vessel);container.appendChild(renderer.domElement);canvas=renderer.domElement;canvas.tabIndex=0;canvas.setAttribute('aria-label','可旋轉的器物近景；拖曳或按上下左右方向鍵觀察');let drag=null;
+  function separate(){if(articulation)setArtifactSeparation(object,articulation.part,exploded?articulation.offset:[0,0,0]);}
   function fit(){
     const rotation=vessel.rotation.clone();vessel.rotation.set(0,0,0);object.position.set(0,0,0);scene.updateMatrixWorld(true);
     const framing=artifactFraming(new THREE.Box3().setFromObject(object),camera.aspect,camera.fov);
     object.position.copy(framing.center).negate();vessel.rotation.copy(rotation);
     camera.position.set(1.15,.9,1.35).normalize().multiplyScalar(framing.distance);camera.far=Math.max(10,framing.distance+framing.radius*3);camera.lookAt(0,0,0);camera.updateProjectionMatrix();
   }
-  function render(){renderer.render(scene,camera);}function down(e){drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);canvas.focus();}function move(e){if(drag?.id!==e.pointerId)return;vessel.rotation.y+=(e.clientX-drag.x)*.012;vessel.rotation.x=THREE.MathUtils.clamp(vessel.rotation.x+(e.clientY-drag.y)*.006,-1.2,1.2);drag.x=e.clientX;drag.y=e.clientY;render();}const up=()=>drag=null;
+  function render(){if(!disposed)renderer.render(scene,camera);}function down(e){drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);canvas.focus();}function move(e){if(drag?.id!==e.pointerId)return;vessel.rotation.y+=(e.clientX-drag.x)*.012;vessel.rotation.x=THREE.MathUtils.clamp(vessel.rotation.x+(e.clientY-drag.y)*.006,-1.2,1.2);drag.x=e.clientX;drag.y=e.clientY;render();}function up(){drag=null;}
   function key(e){if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();if(e.key==='ArrowLeft'||e.key==='ArrowRight')vessel.rotation.y+=(e.key==='ArrowLeft'?1:-1)*.18;else vessel.rotation.x=THREE.MathUtils.clamp(vessel.rotation.x+(e.key==='ArrowUp'?1:-1)*.15,-1.2,1.2);render();}}
   canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);canvas.addEventListener('keydown',key);
-  const observer=new ResizeObserver(()=>{const width=container.clientWidth,height=container.clientHeight||280;if(!width)return;renderer.setSize(width,height);camera.aspect=width/height;fit();render();});observer.observe(container);fit();render();
-  return {rotate(amount){vessel.rotation.y+=amount;render();},setExploded(value){exploded=!!value;setBoardSeparation(object,exploded ? .18 : 0);fit();render();},dispose(){object.userData.releaseBlender?.();observer.disconnect();scene.traverse(o=>{if(o.userData.blenderShared)return;o.geometry?.dispose();if(o.material)o.material.dispose();});environment.dispose();renderer.dispose();canvas.remove();}};
+  observer=new ResizeObserver(()=>{const width=container.clientWidth,height=container.clientHeight||280;if(disposed||!width)return;renderer.setSize(width,height);camera.aspect=width/height;fit();render();});observer.observe(container);fit();render();
+  function cleanup(){if(disposed)return;disposed=true;object?.userData.releaseBlender?.();observer?.disconnect();canvas?.removeEventListener('pointerdown',down);canvas?.removeEventListener('pointermove',move);canvas?.removeEventListener('pointerup',up);canvas?.removeEventListener('pointercancel',up);canvas?.removeEventListener('keydown',key);scene?.traverse(o=>{if(o.userData.blenderShared)return;o.geometry?.dispose();if(o.material)o.material.dispose();});canvas?.remove();renderer.renderLists.dispose();}
+  return {rotate(amount){vessel.rotation.y+=amount;render();},setExploded(value){exploded=!!value;separate();fit();render();},dispose(){lease.release();}};
 }

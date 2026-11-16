@@ -4,6 +4,7 @@ import { themes, themeById } from './content.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { createHistoricalScene } from './historical-scenes.js';
 import {disposeBlenderAssets} from './blender-assets.js';
+import {disposeVesselViewerResources} from './vessels.js';
 import { historicalScenes } from './historical-data.js';
 import { peopleByIsland } from './people-data.js';
 import {createWalkControls} from './walk-controls.js';
@@ -351,6 +352,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   let hotspots = [], selected = null, selectedStop = null, cutaway = false, showLabels = true, showConnections = true, paused = reduced.matches;
   let atlasJourney='all',atlasFocus=null,atlasRoute=null,atlasFlight=null;
   let visibleIds = new Set(themes.map(t => t.id)), fly = null, raf, elapsed = 0, last = 0, dirty = true, hidden = false;
+  let modalOpen=false,modalSince=0;
   let frameSum = 0, frameCount = 0, lastAdapt = 0, pixelRatio = renderer.getPixelRatio();
   const v = new THREE.Vector3(), ray = new THREE.Raycaster(), pointer = new THREE.Vector2(); let down = null;
   function updateNetwork(){network.update({journey:atlasJourney,focus:atlasFocus,routeId:atlasRoute,ids:visibleIds,enabled:showConnections});for(const b of boats)if(b.userData.routeId)b.visible=!!network.records.get(b.userData.routeId)?.group.visible;}
@@ -580,7 +582,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   }
   function interactWalk() {const n=nearby();if(!n)return;interactionTarget=null;if(n.type==='person')onActor?.(n.id);else onInspect?.(n.id);}
   function animate(now) {
-    raf = requestAnimationFrame(animate); if (hidden) return;
+    raf = requestAnimationFrame(animate); if (hidden||modalOpen) {last=now;return;}
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
     if(!activeHistorical){if(!paused){elapsed+=dt;dirty=true;}ocean.update(elapsed,nightMode,camera);boats.forEach((b,i)=>{if(b.userData.routeId){const curve=network.curve(b.userData.routeId),t=(elapsed*.014+b.userData.routeOffset)%1,p=curve.getPoint(t),d=curve.getTangent(t);b.position.set(p.x,.15,p.z);b.rotation.y=Math.atan2(d.x,d.z);}b.rotation.z=Math.sin(elapsed*.8+i)*.025;b.rotation.x=Math.cos(elapsed*.6+i)*.02;});}
     if(activeHistorical && !paused) {
@@ -639,6 +641,11 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     interactWalk,
     stopWalkRoute(){autoGoal=null;walk.cancelRoute();},
     blockWalk(value){if(value)autoGoal=null;walk.block(value);},
+    setModalOpen(value){
+      const now=performance.now();
+      if(value&&!modalOpen){modalOpen=true;modalSince=now;}
+      else if(!value&&modalOpen){const duration=now-modalSince;if(fly)fly.start+=duration;if(atlasFlight)atlasFlight.start+=duration;modalOpen=false;last=now;dirty=true;}
+    },
     walkAxis(x,z){autoGoal=null;walk.setAxis(x,z);},walkTurn(value){walk.setTurn(value);},
     lockWalk(){walk.lock();},
     converse(id) {
@@ -673,6 +680,6 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     zoom(amount) {cancelAtlasFlight();if(!activeHistorical)onAtlasInteract();fly = null; const off = camera.position.clone().sub(controls.target); const distance = THREE.MathUtils.clamp(off.length() * amount, controls.minDistance, controls.maxDistance); camera.position.copy(controls.target).add(off.setLength(distance)); controls.update(); dirty = true; },
     topView() { if (activeHistorical) { activeView='plan'; controls.maxPolarAngle=Math.PI/2-.018; const c = activeHistorical.config; focus(new THREE.Vector3(...c.target),new THREE.Vector3(.1,c.plan,.1)); return; } const target=selected?new THREE.Vector3(selected.position[0],.2,selected.position[1]):new THREE.Vector3(0,0,4);focus(target,new THREE.Vector3(.1,selected?18:120,4)); },
     getStats() { return { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, pixelRatio, selected: selected?.id, stop: selectedStop, historical: !!activeHistorical }; },
-    dispose() { cancelAnimationFrame(raf);walk.dispose();observer.disconnect();controls.dispose(); document.removeEventListener('visibilitychange', onVisibility); historicalCache.forEach(s => s.dispose());void disposeBlenderAssets();ocean.dispose();network.dispose();environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
+    dispose() { cancelAnimationFrame(raf);walk.dispose();observer.disconnect();controls.dispose(); document.removeEventListener('visibilitychange', onVisibility);disposeVesselViewerResources();historicalCache.forEach(s => s.dispose());void disposeBlenderAssets();ocean.dispose();network.dispose();environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
   };
 }

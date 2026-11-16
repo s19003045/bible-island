@@ -33,13 +33,13 @@ export const solomonPOIs=[
 ];
 export const solomonObjects=[
   {id:'pillar-capital',name:'柱頂與石榴教學模型',position:[14.1,2.1,0],approach:[16,1.3,.8],lookAt:[14.1,2.5,.3],stop:'pillars',
-    description:'這是院中陳列的縮小教學模型，方便旋轉看柱頂、網子與石榴的關係；並非移下原柱頂。經文列出構件，具體花紋與組裝方式仍有復原取捨。',
+    description:'院中教具呈現百合花式柱頂、交錯網飾與兩排石榴，並非移下原柱頂。教具依列王紀上 7:20 採兩排共兩百顆的配置；花瓣、鏈條路徑與組裝方式是復原選擇，不是出土原物的複製。',
     observation:'先向上比較真人與銅柱的尺度，再看近景。哪些構件有文字依據？哪些曲線是模型的補足？',passage:'1 Kings 7:15-22'},
   {id:'solomon-sea',name:'銅海與十二牛座',position:[22,2.625,12],approach:[22,.31,14.9],lookAt:[22,2.8,14.2],viewTarget:[22,1.7,12],stop:'sea',sceneOnly:true,
-    description:'近景以縮小模型展示銅海和十二隻牛，每三隻朝向一方。盆的曲線與牛的造型屬教學復原；不是會幕的洗濯盆，也不是可以拿起來的日用器皿。',
+    description:'近景縮小展示銅海和十二隻鑄牛，每三隻朝向一方，後身向內。場景盆體依十肘直徑、五肘盆高及本專案一肘 0.45 m 的選擇建模；牛座高度、牛形與盆曲線仍屬復原。不要把盆高與包含牛座的總高混為一談。這不是會幕洗濯盆或可拿起的日用器皿。',
     observation:'旋轉數四個方向的牛，再比較會幕洗濯盆。列王紀記載的形制，與歷代志說明的用途有何關聯？',passage:'1 Kings 7:23-26;2 Chronicles 4:6;Exodus 30:17-21'},
   {id:'temple-masonry',name:'石材與香柏木構造示意',position:[32,1.06,-12],approach:[32,.31,-10.1],lookAt:[32,1.4,-11.8],stop:'sanctuary',
-    description:'分開展示石砌外部與木材覆面的關係。經文提到石頭預先加工與香柏木覆面；此處接口、尺寸與工作桌都是教學安排，並非出土構件。',
+    description:'以局部剖面比較預先加工的石材背體與香柏木內襯。木覆面可暫時分開觀察，並非古人把內襯留成這樣；石塊排法、接縫、木紋、接口與陳列桌均為教學安排，不是出土構件或完整殿牆的等比復原。',
     observation:'對照會幕可搬動的板架：固定殿宇的石材、木材與覆面，怎樣改變空間及搬運方式？',passage:'1 Kings 6:7-18;Exodus 26:15-30'},
 ];
 export function solomonAllowed(agent,p){

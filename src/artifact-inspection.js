@@ -8,11 +8,12 @@ export function artifactFraming(bounds,aspect=1,fov=35) {
   return {center,radius,distance:radius/Math.sin(Math.min(vertical,horizontal))*1.08};
 }
 
-export function setBoardSeparation(root,amount=0) {
-  const part=root.getObjectByName('joint-board');if(!part?.parent)return false;
+export function setArtifactSeparation(root,partName,offset) {
+  const part=root.getObjectByName(partName);if(!part?.parent)return false;
   part.userData.assembledPosition ||= part.position.toArray();
   root.updateWorldMatrix(true,true);
-  const up=new THREE.Vector3(0,1,0).transformDirection(root.matrixWorld);
-  const destination=part.parent.localToWorld(new THREE.Vector3(...part.userData.assembledPosition)).addScaledVector(up,THREE.MathUtils.clamp(amount,0,.20));
+  const translation=new THREE.Vector3(...offset).applyQuaternion(root.getWorldQuaternion(new THREE.Quaternion()));
+  const destination=part.parent.localToWorld(new THREE.Vector3(...part.userData.assembledPosition)).add(translation);
   part.position.copy(part.parent.worldToLocal(destination));part.updateMatrixWorld(true);return true;
 }
+export function setBoardSeparation(root,amount=0){return setArtifactSeparation(root,'joint-board',[0,THREE.MathUtils.clamp(amount,0,.20),0]);}

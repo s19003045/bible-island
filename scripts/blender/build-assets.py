@@ -310,6 +310,7 @@ for j in range(28):
 export_asset(stone_scene,'stone-vessel','stone-vessel.glb')
 
 exec(compile((ROOT/'scripts/blender/tabernacle-props.py').read_text(),str(ROOT/'scripts/blender/tabernacle-props.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/solomon-props.py').read_text(),str(ROOT/'scripts/blender/solomon-props.py'),'exec'),globals())
 
 bpy.context.window.scene=scene
 scene.frame_set(1)
@@ -334,4 +335,7 @@ render_preview(pot_scene,(0,0,.27),(1.4,-2,1.3),'blender-clay-vessel.png',.75)
 render_preview(woven_scene,(0,0,.37),(1.4,-4,1.7),'blender-woven-sample.png',1.5)
 render_preview(joint_scene,(0,0,.42),(1.8,-4,1.8),'blender-board-joint.png',1.03)
 render_preview(basin_scene,(0,0,.65),(2.5,-4,3.4),'blender-tabernacle-basin.png',1.62)
+render_preview(sea_scene,(0,0,.35),(2.3,-3,1.8),'blender-solomon-sea.png',1.35)
+render_preview(capital_scene,(0,0,.40),(2,-4,1.7),'blender-pillar-capital.png',1.12)
+render_preview(masonry_scene,(0,0,.30),(1.6,-3,1.5),'blender-temple-masonry.png',1.30)
 print('BIBLE_ASSETS_COMPLETE',json.dumps(report))

@@ -7,6 +7,7 @@ import { readProgress, writeProgress, markStop, getTourStep } from './progress.j
 import { icon } from './icons.js';
 import { scriptureReading, scriptureReferences, sourceMarkup } from './scripture-ui.js';
 import { historicalScenes } from './historical-data.js';
+import {blenderModels} from './blender-manifest.js';
 import { personById } from './people-data.js';
 import { peopleMarkup } from './people-ui.js';
 import {walkEntry,walkMarkup} from './walk-ui.js';
@@ -417,11 +418,11 @@ async function openVessel(id) {
   const definitions=currentExploration()?.objects||[],definition=definitions.find(v=>v.id===id);
   if(!definition||!state.walking||!world?.canInspect(id))return;
   recordMission({type:'inspect',id});state.explorationSeen=observeObject(state.explorationSeen,state.selected,id);writeExploration(storage,state.explorationSeen);renderWalk();
-  const teaching=currentExploration()?.teachingInspection;
-  openModal(`<h2 id="modal-title">${definition.name}<span>${teaching?'教學近景 · 旋轉觀察，核對經文':'拿在手中，慢慢觀察'}</span></h2>${!teaching?`<div class="vessel-tabs" role="group" aria-label="比較器皿">${definitions.map(v=>`<button data-vessel="${v.id}" aria-pressed="${v.id===id}">${v.name}</button>`).join('')}</div>`:''}<div id="vessel-viewer" class="vessel-viewer"></div><div class="vessel-controls"><button id="vessel-left" aria-label="向左旋轉器物">↶ 向左轉</button><span>拖曳或使用方向鍵</span><button id="vessel-right" aria-label="向右旋轉器物">向右轉 ↷</button></div>${id==='board-joint'?'<div class="vessel-joint-controls"><button id="vessel-joint" aria-pressed="false">分開板與座</button><span>接合局部教具 · 可還原</span></div>':''}<p>${definition.description}</p><div class="source-note"><strong>帶著問題觀察</strong><p>${definition.observation}</p></div>${teaching?`${scriptureReferences(definition.passage)}${definition.source?`<a class="source-item" href="${definition.source.url}" target="_blank" rel="noopener noreferrer">${definition.source.label} ↗</a>`:''}<p class="modal-small">${currentExploration().inspectionNote||'近景與構造為教學示意；不代表可以搬動聖物或自由進入聖所。'}</p>`:'<p class="modal-small">類型復原 · 未認定特定出土原物。石器的歷史解釋仍需對照研究。</p><a class="source-item" href="https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period" target="_blank" rel="noopener noreferrer">查閱上城住居與器皿發掘資料 ↗</a>'}${definition.stop?'<button id="inspect-learning-stop" class="primary-button">回到相關探索點與閱讀流程 →</button>':''}`);
+  const teaching=currentExploration()?.teachingInspection,articulation=blenderModels[id]?.articulation;
+  openModal(`<h2 id="modal-title">${definition.name}<span>${teaching?'教學近景 · 旋轉觀察，核對經文':'拿在手中，慢慢觀察'}</span></h2>${!teaching?`<div class="vessel-tabs" role="group" aria-label="比較器皿">${definitions.map(v=>`<button data-vessel="${v.id}" aria-pressed="${v.id===id}">${v.name}</button>`).join('')}</div>`:''}<div id="vessel-viewer" class="vessel-viewer"></div><div class="vessel-controls"><button id="vessel-left" aria-label="向左旋轉器物">↶ 向左轉</button><span>拖曳或使用方向鍵</span><button id="vessel-right" aria-label="向右旋轉器物">向右轉 ↷</button></div>${articulation?`<div class="vessel-joint-controls"><button id="vessel-joint" aria-pressed="false">${articulation.openLabel}</button><span>${articulation.note}</span></div>`:''}<p>${definition.description}</p><div class="source-note"><strong>帶著問題觀察</strong><p>${definition.observation}</p></div>${teaching?`${scriptureReferences(definition.passage)}${definition.source?`<a class="source-item" href="${definition.source.url}" target="_blank" rel="noopener noreferrer">${definition.source.label} ↗</a>`:''}<p class="modal-small">${currentExploration().inspectionNote||'近景與構造為教學示意；不代表可以搬動聖物或自由進入聖所。'}</p>`:'<p class="modal-small">類型復原 · 未認定特定出土原物。石器的歷史解釋仍需對照研究。</p><a class="source-item" href="https://www.gov.il/en/pages/jerusalem-the-upper-city-during-the-second-temple-period" target="_blank" rel="noopener noreferrer">查閱上城住居與器皿發掘資料 ↗</a>'}${definition.stop?'<button id="inspect-learning-stop" class="primary-button">回到相關探索點與閱讀流程 →</button>':''}`);
   document.querySelectorAll('[data-vessel]').forEach(b=>b.onclick=()=>openVessel(b.dataset.vessel));
   $('#inspect-learning-stop')?.addEventListener('click',()=>{closeModal();selectStop(definition.stop);});
-  const container=$('#vessel-viewer');try {const {mountVesselViewer}=await import('./vessels.js');if(!container.isConnected||!$('#modal').open)return;const view=mountVesselViewer(container,id);modalCleanup=()=>view.dispose();$('#vessel-left').onclick=()=>view.rotate(.25);$('#vessel-right').onclick=()=>view.rotate(-.25);const joint=$('#vessel-joint');if(joint)joint.onclick=()=>{const expanded=joint.getAttribute('aria-pressed')!=='true';view.setExploded(expanded);joint.setAttribute('aria-pressed',String(expanded));joint.textContent=expanded?'還原接合':'分開板與座';};}catch{if(container.isConnected)container.textContent='此裝置無法開啟器物近景；仍可閱讀上方說明與經文。';}
+  const container=$('#vessel-viewer');try {const {mountVesselViewer}=await import('./vessels.js');if(!container.isConnected||!$('#modal').open)return;const view=mountVesselViewer(container,id);modalCleanup=()=>view.dispose();$('#vessel-left').onclick=()=>view.rotate(.25);$('#vessel-right').onclick=()=>view.rotate(-.25);const joint=$('#vessel-joint');if(joint)joint.onclick=()=>{const expanded=joint.getAttribute('aria-pressed')!=='true';view.setExploded(expanded);joint.setAttribute('aria-pressed',String(expanded));joint.textContent=expanded?articulation.closeLabel:articulation.openLabel;};}catch{if(container.isConnected)container.textContent='此裝置無法開啟器物近景；仍可閱讀上方說明與經文。';}
 }
 
 function showReflection() {
@@ -435,7 +436,7 @@ function showWalkJournal() {
 }
 
 function openModal(content) {
-  modalCleanup?.();modalCleanup=null;readingSpeech.stop();sceneAudio.stopVoice();world?.blockWalk(true);
+  modalCleanup?.();modalCleanup=null;readingSpeech.stop();sceneAudio.stopVoice();world?.blockWalk(true);world?.setModalOpen(true);
   restoreFocus = document.activeElement; $('#modal-content').innerHTML = content;
   if (!$('#modal').open) $('#modal').showModal(); $('#modal-close').focus();
 }
@@ -476,7 +477,7 @@ $('#explore-nav').onclick = () => { resetFilters(); closeAtlas(); };
 $('#menu').onclick = () => setAtlasOpen(!$('#atlas').classList.contains('open'));
 $('#about-nav').onclick = showAbout; $('#help').onclick = showHelp; $('#sources-button').onclick = showSources; $('#map-sources').onclick = showSources;
 $('#modal-close').onclick = closeModal; $('#modal').addEventListener('click', e => { if (e.target === $('#modal')) { const r = $('#modal').getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeModal(); } });
-$('#modal').addEventListener('close',()=>{modalCleanup?.();modalCleanup=null;world?.blockWalk(!!state.actor);restoreFocus?.focus?.();});
+$('#modal').addEventListener('close',()=>{modalCleanup?.();modalCleanup=null;world?.setModalOpen(false);world?.blockWalk(!!state.actor);restoreFocus?.focus?.();});
 $('#modal').addEventListener('cancel', () => restoreFocus?.focus?.());
 document.addEventListener('keydown', e => {
   const typing = /INPUT|SELECT|TEXTAREA/.test(document.activeElement?.tagName);
@@ -499,6 +500,7 @@ import('./world.js').then(({ createWorld }) => {
     onReady() { state.worldReady = true; $('#loading').classList.add('loaded'); setTimeout(() => $('#loading')?.remove(), 550); }, onError: worldError,
   });
   if (!world) return;
+  world.setModalOpen(!!$('#modal').open);
   listThemes();
   const id = new URLSearchParams(location.hash.slice(1)).get('island');
   if (themeById.has(id)) selectTheme(id, { updateHash: false,chapter:new URLSearchParams(location.hash.slice(1)).get('chapter') }); else if (state.selected) selectCurrentScene();
