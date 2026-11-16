@@ -5,7 +5,7 @@
 ## 已完成與目前位置
 
 - 五島版本已部署到原 Sites 網址，見 [部署紀錄](DEPLOYMENTS.md)。
-- 群山／流雲版已實作，96 項回歸與本機瀏覽器驗收完成；見 [山景試閱](review/ATLAS-MOUNTAINS.md)。
+- 群山／流雲版已實作並發佈至 Sites，96 項回歸與本機／正式頁瀏覽器驗收完成；見 [山景試閱](review/ATLAS-MOUNTAINS.md) 與 [部署紀錄](DEPLOYMENTS.md)。
 - Blender 執行環境、人物／器物實際素材替換及下表十九島尚未完成。環境初查沒有 `blender` 執行檔；接續應安裝官方可用版本或官方套件，不能以另一組 Three.js primitive 冒充 Blender 素材。
 
 ## Blender 的交付條件
