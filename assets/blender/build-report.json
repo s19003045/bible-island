@@ -407,7 +407,7 @@
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "68f63620f0a6f0e9159e492671d6eee94fca1959e03dcd9ecae705a76ec74361",
+      "sha256": "0266891a6106e5ef549f5336de596d8b69f7e9f1eb5bfe51b2c84584903b4f86",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -416,7 +416,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "d1cd15e1184bf3cd90f8c2cfe1e5b9efac8e60a7c1222c20ef7b02d790efde09",
+      "sha256": "f638d04826a2021bc75b6e5c7a48c0ad84ff7bbfcde13f8fc191ac1cb1b0d522",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -434,7 +434,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "93e68f2c4e355ef52653d3f243d107857cd694cdc36c751311c7b7daa461f6cd",
+      "sha256": "b3401198c081002b2182d28566288ef1b1043f85f391a01d1b7aa961694fe256",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -459,7 +459,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "38720874585d2241a1ced2597bc0a758298eb37a019243c39a2823e17fbcc7ca",
+      "sha256": "26eb85dec650d11045777980b359c5a2ac70ef63b04e939535ed62d13ebc735f",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -468,7 +468,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "c5643958f419ee1b44e38364bb26c4869efaf55eefb53ea40bed5efeb0a7404a",
+      "sha256": "02b278e89310b1aa94e04fdf39e2b4cbd8becf67239315ce7603ffdb0f4be6be",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -477,7 +477,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "e74718f7f606d2cc4c40a611e2117ca5c4460065cdfc1e8829f6b510b7713fd0",
+      "sha256": "f18fb6e6565a53e85ced5493616b64c7f3bbf6d73ab9921a91e26c2c2ce510bb",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -488,7 +488,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "7d13bc7d8140662701150f7bd6daccc82f6d31f399886c6741650fe403868041",
+      "sha256": "13710032ea97108243b0ca7452636b3f818a4bf5e1496699ed1240595e0a7ae2",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -499,7 +499,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "07c39c5da03759b54bb48347c67c811b325b044078992a434f3188fb1ee57a3a",
+      "sha256": "e798511cc58b59b8421301e9887e10618c8c65a46654dc90b1298eba39a86376",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -517,7 +517,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "517e810bb874dc1a256316c2721c212ba6115c5102fb888882e9d849a2f82bf9",
+      "sha256": "da74030bca57e1289db86e97b452b338c89d56284aba526ce45d88afe7465c75",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
@@ -558,7 +558,7 @@
     "return-masonry": {
       "file": "models/return-masonry.glb",
       "bytes": 200972,
-      "sha256": "a0baf97d7eee9f672d72de0279f8699d0caa9a63effbec1e93dabf2b6ee35963",
+      "sha256": "1df190a2c128515f3189c2e3d29155e095906e477be9e6d869720330b9e96946",
       "triangles": 2068,
       "animations": [],
       "height": 0.513,
@@ -586,7 +586,7 @@
     "paul-ship": {
       "file": "models/paul-ship.glb",
       "bytes": 946292,
-      "sha256": "5da08750216a074b3af4c3cceb17129b5a96b42fdf04c3d8f0e9d5b98d7f4b36",
+      "sha256": "182e84d9b2fd8195f0e276f78b191711a96ded86b39bd82cd356c58536eea2d6",
       "triangles": 28360,
       "animations": [],
       "height": 1.12,
@@ -605,7 +605,7 @@
     "paul-silverwork": {
       "file": "models/paul-silverwork.glb",
       "bytes": 73844,
-      "sha256": "b086bfdcb370d2b4d931bf53468ebfb6b1d5c45fb2e7e34251128752d73415df",
+      "sha256": "c86cfc1c11c02bfdd5e4cdcc986f52114ba0b9498d7d6537ed583bde7896b8ff",
       "triangles": 1596,
       "animations": [],
       "height": 0.34,
@@ -668,7 +668,7 @@
     "joseph-granary": {
       "file": "models/joseph-granary.glb",
       "bytes": 852148,
-      "sha256": "bc5b20f209544f8910a6ba063031695a1295318679eda358a3a96d9cf6c6a47d",
+      "sha256": "b569adb3d30a42dcf2fde8c82f3ae067f28d1a1c5b8772b2ed444cf80419491c",
       "triangles": 17996,
       "animations": [],
       "height": 0.651,
@@ -715,7 +715,7 @@
     "sinai-boundary": {
       "file": "models/sinai-boundary.glb",
       "bytes": 849724,
-      "sha256": "903e9262dbdcc25afb9787840c42966cab8dfbfa9781f830ea1e81ee3c6ad4ff",
+      "sha256": "8d7d4141779a00f7e8e05470a68f4c0d19ac4983229d17fffbe0e81bc36b8b83",
       "triangles": 17768,
       "animations": [],
       "height": 0.632,
@@ -723,6 +723,47 @@
       "interpretation": "Exodus 19\u201320 original mountain-foot-distant-camp space diagram; invented terrain, shelter count and distances are teaching choices, not a named mountain, surveyed camp, ancient fence, monastery or volcanic explanation",
       "removable_group": "sinai-boundary-guide",
       "guide_is_modern_teaching_layer": true
+    },
+    "ruth-gleaning": {
+      "file": "models/ruth-gleaning.glb",
+      "bytes": 742180,
+      "sha256": "e5d08dcc1778e81687a3d71bb6b66cc9f8f9bf922826ece7f654b4e8bf27da99",
+      "triangles": 28122,
+      "animations": [],
+      "height": 0.416,
+      "teaching_model": true,
+      "interpretation": "Ruth 2 modern farming comparison; main harvest, deliberately left ears and gleaned collection are separate; grain detail, bundle counts, basket and unassigned harvesting tool are teaching choices, not archaeological prototypes"
+    },
+    "ruth-grain": {
+      "file": "models/ruth-grain.glb",
+      "bytes": 775124,
+      "sha256": "cdbb9deb37bf7f8a16be5a95daee140b786d7fba6206e90a98ff2cdbbe08ecdc",
+      "triangles": 18402,
+      "animations": [],
+      "height": 0.363,
+      "teaching_model": true,
+      "interpretation": "Ruth 2\u20133 modern removable ears/kernels/chaff/heap comparison and independent ordinary shawl; no night-bed action, ancient machine, load capacity, or conversion of six measures to six ephahs",
+      "removable_groups": [
+        "ruth-grain-ears-layer",
+        "ruth-grain-kernels-layer",
+        "ruth-grain-chaff-layer",
+        "ruth-grain-heap-layer"
+      ]
+    },
+    "ruth-witness": {
+      "file": "models/ruth-witness.glb",
+      "bytes": 515776,
+      "sha256": "809abbc0e6dad5f9bf202c255f7100b5d7654f2f9a509b43bdbd09e1ab78ca63",
+      "triangles": 11268,
+      "animations": [],
+      "height": 0.45,
+      "teaching_model": true,
+      "interpretation": "Ruth 4 modern original gate gathering diagram and ordinary single-shoe construction comparison; ten witness markers and two discussion markers are diagram choices, not an ancient seating plan or portraits; sole/strap parts do not identify a Ruth-period type or copy later Qumran lacing",
+      "removable_groups": [
+        "ruth-witness-shoe-inner-layer",
+        "ruth-witness-shoe-fastening-layer"
+      ],
+      "witness_marker_count": 10
     }
   }
 }

@@ -344,6 +344,7 @@ exec(compile((ROOT/'scripts/blender/abraham-animals.py').read_text(),str(ROOT/'s
 exec(compile((ROOT/'scripts/blender/joseph-props.py').read_text(),str(ROOT/'scripts/blender/joseph-props.py'),'exec'),globals())
 
 exec(compile((ROOT/'scripts/blender/sinai-props.py').read_text(),str(ROOT/'scripts/blender/sinai-props.py'),'exec'),globals())
+exec(compile((ROOT/'scripts/blender/ruth-props.py').read_text(),str(ROOT/'scripts/blender/ruth-props.py'),'exec'),globals())
 
 bpy.context.window.scene=scene
 scene.frame_set(1)
@@ -393,4 +394,7 @@ render_preview(stones_scene,(0,0,.23),(1.6,-3,3.3),'blender-jordan-stones.png',4
 render_preview(return_masonry_scene,(0,0,.26),(1.6,-3,1.7),'blender-return-masonry.png',2.0)
 render_preview(return_scroll_scene,(0,-.3,.07),(1.6,-3,3.4),'blender-return-scroll.png',1.9)
 render_preview(return_vessels_scene,(0,0,.14),(1.4,-3,2.1),'blender-return-vessels.png',1.6)
+render_preview(ruth_gleaning_scene,(0,0,.12),(1.7,-2.7,2.3),'blender-ruth-gleaning.png',2.1)
+render_preview(ruth_grain_scene,(0,0,.16),(.9,-2.7,1.5),'blender-ruth-grain.png',1.95)
+render_preview(ruth_witness_scene,(0,0,.17),(1.6,-2.8,2.1),'blender-ruth-witness.png',2.2)
 print('BIBLE_ASSETS_COMPLETE',json.dumps(report))

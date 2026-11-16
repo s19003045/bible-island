@@ -1,5 +1,8 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'ruth-gleaning':{type:'object',src:'models/ruth-gleaning.glb',height:.415369,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.8,1.7]},
+  'ruth-grain':{type:'object',src:'models/ruth-grain.glb',height:.353901,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.7,1.8],articulation:{part:'ruth-grain-chaff-layer',offset:[0,.22,.32],openLabel:'分開殼屑教學層',closeLabel:'還原穀物教具',note:'現代分層比較 · 非古代機械或六簸箕量器'}},
+  'ruth-witness':{type:'object',src:'models/ruth-witness.glb',height:.4495,triangleBudget:18000,byteBudget:1000000,inspectionView:[1.4,2.5,1.8],articulation:{part:'ruth-witness-shoe-fastening-layer',offset:[0,.18,.18],openLabel:'分開鞋的固定帶',closeLabel:'還原普通單鞋',note:'現代構造教具 · 非原鞋或脫鞋儀式操作'}},
   'caravan-traveler':{type:'character',src:'models/caravan-traveler.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Undated composite road observer; original woven garment, not Joseph likeness'},
   'egypt-grain-worker':{type:'character',src:'models/egypt-grain-worker.glb',height:1.71,triangleBudget:48000,byteBudget:1900000,era:'Egyptian functional comparison; chosen plain waist wrap, not a dated uniform'},
   'egypt-householder':{type:'character',src:'models/egypt-householder.glb',height:1.65,ankleHeight:.10059,cycleDistance:.7664,liftHeight:.07185,triangleBudget:48000,byteBudget:1900000,era:'Egyptian composite householder; original long linen garment and shoulder straps'},

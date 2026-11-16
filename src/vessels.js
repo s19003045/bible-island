@@ -1,3 +1,4 @@
+import {createRuthObject} from './ruth-objects.js';
 import {createSinaiObject} from './sinai-objects.js';
 import {createJosephObject} from './joseph-objects.js';
 import {createAbrahamObject} from './abraham-objects.js';
@@ -26,6 +27,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader}
   return root;
 }
 function createProceduralVessel(id) {
+  if(['ruth-gleaning','ruth-grain','ruth-witness'].includes(id))return createRuthObject(id);
   if(['sinai-manna','sinai-water','sinai-boundary'].includes(id))return createSinaiObject(id);
   if(['joseph-cargo','joseph-granary','joseph-provisions'].includes(id))return createJosephObject(id);
   if(['abraham-altar','abraham-hospitality','abraham-well','abraham-ewe'].includes(id))return createAbrahamObject(id);
