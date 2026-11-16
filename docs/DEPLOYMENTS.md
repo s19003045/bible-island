@@ -335,3 +335,14 @@
 - 壓縮封裝 `/tmp/bible-island-7291e93-intertestament-sites.tar.gz`，87,206,116bytes，SHA256=`24d6cae7f47b998c8042f9839a18226475c64684fc5e1c8cef0a5996242a7220`。平台回讀142內容檔／130,283,520bytes，內容hash=`9beba1088a7190178cdcadca824d4568f998691296dbbd00d5f2f1f2c54993bc`，來源SHA與helper相符。首次helper因沙箱DNS失敗，保留已提交來源後，只以允許網路的同一helper接續推送／封裝，未重建或另建Site。
 - 三章、每章13位POI居民、三件正式Blender教具及24cue配音完成；全站80GLB／54MP3／51位角色／408cue。來源與研究、幾何、配音及手動界線見 [新約背景驗收](review/INTERTESTAMENT-BACKGROUND.md)。本機道路走訪、旋轉、抬層／還原及1／1觀察完成；其他新教具與正式三模式補驗接續追加。其餘七島及人工補驗仍在總Goal。
 - 2026-11-17補驗完成：三件本機及三件正式頁均從出生點沿路開啟／旋轉；道路與說話對象板各抬層／還原，銀幣查看兩面與斜側厚緣。正式三模式、錄音播放及進度前置已實際操作，最後恢復一般／road／場景全景、動畫開；兩頁warning／error=[]。正式右側截圖裁切與道路擷取失敗照實記錄，詳見驗收。第18島新檔仍未註冊，不屬第30版來源；本次沒有為內部文件和未完成草稿另建版本。
+
+
+## 2026-11-17：降生與成長，第十八座詳細島（第31版）
+
+- 原始來源 `4e7acd20c0870d4e7dee187e68d2f6279c23e253`；Sites來源 `9dee6ead940d5ff8c48abcbf1b508188b65916a4`。401個追蹤檔逐一SHA256相等，原有node_modules依賴連結保留；同源建置112模組／1.43s，入口`index-DZeVQOH-.js`、world`world-D7E4i6pb.js`、vessels`vessels-DhxplKll.js`、three`three-DWw92ymX.js`、CSS`index-zmRD_4cI.css`。
+- 同一專案 `appgprj_6af95ea0dac4819182957156725483aa`；本輪已確認owner／custom單一使用者、0群組／0外部訪客，分享未改。第31版ID `appgprj_6af95ea0dac4819182957156725483aa~appgver_2fca8f9a4f9481919c0aba2dfa065e3d`。部署 `appgdep_6afb32804c508191a22acbc31338dea3` 於`2026-11-16T16:42:55.662449+00:00`返回succeeded；停止poll，沒有重複部署。平台回讀source SHA一致。
+- 正式入口：[降生與成長](https://bible-island.starryswift8.chatgpt.site/#island=nativity&chapter=manger&phase=birth)。封裝`/tmp/bible-island-4e7acd2-nativity-sites.tar.gz`，91,613,617bytes，SHA256=`da4597e59174f44d6173a6df80126adf887b303b8b224bb88fad3f9903a386b9`；平台148內容檔／135,229,440bytes，內容hash=`4433a80f296e1472904e270fec7b365f15f4330de2dcf02da248843d8c505046`。憑證在準備發布時已過期，僅刷新同站短期憑證，未重新開站或變更權限。
+- 251／251全站回歸、24主題74點內容／語法、建置及178,013KiB離線試閱通過。三章七閱讀窗口、各13位POI居民、牧地獨立羊群、三件正式Blender教具及24cue配音見 [降生與成長驗收](review/NATIVITY-CHAPTERS.md)。全站83GLB／57MP3／54角色／432cue；剩餘6島仍在總Goal範圍。
+- 本機已核對三模式前置／0／3隔離、親子提示與一般問答錄音播放、沿路抵達並開啟木接合近景。旋轉拆層操作遇瀏覽器CDP逾時，未算人工通過。正式新程式載入與模式、配音、三教具沿路走訪接續補驗；發布成功不替代這些手動結果。
+
+- 第31版人工追加：正式reload已核對`index-DZeVQOH-.js`；三模式前置／進度隔離、親子與一般配音播放、field／visit夜色、空槽沿路抵達／旋轉及1／1紀錄完成。本機三件教具均沿路、旋轉，家屋與接合拆還完成。正式家屋與接合兩件仍待沿路補驗；完整真人聽驗等限制保留。兩頁最後回一般／manger birth／全景、動畫開、安靜，warning／error=[]。正式近景截圖失敗及2133／1244右側裁切記在驗收；未重啟dev server或重發網站。

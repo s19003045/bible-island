@@ -55,7 +55,7 @@ npm run preview
 
 ## 發佈
 
-Sites 網址：[讀聖經順起來](https://bible-island.starryswift8.chatgpt.site)。維持擁有者私人權限。第十八座詳細島「走進新約之前」已於2026-11-16發布第30版；後續發布與來源證據見 [Sites 部署紀錄](docs/DEPLOYMENTS.md)。
+Sites 網址：[讀聖經順起來](https://bible-island.starryswift8.chatgpt.site)。維持擁有者私人權限。第十八座詳細島「耶穌降生與成長」已於2026-11-17發布第31版；後續發布與來源證據見 [Sites 部署紀錄](docs/DEPLOYMENTS.md)。
 
 Sites 專案識別與靜態產物設定保存在 `.openai/hosting.json`；`.sites/` 是本機發佈用的獨立來源倉庫，不提交至 GitHub。
 

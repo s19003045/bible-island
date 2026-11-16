@@ -17,11 +17,22 @@ import {freshMission} from '../src/walk-data.js';
 import {blenderModels} from '../src/blender-manifest.js';
 import {setArtifactSeparation} from '../src/artifact-inspection.js';
 import {createVessel} from '../src/vessels.js';
+import {createNativityObject} from '../src/nativity-objects.js';
 import {themeById} from '../src/content.js';
 const ctx=new Proxy({},{get:()=>()=>{},set:()=>true});
 globalThis.document=Object.assign(new EventTarget(),{createElement:()=>({getContext:()=>ctx}),querySelector:()=>null,activeElement:null});globalThis.window=new EventTarget();
 const distance=(a,b)=>Math.hypot(a[0]-b[0],a[2]-b[2]);
 const load=async id=>{const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');};
+
+test('loading fallback exposes the outside, cavity floor, rim and underside with front-facing surfaces',()=>{
+ const root=createNativityObject('nativity-manger');root.updateMatrixWorld(true);
+ const hit=(from,dir)=>new THREE.Raycaster(new THREE.Vector3(...from),new THREE.Vector3(...dir)).intersectObject(root,true)[0];
+ const side=hit([2,.24,0],[-1,0,0]);assert.ok(side&&side.point.x>.54&&side.face.normal.x>.9);
+ const floor=hit([0,1,0],[0,-1,0]);assert.ok(floor&&Math.abs(floor.point.y-.06)<1e-6&&floor.face.normal.y>.9);
+ const rim=hit([.52,1,0],[0,-1,0]);assert.ok(rim&&Math.abs(rim.point.y-.48)<1e-6&&rim.face.normal.y>.9);
+ const bottom=hit([0,-1,0],[0,1,0]);assert.ok(bottom&&Math.abs(bottom.point.y)<1e-6&&bottom.face.normal.y<-.9);
+ root.traverse(o=>{o.geometry?.dispose();if(o.material)o.material.dispose();});
+});
 
 test('birth, growth and adult homecoming have distinct adult-scale contexts with reachable objects',()=>{
  assert.deepEqual(themeById.get('nativity').stops.map(s=>s.id),['manger','home','tools']);
