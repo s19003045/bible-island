@@ -31,3 +31,13 @@
 本機入口：[帕弗](http://127.0.0.1:5173/#island=paul&chapter=ship)、[腓立比](http://127.0.0.1:5173/#island=paul&chapter=square)、[以弗所](http://127.0.0.1:5173/#island=paul&chapter=letter)。正式發佈結果另記 [部署紀錄](../DEPLOYMENTS.md)。
 
 本機已看到港口全景、正確的研讀工作台、三次旅程選章及赴羅馬另讀入口，並以安靜模式開始真正沿路行走。完整三件近景的 UI 走訪／拆合與正式站畫面尚待接續，不把自動路線與網格射線檢查寫成已完成全部手動操作。
+
+## Sites 發佈
+
+已發佈至 [原私人網址](https://bible-island.starryswift8.chatgpt.site/#island=paul&chapter=ship)。Sites 來源 `18ee380fbbdf4ab1c6ed1d2f5b89be52f091fbc7`；部署 `appgdep_6afabce6b5dc8191a06be25166b29df6` 於 `2026-11-16T08:21:13.712967+00:00` 回傳 succeeded。完整版本資料見 [部署紀錄](../DEPLOYMENTS.md)。
+
+正式站已核對首版入口 `index-Dk03-vdG.js`，以弗所工藝角色的米利都告別回答及兩段 CSBT 連結正確；新圍裙人物已實際看到，console warning／error 為空。由交談切腓立比，人物、第二幕與場景同步更新，行程摘要展開後能閱讀城市先後與省略說明。畫面 `.qa/paul-artisan-sites.png`、`.qa/paul-philippi-sites.png`；後者仍為第一版直岸，後續視覺修正另記。
+
+俯視檢查後，腓立比改為真正彎曲的水面網格與相應河床／岸邊，替換簡單橢球樹冠為分枝葉片；海面與地形也延伸到霧景之外，避開近處可見的矩形邊緣。近處地面與遠景重疊的微小高差同時整理，物理樓層及原動線不變。此為類型地形修正，不是對某一條現代河段的指認。
+
+河岸最終補驗：保羅與全部詳細場景幾何專測 10／10 通過，新增垂直射線直接確認遠景地形不會跨在水面上方；視覺檢查後將粗地形河道部分挖除，另以較密河岸銜接。內容／語法與自包含封裝通過。本機最終畫面 `.qa/paul-philippi-river-final-local.png` 已檢視，遠景黑色遮擋已消除。本機恢復研讀、全景、名稱顯示與自主動畫；前述近景手動補驗仍未完成。
