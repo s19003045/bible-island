@@ -66,7 +66,8 @@ export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{
       if(dx||dz){const factor=motor.speedFactor(dx,dz);dx*=factor;dz*=factor;}
       const before=position,physicalChange=motor.update(dt,dx,dz);position=motor.position;
       if(dx||dz){const d=Math.hypot(position[0]-before[0],position[2]-before[2]);blockedTime=d<.001?blockedTime+dt:0;
-        if(d<.0001&&route.length){const staticNext=model.move(before,dx,dz);if(Math.hypot(staticNext[0]-before[0],staticNext[2]-before[2])<.0001){route=[];onMessage('前方有障礙，請換個方向。');}}
+        const attempted=Math.hypot(dx,dz),blockedDistance=Math.min(.0001,attempted*.1);
+        if(attempted>.000001&&d<blockedDistance&&route.length){const staticNext=model.move(before,dx,dz);if(Math.hypot(staticNext[0]-before[0],staticNext[2]-before[2])<blockedDistance){route=[];onMessage('前方有障礙，請換個方向。');}}
         // Yield briefly to crossing traffic, then route around someone who remains in the way.
         if(blockedTime>.9&&route.length&&destination){const avoid=navigationObstacles();if(avoid.length){const next=model.path(position,destination,{avoid});if(next.length)route=next;}blockedTime=0;}
         distance+=d;const stride=motor.state.isClimbingStairs?.68:.78;if(distance>stride){distance%=stride;onStep(position,motor.state);}}

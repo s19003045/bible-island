@@ -5,6 +5,9 @@ export function frameStepSeconds(now,last) {
   return Math.max(0,Math.min(.25,(now-last)/1000));
 }
 export function* frameSimulationSteps(dt) {
-  let left=Number.isFinite(dt)?Math.max(0,Math.min(.25,dt)):0;
-  while(left>1e-8){const step=Math.min(left,1/60);yield step;left-=step;}
+  const elapsed=Number.isFinite(dt)?Math.max(0,Math.min(.25,dt)):0;
+  if(!elapsed)return;
+  // Equal subdivisions avoid a microscopic remainder after a 16.7ms frame.
+  const count=Math.ceil(elapsed*60),step=elapsed/count;
+  for(let i=0;i<count;i++)yield step;
 }

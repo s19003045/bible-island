@@ -2,7 +2,7 @@
 
 給兒童到成人的3D聖經主題群島，從建築、器物與古代生活背景走回經文。
 
-[正式Sites](https://bible-island.starryswift8.chatgpt.site)維持擁有者私人權限。2026-11-17已發布第39版：24座詳細島、74探索點；最新來源、封裝及實際操作證據見[部署紀錄](docs/DEPLOYMENTS.md)。
+[正式Sites](https://bible-island.starryswift8.chatgpt.site)維持擁有者私人權限。2026-11-17已發布第40版：24座詳細島、74探索點，另含低幀率移動修正；最新來源、封裝及實際操作證據見[部署紀錄](docs/DEPLOYMENTS.md)。
 
 ## 功能
 

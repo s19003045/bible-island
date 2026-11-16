@@ -429,3 +429,13 @@
 - [正式書信島](https://bible-island.starryswift8.chatgpt.site/#island=letters)。封裝`/tmp/bible-island-608779a-letters-sites.tar.gz`，120924317bytes，SHA256 `6fb79192738b15203f7e91254e446688cf9eef2fb310703ed763bcf6ece64e8e`；平台184內容檔／167720960bytes，內容hash `93b16f0d9936d68aab1bb5879076e4bb5a89c128b9114db26a67cc8b2b2a127d`。
 - 同源建置136模組／1.45s，入口index-BxVh6iuK.js、world-Bur_rwVJ.js、vessels-Ct8zT5_W.js、three-o24aeEZ1.js、CSS index-zmRD_4cI.css；保留既有大chunk提示。50檔318項來源回歸、check、diff及220323KiB離線包通過。
 - 全24座詳細島已發布，101GLB／75MP3／72角色／576cue；原98GLB bytes與報告條目保留。第24島本機三件沿路及材料抬還、三模式前置／獨立進度、一般與親子錄音播放中實測通過，詳[書信驗收](review/LETTERS-CHAPTERS.md)。正式入口已讀index-BxVh6iuK.js，正式近景與7個舊特定近景補驗仍進行，不把發布成功當成全部人工驗收通過。
+
+## 2026-11-17：低幀率的有界時間分割（第40版）
+
+- root來源`dcd916c8cf37ef061084613a6ebc735d0d971607`；Sites來源`edbb99023aa5505eac1a91a26a0f7d33467e8d62`。528追蹤來源逐檔相同，原node_modules連結保留。
+- 原owner-private觀眾不變。第40版`appgprj_6af95ea0dac4819182957156725483aa~appgver_822968fa9a1c8191aeacb24a646850a4`；部署`appgdep_6afb80d7bd44819184a2dbf12c61dbfc`於`2026-11-16T22:17:09.445907+00:00`終態succeeded，未再poll或重發。
+- 封裝`/tmp/bible-island-dcd916c-frame-time-sites.tar.gz`，120924883bytes，SHA256 `50921b51dd7fd92e3fc172da7cd1130f46a64acef587f76f5750174e30b3485b`；正式建置137模組／1.53s，入口index-9zYrb0QX.js、world-B1p28oQY.js、vessels-Bt_GHbSc.js、three-o24aeEZ1.js、CSS index-zmRD_4cI.css，保留原大chunk提示。
+- 51檔319項來源回歸（198.78秒）、check／diff與220323KiB離線包通過。實際希律場景4／10／60FPS擁擠階梯測試檢查距離、著地、爬梯、間距及長停頓位移；每幀最多補算0.25秒、每小步≤1／60秒，NPC各自狀態timer／seed不變。幾何／錄音未變，沒有重建或再生成。詳[低幀率驗證](review/LOW-FRAME-RATE.md)。
+- 正式頁明確reload後已讀index-9zYrb0QX.js，後續實際路線與舊近景補驗另記，不保證特定硬體幀率。
+
+- 第40版平台回讀source SHA相符；184內容檔／167720960bytes，內容hash `2f95a43cc227c76340026adedcc8c94d4c6389e787aec21496226d7db93cebc2`。正式兩驗證分頁皆已明確reload讀index-9zYrb0QX.js；沒有為瀏覽器逾時重啟dev server或重做媒體。

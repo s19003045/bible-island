@@ -30,3 +30,20 @@ test('4 and 10 FPS retain real walking speed through the crowded Herod stair app
  }
  for(const distance of results.slice(1))assert.ok(Math.abs(distance-results[0])<1.5,JSON.stringify(results));
 });
+
+test('fractional callback times and tiny steps keep complete public routes active',()=>{
+ for(const [id,options,objects]of [['letters',{segment:'reading',phase:'exchange'},['letters-reading']],['herod',{},['herod-boundary','herod-stone','herod-capital']]]){
+  const scene=createHistoricalScene(id,null,options),npc=scene.npcSystem,canvas=Object.assign(new EventTarget(),{focus(){}}),messages=[];
+  const walk=createWalkControls(new THREE.PerspectiveCamera(),canvas,{constrainMove:(a,b)=>npc.constrainPlayer(a,b),navigationObstacles:()=>npc.agents.map(a=>({position:a.actor.state.position,radius:a.radius+.32+.07})),onMessage:m=>messages.push(m)});
+  walk.start(scene.walkModel,npc.safePlayerSpawn(scene.exploration.spawn));
+  for(const objectId of objects){const destination=scene.objects.find(o=>o.id===objectId).approach;assert.ok(walk.navigate(destination));let last=1000;
+   for(let frame=0;frame<16000&&Math.hypot(walk.position[0]-destination[0],walk.position[2]-destination[2])>.65;frame++){
+    const now=last+(frame%17===0?.0003:frame%3===0?16.7:33.4);
+    for(const step of frameSimulationSteps(frameStepSeconds(now,last)))walk.update(step);
+    last=now;assert.ok(walk.groundState.isGrounded);
+   }
+   assert.ok(Math.hypot(walk.position[0]-destination[0],walk.position[2]-destination[2])<.65,objectId+' '+walk.position);
+  }
+  assert.deepEqual(messages,[]);walk.dispose();scene.dispose();
+ }
+});
