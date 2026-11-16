@@ -324,3 +324,14 @@
 - 三章八時刻、三件正式Blender教具、三位居民與24cue已整合。正式來源SHA256=`231ff1835fee8227aacab21463df20bf06d098da1e08f1092bf482ca5c6abdb5`；77非空場景／77GLB、28人類×5動作、另羊×3動作驗證。詳細史料、幾何及操作另記 [尼希米驗收](review/NEHEMIAH-CHAPTERS.md)。正式頁三模式、配音與近景走訪接續追加，不以發布成功視為全部人工驗收。
 
 - 發布後人工追加：正式DOM已核對第29版入口；一般／親子對話播放、研讀資料前置及0／3隔離均實際操作，三件本機器物走訪／旋轉／拆還完成。正式最後恢復一般／wall survey全景、動畫開，兩個分頁保留且console warning／error=[]。正式三件器物沿路補驗及完整真人聽驗仍另列，沒有因發布成功或本機操作而宣稱完成。正式對話截圖僅拍到左側人物，面板與播放由可存取樹核對；具體證據及擷取限制見尼希米驗收。
+
+
+## 2026-11-16：新約背景，第十七座詳細島（第30版）
+
+- 原始來源 `7291e937f8d6aa5d3c78b2a7d3f698052b449d46`；Sites來源 `4760e855de59ce1de924775f74477912ade92ea7`。382個追蹤檔逐一SHA256相等；原有node_modules依賴連結保留。
+- 同一專案 `appgprj_6af95ea0dac4819182957156725483aa`，owner／custom單一使用者、0群組／0外部訪客不變。第30版 `appgprj_6af95ea0dac4819182957156725483aa~appgver_00ae1c2b3cb88191b22fcef73164a7e2`；部署 `appgdep_6afb2305edd88191953a94d6af2bb612` 於 `2026-11-16T15:36:53.285710+00:00` 回傳succeeded，未再poll或重複發布。
+- 正式入口：[新約背景](https://bible-island.starryswift8.chatgpt.site/#island=intertestament&chapter=road)。原分頁同站hash導覽仍保留第29版程式，因此已另明確reload取得新資源；新頁實際內容／模式與配音驗證接續記錄，不以URL已改當新程式載入證據。
+- 107模組同源建置1.41s；入口 `index-DTfdaisw.js`、world `world-BP3SF6Kk.js`、vessels `vessels-zRv2o-_-.js`、three `three-C-ggzojZ.js`、CSS `index-zmRD_4cI.css`。既有500kB級chunk提示保留。241／241全站回歸、24主題74點內容／語法、171,577KiB離線試閱通過。
+- 壓縮封裝 `/tmp/bible-island-7291e93-intertestament-sites.tar.gz`，87,206,116bytes，SHA256=`24d6cae7f47b998c8042f9839a18226475c64684fc5e1c8cef0a5996242a7220`。平台回讀142內容檔／130,283,520bytes，內容hash=`9beba1088a7190178cdcadca824d4568f998691296dbbd00d5f2f1f2c54993bc`，來源SHA與helper相符。首次helper因沙箱DNS失敗，保留已提交來源後，只以允許網路的同一helper接續推送／封裝，未重建或另建Site。
+- 三章、每章13位POI居民、三件正式Blender教具及24cue配音完成；全站80GLB／54MP3／51位角色／408cue。來源與研究、幾何、配音及手動界線見 [新約背景驗收](review/INTERTESTAMENT-BACKGROUND.md)。本機道路走訪、旋轉、抬層／還原及1／1觀察完成；其他新教具與正式三模式補驗接續追加。其餘七島及人工補驗仍在總Goal。
+- 2026-11-17補驗完成：三件本機及三件正式頁均從出生點沿路開啟／旋轉；道路與說話對象板各抬層／還原，銀幣查看兩面與斜側厚緣。正式三模式、錄音播放及進度前置已實際操作，最後恢復一般／road／場景全景、動畫開；兩頁warning／error=[]。正式右側截圖裁切與道路擷取失敗照實記錄，詳見驗收。第18島新檔仍未註冊，不屬第30版來源；本次沒有為內部文件和未完成草稿另建版本。
