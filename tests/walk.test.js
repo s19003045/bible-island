@@ -63,6 +63,24 @@ test('the short journey requires listening, both distinct objects, follow-up and
   assert.equal(missionEvent(m,{type:'reflect',correct:false}).complete,false);m=missionEvent(m,{type:'reflect',correct:true});assert.equal(missionStage(m),4);
 });
 
+test('focus and visibility changes preserve a chosen route while releasing held movement and turn inputs',()=>{
+  const canvas=Object.assign(new EventTarget(),{focus(){}}),camera=new THREE.PerspectiveCamera();
+  const control=createWalkControls(camera,canvas);control.start(createWalkModel());
+  assert.ok(control.navigate([12,8,0]));control.update(.05);
+  const before=control.position;
+  window.dispatchEvent(new Event('blur'));document.dispatchEvent(new Event('visibilitychange'));
+  assert.ok(control.navigating,'switching to another window must retain the selected route');
+  for(let i=0;i<120;i++)control.update(.05);
+  assert.ok(control.position[0]<before[0]-3,'the retained route continues after returning');
+  control.cancelRoute();const stopped=control.position;
+  control.update(.05);assert.deepEqual(control.position,stopped,'explicit Stop still cancels the route');
+  const key=new Event('keydown',{cancelable:true});Object.defineProperty(key,'code',{value:'KeyW'});document.dispatchEvent(key);
+  control.setAxis(1,1);control.setTurn(1);window.dispatchEvent(new Event('blur'));
+  const rotation=camera.rotation.y;control.update(.05);
+  assert.deepEqual(control.position,stopped,'lost key-up or touch release cannot leave manual movement held');
+  assert.equal(camera.rotation.y,rotation,'turn input is released as well');control.dispose();
+});
+
 test('frequent replanning at a low frame rate keeps moving forward instead of returning to grid nodes',()=>{
   const canvas=Object.assign(new EventTarget(),{focus(){},setPointerCapture(){}}),camera=new THREE.PerspectiveCamera();
   const control=createWalkControls(camera,canvas);control.start(createWalkModel());

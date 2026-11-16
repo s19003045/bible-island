@@ -25,7 +25,9 @@ export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{
     if(drag){drag.x=e.clientX;drag.y=e.clientY;}apply();
   }
   const up=()=>{drag=null;};
-  const blur=()=>{clear();route=[];};
+  // Release keys and touch input on focus loss. A chosen automatic route survives
+  // switching windows; the world pauses simulation while the document is hidden.
+  const blur=()=>{clear();};
   document.addEventListener('keydown',keydown);document.addEventListener('keyup',keyup);window.addEventListener('blur',blur);document.addEventListener('visibilitychange',blur);
   canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',pointer);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);
   return {
