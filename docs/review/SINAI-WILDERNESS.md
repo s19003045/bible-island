@@ -38,3 +38,6 @@
 本機入口：[嗎哪](http://127.0.0.1:5173/#island=sinai&chapter=manna)、[供水](http://127.0.0.1:5173/#island=sinai&chapter=water)、[山前](http://127.0.0.1:5173/#island=sinai&chapter=mountain)。本機山前 UI 已確認第三章、唯一家人角色、研讀題與 `EXO.19.CSBT`；初版 `.qa/sinai-mountain-local.png` 記錄修正前裁峰問題，不能拿它宣稱修正後畫面。瀏覽器其後連線逾時；伺服器仍回應 HTTP 200，保留目前分頁，不重啟使用者的 dev server。其後恢復連線，`.qa/sinai-mountain-wide-local.png` 已實際檢視，營地與完整山峰同框；安靜步行已啟動。正式發布與手動近景走訪逐項接續，不能由測試綠燈推定已完成。
 
 獨立歷史審稿、完整真人聽驗及實體手機效能驗收仍未完成；既有其他島的人工補驗及其餘十三島均保留在後續範圍。
+
+
+Sites 原私人網址已成功發布：本機 `58524ae67eef4be72ef2f710c8c7f34f4a1ff2c5`，Sites source `e67dd40e649843876823bc2b0a87f70494d1f709`，部署 `appgdep_6afae1b7070c8191a7bf070cf8e26e7e` 於 `2026-11-16T10:58:14.104673+00:00` 回傳 succeeded。入口產物 `index-D4wECbtx.js`；281 個追蹤來源逐檔同步，維持 owner 私人權限。最終內容／語法及 121,598 KiB 離線封裝已通過，修正後專測 11／11。正式瀏覽器入口、手動近景與模式結果繼續另記，不由平台成功推定已操作完成。

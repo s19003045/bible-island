@@ -225,3 +225,17 @@
 - 完整 172／172、內容／語法、正式建置及 112,585 KiB 離線試閱通過。入口 `index-RLjtQavZ.js`，world `world-BXgbalmM.js`、vessels `vessels-DLgfJJ1Y.js`。
 - 本機在暫停狀態靠近工作解說者，已顯示真實 Blender 腰裹布、五官及裸足；`.qa/joseph-grain-paused-detail-local.png` 已檢視。正式 DOM 已核對新入口；後續手動結果另記約瑟文件。維持原私人權限，不重新生成音訊或改動其逐字時間碼。
 - 正式暫停近景也已確認 Blender 人物；切第三章會結束舊對話，親子第三題維持未解鎖且進度 0／3。正式站恢復一般閱讀／家屋全景與自主動畫，console warning／error 為空；本機三件器物走訪及旋轉均已完成，糧倉另有拆還驗證，各章觀察 1／1，未誤算讀經。詳見約瑟驗收文件中的截圖及覆布修正驗證界線。
+
+
+## 2026-11-16：西奈與曠野三章，第十一座詳細島
+
+- 本機來源：`58524ae67eef4be72ef2f710c8c7f34f4a1ff2c5`，281 個追蹤檔與 Sites checkout 逐檔相符。
+- Sites source commit：`e67dd40e649843876823bc2b0a87f70494d1f709`。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_7cbf43e9f29481918c1bcdb4fb51ded4`。
+- Deployment：`appgdep_6afae1b7070c8191a7bf070cf8e26e7e`。
+- 平台結果：`succeeded`，`2026-11-16T10:58:14.104673+00:00`。
+- 正式網址：[西奈與曠野](https://bible-island.starryswift8.chatgpt.site/#island=sinai&chapter=manna)。發布前核對 owner 權限、只允許原 owner、無群組或外部訪客；沿用原私人權限。
+- 出 16、17、19–20 依序分為嗎哪／供水／山前，保留原 stop ID。每章 13 位 POI 居民，明確映射既有曠野 Blender 衣裝；新增三件 Blender 教具及 24 段配音。全站 61 份 GLB、36 份 MP3、33 位可交談角色／264 段 cue，其餘十三島繼續。
+- 初版完整回歸 180／180；實際畫面發現裁峰，鏡頭與原創山體比例修正後的西奈／場景專測 11／11 通過。內容／語法、正式建置及最終 121,598 KiB 離線試閱通過。來源重開 61 個非空場景、28 套獨立骨架及五條動作，三件新教具實際渲染檢視。
+- 入口 `index-D4wECbtx.js`，world `world-Ci5nfjg1.js`、vessels `vessels-C8OJbmuE.js`、three `three-Zxw-5wWh.js`。Three.js 的大於 500 kB 建置提示仍在，沒有宣稱真實手機 FPS 已驗收。
+- 本機第三章、研讀題、唯一家人角色及 CSBT 已確認，校正後 `.qa/sinai-mountain-wide-local.png` 已實際檢視，營地與完整山峰同框；安靜路線走訪中。正式入口與手動近景結果接續 [西奈驗收](review/SINAI-WILDERNESS.md)，不能由發布成功推定已完成全部 UI 驗收。完整 Goal、獨立歷史審稿、真人聽驗及裝置驗收持續。
