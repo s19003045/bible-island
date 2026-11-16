@@ -343,6 +343,8 @@ exec(compile((ROOT/'scripts/blender/abraham-props.py').read_text(),str(ROOT/'scr
 exec(compile((ROOT/'scripts/blender/abraham-animals.py').read_text(),str(ROOT/'scripts/blender/abraham-animals.py'),'exec'),globals())
 exec(compile((ROOT/'scripts/blender/joseph-props.py').read_text(),str(ROOT/'scripts/blender/joseph-props.py'),'exec'),globals())
 
+exec(compile((ROOT/'scripts/blender/sinai-props.py').read_text(),str(ROOT/'scripts/blender/sinai-props.py'),'exec'),globals())
+
 bpy.context.window.scene=scene
 scene.frame_set(1)
 bpy.ops.wm.save_as_mainfile(filepath=str(SOURCE/'bible-assets.blend'),compress=True)

@@ -1,3 +1,5 @@
+import {sinaiSegmentById} from './sinai-exploration.js';
+import {buildSinaiScene,attachSinaiExploration} from './sinai-scenes.js';
 import {josephSegmentById} from './joseph-exploration.js';
 import {buildJosephScene,attachJosephExploration} from './joseph-scenes.js';
 import {abrahamSegmentById} from './abraham-exploration.js';
@@ -579,7 +581,7 @@ function jerusalem(k,roof,height) {
 }
 export function createHistoricalScene(id, environment,{segment='all',blenderAssets=false,onAssetsReady=()=>{},assetLoader}={}) {
   if(id==='exodus'&&segment!=='all'&&!exodusSegmentById.has(segment))segment='bricks';
-  const base=historicalScenes[id];if(!base)return null;const section=id==='joseph'?(josephSegmentById.get(segment)||josephSegmentById.get('caravan')):id==='abraham'?(abrahamSegmentById.get(segment)||abrahamSegmentById.get('altar')):id==='paul'?(paulSegmentById.get(segment)||paulSegmentById.get('ship')):id==='exodus'?exodusSegmentById.get(segment):id==='second-temple'?(returnSegmentById.get(segment)||returnSegmentById.get('foundation')):null;
+  const base=historicalScenes[id];if(!base)return null;const section=id==='sinai'?(sinaiSegmentById.get(segment)||sinaiSegmentById.get('manna')):id==='joseph'?(josephSegmentById.get(segment)||josephSegmentById.get('caravan')):id==='abraham'?(abrahamSegmentById.get(segment)||abrahamSegmentById.get('altar')):id==='paul'?(paulSegmentById.get(segment)||paulSegmentById.get('ship')):id==='exodus'?exodusSegmentById.get(segment):id==='second-temple'?(returnSegmentById.get(segment)||returnSegmentById.get('foundation')):null;
   const config=section?{...base,...section}:base;
   const scene=new THREE.Scene(), p=palette();
   const sky=id==='exodus'?'#a5b2b0':'#b4bdb8';
@@ -590,15 +592,16 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   sun.shadow.mapSize.set(2048,2048);sun.shadow.normalBias=.035;sun.shadow.bias=-.00013;scene.add(sun);
   const roofGroup=new THREE.Group();scene.add(roofGroup);
   const k=builder(scene,p,id.length*113,true,id), roof=builder(roofGroup,p,83,true,id);
+  const sinaiScene=id==='sinai'?buildSinaiScene(k,scene,section.id):null;
   const abrahamScene=id==='abraham'?buildAbrahamScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):null;
-  const height=id==='joseph'?buildJosephScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):id==='abraham'?abrahamScene.height:id==='paul'?buildPaulScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):id==='second-temple'?buildReturnScene(k,scene,section.id):id==='jordan'?buildJordanScene(k,scene,p):terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);if(!['jordan','second-temple','paul','abraham','joseph'].includes(id))landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id),id==='exodus'?exodusSegments.flatMap(s=>s.surfaces):[]);
+  const height=id==='sinai'?sinaiScene.height:id==='joseph'?buildJosephScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):id==='abraham'?abrahamScene.height:id==='paul'?buildPaulScene(k,scene,section.id,{blenderAssets,onReady:assetsChanged,assetLoader}):id==='second-temple'?buildReturnScene(k,scene,section.id):id==='jordan'?buildJordanScene(k,scene,p):terrain(scene,p,config.extent,id==='jerusalem'?'city':['solomon','herod'].includes(id)?'judea':'desert',id==='herod'?190:id==='exodus'?220:80);if(!['jordan','second-temple','paul','abraham','joseph','sinai'].includes(id))landscape(k,height,config.extent,['jerusalem','solomon','herod'].includes(id),id==='exodus'?exodusSegments.flatMap(s=>s.surfaces):[]);
   if(id==='tabernacle')tabernacle(k,roof);
   else if(id==='solomon')solomon(k,roof,height);
   else if(id==='herod')herod(k,roof);
   else if(id==='exodus')buildExodusScene(k,roof,scene,p,segment);
-  else if(!['jordan','second-temple','paul','abraham','joseph'].includes(id))jerusalem(k,roof,height);
+  else if(!['jordan','second-temple','paul','abraham','joseph','sinai'].includes(id))jerusalem(k,roof,height);
   const roles=id==='tabernacle'?{weaver:'weaver',priest:'priest','camp-parent':'parent'}:id==='solomon'?{'bronze-worker':'bronze-worker',singer:'singer','temple-visitor':'visitor'}:id==='herod'?{pilgrim:'pilgrim','stone-worker':'stone-worker',listener:'listener'}:id==='exodus'?{'brick-maker':'brick-guide','passover-parent':'departure-parent',traveler:'crossing-guide'}:{};
-  for(const person of peopleByIsland[id].filter(p=>!section||p.id===section.person)) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:id==='joseph'?'joseph-resident':id==='abraham'?'abraham-resident':id==='paul'?'paul-resident':id==='second-temple'?'return-resident':id==='jordan'?(person.id==='jordan-parent'?'west-resident':'east-resident'):roles[person.id]});
+  for(const person of peopleByIsland[id].filter(p=>!section||p.id===section.person)) k.person(...person.position,person.style,0,HUMAN_HEIGHT,{...person,role:id==='sinai'?'sinai-resident':id==='joseph'?'joseph-resident':id==='abraham'?'abraham-resident':id==='paul'?'paul-resident':id==='second-temple'?'return-resident':id==='jordan'?(person.id==='jordan-parent'?'west-resident':'east-resident'):roles[person.id]});
   k.finish();roof.finish();
   const people=k.actors.filter(a=>a.id);
   let walkModel=null;const objects=[];
@@ -676,6 +679,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='jordan'){const exploration=attachJordanExploration(scene,k,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='second-temple'){const exploration=attachReturnExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
+  if(id==='sinai'){const exploration=attachSinaiExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='joseph'){const exploration=attachJosephExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='abraham'){const exploration=attachAbrahamExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='paul'){const exploration=attachPaulExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
@@ -702,7 +706,7 @@ export function createHistoricalScene(id, environment,{segment='all',blenderAsse
   }
   return {
     scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,npcSystem,detailedResidents,segment:section?.id||null,exploration:explorationFor(id,section?.id),
-    animate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {if(abrahamScene)animateAbrahamAnimals(abrahamScene.animals,dt);npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});detailedResidents?.update(cameraPosition,dt);k.animate(dt,cameraPosition);},
+    animate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {if(sinaiScene)sinaiScene.animate(dt,cameraPosition);if(abrahamScene)animateAbrahamAnimals(abrahamScene.animals,dt);npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});detailedResidents?.update(cameraPosition,dt);k.animate(dt,cameraPosition);},
     updateRaycastBounds(){scene.traverse(o=>{if(o.isInstancedMesh&&o.userData.people)o.computeBoundingSphere();});},
     converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },
     attend(personId) {people.forEach(a=>a.state.attending=a.id===personId);},

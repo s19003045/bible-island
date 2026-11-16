@@ -1,3 +1,4 @@
+import {createSinaiObject} from './sinai-objects.js';
 import {createJosephObject} from './joseph-objects.js';
 import {createAbrahamObject} from './abraham-objects.js';
 import {createPaulObject} from './paul-objects.js';
@@ -25,6 +26,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader}
   return root;
 }
 function createProceduralVessel(id) {
+  if(['sinai-manna','sinai-water','sinai-boundary'].includes(id))return createSinaiObject(id);
   if(['joseph-cargo','joseph-granary','joseph-provisions'].includes(id))return createJosephObject(id);
   if(['abraham-altar','abraham-hospitality','abraham-well','abraham-ewe'].includes(id))return createAbrahamObject(id);
   if(['paul-ship','paul-textiles','paul-silverwork'].includes(id))return createPaulObject(id);

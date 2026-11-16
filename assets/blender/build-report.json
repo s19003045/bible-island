@@ -407,7 +407,7 @@
     "woven-sample": {
       "file": "models/woven-sample.glb",
       "bytes": 918948,
-      "sha256": "e9431a4c30ebe96da970d05945e80027d461cd1126c74a23ed10f9c1fb0b855b",
+      "sha256": "68f63620f0a6f0e9159e492671d6eee94fca1959e03dcd9ecae705a76ec74361",
       "triangles": 37096,
       "animations": [],
       "height": 0.7315,
@@ -416,7 +416,7 @@
     "board-joint": {
       "file": "models/board-joint.glb",
       "bytes": 338572,
-      "sha256": "56ffbaec65f69e7fe2d19d8db819e98f348a39b4288ad8cc26cf948215b8bb84",
+      "sha256": "d1cd15e1184bf3cd90f8c2cfe1e5b9efac8e60a7c1222c20ef7b02d790efde09",
       "triangles": 4516,
       "animations": [],
       "height": 0.846,
@@ -434,7 +434,7 @@
     "solomon-sea": {
       "file": "models/solomon-sea.glb",
       "bytes": 2079208,
-      "sha256": "936ceb9161d7bd4c679504109400deb41d8fcd61faf17a0ea5fa1134b50d1ba7",
+      "sha256": "93e68f2c4e355ef52653d3f243d107857cd694cdc36c751311c7b7daa461f6cd",
       "triangles": 55440,
       "animations": [],
       "height": 0.7,
@@ -459,7 +459,7 @@
     "temple-masonry": {
       "file": "models/temple-masonry.glb",
       "bytes": 333740,
-      "sha256": "93be421dd6169759c7af6e3b9fa57358b54e8d34b917f7eca93fe10331b96e5f",
+      "sha256": "38720874585d2241a1ced2597bc0a758298eb37a019243c39a2823e17fbcc7ca",
       "triangles": 5268,
       "animations": [],
       "height": 0.581,
@@ -468,7 +468,7 @@
     "herod-stone": {
       "file": "models/herod-stone.glb",
       "bytes": 165524,
-      "sha256": "8f38ce00cb275c90a05d0c47a68e969bc51b266c571a94116132d2dcdc3951e4",
+      "sha256": "c5643958f419ee1b44e38364bb26c4869efaf55eefb53ea40bed5efeb0a7404a",
       "triangles": 3556,
       "animations": [],
       "height": 0.4,
@@ -477,7 +477,7 @@
     "herod-boundary": {
       "file": "models/herod-boundary.glb",
       "bytes": 814876,
-      "sha256": "b0bcd6f43c32cbae86170ed747196487312368d57f44e612617f092e653b0e0d",
+      "sha256": "e74718f7f606d2cc4c40a611e2117ca5c4460065cdfc1e8829f6b510b7713fd0",
       "triangles": 8460,
       "animations": [],
       "height": 0.692,
@@ -488,7 +488,7 @@
     "herod-capital": {
       "file": "models/herod-capital.glb",
       "bytes": 487136,
-      "sha256": "b14dd0a73d473986c5a6927408cf0298308ac579f3fa063f9ed46fcb9239f58f",
+      "sha256": "7d13bc7d8140662701150f7bd6daccc82f6d31f399886c6741650fe403868041",
       "triangles": 20328,
       "animations": [],
       "height": 0.76,
@@ -499,7 +499,7 @@
     "brick-mould": {
       "file": "models/brick-mould.glb",
       "bytes": 204944,
-      "sha256": "6363f7c1c59c8471ea267112c7d088c5c6dc73f3e227d1c79750e52e93c9d214",
+      "sha256": "07c39c5da03759b54bb48347c67c811b325b044078992a434f3188fb1ee57a3a",
       "triangles": 4076,
       "animations": [],
       "height": 0.12,
@@ -517,7 +517,7 @@
     "crossing-ground": {
       "file": "models/crossing-ground.glb",
       "bytes": 266936,
-      "sha256": "6ab30148ff5b52462208ec8533524d57ea1047980204f93647b82f4ffb8aa205",
+      "sha256": "517e810bb874dc1a256316c2721c212ba6115c5102fb888882e9d849a2f82bf9",
       "triangles": 10336,
       "animations": [],
       "height": 0.391,
@@ -558,7 +558,7 @@
     "return-masonry": {
       "file": "models/return-masonry.glb",
       "bytes": 200972,
-      "sha256": "4a7432a48db27a787337aa676cfc0419c383795af80427e5601c6b9549603f27",
+      "sha256": "a0baf97d7eee9f672d72de0279f8699d0caa9a63effbec1e93dabf2b6ee35963",
       "triangles": 2068,
       "animations": [],
       "height": 0.513,
@@ -586,7 +586,7 @@
     "paul-ship": {
       "file": "models/paul-ship.glb",
       "bytes": 946292,
-      "sha256": "9e99998e6f365d2f13baeca4504fc18b64f182577e7b2600009a215d7e873f06",
+      "sha256": "5da08750216a074b3af4c3cceb17129b5a96b42fdf04c3d8f0e9d5b98d7f4b36",
       "triangles": 28360,
       "animations": [],
       "height": 1.12,
@@ -605,7 +605,7 @@
     "paul-silverwork": {
       "file": "models/paul-silverwork.glb",
       "bytes": 73844,
-      "sha256": "f7f5b3ad73961d440aacb5718b48672e50d082f239ed25197080208b2a8f2e75",
+      "sha256": "b086bfdcb370d2b4d931bf53468ebfb6b1d5c45fb2e7e34251128752d73415df",
       "triangles": 1596,
       "animations": [],
       "height": 0.34,
@@ -668,7 +668,7 @@
     "joseph-granary": {
       "file": "models/joseph-granary.glb",
       "bytes": 852148,
-      "sha256": "0ab5f319eaaef3e54910cf0781aabad64d0e95abda47d47cfc29cf62eb79a553",
+      "sha256": "bc5b20f209544f8910a6ba063031695a1295318679eda358a3a96d9cf6c6a47d",
       "triangles": 17996,
       "animations": [],
       "height": 0.651,
@@ -686,6 +686,43 @@
       "height": 0.325,
       "teaching_model": true,
       "interpretation": "Genesis 45:21\u201323 travel-provision comparison; sack and vessel forms, selected cloth colours, and display quantities are teaching choices, not royal originals"
+    },
+    "sinai-manna": {
+      "file": "models/sinai-manna.glb",
+      "bytes": 1212976,
+      "sha256": "23b86c1cd43c1a7d8dbcdd786bc3fde62abd11f7b9b883f8b14c17e997887ff4",
+      "triangles": 23296,
+      "animations": [],
+      "height": 0.226,
+      "teaching_model": true,
+      "interpretation": "Exodus 16 one-portion and two-portion visual comparison; identical ordinary bowls and 96 invented white flakes per displayed portion are teaching choices; no botanical identification, capacity, excavated omer or standard-measure claim",
+      "display_flakes_per_portion": 96,
+      "display_portion_groups": [
+        1,
+        2
+      ]
+    },
+    "sinai-water": {
+      "file": "models/sinai-water.glb",
+      "bytes": 572104,
+      "sha256": "aea660997ffb1a102952b25e3e3ccf4d5077f8920b60b38ebfa223b979510bca",
+      "triangles": 13048,
+      "animations": [],
+      "height": 0.49,
+      "teaching_model": true,
+      "interpretation": "Exodus 17 only; original solid rock, shallow fracture shapes and externally visible water route are teaching choices, not an identified modern rock, hidden mechanism, archaeological discovery or explanation of the miracle"
+    },
+    "sinai-boundary": {
+      "file": "models/sinai-boundary.glb",
+      "bytes": 849724,
+      "sha256": "903e9262dbdcc25afb9787840c42966cab8dfbfa9781f830ea1e81ee3c6ad4ff",
+      "triangles": 17768,
+      "animations": [],
+      "height": 0.632,
+      "teaching_model": true,
+      "interpretation": "Exodus 19\u201320 original mountain-foot-distant-camp space diagram; invented terrain, shelter count and distances are teaching choices, not a named mountain, surveyed camp, ancient fence, monastery or volcanic explanation",
+      "removable_group": "sinai-boundary-guide",
+      "guide_is_modern_teaching_layer": true
     }
   }
 }

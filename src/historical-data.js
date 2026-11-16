@@ -1,3 +1,4 @@
+import {sinaiHistorical} from './sinai-content.js';
 import {josephHistorical} from './joseph-content.js';
 import {abrahamHistorical} from './abraham-content.js';
 import {paulHistorical} from './paul-content.js';
@@ -15,6 +16,7 @@ export const dimensions = {
   herod: { facade: [100 * CUBIT, 100 * CUBIT], holy: [40 * CUBIT, 40 * CUBIT, 20 * CUBIT], inner: 20 * CUBIT },
 };
 export const historicalScenes = {
+  sinai:sinaiHistorical,
   joseph:josephHistorical,
   abraham:abrahamHistorical,
   paul:paulHistorical,

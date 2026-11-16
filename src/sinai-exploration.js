@@ -1,4 +1,3 @@
-// Prepared for the next detailed island. Not registered in the live application.
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 export function sinaiFloor(s,x,z){return s==='manna'?.6+.4*smooth((x+8)/30):s==='water'?.55+.7*smooth((z+12)/30):.6+1.6*smooth((-z+6)/34);}
 export const sinaiPosition=(s,x,z,h=0)=>[x,sinaiFloor(s,x,z)+h,z];
@@ -7,7 +6,7 @@ export const sinaiSegments=[
  {id:'manna',number:1,name:'每天的需要與安息',reference:'出埃及記 16:1–36',passage:'Exodus 16',person:'sinai-food-gatherer',heading:'先看每日的需要，再看第六與第七天',intro:'來到汛曠野，先讀飢餓與收取食物的規則。普通容器與白色薄片是教學比較，不是已找出的嗎哪實物；會幕此時也尚未建成。'},
  {id:'water',number:2,name:'利菲迪姆的缺水',reference:'出埃及記 17:1–7',passage:'Exodus 17:1-7',person:'sinai-road-companion',heading:'先聽缺水的人，再辨認這一段供水敘事',intro:'從汛曠野分程前進到利菲迪姆，留意長老、杖與何烈的磐石。此幕只讀出 17，不把民 20 在加低斯的吩咐、兩次擊石與後果搬進來。'},
  {id:'mountain',number:3,name:'在山前預備與聆聽',reference:'出埃及記 19–20 章',passage:'Exodus 19-20',person:'sinai-camp-parent',heading:'看山、山腳與遠站的營地',intro:'第三個月到山前，讀洗衣、預備、雲煙、號角與百姓的戰兢。山址、界線材料與距離沒有被考古認定；這裡不預先擺出後來交付的石版或已完成的會幕。'},
-].map(s=>({...s,spawn:sinaiPosition(s.id,17,24),startLookAt:sinaiPosition(s.id,-5,7,1),surfaces,target:[0,4,-6],overview:[41,29,45],human:{target:sinaiPosition(s.id,-4,7,1.4),offset:[7,.4,7]},extent:120,shadow:72,plan:94}));
+].map(s=>({...s,spawn:sinaiPosition(s.id,17,24),startLookAt:sinaiPosition(s.id,-5,7,1),surfaces,target:s.id==='mountain'?[0,48,-45]:[0,4,-6],overview:s.id==='mountain'?[50,55,200]:[41,29,45],human:{target:sinaiPosition(s.id,-4,7,1.4),offset:[7,.4,7]},extent:120,shadow:72,plan:94}));
 export const sinaiSegmentById=new Map(sinaiSegments.map(s=>[s.id,s]));
 export const sinaiObjects=[
  {id:'sinai-manna',segment:'manna',stop:'manna',name:'每日與雙份的食物比較',position:sinaiPosition('manna',-5,7,.82),approach:sinaiPosition('manna',-5,9.4),lookAt:sinaiPosition('manna',-5,7,1.3),description:'觀察三個相同普通容器，分成一份與兩份作比較。白色薄片、器形、數量與擺放均為教學選擇，不宣稱已找到嗎哪或古代俄梅珥標準量器。',observation:'先看按帳棚人數收取的每日需要，再辨認第六天收雙份、第七天安息的差別。不可把平日不留到次日的規則，直接套到第六天的特別安排；這也不是囤積最多者勝出的任務。',passage:'Exodus 16:13-30'},

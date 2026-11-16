@@ -1,3 +1,4 @@
+import {sinaiLearning} from './sinai-content.js';
 import {josephLearning} from './joseph-content.js';
 import {abrahamLearning} from './abraham-content.js';
 import {paulLearning} from './paul-content.js';
@@ -14,6 +15,7 @@ export const readingModes = {
 export const evidenceKinds = { text: '經文描述', research: '歷史研究', reconstruction: '復原推定' };
 
 export const learningIslands = {
+  sinai:sinaiLearning,
   joseph:josephLearning,
   abraham:abrahamLearning,
   paul:paulLearning,
