@@ -2,7 +2,7 @@
 
 給兒童到成人的3D聖經主題群島，從建築、器物與古代生活背景走回經文。
 
-[正式Sites](https://bible-island.starryswift8.chatgpt.site)維持擁有者私人權限。2026-11-17已發布第40版：24座詳細島、74探索點，另含低幀率移動修正；最新來源、封裝及實際操作證據見[部署紀錄](docs/DEPLOYMENTS.md)。
+[正式Sites](https://bible-island.starryswift8.chatgpt.site)維持擁有者私人權限。2026-11-17已發布第41版：24座詳細島、74探索點，另含低幀率移動修正；最新來源、封裝及實際操作證據見[部署紀錄](docs/DEPLOYMENTS.md)。
 
 ## 功能
 
@@ -15,6 +15,8 @@
 - 經文外連統一YouVersion 312 CSBT；跨章跨卷各有入口。收藏、足跡與札記只存目前瀏覽器，無跨裝置同步或流量追蹤。支援鍵盤、窄螢幕、減少動態與WebGL失敗時文字閱讀。
 
 最新四島見[比喻](docs/review/PARABLES-CHAPTERS.md)、[同席苦難與清晨](docs/review/PASSION-CHAPTERS.md)、[聚集日常與安提阿](docs/review/CHURCH-CHAPTERS.md)、[書信](docs/review/LETTERS-CHAPTERS.md)。逐島入口及範圍見[完整工作表](docs/BLENDER-AND-REMAINING-ISLANDS.md)。
+
+本次完整交付、最後七項人工補驗與限制見[交付紀錄](docs/FINAL-DELIVERY.md)。
 
 ## 開發與驗證
 
@@ -31,7 +33,7 @@ npm run preview
 
 開發入口http://localhost:5173，建置輸出dist/。採原生JavaScript ES Modules、Three.js0.180.0與Vite6；相對資源路徑可供靜態主機使用，不依賴外部模型服務或CDN。`npm run review:bundle -- .qa/review.html`可產生自包含離線試閱；目前24島包在.qa/twenty-four-islands-review.html。
 
-最新全來源回歸51檔319項通過（含低幀率修正）；內容24島74點、語法、正式建置與離線試閱亦通過。各島文件分開記錄程式驗證與實際瀏覽器操作，未完成項及觀察環境限制如實保留。
+最新全來源回歸51檔320項通過（含低幀率修正）；內容24島74點、語法、正式建置與離線試閱亦通過。各島文件分開記錄程式驗證與實際瀏覽器操作，未完成項及觀察環境限制如實保留。
 
 ## 原則與架構
 

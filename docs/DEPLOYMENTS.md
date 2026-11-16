@@ -439,3 +439,15 @@
 - 正式頁明確reload後已讀index-9zYrb0QX.js，後續實際路線與舊近景補驗另記，不保證特定硬體幀率。
 
 - 第40版平台回讀source SHA相符；184內容檔／167720960bytes，內容hash `2f95a43cc227c76340026adedcc8c94d4c6389e787aec21496226d7db93cebc2`。正式兩驗證分頁皆已明確reload讀index-9zYrb0QX.js；沒有為瀏覽器逾時重啟dev server或重做媒體。
+
+## 2026-11-17：微小餘步不誤取消路線（第41版）
+
+- root來源`62e60b09e9ade7d36fd2bcc845da6692045e7090`；Sites來源`786e7663cc052e35c64d94b2999969f2f59e0032`。528追蹤來源逐檔相同，既有node_modules連結保持，未改媒體。
+- 第40版實際補驗找到極小餘步被舊絕對閾值誤判為障礙。改為elapsed相等分割及按嘗試位移比例判斷；增加帶微小時間差的完整書信閱讀架／希律三件導航測試，詳LOW-FRAME-RATE.md。
+- 51檔320項完整來源回歸通過（201.35秒），check／diff與220323KiB離線包通過。同源建置137模組／1.53s，入口index-DwC2hrCZ.js、world-Rm6rh0xD.js、vessels-Bm9Kq3nw.js、three-o24aeEZ1.js、CSS index-zmRD_4cI.css，保留原大chunk提示。
+- 同一owner-private專案觀眾不變。第41版`appgprj_6af95ea0dac4819182957156725483aa~appgver_fa45ca48fd64819182f0e1f0254e79f1`；部署`appgdep_6afb8551fa8881918a8917695d4bb6ca`於`2026-11-16T22:36:16.031342+00:00`終態succeeded，不再poll或重發。封裝`/tmp/bible-island-62e60b0-frame-remainder-sites.tar.gz` SHA256 `b21c4d1f55cb863854b3bc78b36571c69d114958bd474403e33e0db78850ddf6`。
+- 正式兩頁皆明確reload核對index-DwC2hrCZ.js，已重新從公共入口啟動院界與閱讀架路線；尚未以啟動成功代替實際到達。
+
+- 第41版封裝120920236bytes；平台184內容檔／167720960bytes，內容hash `bf8bd4eb19a9d3012e61c8834939fc1daf56d44bfa256d61b2069468ac00611c`，source SHA回讀相符。正式閱讀架已完整沿路抵達／E開啟／旋轉／關閉1／1，第24島三件正式人工操作全部完成；截圖失敗限制及第40版已驗模式另記LETTERS-CHAPTERS.md。
+
+- 最後人工補驗完成：希律院界／柱式於第41版沿公共路線抵達並旋轉，院界拆還；石材先前第38／39版同媒體已旋轉拆還。大衛cart／pause／carry每次切時刻後重進步行，均沿路／E／旋轉／返回，分別取得實際模型圖；既有tent證據保留。出埃及crossing剖面亦沿路／E／旋轉／1／1及返回故事0／3。七個早期特定近景缺口全解除，未把不同reload的觀察計數偽稱同一輪3／3。動畫已恢復，無交談／modal／自動行走，warning／error=[]；詳HEROD／EXODUS／DAVID各驗收。未因這些文件補記重發相同程式或生成錄音。
