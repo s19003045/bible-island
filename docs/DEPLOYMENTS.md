@@ -272,3 +272,6 @@
 - 201／201測試、內容／語法檢查、正式建置及單檔試閱通過。91模組建置1.68s，入口 `index-Cmwk0w92.js`；Three主chunk仍有既有500kB提示。
 - 第十三座依牧地、王城、遷移與安放分章；約櫃另有四個互斥時刻，URL、場景、近景與音訊同步。三位角色24段配音、三件新Blender教具與獨立POI動態羊群接入。正式來源68個非空場景、28人類骨架及另1羊骨架，詳見 [大衛驗收](review/DAVID-CHAPTERS.md)。
 - 原擁有者私人分享範圍保留，沒有新建Site或擴大受眾。發布後瀏覽器結果接續追加；尚餘十一座詳細島與人工補驗，總Goal保持進行中。
+
+
+時間卡面板修正發布：本機 `a7c5cfcb2038fa940e6f90ca530cbb07484cdd72`；317追蹤檔逐檔相符。Sites source `76f1ac6db80e667d71dd5dc856711857545ec39b`，version `appgprj_6af95ea0dac4819182957156725483aa~appgver_d3b2521026a08191876212385b8efc41`，deployment `appgdep_6afaf610408481918b570f639fcd3237`，`succeeded`／`2026-11-16T12:25:10.378677+00:00`。入口 `index-Ddu7aViy.js`、world `world-BnJCm2-8.js`、vessels `vessels-DmBl57LE.js`、CSS `index-Gu4b_RX2.css`；來源與封裝核對，正式UI實際出現「時刻脈絡與經文」收合入口。完整201測試再通過，正式帳篷近景與1／1觀察、解說者語音播放已實際確認，讀經仍0／3。
