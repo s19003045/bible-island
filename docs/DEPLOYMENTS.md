@@ -57,3 +57,14 @@
 - 111 項測試、內容／語法、正式建置與離線封裝通過；所羅門三件觀察物以及場景銅海／兩座大柱頂共用 GLB。近景拆合、背景暫停／恢復及重開時 renderer 重用均已在本機實際操作，見 [所羅門器具驗收](review/BLENDER-SOLOMON.md)。
 - 正式頁已重新載入，DOM 取得新 `index-D4VKyUMe.js`；選擇銅海探索點後，可見新盆體、牛座及後方兩座柱頂，導讀與 CSBT 連結仍可操作，console error／warning 為空。截圖 `.qa/solomon-sea-sites.png`，拍攝後已恢復名稱顯示。
 - 保留既有擁有者私人權限。此版已有八件 Blender 觀察物；希律／出埃及六件、人物細化與十九座詳細島嶼仍待接續。
+
+## 2026-11-16：希律 Blender 教具
+
+- 本機來源：`9aa33e4`，與 Sites 來源逐檔比對，共 143 個追蹤檔案。
+- Sites source commit：`952144957e681d44657b29ecb29f41e429bb9b52`。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_0233041dc35081919c198a0171937f03`。
+- Deployment：`appgdep_6afa6fd12ab08191a363edefe32acc33`。
+- 平台結果：`succeeded`，`2026-11-16T02:52:14.240187+00:00`。
+- 115 項測試、內容／語法、正式建置與離線封裝通過。希律三件觀察物接入場景／近景；石塊接縫與院界低欄可拆合，內院限制保持有效，見 [希律器具驗收](review/BLENDER-HEROD.md)。
+- 正式頁重新載入取得 `index-BdJHuZeQ.js`；石作角色對話與語音入口可用，console error／warning 為空，截圖 `.qa/herod-sites-published.png`。本機工作桌可見新雙石塊加工面，截圖 `.qa/herod-stone-local.png`。本輪未完成三件近景的全程手動走訪，不將對話截圖當成該項驗收；兩個分頁已恢復場景全景與人物動畫。
+- 保留既有擁有者私人權限。此版已有十一件 Blender 觀察物；出埃及三件、人物細化與十九座詳細島嶼仍待接續。
