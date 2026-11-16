@@ -25,6 +25,8 @@
 
 三件 Blender 預覽已檢視，並修正穿插、薄餅堆疊、腳底／頸部接合與剖面取景。影像為 `.qa/blender-brick-mould.png`、`.qa/blender-passover-kit.png`、`.qa/blender-crossing-ground.png`。本機已沿路走到磚模旁，開啟觀察視窗並實際抬起／還原木框；可見泥磚留在框下，畫面說明與來源入口正確。截圖 `.qa/exodus-mould-separated.png`。沒有為拍攝改動人物動畫偏好。
 
-再沿第二章家屋入口走到布包旁，實際操作後發現初版的移位仍遮住碗口；已增加移開距離並提高初始取景，加入上述視線測試。兩件近景重用的 canvas renderer generation 均為 `1`；console error／warning 為空。修正後完整回歸仍為 119 項通過，正式／離線建置已更新。Sites 初批已發佈，修正與最後畫面於本輪接續記錄，不將初版操作當成修正後的畫面證明。
+再沿第二章家屋入口走到布包旁，實際操作後發現初版的移位仍遮住碗口；已增加移開距離並提高初始取景，加入上述視線測試。兩件初批近景重用的 canvas renderer generation 均為 `1`。修正後又實際沿家屋入口抵達，開啟並移開布包；可看見碗口與內底，截圖 `.qa/exodus-bundle-revealed.png` 已更新為修正後畫面。還原後退出步行；沒有留下暫停或 viewport 覆寫，console error／warning 為空。修正後完整回歸仍為 119 項通過。
+
+Sites 初批及可視性修正均已發佈，最新正式頁取得 `index-DEfqkT4J.js`。製磚場導讀與 CSBT 入口可用，console error／warning 為空；畫面 `.qa/exodus-sites-published.png` 的教具被房屋遮擋，不以它作三件正式近景的驗收。精確識別見 [部署紀錄](../DEPLOYMENTS.md)。渡海剖面的完整瀏覽器近景走訪仍待補驗；不由離線渲染或單一畫面推定通過。
 
 希律三件近景完整手動走訪仍待補驗；獨立歷史／美術審稿、真人語音全聽驗與真實手機驗收未取得。NPC 目前仍有風格化特徵，下一輪接續細化臉部、衣料、步態及年代／職分差異，再完成十九座詳細島嶼。
