@@ -1,3 +1,4 @@
+import {createGalileeObject} from './galilee-objects.js';
 import {createNativityObject} from './nativity-objects.js';
 import {createIntertestamentObject} from './intertestament-objects.js';
 import {createNehemiahObject} from './nehemiah-objects.js';
@@ -35,6 +36,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader,
   return root;
 }
 function createProceduralVessel(id) {
+  if(['galilee-hull','galilee-stones','galilee-roof'].includes(id))return createGalileeObject(id);
   if(['nativity-manger','nativity-home','nativity-joinery'].includes(id))return createNativityObject(id);
   if(['intertestament-road','intertestament-coin','intertestament-languages'].includes(id))return createIntertestamentObject(id);
   if(['nehemiah-wall','nehemiah-watch','nehemiah-reading'].includes(id))return createNehemiahObject(id);

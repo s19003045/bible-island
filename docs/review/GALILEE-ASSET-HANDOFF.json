@@ -1,0 +1,1498 @@
+{
+  "stage": "Galilee19 official Blender asset integration complete; root formal image review before app/manifest registration or publication",
+  "created_at_utc": "2026-11-16T17:31:43.062704+00:00",
+  "official_builder_invocations": 1,
+  "official_source": {
+    "path": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+    "bytes": 21190246,
+    "sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967"
+  },
+  "authoring_source": {
+    "path": "/home/garywu/dev/bible-island/scripts/blender/galilee-props.py",
+    "bytes": 12370,
+    "sha256": "009ca3f1283675811d1379cf9bca777d458916e2c69bf10a75a9ea2add38ff23"
+  },
+  "builder": {
+    "path": "/home/garywu/dev/bible-island/scripts/blender/build-assets.py",
+    "bytes": 26796,
+    "sha256": "63fc90d22d5486da447a1fb97fd90c90aefcc9e988bdfec4b22b247968a702ca"
+  },
+  "build_report": {
+    "path": "/home/garywu/dev/bible-island/assets/blender/build-report.json",
+    "bytes": 57303,
+    "sha256": "4dc0769baf3ba7e48d10db49d2d04f8c6b3413a1246249b9bb99637e550afa7c"
+  },
+  "prebuild_backup": {
+    "path": "/tmp/galilee-before-official/snapshot.json",
+    "bytes": 23540,
+    "sha256": "2702ae2f2a172a6ee24a5d15a36d2ffe9e8c955d47c326d3a6cf6c425b3b739f"
+  },
+  "accepted_isolated_source_snapshot": {
+    "path": "/tmp/galilee-before-official/galilee-props.py",
+    "bytes": 12370,
+    "sha256": "009ca3f1283675811d1379cf9bca777d458916e2c69bf10a75a9ea2add38ff23"
+  },
+  "accepted_isolated_handoff": {
+    "path": "/home/garywu/dev/bible-island/.qa/galilee-isolated-handoff.json",
+    "bytes": 47647,
+    "sha256": "d20dc1c6cc8df74de3b0c371029d4817448b6af285c93ef46b512a030531f073"
+  },
+  "authoring_source_unchanged_from_accepted_prototype": true,
+  "official_geometry_report": {
+    "path": "/home/garywu/dev/bible-island/.qa/galilee-official-geometry.json",
+    "bytes": 295859,
+    "sha256": "17768016b145db8818cad80573351212886b3474ce566bc076d6bf6e9c08f282"
+  },
+  "official_preview_provenance": {
+    "path": "/home/garywu/dev/bible-island/.qa/galilee-official-preview-provenance.json",
+    "bytes": 23405,
+    "sha256": "8497d7de432d45dc128a8aad315485d7fb7b0e77fb34eb1b8a6d8f245f1baaa6"
+  },
+  "official_contact_provenance": {
+    "path": "/home/garywu/dev/bible-island/.qa/galilee-official-contact-provenance.json",
+    "bytes": 25727,
+    "sha256": "0ae913b0008d417bbe8c45faf00a8257b18be7e24b6a59c52283a9342a7ed677"
+  },
+  "old83_rebuild_difference_report": {
+    "path": "/home/garywu/dev/bible-island/.qa/galilee-existing-glb-rebuild-diff.json",
+    "bytes": 1741807,
+    "sha256": "da7a77fff9be94b97e89ae1c7db7e302beb3b89f6ace6e41d541b1e5bd81b134"
+  },
+  "old83_rebuild_summary": {
+    "stage": "before restoring verified old bytes; full single-builder rebuild diff",
+    "before_directory": "/tmp/galilee-before-official",
+    "old_asset_count": 83,
+    "new_asset_count": 86,
+    "byte_identical_count": 50,
+    "changed_count": 33,
+    "changes_only_uv_float_rounding": true,
+    "all_positions_indices_skin_animations_json_identical": true,
+    "changed_uv_components": 60510,
+    "max_uv_delta": 2.384185791015625e-07,
+    "added_files": [
+      "galilee-hull.glb",
+      "galilee-roof.glb",
+      "galilee-stones.glb"
+    ],
+    "unexpected_changes": [],
+    "method": "Byte identity shortcuts equal files; JSON object and exact JSON chunk bytes equal; every accessor checked and per-accessor max delta reported. Changed files additionally require every changed BIN byte to fall within a TEXCOORD_0 component range. POSITION/indices/normals/colors/JOINTS/WEIGHTS/inverseBindMatrices/animations and all other binary bytes must remain identical."
+  },
+  "final83_preservation": {
+    "path": "/home/garywu/dev/bible-island/.qa/galilee-existing-glb-final-preservation.json",
+    "bytes": 22172,
+    "sha256": "8a7fe96e9096566d7f692f65dedbf51d556932e091c3316c0139a6b5bae9f882"
+  },
+  "final83of83_original_hashes_identical": true,
+  "old83_report_entries_identical": true,
+  "restored_only_proven_uv_files": [
+    "board-joint.glb",
+    "brick-mould.glb",
+    "crossing-ground.glb",
+    "david-ark.glb",
+    "david-city.glb",
+    "david-shepherd.glb",
+    "exile-dwelling.glb",
+    "exile-sequence.glb",
+    "exile-waterbank.glb",
+    "herod-boundary.glb",
+    "herod-capital.glb",
+    "herod-stone.glb",
+    "intertestament-coin.glb",
+    "intertestament-languages.glb",
+    "intertestament-road.glb",
+    "joseph-granary.glb",
+    "kingdom-assembly.glb",
+    "kingdom-measures.glb",
+    "kingdom-sites.glb",
+    "nativity-home.glb",
+    "nativity-joinery.glb",
+    "nehemiah-reading.glb",
+    "nehemiah-wall.glb",
+    "nehemiah-watch.glb",
+    "paul-ship.glb",
+    "paul-silverwork.glb",
+    "return-masonry.glb",
+    "ruth-grain.glb",
+    "ruth-witness.glb",
+    "sinai-boundary.glb",
+    "solomon-sea.glb",
+    "temple-masonry.glb",
+    "woven-sample.glb"
+  ],
+  "counts": {
+    "all_scenes": 87,
+    "nonempty_scenes": 86,
+    "public_glbs": 86,
+    "build_assets": 86,
+    "armatures": 29,
+    "human_rigs": 28,
+    "animal_rigs": 1,
+    "human_action_slots": 140,
+    "animal_action_slots": 3
+  },
+  "assets": {
+    "galilee-hull": {
+      "glb": {
+        "path": "/home/garywu/dev/bible-island/public/models/galilee-hull.glb",
+        "bytes": 509032,
+        "sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f"
+      },
+      "source_scene": "Galilee — original outward U hull keel and curved frame compa",
+      "prototype_only": false,
+      "semantic_groups": [
+        "galilee-hull-modern-base",
+        "galilee-hull-fixed-continuous-shell",
+        "galilee-hull-fixed-keel",
+        "galilee-hull-modern-saddle-1",
+        "galilee-hull-modern-saddle-2",
+        "galilee-hull-fixed-curved-frame",
+        "galilee-hull-modern-removable-frame"
+      ],
+      "all_nodes": [
+        "galilee-hull-galilee-modern-neutral-display",
+        "galilee-hull-modern-base",
+        "galilee-hull-galilee-original-selected-shell-wood",
+        "galilee-hull-fixed-continuous-shell",
+        "galilee-hull-galilee-original-selected-keel-wood",
+        "galilee-hull-fixed-keel",
+        "galilee-hull-galilee-modern-visible-bearing-saddles",
+        "galilee-hull-modern-saddle-1",
+        "galilee-hull-galilee-modern-visible-bearing-saddles.001",
+        "galilee-hull-modern-saddle-2",
+        "galilee-hull-galilee-original-selected-frame-wood",
+        "galilee-hull-fixed-curved-frame",
+        "galilee-hull-galilee-original-selected-frame-wood.001",
+        "galilee-hull-modern-removable-frame"
+      ],
+      "dimensions_length_width_height_m": [
+        1.100000023841858,
+        0.7200000286102295,
+        0.44999998807907104
+      ],
+      "dimensions_gltf_xyz_m": [
+        1.100000023841858,
+        0.44999998807907104,
+        0.7200000286102295
+      ],
+      "closed_bottom_m": 0.0,
+      "closed_height_m": 0.44999998807907104,
+      "triangles": 8796,
+      "budget": {
+        "max_triangles": 30000,
+        "max_glb_bytes": 1600000
+      },
+      "source_GLBBBox_max_error_m": 0.0,
+      "closed_connected_outward_positive_components": 7,
+      "invalid_source_components": [],
+      "invalid_glb_components": [],
+      "positive_ground_surface_area_m2": 0.7811160376634589,
+      "static_deep_penetrations_source": [],
+      "static_deep_penetrations_glb": [],
+      "runtime_operations": 1,
+      "removable_node": "galilee-hull-modern-removable-frame",
+      "translation_gltf_xyz_m": [
+        0,
+        0.18,
+        0
+      ],
+      "source_layer_motion": {
+        "node": "galilee-hull-modern-removable-frame",
+        "blender_delta_xyz_m": [
+          0.0,
+          0.0,
+          0.18000000715255737
+        ],
+        "gltf_delta_xyz_m": [
+          0.0,
+          0.18000000715255737,
+          -0.0
+        ],
+        "moving_meshes": 1,
+        "all_vertex_max_error_m": 2.9802322387695312e-08,
+        "stationary_vertex_max_error_m": 0,
+        "restored_vertex_max_error_m": 0.0,
+        "moved_layer_bounds_blender_xyz_m": [
+          [
+            -0.017500000074505806,
+            -0.29136916995048523,
+            0.3050000071525574
+          ],
+          [
+            0.017500000074505806,
+            0.29136916995048523,
+            0.6149680614471436
+          ]
+        ]
+      },
+      "actual_glb_layer_motion": {
+        "node": "galilee-hull-modern-removable-frame",
+        "blender_delta_xyz_m": [
+          0.0,
+          0.0,
+          0.18000000715255737
+        ],
+        "gltf_delta_xyz_m": [
+          0.0,
+          0.18000000715255737,
+          -0.0
+        ],
+        "moving_meshes": 1,
+        "all_vertex_max_error_m": 2.9802322387695312e-08,
+        "stationary_vertex_max_error_m": 0,
+        "restored_vertex_max_error_m": 0.0,
+        "moved_layer_bounds_blender_xyz_m": [
+          [
+            -0.017500000074505806,
+            -0.29136916995048523,
+            0.3050000071525574
+          ],
+          [
+            0.017500000074505806,
+            0.29136916995048523,
+            0.6149680614471436
+          ]
+        ]
+      },
+      "source20path": {
+        "samples": 20,
+        "noncontact_intersection_samples": [],
+        "moving_mesh_count": 1,
+        "fixed_mesh_count": 6
+      },
+      "actual_glb20path": {
+        "samples": 20,
+        "noncontact_intersection_samples": [],
+        "moving_mesh_count": 1,
+        "fixed_mesh_count": 6
+      },
+      "overview": {
+        "path": "/home/garywu/dev/bible-island/.qa/galilee-official-hull-overview.png",
+        "bytes": 2096651,
+        "sha256": "40fb13a58c5262e8e7c5aadf93381dfc2e8c74c6af7c42e15c7f8ec83ad53546"
+      },
+      "images": [
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-hull-front.png",
+          "sha256": "929fcd3a50f05deacc392a0e20eb727f60117575000d30d300556313ccba1662",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-hull.glb",
+          "glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "camera": [
+            1.7999999523162842,
+            -3.0,
+            2.5
+          ],
+          "camera_rotation": [
+            0.9952396154403687,
+            2.928721087869235e-08,
+            0.5404194593429565
+          ],
+          "ortho_scale": 1.5499999523162842,
+          "layers": {
+            "galilee-hull-modern-removable-frame": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Selected original partial U-shell; two whole curved frames; modern saddles"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-hull-back.png",
+          "sha256": "68abc4f7cf8d83949e909df67f19c7c9dadffc9cc817ba5748828e8dfe01c360",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-hull.glb",
+          "glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "camera": [
+            -1.7999999523162842,
+            3.0,
+            2.0999999046325684
+          ],
+          "camera_rotation": [
+            1.0799280405044556,
+            -4.985594870277055e-08,
+            -2.601173162460327
+          ],
+          "ortho_scale": 1.5499999523162842,
+          "layers": {
+            "galilee-hull-modern-removable-frame": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Opposite outer face and open longitudinal cut end"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-hull-section.png",
+          "sha256": "30db8e3f570b2ae1ec20ef2381e62cc5bcbd4f35d908f00dec854d1569efc7eb",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-hull.glb",
+          "glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "camera": [
+            3.5,
+            -0.4000000059604645,
+            1.2000000476837158
+          ],
+          "camera_rotation": [
+            1.3021043539047241,
+            2.688324229893624e-08,
+            1.4570043087005615
+          ],
+          "ortho_scale": 1.0,
+          "layers": {
+            "galilee-hull-modern-removable-frame": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Actual U cross section, thick cut edges and keel; no false bow/transom"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-hull-open.png",
+          "sha256": "5a983c1f28b6f9eacf4e5ea67039b2de15782423e75dc89283d4304fa70cf01d",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-hull.glb",
+          "glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "camera": [
+            1.7999999523162842,
+            -3.0,
+            2.5
+          ],
+          "camera_rotation": [
+            1.005362868309021,
+            6.389890216951244e-08,
+            0.5404194593429565
+          ],
+          "ortho_scale": 1.5499999523162842,
+          "layers": {
+            "galilee-hull-modern-removable-frame": [
+              0.0,
+              0.0,
+              0.18000000715255737
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Only the entire centre U frame +.18m; fixed hull/keel/saddles/second rib remain"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-hull-bottom.png",
+          "sha256": "27d3c302bc9952987fff685189e87ef485a265683c9c470b5625b5bbc32cfd4f",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-hull.glb",
+          "glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "camera": [
+            1.600000023841858,
+            -2.5999999046325684,
+            -1.7000000476837158
+          ],
+          "camera_rotation": [
+            2.1274991035461426,
+            2.4249466434866918e-08,
+            0.5516550540924072
+          ],
+          "ortho_scale": 1.4500000476837158,
+          "layers": {
+            "galilee-hull-modern-removable-frame": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [
+            "galilee-hull-modern-base"
+          ],
+          "inspection_note": "QA only: base hidden to expose real shell underside, keel and two saddles"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-hull-bearing.png",
+          "sha256": "55cc6de3e06f09cf56a5417905d1a95413fac90e5063cbbc5d7ef7bfeced2d03",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-hull.glb",
+          "glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "camera": [
+            1.7999999523162842,
+            -2.299999952316284,
+            0.47999998927116394
+          ],
+          "camera_rotation": [
+            1.45152747631073,
+            5.097291122524439e-08,
+            0.6640462875366211
+          ],
+          "ortho_scale": 1.100000023841858,
+          "layers": {
+            "galilee-hull-modern-removable-frame": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [
+            "galilee-hull-modern-base"
+          ],
+          "inspection_note": "QA only: base hidden; low side view of real modern saddle / keel / shell bearing chain"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-hull-frame-underside.png",
+          "sha256": "4651be03481fb93d6846bfc8eec196fca5d4702a3170112deb92508608091f60",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-hull.glb",
+          "glb_sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+          "camera": [
+            1.7000000476837158,
+            -2.0,
+            -1.5
+          ],
+          "camera_rotation": [
+            2.2048044204711914,
+            -5.6010996729582985e-08,
+            0.7044941186904907
+          ],
+          "ortho_scale": 0.8799999952316284,
+          "layers": {
+            "galilee-hull-modern-removable-frame": [
+              0.0,
+              0.0,
+              0.18000000715255737
+            ]
+          },
+          "hidden_groups": [
+            "galilee-hull-modern-base"
+          ],
+          "inspection_note": "QA only: all other meshes hidden; actual whole curved frame underside and thick cut profile"
+        }
+      ],
+      "interpretation": "Original modern partial outward U hull with true shell,keel and whole curved frames. Curves/material tones,dimensions and two visible modern saddles are selected comparisons,not an ancient boat copy or Gospel boat identification. No locked joinery,crew,sail,paddle,net or boat boarding.",
+      "measured_geometry": {
+        "inner_outer_floor_m": [
+          0.125,
+          0.10499999672174454
+        ],
+        "shell_sampled_local_normal_thickness_min_max_m": [
+          0.019998785816470768,
+          0.020000012389351268
+        ],
+        "frame_sampled_local_normal_thickness_min_max_m": [
+          0.02999817860011676,
+          0.030000000712461762
+        ],
+        "each_rib_shell_real_contact_area_m2": [
+          0.032467746704335304,
+          0.03246772229424477
+        ],
+        "each_saddle_shell_curved_real_contact_area_m2": [
+          0.02918286190493424,
+          0.02918283213881248
+        ],
+        "keel_shell_horizontal_contact_area_m2": 0.03839999881979552,
+        "keel_saddle_actual_side_gaps_m": [
+          [
+            0.0020000003385357273,
+            0.0020000040901972183
+          ],
+          [
+            0.0020000040901972183,
+            0.0020000003385357273
+          ]
+        ],
+        "actual_narrowest_flat_floor_width_m": 0.1599999964237213,
+        "actual_rim_opening_width_at_Y0_44999_m": 0.5999932885169983,
+        "20step_per_vertex_height_matched_min_horizontal_clearance_m": 0.003147035837173462,
+        "closed_rib_top_m": 0.4349680244922638,
+        "raised_rib_top_m": 0.6149680244922637,
+        "full_rib_above_rim_requires_lift_greater_than_m": 0.325,
+        "actual_offset_section_topology": [
+          {
+            "actual_unique_section_edges": 642,
+            "connected_section_loops": 1,
+            "all_section_vertex_degrees_two": true,
+            "nonadjacent_section_crossings": [],
+            "method": "Actual imported non-end prism face edges in cross-section; strict segment intersection; no source curve substitution"
+          },
+          {
+            "actual_unique_section_edges": 578,
+            "connected_section_loops": 1,
+            "all_section_vertex_degrees_two": true,
+            "nonadjacent_section_crossings": [],
+            "method": "Actual imported non-end prism face edges in cross-section; strict segment intersection; no source curve substitution"
+          }
+        ],
+        "source20step_min_horizontal_clearance_m": 0.003147035837173462
+      }
+    },
+    "galilee-roof": {
+      "glb": {
+        "path": "/home/garywu/dev/bible-island/public/models/galilee-roof.glb",
+        "bytes": 209676,
+        "sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97"
+      },
+      "source_scene": "Galilee — original one tenth right cutaway home and supported",
+      "prototype_only": false,
+      "semantic_groups": [
+        "galilee-roof-modern-base",
+        "galilee-roof-fixed-floor",
+        "galilee-roof-fixed-wall-back",
+        "galilee-roof-fixed-wall-left",
+        "galilee-roof-fixed-wall-front-left-jamb",
+        "galilee-roof-fixed-wall-front-right-jamb",
+        "galilee-roof-fixed-wall-front-left-fill",
+        "galilee-roof-fixed-wall-front-right-fill",
+        "galilee-roof-fixed-wall-above-lintel",
+        "galilee-roof-fixed-walls",
+        "galilee-roof-fixed-lintel",
+        "galilee-roof-beam-1",
+        "galilee-roof-beam-2",
+        "galilee-roof-beam-3",
+        "galilee-roof-beam-4",
+        "galilee-roof-beam-5",
+        "galilee-roof-thick-cover",
+        "galilee-roof-thick-soil",
+        "galilee-roof-thick-fine-surface",
+        "galilee-roof-modern-cutaway-layer"
+      ],
+      "all_nodes": [
+        "galilee-roof-galilee-modern-neutral-display",
+        "galilee-roof-modern-base",
+        "galilee-roof-galilee-original-floor-comparison",
+        "galilee-roof-fixed-floor",
+        "galilee-roof-galilee-original-earth-wall-comparison.006",
+        "galilee-roof-fixed-wall-above-lintel",
+        "galilee-roof-galilee-original-earth-wall-comparison",
+        "galilee-roof-fixed-wall-back",
+        "galilee-roof-galilee-original-earth-wall-comparison.004",
+        "galilee-roof-fixed-wall-front-left-fill",
+        "galilee-roof-galilee-original-earth-wall-comparison.002",
+        "galilee-roof-fixed-wall-front-left-jamb",
+        "galilee-roof-galilee-original-earth-wall-comparison.005",
+        "galilee-roof-fixed-wall-front-right-fill",
+        "galilee-roof-galilee-original-earth-wall-comparison.003",
+        "galilee-roof-fixed-wall-front-right-jamb",
+        "galilee-roof-galilee-original-earth-wall-comparison.001",
+        "galilee-roof-fixed-wall-left",
+        "galilee-roof-fixed-walls",
+        "galilee-roof-galilee-original-selected-roof-beams",
+        "galilee-roof-fixed-lintel",
+        "galilee-roof-galilee-original-selected-roof-beams.001",
+        "galilee-roof-beam-1",
+        "galilee-roof-galilee-original-selected-roof-beams.002",
+        "galilee-roof-beam-2",
+        "galilee-roof-galilee-original-selected-roof-beams.003",
+        "galilee-roof-beam-3",
+        "galilee-roof-galilee-original-selected-roof-beams.004",
+        "galilee-roof-beam-4",
+        "galilee-roof-galilee-original-selected-roof-beams.005",
+        "galilee-roof-beam-5",
+        "galilee-roof-galilee-modern-supported-cover-comparison",
+        "galilee-roof-thick-cover",
+        "galilee-roof-galilee-modern-fine-surface-layer",
+        "galilee-roof-thick-fine-surface",
+        "galilee-roof-galilee-modern-selected-soil-layer",
+        "galilee-roof-thick-soil",
+        "galilee-roof-modern-cutaway-layer"
+      ],
+      "dimensions_length_width_height_m": [
+        1.100000023841858,
+        0.8500000238418579,
+        0.421999990940094
+      ],
+      "dimensions_gltf_xyz_m": [
+        1.100000023841858,
+        0.421999990940094,
+        0.8500000238418579
+      ],
+      "closed_bottom_m": 0.0,
+      "closed_height_m": 0.421999990940094,
+      "triangles": 3512,
+      "budget": {
+        "max_triangles": 30000,
+        "max_glb_bytes": 1600000
+      },
+      "source_GLBBBox_max_error_m": 0.0,
+      "closed_connected_outward_positive_components": 18,
+      "invalid_source_components": [],
+      "invalid_glb_components": [],
+      "positive_ground_surface_area_m2": 0.923336030091285,
+      "static_deep_penetrations_source": [],
+      "static_deep_penetrations_glb": [],
+      "runtime_operations": 1,
+      "removable_node": "galilee-roof-modern-cutaway-layer",
+      "translation_gltf_xyz_m": [
+        0,
+        0.18,
+        0
+      ],
+      "source_layer_motion": {
+        "node": "galilee-roof-modern-cutaway-layer",
+        "blender_delta_xyz_m": [
+          0.0,
+          0.0,
+          0.18000000715255737
+        ],
+        "gltf_delta_xyz_m": [
+          0.0,
+          0.18000000715255737,
+          -0.0
+        ],
+        "moving_meshes": 8,
+        "all_vertex_max_error_m": 2.9802322387695312e-08,
+        "stationary_vertex_max_error_m": 0,
+        "restored_vertex_max_error_m": 0.0,
+        "moved_layer_bounds_blender_xyz_m": [
+          [
+            -0.49000000953674316,
+            -0.3799999952316284,
+            0.5400000214576721
+          ],
+          [
+            0.49000000953674316,
+            0.3799999952316284,
+            0.6019999980926514
+          ]
+        ]
+      },
+      "actual_glb_layer_motion": {
+        "node": "galilee-roof-modern-cutaway-layer",
+        "blender_delta_xyz_m": [
+          0.0,
+          0.0,
+          0.18000000715255737
+        ],
+        "gltf_delta_xyz_m": [
+          0.0,
+          0.18000000715255737,
+          -0.0
+        ],
+        "moving_meshes": 8,
+        "all_vertex_max_error_m": 2.9802322387695312e-08,
+        "stationary_vertex_max_error_m": 0,
+        "restored_vertex_max_error_m": 0.0,
+        "moved_layer_bounds_blender_xyz_m": [
+          [
+            -0.49000000953674316,
+            -0.3799999952316284,
+            0.5400000214576721
+          ],
+          [
+            0.49000000953674316,
+            0.3799999952316284,
+            0.6019999980926514
+          ]
+        ]
+      },
+      "source20path": {
+        "samples": 20,
+        "noncontact_intersection_samples": [],
+        "moving_mesh_count": 8,
+        "fixed_mesh_count": 10
+      },
+      "actual_glb20path": {
+        "samples": 20,
+        "noncontact_intersection_samples": [],
+        "moving_mesh_count": 8,
+        "fixed_mesh_count": 10
+      },
+      "overview": {
+        "path": "/home/garywu/dev/bible-island/.qa/galilee-official-roof-overview.png",
+        "bytes": 1939411,
+        "sha256": "6a5fbb2794074447bb06a390a7c5c28e427a0ae571448cc88a651b39465acdf3"
+      },
+      "images": [
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-roof-closed.png",
+          "sha256": "02c66facd69da7c4d1818e4491a6c0b5b426944a7ab714a0e605ec5fb4c52302",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-roof.glb",
+          "glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "camera": [
+            1.7999999523162842,
+            -3.0,
+            2.299999952316284
+          ],
+          "camera_rotation": [
+            1.0260047912597656,
+            -1.8251327560392383e-08,
+            0.5404194593429565
+          ],
+          "ortho_scale": 1.600000023841858,
+          "layers": {
+            "galilee-roof-modern-cutaway-layer": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Selected modern1:10 right-side cutaway, three fixed walls, selected layered roof"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-roof-open.png",
+          "sha256": "47cee20117749405ce316b2369135f7ca040276c5998ab59aef7f3d60d960fb5",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-roof.glb",
+          "glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "camera": [
+            1.7999999523162842,
+            -3.0,
+            2.299999952316284
+          ],
+          "camera_rotation": [
+            1.0260047912597656,
+            -1.8251327560392383e-08,
+            0.5404194593429565
+          ],
+          "ortho_scale": 1.600000023841858,
+          "layers": {
+            "galilee-roof-modern-cutaway-layer": [
+              0.0,
+              0.0,
+              0.18000000715255737
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Only roof + five attached front-back beams +.18m; walls/lintel/floor fixed"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-roof-interior.png",
+          "sha256": "5bc2cb91b9c4eaf3147a34b25369c8e53bf5f2cfe9960e8a89fbff97cd6e96da",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-roof.glb",
+          "glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "camera": [
+            1.7999999523162842,
+            -2.299999952316284,
+            3.0
+          ],
+          "camera_rotation": [
+            0.7976349592208862,
+            1.2844624563967955e-07,
+            0.6640461683273315
+          ],
+          "ortho_scale": 1.2799999713897705,
+          "layers": {
+            "galilee-roof-modern-cutaway-layer": [
+              0.0,
+              0.0,
+              0.18000000715255737
+            ]
+          },
+          "hidden_groups": [
+            "galilee-roof-modern-cutaway-layer",
+            "galilee-roof-beam-1",
+            "galilee-roof-beam-2",
+            "galilee-roof-beam-3",
+            "galilee-roof-beam-4",
+            "galilee-roof-beam-5",
+            "galilee-roof-thick-cover",
+            "galilee-roof-thick-fine-surface",
+            "galilee-roof-thick-soil"
+          ],
+          "inspection_note": "QA only: roof group hidden; true room floor and full doorway, right side cut open"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-roof-door.png",
+          "sha256": "077b0f2c7d9df3ebd05a9d1d2ff9908a6c96d4839fab3aeafb117f07ba429c32",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-roof.glb",
+          "glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "camera": [
+            0.11999999731779099,
+            -3.5,
+            0.6399999856948853
+          ],
+          "camera_rotation": [
+            1.4203910827636719,
+            6.4682854628017594e-09,
+            0.037896547466516495
+          ],
+          "ortho_scale": 0.5799999833106995,
+          "layers": {
+            "galilee-roof-modern-cutaway-layer": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [],
+          "inspection_note": "Actual110 x205mm opening through full30mm wall, real lintel seats"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-roof-bottom.png",
+          "sha256": "f2374b5dcf350f820c8aaa828b200c6d63b2f3eaa5acba981377a2062c8a72e7",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-roof.glb",
+          "glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "camera": [
+            1.5,
+            -3.0,
+            -1.7999999523162842
+          ],
+          "camera_rotation": [
+            2.1062774658203125,
+            4.241340079147449e-08,
+            0.4636476933956146
+          ],
+          "ortho_scale": 1.3799999952316284,
+          "layers": {
+            "galilee-roof-modern-cutaway-layer": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [
+            "galilee-roof-modern-base",
+            "galilee-roof-fixed-floor"
+          ],
+          "inspection_note": "QA only: base and floor hidden to expose wall/lintel and beam undersides"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-roof-bearing.png",
+          "sha256": "59c103f8b48f085b2a235e2f0d48a8811bcef58aa1cec45990c4eee61c25ba8c",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-roof.glb",
+          "glb_sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+          "camera": [
+            1.7000000476837158,
+            -2.4000000953674316,
+            2.799999952316284
+          ],
+          "camera_rotation": [
+            0.8662874102592468,
+            1.0562310137629538e-08,
+            0.6162968277931213
+          ],
+          "ortho_scale": 1.1799999475479126,
+          "layers": {
+            "galilee-roof-modern-cutaway-layer": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "hidden_groups": [
+            "galilee-roof-thick-cover",
+            "galilee-roof-thick-fine-surface",
+            "galilee-roof-thick-soil"
+          ],
+          "inspection_note": "QA only: three roof sheets hidden; five beams visibly bear on front and back wall tops"
+        }
+      ],
+      "interpretation": "Original modern selected1:10 house-access comparison,front/back bearing walls and open right section. Roof and all beams lift as a modern viewing layer,not an ancient hatch. Selected roof layers,door and dimensions not a measured Gospel house or universal village roof. No identified owner,arch,stairs,hoist,mat or patient.",
+      "measured_geometry": {
+        "door_clear_width_height_m": [
+          0.10999999940395355,
+          0.20499997586011887
+        ],
+        "each_front_back_beam_actual_bearing_length_m": [
+          [
+            0.030000001192092896,
+            0.029999986163097438
+          ],
+          [
+            0.030000006038605472,
+            0.02999999041014503
+          ],
+          [
+            0.029999985840839866,
+            0.029999988442811997
+          ],
+          [
+            0.029999998983105708,
+            0.02999999520933038
+          ],
+          [
+            0.030000014435199274,
+            0.029999984859822356
+          ]
+        ],
+        "each_front_back_beam_real_contact_area_m2": [
+          [
+            0.0008399999475479092,
+            0.0008399995267360794
+          ],
+          [
+            0.0008400000832502474,
+            0.0008399996456533998
+          ],
+          [
+            0.0008399996294715245,
+            0.0008399997023267464
+          ],
+          [
+            0.0008399998856962743,
+            0.0008399997800305758
+          ],
+          [
+            0.0008400003183548499,
+            0.0008399994902443808
+          ]
+        ],
+        "lintel_each_seat_contact_area_m2": [
+          0.0007499991601033207,
+          0.0007499992884721918
+        ],
+        "soil_cover_contact_area_m2": 0.7448000051498411,
+        "fine_soil_contact_area_m2": 0.7448000051498411,
+        "roof_layer_real_bottom_top_thickness": [
+          {
+            "node": "galilee-roof-thick-cover",
+            "bottom_m": 0.39000001549720764,
+            "top_m": 0.3999999761581421,
+            "thickness_m": 0.009999960660934448
+          },
+          {
+            "node": "galilee-roof-thick-soil",
+            "bottom_m": 0.4000000059604645,
+            "top_m": 0.41999998688697815,
+            "thickness_m": 0.019999980926513672
+          },
+          {
+            "node": "galilee-roof-thick-fine-surface",
+            "bottom_m": 0.42000001668930054,
+            "top_m": 0.421999990940094,
+            "thickness_m": 0.001999974250793457
+          }
+        ],
+        "actual_wall_thickness": [
+          {
+            "wall": "back",
+            "thickness_m": 0.030165314826778023
+          },
+          {
+            "wall": "front-left-jamb",
+            "thickness_m": 0.030154586149118316
+          },
+          {
+            "wall": "left",
+            "thickness_m": 0.030140995643380103
+          }
+        ],
+        "right_section_clear_rays": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "raised_roof_top_m": 0.6019999980926514
+      }
+    },
+    "galilee-stones": {
+      "glb": {
+        "path": "/home/garywu/dev/bible-island/public/models/galilee-stones.glb",
+        "bytes": 202436,
+        "sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9"
+      },
+      "source_scene": "Galilee — side by side original solid stone and true tray com",
+      "prototype_only": false,
+      "semantic_groups": [
+        "galilee-stones-modern-base",
+        "galilee-stones-fixed-dark-tray",
+        "galilee-stones-fixed-dark-solid-piece",
+        "galilee-stones-fixed-light-tray",
+        "galilee-stones-fixed-light-solid-piece"
+      ],
+      "all_nodes": [
+        "galilee-stones-galilee-modern-neutral-display",
+        "galilee-stones-modern-base",
+        "galilee-stones-galilee-modern-stone-comparison-trays",
+        "galilee-stones-fixed-dark-tray",
+        "galilee-stones-galilee-original-dark-stone-comparison",
+        "galilee-stones-fixed-dark-solid-piece",
+        "galilee-stones-galilee-modern-stone-comparison-trays.001",
+        "galilee-stones-fixed-light-tray",
+        "galilee-stones-galilee-original-light-stone-comparison",
+        "galilee-stones-fixed-light-solid-piece"
+      ],
+      "dimensions_length_width_height_m": [
+        1.0499999523162842,
+        0.6600000262260437,
+        0.13099999725818634
+      ],
+      "dimensions_gltf_xyz_m": [
+        1.0499999523162842,
+        0.13099999725818634,
+        0.6600000262260437
+      ],
+      "closed_bottom_m": 0.0,
+      "closed_height_m": 0.13099999725818634,
+      "triangles": 2828,
+      "budget": {
+        "max_triangles": 30000,
+        "max_glb_bytes": 1600000
+      },
+      "source_GLBBBox_max_error_m": 0.0,
+      "closed_connected_outward_positive_components": 5,
+      "invalid_source_components": [],
+      "invalid_glb_components": [],
+      "positive_ground_surface_area_m2": 0.6827759871711692,
+      "static_deep_penetrations_source": [],
+      "static_deep_penetrations_glb": [],
+      "runtime_operations": 0,
+      "removable_node": null,
+      "translation_gltf_xyz_m": null,
+      "source_layer_motion": null,
+      "actual_glb_layer_motion": null,
+      "source20path": null,
+      "actual_glb20path": null,
+      "overview": {
+        "path": "/home/garywu/dev/bible-island/.qa/galilee-official-stones-overview.png",
+        "bytes": 1392996,
+        "sha256": "b9b8c36e31ed33bcf4256068850385e657036c01d6b737b3a708cec8cb10db6c"
+      },
+      "images": [
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-stones-front.png",
+          "sha256": "8a47fdcdb76b7c7754dcd2cc801a56b9384a2ff8a255dcae1807bc75287f6d64",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-stones.glb",
+          "glb_sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+          "camera": [
+            1.7999999523162842,
+            -3.0,
+            2.5
+          ],
+          "camera_rotation": [
+            0.9617989659309387,
+            -2.841236934614244e-08,
+            0.5404195785522461
+          ],
+          "ortho_scale": 1.399999976158142,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "Independent original solid dark/light stones in two actual hollow trays; no age code"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-stones-back.png",
+          "sha256": "9627f6c5a70e79a2feeeb58ad6b6f1904e90649e4e34c7cf65058ba3c93f62f6",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-stones.glb",
+          "glb_sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+          "camera": [
+            -1.7999999523162842,
+            3.0,
+            1.7999999523162842
+          ],
+          "camera_rotation": [
+            1.1092742681503296,
+            -9.899601849383544e-08,
+            -2.601173162460327
+          ],
+          "ortho_scale": 1.399999976158142,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "Opposite side; two ordinary original comparison pieces, not stacked strata"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-stones-bottom.png",
+          "sha256": "2e8c07346fb53effd0f2d1dccca3fa34057d2233aaa5d60b17b862a42da3b7fa",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-stones.glb",
+          "glb_sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+          "camera": [
+            1.5,
+            -2.5999999046325684,
+            -1.7999999523162842
+          ],
+          "camera_rotation": [
+            2.1243391036987305,
+            -1.3076435934067376e-08,
+            0.5232784748077393
+          ],
+          "ortho_scale": 1.399999976158142,
+          "layers": {},
+          "hidden_groups": [],
+          "inspection_note": "Actual modern base bottom, positive planar ground area"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-stones-inner-bottom.png",
+          "sha256": "34f1f3cb884b32b56328dd8c39d457bef29cf0727661c5cf67089b0b4367a120",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-stones.glb",
+          "glb_sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+          "camera": [
+            1.2000000476837158,
+            -1.7999999523162842,
+            3.0
+          ],
+          "camera_rotation": [
+            0.6319409012794495,
+            -7.788713674017345e-08,
+            0.5880028009414673
+          ],
+          "ortho_scale": 1.2999999523162842,
+          "layers": {},
+          "hidden_groups": [
+            "galilee-stones-fixed-dark-solid-piece",
+            "galilee-stones-fixed-light-solid-piece"
+          ],
+          "inspection_note": "QA only: stones hidden to show both actual continuous tray inner floors and16mm walls"
+        },
+        {
+          "image": "/home/garywu/dev/bible-island/.qa/galilee-official-stones-stone-bottom.png",
+          "sha256": "058aede2db075aa718f0ae48f48e284d5bf3f68c70f84a84f8f9d2be66855a98",
+          "source": "actual official public GLB imported by independent preview process",
+          "official_source": "/home/garywu/dev/bible-island/assets/blender/bible-assets.blend",
+          "official_source_sha256": "dbe3d8994bde56b9a1cf8673d3af3e95d6a5e5de57470afb2713b811fac1b967",
+          "build_report_glb_sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+          "glb": "/home/garywu/dev/bible-island/public/models/galilee-stones.glb",
+          "glb_sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+          "camera": [
+            1.2000000476837158,
+            -2.200000047683716,
+            -1.7999999523162842
+          ],
+          "camera_rotation": [
+            2.2144267559051514,
+            2.7327784479780348e-08,
+            0.49934688210487366
+          ],
+          "ortho_scale": 1.2200000286102295,
+          "layers": {},
+          "hidden_groups": [
+            "galilee-stones-modern-base",
+            "galilee-stones-fixed-dark-tray",
+            "galilee-stones-fixed-light-tray"
+          ],
+          "inspection_note": "QA only: trays/base hidden to expose both broad planar stone bottoms; no hidden hollow interiors"
+        }
+      ],
+      "interpretation": "Original modern ordinary dark/light solid stone pieces in separate true-bottom trays. Side by side,not stacked historical strata. Colour does not date construction. Not original synagogue samples,copy of later columns,ancient inscription or identified first-century synagogue. No removable runtime layer.",
+      "measured_geometry": {
+        "actual_tray_gap_m": 0.07000000029802322,
+        "pieces": [
+          {
+            "label": "dark",
+            "tray_inner_floor_m": 0.04099997878074646,
+            "tray_outer_bottom_m": 0.02500000037252903,
+            "tray_actual_floor_thickness_m": 0.01599997840821743,
+            "tray_four_wall_thickness_m": [
+              0.015999999070307212,
+              0.016000002708285818,
+              0.016000017260191967,
+              0.016000017260191967
+            ],
+            "stone_actual_bottom_top_m": [
+              0.04099999740719795,
+              0.13099999725818634
+            ],
+            "stone_solid_signed_volume_m3": 0.008999822615123195,
+            "broad_planar_stone_bottom_dimensions_xy_m": [
+              0.2800000086426735,
+              0.30000001192092896
+            ],
+            "stone_tray_contact": {
+              "rays": [
+                {
+                  "x": -0.355,
+                  "front": -0.1,
+                  "gap_m": 0.0
+                },
+                {
+                  "x": -0.255,
+                  "front": 0,
+                  "gap_m": 0.0
+                },
+                {
+                  "x": -0.155,
+                  "front": 0.1,
+                  "gap_m": 0.0
+                }
+              ],
+              "contact": {
+                "plane_height_m": 0.041,
+                "actual_polygon_intersection_area_m2": 0.08346100904728115,
+                "upper_patches": 74,
+                "lower_patches": 50,
+                "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+              }
+            },
+            "tray_base_contact": {
+              "rays": [
+                {
+                  "x": -0.405,
+                  "front": 0,
+                  "gap_m": 0.0
+                },
+                {
+                  "x": -0.255,
+                  "front": 0,
+                  "gap_m": 0.0
+                },
+                {
+                  "x": -0.10500000000000001,
+                  "front": 0,
+                  "gap_m": 0.0
+                }
+              ],
+              "contact": {
+                "plane_height_m": 0.025,
+                "actual_polygon_intersection_area_m2": 0.2196530421290318,
+                "upper_patches": 50,
+                "lower_patches": 2,
+                "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+              }
+            }
+          },
+          {
+            "label": "light",
+            "tray_inner_floor_m": 0.040999993681907654,
+            "tray_outer_bottom_m": 0.02500000037252903,
+            "tray_actual_floor_thickness_m": 0.015999993309378624,
+            "tray_four_wall_thickness_m": [
+              0.016000002708285818,
+              0.015999999070307212,
+              0.016000017260191967,
+              0.016000017260191967
+            ],
+            "stone_actual_bottom_top_m": [
+              0.04100000113248825,
+              0.13099999725818634
+            ],
+            "stone_solid_signed_volume_m3": 0.008999828340173018,
+            "broad_planar_stone_bottom_dimensions_xy_m": [
+              0.2800000086426735,
+              0.30000001192092896
+            ],
+            "stone_tray_contact": {
+              "rays": [
+                {
+                  "x": 0.155,
+                  "front": -0.1,
+                  "gap_m": 0.0
+                },
+                {
+                  "x": 0.255,
+                  "front": 0,
+                  "gap_m": 0.0
+                },
+                {
+                  "x": 0.355,
+                  "front": 0.1,
+                  "gap_m": 0.0
+                }
+              ],
+              "contact": {
+                "plane_height_m": 0.041,
+                "actual_polygon_intersection_area_m2": 0.08346100944873514,
+                "upper_patches": 74,
+                "lower_patches": 50,
+                "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+              }
+            },
+            "tray_base_contact": {
+              "rays": [
+                {
+                  "x": 0.10500000000000001,
+                  "front": 0,
+                  "gap_m": 0.0
+                },
+                {
+                  "x": 0.255,
+                  "front": 0,
+                  "gap_m": 0.0
+                },
+                {
+                  "x": 0.405,
+                  "front": 0,
+                  "gap_m": 0.0
+                }
+              ],
+              "contact": {
+                "plane_height_m": 0.025,
+                "actual_polygon_intersection_area_m2": 0.21965304833670138,
+                "upper_patches": 50,
+                "lower_patches": 2,
+                "method": "World-space real coplanar GLB polygons clipped in XY; no AABB contact inference"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "program_sources": [
+    {
+      "path": "/home/garywu/dev/bible-island/.qa/galilee-existing-glb-diff.py",
+      "bytes": 5221,
+      "sha256": "000f02784d52ef25e24eeb555138df52d1da3784de1486bc8acf782b8b77f88b"
+    },
+    {
+      "path": "/home/garywu/dev/bible-island/.qa/galilee-official-verify.py",
+      "bytes": 35963,
+      "sha256": "d26234a19ffb0b5108aecb0c13454f72170f5c1b69b8eef5a481e340bbf254e9"
+    },
+    {
+      "path": "/home/garywu/dev/bible-island/.qa/galilee-official-preview.py",
+      "bytes": 7661,
+      "sha256": "a715a89fa68332468fde8316961372a43682268297014876ddc2c85a27131adc"
+    },
+    {
+      "path": "/home/garywu/dev/bible-island/.qa/galilee-official-contact-sheets.py",
+      "bytes": 2759,
+      "sha256": "9791551091a277bdca19273afa459eeec2728438dabf0980c00a5b510070f711"
+    }
+  ],
+  "all_processes_terminal": true,
+  "live_handles": [],
+  "process_records": [
+    {
+      "stage": "verified prebuild backup",
+      "synchronous_tool_chunk": "2205b7",
+      "exit_code": 0,
+      "terminal": true,
+      "snapshot": {
+        "path": "/tmp/galilee-before-official/snapshot.json",
+        "bytes": 23540,
+        "sha256": "2702ae2f2a172a6ee24a5d15a36d2ffe9e8c955d47c326d3a6cf6c425b3b739f"
+      }
+    },
+    {
+      "stage": "only official builder invocation",
+      "session_handle": 49048,
+      "exit_code": 0,
+      "terminal": true,
+      "command": "/tmp/bible-blender-runtime/blender-4.5.16-linux-x64/blender --background --factory-startup --python-exit-code 1 --python scripts/blender/build-assets.py -- --no-previews",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/galilee-official-build.log",
+        "bytes": 101938,
+        "sha256": "4320385a139ec27b70171a0676d02392c4048063f7eb9a594e6f903c4f7edc9d"
+      }
+    },
+    {
+      "stage": "old83fullJSON/accessor/nonUVbytesdiff",
+      "session_handle": 79605,
+      "exit_code": 0,
+      "terminal": true,
+      "command": "python3 .qa/galilee-existing-glb-diff.py",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/galilee-existing-glb-diff.log",
+        "bytes": 939,
+        "sha256": "0da59c5cab471136451e91475141279eedf356f10191012b35c9eef54e3aa1b0"
+      }
+    },
+    {
+      "stage": "restore33provenUV-onlyoldfiles/reporthashsync/83hashrecheck",
+      "synchronous_tool_chunk": "988199",
+      "exit_code": 0,
+      "terminal": true,
+      "result": {
+        "path": "/home/garywu/dev/bible-island/.qa/galilee-existing-glb-final-preservation.json",
+        "bytes": 22172,
+        "sha256": "8a7fe96e9096566d7f692f65dedbf51d556932e091c3316c0139a6b5bae9f882"
+      }
+    },
+    {
+      "stage": "fresh official source reopen and canonical public GLB QA",
+      "session_handle": 46045,
+      "exit_code": 0,
+      "terminal": true,
+      "command": "/tmp/bible-blender-runtime/blender-4.5.16-linux-x64/blender --background assets/blender/bible-assets.blend --python-exit-code 1 --python .qa/galilee-official-verify.py",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/galilee-official-verify.log",
+        "bytes": 3498,
+        "sha256": "235b1d0edeb65fe4e49dcb3232cbfec3ba46b1b7005907e9e475a54b58561b9f"
+      },
+      "failures": []
+    },
+    {
+      "stage": "official public GLB18actualviews",
+      "session_handle": 10411,
+      "exit_code": 0,
+      "terminal": true,
+      "command": "/tmp/bible-blender-runtime/blender-4.5.16-linux-x64/blender --background --factory-startup --threads 8 --python-exit-code 1 --python .qa/galilee-official-preview.py",
+      "log": {
+        "path": "/home/garywu/dev/bible-island/.qa/galilee-official-preview.log",
+        "bytes": 149004,
+        "sha256": "20c6084b18f2b46eaa2af45323a28f7cbfa05ca9e8675c08a344816659b2cf42"
+      }
+    },
+    {
+      "stage": "official18view3overviewPNGassembly",
+      "session_handle": 14371,
+      "exit_code": 0,
+      "terminal": true,
+      "command": "python3 .qa/galilee-official-contact-sheets.py",
+      "result": {
+        "path": "/home/garywu/dev/bible-island/.qa/galilee-official-contact-provenance.json",
+        "bytes": 25727,
+        "sha256": "0ae913b0008d417bbe8c45faf00a8257b18be7e24b6a59c52283a9342a7ed677"
+      }
+    }
+  ],
+  "failures": [],
+  "controlled_builder_context": "GALILEE_OFFICIAL_BUILD=True only immediately around new script exec,finally globals().pop; existing NEHEMIAH/INTERTESTAMENT/NATIVITY flags unchanged. New script defaults prototype_onlyTrue and official3entriesFalse.",
+  "geometry_changes_since_accepted_prototype": [],
+  "qa_limits": [
+    "All three are original modern comparisons,not identified Gospel boat/house/synagogue,museum copies or colour-based building dates. No historical/tool scope expanded.",
+    "Contact uses real opposite-facing coplanar polygon clipping and paired rays; AABBs only filter candidates.10um contact tolerance,20um oriented deep-surface probes,0.1um per-component weld.2mm keel side gap is a separate selected manufacturing clearance.",
+    "GLB sampled normal thickness shell19.9988–20.0000mm,frame29.9982–30.0000mm; minute differences reflect polygonal offset approximation,not enlarged tolerance.",
+    "Positive signed closed volume and consistent winding do not certify full-scale structural engineering,archaeological identity or mechanical loading.",
+    "All descendant vertices are tested for motion,fixed0 and restoration;20discrete BVH path samples and per-frame-vertex height-matched aperture checks do not constitute a continuous exhaustive collision sweep.",
+    "Static audit combines triangle overlaps and oriented nearest-surface vertex probes; it is a finite audit,not an exact symbolic Boolean proof.",
+    "At+.18m the entire U frame is detached with positive clearance; its bottom isY.305 belowY.450 rim. Full rib above rim requires lift>.325m; no second runtime operation added.",
+    "Recorded inspection hides expose actual undersides,inner floors and bearing faces. Those hide states and lifted display layers do not assert an ancient hatch,joinery mechanism or historical event replay.",
+    "Formal rendering process imported only canonical publicGLB and records officialsourceSHA,build-reportGLBSHA,cameras,layerpositions,hiddennodes and PNGSHA. Cameras reuse approved isolated presets,not isolated render pixels.",
+    "No app/manifest/voice/docs/Git/Sites changed by this asset task. Root separately owns registration and publication."
+  ]
+}

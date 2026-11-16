@@ -359,6 +359,12 @@ NATIVITY_OFFICIAL_BUILD = True
 exec(compile((ROOT/'scripts/blender/nativity-props.py').read_text(),str(ROOT/'scripts/blender/nativity-props.py'),'exec'),globals())
 del NATIVITY_OFFICIAL_BUILD
 
+GALILEE_OFFICIAL_BUILD = True
+try:
+    exec(compile((ROOT/'scripts/blender/galilee-props.py').read_text(),str(ROOT/'scripts/blender/galilee-props.py'),'exec'),globals())
+finally:
+    globals().pop('GALILEE_OFFICIAL_BUILD',None)
+
 bpy.context.window.scene=scene
 scene.frame_set(1)
 bpy.ops.wm.save_as_mainfile(filepath=str(SOURCE/'bible-assets.blend'),compress=True)

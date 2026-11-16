@@ -1,3 +1,4 @@
+import {galileeLearning} from './galilee-content.js';
 import {nativityLearning} from './nativity-content.js';
 import {intertestamentLearning} from './intertestament-content.js';
 import {nehemiahLearning} from './nehemiah-content.js';
@@ -22,6 +23,7 @@ export const readingModes = {
 export const evidenceKinds = { text: '經文描述', research: '歷史研究', reconstruction: '復原推定' };
 
 export const learningIslands = {
+  galilee:galileeLearning,
   nativity:nativityLearning,
   intertestament:intertestamentLearning,
   nehemiah:nehemiahLearning,

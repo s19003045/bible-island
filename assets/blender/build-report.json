@@ -1404,6 +1404,127 @@
       "runtime_operations": 1,
       "selected_scale": 1,
       "units": "metres; Blender +Z / glTF +Y"
+    },
+    "galilee-hull": {
+      "file": "models/galilee-hull.glb",
+      "bytes": 509032,
+      "sha256": "c3d1ad00fbb58eb4186664e708c40eaed0e09f739b3d4213c0a72c763ec1b13f",
+      "triangles": 8796,
+      "animations": [],
+      "height": 0.45,
+      "teaching_model": true,
+      "prototype_only": false,
+      "isolated_provenance": "Root approved final GALILEE-ASSET-BRIEF,2026-11-17 isolated original prototype",
+      "source_scene": "Galilee \u2014 original outward U hull keel and curved frame compa",
+      "bottom_m": 0.0,
+      "top_m": 0.44999998807907104,
+      "dimensions_blender_xyz_m": [
+        1.100000023841858,
+        0.7200000286102295,
+        0.44999998807907104
+      ],
+      "interpretation": "Original modern partial outward U hull with true shell,keel and whole curved frames. Curves/material tones,dimensions and two visible modern saddles are selected comparisons,not an ancient boat copy or Gospel boat identification. No locked joinery,crew,sail,paddle,net or boat boarding.",
+      "semantic_groups": [
+        "galilee-hull-modern-base",
+        "galilee-hull-fixed-continuous-shell",
+        "galilee-hull-fixed-keel",
+        "galilee-hull-modern-saddle-1",
+        "galilee-hull-modern-saddle-2",
+        "galilee-hull-fixed-curved-frame",
+        "galilee-hull-modern-removable-frame"
+      ],
+      "modern_removable_layer": "galilee-hull-modern-removable-frame",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.18,
+        0
+      ],
+      "runtime_operations": 1,
+      "selected_scale": 1,
+      "units": "metres; Blender +Z / glTF +Y"
+    },
+    "galilee-roof": {
+      "file": "models/galilee-roof.glb",
+      "bytes": 209676,
+      "sha256": "3081bb3e513fe0d07d855323291b46d52f31c6421e743242bcf5a89f95d2fa97",
+      "triangles": 3512,
+      "animations": [],
+      "height": 0.422,
+      "teaching_model": true,
+      "prototype_only": false,
+      "isolated_provenance": "Root approved final GALILEE-ASSET-BRIEF,2026-11-17 isolated original prototype",
+      "source_scene": "Galilee \u2014 original one tenth right cutaway home and supported",
+      "bottom_m": 0.0,
+      "top_m": 0.421999990940094,
+      "dimensions_blender_xyz_m": [
+        1.100000023841858,
+        0.8500000238418579,
+        0.421999990940094
+      ],
+      "interpretation": "Original modern selected1:10 house-access comparison,front/back bearing walls and open right section. Roof and all beams lift as a modern viewing layer,not an ancient hatch. Selected roof layers,door and dimensions not a measured Gospel house or universal village roof. No identified owner,arch,stairs,hoist,mat or patient.",
+      "semantic_groups": [
+        "galilee-roof-modern-base",
+        "galilee-roof-fixed-floor",
+        "galilee-roof-fixed-wall-back",
+        "galilee-roof-fixed-wall-left",
+        "galilee-roof-fixed-wall-front-left-jamb",
+        "galilee-roof-fixed-wall-front-right-jamb",
+        "galilee-roof-fixed-wall-front-left-fill",
+        "galilee-roof-fixed-wall-front-right-fill",
+        "galilee-roof-fixed-wall-above-lintel",
+        "galilee-roof-fixed-walls",
+        "galilee-roof-fixed-lintel",
+        "galilee-roof-beam-1",
+        "galilee-roof-beam-2",
+        "galilee-roof-beam-3",
+        "galilee-roof-beam-4",
+        "galilee-roof-beam-5",
+        "galilee-roof-thick-cover",
+        "galilee-roof-thick-soil",
+        "galilee-roof-thick-fine-surface",
+        "galilee-roof-modern-cutaway-layer"
+      ],
+      "modern_removable_layer": "galilee-roof-modern-cutaway-layer",
+      "modern_layer_translation_gltf_xyz_m": [
+        0,
+        0.18,
+        0
+      ],
+      "runtime_operations": 1,
+      "selected_scale": 0.1,
+      "units": "metres; Blender +Z / glTF +Y"
+    },
+    "galilee-stones": {
+      "file": "models/galilee-stones.glb",
+      "bytes": 202436,
+      "sha256": "f7ce4dffc2dc9e75885a08bf73146865fd0839c2f12378380fab3b00a75e26e9",
+      "triangles": 2828,
+      "animations": [],
+      "height": 0.131,
+      "teaching_model": true,
+      "prototype_only": false,
+      "isolated_provenance": "Root approved final GALILEE-ASSET-BRIEF,2026-11-17 isolated original prototype",
+      "source_scene": "Galilee \u2014 side by side original solid stone and true tray com",
+      "bottom_m": 0.0,
+      "top_m": 0.13099999725818634,
+      "dimensions_blender_xyz_m": [
+        1.0499999523162842,
+        0.6600000262260437,
+        0.13099999725818634
+      ],
+      "interpretation": "Original modern ordinary dark/light solid stone pieces in separate true-bottom trays. Side by side,not stacked historical strata. Colour does not date construction. Not original synagogue samples,copy of later columns,ancient inscription or identified first-century synagogue. No removable runtime layer.",
+      "semantic_groups": [
+        "galilee-stones-modern-base",
+        "galilee-stones-fixed-dark-tray",
+        "galilee-stones-fixed-dark-solid-piece",
+        "galilee-stones-fixed-light-tray",
+        "galilee-stones-fixed-light-solid-piece"
+      ],
+      "modern_removable_layer": null,
+      "modern_layer_translation_gltf_xyz_m": null,
+      "runtime_operations": 0,
+      "selected_scale": 1,
+      "units": "metres; Blender +Z / glTF +Y"
     }
   }
 }

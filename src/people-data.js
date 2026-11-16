@@ -1,3 +1,4 @@
+import {galileePeople} from './galilee-content.js';
 import {nativityPeople} from './nativity-content.js';
 import {intertestamentPeople} from './intertestament-content.js';
 import {nehemiahPeople} from './nehemiah-content.js';
@@ -19,6 +20,7 @@ const npc = (id, name, role, era, position, style, motion, greeting, topics, rou
   ({id,name,role,era,position,style,motion,greeting,topics,route,routeMode});
 export const dialogueNotice = '角色為綜合設計；對白依經文與歷史背景編寫，並非經文原話。';
 export const peopleByIsland = {
+  galilee:galileePeople,
   nativity:nativityPeople,
   intertestament:intertestamentPeople,
   nehemiah:nehemiahPeople,

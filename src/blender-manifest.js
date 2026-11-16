@@ -1,5 +1,8 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'galilee-hull':{type:'object',src:'models/galilee-hull.glb',height:.45,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.4,1.9],articulation:{part:'galilee-hull-modern-removable-frame',offset:[0,.18,0],openLabel:'抬起曲肋看船殼接觸',closeLabel:'還原船段曲肋',note:'原創局部比較 · 曲肋離開接觸面，仍低於船緣；非原船拆修機構'}},
+  'galilee-stones':{type:'object',src:'models/galilee-stones.glb',height:.131,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.9,1.9]},
+  'galilee-roof':{type:'object',src:'models/galilee-roof.glb',height:.422,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.3,2.1,2],articulation:{part:'galilee-roof-modern-cutaway-layer',offset:[0,.18,0],openLabel:'抬起屋面看梁與室內',closeLabel:'還原屋面比較層',note:'約1:10原創比較 · 整層抬起為現代剖示，非原宅活動天窗'}},
   'nativity-manger':{type:'object',src:'models/nativity-manger.glb',height:.48,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.3,2.7,1.8]},
   'nativity-home':{type:'object',src:'models/nativity-home.glb',height:.40,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.3,1.9,2],articulation:{part:'nativity-home-modern-roof-layer',offset:[0,.18,0],openLabel:'抬起屋頂看室內與承托',closeLabel:'還原家屋屋頂',note:'約1:10原創家屋比較 · 非原宅或聖殿，拆層為教學方式'}},
   'nativity-joinery':{type:'object',src:'models/nativity-joinery.glb',height:.19,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.3,2.2,1.8],articulation:{part:'nativity-joinery-modern-upper-timber',offset:[0,.18,0],openLabel:'抬起木料看互補凹口',closeLabel:'還原木接合教具',note:'現代半搭接比較 · 下料朝上，上料凹口需仰視，非古代原工法認證'}},

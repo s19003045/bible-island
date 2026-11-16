@@ -357,3 +357,5 @@
 - 正式原分頁已送reload；本次修正不把第31版人工操作追稱為第32版的新一輪全套操作。教具／配音及頁面行為未改；原正式家屋、接合兩件沿路補驗繼續。正式入口仍為 [第十八島](https://bible-island.starryswift8.chatgpt.site/#island=nativity&chapter=manger&phase=birth)。
 
 - 第32版頁面回讀：正式既有分頁已reload並核對`index-I9B82J-T.js`；一般／manger／birth、動畫開、modal寬0。兩頁warning／error=[]，原兩個分頁保留。沒有為同一素材重跑三件已完成本機走訪；正式家屋及接合待辦繼續。
+
+- 第32版人工補驗追加：正式家屋／木接合均沿路抵達、E近景、向右旋轉及抬層還原完成；第18島原兩件沿路待辦已完成，完整真人聽驗與實體裝置界線保留。
