@@ -63,3 +63,11 @@ test('Samaria ten moments cancel old speech and select their own chapter ambienc
  }
  assert.equal(f.fetched.length,3,'one accepted recording per resident is reused');audio.dispose();
 });
+
+test('Parables ten moments cancel old speech and select their own chapter ambience and exact child cue',async()=>{
+ const f=fixture(),audio=createSceneAudio();await audio.enable();audio.setActive(true);let prior=null;
+ for(const [chapter,phases,person,position] of [['seed',['sowing','asking','hearing'],'parables-field-resident',[24,23]],['sheep',['listeners','found','rejoicing'],'parables-pasture-resident',[-13,25]],['lamp',['preparation','midnight','door','watch'],'parables-light-resident',[13,-18]]])for(const phase of phases){
+  audio.setScene('parables',chapter,phase);assert.equal(audio.playing,null);if(prior)assert.equal(prior.stopped,true);assert.ok(f.context.panners.some(p=>p.positionX.value===position[0]&&p.positionZ.value===position[1]));await audio.speak(person,'greeting',[3,2,13]);const old=f.context.sources.at(-1),complete=old.onended;await audio.speak(person,'child-greeting',[3,2,13]);assert.equal(old.stopped,true);complete();assert.equal(audio.playing.key,'child-greeting');prior=f.context.sources.at(-1);
+ }
+ assert.equal(f.fetched.length,3,'one accepted recording per resident is reused');audio.dispose();
+});

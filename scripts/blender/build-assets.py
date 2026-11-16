@@ -372,6 +372,13 @@ try:
 finally:
     globals().pop('SAMARIA_OFFICIAL_BUILD',None)
 
+# Scope this metadata flag to the authorised Parables3assets only.
+PARABLES_OFFICIAL_BUILD = True
+try:
+    exec(compile((ROOT/'scripts/blender/parables-props.py').read_text(),str(ROOT/'scripts/blender/parables-props.py'),'exec'),globals())
+finally:
+    globals().pop('PARABLES_OFFICIAL_BUILD',None)
+
 bpy.context.window.scene=scene
 scene.frame_set(1)
 bpy.ops.wm.save_as_mainfile(filepath=str(SOURCE/'bible-assets.blend'),compress=True)

@@ -1,3 +1,4 @@
+import {createParablesObject} from './parables-objects.js';
 import {createSamariaObject} from './samaria-objects.js';
 import {createGalileeObject} from './galilee-objects.js';
 import {createNativityObject} from './nativity-objects.js';
@@ -37,6 +38,7 @@ export function createVessel(id,{blenderAssets=false,onReady=()=>{},assetLoader,
   return root;
 }
 function createProceduralVessel(id) {
+  if(['parables-soil','parables-flock','parables-light'].includes(id))return createParablesObject(id);
   if(['samaria-jar','samaria-road','samaria-care'].includes(id))return createSamariaObject(id);
   if(['galilee-hull','galilee-stones','galilee-roof'].includes(id))return createGalileeObject(id);
   if(['nativity-manger','nativity-home','nativity-joinery'].includes(id))return createNativityObject(id);

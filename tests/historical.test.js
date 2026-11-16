@@ -10,7 +10,7 @@ const context = new Proxy({}, { get: () => () => {}, set: () => true });
 globalThis.document = { createElement: () => ({ width: 256, height: 256, getContext: () => context }) };
 
 test('detailed previews cover every authored stop and declare sources and uncertainty', () => {
-  assert.deepEqual(Object.keys(historicalScenes).sort(), ['abraham','david','exile','exodus','galilee','herod','intertestament','jerusalem','jordan','joseph','judges','kingdoms','nativity','nehemiah','paul','samaria','second-temple','sinai','solomon','tabernacle']);
+  assert.deepEqual(Object.keys(historicalScenes).sort(), ['abraham','david','exile','exodus','galilee','herod','intertestament','jerusalem','jordan','joseph','judges','kingdoms','nativity','nehemiah','parables','paul','samaria','second-temple','sinai','solomon','tabernacle']);
   for (const [id,config] of Object.entries(historicalScenes)) {
     assert.deepEqual(Object.keys(config.stops).sort(), themes.find(t=>t.id===id).stops.map(s=>s.id).sort());
     assert.ok(config.limits.length > 60);

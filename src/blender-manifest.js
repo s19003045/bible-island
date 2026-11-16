@@ -1,5 +1,8 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
 export const blenderModels = {
+  'parables-soil':{type:'object',src:'models/parables-soil.glb',height:.29955,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.4,1.9],articulation:{part:'parables-soil-modern-shallow-layer',offset:[0,.14,0],openLabel:'抬起薄土比較層',closeLabel:'還原薄土剖示',note:'原創現代剖示 · 薄土與幼苗整組抬起，根線為現代材質圖示，非古代機構或原田土深'}},
+  'parables-flock':{type:'object',src:'models/parables-flock.glb',height:.09,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,3,1.9]},
+  'parables-light':{type:'object',src:'models/parables-light.glb',height:.62,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.5,1.9]},
   'samaria-jar':{type:'object',src:'models/samaria-jar.glb',height:.385,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.1,2],articulation:{part:'samaria-jar-modern-front-section',offset:[0,0,.16],openLabel:'移開現代前半剖面',closeLabel:'還原水罐剖面',note:'原創現代剖示 · 前半沿承盤移開，非古代拆罐或摔罐動作'}},
   'samaria-road':{type:'object',src:'models/samaria-road.glb',height:.30,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.6,1.9]},
   'samaria-care':{type:'object',src:'models/samaria-care.glb',height:.26,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.8,1.9]},

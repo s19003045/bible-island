@@ -1619,6 +1619,639 @@
       "modern_layer_translation_gltf_xyz_m": null,
       "runtime_operations": 0,
       "units": "metres; BlenderZup / glTFYup"
+    },
+    "parables-soil": {
+      "file": "models/parables-soil.glb",
+      "bytes": 290832,
+      "sha256": "9bce0b9276b26d2e084fe1fe48eb89a3a8974094c97c25757b8f8b0ae6e1be30",
+      "triangles": 12084,
+      "animations": [],
+      "height": 0.29954999685287476,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Parables \u2014 modern soil depth and receiving comparison",
+      "bottom_m": 0.0,
+      "top_m": 0.29954999685287476,
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.75,
+        0.29954999685287476
+      ],
+      "semantic_groups": [
+        "parables-soil-modern-base",
+        "parables-soil-fixed-compacted-path",
+        "parables-soil-fixed-continuous-rock-bed",
+        "parables-soil-modern-shallow-layer",
+        "parables-soil-fixed-thorn-soil",
+        "parables-soil-fixed-thorn-growth",
+        "parables-soil-fixed-deeper-soil",
+        "parables-soil-fixed-cereal-like-growth"
+      ],
+      "main_layer": "parables-soil-modern-shallow-layer",
+      "translation_gltf_xyz_m": [
+        0,
+        0.14,
+        0
+      ],
+      "runtime_operations": 1,
+      "interpretation": "Four different-sized original modern comparisons,not an original contiguous field. Selected20mm shallow soil over102mm continuous rock,130mm deeper soil,schematic vertex-colour root marks and original finite-thickness plant forms. Not an identified ancient species,root excavation,agricultural prescription or yield proof. No seed enlargement modelled.",
+      "units": "metres;BlenderZup/glTFYup",
+      "nonvolumetric_root_marks": "Original section-face vertex-colour schematic only;not physical measured root geometry",
+      "selected_section_depths_m": {
+        "compacted": 0.062,
+        "continuous_rock": 0.102,
+        "shallow_soil": 0.02,
+        "thorn_soil": 0.12,
+        "deeper_soil": 0.13
+      }
+    },
+    "parables-flock": {
+      "file": "models/parables-flock.glb",
+      "bytes": 476996,
+      "sha256": "6af67a00ec980763903a142e12041925e080c58342a3f5d43f0ceded7846152e",
+      "triangles": 19236,
+      "animations": [],
+      "height": 0.09000000357627869,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Parables \u2014 modern ninety-nine and separate one reading compar",
+      "bottom_m": 0.0,
+      "top_m": 0.09000000357627869,
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.75,
+        0.09000000357627869
+      ],
+      "semantic_groups": [
+        "parables-flock-modern-base",
+        "parables-flock-fixed-ninety-nine-pad",
+        "parables-flock-fixed-separate-one-pad",
+        "parables-flock-fixed-ninety-nine",
+        "parables-flock-fixed-separate-one"
+      ],
+      "main_layer": null,
+      "translation_gltf_xyz_m": null,
+      "runtime_operations": 0,
+      "interpretation": "Static modern99+1quantity comparison.100exactly equal42mm counters,not sheep miniatures,ancient counting tools,a pen or a physical return route. The separate one never moves into the99. Read onward to home,shared joy andLuke15:7. Existing animated sheep belong to the separate scene,not this asset.",
+      "units": "metres;BlenderZup/glTFYup",
+      "counter_centres_x_bottom_front_m": [
+        [
+          -0.485,
+          0.065,
+          -0.224
+        ],
+        [
+          -0.429,
+          0.065,
+          -0.224
+        ],
+        [
+          -0.373,
+          0.065,
+          -0.224
+        ],
+        [
+          -0.31699999999999995,
+          0.065,
+          -0.224
+        ],
+        [
+          -0.261,
+          0.065,
+          -0.224
+        ],
+        [
+          -0.20499999999999996,
+          0.065,
+          -0.224
+        ],
+        [
+          -0.14899999999999997,
+          0.065,
+          -0.224
+        ],
+        [
+          -0.09299999999999997,
+          0.065,
+          -0.224
+        ],
+        [
+          -0.03699999999999998,
+          0.065,
+          -0.224
+        ],
+        [
+          0.019000000000000017,
+          0.065,
+          -0.224
+        ],
+        [
+          0.07500000000000007,
+          0.065,
+          -0.224
+        ],
+        [
+          -0.485,
+          0.065,
+          -0.168
+        ],
+        [
+          -0.429,
+          0.065,
+          -0.168
+        ],
+        [
+          -0.373,
+          0.065,
+          -0.168
+        ],
+        [
+          -0.31699999999999995,
+          0.065,
+          -0.168
+        ],
+        [
+          -0.261,
+          0.065,
+          -0.168
+        ],
+        [
+          -0.20499999999999996,
+          0.065,
+          -0.168
+        ],
+        [
+          -0.14899999999999997,
+          0.065,
+          -0.168
+        ],
+        [
+          -0.09299999999999997,
+          0.065,
+          -0.168
+        ],
+        [
+          -0.03699999999999998,
+          0.065,
+          -0.168
+        ],
+        [
+          0.019000000000000017,
+          0.065,
+          -0.168
+        ],
+        [
+          0.07500000000000007,
+          0.065,
+          -0.168
+        ],
+        [
+          -0.485,
+          0.065,
+          -0.112
+        ],
+        [
+          -0.429,
+          0.065,
+          -0.112
+        ],
+        [
+          -0.373,
+          0.065,
+          -0.112
+        ],
+        [
+          -0.31699999999999995,
+          0.065,
+          -0.112
+        ],
+        [
+          -0.261,
+          0.065,
+          -0.112
+        ],
+        [
+          -0.20499999999999996,
+          0.065,
+          -0.112
+        ],
+        [
+          -0.14899999999999997,
+          0.065,
+          -0.112
+        ],
+        [
+          -0.09299999999999997,
+          0.065,
+          -0.112
+        ],
+        [
+          -0.03699999999999998,
+          0.065,
+          -0.112
+        ],
+        [
+          0.019000000000000017,
+          0.065,
+          -0.112
+        ],
+        [
+          0.07500000000000007,
+          0.065,
+          -0.112
+        ],
+        [
+          -0.485,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          -0.429,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          -0.373,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          -0.31699999999999995,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          -0.261,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          -0.20499999999999996,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          -0.14899999999999997,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          -0.09299999999999997,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          -0.03699999999999998,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          0.019000000000000017,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          0.07500000000000007,
+          0.065,
+          -0.055999999999999994
+        ],
+        [
+          -0.485,
+          0.065,
+          0.0
+        ],
+        [
+          -0.429,
+          0.065,
+          0.0
+        ],
+        [
+          -0.373,
+          0.065,
+          0.0
+        ],
+        [
+          -0.31699999999999995,
+          0.065,
+          0.0
+        ],
+        [
+          -0.261,
+          0.065,
+          0.0
+        ],
+        [
+          -0.20499999999999996,
+          0.065,
+          0.0
+        ],
+        [
+          -0.14899999999999997,
+          0.065,
+          0.0
+        ],
+        [
+          -0.09299999999999997,
+          0.065,
+          0.0
+        ],
+        [
+          -0.03699999999999998,
+          0.065,
+          0.0
+        ],
+        [
+          0.019000000000000017,
+          0.065,
+          0.0
+        ],
+        [
+          0.07500000000000007,
+          0.065,
+          0.0
+        ],
+        [
+          -0.485,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          -0.429,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          -0.373,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          -0.31699999999999995,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          -0.261,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          -0.20499999999999996,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          -0.14899999999999997,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          -0.09299999999999997,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          -0.03699999999999998,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          0.019000000000000017,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          0.07500000000000007,
+          0.065,
+          0.05600000000000002
+        ],
+        [
+          -0.485,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          -0.429,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          -0.373,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          -0.31699999999999995,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          -0.261,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          -0.20499999999999996,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          -0.14899999999999997,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          -0.09299999999999997,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          -0.03699999999999998,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          0.019000000000000017,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          0.07500000000000007,
+          0.065,
+          0.11200000000000002
+        ],
+        [
+          -0.485,
+          0.065,
+          0.168
+        ],
+        [
+          -0.429,
+          0.065,
+          0.168
+        ],
+        [
+          -0.373,
+          0.065,
+          0.168
+        ],
+        [
+          -0.31699999999999995,
+          0.065,
+          0.168
+        ],
+        [
+          -0.261,
+          0.065,
+          0.168
+        ],
+        [
+          -0.20499999999999996,
+          0.065,
+          0.168
+        ],
+        [
+          -0.14899999999999997,
+          0.065,
+          0.168
+        ],
+        [
+          -0.09299999999999997,
+          0.065,
+          0.168
+        ],
+        [
+          -0.03699999999999998,
+          0.065,
+          0.168
+        ],
+        [
+          0.019000000000000017,
+          0.065,
+          0.168
+        ],
+        [
+          0.07500000000000007,
+          0.065,
+          0.168
+        ],
+        [
+          -0.485,
+          0.065,
+          0.224
+        ],
+        [
+          -0.429,
+          0.065,
+          0.224
+        ],
+        [
+          -0.373,
+          0.065,
+          0.224
+        ],
+        [
+          -0.31699999999999995,
+          0.065,
+          0.224
+        ],
+        [
+          -0.261,
+          0.065,
+          0.224
+        ],
+        [
+          -0.20499999999999996,
+          0.065,
+          0.224
+        ],
+        [
+          -0.14899999999999997,
+          0.065,
+          0.224
+        ],
+        [
+          -0.09299999999999997,
+          0.065,
+          0.224
+        ],
+        [
+          -0.03699999999999998,
+          0.065,
+          0.224
+        ],
+        [
+          0.019000000000000017,
+          0.065,
+          0.224
+        ],
+        [
+          0.07500000000000007,
+          0.065,
+          0.224
+        ],
+        [
+          0.38,
+          0.065,
+          0.04
+        ]
+      ],
+      "counter_diameter_height_m": [
+        0.042,
+        0.025
+      ],
+      "fixed_group_counts": [
+        99,
+        1
+      ],
+      "minimum_selected_grid_gap_m": 0.014
+    },
+    "parables-light": {
+      "file": "models/parables-light.glb",
+      "bytes": 336860,
+      "sha256": "935c2cd9505b82cf1b2cf301d5e56091594e34a7e7b9255e7bfc455411df1d3a",
+      "triangles": 13644,
+      "animations": [],
+      "height": 0.6200000047683716,
+      "teaching_model": true,
+      "prototype_only": false,
+      "source_scene": "Parables \u2014 original unlit illumination and preparation compar",
+      "bottom_m": 0.0,
+      "top_m": 0.6200000047683716,
+      "dimensions_blender_xyz_m": [
+        1.149999976158142,
+        0.800000011920929,
+        0.6200000047683716
+      ],
+      "semantic_groups": [
+        "parables-light-modern-base",
+        "parables-light-fixed-open-lamp",
+        "parables-light-fixed-empty-oil-bottle",
+        "parables-light-fixed-modern-real-socket",
+        "parables-light-fixed-staff-and-grip-zone",
+        "parables-light-fixed-concept-open-reservoir-cup",
+        "parables-light-fixed-unlit-absorbent-bundle"
+      ],
+      "main_layer": null,
+      "translation_gltf_xyz_m": null,
+      "runtime_operations": 0,
+      "interpretation": "Three separated original modern functional comparisons:open extended-lip ceramic lamp,ordinary empty bottle,andunlit oil-reservoir torch concept with selected staff/grip/absorbent bundle in an explicit modern true-bottom socket support. Not a museum copy,exactMet enlargement,a Gospel original or a proven ancient wedding apparatus. No oil quantity,burning time,ignition operation or theological oil gauge. Lamp has an open lip,not a claimed closed wick channel. All static.",
+      "units": "metres;BlenderZup/glTFYup",
+      "selected_socket_radial_clearance_m": 0.0005,
+      "selected_staff_bottom_top_m": [
+        0.055,
+        0.505
+      ],
+      "selected_reservoir_bottom_floor_top_m": [
+        0.505,
+        0.519,
+        0.605
+      ],
+      "selected_absorbent_bottom_top_m": [
+        0.519,
+        0.62
+      ],
+      "museum_geometry_copied": false
     }
   }
 }
