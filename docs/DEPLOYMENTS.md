@@ -490,3 +490,18 @@
 - 同源正式建置 150 模組，入口 `index-BowG6-nn.js`、人物 `blender-assets-BlJWlKyT.js`、比較工具 `motion-preview-BjA6LxEn.js`、world `world-81M-g_Kg.js`；保留既有大型 chunk 提示。
 - [正式耶路撒冷](https://bible-island.starryswift8.chatgpt.site/#island=jerusalem) 已明確重新載入並開啟三角色／六路線比較，操作提水、階梯、側面、直行、暫停，warning／error=[]。正式畫面 `.qa/jerusalem-human-motion-live.png`。本機另已操作三角色切換、實際提水人物問答與近景姿態；未把所有地形、實體手機效能或寫實臉部列為通過。
 - 發佈前自動審核曾將舊來源開啟基準判為錯版風險而拒絕；在 Sites 本機先記錄已核對內容為新提交、刷新官方開啟結果後，封裝與原生發佈皆通過。GitHub 與 Sites 各自的提交 SHA 已明確區分，未更改分享範圍。
+
+## 2026-11-17：全島真人參考步態、空間腳步與移動整合（第45版）
+
+- GitHub `develop` 應用提交：`b1c842a36d83d00ff1589229b4381196d63e7418`，已推送 `origin/develop`。
+- Sites source commit：`35759098495f6d864a68d3705f856ddbe8f85381`。798 個檔案逐檔比對 GitHub；共用 `bible-assets.blend` 38,456,726 B 超過 Sites 單物件32MiB，依原方式留在 GitHub，SHA256 `9c94dd97306343939adcb22bb3de0795550644c7a1e1653d6daac9942cca09eb`。原三款 pilot 及全部28份新人物可編輯來源都包含於 Sites source。
+- Saved version：`appgprj_6af95ea0dac4819182957156725483aa~appgver_e1a25671c46481918c765c79ea4ade11`，平台版本 **45**。
+- Deployment：`appgdep_6afc3227b7d48191bff29920b6f8e6a5`；結果 `succeeded`，`2026-11-17T10:53:48.183400+00:00`。
+- 正式封裝 `.qa/all-islands/bible-island-v45-final.tar.gz`：164,918,076 B，SHA256 `dc7c6c01d2c4723f8cd929547582c2c6ca3e89d1a947808b6089370992d3e6cc`，315 個檔案。平台儲存紀錄的 archive content_hash：`sha256:fa53b2c74e6a2ed1278a392787b533d99f9dc55463d68d92123158157f6425b8`。
+- 首次 Sites 來源推送受到單次64MiB上限拒絕（84.7MiB），未保存或發佈不完整版本。保留本機原提交，拆成 `9d45247ee7ad09c8733e70dd4e5fbaa68cb19603`（14份可編輯來源）及最終來源兩個正常快進推送；最終 Git tree `c7d5c2c15c7ee7e489ab5af1cd13395cd359515e` 與拆分前完全相同，未強制推送。重新以官方 source workflow 建置、推送及封裝完整來源後才呼叫私人發佈。
+- 全24島映射自身時代衣裝的 v3 動作；28份新 GLB 與原三款耶路撒冷試點共用距離步態、完整腳趾接地、獨立注意／眨眼、平滑轉向。每島都有實際人物的前後比較。原始28款v2保留供對照，總計132份 GLB。
+- 五首背景配樂與玩家動作音效在全部島延用，新增附近NPC依各自實際足部接觸發出的空間腳步。全島快跑、跳躍、空中碰撞及四類音量均可操作；不開放未建模或不屬公共探索的區域。
+- 最終完整回歸 **63檔／363項通過**：62檔362項完整重跑，另1項本機伺服器測試在允許 localhost 後原樣通過。內容、全部模組語法與正式建置通過。修正測試的舊模型路徑／ID，以及擁擠目標自動前往只停在鄰近格點的實際缺陷，未降低原碰撞／間距／抵達要求。
+- 模型報告獨立確認28份GLB／來源雜湊、原衣裝及既有來源保留；11種代表人物91張實際渲染已審視。完整腳掌／腳趾、平地及雙向坡面、原右手持竿與遠近衣裝亦以真實 GLB 測試。`port-worker`／`bronze-artisan` 的開放衣裝沒有有效封閉衣層數值測點，另有畫面審查；未宣稱完整布料模擬或寫實人物幾何。
+- 部署後正式頁已載入 `index-BMxkEbFu.js`，實測會幕開聲、快跑切換、起跳狀態、四類音量及「預備與聆聽」配樂；比較工具實際完成載入 `human-ordinary-priest` 與階梯路線。console error／warning 為空。畫面：`.qa/all-islands/sites-v45-walk.png`、`sites-v45-motion.png`。
+- 發佈後再次核對：擁有者私人範圍仍為1位使用者、0群組、0外部訪客；未擴大分享。dev server 5173 維持原服務。動作細節見 [全島延伸](ALL-ISLAND-HUMAN-MOTION.md)。
