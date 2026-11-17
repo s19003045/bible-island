@@ -12,4 +12,6 @@ test('five shipped loop pairs and every physical effect match verified original 
  assert.equal(verified,90);assert.equal(new Set(themes.map(t=>scoreForScene(t.id).id)).size,5);
  for(const score of Object.values(scores)){const entry=music.find(m=>m.files.some(f=>f.path===score.src.replace('audio/original/','')+'.ogg'));assert.ok(entry);assert.equal(score.seconds,entry.frames/(entry.sampleRate??base.sampleRate));}
  assert.equal(Object.values(effectGroups).flat().length,40);
+ const physicalIds=new Set(base.effects.map(effect=>effect.id));
+ for(const id of Object.values(effectGroups).flat())assert.ok(physicalIds.has(id),'playback group names a real shipped sound: '+id);
 });

@@ -55,7 +55,7 @@ export function createSoundtrack(ctx,output,onState=()=>{}) {
 
 export const effectGroups=Object.fromEntries([
   ...['earth','stone','wood'].flatMap(material=>['footstep','landing'].map(category=>[`${category}:${material}`,Array.from({length:4},(_,i)=>`${category}-${material}-${i+1}`)])),
-  ['jump',Array.from({length:4},(_,i)=>`jump-${i+1}`)],
+  ['jump',Array.from({length:4},(_,i)=>`jump-takeoff-${i+1}`)],
   ...['ceramic','wood','stone'].map(material=>[`interaction:${material}`,Array.from({length:4},(_,i)=>`interact-${material}-${i+1}`)])
 ]);
 
