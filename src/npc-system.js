@@ -7,19 +7,32 @@ export function seededNPC(seed) {let n=seed>>>0;return ()=>{n=(n+0x6D2B79F5)>>>0
 const ranged=(a,min,max)=>min+a.random()*(max-min);
 const turn=(m,target,dt)=>{const d=angleDelta(m.yaw,target);m.yaw+=clamp(d*(1-Math.exp(-5*dt)),-2.2*dt,2.2*dt);};
 
+// Airborne clearance includes vertical extent; distant people on another level
+// cannot become invisible walls. The public player model owns vertical contact.
+export function constrainAirAgainstAgents(from,to,agents,model){
+  const steps=Math.max(1,Math.ceil(Math.hypot(...to.map((v,i)=>v-from[i]))/.035));let p=[...from];
+  for(let i=1;i<=steps;i++){
+    const q=from.map((v,k)=>v+(to[k]-v)*i/steps);
+    if(agents.some(a=>!a.hidden&&q[1]<a.actor.state.position[1]+1.7*(a.actor.scale||1)&&q[1]+1.7>a.actor.state.position[1]&&distance(q,a.actor.state.position)<.32+a.radius+.025))return model.moveAir(p,0,to[1]-p[1],0).position;
+    p=q;
+  }
+  return p;
+}
+
 // Every decision, social check, dwell, cooldown, animation phase and PRNG belongs to one agent.
 // The shared update is only a physics integrator, never a behaviour clock or random walk.
-export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,onEvent=()=>{},spawnCandidates:customSpawns=null,allowedPosition=()=>true,spawnExclusion=[20,0,0],allowRetreat=false,socialProbability=.2}) {
+export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,onEvent=()=>{},spawnCandidates:customSpawns=null,allowedPosition=()=>true,spawnExclusion=[20,0,0],allowRetreat=false,socialProbability=.2,naturalMotion=true}) {
   const reservations=new Map(pois.map(p=>[p.id,new Map()]));
   const agents=actors.map((actor,index)=>{
     const key=actor.id||`resident-${index}`,individualSeed=npcSeed(`${seed}:${key}`),random=seededNPC(individualSeed);
     const speedFactor=.85+random()*.3;
-    const a={key,actor,seed:individualSeed,random,speedFactor,speed:.8*speedFactor,radius:actor.collisionRadius??.29*(actor.scale||1),
+    const roleFactor=naturalMotion?(actor.id==='water-carrier'||actor.role==='carrier'?.9:(actor.scale||1)<.8?1.05:/elder/.test(actor.id||'')?.82:1):1;
+    const a={key,actor,seed:individualSeed,random,speedFactor,speed:.8*roleFactor*speedFactor,radius:actor.collisionRadius??.29*(actor.scale||1),
       role:actor.role||(actor.id==='householder'?'householder':actor.id==='street-vendor'?'vendor':actor.id==='water-carrier'?'carrier':'resident'),
       state:'rest',action:'Idle',age:0,timer:.4+(index+random())/actors.length*4.5,socialCheck:.25+random()*1.7,
-      cooldown:3+random()*12,velocity:[0,0],path:[],poi:null,slot:null,lastPOI:null,partner:null,chatLeft:0,
+      cooldown:3+random()*12,velocity:[0,0],path:[],poi:null,slot:null,lastPOI:null,lastVisitedPOI:null,partner:null,chatLeft:0,
       lane:(random()-.5)*.34,lookPhase:random()*Math.PI*2,blockedFor:0,visits:new Map(),held:false,wasAttending:false,attentionLeft:0};
-    actor.state.autonomous=true;actor.state.animationSpeed=speedFactor;actor.state.time=random()*80;actor.state.behavior=a;
+    actor.state.autonomous=true;actor.state.animationSpeed=speedFactor*roleFactor;actor.state.time=random()*80;actor.state.walkDistance=0;actor.state.behavior=a;
     return a;
   });
   // Rehome the illustrative background silhouettes onto valid public surfaces before first render.
@@ -51,8 +64,8 @@ export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,
       (!player||distance(s.position,player)>a.radius+.65)&&agents.every(b=>b===a||distance(s.position,b.actor.state.position)>a.radius+b.radius+.08));
   }
   function choose(a,player,retreatFrom=null) {
-    const previous=a.poi?.id||a.lastPOI;
-    let candidates=pois.filter(p=>p.id!==previous&&p.tags.includes(a.role)).map(p=>{
+    const previous=a.poi?.id||a.lastVisitedPOI||a.lastPOI;
+    let candidates=pois.filter(p=>p.id!==previous&&p.id!==a.lastVisitedPOI&&p.tags.includes(a.role)).map(p=>{
       const slots=freeSlots(p,a,player),d=Math.min(...p.slots.map(s=>distance(s,a.actor.state.position)));
       const preference=a.role==='carrier'&&p.id==='water-view'?3:a.role==='vendor'&&p.id.startsWith('market')?4:1;
       return {p,slots,weight:p.weight*preference/(retreatFrom?(1+d/8)**2:1+d/25)/(1+(a.visits.get(p.id)||0)*.3)};
@@ -76,7 +89,7 @@ export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,
   }
   function arrive(a) {
     a.state='rest';a.retreatFrom=null;a.action=a.poi.action;a.timer=ranged(a,...a.poi.dwell);a.lastPOI=a.poi.id;
-    a.visits.set(a.poi.id,(a.visits.get(a.poi.id)||0)+1);a.path=[];emit(a,'arrive',{poi:a.poi.id,action:a.action});
+    a.visits.set(a.poi.id,(a.visits.get(a.poi.id)||0)+1);a.lastVisitedPOI=a.poi.id;a.path=[];emit(a,'arrive',{poi:a.poi.id,action:a.action});
   }
   function endChat(a,interrupted=false) {
     const b=a.partner;if(!b)return;
@@ -120,6 +133,12 @@ export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,
       if(t>0&&predicted<safe+.25){const strength=(1-predicted/(safe+.25))*.85;vx+=nz*strength;vz-=nx*strength;}
     }
     const magnitude=Math.hypot(vx,vz),cap=a.speed;if(magnitude>cap){vx*=cap/magnitude;vz*=cap/magnitude;}
+    if(naturalMotion){
+      a.desiredYaw=Math.atan2(vx,vz);
+      // Brake before a sharp direction change, then turn with planted steps.
+      // The heading still comes from the reserved POI path and separation force.
+      const facing=clamp((Math.cos(angleDelta(m.yaw,a.desiredYaw))+.1)/1.1,0,1);vx*=facing;vz*=facing;
+    }
     const blend=1-Math.exp(-4*dt);return [a.velocity[0]+(vx-a.velocity[0])*blend,a.velocity[1]+(vz-a.velocity[1])*blend];
   }
   function dynamicMove(from,to,radius,exclude=null,player=null) {
@@ -160,8 +179,9 @@ export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,
       const m=a.actor.state,p=m.position,[vx,vz]=velocities[i];
       if(!a.held&&!a.partner&&a.state==='travel') {
         const next=dynamicMove(p,[p[0]+vx*dt,p[1],p[2]+vz*dt],a.radius,a,player),d=distance(p,next);
-        a.velocity=[(next[0]-p[0])/dt,(next[2]-p[2])/dt];m.position=next;
-        if(d>.00005)turn(m,Math.atan2(a.velocity[0],a.velocity[1]),dt);
+        a.velocity=[(next[0]-p[0])/dt,(next[2]-p[2])/dt];m.position=next;m.walkDistance+=d;
+        if(naturalMotion&&Number.isFinite(a.desiredYaw))turn(m,a.desiredYaw,dt*.65);
+        else if(d>.00005)turn(m,Math.atan2(a.velocity[0],a.velocity[1]),dt);
         a.blockedFor=d<.002?a.blockedFor+dt:0;
         if(a.blockedFor>rangedThreshold(a)){
           a.blockedFor=0;
@@ -183,6 +203,7 @@ export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,
     agents,pois,reservations,
     update(dt,{player=null,camera=null}={}){if(dt<=0)return;let left=Math.min(dt,.25);while(left>1e-8){const delta=Math.min(left,1/30);step(delta,player,camera);left-=delta;}},
     constrainPlayer(from,to){return dynamicMove(from,to,.32);},
+    constrainAirPlayer(from,to){return constrainAirAgainstAgents(from,to,agents,playerModel);},
     safePlayerSpawn(preferred){
       const free=p=>model.valid(p[0],p[2])&&agents.every(a=>distance(p,a.actor.state.position)>a.radius+.32+.1);
       if(free(preferred))return [preferred[0],model.heightAt(preferred[0],preferred[2]),preferred[2]];

@@ -1,9 +1,11 @@
+import {characterClips} from './helpers/character-clips.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {createResidentInstance,residentModelFor} from '../src/blender-assets.js';
+import {residentFootContact} from '../src/resident-locomotion.js';
 import {blenderModels} from '../src/blender-manifest.js';
 import {createHistoricalScene} from '../src/historical-scenes.js';
 
@@ -21,7 +23,7 @@ test('actual child export changes skeletal/body proportions rather than shrinkin
   const legRatio=measure(child.scene,'thighL','footL')/measure(adult,'thighL','footL');
   assert.ok(Math.abs(headRatio-legRatio)>.1,'head and legs have different scale factors');
   const bounds=new THREE.Box3().setFromObject(child.scene);assert.ok(Math.abs(bounds.max.y-1.10)<.005);assert.ok(Math.abs(bounds.min.y)<.003);
-  assert.deepEqual(child.animations.map(c=>c.name).sort(),['Idle','Interact','LookAround','Talk','Walk']);
+  assert.deepEqual(child.animations.map(c=>c.name).sort(),characterClips('resident-child'));
   const a=actor(undefined,1.1/1.7),instance=createResidentInstance(child,a);instance.update(0);
   const actualBounds=new THREE.Box3().setFromPoints(sample(instance.root,vertices(instance.root,()=>true)));
   assert.equal(residentModelFor(a),'resident-child');assert.ok(Math.abs(actualBounds.max.y-1.10)<.02);instance.dispose();
@@ -41,9 +43,9 @@ test('child gait plants real short-sole vertices and follows both ramp direction
   for(let i=0;i<60;i++){
     const t=i/60,z=distance*root.scale.x*t;a.state.position=[0,groundAt(0,z),z];a.state.time=t;instance.update(i?1/60:0);
     for(let side=0;side<2;side++){
-      const phase=(t+side*.5)%1,points=sample(root,soles[side]);
-      for(const p of points){const gap=(p.y-groundAt(p.x,p.z))/Math.sqrt(1+slope*slope);assert.ok(gap>-.004);if(phase<.58)assert.ok(gap<.005);}
-      if(slope===0&&side===0&&t<.5){if(previous)points.forEach((p,j)=>assert.ok(p.distanceTo(previous[j])<.0008,'child support foot stays planted'));previous=points;}
+      const gait=root.userData.gaitPhase??t,phase=(gait+side*.5)%1,contact=residentFootContact('Walk',gait*1.2,side?'R':'L',gait),points=sample(root,soles[side]);
+      const gaps=points.map(p=>(p.y-groundAt(p.x,p.z))/Math.sqrt(1+slope*slope));assert.ok(gaps.every(gap=>gap>-.004));if(contact!=='swing')assert.ok(Math.abs(Math.min(...gaps))<.005,'heel, flat or toe support touches the slope');
+      if(slope===0&&side===0&&phase>.1&&phase<.4){if(previous)points.forEach((p,j)=>assert.ok(p.distanceTo(previous[j])<.0008,'child support foot stays planted'));previous=points;}else if(side===0)previous=null;
     }
   }
   instance.dispose();
@@ -52,7 +54,7 @@ test('child gait plants real short-sole vertices and follows both ramp direction
 
 test('actual carrier fingers maintain handle contact and the hollow jug stays upright through all five actions',async()=>{
   const gltf=await asset('resident-carrier'),a=actor('water-carrier'),instance=createResidentInstance(gltf,a),root=instance.root;
-  assert.deepEqual(gltf.animations.map(c=>c.name).sort(),['Idle','Interact','LookAround','Talk','Walk']);
+  assert.deepEqual(gltf.animations.map(c=>c.name).sort(),characterClips('resident-carrier'));
   const handle=vertices(root,m=>m.name.startsWith('carried-jug-handle')),body=vertices(root,m=>m.name.startsWith('carried-jug-body'));
   const fingers=Array.from({length:4},(_,j)=>vertices(root,m=>m.name.startsWith('curled-grip-finger-'+j)));
   assert.ok(handle.length&&body.length&&fingers.every(v=>v.length));

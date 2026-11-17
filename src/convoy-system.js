@@ -1,4 +1,4 @@
-import {npcSeed,seededNPC} from './npc-system.js';
+import {npcSeed,seededNPC,constrainAirAgainstAgents} from './npc-system.js';
 import {angleDelta} from './people-motion.js';
 const distance=(a,b)=>Math.hypot(a[0]-b[0],a[2]-b[2]);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -12,7 +12,7 @@ export function createConvoySystem({actors,pois,model,playerModel,spawn=[4,.03,-
   const a={key,actor,seed:individualSeed,random,speedFactor,speed:.8*speedFactor,radius:actor.collisionRadius??.29*(actor.scale||1),role:'convoy',
    state:'rest',action:'LookAround',timer:.35+(index+random())/actors.length*4.5,age:0,cooldown:0,partner:null,poi:null,slot:null,lastPOI:null,
    velocity:[0,0],blockedFor:0,held:false,wasAttending:false,attentionLeft:0,visits:new Map(),lap:0,hidden:false,entryDelay:0,maxProgress:actor.id?80:520,lateralBias:random()<.5?-1:1};
-  Object.assign(actor.state,{autonomous:true,animationSpeed:speedFactor,time:random()*80,behavior:a,visible:true});return a;
+  Object.assign(actor.state,{autonomous:true,animationSpeed:speedFactor,time:random()*80,walkDistance:0,behavior:a,visible:true});return a;
  });
  const placed=[];
  for(const a of [...agents].sort((a,b)=>Number(!!b.actor.id)-Number(!!a.actor.id))){
@@ -79,7 +79,7 @@ export function createConvoySystem({actors,pois,model,playerModel,spawn=[4,.03,-
    }
    vx=Math.max(0,vx);const magnitude=Math.hypot(vx,vz);if(magnitude>a.speed){vx*=a.speed/magnitude;vz*=a.speed/magnitude;}
    const blend=1-Math.exp(-4*dt);vx=a.velocity[0]+(vx-a.velocity[0])*blend;vz=a.velocity[1]+(vz-a.velocity[1])*blend;
-   const next=swept(p,Math.min(Math.max(0,dx),Math.max(0,vx)*dt),vz*dt,a.radius,a,player),moved=distance(next,p);a.velocity=[(next[0]-p[0])/dt,(next[2]-p[2])/dt];m.position=next;
+   const next=swept(p,Math.min(Math.max(0,dx),Math.max(0,vx)*dt),vz*dt,a.radius,a,player),moved=distance(next,p);a.velocity=[(next[0]-p[0])/dt,(next[2]-p[2])/dt];m.position=next;m.walkDistance+=moved;
    if(moved>.00001)turn(m,Math.atan2(a.velocity[0],a.velocity[1]),dt);a.blockedFor=moved<.002?a.blockedFor+dt:0;
    if(a.blockedFor>2.5+(a.seed%1500)/1000){a.lastPOI=a.poi.id;release(a);a.state='rest';a.action='LookAround';a.velocity=[0,0];a.timer=range(a,.4,1.4);a.blockedFor=0;}
    m.stride+=(clamp(moved/dt/a.speed,0,1)-m.stride)*(1-Math.exp(-8*dt));m.idleAction=a.action;m.socialTalking=false;hideAtExit(a,camera,isVisible);
@@ -88,6 +88,7 @@ export function createConvoySystem({actors,pois,model,playerModel,spawn=[4,.03,-
  return {agents,pois,reservations,
   update(dt,{player=null,camera=null,isVisible=()=>true}={}){let left=Math.min(.25,Math.max(0,dt));while(left>1e-8){const d=Math.min(left,1/30);integrate(d,{player,camera,isVisible});left-=d;}},
   constrainPlayer(from,to){return swept(from,to[0]-from[0],to[2]-from[2],.32,null,null,playerModel);},
+  constrainAirPlayer(from,to){return constrainAirAgainstAgents(from,to,agents,playerModel);},
   safePlayerSpawn(preferred){const options=[preferred];for(const x of [2,4,6,8,10])for(const z of [-7,-4,0,4,7])options.push([x,.03,z]);return options.filter(p=>playerModel.valid(p[0],p[2])&&clearAt(p,.4)).sort((a,b)=>distance(a,preferred)-distance(b,preferred))[0]||null;},
   suspend(){for(const a of agents){release(a);a.velocity=[0,0];if(!a.hidden){a.state='rest';a.action='LookAround';a.timer=range(a,.3,2.8);}}},
   dispose(){this.suspend();},

@@ -1,3 +1,4 @@
+import {characterClips} from './helpers/character-clips.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -84,7 +85,7 @@ test('real return GLBs contain three stone courses, movable timber, curled docum
 });
 
 test('new return figures have independent rigs and five tracks and stay on their chapter during conversation',async()=>{
- const ids=['return-elder','return-mason','return-woman','return-child'],assets=await Promise.all(ids.map(load));const rigs=assets.map(a=>{const nodes=[];a.scene.traverse(o=>{if(o.isSkinnedMesh)nodes.push(o);});assert.ok(nodes.length>3);assert.deepEqual(a.animations.map(c=>c.name).sort(),['Idle','Interact','LookAround','Talk','Walk']);const skin=nodes.find(m=>m.material.name==='skin');assert.ok(skin);const si=skin.geometry.attributes.skinIndex,sw=skin.geometry.attributes.skinWeight;let blended=0;for(let i=0;i<si.count;i++){const weights=new Map();for(let k=0;k<4;k++)if(sw.getComponent(i,k)>.01)weights.set(skin.skeleton.bones[si.getComponent(i,k)].name,sw.getComponent(i,k));if(['L','R'].some(side=>weights.has('arm'+side)&&weights.has('forearm'+side)))blended++;}assert.ok(blended>=64,'skin crosses both elbows with blended weights');return nodes[0].skeleton;});assert.equal(new Set(rigs).size,4);
+ const ids=['return-elder','return-mason','return-woman','return-child'],assets=await Promise.all(ids.map(load));const rigs=assets.map((a,index)=>{const nodes=[];a.scene.traverse(o=>{if(o.isSkinnedMesh)nodes.push(o);});assert.ok(nodes.length>3);assert.deepEqual(a.animations.map(c=>c.name).sort(),characterClips(ids[index]));const skin=nodes.find(m=>m.material.name==='skin');assert.ok(skin);const si=skin.geometry.attributes.skinIndex,sw=skin.geometry.attributes.skinWeight;let blended=0;for(let i=0;i<si.count;i++){const weights=new Map();for(let k=0;k<4;k++)if(sw.getComponent(i,k)>.01)weights.set(skin.skeleton.bones[si.getComponent(i,k)].name,sw.getComponent(i,k));if(['L','R'].some(side=>weights.has('arm'+side)&&weights.has('forearm'+side)))blended++;}assert.ok(blended>=64,'skin crosses both elbows with blended weights');return nodes[0].skeleton;});assert.equal(new Set(rigs).size,4);
  for(const c of returnSegments){const s=createHistoricalScene('second-temple',null,{segment:c.id,blenderAssets:true,assetLoader:load});assert.equal(await s.detailedResidents.ready,true);const a=s.people[0],p=[...a.state.position];s.converse(a.id);for(let i=0;i<20;i++)s.animate(.05,[p[0]+2,p[1]+1.6,p[2]+3]);assert.deepEqual(a.state.position,p);assert.equal(s.detailedResidents.visible.get(a)?.root.userData.modelId,c.id==='foundation'?'return-elder':c.id==='work'?'return-mason':'return-woman');s.dispose();}
 });
 

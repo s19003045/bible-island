@@ -3,6 +3,8 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {clone} from 'three/addons/utils/SkeletonUtils.js';
 import {blenderModels} from './blender-manifest.js';
 import {createResidentGrounding} from './resident-grounding.js';
+import {createResidentLocomotion} from './resident-locomotion.js';
+import {createPlantedFootGrounding} from './resident-foot-plant.js';
 
 const cache=new Map();
 const loader=new GLTFLoader();
@@ -49,9 +51,11 @@ export function residentAction(state) {
   return state.idleAction==='LookAround'?'LookAround':'Idle';
 }
 
-export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.state.position[1]}={}) {
-  const definition=blenderModels[residentModelFor(actor)];
+export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.state.position[1],motionVersion=null,metrics={}}={}) {
+  const definition={...blenderModels[residentModelFor(actor)],...metrics};
+  const natural=(motionVersion??definition.motionVersion)===2&&gltf.animations.some(c=>c.name==='StartWalk');
   const root=clone(gltf.scene),materials=new Set(),mixer=new THREE.AnimationMixer(root);
+  root.userData.motionVersion=natural?2:1;
   const actions=new Map(gltf.animations.map(clip=>{const a=mixer.clipAction(clip);a.play();a.paused=true;a.setEffectiveWeight(0);return [clip.name,a];}));
   const weights=new Map([...actions.keys()].map(n=>[n,n==='Idle'?1:0]));
   const tones=[.91,1,.96,1.06],tone=tones[index%tones.length];
@@ -71,25 +75,28 @@ export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.st
     }
   });
   root.scale.setScalar((actor.scale??1)*1.70/definition.height);
-  const groundFeet=createResidentGrounding(root,groundAt,{ankleHeight:definition.ankleHeight??.105,liftHeight:definition.liftHeight??.075}),lastPosition=[...actor.state.position];
+  const groundFeet=natural?createPlantedFootGrounding(root,groundAt):createResidentGrounding(root,groundAt,{ankleHeight:definition.ankleHeight??.105,liftHeight:definition.liftHeight??.075}),lastPosition=[...actor.state.position];
+  const locomotion=natural?createResidentLocomotion(actor,{cycleDistance:definition.cycleDistance??.9,cycleSeconds:1.2,scale:root.scale.x}):null;
+  if(natural)for(const name of ['StartWalk','StopWalk','TurnLeft','TurnRight']){const a=actions.get(name);if(a){a.setLoop(THREE.LoopOnce,1);a.clampWhenFinished=true;}}
   const bones=[];root.traverse(o=>{if(o.isBone)bones.push({bone:o,position:o.position.clone(),quaternion:o.quaternion.clone(),scale:o.scale.clone()});});
   let first=true,gaitTime=actor.state.time%1;
   return {root,actions,mixer,
     update(dt=0){
-      const state=actor.state,target=residentAction(state),blend=first?1:1-Math.exp(-Math.max(0,dt)*7);
+      const state=actor.state,motion=locomotion?.update(dt),target=motion?.clip||residentAction(state),blend=first?1:1-Math.exp(-Math.max(0,dt)*7);
       if(!first&&dt>0)gaitTime+=Math.hypot(state.position[0]-lastPosition[0],state.position[2]-lastPosition[2])/((definition.cycleDistance??.8)*root.scale.x);
       lastPosition.splice(0,3,...state.position);
       for(const [name,action] of actions){
         const weight=weights.get(name)+((name===target?1:0)-weights.get(name))*blend;weights.set(name,weight);
-        const clock=name==='Walk'?gaitTime:state.time;
-        action.setEffectiveWeight(weight);action.time=(clock%action.getClip().duration+action.getClip().duration)%action.getClip().duration;
+        const duration=action.getClip().duration,clock=motion&&name===motion.clip?motion.time:name==='Walk'?gaitTime*duration:state.time;
+        action.setEffectiveWeight(weight);action.time=natural&&['StartWalk','StopWalk','TurnLeft','TurnRight'].includes(name)?Math.min(duration-.000001,Math.max(0,clock)):(clock%duration+duration)%duration;
       }
       // Restore the pre-IK pose: AnimationMixer may skip unchanged properties.
       for(const p of bones){p.bone.position.copy(p.position);p.bone.quaternion.copy(p.quaternion);p.bone.scale.copy(p.scale);}
       mixer.update(0);
       for(const p of bones){p.position.copy(p.bone.position);p.quaternion.copy(p.bone.quaternion);p.scale.copy(p.bone.scale);}
       root.position.fromArray(state.position);root.rotation.y=state.yaw;root.visible=state.visible!==false;
-      groundFeet({position:state.position,phase:gaitTime%1,walkWeight:weights.get('Walk')||0});first=false;
+      if(natural){root.userData.locomotion=target;root.userData.gaitPhase=motion.phase;groundFeet({position:state.position,clip:target,time:motion.time,phase:motion.phase,dt,reset:first});}
+      else groundFeet({position:state.position,phase:gaitTime%1,walkWeight:weights.get('Walk')||0});first=false;
     },
     dispose(){mixer.stopAllAction();mixer.uncacheRoot(root);root.removeFromParent();const skeletons=new Set();root.traverse(o=>{if(o.isSkinnedMesh)skeletons.add(o.skeleton);});for(const s of skeletons)s.dispose();for(const m of materials)m.dispose();},
   };

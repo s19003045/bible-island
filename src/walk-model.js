@@ -65,6 +65,32 @@ export function createWalkModel(boxes=[],surfaces=walkSurfaces,floor=walkFloor,o
     const ground=sampleGround(p[0],p[2],p[1],settings);
     return {position:p,ground,stepped,isGrounded:!!ground&&Math.abs(p[1]-ground.height)<.025};
   }
+  // Swept vertical cylinder used only by the player's airborne motor. Grounded
+  // NPCs and A* continue to use the original safe walking transitions.
+  function moveAir(position,dx,dy,dz,overrides={}) {
+    const settings={...config,...overrides},count=Math.max(1,Math.ceil(Math.hypot(dx,dy,dz)/.035));
+    const airSettings={...settings,bodyHeight:settings.bodyHeight+settings.skin};
+    let p=[...position],landed=false,ceiling=false;
+    for(let i=0;i<count;i++) {
+      const y=p[1],candidateY=y+dy/count;
+      // Land on the highest supporting top crossed during this substep, never
+      // snap to a platform above the feet while the player is rising.
+      const support=sampleGround(p[0],p[2],y-settings.maxStepHeight+settings.skin,settings);
+      if(dy<=0&&support&&y>=support.height-settings.skin&&candidateY<=support.height){p[1]=support.height;landed=true;}
+      else if(clearBody(p[0],p[2],candidateY,airSettings))p[1]=candidateY;
+      else if(dy>0)ceiling=true;
+      const nx=p[0]+dx/count,nz=p[2]+dz/count;
+      const can=(x,z)=>inBounds(x,z)&&clearBody(x,z,p[1],airSettings)&&(()=>{
+        const g=baseGround(x,z);return !g||(g.slopeAngle<=settings.maxSlopeAngle+.00001&&p[1]>=g.height-settings.skin);
+      })();
+      if(can(nx,nz)){p[0]=nx;p[2]=nz;}
+      else if(can(nx,p[2]))p[0]=nx;
+      else if(can(p[0],nz))p[2]=nz;
+      const g=sampleGround(p[0],p[2],p[1]-settings.maxStepHeight+settings.skin,settings);
+      if(dy<=0&&g&&p[1]<=g.height+settings.skin&&p[1]>=g.height-settings.skin){p[1]=g.height;landed=true;}
+    }
+    return {position:p,landed,ceiling};
+  }
   const move=(position,dx,dz)=>moveDetailed(position,dx,dz).position;
   const heightAt=(x,z)=>sampleGround(x,z)?.height??null;
   const nodes=new Map();let built=false;
@@ -104,5 +130,5 @@ export function createWalkModel(boxes=[],surfaces=walkSurfaces,floor=walkFloor,o
     }
     return [];
   }
-  return {heightAt,sampleGround,valid,move,moveDetailed,path,radius,config,proxies};
+  return {heightAt,sampleGround,valid,move,moveDetailed,moveAir,path,radius,config,proxies};
 }

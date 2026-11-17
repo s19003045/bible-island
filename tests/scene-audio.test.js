@@ -20,7 +20,7 @@ function fixture(){
   async decodeAudioData(){return {duration:100};}
  }
  globalThis.window={AudioContext:MockContext};globalThis.document={baseURI:'http://localhost:5173/'};globalThis.fetch=async url=>{fetched.push(String(url));return {ok:true,arrayBuffer:async()=>new ArrayBuffer(1)};};
- return {get context(){return context;},fetched};
+ return {get context(){return context;},get fetched(){return fetched.filter(url=>!url.includes('/audio/original/'));},allFetched:fetched};
 }
 
 test('chapter audio cancels old spatial effects and speech, preserves independent mix, and mutes on page hiding',async()=>{
@@ -95,4 +95,25 @@ test('Letters ten windows cancel old cues and preserve quiet listening/cross-pla
   {const count=f.context.sources.length;audio.update(new PerspectiveCamera(),[],500000);assert.equal(f.context.sources.length,count,'quiet reading has no generic celebration or work effect');}
   await audio.speak(person,'greeting',[3,2,13]);const old=f.context.sources.at(-1),complete=old.onended;await audio.speak(person,'child-greeting',[3,2,13]);assert.equal(old.stopped,true);complete();assert.equal(audio.playing.key,'child-greeting');prior=f.context.sources.at(-1);
  }assert.equal(f.fetched.length,3,'the three accepted recordings are reused across all windows');audio.dispose();
+});
+
+test('recorded Jerusalem score and physical effects use four independent buses and silence airborne footsteps',async()=>{
+ const f=fixture(),events=[],audio=createSceneAudio(s=>events.push(s));
+ assert.equal(f.context,undefined,'sound is not created before the visitor opts in');
+ await audio.enable();audio.setActive(true);await audio.whenReady();
+ const score=f.context.sources.find(s=>s.loopEnd===96);assert.ok(score?.loop);assert.ok(score.started);
+ assert.equal(audio.soundtrack.status,'playing');assert.equal(audio.soundtrack.title,'院落之間');
+ assert.ok(f.allFetched.some(url=>url.endsWith('jerusalem-town-loop.ogg')));
+ const [master,environment,voice,music,effects]=f.context.gains;
+ assert.equal(music.gain.value,.55);assert.equal(effects.gain.value,.7);
+ audio.setVolume('environment',0);assert.equal(environment.gain.value,0);assert.equal(effects.gain.value,.7);
+ let count=f.context.sources.length;
+ audio.footstep([21,8,-4],{isGrounded:false});assert.equal(f.context.sources.length,count);
+ audio.footstep([21,8,-4],{isGrounded:true});audio.playerMotion('jump',[21,8,-4]);audio.playerMotion('land',[21,8,-4]);
+ assert.equal(f.context.sources.length,count+3);const physical=f.context.sources.slice(-3);
+ assert.ok(physical.every(s=>s.started),'all three events play predecoded recordings immediately');
+ await audio.speak('householder','greeting',[21,9,-4]);assert.equal(music.gain.value,.55*.18);assert.equal(effects.gain.value,.7*.45);
+ audio.setHidden(true);assert.ok([environment,voice,music,effects].every(bus=>bus.gain.value===0));assert.ok(physical.every(s=>s.stopped));
+ audio.setHidden(false);audio.setVolume('effects',0);count=f.context.sources.length;audio.footstep([21,8,-4],{isGrounded:true});assert.equal(f.context.sources.length,count);
+ assert.ok(events.some(s=>s.soundtrack.status==='playing'));audio.dispose();assert.equal(score.stopped,true);
 });

@@ -1,0 +1,356 @@
+{
+  "integration": {
+    "source_sha256": "c2b484f5b88e5b3750f20a176c3e42581f0267d7cdc42411059585bd3b1fca2e",
+    "module_sha256": "6b6608eb59ca86f01e5a02937bb8d653093dd6c71d54ca1f5f74446e52862cff",
+    "characters": {
+      "resident": {
+        "file": "/home/garywu/dev/bible-island/.qa/motion-integrated/judean-resident.glb",
+        "motion_version": 2,
+        "cycle_distance_m": 0.9000000015543971,
+        "original_gesture_duration_seconds": {
+          "Idle": 4.0,
+          "Interact": 3.0,
+          "LookAround": 5.0,
+          "Talk": 3.0
+        },
+        "animation_names": [
+          "Walk",
+          "StartWalk",
+          "StopWalk",
+          "TurnLeft",
+          "TurnRight",
+          "Idle",
+          "Interact",
+          "LookAround",
+          "Talk"
+        ],
+        "carrying": false
+      },
+      "resident-worker": {
+        "file": "/home/garywu/dev/bible-island/.qa/motion-integrated/judean-worker.glb",
+        "motion_version": 2,
+        "cycle_distance_m": 0.9000000015543971,
+        "original_gesture_duration_seconds": {
+          "Idle": 4.0,
+          "Interact": 3.0,
+          "LookAround": 5.0,
+          "Talk": 3.0
+        },
+        "animation_names": [
+          "Walk",
+          "StartWalk",
+          "StopWalk",
+          "TurnLeft",
+          "TurnRight",
+          "Idle",
+          "Interact",
+          "LookAround",
+          "Talk"
+        ],
+        "carrying": false
+      },
+      "resident-child": {
+        "file": "/home/garywu/dev/bible-island/.qa/motion-integrated/judean-child.glb",
+        "motion_version": 2,
+        "cycle_distance_m": 0.5516142014440475,
+        "original_gesture_duration_seconds": {
+          "Idle": 4.0,
+          "Interact": 3.0,
+          "LookAround": 5.0,
+          "Talk": 3.0
+        },
+        "animation_names": [
+          "Walk",
+          "StartWalk",
+          "StopWalk",
+          "TurnLeft",
+          "TurnRight",
+          "Idle",
+          "Interact",
+          "LookAround",
+          "Talk"
+        ],
+        "carrying": false
+      },
+      "resident-carrier": {
+        "file": "/home/garywu/dev/bible-island/.qa/motion-integrated/judean-carrier.glb",
+        "motion_version": 2,
+        "cycle_distance_m": 0.9000000015543971,
+        "original_gesture_duration_seconds": {
+          "Idle": 4.0,
+          "Interact": 3.0,
+          "LookAround": 5.0,
+          "Talk": 3.0
+        },
+        "animation_names": [
+          "Walk",
+          "StartWalk",
+          "StopWalk",
+          "TurnLeft",
+          "TurnRight",
+          "Idle",
+          "Interact",
+          "LookAround",
+          "Talk"
+        ],
+        "carrying": true
+      }
+    }
+  },
+  "runtime": {
+    "kind": "actual-staged-GLB-runtime-verification",
+    "characters": {
+      "resident": {
+        "restMeshAttributesExact": true,
+        "clips": [
+          "Idle",
+          "Interact",
+          "LookAround",
+          "StartWalk",
+          "StopWalk",
+          "Talk",
+          "TurnLeft",
+          "TurnRight",
+          "Walk"
+        ],
+        "originalGestures": {
+          "Idle": {
+            "duration": 4,
+            "maxWorldPositionDeltaM": 9.212829742272552e-10,
+            "maxWorldAngleDeltaRadians": 1.75975837077112e-05
+          },
+          "Interact": {
+            "duration": 3,
+            "maxWorldPositionDeltaM": 0.00023737804869303867,
+            "maxWorldAngleDeltaRadians": 0.0007218691296453831
+          },
+          "LookAround": {
+            "duration": 5,
+            "maxWorldPositionDeltaM": 9.424730253282578e-07,
+            "maxWorldAngleDeltaRadians": 0.00010960432807607984
+          },
+          "Talk": {
+            "duration": 3,
+            "maxWorldPositionDeltaM": 0.00023737804869303867,
+            "maxWorldAngleDeltaRadians": 0.0007218691296453831
+          }
+        },
+        "terrain": [
+          {
+            "slope": 0,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -7.625634563051772e-08,
+            "maxSupportGapM": 7.766517364123093e-08,
+            "maxSteadyFlatAnkleStepM": 3.279825098265144e-07
+          },
+          {
+            "slope": 0.3,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -8.638552628781326e-08,
+            "maxSupportGapM": 8.638552628781326e-08,
+            "maxSteadyFlatAnkleStepM": 3.2949110205096464e-07
+          },
+          {
+            "slope": -0.3,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -9.224397091306402e-08,
+            "maxSupportGapM": 9.224397091306402e-08,
+            "maxSteadyFlatAnkleStepM": 3.292128097190955e-07
+          }
+        ]
+      },
+      "resident-worker": {
+        "restMeshAttributesExact": true,
+        "clips": [
+          "Idle",
+          "Interact",
+          "LookAround",
+          "StartWalk",
+          "StopWalk",
+          "Talk",
+          "TurnLeft",
+          "TurnRight",
+          "Walk"
+        ],
+        "originalGestures": {
+          "Idle": {
+            "duration": 4,
+            "maxWorldPositionDeltaM": 9.212829742272552e-10,
+            "maxWorldAngleDeltaRadians": 1.75975837077112e-05
+          },
+          "Interact": {
+            "duration": 3,
+            "maxWorldPositionDeltaM": 0.00023737804869303867,
+            "maxWorldAngleDeltaRadians": 0.0007218691296453831
+          },
+          "LookAround": {
+            "duration": 5,
+            "maxWorldPositionDeltaM": 9.424730253282578e-07,
+            "maxWorldAngleDeltaRadians": 0.00010960432807607984
+          },
+          "Talk": {
+            "duration": 3,
+            "maxWorldPositionDeltaM": 0.00023737804869303867,
+            "maxWorldAngleDeltaRadians": 0.0007218691296453831
+          }
+        },
+        "terrain": [
+          {
+            "slope": 0,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -7.625634563051772e-08,
+            "maxSupportGapM": 7.766517364123093e-08,
+            "maxSteadyFlatAnkleStepM": 3.279825098265144e-07
+          },
+          {
+            "slope": 0.3,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -8.638552628781326e-08,
+            "maxSupportGapM": 8.638552628781326e-08,
+            "maxSteadyFlatAnkleStepM": 3.2949110205096464e-07
+          },
+          {
+            "slope": -0.3,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -9.224397091306402e-08,
+            "maxSupportGapM": 9.224397091306402e-08,
+            "maxSteadyFlatAnkleStepM": 3.292128097190955e-07
+          }
+        ]
+      },
+      "resident-child": {
+        "restMeshAttributesExact": true,
+        "clips": [
+          "Idle",
+          "Interact",
+          "LookAround",
+          "StartWalk",
+          "StopWalk",
+          "Talk",
+          "TurnLeft",
+          "TurnRight",
+          "Walk"
+        ],
+        "originalGestures": {
+          "Idle": {
+            "duration": 4,
+            "maxWorldPositionDeltaM": 5.034919381941743e-10,
+            "maxWorldAngleDeltaRadians": 1.8506258364034389e-06
+          },
+          "Interact": {
+            "duration": 3,
+            "maxWorldPositionDeltaM": 0.00015861023560026358,
+            "maxWorldAngleDeltaRadians": 0.0008841359801726932
+          },
+          "LookAround": {
+            "duration": 5,
+            "maxWorldPositionDeltaM": 5.150725493611669e-07,
+            "maxWorldAngleDeltaRadians": 0.00010960432807607984
+          },
+          "Talk": {
+            "duration": 3,
+            "maxWorldPositionDeltaM": 0.00015861023560026358,
+            "maxWorldAngleDeltaRadians": 0.0008841359801726932
+          }
+        },
+        "terrain": [
+          {
+            "slope": 0,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -1.260069811357762e-07,
+            "maxSupportGapM": 1.260069811357762e-07,
+            "maxSteadyFlatAnkleStepM": 4.017145496192032e-07
+          },
+          {
+            "slope": 0.3,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -1.2187034809096886e-07,
+            "maxSupportGapM": 1.2187034809096886e-07,
+            "maxSteadyFlatAnkleStepM": 4.015752667732903e-07
+          },
+          {
+            "slope": -0.3,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -1.271902805022318e-07,
+            "maxSupportGapM": 1.271902805022318e-07,
+            "maxSteadyFlatAnkleStepM": 4.051386321905673e-07
+          }
+        ]
+      },
+      "resident-carrier": {
+        "restMeshAttributesExact": true,
+        "clips": [
+          "Idle",
+          "Interact",
+          "LookAround",
+          "StartWalk",
+          "StopWalk",
+          "Talk",
+          "TurnLeft",
+          "TurnRight",
+          "Walk"
+        ],
+        "originalGestures": {
+          "Idle": {
+            "duration": 4,
+            "maxWorldPositionDeltaM": 9.212829742272552e-10,
+            "maxWorldAngleDeltaRadians": 8.235800481145955e-05
+          },
+          "Interact": {
+            "duration": 3,
+            "maxWorldPositionDeltaM": 0.00023334961350596832,
+            "maxWorldAngleDeltaRadians": 0.0007218691296453831
+          },
+          "LookAround": {
+            "duration": 5,
+            "maxWorldPositionDeltaM": 9.424730253282578e-07,
+            "maxWorldAngleDeltaRadians": 0.00010960432807607984
+          },
+          "Talk": {
+            "duration": 3,
+            "maxWorldPositionDeltaM": 0.00023334961350596832,
+            "maxWorldAngleDeltaRadians": 0.0007218691296453831
+          }
+        },
+        "terrain": [
+          {
+            "slope": 0,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -7.625634555355292e-08,
+            "maxSupportGapM": 1.0723421780926834e-07,
+            "maxSteadyFlatAnkleStepM": 3.279825146708029e-07
+          },
+          {
+            "slope": 0.3,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -8.638552539963484e-08,
+            "maxSupportGapM": 1.0709872452774327e-07,
+            "maxSteadyFlatAnkleStepM": 3.294911083872328e-07
+          },
+          {
+            "slope": -0.3,
+            "frames": 480,
+            "sampleHz": 120,
+            "minSoleGapM": -9.224396733953366e-08,
+            "maxSupportGapM": 1.1196343990826918e-07,
+            "maxSteadyFlatAnkleStepM": 3.2921281407494755e-07
+          }
+        ]
+      }
+    },
+    "failures": []
+  },
+  "sourceGeometryUnchanged": true,
+  "limits": "Finite sampling and procedural teaching motion; no clinical or historical performance claim."
+}

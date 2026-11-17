@@ -248,10 +248,14 @@ function builder(parent, p, seed = 31, collectCollision = false,island=null) {
     }
   }
   const root=new THREE.Matrix4(),joint=new THREE.Matrix4(),matrix=new THREE.Matrix4(),r=new THREE.Matrix4(),t=new THREE.Matrix4();
-  function animate(dt,cameraPosition) {
+  function simulate(dt,cameraPosition) {
+    for(const actor of actors)if(!actor.state.autonomous)advanceMotion(actor.state,dt,cameraPosition);
+  }
+  function animate(dt,cameraPosition,{advance=true}={}) {
+    if(advance)simulate(dt,cameraPosition);
     const touched=new Set();
     for(const a of actors) {
-      const m=a.state.autonomous?a.state:advanceMotion(a.state,dt,cameraPosition),s=a.scale;
+      const m=a.state,s=a.scale;
       const speaking=m.talking||m.socialTalking,working=m.autonomous?m.idleAction==='Interact':a.motion==='work';
       const stride=Math.sin(m.time*7.5)*m.stride, breath=Math.sin(m.time*1.8)*.009;
       root.makeRotationY(m.yaw);root.setPosition(m.position[0],m.position[1]+(breath+Math.abs(stride)*.018)*s,m.position[2]);
@@ -281,7 +285,7 @@ function builder(parent, p, seed = 31, collectCollision = false,island=null) {
     }
     touched.forEach(mesh=>{mesh.instanceMatrix.needsUpdate=true;});
   }
-  return { part,box,cyl,ball,beam,wall,paving,person,jar,olive,tent,house,finish,rand,actors,animate,collisionBoxes };
+  return { part,box,cyl,ball,beam,wall,paving,person,jar,olive,tent,house,finish,rand,actors,simulate,animate,collisionBoxes };
 
 }
 function terrain(scene,p,extent,kind,flatRadius = 70) {
@@ -650,13 +654,21 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
     // This is a typological teaching detail, not an identified archaeological staircase.
     const flight=stairCollisionProxies.find(p=>p.id==='entry-flight'),base=flight.baseHeight;
     function stairStone(name,x,y,z,w,h,d,collision=false) {
-      const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),p.stone);mesh.name=name;mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.collisionProxy='entry-flight';scene.add(mesh);
+      const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),p.stone);mesh.name=name;mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.collisionProxy=name.startsWith('entry-stair')?'entry-flight':'public-yard';scene.add(mesh);
       if(collision)k.collisionBoxes.push({min:[x-w/2,y-h/2,z-d/2],max:[x+w/2,y+h/2,z+d/2]});
     }
     for(let i=0;i<5;i++){const top=base+(i+1)*.24,bottom=6.8;stairStone(`entry-stair-tread-${i}`,21,(top+bottom)/2,2+(i+.5)*.5,5.2,top-bottom,.505);}
     stairStone('entry-stair-landing',21,(9.225+6.8)/2,6.55,5.2,9.225-6.8,4.1);
     stairStone('entry-stair-back',21,9.55,8.6,5.2,.65,.25,true);
     for(const x of [18.4,23.6])stairStone('entry-stair-parapet',x,9.55,6.6,.25,.65,4.2,true);
+    // A complete modern teaching route into an illustrative public yard. The
+    // 0.48 m entry is above step offset, below the player's 0.6 m jump apex.
+    const yardY=walkFloor(21,-5);
+    stairStone('public-yard-ground',21,yardY-.045,-5.3,8.5,.09,8.8);
+    stairStone('public-yard-low-entry',21,yardY+.24,-2.65,8.5,.48,.28,true);
+    stairStone('public-yard-back',21,yardY+.55,-9.45,8.5,1.1,.3,true);
+    for(const x of [17.05,25.15])stairStone('public-yard-side',x,yardY+.55,-6, .3,1.1,6.9,true);
+    stairStone('public-yard-seat',23.4,yardY+.2,-7,1.6,.4,.55,true);
     for(const definition of vesselDefinitions){const root=createVessel(definition.id,{blenderAssets,onReady:assetsChanged,assetLoader});root.position.fromArray(definition.position);scene.add(root);objects.push({...definition,root});}
     const table=new THREE.Mesh(new THREE.BoxGeometry(1.1,.08,.6),p.wood);table.position.set(-33.4,10.92,25.6);table.castShadow=true;scene.add(table);
     for(const x of [-33.85,-32.95]) {const leg=new THREE.Mesh(new THREE.BoxGeometry(.07,.7,.45),p.wood);leg.position.set(x,10.56,25.6);scene.add(leg);}
@@ -713,7 +725,7 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
   // successive stair edges and blocking the alley at unintended heights.
   if(id==='jerusalem')prepareJerusalemResidents(k.actors,walkModel);
   // Body clearance is independent of the camera's LOD selection.
-  const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs,allowRetreat:true,allowedPosition:(a,p)=>jerusalemAllowed(a,p,walkModel)}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
+  const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs,allowRetreat:true,naturalMotion:true,allowedPosition:(a,p)=>jerusalemAllowed(a,p,walkModel)}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
   let npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='jordan'){const exploration=attachJordanExploration(scene,k,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
@@ -759,7 +771,11 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
   if(passionScene?.night||parablesScene?.night||nehemiahScene?.night||nativityScene?.night||galileeScene?.night){ambient.intensity=.55;sun.intensity=.75;sun.color.set('#a9bdd5');scene.environmentIntensity=.2;scene.background.set('#394650');scene.fog.color.copy(scene.background);}
   return {
     scene,roof:roofGroup,config,people,conversationOffset,walkModel,objects,occluders,npcSystem,detailedResidents,segment:section?.id||null,phase:id==='letters'?normalizeLettersPhase(section.id,phase):id==='church'?normalizeChurchPhase(section.id,phase):id==='passion'?normalizePassionPhase(section.id,phase):id==='parables'?normalizeParablesPhase(section.id,phase):id==='samaria'?normalizeSamariaPhase(section.id,phase):id==='galilee'?normalizeGalileePhase(section.id,phase):id==='nativity'?normalizeNativityPhase(section.id,phase):id==='nehemiah'?normalizeNehemiahPhase(section.id,phase):id==='david'&&section.id==='ark'?normalizeDavidPhase(phase):null,flock:parablesScene?.flock||nativityScene?.flock||davidScene?.flock,exploration:explorationFor(id,section?.id,phase),
-    animate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {parablesScene?.flock?.update(dt);galileeScene?.animate(dt);nativityScene?.flock?.update(dt);exileScene?.animate(dt);davidScene?.flock?.update(dt);if(sinaiScene)sinaiScene.animate(dt,cameraPosition);if(abrahamScene)animateAbrahamAnimals(abrahamScene.animals,dt);npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});detailedResidents?.update(cameraPosition,dt);k.animate(dt,cameraPosition);},
+    // Small collision/behaviour steps do not rebake skeletons and GPU instance
+    // matrices. The world commits those visual poses once after the frame's steps.
+    simulate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {parablesScene?.flock?.update(dt);galileeScene?.animate(dt);nativityScene?.flock?.update(dt);exileScene?.animate(dt);davidScene?.flock?.update(dt);if(sinaiScene)sinaiScene.animate(dt,cameraPosition);if(abrahamScene)animateAbrahamAnimals(abrahamScene.animals,dt);npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});k.simulate(dt,cameraPosition);},
+    pose(dt,cameraPosition) {detailedResidents?.update(cameraPosition,dt);k.animate(0,cameraPosition,{advance:false});},
+    animate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {this.simulate(dt,cameraPosition,playerPosition,isVisible);this.pose(dt,cameraPosition);},
     updateRaycastBounds(){scene.traverse(o=>{if(o.isInstancedMesh&&o.userData.people)o.computeBoundingSphere();});},
     converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },
     attend(personId) {people.forEach(a=>a.state.attending=a.id===personId);},

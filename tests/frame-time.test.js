@@ -7,9 +7,9 @@ import {createWalkControls} from '../src/walk-controls.js';
 const ctx=new Proxy({},{get:()=>()=>{},set:()=>true});
 globalThis.document=Object.assign(new EventTarget(),{createElement:()=>({getContext:()=>ctx}),querySelector:()=>null,activeElement:null});
 globalThis.window=new EventTarget();
-test('4 and 10 FPS retain real walking speed through the crowded Herod stair approach',()=>{
+test('1, 4 and 10 FPS retain real walking speed through the crowded Herod stair approach',()=>{
  const results=[];
- for(const fps of [60,10,4]){
+ for(const fps of [60,10,4,1]){
   const scene=createHistoricalScene('herod'),npc=scene.npcSystem,canvas=Object.assign(new EventTarget(),{focus(){}});
   const walk=createWalkControls(new THREE.PerspectiveCamera(),canvas,{constrainMove:(a,b)=>npc.constrainPlayer(a,b),navigationObstacles:()=>npc.agents.map(a=>({position:a.actor.state.position,radius:a.radius+.32+.07}))});
   walk.start(scene.walkModel,npc.safePlayerSpawn(scene.exploration.spawn));assert.ok(walk.navigate(scene.objects.find(o=>o.id==='herod-boundary').approach));
@@ -46,4 +46,15 @@ test('fractional callback times and tiny steps keep complete public routes activ
   }
   assert.deepEqual(messages,[]);walk.dispose();scene.dispose();
  }
+});
+
+test('separate visual commits preserve NPC behaviour and transforms across slow multi-step frames',()=>{
+ const traditional=createHistoricalScene('jerusalem'),batched=createHistoricalScene('jerusalem'),camera=[20,9.7,0];
+ const peopleTransforms=scene=>{const result=[];scene.scene.traverse(o=>{if(o.isInstancedMesh&&o.userData.people)result.push(Array.from(o.instanceMatrix.array));});return result;};
+ for(let frame=0;frame<12;frame++){
+  for(const step of frameSimulationSteps(.25)){traditional.animate(step,camera);batched.simulate(step,camera);}
+  batched.pose(.25,camera);
+ }
+ assert.deepEqual(batched.npcSystem.agents.map(a=>[a.actor.state.position,a.actor.state.yaw,a.timer,a.state,a.poi?.id]),traditional.npcSystem.agents.map(a=>[a.actor.state.position,a.actor.state.yaw,a.timer,a.state,a.poi?.id]));
+ assert.deepEqual(peopleTransforms(batched),peopleTransforms(traditional));traditional.dispose();batched.dispose();
 });

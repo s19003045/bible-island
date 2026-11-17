@@ -1,3 +1,4 @@
+import {characterClips} from './helpers/character-clips.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -64,7 +65,7 @@ test('arrival view clears actual loaded GLB objects and scenery, enabling close 
 });
 
 test('three distinct residents retain blended elbow skin, independent rigs and contextual clothing in conversations',async()=>{
- const ids=['caravan-traveler','egypt-grain-worker','egypt-householder'],assets=await Promise.all(ids.map(load)),rigs=assets.map(a=>{assert.deepEqual(a.animations.map(c=>c.name).sort(),['Idle','Interact','LookAround','Talk','Walk']);const meshes=[];a.scene.traverse(o=>{if(o.isSkinnedMesh)meshes.push(o);});const skin=meshes.find(m=>m.material.name==='skin'),sw=skin.geometry.attributes.skinWeight,si=skin.geometry.attributes.skinIndex;let blend=0;for(let i=0;i<si.count;i++){const names=[];for(let k=0;k<4;k++)if(sw.getComponent(i,k)>.01)names.push(skin.skeleton.bones[si.getComponent(i,k)].name);if(['L','R'].some(s=>names.includes('arm'+s)&&names.includes('forearm'+s)))blend++;}assert.ok(blend>=64);return meshes[0].skeleton;});assert.equal(new Set(rigs).size,3);
+ const ids=['caravan-traveler','egypt-grain-worker','egypt-householder'],assets=await Promise.all(ids.map(load)),rigs=assets.map((a,index)=>{assert.deepEqual(a.animations.map(c=>c.name).sort(),characterClips(ids[index]));const meshes=[];a.scene.traverse(o=>{if(o.isSkinnedMesh)meshes.push(o);});const skin=meshes.find(m=>m.material.name==='skin'),sw=skin.geometry.attributes.skinWeight,si=skin.geometry.attributes.skinIndex;let blend=0;for(let i=0;i<si.count;i++){const names=[];for(let k=0;k<4;k++)if(sw.getComponent(i,k)>.01)names.push(skin.skeleton.bones[si.getComponent(i,k)].name);if(['L','R'].some(s=>names.includes('arm'+s)&&names.includes('forearm'+s)))blend++;}assert.ok(blend>=64);return meshes[0].skeleton;});assert.equal(new Set(rigs).size,3);
  for(const [i,c] of josephSegments.entries()){const s=createHistoricalScene('joseph',null,{segment:c.id,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;const a=s.people[0],p=[...a.state.position];s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);assert.equal(s.detailedResidents.visible.get(a)?.root.userData.modelId,ids[i]);s.dispose();}
 });
 

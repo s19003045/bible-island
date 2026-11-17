@@ -1,3 +1,4 @@
+import {characterClips} from './helpers/character-clips.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile,stat} from 'node:fs/promises';
@@ -18,7 +19,7 @@ test('paused camera changes load and retire detailed residents without advancing
   details.update([0,1.62,4],0);assert.ok(details.visible.has(person));assert.notEqual(details.visible.get(person),first);assert.deepEqual(person.state.position,position);assert.equal(person.state.time,.65);details.dispose();
 });
 
-test('actual Blender exports match their recorded hashes, metre scales, geometry budgets and five animation clips',async()=>{
+test('actual Blender exports match their recorded hashes, metre scales, geometry budgets and their declared animation clips',async()=>{
   const report=JSON.parse(await readFile(new URL('../assets/blender/build-report.json',import.meta.url),'utf8'));
   assert.match(report.blender,/4\.5\./);assert.ok((await stat(new URL('../assets/blender/bible-assets.blend',import.meta.url))).size>100000);
   for(const id of Object.keys(blenderModels)){
@@ -34,7 +35,7 @@ test('actual Blender exports match their recorded hashes, metre scales, geometry
     let triangles=0;gltf.scene.traverse(o=>{if(!o.isMesh)return;triangles+=(o.geometry.index?.count||o.geometry.attributes.position.count)/3;for(const n of o.geometry.attributes.position.array)assert.ok(Number.isFinite(n));assert.ok(o.geometry.attributes.normal);assert.equal(o.geometry.attributes.color.count,o.geometry.attributes.position.count,'authored surface colours survive glTF export');});
     assert.equal(triangles,report.assets[id].triangles);assert.ok(triangles<(blenderModels[id].triangleBudget||18000));
   }
-  assert.deepEqual(resident.animations.map(c=>c.name).sort(),['Idle','Interact','LookAround','Talk','Walk']);
+  assert.deepEqual(resident.animations.map(c=>c.name).sort(),characterClips('resident'));
 });
 
 test('individual skeletons and clocks animate independently, freeze at zero time, and retain clickable moving bodies',()=>{

@@ -6,6 +6,7 @@ export const walkSurfaces = [
   ...[-58,-42,-26,-10].map(x=>({id:`alley${x}`,x1:x-.78,x2:x+.78,z1:-17,z2:31})),
   {id:'courtyard',x1:-35.15,x2:-32.85,z1:22,z2:30.8},
   {id:'entry-stairs',x1:18.4,x2:23.6,z1:1.2,z2:8.8},
+  {id:'jump-courtyard',x1:16.9,x2:25.4,z1:-9.7,z2:-.9},
 ];
 // Only these authored flights use ramp collision proxies. Visual stone risers remain separate.
 export const stairCollisionProxies=[

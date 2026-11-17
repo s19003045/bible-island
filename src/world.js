@@ -10,6 +10,7 @@ import { historicalScenes } from './historical-data.js';
 import { peopleByIsland } from './people-data.js';
 import {createWalkControls} from './walk-controls.js';
 import {walkSpawn} from './walk-data.js';
+import {mobilityFor} from './mobility.js';
 import {atlasBounds,atlasRegions,atlasJourneys,atlasRouteById,atlasFrame,coastRadius} from './atlas-data.js';
 import {createAtlasEnvironment,atlasSkyColor} from './atlas-environment.js';
 import {createAtlasNetwork} from './atlas-network.js';
@@ -313,7 +314,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   controls.minDistance = 4; controls.maxDistance = atlasBounds.maxDistance; controls.target.set(0, 0, 4);
   camera.position.set(57, 89, 112); controls.update();
   let walkSnapshot=null,walkObjective=null,interactionTarget=null,autoGoal=null,lastWalkUI=0,lastRepath=0;
-  const walk=createWalkControls(camera,renderer.domElement,{onInteract:interactWalk,onStep:p=>audio?.footstep(p),onMessage:onWalkMessage,onManualInput:()=>{autoGoal=null;interactionTarget=null;},constrainMove:(from,to)=>activeHistorical?.npcSystem?.constrainPlayer(from,to)||to,navigationObstacles:()=>activeHistorical?.npcSystem?.agents.map(a=>({position:a.actor.state.position,radius:a.radius+.32+.07}))||[]});
+  const walk=createWalkControls(camera,renderer.domElement,{onInteract:interactWalk,onStep:(p,state)=>audio?.footstep(p,state),onMotion:(kind,p,state)=>audio?.playerMotion?.(kind,p,state),onMessage:onWalkMessage,onManualInput:()=>{autoGoal=null;interactionTarget=null;},constrainMove:(from,to,flags)=>flags?.airborne?(activeHistorical?.npcSystem?.constrainAirPlayer(from,to)||to):(activeHistorical?.npcSystem?.constrainPlayer(from,to)||to),navigationObstacles:()=>activeHistorical?.npcSystem?.agents.map(a=>({position:a.actor.state.position,radius:a.radius+.32+.07}))||[]});
   const ambient = new THREE.HemisphereLight('#fff3dc', '#557879', 2.6); scene.add(ambient);
   const sun = new THREE.DirectionalLight('#fff0cf', 4); sun.position.set(-18, 40, 24); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); sun.shadow.camera.left = -45; sun.shadow.camera.right = 45; sun.shadow.camera.top = 45; sun.shadow.camera.bottom = -45;
@@ -548,7 +549,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     if(!spawn){onWalkMessage?.('入口有人通過，請稍後再進入探索區。');return false;}
     interactionTarget=null;
     walkSnapshot={position:camera.position.clone(),target:controls.target.clone(),roof:activeHistorical.roof.visible};activeHistorical.roof.visible=true;renderer.shadowMap.needsUpdate=true;fly=null;conversationId=null;
-    activeHistorical.converse(null);controls.enabled=false;activeView='walk';camera.fov=62;camera.updateProjectionMatrix();walk.start(activeHistorical.walkModel,spawn);if(activeHistorical.exploration?.startLookAt)walk.lookAt(activeHistorical.exploration.startLookAt);dirty=true;return true;
+    activeHistorical.converse(null);controls.enabled=false;activeView='walk';camera.fov=62;camera.updateProjectionMatrix();walk.start(activeHistorical.walkModel,spawn,{mobility:mobilityFor(selected?.id)});if(activeHistorical.exploration?.startLookAt)walk.lookAt(activeHistorical.exploration.startLookAt);dirty=true;return true;
   }
   function exitWalk() {
     if(!walk.active)return;walk.stop();activeHistorical?.attend(null);autoGoal=null;interactionTarget=null;controls.enabled=true;activeView='overview';camera.fov=48;camera.updateProjectionMatrix();
@@ -567,10 +568,12 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     return !check.intersectObjects(meshes,false).length;
   }
   function canTalk(id) {
+    if(walk.active&&!walk.groundState?.isGrounded)return false;
     if(!walk.active)return true;const p=activeHistorical?.people.find(a=>a.id===id)?.state.position;if(!p)return false;
     return Math.hypot(p[0]-walk.position[0],p[2]-walk.position[2])<=3.6&&sightClear([p[0],p[1]+1.45,p[2]]);
   }
   function canInspect(id) {
+    if(walk.active&&!walk.groundState?.isGrounded)return false;
     if(!walk.active)return false;const object=activeHistorical?.objects.find(o=>o.id===id),p=object?.position;if(!p)return false;
     return Math.hypot(p[0]-walk.position[0],p[2]-walk.position[2])<=3.2&&sightClear(object.lookAt||[p[0],p[1]+.2,p[2]]);
   }
@@ -583,7 +586,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   }
   function interactWalk() {const n=nearby();if(!n)return;interactionTarget=null;if(n.type==='person')onActor?.(n.id);else onInspect?.(n.id);}
   function updateHistorical(timeStep) {
-    activeHistorical.animate(timeStep,camera.position.toArray(),walk.active?walk.position:null,p=>{v.set(p[0],p[1]+1,p[2]);if(camera.position.distanceTo(v)>(activeHistorical.scene.fog?.far||camera.far))return false;v.project(camera);return v.z>-1&&v.z<1&&Math.abs(v.x)<1.15&&Math.abs(v.y)<1.15;});
+    activeHistorical.simulate(timeStep,camera.position.toArray(),walk.active?walk.position:null,p=>{v.set(p[0],p[1]+1,p[2]);if(camera.position.distanceTo(v)>(activeHistorical.scene.fog?.far||camera.far))return false;v.project(camera);return v.z>-1&&v.z<1&&Math.abs(v.x)<1.15&&Math.abs(v.y)<1.15;});
   }
   function animate(now) {
     raf = requestAnimationFrame(animate); if (hidden||modalOpen) {last=now;return;}
@@ -615,6 +618,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     // Asset completion and camera changes already invalidate dirty; idle paused
     // scenes still avoid continuous rendering or NPC decisions.
     if(activeHistorical&&paused&&dirty)updateHistorical(0);
+    if(activeHistorical&&dirty)activeHistorical.pose(paused?0:dt,camera.position.toArray());
     if(activeHistorical?.exploration)audio?.update(camera,activeHistorical?.people||[],now);
     if(activeHistorical && !walk.active) { const floor=activeHistorical.groundHeight(camera.position.x,camera.position.z)+.3; if(camera.position.y<floor) {camera.position.y=floor;dirty=true;} }
     // Lower DPR only after sustained slow frames. No promise of a particular frame rate.
@@ -627,7 +631,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
       renderer.render(activeHistorical?.scene || scene, camera);
       const w = container.clientWidth, h = container.clientHeight;
       if(!activeHistorical){labels.forEach(l=>project(l,w,h));regionLabels.forEach(l=>{v.copy(l.pos).project(camera);l.el.hidden=!showLabels||!!selected||atlasJourney!=='all'||camera.position.distanceTo(l.pos)<65||Math.abs(v.x)>1||Math.abs(v.y)>1||v.z>1;if(!l.el.hidden)l.el.style.transform=`translate(-50%,-50%) translate(${(v.x*.5+.5)*w}px,${(-v.y*.5+.5)*h}px)`;});} hotspots.forEach(l => project(l, w, h, true));
-      actorMarkers.forEach(l=>{const p=l.actor.state.position;l.pos.set(p[0],p[1]+2.15,p[2]);project(l,w,h,true);l.el.classList.toggle('active',l.id===conversationId);const a=l.actor.state.behavior;if(a){l.el.dataset.behavior=a.held?'held':a.state;l.el.dataset.poi=a.poi?.id||'';l.el.dataset.position=p.map(n=>n.toFixed(3)).join(',');}});
+      actorMarkers.forEach(l=>{const p=l.actor.state.position;l.pos.set(p[0],p[1]+2.15,p[2]);project(l,w,h,true);l.el.classList.toggle('active',l.id===conversationId);const a=l.actor.state.behavior;if(a){l.el.dataset.behavior=a.held?'held':a.state;l.el.dataset.poi=a.poi?.id||'';l.el.dataset.position=p.map(n=>n.toFixed(3)).join(',');const visual=activeHistorical?.detailedResidents?.visible.get(l.actor);l.el.dataset.motionVersion=String(visual?.root.userData.motionVersion||0);l.el.dataset.motionAction=visual?.root.userData.locomotion||'';}});
       emotes.forEach(({el,agent:a})=>{
         const p=a.actor.state.position;v.set(p[0],p[1]+2.05*(a.actor.scale||1),p[2]);const d=camera.position.distanceTo(v);v.project(camera);
         el.hidden=!a.partner||!!conversationId||v.z<=-1||v.z>=1||Math.abs(v.x)>1||Math.abs(v.y)>1||d>45||!sightClear([p[0],p[1]+1.75*(a.actor.scale||1),p[2]]);
@@ -655,6 +659,16 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
       else if(!value&&modalOpen){const duration=now-modalSince;if(fly)fly.start+=duration;if(atlasFlight)atlasFlight.start+=duration;modalOpen=false;last=now;dirty=true;}
     },
     walkAxis(x,z){autoGoal=null;walk.setAxis(x,z);},walkTurn(value){walk.setTurn(value);},
+    walkJump(){autoGoal=null;const accepted=walk.jump();if(accepted)dirty=true;return accepted;},
+    toggleWalkRun(){const running=walk.toggleRun();dirty=true;return running;},
+    lookAtWalk(point){if(walk.active){walk.lookAt(point);dirty=true;}},
+    fastTravelObject(id){
+      if(!walk.active||!mobilityFor(selected?.id)||conversationId||document.querySelector('dialog[open]'))return false;
+      const object=activeHistorical.objects.find(o=>o.id===id);if(!object)return false;
+      const origin=object.approach||object.position,spawn=activeHistorical.npcSystem?activeHistorical.npcSystem.safePlayerSpawn(origin):origin;
+      if(!spawn||Math.hypot(spawn[0]-origin[0],spawn[2]-origin[2])>1.6||!walk.teleport(spawn))return false;
+      autoGoal=null;interactionTarget=null;walk.lookAt(object.lookAt||[object.position[0],object.position[1]+.3,object.position[2]]);dirty=true;return true;
+    },
     lockWalk(){walk.lock();},
     converse(id) {
       if(!activeHistorical)return;

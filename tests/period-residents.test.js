@@ -1,3 +1,5 @@
+import {characterClips} from './helpers/character-clips.js';
+import {residentFootContact} from '../src/resident-locomotion.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -25,10 +27,10 @@ function connectedBoxes(root,material){
  });return boxes;
 }
 
-test('all ten new clothing types contain real independent five-action skeletal performances',async()=>{
+test('all ten new clothing types contain real independent declared skeletal performances',async()=>{
  for(const id of ids){
-  const gltf=await asset(id);assert.deepEqual(gltf.animations.map(c=>c.name).sort(),['Idle','Interact','LookAround','Talk','Walk']);
-  assert.ok(Math.abs(gltf.animations.find(c=>c.name==='Walk').duration-1)<1e-5);
+  const gltf=await asset(id);assert.deepEqual(gltf.animations.map(c=>c.name).sort(),characterClips(id));
+  assert.ok(Math.abs(gltf.animations.find(c=>c.name==='Walk').duration-(blenderModels[id].walkDuration||1))<1e-5);
   for(const [action,bone] of [['Idle','spine'],['LookAround','head'],['Interact','forearmL'],['Talk','forearmL']]){
     const a=person(id);a.state.idleAction=action;a.state.talking=action==='Talk';const instance=createResidentInstance(gltf,a);instance.update(0);
     const initial=instance.root.getObjectByName(bone).quaternion.clone();a.state.time=.37;instance.update(.37);
@@ -69,10 +71,10 @@ test('actual garments distinguish women, ordinary priests, singers and labourers
 test('every new body keeps its actual support foot on ascending and descending ground using its own dimensions',async()=>{
  for(const id of ids)for(const slope of [.30,-.30]){
   const a=person(id);a.state.stride=1;const def=blenderModels[id],instance=createResidentInstance(await asset(id),a,0,{groundAt:(x,z)=>slope*z}),root=instance.root;
-  const soles=['L','R'].map(side=>{const all=points(root,()=>true,'foot'+side),min=Math.min(...all.map(([m,i])=>m.geometry.attributes.position.getY(i)));return all.filter(([m,i])=>m.geometry.attributes.position.getY(i)<min+.0025);});assert.ok(soles.every(p=>p.length));
+  const soles=['L','R'].map(side=>{return points(root,()=>true,'foot'+side);});assert.ok(soles.every(p=>p.length));
   for(let i=0;i<40;i++){
     const t=i/40,z=(def.cycleDistance??.8)*root.scale.x*t;a.state.position=[0,slope*z,z];a.state.time=t;instance.update(i?1/40:0);
-    for(let side=0;side<2;side++){const phase=(t+side*.5)%1,minGap=Math.min(...sample(root,soles[side]).map(p=>(p.y-slope*p.z)/Math.sqrt(1.09)));assert.ok(minGap>-.005,id+' avoids ground penetration');if(phase<.58)assert.ok(minGap<.006,id+' support foot remains grounded');}
+    for(let side=0;side<2;side++){const gait=root.userData.gaitPhase??t,contact=blenderModels[id].motionVersion===2?residentFootContact('Walk',gait*1.2,side?'R':'L',gait):((t+side*.5)%1<.58?'flat':'swing'),minGap=Math.min(...sample(root,soles[side]).map(p=>(p.y-slope*p.z)/Math.sqrt(1.09)));assert.ok(minGap>-.005,id+' avoids ground penetration '+JSON.stringify({slope,i,t,gait,minGap,modelScale:root.scale.x,contact}));if(contact!=='swing')assert.ok(minGap<.006,id+' support foot remains grounded');}
   }
   instance.dispose();
  }

@@ -45,6 +45,6 @@ export function attachJordanExploration(scene,k,{blenderAssets=false,onReady=()=
  const objects=jordanObjects.map(d=>{const root=createVessel(d.id,{blenderAssets,onReady,assetLoader});root.position.fromArray(d.position);scene.add(root);return {...d,root};});
  const coveredArk=createVessel('jordan-carrying',{blenderAssets,onReady,assetLoader});coveredArk.name='jordan-covered-ark-standing';coveredArk.scale.setScalar(2);coveredArk.position.set(0,1.17,-15);scene.add(coveredArk);
  const npcSystem={agents:[...camp.agents,...convoy.agents],pois:[...camp.pois,...convoy.pois],reservations:new Map([...camp.reservations,...convoy.reservations]),
-  update:(dt,options)=>{camp.update(dt,options);convoy.update(dt,options);},constrainPlayer:(from,to)=>camp.constrainPlayer(from,convoy.constrainPlayer(from,to)),safePlayerSpawn:p=>camp.safePlayerSpawn(p),suspend:()=>{camp.suspend();convoy.suspend();},dispose:()=>{camp.dispose();convoy.dispose();}};
+  update:(dt,options)=>{camp.update(dt,options);convoy.update(dt,options);},constrainPlayer:(from,to)=>camp.constrainPlayer(from,convoy.constrainPlayer(from,to)),constrainAirPlayer:(from,to)=>camp.constrainAirPlayer(from,convoy.constrainAirPlayer(from,to)),safePlayerSpawn:p=>camp.safePlayerSpawn(p),suspend:()=>{camp.suspend();convoy.suspend();},dispose:()=>{camp.dispose();convoy.dispose();}};
  return {walkModel,npcSystem,objects};
 }

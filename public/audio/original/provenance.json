@@ -1,0 +1,1655 @@
+{
+  "schema": 1,
+  "title": "Courtyard Paths / 院落之間",
+  "kind": "original-modern-score-and-effects",
+  "generator": "scripts/audio/generate-original-audio.mjs",
+  "generatorSha256": "cdd1d515803e7b6789eac2f95ab537042fc5a6626a2cf9a0c20162b72b85d805",
+  "seed": 35261712,
+  "sampleRate": 48000,
+  "externalSamples": [],
+  "historicalAuthenticity": false,
+  "rights": "Original composition, synthesis algorithms and audio created for this project; no third-party recordings or samples.",
+  "music": {
+    "id": "jerusalem-town",
+    "title": "Courtyard Paths / 院落之間",
+    "tempoBpm": 80,
+    "meter": "4/4",
+    "bars": 32,
+    "durationSeconds": 96,
+    "frames": 4608000,
+    "channels": 2,
+    "loopStartFrame": 0,
+    "loopEndFrame": 4608000,
+    "loopStrategy": "periodic event tails and circular stereo reflections; no fade-to-silence seam",
+    "instrumentation": [
+      "Karplus–Strong plucked strings",
+      "breath/harmonic woodwind model",
+      "low plucked string",
+      "inharmonic membrane drum"
+    ],
+    "woodwindRestBars": 11,
+    "mixGain": 2.72456003274525,
+    "stats": {
+      "peakDbFS": -8.999999811573272,
+      "rmsDbFS": -29.63895687926979,
+      "dcMean": 4.102815594498229e-13,
+      "clippedSamples": 0
+    },
+    "files": [
+      {
+        "path": "music/jerusalem-town-loop.wav",
+        "bytes": 27648044,
+        "sha256": "b6c38878abcb601ad465db4e08d8f98bbbc9187b0feff108da3fbeccb921f3e2"
+      },
+      {
+        "path": "music/jerusalem-town-loop.ogg",
+        "bytes": 1231117,
+        "sha256": "1fcb2cb9462ec611752564d9aaed4d6bab18986d2aa77053b19d7d6bbb6a0ef4"
+      },
+      {
+        "path": "music/jerusalem-town-loop.mp3",
+        "bytes": 2305172,
+        "sha256": "d1678a7f3cd088c08cb281178bae34b047b04c77a9d7f3774755abb3e19d527f"
+      }
+    ]
+  },
+  "effects": [
+    {
+      "id": "footstep-earth-1",
+      "category": "footstep",
+      "material": "earth",
+      "variant": 1,
+      "seed": 35271712,
+      "description": "Damped heel plus dispersed grit and low soil compression",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 13920,
+      "durationSeconds": 0.29,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -31.56411556169015,
+        "dcMean": 0.000657184702414414,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-earth-1.wav",
+          "bytes": 27884,
+          "sha256": "a8a1b0e8e84fd686b8d62c9a95cc9c746438dbd249107f776fad1535b2f22dcf"
+        },
+        {
+          "path": "sfx/footstep-earth-1.ogg",
+          "bytes": 6109,
+          "sha256": "e0a8c03e84048d157d922d3b8f3e979dd0beee7002e584c1731c292bd5559c2e"
+        },
+        {
+          "path": "sfx/footstep-earth-1.mp3",
+          "bytes": 4340,
+          "sha256": "3e5a9a23db8616be656bef93227e2f68cd0e52daee0545b38cf2e83fcf68aa48"
+        }
+      ]
+    },
+    {
+      "id": "footstep-earth-2",
+      "category": "footstep",
+      "material": "earth",
+      "variant": 2,
+      "seed": 35271795,
+      "description": "Damped heel plus dispersed grit and low soil compression",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 13920,
+      "durationSeconds": 0.29,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -31.603427804793476,
+        "dcMean": 0.0008217462280167648,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-earth-2.wav",
+          "bytes": 27884,
+          "sha256": "352d6468ea453d85f28a0a6e2714554a5edf42a2a39af12d4cf831a3273f0ba1"
+        },
+        {
+          "path": "sfx/footstep-earth-2.ogg",
+          "bytes": 6120,
+          "sha256": "e577e263da8a49843a56c64e8d1f690ef661d1a085e9351e4863dcee96bee9d3"
+        },
+        {
+          "path": "sfx/footstep-earth-2.mp3",
+          "bytes": 4340,
+          "sha256": "4514effdcb9fb3e53307f11ed8e90adb251fabda2ae9b91c97fc0c8dd128a7c6"
+        }
+      ]
+    },
+    {
+      "id": "footstep-earth-3",
+      "category": "footstep",
+      "material": "earth",
+      "variant": 3,
+      "seed": 35271878,
+      "description": "Damped heel plus dispersed grit and low soil compression",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 13920,
+      "durationSeconds": 0.29,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -31.661853604400967,
+        "dcMean": 0.0007486396827014472,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-earth-3.wav",
+          "bytes": 27884,
+          "sha256": "89a7d9e4e8a4617a81bed35317257e8f40cea938d2dbc389ea49be19bd215404"
+        },
+        {
+          "path": "sfx/footstep-earth-3.ogg",
+          "bytes": 6133,
+          "sha256": "21091f2fb8fc8ae6782e3d04ee4551fa129f93ef774073c114ddc221216591e5"
+        },
+        {
+          "path": "sfx/footstep-earth-3.mp3",
+          "bytes": 4340,
+          "sha256": "2e378db068c38d9fc0a248f6819842fa206434a215398a43bcb34023b662fbc4"
+        }
+      ]
+    },
+    {
+      "id": "footstep-earth-4",
+      "category": "footstep",
+      "material": "earth",
+      "variant": 4,
+      "seed": 35271961,
+      "description": "Damped heel plus dispersed grit and low soil compression",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 13920,
+      "durationSeconds": 0.29,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -31.73643154144286,
+        "dcMean": 0.0008173641739534961,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-earth-4.wav",
+          "bytes": 27884,
+          "sha256": "c62c0006bcd11c5f165b3ce7e3a9a561a13e02a76065d4d0f9e8bf559c9f71ad"
+        },
+        {
+          "path": "sfx/footstep-earth-4.ogg",
+          "bytes": 6108,
+          "sha256": "1604a6ee0c46a15fb0efa9985f63aa21af1a5b2efc4940165fea80c5c2cbea80"
+        },
+        {
+          "path": "sfx/footstep-earth-4.mp3",
+          "bytes": 4340,
+          "sha256": "3596a5c2d335a806a5c279f26f27e0fb4a0ab77c9b969e542a222724610ac5db"
+        }
+      ]
+    },
+    {
+      "id": "footstep-stone-1",
+      "category": "footstep",
+      "material": "stone",
+      "variant": 1,
+      "seed": 35272044,
+      "description": "Short bright sole contact and hard inharmonic stone modes",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 11520,
+      "durationSeconds": 0.24,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -37.53389612322627,
+        "dcMean": 0.0002747968935058844,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-stone-1.wav",
+          "bytes": 23084,
+          "sha256": "8316a0be0871cef09785ef085450a2cd532e2af0f3cd3b8b27edb6c1cbdcc2d2"
+        },
+        {
+          "path": "sfx/footstep-stone-1.ogg",
+          "bytes": 5511,
+          "sha256": "ba802c6c891ea115942f8cca2b73693e73c9a614ddce5784785e72d730cbad7c"
+        },
+        {
+          "path": "sfx/footstep-stone-1.mp3",
+          "bytes": 3476,
+          "sha256": "a52b96133d1de0ec0ca1f584b7b94eaddf57639f385d389b43938ef6e69d507b"
+        }
+      ]
+    },
+    {
+      "id": "footstep-stone-2",
+      "category": "footstep",
+      "material": "stone",
+      "variant": 2,
+      "seed": 35272127,
+      "description": "Short bright sole contact and hard inharmonic stone modes",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 11520,
+      "durationSeconds": 0.24,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -38.37983154105445,
+        "dcMean": 0.00024385003194211775,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-stone-2.wav",
+          "bytes": 23084,
+          "sha256": "2156db4de0222c95716834ecd49397a3f55279053cc2417681b126c65539535f"
+        },
+        {
+          "path": "sfx/footstep-stone-2.ogg",
+          "bytes": 5528,
+          "sha256": "f1e9afc88c2c38f242645dbc36f460d1a974bfb3823285a9f925ed39d9ffe092"
+        },
+        {
+          "path": "sfx/footstep-stone-2.mp3",
+          "bytes": 3476,
+          "sha256": "39947eb13546556eff5128959804293fd8ceb24b67f4d5b04b4fa447e4194fa4"
+        }
+      ]
+    },
+    {
+      "id": "footstep-stone-3",
+      "category": "footstep",
+      "material": "stone",
+      "variant": 3,
+      "seed": 35272210,
+      "description": "Short bright sole contact and hard inharmonic stone modes",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 11520,
+      "durationSeconds": 0.24,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -35.85868881506492,
+        "dcMean": 0.0002682519587310705,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-stone-3.wav",
+          "bytes": 23084,
+          "sha256": "85490899e513e0a4fd551868d09ad5dca41e216ede165d23f1b4c99b665292b6"
+        },
+        {
+          "path": "sfx/footstep-stone-3.ogg",
+          "bytes": 5555,
+          "sha256": "f2b487bf88e56008d3052f7ece34e4693bf9581379832ab46d67652aa64460a1"
+        },
+        {
+          "path": "sfx/footstep-stone-3.mp3",
+          "bytes": 3476,
+          "sha256": "8e2482db05c713cf241e3b1ad06e0fe0aee0348bc14c2012b7ecbe6524039335"
+        }
+      ]
+    },
+    {
+      "id": "footstep-stone-4",
+      "category": "footstep",
+      "material": "stone",
+      "variant": 4,
+      "seed": 35272293,
+      "description": "Short bright sole contact and hard inharmonic stone modes",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 11520,
+      "durationSeconds": 0.24,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -37.125012595170034,
+        "dcMean": 0.00028521097386953367,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-stone-4.wav",
+          "bytes": 23084,
+          "sha256": "97dd35b9adfafe48e742b0ae629bcb48e2e14f4f0fe1865a51cf9e7f2e6c1628"
+        },
+        {
+          "path": "sfx/footstep-stone-4.ogg",
+          "bytes": 5563,
+          "sha256": "cdd5c4b36b9e2d3ed92cdc01ee4b8f3af8dd878e5a5fa291b593fe71c9400c6a"
+        },
+        {
+          "path": "sfx/footstep-stone-4.mp3",
+          "bytes": 3476,
+          "sha256": "85088054a8b3dd485f8a2975250f381fb0d5fa0e2de71228bbcf67029001055f"
+        }
+      ]
+    },
+    {
+      "id": "footstep-wood-1",
+      "category": "footstep",
+      "material": "wood",
+      "variant": 1,
+      "seed": 35272376,
+      "description": "Hollow plank modes, dry contact and delayed board flex",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 20160,
+      "durationSeconds": 0.42,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -31.97873153029996,
+        "dcMean": 0.00001164176573669336,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-wood-1.wav",
+          "bytes": 40364,
+          "sha256": "d0f1271730defca6bf086aea6561b9e9fd84e800ba8a677b3040bdbc1cc4ed26"
+        },
+        {
+          "path": "sfx/footstep-wood-1.ogg",
+          "bytes": 6715,
+          "sha256": "e99598b14184742c99833025b8d59115ce2dc4cafdb60c6c027ca7814c3b5579"
+        },
+        {
+          "path": "sfx/footstep-wood-1.mp3",
+          "bytes": 5780,
+          "sha256": "111865930616d880eddcaf5c5efcb5588f02e0914a9d29557b44e3fb33eeb74b"
+        }
+      ]
+    },
+    {
+      "id": "footstep-wood-2",
+      "category": "footstep",
+      "material": "wood",
+      "variant": 2,
+      "seed": 35272459,
+      "description": "Hollow plank modes, dry contact and delayed board flex",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 20160,
+      "durationSeconds": 0.42,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -31.972318615347763,
+        "dcMean": 0.00002192277192917257,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-wood-2.wav",
+          "bytes": 40364,
+          "sha256": "663c559ef62935476a49ac8001df9462c1a3f4b2e28a94412ff8603b8f6d59ee"
+        },
+        {
+          "path": "sfx/footstep-wood-2.ogg",
+          "bytes": 6727,
+          "sha256": "9bc194aa147a971ab2f16357135f1ceb9fb57754a1ce2ebf5d7222dc5a519307"
+        },
+        {
+          "path": "sfx/footstep-wood-2.mp3",
+          "bytes": 5780,
+          "sha256": "e1b8d4c229c5f2c24c5c901025adbd201654ad10eb1e54be85602292fe84c20b"
+        }
+      ]
+    },
+    {
+      "id": "footstep-wood-3",
+      "category": "footstep",
+      "material": "wood",
+      "variant": 3,
+      "seed": 35272542,
+      "description": "Hollow plank modes, dry contact and delayed board flex",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 20160,
+      "durationSeconds": 0.42,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -31.84705890998152,
+        "dcMean": 0.000033827670640949797,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-wood-3.wav",
+          "bytes": 40364,
+          "sha256": "1b13b147591486da5b46a3737040ec5d825f5c60533cae900f84c01b7b1ef16f"
+        },
+        {
+          "path": "sfx/footstep-wood-3.ogg",
+          "bytes": 6692,
+          "sha256": "1cf5e8089dc24dea347990305734970c048b45bfa7fb7084281da87c7f8bb471"
+        },
+        {
+          "path": "sfx/footstep-wood-3.mp3",
+          "bytes": 5780,
+          "sha256": "2849bf72a97fdf57be414cdd57633f34745d2b240e3067838cf8a1b11d5c2499"
+        }
+      ]
+    },
+    {
+      "id": "footstep-wood-4",
+      "category": "footstep",
+      "material": "wood",
+      "variant": 4,
+      "seed": 35272625,
+      "description": "Hollow plank modes, dry contact and delayed board flex",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 20160,
+      "durationSeconds": 0.42,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -32.018135084246794,
+        "dcMean": 0.00002090988938421798,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/footstep-wood-4.wav",
+          "bytes": 40364,
+          "sha256": "38216aa8266e2d26a4f21b4ad16d78b4312bd38b8b8738e11c8a006cd007c959"
+        },
+        {
+          "path": "sfx/footstep-wood-4.ogg",
+          "bytes": 6709,
+          "sha256": "9ec18a5e68df4038dd2faa87666dab0f6d1541056cde1d238db0b5fb959863de"
+        },
+        {
+          "path": "sfx/footstep-wood-4.mp3",
+          "bytes": 5780,
+          "sha256": "bd4fa8ca24a697a78fea8445c69fc500f71d85bf213fb75dfd46f0ce8029b3e4"
+        }
+      ]
+    },
+    {
+      "id": "jump-takeoff-1",
+      "category": "jump",
+      "material": "neutral",
+      "variant": 1,
+      "seed": 35281801,
+      "description": "Toe release, sole flex and a brief cloth/air sweep; no vocalization",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 9600,
+      "durationSeconds": 0.2,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -30.96490685420563,
+        "dcMean": 0.0004515498465155247,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/jump-takeoff-1.wav",
+          "bytes": 19244,
+          "sha256": "cbabe1cd36b5dcbd966e701fd0d4e523ec011eac11d068cd4b2f8f88ac6baad4"
+        },
+        {
+          "path": "sfx/jump-takeoff-1.ogg",
+          "bytes": 5589,
+          "sha256": "8d0bb4556cf690e099e358542c067ebd349bc1262e24f7a676d8a0100749f44d"
+        },
+        {
+          "path": "sfx/jump-takeoff-1.mp3",
+          "bytes": 3188,
+          "sha256": "1932beee33f3af428cb31fa3584c3b344f689876a16d63cedba11dd3bc0d2200"
+        }
+      ]
+    },
+    {
+      "id": "jump-takeoff-2",
+      "category": "jump",
+      "material": "neutral",
+      "variant": 2,
+      "seed": 35281890,
+      "description": "Toe release, sole flex and a brief cloth/air sweep; no vocalization",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 9600,
+      "durationSeconds": 0.2,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -31.476536981735027,
+        "dcMean": 0.0004140118229811835,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/jump-takeoff-2.wav",
+          "bytes": 19244,
+          "sha256": "c021f49467914469c69f55b5ee5c132a021c8926deb79d554c092b9749a4b7de"
+        },
+        {
+          "path": "sfx/jump-takeoff-2.ogg",
+          "bytes": 5577,
+          "sha256": "223c879b0404ba2814b23a4a23912d8324a84102a9cf623d427a369972785521"
+        },
+        {
+          "path": "sfx/jump-takeoff-2.mp3",
+          "bytes": 3188,
+          "sha256": "529b448843cdeae73fd7effbccaa0d330be5fa13aa8d325382d065ff007119aa"
+        }
+      ]
+    },
+    {
+      "id": "jump-takeoff-3",
+      "category": "jump",
+      "material": "neutral",
+      "variant": 3,
+      "seed": 35281979,
+      "description": "Toe release, sole flex and a brief cloth/air sweep; no vocalization",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 9600,
+      "durationSeconds": 0.2,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -30.701400174296516,
+        "dcMean": 0.0003879967628166644,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/jump-takeoff-3.wav",
+          "bytes": 19244,
+          "sha256": "58f96cbc9c97f2ed861d1df0f907530acbee5351d8968dee37dc54404c060d18"
+        },
+        {
+          "path": "sfx/jump-takeoff-3.ogg",
+          "bytes": 5594,
+          "sha256": "ae80bcd78e246ed9ca8df4beacd20c68805b02483d0793a78ad6fe1c72267f36"
+        },
+        {
+          "path": "sfx/jump-takeoff-3.mp3",
+          "bytes": 3188,
+          "sha256": "4a7e65ac7cbed67a2ead9f11a9a472e93dcac4534632a5196a33a58151040e21"
+        }
+      ]
+    },
+    {
+      "id": "jump-takeoff-4",
+      "category": "jump",
+      "material": "neutral",
+      "variant": 4,
+      "seed": 35282068,
+      "description": "Toe release, sole flex and a brief cloth/air sweep; no vocalization",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 9600,
+      "durationSeconds": 0.2,
+      "stats": {
+        "peakDbFS": -15.000000078774018,
+        "rmsDbFS": -32.2423711524836,
+        "dcMean": 0.00035255072755662565,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/jump-takeoff-4.wav",
+          "bytes": 19244,
+          "sha256": "ec251af0e79836862c58fc3ead7f6b639e071d8918ebeed6391b7b2844da566d"
+        },
+        {
+          "path": "sfx/jump-takeoff-4.ogg",
+          "bytes": 5593,
+          "sha256": "18b402f57fcf99c64d4f5c8f3d7e9e5604fe0b6aaa4f0d9577cdd630cc4a2c26"
+        },
+        {
+          "path": "sfx/jump-takeoff-4.mp3",
+          "bytes": 3188,
+          "sha256": "12d025d6b7a71f990aa71ca9fb53c37c0e041ab02417b14c71358feae4e6239b"
+        }
+      ]
+    },
+    {
+      "id": "landing-earth-1",
+      "category": "landing",
+      "material": "earth",
+      "variant": 1,
+      "seed": 35293264,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 15792,
+      "durationSeconds": 0.329,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -25.74256564443514,
+        "dcMean": 0.0020660952681619644,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-earth-1.wav",
+          "bytes": 31628,
+          "sha256": "496fc6a6a3c9789906f290d523d56cb9984d27a3061701db7aab6e85b458897d"
+        },
+        {
+          "path": "sfx/landing-earth-1.ogg",
+          "bytes": 6435,
+          "sha256": "dec615908490d6e6f2019da81378ebc7373ecbf93c79c6f02c65c7b940405223"
+        },
+        {
+          "path": "sfx/landing-earth-1.mp3",
+          "bytes": 4628,
+          "sha256": "877fbbc4f4e816b0c4b1a0382b6991bfc00003105ea8f870012277fd30aa7153"
+        }
+      ]
+    },
+    {
+      "id": "landing-earth-2",
+      "category": "landing",
+      "material": "earth",
+      "variant": 2,
+      "seed": 35293361,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 15984,
+      "durationSeconds": 0.333,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -26.924172055266613,
+        "dcMean": 0.002067721876561792,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-earth-2.wav",
+          "bytes": 32012,
+          "sha256": "9da7038c93b434e68053475cd5e2e92f0d8770285c833042e2511cc85bed5fc8"
+        },
+        {
+          "path": "sfx/landing-earth-2.ogg",
+          "bytes": 6477,
+          "sha256": "1865cc23134a7121a69fc000f310c5d6c91aba18416e72d256b70aa8d2115d05"
+        },
+        {
+          "path": "sfx/landing-earth-2.mp3",
+          "bytes": 4628,
+          "sha256": "44582a1a361f5a7010ddfe1c73abe9e6eab65c7287ebcbd011907a6e97b0db51"
+        }
+      ]
+    },
+    {
+      "id": "landing-earth-3",
+      "category": "landing",
+      "material": "earth",
+      "variant": 3,
+      "seed": 35293458,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 16176,
+      "durationSeconds": 0.337,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -26.531007032946576,
+        "dcMean": 0.002134946252280116,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-earth-3.wav",
+          "bytes": 32396,
+          "sha256": "1a9eca15f15d1198b4be3da1e065659cf54901f30a3178b2eaae2a4cc08e82e7"
+        },
+        {
+          "path": "sfx/landing-earth-3.ogg",
+          "bytes": 6518,
+          "sha256": "f129680e3f25b06ad77176184f48e5d0828ad503941b20147437d0c65d6c5b49"
+        },
+        {
+          "path": "sfx/landing-earth-3.mp3",
+          "bytes": 4916,
+          "sha256": "28c9ae1473067b0b6f45d607b7211c0237a3c957a611a0a5da478019a973a88e"
+        }
+      ]
+    },
+    {
+      "id": "landing-earth-4",
+      "category": "landing",
+      "material": "earth",
+      "variant": 4,
+      "seed": 35293555,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 16368,
+      "durationSeconds": 0.341,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -27.655739185794207,
+        "dcMean": 0.0016964247360218782,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-earth-4.wav",
+          "bytes": 32780,
+          "sha256": "adddf809bd1ed04293e91fc45bbeab5aee8f02f54021517bb1d1058aa5b972ef"
+        },
+        {
+          "path": "sfx/landing-earth-4.ogg",
+          "bytes": 6554,
+          "sha256": "7c2a0ba2e84745d7712fd1661ece2797ade52fff3559b716583e4128ab8c27ca"
+        },
+        {
+          "path": "sfx/landing-earth-4.mp3",
+          "bytes": 4916,
+          "sha256": "6b890b8db91c8c378e1c606f5bb3387e4f08c749d74f6393b9037644c848b541"
+        }
+      ]
+    },
+    {
+      "id": "landing-stone-1",
+      "category": "landing",
+      "material": "stone",
+      "variant": 1,
+      "seed": 35293652,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 13392,
+      "durationSeconds": 0.279,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -33.49295426869183,
+        "dcMean": 0.0005049041708086818,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-stone-1.wav",
+          "bytes": 26828,
+          "sha256": "76a6a4e0d5bdd569f008e08ca8a70db997359b158a4a774495282363b3641c2e"
+        },
+        {
+          "path": "sfx/landing-stone-1.ogg",
+          "bytes": 6041,
+          "sha256": "0a4af89be41a3a8c81212bb2a928674e186414d3208d54c75e19a835e50ba8f0"
+        },
+        {
+          "path": "sfx/landing-stone-1.mp3",
+          "bytes": 4052,
+          "sha256": "9757367aa10db1d31f6d112a27252bea5650735361dfdf0d747c6962a08f625c"
+        }
+      ]
+    },
+    {
+      "id": "landing-stone-2",
+      "category": "landing",
+      "material": "stone",
+      "variant": 2,
+      "seed": 35293749,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 13584,
+      "durationSeconds": 0.283,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -31.961312265681144,
+        "dcMean": 0.0004924585085810235,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-stone-2.wav",
+          "bytes": 27212,
+          "sha256": "8e84367e54f01f4c33cd1fe2368a01766c5ccced399e5b233ed3be60fed263a4"
+        },
+        {
+          "path": "sfx/landing-stone-2.ogg",
+          "bytes": 6083,
+          "sha256": "35a02581a913a49a274607fc9e7c56ecaab90160d4d131374e1107d85923e78d"
+        },
+        {
+          "path": "sfx/landing-stone-2.mp3",
+          "bytes": 4052,
+          "sha256": "d027b4955695daa0e134f915dddd43a984a0135f1087a3a426c6fc797a2b9888"
+        }
+      ]
+    },
+    {
+      "id": "landing-stone-3",
+      "category": "landing",
+      "material": "stone",
+      "variant": 3,
+      "seed": 35293846,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 13776,
+      "durationSeconds": 0.287,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -33.05571625998053,
+        "dcMean": 0.00043463128872410354,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-stone-3.wav",
+          "bytes": 27596,
+          "sha256": "e6dc8c2cb4bff4caff56eaa9767d11490602a6ad3ba6a1b41a3fe2bc435ab16f"
+        },
+        {
+          "path": "sfx/landing-stone-3.ogg",
+          "bytes": 6142,
+          "sha256": "418900e829b52ba1c5eda8fe6f31def4880d69df77c902a43b4139d82e9a174e"
+        },
+        {
+          "path": "sfx/landing-stone-3.mp3",
+          "bytes": 4052,
+          "sha256": "303b647a43d93ae8615ec0e997f60279e65aba493d079d280dc9b37639ad16ff"
+        }
+      ]
+    },
+    {
+      "id": "landing-stone-4",
+      "category": "landing",
+      "material": "stone",
+      "variant": 4,
+      "seed": 35293943,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 13968,
+      "durationSeconds": 0.291,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -32.9530257848625,
+        "dcMean": 0.00043087533308311545,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-stone-4.wav",
+          "bytes": 27980,
+          "sha256": "01fa7daf573e34d96ba1326723a74de9575aaac2956d5968a77f0f64dd752d4b"
+        },
+        {
+          "path": "sfx/landing-stone-4.ogg",
+          "bytes": 6088,
+          "sha256": "8385558a77bf70c82c71af1c9fc5cb0f6e5124e237c9a6f5a84cad6700d8443e"
+        },
+        {
+          "path": "sfx/landing-stone-4.mp3",
+          "bytes": 4340,
+          "sha256": "18ae768fec4ae8e3d20801cc33af44a147fa3bd036a135484e6de16ccb5520d6"
+        }
+      ]
+    },
+    {
+      "id": "landing-wood-1",
+      "category": "landing",
+      "material": "wood",
+      "variant": 1,
+      "seed": 35294040,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 22032,
+      "durationSeconds": 0.459,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -27.117099250770778,
+        "dcMean": 0.0001567074051960697,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-wood-1.wav",
+          "bytes": 44108,
+          "sha256": "61a552ba731eda6c06c90ed6f50163f6f4c467d873c266a92f88023508c176af"
+        },
+        {
+          "path": "sfx/landing-wood-1.ogg",
+          "bytes": 7244,
+          "sha256": "4461b5eaf451e770b365000a2e0da59941cac823d68ec81c6f5c229ebe997a2f"
+        },
+        {
+          "path": "sfx/landing-wood-1.mp3",
+          "bytes": 6356,
+          "sha256": "ea9be11d9461ea3628f8fd8b8ce3e756760dbc914765b8ce01227f91403c2f83"
+        }
+      ]
+    },
+    {
+      "id": "landing-wood-2",
+      "category": "landing",
+      "material": "wood",
+      "variant": 2,
+      "seed": 35294137,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 22224,
+      "durationSeconds": 0.463,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -27.03111801724189,
+        "dcMean": 0.00020816055139627097,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-wood-2.wav",
+          "bytes": 44492,
+          "sha256": "afca6482aee1adb86fa69f6a351a47b410ef9af54c3e6bd9451cff4c130d9857"
+        },
+        {
+          "path": "sfx/landing-wood-2.ogg",
+          "bytes": 7359,
+          "sha256": "1f7479c62b6fafa117cdd0f605cc8790b8d484398f269a8fa7a9e716a2c61e24"
+        },
+        {
+          "path": "sfx/landing-wood-2.mp3",
+          "bytes": 6356,
+          "sha256": "50eece294adbc0045c3b56fb2cda0766d82431a40e30a2382324e89e07ba2a26"
+        }
+      ]
+    },
+    {
+      "id": "landing-wood-3",
+      "category": "landing",
+      "material": "wood",
+      "variant": 3,
+      "seed": 35294234,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 22416,
+      "durationSeconds": 0.467,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -27.80848548702366,
+        "dcMean": 0.00015751893468743774,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-wood-3.wav",
+          "bytes": 44876,
+          "sha256": "0dc5659b7c32c09495c150e132ae2c514ca9de30b98bd051ac0ed9046b8bb1a0"
+        },
+        {
+          "path": "sfx/landing-wood-3.ogg",
+          "bytes": 7489,
+          "sha256": "b2af61a1482bbe70f4e4d30695450503eca5cc9624df570465bd46224ddcae1a"
+        },
+        {
+          "path": "sfx/landing-wood-3.mp3",
+          "bytes": 6356,
+          "sha256": "d68d55e169ede7afdfedcd3a0f34b8b5800fdf292d5d78d8ae1828a02f37dc43"
+        }
+      ]
+    },
+    {
+      "id": "landing-wood-4",
+      "category": "landing",
+      "material": "wood",
+      "variant": 4,
+      "seed": 35294331,
+      "description": "Two offset foot contacts with heavier body load; no injury or combat sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 22608,
+      "durationSeconds": 0.471,
+      "stats": {
+        "peakDbFS": -10.00000005838476,
+        "rmsDbFS": -25.951481167223616,
+        "dcMean": 0.00022313913647998602,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/landing-wood-4.wav",
+          "bytes": 45260,
+          "sha256": "3508049a40f789d5d54172f733daed11d055a8ecb617c0dbc8ef1e1222dbd1ce"
+        },
+        {
+          "path": "sfx/landing-wood-4.ogg",
+          "bytes": 7382,
+          "sha256": "06a9bac71256c07e76858ec12c9c5093f62383ca2a2626d0cb567112acb87866"
+        },
+        {
+          "path": "sfx/landing-wood-4.mp3",
+          "bytes": 6356,
+          "sha256": "842f3e4e01b3ecd043de061570f9739044423b0c8238445dfd5df2a7f16cfb06"
+        }
+      ]
+    },
+    {
+      "id": "interact-ceramic-1",
+      "category": "interaction",
+      "material": "ceramic",
+      "variant": 1,
+      "seed": 35304540,
+      "description": "Gentle vessel set-down/touch, resonant shell and sliding contact; not breaking",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 34560,
+      "durationSeconds": 0.72,
+      "stats": {
+        "peakDbFS": -13.999999827421785,
+        "rmsDbFS": -31.22238647143929,
+        "dcMean": 0.000002511804532501155,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-ceramic-1.wav",
+          "bytes": 69164,
+          "sha256": "a760b4ef02e2b4fbb42350c13457b87b2c67be9266a7f571c799e8bfe39c5030"
+        },
+        {
+          "path": "sfx/interact-ceramic-1.ogg",
+          "bytes": 9016,
+          "sha256": "8017528631fd8dfaa2f1a423f19bba02b23dec2fca718a46f4db26e54ab28863"
+        },
+        {
+          "path": "sfx/interact-ceramic-1.mp3",
+          "bytes": 9236,
+          "sha256": "78d34c048e74fe164c76089f2a8484a36b12766810b6c5c7acc876c5d09f4c20"
+        }
+      ]
+    },
+    {
+      "id": "interact-ceramic-2",
+      "category": "interaction",
+      "material": "ceramic",
+      "variant": 2,
+      "seed": 35304641,
+      "description": "Gentle vessel set-down/touch, resonant shell and sliding contact; not breaking",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 34560,
+      "durationSeconds": 0.72,
+      "stats": {
+        "peakDbFS": -13.999999827421785,
+        "rmsDbFS": -30.913733328265813,
+        "dcMean": 0.000002313960237260544,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-ceramic-2.wav",
+          "bytes": 69164,
+          "sha256": "ff8702bcd86e1d377e272ec37116474864bc79cf2653f747998f1ee8998a9230"
+        },
+        {
+          "path": "sfx/interact-ceramic-2.ogg",
+          "bytes": 9002,
+          "sha256": "7398e56d0653da5c978b58da53f84eaa65c8d60446281892463bac0ecab46e21"
+        },
+        {
+          "path": "sfx/interact-ceramic-2.mp3",
+          "bytes": 9236,
+          "sha256": "7549a51d7048c64e14d599d06ae150dd89902aa220204eef082df172d3b40615"
+        }
+      ]
+    },
+    {
+      "id": "interact-ceramic-3",
+      "category": "interaction",
+      "material": "ceramic",
+      "variant": 3,
+      "seed": 35304742,
+      "description": "Gentle vessel set-down/touch, resonant shell and sliding contact; not breaking",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 34560,
+      "durationSeconds": 0.72,
+      "stats": {
+        "peakDbFS": -13.999999827421785,
+        "rmsDbFS": -31.352231996900912,
+        "dcMean": 4.275167085145213e-7,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-ceramic-3.wav",
+          "bytes": 69164,
+          "sha256": "66b73442d40f493be5f7e3f13ca575af086c3f44937b7965e8bcd27e0b0ed306"
+        },
+        {
+          "path": "sfx/interact-ceramic-3.ogg",
+          "bytes": 8993,
+          "sha256": "4b87013107c8a9949707625fa4efac3d4f16142eb8e79e0ec84d820ca6181165"
+        },
+        {
+          "path": "sfx/interact-ceramic-3.mp3",
+          "bytes": 9236,
+          "sha256": "b324ce965e7038e847989d71fbafbd2a251f612f46bf9b0bbd6dc696c211cf6e"
+        }
+      ]
+    },
+    {
+      "id": "interact-ceramic-4",
+      "category": "interaction",
+      "material": "ceramic",
+      "variant": 4,
+      "seed": 35304843,
+      "description": "Gentle vessel set-down/touch, resonant shell and sliding contact; not breaking",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 34560,
+      "durationSeconds": 0.72,
+      "stats": {
+        "peakDbFS": -13.999999827421785,
+        "rmsDbFS": -31.255417261086677,
+        "dcMean": 0.0000024275119458416484,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-ceramic-4.wav",
+          "bytes": 69164,
+          "sha256": "d4bafa69e15a7acbbb3cb65ffab2a354f2b85dd0922c05b908f60e15dccd311d"
+        },
+        {
+          "path": "sfx/interact-ceramic-4.ogg",
+          "bytes": 8970,
+          "sha256": "78b1bf8101035427748b7ccc5c8f4f2050d762885411f8fcc3a6dca214584a77"
+        },
+        {
+          "path": "sfx/interact-ceramic-4.mp3",
+          "bytes": 9236,
+          "sha256": "66c7871e1405f6275024861b406ae2aecd72b2e6053ec92a80e2d4a9601cec08"
+        }
+      ]
+    },
+    {
+      "id": "interact-wood-1",
+      "category": "interaction",
+      "material": "wood",
+      "variant": 1,
+      "seed": 35304944,
+      "description": "Wooden object touch/set-down, hollow knock and short friction; not chopping",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 24000,
+      "durationSeconds": 0.5,
+      "stats": {
+        "peakDbFS": -13.999999827421785,
+        "rmsDbFS": -30.388566151386197,
+        "dcMean": -0.00002871560826861071,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-wood-1.wav",
+          "bytes": 48044,
+          "sha256": "8c0437999afed3705681a6cfecf3512eb33543cc6951d56b2c01eecd643ecc0b"
+        },
+        {
+          "path": "sfx/interact-wood-1.ogg",
+          "bytes": 7803,
+          "sha256": "2931f16faa90fc4e06d1ee1e748b7162a83d196db335e3c3310766798fae7529"
+        },
+        {
+          "path": "sfx/interact-wood-1.mp3",
+          "bytes": 6644,
+          "sha256": "a11050d12e2cf3c3970db77860e111aa8d32179fba9868d7259dbe4723740aaf"
+        }
+      ]
+    },
+    {
+      "id": "interact-wood-2",
+      "category": "interaction",
+      "material": "wood",
+      "variant": 2,
+      "seed": 35305045,
+      "description": "Wooden object touch/set-down, hollow knock and short friction; not chopping",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 24000,
+      "durationSeconds": 0.5,
+      "stats": {
+        "peakDbFS": -13.999999827421785,
+        "rmsDbFS": -30.138345032454616,
+        "dcMean": -0.00003175757870872113,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-wood-2.wav",
+          "bytes": 48044,
+          "sha256": "98395b383c55bdbf34e5acf8fcf81cf40be03321a2c882c42844224802a69260"
+        },
+        {
+          "path": "sfx/interact-wood-2.ogg",
+          "bytes": 7756,
+          "sha256": "5a28e8e242bec768407adfd523dc80033f7d4cf9c8c2630db5305b0cd1928f42"
+        },
+        {
+          "path": "sfx/interact-wood-2.mp3",
+          "bytes": 6644,
+          "sha256": "a6a740c895fc3a432b3d2d3a95a0deb0e58b45395ef5c90ca44d17a3e0a244ac"
+        }
+      ]
+    },
+    {
+      "id": "interact-wood-3",
+      "category": "interaction",
+      "material": "wood",
+      "variant": 3,
+      "seed": 35305146,
+      "description": "Wooden object touch/set-down, hollow knock and short friction; not chopping",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 24000,
+      "durationSeconds": 0.5,
+      "stats": {
+        "peakDbFS": -13.999999827421785,
+        "rmsDbFS": -30.81284361944709,
+        "dcMean": -0.000033532201939446946,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-wood-3.wav",
+          "bytes": 48044,
+          "sha256": "aa741a1d838ee8204b230c519649563f9c9e85bd9c09ac3c47eb04f9f5f8bfee"
+        },
+        {
+          "path": "sfx/interact-wood-3.ogg",
+          "bytes": 7741,
+          "sha256": "d91d14b573980b3ae0f9b97af2f19c5bbc615da904d923f0308438489d100e73"
+        },
+        {
+          "path": "sfx/interact-wood-3.mp3",
+          "bytes": 6644,
+          "sha256": "7bb234673f23d95bafad8dad3aed40c74f33a411be5de519c9ffc7719d1a8b38"
+        }
+      ]
+    },
+    {
+      "id": "interact-wood-4",
+      "category": "interaction",
+      "material": "wood",
+      "variant": 4,
+      "seed": 35305247,
+      "description": "Wooden object touch/set-down, hollow knock and short friction; not chopping",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 24000,
+      "durationSeconds": 0.5,
+      "stats": {
+        "peakDbFS": -13.999999827421785,
+        "rmsDbFS": -30.350888073670696,
+        "dcMean": -0.000033578580415531266,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-wood-4.wav",
+          "bytes": 48044,
+          "sha256": "4b952638c433422ed7fdc0ddc31dbf93c997478a5690aa49855032de8c20bbb1"
+        },
+        {
+          "path": "sfx/interact-wood-4.ogg",
+          "bytes": 7785,
+          "sha256": "961cabfdf1d63fc84e813503e9c12b5966428b8fd4bdb6e333b148df62cf4064"
+        },
+        {
+          "path": "sfx/interact-wood-4.mp3",
+          "bytes": 6644,
+          "sha256": "a97f1c43ed8e8a8b4681bd414f94e7006681a9e7ecea91c22db7a1e611b54cde"
+        }
+      ]
+    },
+    {
+      "id": "interact-stone-1",
+      "category": "interaction",
+      "material": "stone",
+      "variant": 1,
+      "seed": 35311825,
+      "description": "Gentle dense stone-vessel touch/set-down: damped body modes, low contact, short handling friction and a small settling contact; no breaking, weapon or hammer sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 18144,
+      "durationSeconds": 0.378,
+      "stats": {
+        "peakDbFS": -14,
+        "rmsDbFS": -33.99724836958463,
+        "dcMean": 0.000021847520867544408,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-stone-1.wav",
+          "bytes": 36332,
+          "sha256": "42ecd1e82f1384f2c2625f92dfbd0a3271f6a6a4fd01c8fc3125ff8828d32a9e"
+        },
+        {
+          "path": "sfx/interact-stone-1.ogg",
+          "bytes": 5943,
+          "sha256": "63f9703eb8a95969fd621ceb3d7afc68752abc21643ac86784b92cad25581a78"
+        },
+        {
+          "path": "sfx/interact-stone-1.mp3",
+          "bytes": 5204,
+          "sha256": "d166ce7799a17da290ff5c364e723ebd0f2f7ae32e47d4b01fc698451b71e5ed"
+        }
+      ]
+    },
+    {
+      "id": "interact-stone-2",
+      "category": "interaction",
+      "material": "stone",
+      "variant": 2,
+      "seed": 35311938,
+      "description": "Gentle dense stone-vessel touch/set-down: damped body modes, low contact, short handling friction and a small settling contact; no breaking, weapon or hammer sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 19008,
+      "durationSeconds": 0.396,
+      "stats": {
+        "peakDbFS": -14,
+        "rmsDbFS": -34.238335345387064,
+        "dcMean": 0.00004137231738873777,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-stone-2.wav",
+          "bytes": 38060,
+          "sha256": "d95188104bbd09f9a0982d902640269705aa71b8ca3a95a2dac2ea640a606e7f"
+        },
+        {
+          "path": "sfx/interact-stone-2.ogg",
+          "bytes": 6092,
+          "sha256": "fddee5a0fa47dfbc934db757b197e17eb796bbd17733f1b3e21bdeebd3173919"
+        },
+        {
+          "path": "sfx/interact-stone-2.mp3",
+          "bytes": 5492,
+          "sha256": "a60260878655a6b4512ed60ac9720ab85463daba024c375dfb66fbc8e40be4f1"
+        }
+      ]
+    },
+    {
+      "id": "interact-stone-3",
+      "category": "interaction",
+      "material": "stone",
+      "variant": 3,
+      "seed": 35312051,
+      "description": "Gentle dense stone-vessel touch/set-down: damped body modes, low contact, short handling friction and a small settling contact; no breaking, weapon or hammer sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 19872,
+      "durationSeconds": 0.414,
+      "stats": {
+        "peakDbFS": -14,
+        "rmsDbFS": -33.943907452675305,
+        "dcMean": 0.00001013468135653709,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-stone-3.wav",
+          "bytes": 39788,
+          "sha256": "a42b8ad5106a4cbb0970ee28c24e6a666fa07314b45185b73ffc227fa8d253f1"
+        },
+        {
+          "path": "sfx/interact-stone-3.ogg",
+          "bytes": 6212,
+          "sha256": "13f35e3f48fafccb455b6f31ea99e47d8a187810d7fd31c851f624f176cecd50"
+        },
+        {
+          "path": "sfx/interact-stone-3.mp3",
+          "bytes": 5780,
+          "sha256": "309a1fafdcadc348770fe47296fb82d8f398e6cf1e7cbb279c6c71077a7af268"
+        }
+      ]
+    },
+    {
+      "id": "interact-stone-4",
+      "category": "interaction",
+      "material": "stone",
+      "variant": 4,
+      "seed": 35312164,
+      "description": "Gentle dense stone-vessel touch/set-down: damped body modes, low contact, short handling friction and a small settling contact; no breaking, weapon or hammer sound",
+      "channels": 1,
+      "sampleRate": 48000,
+      "frames": 20736,
+      "durationSeconds": 0.432,
+      "stats": {
+        "peakDbFS": -14,
+        "rmsDbFS": -34.03113469281589,
+        "dcMean": 0.000013321190395940221,
+        "clippedSamples": 0
+      },
+      "files": [
+        {
+          "path": "sfx/interact-stone-4.wav",
+          "bytes": 41516,
+          "sha256": "1f150afdb1457bb65cb4cae4c5c65ec2541a67c2018a0267b107f0d4a74140ad"
+        },
+        {
+          "path": "sfx/interact-stone-4.ogg",
+          "bytes": 6344,
+          "sha256": "fb2c8a859318705910c7a6e8300c574bf94af3bd047fe3cc2fbb459e94e0b751"
+        },
+        {
+          "path": "sfx/interact-stone-4.mp3",
+          "bytes": 5780,
+          "sha256": "9988343bb803e33f0329834a3a9166944fc18fe63ff59edfdc786d37d07b3049"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "humanListening": false,
+    "runtimeIntegrated": false,
+    "seam": [
+      {
+        "first": -0.0011198807042092085,
+        "last": -0.00089227658463642,
+        "boundaryJump": 0.00022760411957278848,
+        "boundaryJumpDbFS": -72.85639763187162,
+        "ordinarySlopeRms": 0.007272557408724314,
+        "boundaryToSlopeRms": 0.031296297406982275,
+        "maxInteriorSlope": 0.20236631482839584,
+        "pass": true
+      },
+      {
+        "first": 0.0023419440258294344,
+        "last": 0.0023219913709908724,
+        "boundaryJump": 0.000019952654838562012,
+        "boundaryJumpDbFS": -93.99998620503004,
+        "ordinarySlopeRms": 0.006177212236174562,
+        "boundaryToSlopeRms": 0.003230041979408876,
+        "maxInteriorSlope": 0.15858644992113113,
+        "pass": true
+      }
+    ],
+    "silence": {
+      "windowSeconds": 1,
+      "perSecondRmsDbFS": [
+        -25.784393304707798,
+        -30.282437833519452,
+        -30.54902760686688,
+        -26.505351356048337,
+        -29.965273437331923,
+        -31.663183999382973,
+        -26.32316134998492,
+        -28.2239961337848,
+        -29.90817812167199,
+        -27.476191415941248,
+        -27.861952888044897,
+        -38.044187768675066,
+        -25.867015119160666,
+        -29.084560562433342,
+        -30.633494402356835,
+        -25.542942730179547,
+        -30.64138944296451,
+        -30.680873008723154,
+        -25.332270108090313,
+        -28.543500644758897,
+        -31.010746479045,
+        -28.819512262892772,
+        -41.19668809981205,
+        -78.3023515699944,
+        -30.11177269807661,
+        -34.73897906478176,
+        -39.22302758140693,
+        -29.641966173656627,
+        -39.238700199996515,
+        -42.582991443845316,
+        -29.137033438791345,
+        -34.39309805380467,
+        -38.40232740556958,
+        -31.08000917232724,
+        -37.05087714113901,
+        -41.03645549601459,
+        -29.729477452792814,
+        -32.553802840068855,
+        -38.38383778888394,
+        -29.250217594687737,
+        -37.190688990259616,
+        -41.97527449957885,
+        -28.828767509542608,
+        -32.86677428874202,
+        -39.64722040459901,
+        -30.07375020155862,
+        -42.47739607979602,
+        -77.70291846621595,
+        -25.403274347097184,
+        -28.64481681149261,
+        -30.247120848411782,
+        -25.909147913982157,
+        -28.84251092641293,
+        -30.49425306407943,
+        -25.815930413008164,
+        -27.867745927659602,
+        -28.840279982896067,
+        -27.361974387440977,
+        -26.82495706421012,
+        -38.43653135952805,
+        -25.965652836213067,
+        -28.48041769754324,
+        -29.922108040096433,
+        -25.2753743654208,
+        -30.239004815627972,
+        -29.852850010801014,
+        -25.40309222432748,
+        -28.931462401901584,
+        -29.841794819634337,
+        -28.199301491671378,
+        -39.32062786824857,
+        -77.55487676459913,
+        -26.732504298530962,
+        -30.66163568615293,
+        -31.099266809349444,
+        -27.285278041712754,
+        -30.533689087727826,
+        -32.329152510588614,
+        -27.797374455691614,
+        -29.30682823527573,
+        -30.879612284334655,
+        -29.18002116828015,
+        -28.65092068433256,
+        -38.30320255061491,
+        -28.73065111094768,
+        -30.646157499163067,
+        -32.29617740177368,
+        -27.439406124490354,
+        -32.10151050481815,
+        -31.882295367063524,
+        -27.62477992715857,
+        -29.764474756188516,
+        -32.50501309790256,
+        -30.324405715051654,
+        -42.38699591051685,
+        -37.872333698410735
+      ]
+    },
+    "decoded": [
+      {
+        "path": "music/jerusalem-town-loop.wav",
+        "frames": 4608000,
+        "durationSeconds": 96,
+        "stats": {
+          "peakDbFS": -9.000001270704788,
+          "rmsDbFS": -29.638958002281104,
+          "dcMean": 1.3323086831304762e-12,
+          "clippedSamples": 0
+        },
+        "boundaryJumpDbFS": [
+          -72.85767943755802,
+          -93.9676123709141
+        ],
+        "exactFrameLength": true
+      },
+      {
+        "path": "music/jerusalem-town-loop.ogg",
+        "frames": 4608000,
+        "durationSeconds": 96,
+        "stats": {
+          "peakDbFS": -9.751650756472369,
+          "rmsDbFS": -29.685378977913864,
+          "dcMean": -0.0000011005822981646129,
+          "clippedSamples": 0
+        },
+        "boundaryJumpDbFS": [
+          -59.259760219762,
+          -63.161244626360904
+        ],
+        "exactFrameLength": true
+      },
+      {
+        "path": "music/jerusalem-town-loop.mp3",
+        "frames": 4608000,
+        "durationSeconds": 96,
+        "stats": {
+          "peakDbFS": -9.323560604343587,
+          "rmsDbFS": -29.902402930665787,
+          "dcMean": 6.864504923731782e-8,
+          "clippedSamples": 0
+        },
+        "boundaryJumpDbFS": [
+          -52.89049802208119,
+          -72.64585726171187
+        ],
+        "exactFrameLength": true
+      }
+    ],
+    "pass": true
+  },
+  "extensions": {
+    "stoneInteractions": {
+      "generator": "scripts/audio/stone-interactions.mjs",
+      "generatorSha256": "3200cc0e76810a50613fcb791abbecaf5def35a5bc93cd441d2576af8d393a9d",
+      "currentBaseGeneratorSha256": "4039d2d2d27780ed34a80aa4fcc17050271424374637fc4b27945df82c05eb62",
+      "seed": 35311712,
+      "variationCount": 4,
+      "preservation": {
+        "originalAudioFiles": 111,
+        "unchanged": 111,
+        "changed": [],
+        "addedAudioFiles": 12,
+        "totalAudioFiles": 123,
+        "pass": true
+      },
+      "humanListening": false,
+      "runtimeIntegrated": false
+    }
+  }
+}

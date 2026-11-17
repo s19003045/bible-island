@@ -1,0 +1,1170 @@
+{
+  "schema": 1,
+  "generator": "scripts/audio/generate-mood-loops.mjs",
+  "generatorSha256": "1b7940e2145b03ecaa6f1d79d485697676d371810a01f14f33b90c1c0b7d9000",
+  "sampleRate": 48000,
+  "rights": "Original modern compositions and generated physical/harmonic/noise models for this project. No third-party samples or recordings.",
+  "externalSamples": [],
+  "historicalAuthenticity": false,
+  "humanListening": false,
+  "runtimeIntegrated": false,
+  "moods": [
+    {
+      "id": "wilderness",
+      "title": "Paths and Open Sky / 曠野小徑",
+      "character": "Sparse low breath melody, sustained air, widely spaced plucks and occasional brushed skin; long pauses",
+      "instruments": [
+        "low breath/harmonic model",
+        "open plucked strings",
+        "soft harmonic air ensemble",
+        "sparse brushed membrane"
+      ],
+      "tempoBpm": 72,
+      "meter": "4/4",
+      "bars": 32,
+      "seed": 1914151184,
+      "sampleRate": 48000,
+      "channels": 2,
+      "frames": 5120000,
+      "durationSeconds": 106.66666666666667,
+      "loopStartFrame": 0,
+      "loopEndFrame": 5120000,
+      "loopStart": 0,
+      "loopEnd": 106.66666666666667,
+      "recommendedCombinedMusicGain": [
+        0.45,
+        0.65
+      ],
+      "eventCount": 170,
+      "melodyRestBars": 12,
+      "loopStrategy": "periodic note tails, circular reflections and pre-rolled DC filter; final pickup crosses the PCM boundary; no master fade",
+      "stats": {
+        "peakDbFS": -13.499999910582904,
+        "rmsDbFS": -28.705257332842564,
+        "dcMean": -1.3374828292632423e-12,
+        "clippedSamples": 0
+      },
+      "loudness": {
+        "integratedLUFS": -26,
+        "loudnessRangeLU": 6.6,
+        "truePeakDbTP": -13.5
+      },
+      "initialLoudness": {
+        "integratedLUFS": -21.5,
+        "loudnessRangeLU": 6.6,
+        "truePeakDbTP": -9
+      },
+      "adjustmentDb": -4.5,
+      "seam": [
+        {
+          "first": 0.013720206916332245,
+          "last": 0.01242542639374733,
+          "boundaryJumpDbFS": -57.75607684645689,
+          "ordinarySlopeRms": 0.004019737819173668,
+          "boundaryToSlopeRms": 0.32210571455903597,
+          "maxInteriorSlope": 0.10677679255604744,
+          "pass": true
+        },
+        {
+          "first": 0.014151282608509064,
+          "last": 0.013496296480298042,
+          "boundaryJumpDbFS": -63.67535795452166,
+          "ordinarySlopeRms": 0.00404145254750371,
+          "boundaryToSlopeRms": 0.16206700945074506,
+          "maxInteriorSlope": 0.08276520855724812,
+          "pass": true
+        }
+      ],
+      "decoded": [
+        {
+          "path": "music/wilderness-loop.wav",
+          "frames": 5120000,
+          "durationSeconds": 106.66666666666667,
+          "stats": {
+            "peakDbFS": -13.500000522981846,
+            "rmsDbFS": -28.70525844299658,
+            "dcMean": -5.238689482212066e-13,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": 0.013720154762268066,
+              "last": 0.012425422668457031,
+              "boundaryJumpDbFS": -57.7564017315203,
+              "ordinarySlopeRms": 0.004019737301708921,
+              "boundaryToSlopeRms": 0.32209370827805156,
+              "maxInteriorSlope": 0.10677671432495117,
+              "pass": true
+            },
+            {
+              "first": 0.014151334762573242,
+              "last": 0.0134962797164917,
+              "boundaryJumpDbFS": -63.674444070241165,
+              "ordinarySlopeRms": 0.00404145202623714,
+              "boundaryToSlopeRms": 0.16208408310402306,
+              "maxInteriorSlope": 0.08276510238647461,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        },
+        {
+          "path": "music/wilderness-loop.ogg",
+          "frames": 5120000,
+          "durationSeconds": 106.66666666666667,
+          "stats": {
+            "peakDbFS": -13.506424513468076,
+            "rmsDbFS": -28.679252625142382,
+            "dcMean": -0.0000010122620038018435,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": 0.013865717686712742,
+              "last": 0.011311633512377739,
+              "boundaryJumpDbFS": -51.855295877968814,
+              "ordinarySlopeRms": 0.003882485581015338,
+              "boundaryToSlopeRms": 0.65784769087721,
+              "maxInteriorSlope": 0.10374753549695015,
+              "pass": true
+            },
+            {
+              "first": 0.012870032340288162,
+              "last": 0.013119339011609554,
+              "boundaryJumpDbFS": -72.06532199676755,
+              "ordinarySlopeRms": 0.003922236083554851,
+              "boundaryToSlopeRms": 0.06356238278636131,
+              "maxInteriorSlope": 0.08306018076837063,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        },
+        {
+          "path": "music/wilderness-loop.mp3",
+          "frames": 5120000,
+          "durationSeconds": 106.66666666666667,
+          "stats": {
+            "peakDbFS": -13.748866306414662,
+            "rmsDbFS": -28.96954782719495,
+            "dcMean": -2.6698842287618818e-8,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": 0.009590099565684795,
+              "last": 0.010594340972602367,
+              "boundaryJumpDbFS": -59.96323751493797,
+              "ordinarySlopeRms": 0.003859232691051429,
+              "boundaryToSlopeRms": 0.26021789493184755,
+              "maxInteriorSlope": 0.09936579875648022,
+              "pass": true
+            },
+            {
+              "first": 0.00830329954624176,
+              "last": 0.011518904007971287,
+              "boundaryJumpDbFS": -49.85474754830254,
+              "ordinarySlopeRms": 0.0038813179780405604,
+              "boundaryToSlopeRms": 0.8284826133603431,
+              "maxInteriorSlope": 0.08515589311718941,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        }
+      ],
+      "perSecondRmsDbFS": [
+        -30.12645310349236,
+        -31.387419197220137,
+        -34.2530455035046,
+        -32.956390284009316,
+        -25.73545717615376,
+        -26.59000750992621,
+        -27.97928208847829,
+        -24.09341892607703,
+        -34.35384676430558,
+        -28.01233855976667,
+        -30.470662032658215,
+        -24.836108649626638,
+        -32.10310281671443,
+        -32.01573835377597,
+        -32.841017480730216,
+        -33.875484629220544,
+        -34.2090865899488,
+        -24.67873800658277,
+        -29.16981875854382,
+        -27.908788865742782,
+        -26.23121857575562,
+        -27.293881589251047,
+        -27.195203269673975,
+        -32.50911907507946,
+        -33.32226028778993,
+        -34.95198383836189,
+        -33.470176294323224,
+        -31.251986720531324,
+        -33.83992861077487,
+        -33.064286808495886,
+        -28.706208307594988,
+        -27.688166010596976,
+        -26.078437529916147,
+        -25.716595592566588,
+        -25.798960764959517,
+        -28.355724667752888,
+        -31.3900959730252,
+        -27.57779153312963,
+        -25.527876129018484,
+        -38.617438651299295,
+        -29.96960082449076,
+        -34.26698707548775,
+        -32.71762098463601,
+        -29.97380043163264,
+        -24.991922120037756,
+        -27.15225167797044,
+        -31.02186960464177,
+        -24.398323009456192,
+        -28.839649672476014,
+        -28.25469067687559,
+        -32.89957642174437,
+        -34.267501145660816,
+        -36.1479768430724,
+        -31.232567834416688,
+        -31.95718300650273,
+        -33.62421385110713,
+        -34.492133835692854,
+        -26.015066577922724,
+        -28.57104708236234,
+        -27.637065935983376,
+        -24.178482095739476,
+        -28.85495513768825,
+        -27.65056793618848,
+        -31.925271549154765,
+        -25.85459714244676,
+        -27.78131650723261,
+        -34.031631491481676,
+        -31.47537358437824,
+        -33.29253921649857,
+        -32.9108969196643,
+        -26.567479705158217,
+        -27.130411365957258,
+        -26.405670875731104,
+        -28.73264432534162,
+        -24.883788738908347,
+        -27.48554391193162,
+        -32.051575244732405,
+        -32.63687576258577,
+        -34.23846522479233,
+        -40.27546783126253,
+        -30.501371863935685,
+        -33.61399033698666,
+        -33.64250691132549,
+        -31.295829885227967,
+        -25.46944677124179,
+        -26.734225833655497,
+        -27.94239607100353,
+        -23.898061232813323,
+        -32.80592426457089,
+        -27.1178991493395,
+        -31.74343102151458,
+        -25.35590483451386,
+        -32.14795731424052,
+        -31.494825133201722,
+        -32.31792125173283,
+        -33.11715754274121,
+        -33.36059118426631,
+        -24.679748990636547,
+        -29.17531704011489,
+        -27.858188136320553,
+        -25.98693022826349,
+        -27.06897991010858,
+        -26.89359852998196,
+        -33.25742663068519,
+        -33.91477040580484,
+        -34.80716499068256,
+        -38.632301858886066
+      ],
+      "files": [
+        {
+          "path": "music/wilderness-loop.wav",
+          "bytes": 30720044,
+          "sha256": "08a8a58db0d4588fb9d46bce2db77dc8f7b9c59e7676f7b68034a3acfa8c6b8e"
+        },
+        {
+          "path": "music/wilderness-loop.ogg",
+          "bytes": 1173107,
+          "sha256": "63a84d47d85bccb5c6eb89b3df86eec6dc4d877a064844642db074a4b74c2622"
+        },
+        {
+          "path": "music/wilderness-loop.mp3",
+          "bytes": 2561492,
+          "sha256": "a5b79b31b3825fcd7c5a7c87c3901d67565e7051b41dd539367c67a73fbe7de2"
+        }
+      ],
+      "historicalAuthenticity": false,
+      "humanListening": false,
+      "runtimeIntegrated": false,
+      "pass": true
+    },
+    {
+      "id": "lakeshore",
+      "title": "Quiet Water, Shared Shore / 湖岸微光",
+      "character": "Three-beat sway, rounded wooden/ripple resonators, gently answering wind and a soft sustained background; no literal water effects",
+      "instruments": [
+        "rounded wooden modal resonator",
+        "light plucked bass",
+        "gentle air melody",
+        "soft harmonic ensemble"
+      ],
+      "tempoBpm": 90,
+      "meter": "3/4",
+      "bars": 48,
+      "seed": 2417467936,
+      "sampleRate": 48000,
+      "channels": 2,
+      "frames": 4608000,
+      "durationSeconds": 96,
+      "loopStartFrame": 0,
+      "loopEndFrame": 4608000,
+      "loopStart": 0,
+      "loopEnd": 96,
+      "recommendedCombinedMusicGain": [
+        0.45,
+        0.65
+      ],
+      "eventCount": 302,
+      "melodyRestBars": 18,
+      "loopStrategy": "periodic note tails, circular reflections and pre-rolled DC filter; final pickup crosses the PCM boundary; no master fade",
+      "stats": {
+        "peakDbFS": -13.29999959778033,
+        "rmsDbFS": -28.810939596436043,
+        "dcMean": -9.019487314621297e-13,
+        "clippedSamples": 0
+      },
+      "loudness": {
+        "integratedLUFS": -26,
+        "loudnessRangeLU": 2.9,
+        "truePeakDbTP": -13.2
+      },
+      "initialLoudness": {
+        "integratedLUFS": -21.7,
+        "loudnessRangeLU": 2.9,
+        "truePeakDbTP": -8.9
+      },
+      "adjustmentDb": -4.300000000000001,
+      "seam": [
+        {
+          "first": -0.006743262521922588,
+          "last": -0.007312002591788769,
+          "boundaryJumpDbFS": -64.90172345997033,
+          "ordinarySlopeRms": 0.004742116111753849,
+          "boundaryToSlopeRms": 0.1199338136104463,
+          "maxInteriorSlope": 0.09318597428500652,
+          "pass": true
+        },
+        {
+          "first": -0.0010191784240305424,
+          "last": -0.0017019883962348104,
+          "boundaryJumpDbFS": -63.31400289579575,
+          "ordinarySlopeRms": 0.004400242768601998,
+          "boundaryToSlopeRms": 0.1551755228317104,
+          "maxInteriorSlope": 0.07645520567893982,
+          "pass": true
+        }
+      ],
+      "decoded": [
+        {
+          "path": "music/lakeshore-loop.wav",
+          "frames": 4608000,
+          "durationSeconds": 96,
+          "stats": {
+            "peakDbFS": -13.299998999321353,
+            "rmsDbFS": -28.810940712587858,
+            "dcMean": -1.5353887445396847e-11,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": -0.006743311882019043,
+              "last": -0.00731205940246582,
+              "boundaryJumpDbFS": -64.90160967425282,
+              "ordinarySlopeRms": 0.004742115524026874,
+              "boundaryToSlopeRms": 0.11993539962599069,
+              "maxInteriorSlope": 0.0931859016418457,
+              "pass": true
+            },
+            {
+              "first": -0.001019120216369629,
+              "last": -0.001701951026916504,
+              "boundaryJumpDbFS": -63.31373781943537,
+              "ordinarySlopeRms": 0.004400242215977267,
+              "boundaryToSlopeRms": 0.15518027804640352,
+              "maxInteriorSlope": 0.07645523548126221,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        },
+        {
+          "path": "music/lakeshore-loop.ogg",
+          "frames": 4608000,
+          "durationSeconds": 96,
+          "stats": {
+            "peakDbFS": -13.320804786800736,
+            "rmsDbFS": -28.80610450861746,
+            "dcMean": 2.4340902050735524e-7,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": -0.005984412040561438,
+              "last": -0.007557065691798925,
+              "boundaryJumpDbFS": -56.06733824834188,
+              "ordinarySlopeRms": 0.0045602477108119925,
+              "boundaryToSlopeRms": 0.3448614529225788,
+              "maxInteriorSlope": 0.09579864516854286,
+              "pass": true
+            },
+            {
+              "first": -0.0006115705473348498,
+              "last": -0.0019520423375070095,
+              "boundaryJumpDbFS": -57.45484642364783,
+              "ordinarySlopeRms": 0.004265695325109493,
+              "boundaryToSlopeRms": 0.3142446161781965,
+              "maxInteriorSlope": 0.07574978843331337,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        },
+        {
+          "path": "music/lakeshore-loop.mp3",
+          "frames": 4608000,
+          "durationSeconds": 96,
+          "stats": {
+            "peakDbFS": -13.496456680832233,
+            "rmsDbFS": -29.075252203039803,
+            "dcMean": 1.5325068952424e-7,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": -0.006505119614303112,
+              "last": -0.006409979425370693,
+              "boundaryJumpDbFS": -80.43271980958879,
+              "ordinarySlopeRms": 0.0045448821362798,
+              "boundaryToSlopeRms": 0.020933477718367312,
+              "maxInteriorSlope": 0.0944448970258236,
+              "pass": true
+            },
+            {
+              "first": -0.000866778485942632,
+              "last": -0.0015160143375396729,
+              "boundaryJumpDbFS": -63.751950118233026,
+              "ordinarySlopeRms": 0.0042856340142782435,
+              "boundaryToSlopeRms": 0.15149120280313547,
+              "maxInteriorSlope": 0.08410726487636566,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        }
+      ],
+      "perSecondRmsDbFS": [
+        -26.09185308900079,
+        -32.54229117766822,
+        -27.102385147010153,
+        -28.583539400751423,
+        -30.456795898653372,
+        -32.26423676362741,
+        -25.57248557520591,
+        -29.748282280133864,
+        -26.03514225353207,
+        -31.728979785841183,
+        -30.37440914718482,
+        -32.25170329185869,
+        -25.744991295111767,
+        -29.53226499363044,
+        -30.66606707335672,
+        -40.503024758476414,
+        -26.11231389390508,
+        -32.515991074895375,
+        -26.794313903719743,
+        -28.182264342843784,
+        -30.527495828962138,
+        -32.29296383498231,
+        -25.86998359651384,
+        -29.85013729636065,
+        -26.284460236372865,
+        -31.812477365254644,
+        -30.394261800669323,
+        -31.854474923907198,
+        -25.812786467904868,
+        -29.197074246109782,
+        -31.459733473753438,
+        -41.62904186247866,
+        -25.578433691721298,
+        -32.50151301937642,
+        -27.52727853561244,
+        -28.355359833502124,
+        -30.35148506318842,
+        -33.01653380201867,
+        -25.894189273848497,
+        -29.811168932234256,
+        -26.104298830682318,
+        -31.621652734335814,
+        -30.284615125160506,
+        -32.15335709565019,
+        -25.11975661224956,
+        -29.17013833845028,
+        -32.1799232597706,
+        -41.580357681191025,
+        -26.20578127562707,
+        -32.734753685433596,
+        -26.910126383097182,
+        -28.616550664587518,
+        -30.217358432286403,
+        -32.47963491182515,
+        -26.021742650046512,
+        -29.83221307080136,
+        -26.094106448434577,
+        -31.814235893035562,
+        -30.48626227414909,
+        -32.02349062270941,
+        -25.918098806513314,
+        -29.53618977447124,
+        -31.646906894741154,
+        -41.9457378599045,
+        -26.137774124667345,
+        -32.65449068748002,
+        -27.715090140155326,
+        -28.218188502977895,
+        -29.45999319606024,
+        -32.32774086203226,
+        -25.85529691962531,
+        -29.823407368544398,
+        -26.07521395581867,
+        -31.841947955662523,
+        -30.207008662511075,
+        -31.841668745975255,
+        -25.66365293121057,
+        -29.255638988956147,
+        -31.681741686710275,
+        -42.533957035337394,
+        -25.670389036848505,
+        -32.477375091045914,
+        -27.275152379233262,
+        -28.272339910972526,
+        -30.534970970845844,
+        -32.87348021000549,
+        -25.81440716189117,
+        -29.829465632890596,
+        -25.894817151175623,
+        -31.65348399470043,
+        -29.949429880448314,
+        -32.04657244932199,
+        -25.430790194732094,
+        -29.006334768873316,
+        -31.544884970164553,
+        -36.14893007253896
+      ],
+      "files": [
+        {
+          "path": "music/lakeshore-loop.wav",
+          "bytes": 27648044,
+          "sha256": "19901667474f616ef4a93d9e72ef188ebd105a9e2314fbc1865202e4f8be7daa"
+        },
+        {
+          "path": "music/lakeshore-loop.ogg",
+          "bytes": 1033802,
+          "sha256": "6b337c0159744df19855b664c6414b4516cb51745a0a0eb11304b4662763a66c"
+        },
+        {
+          "path": "music/lakeshore-loop.mp3",
+          "bytes": 2305172,
+          "sha256": "bde73f6a3fd9036a79940c8683f96ff764f27eba7b5ebbae2a67f0631117d312"
+        }
+      ],
+      "historicalAuthenticity": false,
+      "humanListening": false,
+      "runtimeIntegrated": false,
+      "pass": true
+    },
+    {
+      "id": "construction",
+      "title": "Hands at Work / 同心作工",
+      "character": "Dry muted low strings and warm wood/skin pulse, alternating short worklike phrases with rests; no hammer, weapon or labour command samples",
+      "instruments": [
+        "muted plucked strings",
+        "low plucked bass",
+        "dry wooden modal pulse",
+        "soft membrane and brush"
+      ],
+      "tempoBpm": 96,
+      "meter": "4/4",
+      "bars": 40,
+      "seed": 2518131504,
+      "sampleRate": 48000,
+      "channels": 2,
+      "frames": 4800000,
+      "durationSeconds": 100,
+      "loopStartFrame": 0,
+      "loopEndFrame": 4800000,
+      "loopStart": 0,
+      "loopEnd": 100,
+      "recommendedCombinedMusicGain": [
+        0.45,
+        0.65
+      ],
+      "eventCount": 372,
+      "melodyRestBars": 40,
+      "loopStrategy": "periodic note tails, circular reflections and pre-rolled DC filter; final pickup crosses the PCM boundary; no master fade",
+      "stats": {
+        "peakDbFS": -8.19999990860501,
+        "rmsDbFS": -30.740574608306524,
+        "dcMean": 3.6512720698785493e-13,
+        "clippedSamples": 0
+      },
+      "loudness": {
+        "integratedLUFS": -26.2,
+        "loudnessRangeLU": 3.9,
+        "truePeakDbTP": -8
+      },
+      "initialLoudness": {
+        "integratedLUFS": -27,
+        "loudnessRangeLU": 3.9,
+        "truePeakDbTP": -8.8
+      },
+      "adjustmentDb": 0.8000000000000007,
+      "seam": [
+        {
+          "first": -0.04099767282605171,
+          "last": -0.04030051454901695,
+          "boundaryJumpDbFS": -63.133372241791065,
+          "ordinarySlopeRms": 0.008921797513481097,
+          "boundaryToSlopeRms": 0.07814101093208325,
+          "maxInteriorSlope": 0.21642525494098663,
+          "pass": true
+        },
+        {
+          "first": -0.04554931819438934,
+          "last": -0.04499977454543114,
+          "boundaryJumpDbFS": -65.19995613764567,
+          "ordinarySlopeRms": 0.008696929388979176,
+          "boundaryToSlopeRms": 0.06318823855861043,
+          "maxInteriorSlope": 0.18212535977363586,
+          "pass": true
+        }
+      ],
+      "decoded": [
+        {
+          "path": "music/construction-loop.wav",
+          "frames": 4800000,
+          "durationSeconds": 100,
+          "stats": {
+            "peakDbFS": -8.200000573976867,
+            "rmsDbFS": -30.74057573263239,
+            "dcMean": 3.427267074584961e-12,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": -0.04099762439727783,
+              "last": -0.04030048847198486,
+              "boundaryJumpDbFS": -63.13365072643527,
+              "ordinarySlopeRms": 0.008921796365188342,
+              "boundaryToSlopeRms": 0.07813851569321846,
+              "maxInteriorSlope": 0.21642529964447021,
+              "pass": true
+            },
+            {
+              "first": -0.04554927349090576,
+              "last": -0.04499971866607666,
+              "boundaryJumpDbFS": -65.19977949763839,
+              "ordinarySlopeRms": 0.008696928257495115,
+              "boundaryToSlopeRms": 0.06318953181607412,
+              "maxInteriorSlope": 0.18212532997131348,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        },
+        {
+          "path": "music/construction-loop.ogg",
+          "frames": 4800000,
+          "durationSeconds": 100,
+          "stats": {
+            "peakDbFS": -8.247295986342575,
+            "rmsDbFS": -30.85000515138235,
+            "dcMean": -0.0000017654497569504257,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": -0.03894476592540741,
+              "last": -0.03930602967739105,
+              "boundaryJumpDbFS": -68.84351223851077,
+              "ordinarySlopeRms": 0.008503774281062486,
+              "boundaryToSlopeRms": 0.04248275413285137,
+              "maxInteriorSlope": 0.2110631838440895,
+              "pass": true
+            },
+            {
+              "first": -0.043713562190532684,
+              "last": -0.044234614819288254,
+              "boundaryJumpDbFS": -65.66236817417098,
+              "ordinarySlopeRms": 0.008319498466906891,
+              "boundaryToSlopeRms": 0.06263029325964786,
+              "maxInteriorSlope": 0.16814624518156052,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        },
+        {
+          "path": "music/construction-loop.mp3",
+          "frames": 4800000,
+          "durationSeconds": 100,
+          "stats": {
+            "peakDbFS": -8.250617561045248,
+            "rmsDbFS": -31.00696591578568,
+            "dcMean": 4.673586441863192e-7,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": -0.03741304203867912,
+              "last": -0.034210365265607834,
+              "boundaryJumpDbFS": -49.88973779715715,
+              "ordinarySlopeRms": 0.008433676765742481,
+              "boundaryToSlopeRms": 0.3797485796563289,
+              "maxInteriorSlope": 0.20756421238183975,
+              "pass": true
+            },
+            {
+              "first": -0.03685509040951729,
+              "last": -0.03945937752723694,
+              "boundaryJumpDbFS": -51.686222746413094,
+              "ordinarySlopeRms": 0.008293313662496169,
+              "boundaryToSlopeRms": 0.3140225033929076,
+              "maxInteriorSlope": 0.17654534382745624,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        }
+      ],
+      "perSecondRmsDbFS": [
+        -27.07192499488849,
+        -30.725163609590908,
+        -27.52959486273392,
+        -32.303085708290375,
+        -35.803106641683996,
+        -26.843356071814846,
+        -33.69389587156263,
+        -27.203102869163676,
+        -32.578586744381184,
+        -40.33747572458681,
+        -26.689816871892038,
+        -32.84931262580157,
+        -27.2608582204102,
+        -32.44751951857979,
+        -37.128255105279926,
+        -26.76271683370056,
+        -33.96723524875738,
+        -28.8180706407328,
+        -39.376985123357926,
+        -60.49586233805652,
+        -29.237166692741038,
+        -35.713223688587334,
+        -29.242587505021124,
+        -34.040748360512,
+        -38.353617013095956,
+        -28.32272456975,
+        -36.03255995465757,
+        -29.496361450830925,
+        -35.18878754995267,
+        -41.7169784212901,
+        -26.815809475429887,
+        -35.76297037865997,
+        -29.889449894269863,
+        -34.52762027338466,
+        -39.24817513158998,
+        -27.854334452126352,
+        -35.494178658782296,
+        -30.679358592582112,
+        -41.122703613713945,
+        -62.08140028898605,
+        -26.22031666299595,
+        -33.20696558504689,
+        -27.465854716406916,
+        -32.085439112182016,
+        -34.95817532302996,
+        -26.21809819346766,
+        -33.9858452354365,
+        -28.522597849231875,
+        -33.908783400382724,
+        -40.379329142798504,
+        -26.09789904079136,
+        -34.70206298086192,
+        -27.49112301239463,
+        -31.812558435913672,
+        -37.395629646768846,
+        -26.905024455840937,
+        -33.06988068367056,
+        -28.007577855965632,
+        -38.06729633020986,
+        -58.30495360797212,
+        -28.798932192217496,
+        -35.72096886701377,
+        -29.139281666562034,
+        -34.53934839362425,
+        -37.564948515767796,
+        -28.218194511159687,
+        -35.33334030801682,
+        -28.89014986928277,
+        -34.763732854598786,
+        -41.682188461138935,
+        -28.087644515203152,
+        -35.58038865390317,
+        -29.717179562533364,
+        -34.60635010334364,
+        -39.18815107411015,
+        -28.62328303190487,
+        -34.77311681649123,
+        -30.9988231011166,
+        -42.30241350459551,
+        -63.36888227027248,
+        -26.095135376516986,
+        -33.708568407105616,
+        -27.62501157381085,
+        -32.87679219605855,
+        -36.167168154755025,
+        -27.104244165435905,
+        -33.13060044190708,
+        -28.012995212631523,
+        -32.93518784490031,
+        -39.67068309895849,
+        -28.221497573009685,
+        -33.38107397483008,
+        -28.07054768578192,
+        -32.821509979839576,
+        -36.5934021628165,
+        -26.63388082345677,
+        -33.009623351355415,
+        -28.348264119981273,
+        -39.086515753120196,
+        -35.88596062886184
+      ],
+      "files": [
+        {
+          "path": "music/construction-loop.wav",
+          "bytes": 28800044,
+          "sha256": "386379797f0f7a9f698df9381e2ca2a44dbdb90a0af6d254c02bc38c3f8308dd"
+        },
+        {
+          "path": "music/construction-loop.ogg",
+          "bytes": 1153729,
+          "sha256": "def38ba193f3c1b7d14afc5845f39aa2ba4df0c16ba896aaf87a9fbce7106fcf"
+        },
+        {
+          "path": "music/construction-loop.mp3",
+          "bytes": 2401364,
+          "sha256": "306aaf48d270f9b9ccf9d54678cbb3fabd226e02f867c0ed4f92d690771069db"
+        }
+      ],
+      "historicalAuthenticity": false,
+      "humanListening": false,
+      "runtimeIntegrated": false,
+      "pass": true
+    },
+    {
+      "id": "solemn",
+      "title": "Space for Listening / 靜候聆聽",
+      "character": "Slow sustained harmonic ensemble, low plucked foundations and rare breath/wood responses; no drums, words, chant or historical ritual claim",
+      "instruments": [
+        "soft sustained harmonic ensemble",
+        "low open plucked string",
+        "rare low breath melody",
+        "quiet warm modal chime"
+      ],
+      "tempoBpm": 60,
+      "meter": "4/4",
+      "bars": 24,
+      "seed": 1612162112,
+      "sampleRate": 48000,
+      "channels": 2,
+      "frames": 4608000,
+      "durationSeconds": 96,
+      "loopStartFrame": 0,
+      "loopEndFrame": 4608000,
+      "loopStart": 0,
+      "loopEnd": 96,
+      "recommendedCombinedMusicGain": [
+        0.45,
+        0.65
+      ],
+      "eventCount": 77,
+      "melodyRestBars": 18,
+      "loopStrategy": "periodic note tails, circular reflections and pre-rolled DC filter; final pickup crosses the PCM boundary; no master fade",
+      "stats": {
+        "peakDbFS": -15.500000041234303,
+        "rmsDbFS": -28.38427462615511,
+        "dcMean": 6.632024438690511e-13,
+        "clippedSamples": 0
+      },
+      "loudness": {
+        "integratedLUFS": -26,
+        "loudnessRangeLU": 4.1,
+        "truePeakDbTP": -15.5
+      },
+      "initialLoudness": {
+        "integratedLUFS": -19.5,
+        "loudnessRangeLU": 4.1,
+        "truePeakDbTP": -9
+      },
+      "adjustmentDb": -6.5,
+      "seam": [
+        {
+          "first": 0.00724703399464488,
+          "last": 0.00758857186883688,
+          "boundaryJumpDbFS": -69.33122258105203,
+          "ordinarySlopeRms": 0.0019602350394895963,
+          "boundaryToSlopeRms": 0.17423312373853325,
+          "maxInteriorSlope": 0.05974341952241957,
+          "pass": true
+        },
+        {
+          "first": 0.010979381389915943,
+          "last": 0.011668819934129715,
+          "boundaryJumpDbFS": -63.23008880581365,
+          "ordinarySlopeRms": 0.002252464777644479,
+          "boundaryToSlopeRms": 0.3060818313593139,
+          "maxInteriorSlope": 0.04942172807932366,
+          "pass": true
+        }
+      ],
+      "decoded": [
+        {
+          "path": "music/solemn-loop.wav",
+          "frames": 4608000,
+          "durationSeconds": 96,
+          "stats": {
+            "peakDbFS": -15.499999270269765,
+            "rmsDbFS": -28.38427575663193,
+            "dcMean": 8.498318493366241e-12,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": 0.0072470903396606445,
+              "last": 0.007588624954223633,
+              "boundaryJumpDbFS": -69.33130547936317,
+              "ordinarySlopeRms": 0.0019602347980537727,
+              "boundaryToSlopeRms": 0.17423148232144556,
+              "maxInteriorSlope": 0.059743404388427734,
+              "pass": true
+            },
+            {
+              "first": 0.010979413986206055,
+              "last": 0.011668801307678223,
+              "boundaryJumpDbFS": -63.23073415935946,
+              "ordinarySlopeRms": 0.002252464484269185,
+              "boundaryToSlopeRms": 0.30605913047096966,
+              "maxInteriorSlope": 0.04942178726196289,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        },
+        {
+          "path": "music/solemn-loop.ogg",
+          "frames": 4608000,
+          "durationSeconds": 96,
+          "stats": {
+            "peakDbFS": -15.496690920753082,
+            "rmsDbFS": -28.345485378696967,
+            "dcMean": -4.249005070282269e-8,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": 0.007335778325796127,
+              "last": 0.007510012947022915,
+              "boundaryJumpDbFS": -75.17731088854079,
+              "ordinarySlopeRms": 0.0019345799207688623,
+              "boundaryToSlopeRms": 0.0900632842077371,
+              "maxInteriorSlope": 0.06130401790142059,
+              "pass": true
+            },
+            {
+              "first": 0.01089994516223669,
+              "last": 0.01159198209643364,
+              "boundaryJumpDbFS": -63.19741453023239,
+              "ordinarySlopeRms": 0.0022419206319519783,
+              "boundaryToSlopeRms": 0.30868038963288885,
+              "maxInteriorSlope": 0.05167649150826037,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        },
+        {
+          "path": "music/solemn-loop.mp3",
+          "frames": 4608000,
+          "durationSeconds": 96,
+          "stats": {
+            "peakDbFS": -15.748397397494514,
+            "rmsDbFS": -28.64892999214829,
+            "dcMean": -3.1646103775107476e-8,
+            "clippedSamples": 0
+          },
+          "seam": [
+            {
+              "first": 0.0066077252849936485,
+              "last": 0.00659068813547492,
+              "boundaryJumpDbFS": -95.37206130387666,
+              "ordinarySlopeRms": 0.0018904900576264705,
+              "boundaryToSlopeRms": 0.009012028098216274,
+              "maxInteriorSlope": 0.05406632088124752,
+              "pass": true
+            },
+            {
+              "first": 0.00936134159564972,
+              "last": 0.010116692632436752,
+              "boundaryJumpDbFS": -62.437023406913134,
+              "ordinarySlopeRms": 0.002184406470243236,
+              "boundaryToSlopeRms": 0.3457923454616594,
+              "maxInteriorSlope": 0.045973651111125946,
+              "pass": true
+            }
+          ],
+          "exactFrameLength": true
+        }
+      ],
+      "perSecondRmsDbFS": [
+        -29.842832336130698,
+        -28.27306625062285,
+        -27.76718981342907,
+        -28.322755223834587,
+        -28.422337063985278,
+        -25.179275286435,
+        -24.615051400977443,
+        -30.689282779442753,
+        -30.3410821603729,
+        -28.993944217993285,
+        -28.34578917318748,
+        -27.712676214351674,
+        -28.39903599430339,
+        -28.3495777571823,
+        -28.045860230659578,
+        -32.8973275610569,
+        -31.094733513915656,
+        -29.4561811318898,
+        -28.380944086789786,
+        -28.169822286493506,
+        -27.1996964648946,
+        -26.51035071191213,
+        -27.12334639732818,
+        -29.93071613090297,
+        -30.549237475582018,
+        -29.394526583447327,
+        -28.271125495659536,
+        -27.78698143410785,
+        -28.402281107208303,
+        -28.058511592759338,
+        -28.69994306782455,
+        -33.285160878304,
+        -30.640383973842628,
+        -29.14149862141958,
+        -27.97696370608028,
+        -27.67800678181,
+        -28.46890915130693,
+        -25.050722460904694,
+        -23.92185960138388,
+        -30.00430745646171,
+        -31.1532588572528,
+        -29.042967304427144,
+        -27.709582955755046,
+        -28.280810621210343,
+        -28.54674244172014,
+        -28.018311028586105,
+        -28.262822275364282,
+        -33.54940098337072,
+        -31.32165603020426,
+        -28.839773445123498,
+        -27.795498403258367,
+        -28.297060862123324,
+        -29.104725094327893,
+        -28.26804443881498,
+        -28.093743950911726,
+        -30.427463877251046,
+        -29.71283259960822,
+        -28.66292916406941,
+        -28.619873218121867,
+        -27.731737938501198,
+        -28.418523419161072,
+        -28.358837673211884,
+        -27.971394623604443,
+        -32.87364161247418,
+        -30.800432781601657,
+        -28.844428454557665,
+        -28.126197572348296,
+        -27.89505318496022,
+        -28.03165906035192,
+        -25.27839037066494,
+        -24.058875702632694,
+        -30.025238108575646,
+        -30.285610584392085,
+        -29.471929715652156,
+        -28.282489825457652,
+        -27.70207979192186,
+        -28.48786066202419,
+        -28.011677155689956,
+        -28.584677469541226,
+        -33.263422413852396,
+        -29.95411326160443,
+        -28.767891087944996,
+        -28.11020508353456,
+        -27.597213611615437,
+        -28.471274566443043,
+        -28.268323395776534,
+        -27.63419369662565,
+        -29.905206152680293,
+        -31.53066685239485,
+        -28.998102301161826,
+        -27.39999381852754,
+        -28.17161381113867,
+        -28.599332649622127,
+        -28.011981486347565,
+        -28.174840151338643,
+        -32.11577654340211
+      ],
+      "files": [
+        {
+          "path": "music/solemn-loop.wav",
+          "bytes": 27648044,
+          "sha256": "f4b583d1d8f34ca97a8a84436658da4a302f9c41fcb8b106c7424f7a55a4be52"
+        },
+        {
+          "path": "music/solemn-loop.ogg",
+          "bytes": 815966,
+          "sha256": "caf9bf7b7ceb2557a9e38936cbb460de6fffe764fd196754850744399715115e"
+        },
+        {
+          "path": "music/solemn-loop.mp3",
+          "bytes": 2305172,
+          "sha256": "b09b23b4e02e1f72a103e3a65b7ca1d155755b84ae210f4104fee19104ed647f"
+        }
+      ],
+      "historicalAuthenticity": false,
+      "humanListening": false,
+      "runtimeIntegrated": false,
+      "pass": true
+    }
+  ],
+  "preservation": {
+    "oldAudioFiles": 123,
+    "unchanged": 123,
+    "changed": []
+  },
+  "pass": true
+}

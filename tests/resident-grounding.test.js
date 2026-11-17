@@ -1,9 +1,11 @@
+import {characterClips} from './helpers/character-clips.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {createResidentInstance,residentModelFor,mountBlenderResidents} from '../src/blender-assets.js';
+import {residentFootContact} from '../src/resident-locomotion.js';
 import {blenderModels} from '../src/blender-manifest.js';
 import {createHistoricalScene} from '../src/historical-scenes.js';
 
@@ -22,12 +24,12 @@ function soleVertices(root,side){
 }
 function positions(root,points){root.updateMatrixWorld(true);root.traverse(m=>{if(m.isSkinnedMesh)m.skeleton.update();});return points.map(([m,i])=>m.localToWorld(m.getVertexPosition(i,new THREE.Vector3())));}
 
-test('actual resident and artisan exports contain a one-second planted gait and visibly different garment ensembles',async()=>{
+test('actual resident and artisan exports contain the declared planted gait and visibly different garment ensembles',async()=>{
   for(const id of ['resident','resident-worker']){
-    const gltf=id==='resident'?base:await asset(id),walk=gltf.animations.find(a=>a.name==='Walk');assert.ok(Math.abs(walk.duration-1)<1e-5);
+    const gltf=id==='resident'?base:await asset(id),walk=gltf.animations.find(a=>a.name==='Walk');assert.ok(Math.abs(walk.duration-(blenderModels[id].walkDuration||1))<1e-5);
     assert.ok(walk.tracks.every(t=>Math.abs(t.times[0])<1e-6),'no frozen leading frame');
     const materials=[];gltf.scene.traverse(o=>{if(o.isMesh)materials.push(o.material.name);});assert.equal(materials.includes('mantle'),id==='resident');
-    assert.ok(gltf.animations.length===5);
+    assert.deepEqual(gltf.animations.map(c=>c.name).sort(),characterClips(id));
     for(const [name,bone] of [['Idle','spine'],['LookAround','head'],['Talk','forearmL'],['Interact','forearmR']]){
       const mixer=new THREE.AnimationMixer(gltf.scene),clip=gltf.animations.find(c=>c.name===name);mixer.clipAction(clip).play();mixer.setTime(0);
       const first=gltf.scene.getObjectByName(bone).quaternion.clone();mixer.setTime(.37);
@@ -59,8 +61,8 @@ test('actual soles follow ascending and descending stair collision ramps without
   for(let i=0;i<60;i++){
     const t=i/60,z=.8*scale*t;a.state.position=[0,groundAt(0,z),z];a.state.time=t;instance.update(i?1/60:0);
     for(let side=0;side<2;side++){
-      const phase=(t+side*.5)%1,all=positions(root,points[side]);
-      for(const p of all){const gap=(p.y-groundAt(p.x,p.z))/Math.sqrt(1.09);assert.ok(gap>-.004,'sole stays above the physical ramp');if(phase<.58)assert.ok(gap<.005,'support sole adheres to ramp');}
+      const phase=root.userData.gaitPhase??t,contact=residentFootContact('Walk',phase*1.2,side?'R':'L',phase),all=positions(root,points[side]);
+      const gaps=all.map(p=>(p.y-groundAt(p.x,p.z))/Math.sqrt(1.09));assert.ok(gaps.every(gap=>gap>-.004),'sole stays above the physical ramp');if(contact!=='swing')assert.ok(Math.abs(Math.min(...gaps))<.005,'the actual heel, flat or toe support touches the ramp');
     }
   }
   instance.dispose();

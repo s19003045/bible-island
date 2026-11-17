@@ -4,7 +4,7 @@ blender --background --factory-startup --python scripts/blender/build-assets.py
 Editable scenes, GLB exports and a machine-readable build report are generated together.
 Front is Blender -Y, exported glTF +Z. Anatomy/cloth/handles are authored surfaces.
 """
-import bpy, bmesh, math, json, pathlib, hashlib, sys
+import bpy, bmesh, math, json, pathlib, hashlib, sys, struct
 from mathutils import Vector
 from math import sin, cos, pi, exp
 
@@ -270,7 +270,7 @@ def export_asset(scene, asset_id, filename, animations=False):
         for armature in armatures:
             for tr in armature.animation_data.nla_tracks:tr.mute=True
     triangles=sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in objs if o.type=='MESH')
-    report['assets'][asset_id]={'file':'models/'+filename,'bytes':(OUT/filename).stat().st_size,'sha256':hashlib.sha256((OUT/filename).read_bytes()).hexdigest(),'triangles':triangles,'animations':list(durations) if animations else []}
+    report['assets'].setdefault(asset_id,{}).update({'file':'models/'+filename,'bytes':(OUT/filename).stat().st_size,'sha256':hashlib.sha256((OUT/filename).read_bytes()).hexdigest(),'triangles':triangles,'animations':[tr.name for armature in armatures for tr in armature.animation_data.nla_tracks] if animations else []})
 
 export_asset(scene,'resident','judean-resident.glb',True)
 
@@ -399,6 +399,22 @@ try:
     exec(compile((ROOT/'scripts/blender/letters-props.py').read_text(),str(ROOT/'scripts/blender/letters-props.py'),'exec'),globals())
 finally:
     globals().pop('LETTERS_OFFICIAL_BUILD',None)
+
+# Reproduce the accepted motion rollout without changing any prop/animal mesh.
+# Shared helper samples old gestures in seconds before converting their rig mode.
+motion_integration_path=ROOT/'scripts/blender/apply-resident-motion.py'
+motion_integration={'__file__':str(motion_integration_path),'__name__':'motion_integration'}
+exec(compile(motion_integration_path.read_text(),str(motion_integration_path),'exec'),motion_integration)
+motion_rollout=json.loads((SOURCE/'motion-rollout.json').read_text())
+for motion_id in motion_rollout['characterIds']:
+    motion_file=report['assets'][motion_id]['file'];motion_binary=(ROOT/'public'/motion_file).read_bytes()
+    motion_document=json.loads(motion_binary[20:20+struct.unpack_from('<I',motion_binary,12)[0]])
+    motion_roots=[motion_document['nodes'][i]['name'] for i in motion_document['scenes'][0]['nodes']]
+    motion_rig=next(o for o in bpy.data.objects if o.type=='ARMATURE' and o.name in motion_roots)
+    motion_scene=next(s for s in bpy.data.scenes if motion_rig.name in s.objects);bpy.context.window.scene=motion_scene
+    motion_meta=motion_integration['upgrade_character'](motion_scene,motion_rig,motion_id)
+    export_asset(motion_scene,motion_id,pathlib.Path(motion_file).name,True)
+    report['assets'][motion_id].update({'motion_version':2,'motion_sample_fps':motion_meta['sampling_fps'],'pelvis_height_bias_m':motion_meta['pelvis_height_bias_m'],'cycle_distance_m':motion_meta['cycle_distance_m'],'cycle_seconds':1.2})
 
 bpy.context.window.scene=scene
 scene.frame_set(1)
