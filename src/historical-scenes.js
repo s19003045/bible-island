@@ -136,7 +136,7 @@ function builder(parent, p, seed = 31, collectCollision = false,island=null) {
   }
   function person(x,y,z,style = 0,yaw = 0,height = HUMAN_HEIGHT,options = {}) {
     const appearance=residentAppearance(island,options,actors.length,height);height=appearance.height;
-    actor = {id:options.id, role:options.role,modelId:appearance.modelId,motion:options.motion || "idle", state:createMotion([x,y,z],yaw,options.route,actors.length,options.routeMode), parts:[], scale:height/HUMAN_HEIGHT};
+    actor = {id:options.id, role:options.role,modelId:appearance.modelId,motionProfile:appearance.motionProfile,motion:options.motion || "idle", state:createMotion([x,y,z],yaw,options.route,actors.length,options.routeMode), parts:[], scale:height/HUMAN_HEIGHT};
     actor.collisionRadius=residentClearance(actor);
     actors.push(actor);
     const s = height / HUMAN_HEIGHT;
@@ -774,7 +774,7 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
     // Small collision/behaviour steps do not rebake skeletons and GPU instance
     // matrices. The world commits those visual poses once after the frame's steps.
     simulate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {parablesScene?.flock?.update(dt);galileeScene?.animate(dt);nativityScene?.flock?.update(dt);exileScene?.animate(dt);davidScene?.flock?.update(dt);if(sinaiScene)sinaiScene.animate(dt,cameraPosition);if(abrahamScene)animateAbrahamAnimals(abrahamScene.animals,dt);npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});k.simulate(dt,cameraPosition);},
-    pose(dt,cameraPosition) {detailedResidents?.update(cameraPosition,dt);k.animate(0,cameraPosition,{advance:false});},
+    pose(dt,cameraPosition,viewDirection=null) {detailedResidents?.update(cameraPosition,dt,{viewDirection});k.animate(0,cameraPosition,{advance:false});},
     animate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {this.simulate(dt,cameraPosition,playerPosition,isVisible);this.pose(dt,cameraPosition);},
     updateRaycastBounds(){scene.traverse(o=>{if(o.isInstancedMesh&&o.userData.people)o.computeBoundingSphere();});},
     converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },

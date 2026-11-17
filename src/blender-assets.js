@@ -6,6 +6,8 @@ import {createResidentGrounding} from './resident-grounding.js';
 import {createResidentLocomotion} from './resident-locomotion.js';
 import {createPlantedFootGrounding} from './resident-foot-plant.js';
 import {prepareResidentGeometry,disposeResidentGeometry} from './resident-geometry.js';
+import {createHumanLocomotion} from './human-locomotion.js';
+import {createHumanPerformance} from './human-performance.js';
 
 const cache=new Map();
 const loader=new GLTFLoader();
@@ -43,11 +45,13 @@ export const residentModelFor=actor=>actor.visualAppearance?.modelId??actor.mode
 function residentVisualAppearance(actor,index) {
   return actor.visualAppearance??=Object.freeze({modelId:residentModelFor(actor),tone:[.91,1,.96,1.06][index%4],tunicHue:(index%3-1)*.025,tunicLightness:(index%4-1.5)*.018});
 }
-export function selectDetailedResidents(actors,camera,previous=new Set(),limit=8) {
+export function selectDetailedResidents(actors,camera,previous=new Set(),limit=8,{viewDirection=null}={}) {
   if(!camera)return [];
   return actors.filter(a=>residentEligible(a)&&a.state.visible!==false).map((a,index)=>{
     const p=a.state.position,d=Math.hypot(p[0]-camera[0],p[1]+.9-camera[1],p[2]-camera[2]);
-    return {a,index,d,rank:d-(previous.has(a)?3:0)-(a.state.talking?20:0)};
+    const facing=!viewDirection||((p[0]-camera[0])*viewDirection[0]+(p[1]+.9-camera[1])*viewDirection[1]+(p[2]-camera[2])*viewDirection[2])/Math.max(.01,d)>.35;
+    const pilot=(blenderModels[residentModelFor(a)]?.motionVersion??0)>=3;
+    return {a,index,d,rank:d-(previous.has(a)?3:0)-(a.state.talking?20:0)-(pilot&&d<12&&facing?9:0)+(viewDirection&&!facing?5:0)};
   }).filter(a=>a.d<(previous.has(a)?25:22)).sort((a,b)=>a.rank-b.rank||a.index-b.index).slice(0,limit).map(e=>e.a);
 }
 
@@ -61,9 +65,10 @@ export function residentAction(state) {
 export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.state.position[1],motionVersion=null,metrics={},distantGeometry=new Map()}={}) {
   const appearance=residentVisualAppearance(actor,index);
   const definition={...blenderModels[residentModelFor(actor)],...metrics};
-  const natural=(motionVersion??definition.motionVersion)===2&&gltf.animations.some(c=>c.name==='StartWalk');
+  const version=motionVersion??definition.motionVersion,natural=version>=2&&gltf.animations.some(c=>c.name==='StartWalk'),human=natural&&version>=3;
+  if(human)actor.motionProfile??=definition.motionProfile;
   const root=clone(gltf.scene),materials=new Set(),mixer=new THREE.AnimationMixer(root);
-  root.userData.motionVersion=natural?2:1;
+  root.userData.motionVersion=human?3:natural?2:1;
   root.userData.appearance=appearance;
   const actions=new Map(gltf.animations.map(clip=>{const a=mixer.clipAction(clip);a.play();a.paused=true;a.setEffectiveWeight(0);return [clip.name,a];}));
   const weights=new Map([...actions.keys()].map(n=>[n,n==='Idle'?1:0]));
@@ -85,14 +90,15 @@ export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.st
     }
   });
   root.scale.setScalar((actor.scale??1)*1.70/definition.height);
-  const groundFeet=natural?createPlantedFootGrounding(root,groundAt):null;
+  const locomotion=human?createHumanLocomotion(actor,definition,{scale:root.scale.x}):natural?createResidentLocomotion(actor,{cycleDistance:definition.cycleDistance??.9,cycleSeconds:1.2,scale:root.scale.x}):null;
+  const groundFeet=natural?createPlantedFootGrounding(root,groundAt,human?{articulated:true,contactFor:locomotion.contact}:{}):null;
   const groundDistantFeet=createResidentGrounding(root,groundAt,{ankleHeight:definition.ankleHeight??.105,liftHeight:definition.liftHeight??.075}),lastPosition=[...actor.state.position];
-  const locomotion=natural?createResidentLocomotion(actor,{cycleDistance:definition.cycleDistance??.9,cycleSeconds:1.2,scale:root.scale.x}):null;
+  const performance=human?createHumanPerformance(root,actor,definition):null,clocks=new Map();
   if(natural)for(const name of ['StartWalk','StopWalk','TurnLeft','TurnRight']){const a=actions.get(name);if(a){a.setLoop(THREE.LoopOnce,1);a.clampWhenFinished=true;}}
   const bones=[];root.traverse(o=>{if(o.isBone)bones.push({bone:o,position:o.position.clone(),quaternion:o.quaternion.clone(),scale:o.scale.clone()});});
   let first=true,gaitTime=actor.state.time%1,poseElapsed=(index*.037)%(.1),previousDetail=null,previousTarget=null;
   return {root,actions,mixer,
-    update(dt=0,{detailed=true,poseInterval=0,culled=false}={}){
+    update(dt=0,{detailed=true,poseInterval=0,culled=false,camera=null}={}){
       const state=actor.state,motion=locomotion?.update(dt),target=motion?.clip||residentAction(state);
       root.position.fromArray(state.position);root.rotation.y=state.yaw;root.visible=!culled&&state.visible!==false;
       if(detailed!==previousDetail)for(const surface of surfaces)surface.mesh.geometry=detailed?surface.near:surface.distant;
@@ -107,17 +113,20 @@ export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.st
       poseElapsed=detailed||!poseInterval?0:first?-((index*.037)%.05):Math.max(0,poseElapsed%poseInterval);previousDetail=detailed;previousTarget=target;
       for(const [name,action] of actions){
         const weight=weights.get(name)+((name===target?1:0)-weights.get(name))*blend;weights.set(name,weight);
-        const duration=action.getClip().duration,clock=motion&&name===motion.clip?motion.time:name==='Walk'?gaitTime*duration:state.time;
+        const duration=action.getClip().duration;
+        const clock=motion&&name===motion.clip?motion.time:name==='Walk'?(human?motion.phase:gaitTime)*duration:human&&['StartWalk','StopWalk','TurnLeft','TurnRight'].includes(name)?clocks.get(name)??0:state.time;
+        clocks.set(name,clock);
         action.setEffectiveWeight(weight);action.time=natural&&['StartWalk','StopWalk','TurnLeft','TurnRight'].includes(name)?Math.min(duration-.000001,Math.max(0,clock)):(clock%duration+duration)%duration;
       }
       // Restore the pre-IK pose: AnimationMixer may skip unchanged properties.
       for(const p of bones){p.bone.position.copy(p.position);p.bone.quaternion.copy(p.quaternion);p.bone.scale.copy(p.scale);}
       mixer.update(0);
       for(const p of bones){p.position.copy(p.bone.position);p.quaternion.copy(p.bone.quaternion);p.scale.copy(p.bone.scale);}
+      performance?.apply(poseDt,motion,{camera});
       if(natural){root.userData.locomotion=target;root.userData.gaitPhase=motion.phase;}
-      if(natural&&detailed)groundFeet({position:state.position,clip:target,time:motion.time,phase:motion.phase,dt:poseDt,reset:first||root.userData.detailLevel!=='near'});
+      if(natural&&detailed)groundFeet({position:state.position,clip:target,time:motion.time,phase:motion.phase,strideScale:motion.strideScale??1,dt:poseDt,reset:first||root.userData.detailLevel!=='near'});
       else groundDistantFeet({position:state.position,phase:motion?.phase??gaitTime%1,walkWeight:weights.get('Walk')||0});
-      root.userData.detailLevel=detailed?'near':'distant';first=false;
+      performance?.remember();root.userData.detailLevel=detailed?'near':'distant';first=false;
     },
     dispose(){mixer.stopAllAction();mixer.uncacheRoot(root);root.removeFromParent();const skeletons=new Set();root.traverse(o=>{if(o.isSkinnedMesh)skeletons.add(o.skeleton);});for(const s of skeletons)s.dispose();for(const m of materials)m.dispose();},
   };
@@ -140,9 +149,9 @@ export function mountBlenderResidents(scene,actors,onReady=()=>{},{assetLoader=l
     catch(error){if(!disposed){for(const actor of residents)if(residentModelFor(actor)===id)actor.blenderVisual=false;onReady();}console.warn('Resident detail unavailable: '+id,error.message);return false;}
   })).then(results=>results.every(Boolean));
   return {ready,visible,instances,
-    update(camera,dt){
+    update(camera,dt,{viewDirection=null}={}){
       if(!templates.size||disposed)return;
-      const selected=new Set(selectDetailedResidents(actors,camera,new Set(visible.keys())).filter(actor=>templates.has(residentModelFor(actor))));
+      const selected=new Set(selectDetailedResidents(actors,camera,new Set(visible.keys()),8,{viewDirection}).filter(actor=>templates.has(residentModelFor(actor))));
       visible.clear();
       for(const actor of residents){
         const id=residentModelFor(actor);if(!templates.has(id))continue;
@@ -153,7 +162,7 @@ export function mountBlenderResidents(scene,actors,onReady=()=>{},{assetLoader=l
         if(!instances.has(actor)){const instance=createResidentInstance(templates.get(id),actor,actors.indexOf(actor),{groundAt,distantGeometry:geometry.get(id)});instance.root.userData.modelId=id;instances.set(actor,instance);scene.add(instance.root);}
         const instance=instances.get(actor),detailed=selected.has(actor);
         if(detailed)visible.set(actor,instance);
-        instance.update(dt,{detailed,poseInterval:detailed?0:d<25?.05:.1});
+        instance.update(dt,{detailed,poseInterval:detailed?0:d<25?.05:.1,camera});
       }
     },
     dispose(){disposed=true;for(const actor of residents)actor.blenderVisual=false;for(const instance of instances.values())instance.dispose();instances.clear();visible.clear();},

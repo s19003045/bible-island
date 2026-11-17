@@ -1,0 +1,35 @@
+{
+  "glb": {
+    "scope": "one equal-length JSON node extra; no GLB export",
+    "file": "public/models/jerusalem-pilot/elder.glb",
+    "bytes": 1770812,
+    "before_sha256": "015aaa669dc2d51f3df1af535e4d0b2535d0125b1771fbbacf60a2f7e4be058b",
+    "after_sha256": "e648fd5257e31be46080db0deeebf4dbf0dd539325281eb07bbe2af7dfc14a81",
+    "changed_byte_offsets": [
+      9685
+    ],
+    "changed_value": [
+      "CMU07_01",
+      "CMU07_04"
+    ],
+    "BIN_and_all_following_chunks_identical": true,
+    "animations_JSON_identical": true,
+    "BIN_chunk_sha256": "f4898898b0d4f71cac5bc2e785b65b1adc4d2e3dea1eabbb68e6f4412465a848"
+  },
+  "editable_source": {
+    "scope": "metadata only; no baking/export",
+    "before_file_sha256": "e35500d333089a4b72542d602c588e82ef78f024a19126ffeb6276c43f10676d",
+    "after_file_sha256": "2d63bd83c769522cbc17125dbbf756ef9e207de1848923153a195a63a631e623",
+    "semantic_mesh_bone_action_hash_before": "8433a304c87e0e4185ea218b3ca8e660b6866f8e9078b8cd6e72f9e41edc2cf1",
+    "semantic_mesh_bone_action_hash_after": "8433a304c87e0e4185ea218b3ca8e660b6866f8e9078b8cd6e72f9e41edc2cf1",
+    "geometry_rig_keyframes_unchanged": true,
+    "changes": [
+      {
+        "rig": "jerusalem-elder-rig",
+        "old": "CMU07_01",
+        "new": "CMU07_04"
+      }
+    ],
+    "bytes": 11673258
+  }
+}

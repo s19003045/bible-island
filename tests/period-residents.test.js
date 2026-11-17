@@ -81,7 +81,7 @@ test('every new body keeps its actual support foot on ascending and descending g
 });
 
 test('all five actual scenes select period-specific nearby people without changing dialogue IDs or navigation control',async()=>{
- const expected={tabernacle:{weaver:'wilderness-resident',priest:'ordinary-priest','camp-parent':'wilderness-resident'},solomon:{'bronze-worker':'bronze-artisan',singer:'temple-singer','temple-visitor':'iron-resident'},herod:{pilgrim:'resident','stone-worker':'resident-worker',listener:'resident'},jerusalem:{householder:'resident','water-carrier':'resident-carrier','street-vendor':'resident-worker'}};
+ const expected={tabernacle:{weaver:'wilderness-resident',priest:'ordinary-priest','camp-parent':'wilderness-resident'},solomon:{'bronze-worker':'bronze-artisan',singer:'temple-singer','temple-visitor':'iron-resident'},herod:{pilgrim:'resident','stone-worker':'resident-worker',listener:'resident'},jerusalem:{householder:'jerusalem-resident','water-carrier':'jerusalem-carrier','street-vendor':'jerusalem-elder'}};
  for(const [id,people] of Object.entries(expected)){
   const s=createHistoricalScene(id,null,{blenderAssets:true,assetLoader:asset});assert.equal(await s.detailedResidents.ready,true);const seeds=s.npcSystem.agents.map(a=>a.seed);
   for(const [personId,modelId] of Object.entries(people)){

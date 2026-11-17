@@ -1,4 +1,6 @@
 import {angleDelta} from './people-motion.js';
+import {humanProfileFor} from './human-motion-data.js';
+import {humanPathTarget,humanSteering,turnHumanBody} from './human-navigation.js';
 
 const distance=(a,b)=>Math.hypot(a[0]-b[0],a[2]-b[2]);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -26,8 +28,9 @@ export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,
   const agents=actors.map((actor,index)=>{
     const key=actor.id||`resident-${index}`,individualSeed=npcSeed(`${seed}:${key}`),random=seededNPC(individualSeed);
     const speedFactor=.85+random()*.3;
-    const roleFactor=naturalMotion?(actor.id==='water-carrier'||actor.role==='carrier'?.9:(actor.scale||1)<.8?1.05:/elder/.test(actor.id||'')?.82:1):1;
-    const a={key,actor,seed:individualSeed,random,speedFactor,speed:.8*roleFactor*speedFactor,radius:actor.collisionRadius??.29*(actor.scale||1),
+    const humanProfile=naturalMotion?humanProfileFor(actor):null;
+    const roleFactor=humanProfile?1:naturalMotion?(actor.id==='water-carrier'||actor.role==='carrier'?.9:(actor.scale||1)<.8?1.05:/elder/.test(actor.id||'')?.82:1):1;
+    const a={key,actor,humanProfile,seed:individualSeed,random,speedFactor,speed:(humanProfile?.speed??.8)*roleFactor*speedFactor,radius:actor.collisionRadius??.29*(actor.scale||1),
       role:actor.role||(actor.id==='householder'?'householder':actor.id==='street-vendor'?'vendor':actor.id==='water-carrier'?'carrier':'resident'),
       state:'rest',action:'Idle',age:0,timer:.4+(index+random())/actors.length*4.5,socialCheck:.25+random()*1.7,
       cooldown:3+random()*12,velocity:[0,0],path:[],poi:null,slot:null,lastPOI:null,lastVisitedPOI:null,partner:null,chatLeft:0,
@@ -116,7 +119,8 @@ export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,
     if(a.retreatFrom&&distance(p,a.retreatFrom.position)>3)a.retreatFrom=null;
     while(a.path.length>1&&distance(p,a.path[1])<1.2&&traverse(p,a.path[1])&&clearRetreat(p,a.path[1],a.retreatFrom,a.radius))a.path.shift();
     if(!a.path.length){if(a.poi&&distance(p,a.slot.position)<.28)arrive(a);else {a.timer=ranged(a,.6,1.5);a.state='rest';}return [0,0];}
-    const target=a.path[0],tx=target[0]-p[0],tz=target[2]-p[2],length=Math.hypot(tx,tz),nx=tx/length,nz=tz/length;
+    const target=a.humanProfile?humanPathTarget(a,traverse):a.path[0],tx=target[0]-p[0],tz=target[2]-p[2],length=Math.max(.0001,Math.hypot(tx,tz)),nx=tx/length,nz=tz/length;
+    if(a.humanProfile)a.intentTarget=target;
     const remaining=distance(p,a.slot.position),speed=a.speed*clamp(remaining/.8,.25,1);
     // Individual lateral preference prevents a shared centreline without inventing random headings.
     let vx=nx*speed+nz*a.lane,vz=nz*speed-nx*a.lane;
@@ -133,6 +137,7 @@ export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,
       if(t>0&&predicted<safe+.25){const strength=(1-predicted/(safe+.25))*.85;vx+=nz*strength;vz-=nx*strength;}
     }
     const magnitude=Math.hypot(vx,vz),cap=a.speed;if(magnitude>cap){vx*=cap/magnitude;vz*=cap/magnitude;}
+    if(a.humanProfile)return humanSteering(a,vx,vz,dt);
     if(naturalMotion){
       a.desiredYaw=Math.atan2(vx,vz);
       // Brake before a sharp direction change, then turn with planted steps.
@@ -180,7 +185,8 @@ export function createNPCSystem({actors,pois,model,playerModel=model,seed=78431,
       if(!a.held&&!a.partner&&a.state==='travel') {
         const next=dynamicMove(p,[p[0]+vx*dt,p[1],p[2]+vz*dt],a.radius,a,player),d=distance(p,next);
         a.velocity=[(next[0]-p[0])/dt,(next[2]-p[2])/dt];m.position=next;m.walkDistance+=d;
-        if(naturalMotion&&Number.isFinite(a.desiredYaw))turn(m,a.desiredYaw,dt*.65);
+        if(a.humanProfile&&Number.isFinite(a.desiredYaw))turnHumanBody(a,dt);
+        else if(naturalMotion&&Number.isFinite(a.desiredYaw))turn(m,a.desiredYaw,dt*.65);
         else if(d>.00005)turn(m,Math.atan2(a.velocity[0],a.velocity[1]),dt);
         a.blockedFor=d<.002?a.blockedFor+dt:0;
         if(a.blockedFor>rangedThreshold(a)){

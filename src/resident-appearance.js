@@ -1,7 +1,9 @@
 // Authored clothing choices, independent of behaviour seeds, clocks and POIs.
+import {jerusalemPilotRoles} from './human-motion-data.js';
 // Every fourth unnamed adult adds visual variety, not a population/gender estimate.
 export function residentAppearance(island,options,index,height=1.7) {
   const child=height<1.4,woman=!options.id&&index%4===1;
+  if(island==='jerusalem'&&jerusalemPilotRoles[options.id])return {...jerusalemPilotRoles[options.id],height};
   if(['jerusalem','herod'].includes(island)) {
     const modelId=options.id==='water-carrier'?'resident-carrier':child?'resident-child':woman?'roman-woman':['stone-worker','street-vendor'].includes(options.id)?'resident-worker':'resident';
     return {modelId,height:!child&&woman?1.64:height};
@@ -34,4 +36,4 @@ export function residentAppearance(island,options,index,height=1.7) {
   }
   return {modelId:'resident',height};
 }
-export const residentClearance=actor=>((actor.modelId==='resident-carrier'||actor.id==='water-carrier')?.49:.33)*(actor.scale??1);
+export const residentClearance=actor=>((['resident-carrier','jerusalem-carrier'].includes(actor.modelId)||actor.id==='water-carrier')?.49:.33)*(actor.scale??1);

@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "acquiredDate": "2026-11-17",
+  "dataset": "CMU Graphics Lab Motion Capture Database",
+  "subject": 7,
+  "mirrorRepository": "https://github.com/una-dinosauria/cmu-mocap",
+  "mirrorCommit": "09a07f54f3bbb58797325f009282d0b2048a2871",
+  "conversionAuthor": "Bruce Hahne, cgspeed.com, MotionBuilder-friendly BVH conversion, 2010 release",
+  "primaryConversionSource": "https://sites.google.com/a/cgspeed.com/cgspeed/motion-capture/the-motionbuilder-friendly-bvh-conversion-release-of-cmus-motion-capture-database",
+  "primaryDatasetSource": "https://mocap.cs.cmu.edu/",
+  "primaryRightsSource": "https://mocap.cs.cmu.edu/faqs.php",
+  "rightsSummary": "CMU FAQ permits copying, modification, and redistribution without permission. Bruce Hahne READMEFIRST places no additional restrictions on BVH conversion. This is not a named SPDX license.",
+  "acknowledgment": "The data used in this project was obtained from mocap.cs.cmu.edu. The database was created with funding from NSF EIA-0196217.",
+  "sampling": {
+    "fps": 120,
+    "bvhFrameTime": 0.0083333,
+    "skipAddedTPoseFrameOne": true,
+    "metresPerSourceUnit": 0.05644444444444445,
+    "coordinateSystem": "Y up, motion generally positive Z; source Left is positive X"
+  },
+  "clips": [
+    {
+      "id": "07_01",
+      "description": "walk",
+      "totalBvhFrames": 317,
+      "suggestedCycleOneBasedInclusive": [
+        56,
+        187
+      ],
+      "cycleSeconds": 1.0916623,
+      "selectionEvidence": "Successive LeftFoot forward-position maxima relative to Hips at source frames 56 and 187. Whole-foot relative-forward autocorrelation best period 129 frames; gait is not perfectly periodic."
+    },
+    {
+      "id": "07_04",
+      "description": "slow walk",
+      "totalBvhFrames": 450,
+      "suggestedCycleOneBasedInclusive": [
+        140,
+        314
+      ],
+      "cycleSeconds": 1.4499942000000001,
+      "selectionEvidence": "Successive RightFoot forward-position maxima relative to Hips at source frames 140 and 314. Whole-foot relative-forward autocorrelation best period 174 frames."
+    }
+  ],
+  "retargetCautions": [
+    "Motion is genuine recorded human skeleton data; derived role or age adjustments must be labeled authored adaptations, not captured elders or water carriers.",
+    "First BVH frame is a synthetic T-pose added by the converter; exclude it from animation.",
+    "Raw CMU source contains noise and foot/floor drift. Retargeting needs ground-contact correction and cycle-seam cleanup.",
+    "Preserve local contact phase while retiming by travelled distance; do not apply source root translation twice.",
+    "Source skeleton proportions and joint axes differ from target; use segment directions/rest-pose correction, not direct raw Euler assignment.",
+    "Source Left positive X differs from current target Left negative X; correct coordinate handedness without swapping actor identity."
+  ],
+  "files": [
+    {
+      "file": "07_01.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/007/07_01.bvh",
+      "bytes": 241649,
+      "sha256": "f8d82ea6ed1aab0cb7d9ee680f476b65471e2322e1da84add8a8527a2cb0b9a2"
+    },
+    {
+      "file": "07_04.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/007/07_04.bvh",
+      "bytes": 342561,
+      "sha256": "320fceb9f8269b8d44f5142385e98e236eccc24cee3728d8227a4933abb82564"
+    },
+    {
+      "file": "07.asf",
+      "url": "https://mocap.cs.cmu.edu/subjects/07/07.asf",
+      "bytes": 7260,
+      "sha256": "c29414591d76a34885bff0b04a2666bf9659f869751a2549591c55277cf95b04"
+    },
+    {
+      "file": "07_01.amc",
+      "url": "https://mocap.cs.cmu.edu/subjects/07/07_01.amc",
+      "bytes": 252663,
+      "sha256": "3ca8e8b834481c97c32e9dd555f8c9023e33b6c52d93c9d556c83570204bf3f2"
+    },
+    {
+      "file": "07_04.amc",
+      "url": "https://mocap.cs.cmu.edu/subjects/07/07_04.amc",
+      "bytes": 359277,
+      "sha256": "c37994b8eefa0cf30d1822db05e698f7ce6098400b462cc0fadd185cafa3301e"
+    },
+    {
+      "file": "READMEFIRST.txt",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/READMEFIRST.txt",
+      "bytes": 13248,
+      "sha256": "8e6fe2e640b3728ef2e43e722cb5ae9cdf0010028c0517c4226ed165f9037930"
+    },
+    {
+      "file": "cmu-license.html",
+      "url": "https://mocap.cs.cmu.edu/faqs.php",
+      "bytes": 8654,
+      "sha256": "518f04f07d7b0e0e8b605089f1033320d3ad5aa092f9d164f2c76c484a3f4f4e"
+    },
+    {
+      "file": "cmu-subject07.html",
+      "url": "https://mocap.cs.cmu.edu/search.php?subjectnumber=7",
+      "bytes": 8051,
+      "sha256": "2b691de6704c97381c092e1d92d03bf6b88134be46afe867f0e0918acb53c71e"
+    },
+    {
+      "file": "cmu-info.html",
+      "url": "https://mocap.cs.cmu.edu/info.php",
+      "bytes": 13105,
+      "sha256": "61a09feeb4424de2273189806f19c8fc54f22fcf8cb94071740633da42d9bada"
+    }
+  ]
+}

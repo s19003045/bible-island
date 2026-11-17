@@ -3,7 +3,7 @@ import {residentFootContact} from './resident-locomotion.js';
 
 // Extract the actual rigid foot geometry from the exported skinned mesh once. No
 // guessed ankle height overwrites heel/toe pitch or the authored swing clearance.
-export function createPlantedFootGrounding(root,groundAt){
+export function createPlantedFootGrounding(root,groundAt,{articulated=false,contactFor=residentFootContact}={}){
   root.updateMatrixWorld(true);
   const hips=root.getObjectByName('hips'),up=new THREE.Vector3(0,1,0),front=new THREE.Vector3(0,0,1);
   const legs=['L','R'].map(side=>{
@@ -13,10 +13,14 @@ export function createPlantedFootGrounding(root,groundAt){
     root.traverse(mesh=>{
       if(!mesh.isSkinnedMesh)return;const index=mesh.skeleton.bones.indexOf(foot);if(index<0)return;
       const {position,skinIndex,skinWeight}=mesh.geometry.attributes;
-      for(let i=0;i<position.count;i++)for(let j=0;j<4;j++)if(skinIndex.getComponent(i,j)===index&&skinWeight.getComponent(i,j)>.999){
+      const footBones=articulated?new Set(mesh.skeleton.bones.map((b,i)=>{let p=b;while(p&&p!==foot)p=p.parent;return p===foot?i:-1;}).filter(i=>i>=0)):new Set([index]);
+      for(let i=0;i<position.count;i++){
+        let weight=0;for(let j=0;j<4;j++)if(footBones.has(skinIndex.getComponent(i,j)))weight+=skinWeight.getComponent(i,j);
+        if(weight>.999){
         // GLB node defaults can already be a baked pose. Read the actual bound
         // skin position before converting to the foot's rigid local space.
-        vertices.push({local:mesh.getVertexPosition(i,new THREE.Vector3()).applyMatrix4(mesh.matrixWorld).applyMatrix4(inverse),rest:new THREE.Vector3().fromBufferAttribute(position,i).applyMatrix4(mesh.bindMatrix)});break;
+        vertices.push({local:mesh.getVertexPosition(i,new THREE.Vector3()).applyMatrix4(mesh.matrixWorld).applyMatrix4(inverse),rest:new THREE.Vector3().fromBufferAttribute(position,i).applyMatrix4(mesh.bindMatrix),mesh,index:i});
+        }
       }
     });
     if(!vertices.length)return null;
@@ -24,11 +28,12 @@ export function createPlantedFootGrounding(root,groundAt){
     const minZ=Math.min(...vertices.map(v=>v.rest.z)),maxZ=Math.max(...vertices.map(v=>v.rest.z));
     const center=points=>points.reduce((a,p)=>a.add(p.local),new THREE.Vector3()).multiplyScalar(1/points.length);
     const lowest=points=>{const low=Math.min(...points.map(p=>p.rest.y));return points.filter(p=>p.rest.y<low+.002);};
-    const pivots={flat:center(sole),heel:center(lowest(vertices.filter(p=>p.rest.z<minZ+.015))),toe:center(lowest(vertices.filter(p=>p.rest.z>maxZ-.015)))};
+    const groups={flat:sole,heel:lowest(vertices.filter(p=>p.rest.z<minZ+.015)),toe:lowest(vertices.filter(p=>p.rest.z>maxZ-.015))};
+    const pivots=Object.fromEntries(Object.entries(groups).map(([name,points])=>[name,center(points)]));
     // A curved bare heel can sit above the toe in the rest pose and become the
     // lowest point after heel roll or slope alignment. Keep every foot vertex
     // for collision, rather than treating a rest-Y slice as the complete sole.
-    return {side,thigh,shin,foot,sole:vertices.map(v=>v.local),pivots,anchor:null,contact:null,
+    return {side,thigh,shin,foot,sole:vertices.map(v=>v.local),vertices,groups,pivots,anchor:null,contact:null,
       l1:thigh.getWorldPosition(new THREE.Vector3()).distanceTo(shin.getWorldPosition(new THREE.Vector3())),
       l2:shin.getWorldPosition(new THREE.Vector3()).distanceTo(foot.getWorldPosition(new THREE.Vector3()))};
   });
@@ -38,19 +43,27 @@ export function createPlantedFootGrounding(root,groundAt){
     const world=new THREE.Quaternion().setFromUnitVectors(current,desired).multiply(bone.getWorldQuaternion(new THREE.Quaternion()));
     bone.quaternion.copy(bone.parent.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(world));bone.updateWorldMatrix(true,true);
   }
-  return ({position:base,clip='Idle',time=0,phase=0,dt=0,reset=false})=>{
+  return ({position:base,clip='Idle',time=0,phase=0,dt=0,reset=false,strideScale=1})=>{
     root.updateMatrixWorld(true);const scale=root.getWorldScale(new THREE.Vector3()).y,targets=[];
     front.set(0,0,1).applyQuaternion(root.getWorldQuaternion(new THREE.Quaternion()));
     for(const leg of legs){
       const foot=leg.foot,ankle=foot.getWorldPosition(new THREE.Vector3()),orientation=foot.getWorldQuaternion(new THREE.Quaternion());
+      if(articulated){
+        // Toe joints can bend independently. Sample the complete deformed foot,
+        // including blended foot/toe skin, instead of treating toes as rigid.
+        const inverse=foot.matrixWorld.clone().invert();
+        for(const vertex of leg.vertices)vertex.local.copy(vertex.mesh.getVertexPosition(vertex.index,new THREE.Vector3()).applyMatrix4(vertex.mesh.matrixWorld).applyMatrix4(inverse));
+        leg.pivots=Object.fromEntries(Object.entries(leg.groups).map(([name,vertices])=>[name,vertices.reduce((sum,v)=>sum.add(v.local),new THREE.Vector3()).multiplyScalar(1/vertices.length)]));
+      }
       const points=leg.sole.map(p=>p.clone().applyMatrix4(foot.matrixWorld)),minY=Math.min(...points.map(p=>p.y));
-      const contact=residentFootContact(clip,time,leg.side,phase),pivot=leg.pivots[contact==='swing'?'flat':contact].clone().applyMatrix4(foot.matrixWorld);
+      const contact=contactFor(clip,time,leg.side,phase),pivot=leg.pivots[contact==='swing'?'flat':contact].clone().applyMatrix4(foot.matrixWorld);
       const h=groundAt(pivot.x,pivot.z),floor=Number.isFinite(h)?h:base[1];
       const normal=new THREE.Vector3(-(groundAt(pivot.x+.1,pivot.z)-groundAt(pivot.x-.1,pivot.z))/.2,1,-(groundAt(pivot.x,pivot.z+.1)-groundAt(pivot.x,pivot.z-.1))/.2).normalize();
       if(!Number.isFinite(normal.y)||normal.y<.65)normal.copy(up);
       if(reset||leg.contact!==contact||contact==='swing')leg.anchor=null;
       if(contact!=='swing'&&!leg.anchor)leg.anchor=new THREE.Vector3(pivot.x,floor,pivot.z);
       const worldOrientation=new THREE.Quaternion().setFromUnitVectors(up,normal).multiply(orientation),target=ankle.clone();
+      if(articulated&&clip==='Walk'&&strideScale!==1){const direction=front.clone(),relative=target.clone().sub(new THREE.Vector3(...base)),forward=relative.dot(direction);target.addScaledVector(direction,forward*(strideScale-1));}
       const pivotOffset=leg.pivots[contact==='swing'?'flat':contact].clone().multiplyScalar(scale).applyQuaternion(worldOrientation);
       if(leg.anchor){
         const orientedPivot=target.clone().add(pivotOffset),shift=leg.anchor.clone().sub(orientedPivot);

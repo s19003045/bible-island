@@ -117,7 +117,7 @@
       "cycle_distance_m": 0.8622005560578528,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "wilderness-resident": {
       "file": "models/wilderness-resident.glb",
@@ -140,7 +140,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "wilderness-woman": {
       "file": "models/wilderness-woman.glb",
@@ -163,7 +163,7 @@
       "cycle_distance_m": 0.8622005560578528,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "wilderness-child": {
       "file": "models/wilderness-child.glb",
@@ -186,7 +186,7 @@
       "cycle_distance_m": 0.5516142014440475,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "ordinary-priest": {
       "file": "models/ordinary-priest.glb",
@@ -232,7 +232,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "iron-woman": {
       "file": "models/iron-woman.glb",
@@ -255,7 +255,7 @@
       "cycle_distance_m": 0.8622005560578528,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "temple-singer": {
       "file": "models/temple-singer.glb",
@@ -278,7 +278,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "bronze-artisan": {
       "file": "models/bronze-artisan.glb",
@@ -301,7 +301,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "brick-laborer": {
       "file": "models/brick-laborer.glb",
@@ -370,7 +370,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "return-elder": {
       "file": "models/return-elder.glb",
@@ -393,7 +393,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "return-woman": {
       "file": "models/return-woman.glb",
@@ -416,7 +416,7 @@
       "cycle_distance_m": 0.8622005560578528,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "return-child": {
       "file": "models/return-child.glb",
@@ -439,7 +439,7 @@
       "cycle_distance_m": 0.5516142014440475,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "port-worker": {
       "file": "models/port-worker.glb",
@@ -462,7 +462,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "paul-trader": {
       "file": "models/paul-trader.glb",
@@ -485,7 +485,7 @@
       "cycle_distance_m": 0.8622005560578528,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "asian-artisan": {
       "file": "models/asian-artisan.glb",
@@ -508,7 +508,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "patriarch-traveler": {
       "file": "models/patriarch-traveler.glb",
@@ -531,7 +531,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "camp-host": {
       "file": "models/camp-host.glb",
@@ -554,7 +554,7 @@
       "cycle_distance_m": 0.8622005560578528,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "well-keeper": {
       "file": "models/well-keeper.glb",
@@ -577,7 +577,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "caravan-traveler": {
       "file": "models/caravan-traveler.glb",
@@ -600,7 +600,7 @@
       "cycle_distance_m": 0.9000000015543971,
       "cycle_seconds": 1.2,
       "motion_sample_fps": 60,
-      "pelvis_height_bias_m": 0.0
+      "pelvis_height_bias_m": 0
     },
     "egypt-grain-worker": {
       "file": "models/egypt-grain-worker.glb",
@@ -863,7 +863,7 @@
       "animations": [],
       "height": 0.5,
       "teaching_model": true,
-      "interpretation": "Genesis 12:6\u20139 altar teaching type; selected irregular stone and low arrangement, not a specified stone material, identified altar, or later altar-law reconstruction",
+      "interpretation": "Genesis 12:6–9 altar teaching type; selected irregular stone and low arrangement, not a specified stone material, identified altar, or later altar-law reconstruction",
       "removable_group": "abraham-altar-top"
     },
     "abraham-hospitality": {
@@ -874,7 +874,7 @@
       "animations": [],
       "height": 0.263,
       "teaching_model": true,
-      "interpretation": "Genesis 18:1\u201315 hospitality comparison; vessel forms, woven display and two thick breads are teaching choices; two breads do not convert the stated flour quantity",
+      "interpretation": "Genesis 18:1–15 hospitality comparison; vessel forms, woven display and two thick breads are teaching choices; two breads do not convert the stated flour quantity",
       "bread_count_is_teaching_choice": true
     },
     "abraham-well": {
@@ -885,7 +885,7 @@
       "animations": [],
       "height": 0.787,
       "teaching_model": true,
-      "interpretation": "Genesis 21:22\u201334 modern teaching cutaway; annular masonry, rope and container are comparative choices, not an identified Abraham well or proven lifting installation",
+      "interpretation": "Genesis 21:22–34 modern teaching cutaway; annular masonry, rope and container are comparative choices, not an identified Abraham well or proven lifting installation",
       "removable_group": "abraham-well-rim",
       "modern_cutaway": true
     },
@@ -929,7 +929,7 @@
       "animations": [],
       "height": 0.325,
       "teaching_model": true,
-      "interpretation": "Genesis 45:21\u201323 travel-provision comparison; sack and vessel forms, selected cloth colours, and display quantities are teaching choices, not royal originals"
+      "interpretation": "Genesis 45:21–23 travel-provision comparison; sack and vessel forms, selected cloth colours, and display quantities are teaching choices, not royal originals"
     },
     "sinai-manna": {
       "file": "models/sinai-manna.glb",
@@ -964,7 +964,7 @@
       "animations": [],
       "height": 0.632,
       "teaching_model": true,
-      "interpretation": "Exodus 19\u201320 original mountain-foot-distant-camp space diagram; invented terrain, shelter count and distances are teaching choices, not a named mountain, surveyed camp, ancient fence, monastery or volcanic explanation",
+      "interpretation": "Exodus 19–20 original mountain-foot-distant-camp space diagram; invented terrain, shelter count and distances are teaching choices, not a named mountain, surveyed camp, ancient fence, monastery or volcanic explanation",
       "removable_group": "sinai-boundary-guide",
       "guide_is_modern_teaching_layer": true
     },
@@ -986,7 +986,7 @@
       "animations": [],
       "height": 0.363,
       "teaching_model": true,
-      "interpretation": "Ruth 2\u20133 modern removable ears/kernels/chaff/heap comparison and independent ordinary shawl; no night-bed action, ancient machine, load capacity, or conversion of six measures to six ephahs",
+      "interpretation": "Ruth 2–3 modern removable ears/kernels/chaff/heap comparison and independent ordinary shawl; no night-bed action, ancient machine, load capacity, or conversion of six measures to six ephahs",
       "removable_groups": [
         "ruth-grain-ears-layer",
         "ruth-grain-kernels-layer",
@@ -1040,7 +1040,7 @@
       "animations": [],
       "height": 0.682,
       "teaching_model": true,
-      "interpretation": "2 Samuel 6 four mutually exclusive modern time comparisons: new cart, three-month stay, later fixed-pole bearing and tent placement. Covered volumes/poles additionally cite Exodus 25:10\u201322 and 1 Chronicles 15:11\u201315; no actual engineering plan, bearer count, pole removal, opened contents, death mechanism, uninterrupted procession or future Temple is supplied",
+      "interpretation": "2 Samuel 6 four mutually exclusive modern time comparisons: new cart, three-month stay, later fixed-pole bearing and tent placement. Covered volumes/poles additionally cite Exodus 25:10–22 and 1 Chronicles 15:11–15; no actual engineering plan, bearer count, pole removal, opened contents, death mechanism, uninterrupted procession or future Temple is supplied",
       "phase_groups": [
         "david-ark-phase-cart",
         "david-ark-phase-pause",
@@ -1094,13 +1094,13 @@
       "teaching_model": true,
       "interpretation": "1 Kings 12:1-24 modern sequence tray: request, two distinct advice positions, response, three date counters and separate Shechem/later Jerusalem markers. No archaeological document, original seat, map, ancient writing, countdown, violence or added labour choice.",
       "prototype_only": false,
-      "bottom": 0.0,
+      "bottom": 0,
       "dimensions": [
         1.2999999523162842,
         0.8999999761581421,
         0.20900000631809235
       ],
-      "source_scene": "Kingdoms \u2014 modern negotiation reading tray, 1 Kings 12:1-24",
+      "source_scene": "Kingdoms — modern negotiation reading tray, 1 Kings 12:1-24",
       "semantic_groups": [
         "kingdom-assembly-modern-reading-tray",
         "kingdom-assembly-modern-wood-surface-grain",
@@ -1126,13 +1126,13 @@
       "teaching_model": true,
       "interpretation": "1 Kings 12:25-33 supplies two calves and two places. These independently based original calf silhouettes, scale, posture, horn omission and gold colour are modern choices. No recovered originals, horned altar, known manufacturing method, shared court, measured geography or devotional/sacrificial action.",
       "prototype_only": false,
-      "bottom": 0.0,
+      "bottom": 0,
       "dimensions": [
         1.2999999523162842,
         0.8600000143051147,
         0.49300000071525574
       ],
-      "source_scene": "Kingdoms \u2014 physically separated two-place comparison, 1 Kings",
+      "source_scene": "Kingdoms — physically separated two-place comparison, 1 Kings",
       "semantic_groups": [
         "kingdom-sites-bethel-separate-base",
         "kingdom-sites-bethel-calf",
@@ -1154,13 +1154,13 @@
       "teaching_model": true,
       "interpretation": "Amos 5 generic public-gate context; the separately grouped Amos 8:4-6 extension compares container capacity and weight. Original true hollow grain vessel, removable modern volume, two hollow pans, actual connected cords and uninscribed weights. No identified gate/standard, unit conversion, false bottom, cheating mechanism, coin or ancient writing.",
       "prototype_only": false,
-      "bottom": 0.0,
+      "bottom": 0,
       "dimensions": [
         1.3221222758293152,
         0.8999999761581421,
         0.6800000071525574
       ],
-      "source_scene": "Kingdoms \u2014 public gate and separate Amos 8 capacity-weight co",
+      "source_scene": "Kingdoms — public gate and separate Amos 8 capacity-weight co",
       "semantic_groups": [
         "kingdom-measures-modern-display-base",
         "kingdom-measures-original-public-gate-outline",
@@ -1192,8 +1192,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "interpretation": "Four different modern recess/insert positions: Jehoiachin deportation; later siege/destruction; those left and later Egypt; Jehoiachin late release. Not a map, equal human groups, one day, full population, or universal return.",
-      "source_scene": "Exile \u2014 original modern event tray, 2 Kings 24\u201325",
-      "bottom_m": 0.0,
+      "source_scene": "Exile — original modern event tray, 2 Kings 24–25",
+      "bottom_m": 0,
       "top_m": 0.08900000154972076,
       "dimensions_blender_xyz_m": [
         1.2000000476837158,
@@ -1231,8 +1231,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "interpretation": "Original generic channel/banks/soil section for separate readings of Ezekiel 1 and Psalm 137. Does not identify their settings, an ancient surveyed river, gate, wheel, palace, mechanism or flow rate.",
-      "source_scene": "Exile \u2014 generic waterbank section, separate Ezekiel 1 / Psalm",
-      "bottom_m": 0.0,
+      "source_scene": "Exile — generic waterbank section, separate Ezekiel 1 / Psalm",
+      "bottom_m": 0,
       "top_m": 0.47538235783576965,
       "dimensions_blender_xyz_m": [
         1.2000000476837158,
@@ -1266,8 +1266,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "interpretation": "Original house, through doorway, interior floor, removable roof, recessed orchard bed, grounded unidentified plants and modern folding reading panels. Jeremiah 29 life/planting/long-term communal hope comparison, not excavated plan, original letter, equal property, immediate prosperity or a marriage/fertility game.",
-      "source_scene": "Exile \u2014 original house and orchard reading section, Jeremiah ",
-      "bottom_m": 0.0,
+      "source_scene": "Exile — original house and orchard reading section, Jeremiah ",
+      "bottom_m": 0,
       "top_m": 0.453000009059906,
       "dimensions_blender_xyz_m": [
         1.25,
@@ -1310,8 +1310,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "interpretation": "Original thick wall/through portal, fixed fully open leaf, functional lintel and separate fixed bar/bore sample. Nehemiah 2 and later 3 are distinct readings. No identified gate, exact circuit, dated bond/joint, original tool, animated door/bar, mallet or basket.",
-      "source_scene": "Nehemiah \u2014 original thick wall and fixed open gate samples",
-      "bottom_m": 0.0,
+      "source_scene": "Nehemiah — original thick wall and fixed open gate samples",
+      "bottom_m": 0,
       "top_m": 0.5439249873161316,
       "dimensions_blender_xyz_m": [
         1.2000000476837158,
@@ -1353,8 +1353,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "interpretation": "Three functional recesses carry/build/watch and separate half-height/closed-gaps-no-doors/wall-complete/gate-management tabs. One lift only. Counts are neither population ratios nor the seven app reading states; no weapons, enemies or 52-second/day counter.",
-      "source_scene": "Nehemiah \u2014 modern work watch and completion comparison tray",
-      "bottom_m": 0.0,
+      "source_scene": "Nehemiah — modern work watch and completion comparison tray",
+      "bottom_m": 0,
       "top_m": 0.14991438388824463,
       "dimensions_blender_xyz_m": [
         1.2000000476837158,
@@ -1395,8 +1395,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "interpretation": "Original supported platform and fixed cradle with genuinely thick blank expanded/spiral sheet sections; distinct modern reader/explainer/listener markers. One support-side lift, no unroll animation or stairs. Not original platform/scroll/substrate/axis count, named people, compulsory emotion or later festival booths.",
-      "source_scene": "Nehemiah \u2014 original platform blank curves and understanding m",
-      "bottom_m": 0.0,
+      "source_scene": "Nehemiah — original platform blank curves and understanding m",
+      "bottom_m": 0,
       "top_m": 0.3262563943862915,
       "dimensions_blender_xyz_m": [
         1.100000023841858,
@@ -1434,8 +1434,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "isolated_provenance": "root-approved Intertestament17 brief, isolated original geometry; not yet official",
-      "source_scene": "Intertestament \u2014 original road drainage and selected section ",
-      "bottom_m": 0.0,
+      "source_scene": "Intertestament — original road drainage and selected section ",
+      "bottom_m": 0,
       "top_m": 0.16599999368190765,
       "dimensions_blender_xyz_m": [
         1.2000000476837158,
@@ -1475,15 +1475,15 @@
       "teaching_model": true,
       "prototype_only": false,
       "isolated_provenance": "root-approved Intertestament17 brief, isolated original geometry; not yet official",
-      "source_scene": "Intertestament \u2014 original two-faced modern coin observation d",
-      "bottom_m": 0.0,
+      "source_scene": "Intertestament — original two-faced modern coin observation d",
+      "bottom_m": 0,
       "top_m": 0.30000001192092896,
       "dimensions_blender_xyz_m": [
         0.6499999761581421,
         0.44999998807907104,
         0.30000001192092896
       ],
-      "interpretation": "MRK12 image/title question, not Tiberius portrait or unique Gospel denarius. Original 230mm,14mm teaching disc; museum 18mm/3.6g/14\u201337CE belong only to external source. No calibrated mass, ancient lettering, reverse-person identification, flip or removable layer.",
+      "interpretation": "MRK12 image/title question, not Tiberius portrait or unique Gospel denarius. Original 230mm,14mm teaching disc; museum 18mm/3.6g/14–37CE belong only to external source. No calibrated mass, ancient lettering, reverse-person identification, flip or removable layer.",
       "semantic_groups": [
         "intertestament-coin-modern-observation-base",
         "intertestament-coin-modern-edge-cradle",
@@ -1505,15 +1505,15 @@
       "teaching_model": true,
       "prototype_only": false,
       "isolated_provenance": "root-approved Intertestament17 brief, isolated original geometry; not yet official",
-      "source_scene": "Intertestament \u2014 modern audiences and separate blank writing ",
-      "bottom_m": 0.0,
+      "source_scene": "Intertestament — modern audiences and separate blank writing ",
+      "bottom_m": 0,
       "top_m": 0.15177614986896515,
       "dimensions_blender_xyz_m": [
         1.100000023841858,
         0.699999988079071,
         0.15177614986896515
       ],
-      "interpretation": "ACT21:37\u201340/22:1\u20132 recipients/languages, Greek and Hebrew as CSBT. One modern audience board layer; separately fixed true-thick blank curved/flat materials with real bearing. No Paul reading, original scroll, ancient script, language=ethnicity/citizenship or population ratio.",
+      "interpretation": "ACT21:37–40/22:1–2 recipients/languages, Greek and Hebrew as CSBT. One modern audience board layer; separately fixed true-thick blank curved/flat materials with real bearing. No Paul reading, original scroll, ancient script, language=ethnicity/citizenship or population ratio.",
       "semantic_groups": [
         "intertestament-languages-fixed-base",
         "intertestament-languages-core-recess",
@@ -1546,8 +1546,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "isolated_provenance": "Root-approved final NATIVITY-ASSET-BRIEF, 2026-11-17 isolated prototype only",
-      "source_scene": "Nativity \u2014 original empty thick stone container comparison",
-      "bottom_m": 0.0,
+      "source_scene": "Nativity — original empty thick stone container comparison",
+      "bottom_m": 0,
       "top_m": 0.47999998927116394,
       "dimensions_blender_xyz_m": [
         1.100000023841858,
@@ -1574,8 +1574,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "isolated_provenance": "Root-approved final NATIVITY-ASSET-BRIEF, 2026-11-17 isolated prototype only",
-      "source_scene": "Nativity \u2014 modern one tenth home courtyard and supported roof",
-      "bottom_m": 0.0,
+      "source_scene": "Nativity — modern one tenth home courtyard and supported roof",
+      "bottom_m": 0,
       "top_m": 0.3999999761581421,
       "dimensions_blender_xyz_m": [
         1.100000023841858,
@@ -1625,8 +1625,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "isolated_provenance": "Root-approved final NATIVITY-ASSET-BRIEF, 2026-11-17 isolated prototype only",
-      "source_scene": "Nativity \u2014 modern complementary half lap timber comparison",
-      "bottom_m": 0.0,
+      "source_scene": "Nativity — modern complementary half lap timber comparison",
+      "bottom_m": 0,
       "top_m": 0.1899999976158142,
       "dimensions_blender_xyz_m": [
         0.949999988079071,
@@ -1659,8 +1659,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "isolated_provenance": "Root approved final GALILEE-ASSET-BRIEF,2026-11-17 isolated original prototype",
-      "source_scene": "Galilee \u2014 original outward U hull keel and curved frame compa",
-      "bottom_m": 0.0,
+      "source_scene": "Galilee — original outward U hull keel and curved frame compa",
+      "bottom_m": 0,
       "top_m": 0.44999998807907104,
       "dimensions_blender_xyz_m": [
         1.100000023841858,
@@ -1697,8 +1697,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "isolated_provenance": "Root approved final GALILEE-ASSET-BRIEF,2026-11-17 isolated original prototype",
-      "source_scene": "Galilee \u2014 original one tenth right cutaway home and supported",
-      "bottom_m": 0.0,
+      "source_scene": "Galilee — original one tenth right cutaway home and supported",
+      "bottom_m": 0,
       "top_m": 0.421999990940094,
       "dimensions_blender_xyz_m": [
         1.100000023841858,
@@ -1748,8 +1748,8 @@
       "teaching_model": true,
       "prototype_only": false,
       "isolated_provenance": "Root approved final GALILEE-ASSET-BRIEF,2026-11-17 isolated original prototype",
-      "source_scene": "Galilee \u2014 side by side original solid stone and true tray com",
-      "bottom_m": 0.0,
+      "source_scene": "Galilee — side by side original solid stone and true tray com",
+      "bottom_m": 0,
       "top_m": 0.13099999725818634,
       "dimensions_blender_xyz_m": [
         1.0499999523162842,
@@ -1779,8 +1779,8 @@
       "height": 0.385,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Samaria \u2014 original hollow jar and modern front section",
-      "bottom_m": 0.0,
+      "source_scene": "Samaria — original hollow jar and modern front section",
+      "bottom_m": 0,
       "top_m": 0.38499999046325684,
       "dimensions_blender_xyz_m": [
         1.0499999523162842,
@@ -1811,8 +1811,8 @@
       "height": 0.3,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Samaria \u2014 original real slope and neutral reading positions",
-      "bottom_m": 0.0,
+      "source_scene": "Samaria — original real slope and neutral reading positions",
+      "bottom_m": 0,
       "top_m": 0.30000001192092896,
       "dimensions_blender_xyz_m": [
         1.100000023841858,
@@ -1841,8 +1841,8 @@
       "height": 0.26,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Samaria \u2014 original ordinary care entrusted discs and continue",
-      "bottom_m": 0.0,
+      "source_scene": "Samaria — original ordinary care entrusted discs and continue",
+      "bottom_m": 0,
       "top_m": 0.25999999046325684,
       "dimensions_blender_xyz_m": [
         1.100000023841858,
@@ -1873,8 +1873,8 @@
       "height": 0.29954999685287476,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Parables \u2014 modern soil depth and receiving comparison",
-      "bottom_m": 0.0,
+      "source_scene": "Parables — modern soil depth and receiving comparison",
+      "bottom_m": 0,
       "top_m": 0.29954999685287476,
       "dimensions_blender_xyz_m": [
         1.149999976158142,
@@ -1918,8 +1918,8 @@
       "height": 0.09000000357627869,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Parables \u2014 modern ninety-nine and separate one reading compar",
-      "bottom_m": 0.0,
+      "source_scene": "Parables — modern ninety-nine and separate one reading compar",
+      "bottom_m": 0,
       "top_m": 0.09000000357627869,
       "dimensions_blender_xyz_m": [
         1.149999976158142,
@@ -2162,57 +2162,57 @@
         [
           -0.485,
           0.065,
-          0.0
+          0
         ],
         [
           -0.429,
           0.065,
-          0.0
+          0
         ],
         [
           -0.373,
           0.065,
-          0.0
+          0
         ],
         [
           -0.31699999999999995,
           0.065,
-          0.0
+          0
         ],
         [
           -0.261,
           0.065,
-          0.0
+          0
         ],
         [
           -0.20499999999999996,
           0.065,
-          0.0
+          0
         ],
         [
           -0.14899999999999997,
           0.065,
-          0.0
+          0
         ],
         [
           -0.09299999999999997,
           0.065,
-          0.0
+          0
         ],
         [
           -0.03699999999999998,
           0.065,
-          0.0
+          0
         ],
         [
           0.019000000000000017,
           0.065,
-          0.0
+          0
         ],
         [
           0.07500000000000007,
           0.065,
-          0.0
+          0
         ],
         [
           -0.485,
@@ -2459,8 +2459,8 @@
       "height": 0.6200000047683716,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Parables \u2014 original unlit illumination and preparation compar",
-      "bottom_m": 0.0,
+      "source_scene": "Parables — original unlit illumination and preparation compar",
+      "bottom_m": 0,
       "top_m": 0.6200000047683716,
       "dimensions_blender_xyz_m": [
         1.149999976158142,
@@ -2506,13 +2506,13 @@
       "height": 0.14000000059604645,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Passion \u2014 original ordinary cup and static bread comparison",
+      "source_scene": "Passion — original ordinary cup and static bread comparison",
       "dimensions_blender_xyz_m": [
         1.149999976158142,
         0.800000011920929,
         0.14000000059604645
       ],
-      "bottom_m": 0.0,
+      "bottom_m": 0,
       "top_m": 0.14000000059604645,
       "semantic_groups": [
         "passion-table-modern-base",
@@ -2536,13 +2536,13 @@
       "height": 0.14499999582767487,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Passion \u2014 original separated settings and companions reading ",
+      "source_scene": "Passion — original separated settings and companions reading ",
       "dimensions_blender_xyz_m": [
         1.149999976158142,
         0.800000011920929,
         0.14499999582767487
       ],
-      "bottom_m": 0.0,
+      "bottom_m": 0,
       "top_m": 0.14499999582767487,
       "semantic_groups": [
         "passion-context-modern-base",
@@ -2572,13 +2572,13 @@
       "height": 0.44999998807907104,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Passion \u2014 non-located original chamber and modern front disse",
+      "source_scene": "Passion — non-located original chamber and modern front disse",
       "dimensions_blender_xyz_m": [
         1.149999976158142,
         0.800000011920929,
         0.44999998807907104
       ],
-      "bottom_m": 0.0,
+      "bottom_m": 0,
       "top_m": 0.44999998807907104,
       "semantic_groups": [
         "passion-tomb-modern-floor-base",
@@ -2626,13 +2626,13 @@
       "height": 0.3199999928474426,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Church \u2014 original local house interior and exterior compariso",
+      "source_scene": "Church — original local house interior and exterior compariso",
       "dimensions_blender_xyz_m": [
         1.149999976158142,
         0.800000011920929,
         0.3199999928474426
       ],
-      "bottom_m": 0.0,
+      "bottom_m": 0,
       "top_m": 0.3199999928474426,
       "semantic_groups": [
         "church-house-modern-continuous-floor",
@@ -2663,13 +2663,13 @@
       "height": 0.125,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Church \u2014 original ordinary common meal vessel comparison",
+      "source_scene": "Church — original ordinary common meal vessel comparison",
       "dimensions_blender_xyz_m": [
         1.149999976158142,
         0.800000011920929,
         0.125
       ],
-      "bottom_m": 0.0,
+      "bottom_m": 0,
       "top_m": 0.125,
       "semantic_groups": [
         "church-table-modern-base",
@@ -2693,13 +2693,13 @@
       "height": 0.10999999940395355,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Church \u2014 modern scattering teaching and aid relation diagram",
+      "source_scene": "Church — modern scattering teaching and aid relation diagram",
       "dimensions_blender_xyz_m": [
         1.149999976158142,
         0.800000011920929,
         0.10999999940395355
       ],
-      "bottom_m": 0.0,
+      "bottom_m": 0,
       "top_m": 0.10999999940395355,
       "semantic_groups": [
         "church-relations-modern-base",
@@ -2726,13 +2726,13 @@
       "height": 0.07500000298023224,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Letters \u2014 original modern writing material and action compari",
+      "source_scene": "Letters — original modern writing material and action compari",
       "dimensions_blender_xyz_m": [
         1.149999976158142,
         0.800000011920929,
         0.07500000298023224
       ],
-      "bottom_m": 0.0,
+      "bottom_m": 0,
       "top_m": 0.07500000298023224,
       "semantic_groups": [
         "letters-materials-modern-base",
@@ -2774,13 +2774,13 @@
       "height": 0.07999999821186066,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Letters \u2014 modern sent companion and recipient relation compar",
+      "source_scene": "Letters — modern sent companion and recipient relation compar",
       "dimensions_blender_xyz_m": [
         1.149999976158142,
         0.800000011920929,
         0.07999999821186066
       ],
-      "bottom_m": 0.0,
+      "bottom_m": 0,
       "top_m": 0.07999999821186066,
       "semantic_groups": [
         "letters-delivery-modern-base",
@@ -2806,13 +2806,13 @@
       "height": 0.20999999344348907,
       "teaching_model": true,
       "prototype_only": false,
-      "source_scene": "Letters \u2014 modern separate community reading instruction compa",
+      "source_scene": "Letters — modern separate community reading instruction compa",
       "dimensions_blender_xyz_m": [
         1.149999976158142,
         0.800000011920929,
         0.20999999344348907
       ],
-      "bottom_m": 0.0,
+      "bottom_m": 0,
       "top_m": 0.20999999344348907,
       "semantic_groups": [
         "letters-reading-modern-base",
@@ -2835,6 +2835,66 @@
       "translation_gltf_xyz_m": null,
       "interpretation": "Staticoriginalmodern readingcomparison:two separate stands withrealfeet/frontandbacksupports/slopingboards/blankclosedfiles;not originalapostoliclectern/churchplan. Col4:16instruction firstreadthere,thenLaodicea,andreadlettercomingfromthere;not simultaneoussameletterteleport,same-roomallaudienceor independentproofinstructionswerefulfilled. Thickdoublearrowandlisteningtilesmodern;UIseparatelyexplainsreadingdirections. No inventedreturnlettertext,noP46codexidentity,no readableancientwriting.",
       "units": "metres;BlenderZup/glTFYup"
+    },
+    "jerusalem-resident": {
+      "file": "models/jerusalem-pilot/resident.glb",
+      "bytes": 1808876,
+      "sha256": "280033c0f2104dce52d22f9062c8a5790bc988ac1444d6a4035b8d993cebab1c",
+      "triangles": 32888,
+      "animations": [
+        "Walk",
+        "StartWalk",
+        "StopWalk",
+        "TurnLeft",
+        "TurnRight",
+        "Idle",
+        "LookAround",
+        "Talk",
+        "Interact"
+      ],
+      "motion_version": 3,
+      "editable_source": "assets/blender/jerusalem-pilot.blend",
+      "reference": "assets/blender/jerusalem-pilot/reference/07_01.bvh"
+    },
+    "jerusalem-carrier": {
+      "file": "models/jerusalem-pilot/carrier.glb",
+      "bytes": 1798616,
+      "sha256": "a3c1f8061c4e2b26e524a1d855ccf8e95e59c2f3abc5cab6aa79e73bc7263851",
+      "triangles": 34636,
+      "animations": [
+        "Walk",
+        "StartWalk",
+        "StopWalk",
+        "TurnLeft",
+        "TurnRight",
+        "Idle",
+        "LookAround",
+        "Talk",
+        "Interact"
+      ],
+      "motion_version": 3,
+      "editable_source": "assets/blender/jerusalem-pilot.blend",
+      "reference": "assets/blender/jerusalem-pilot/reference/07_01.bvh"
+    },
+    "jerusalem-elder": {
+      "file": "models/jerusalem-pilot/elder.glb",
+      "bytes": 1770812,
+      "sha256": "e648fd5257e31be46080db0deeebf4dbf0dd539325281eb07bbe2af7dfc14a81",
+      "triangles": 31328,
+      "animations": [
+        "Walk",
+        "StartWalk",
+        "StopWalk",
+        "TurnLeft",
+        "TurnRight",
+        "Idle",
+        "LookAround",
+        "Talk",
+        "Interact"
+      ],
+      "motion_version": 3,
+      "editable_source": "assets/blender/jerusalem-pilot.blend",
+      "reference": "assets/blender/jerusalem-pilot/reference/07_04.bvh"
     }
   }
 }

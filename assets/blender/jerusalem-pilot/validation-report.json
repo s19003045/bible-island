@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "checks": {
+    "builder_python_compile": "passed",
+    "wardrobe_vertex_positions_colours_materials_before_after": "exact SHA agreement asserted for all three assets",
+    "evaluated_sole_fractional_samples_per_role": 121,
+    "maximum_allowed_penetration_m": 0.0005,
+    "loop_position_rotation_endpoint_difference": "zero for all three evaluated rigs"
+  },
+  "scripts": {
+    "scripts/blender/jerusalem-pilot.py": "21d0e1f757b4ed0f52e9cc4f54e7383e20e53249274e6664164b6d5abc420b5b",
+    "scripts/blender/jerusalem-pilot-preview.py": "146e72b9e30d909de0677f46cd5810e900bcb217b3b4141befe65e7bbe2730bb"
+  },
+  "assets": {
+    "resident": {
+      "file": "models/jerusalem-pilot/resident.glb",
+      "sha256": "280033c0f2104dce52d22f9062c8a5790bc988ac1444d6a4035b8d993cebab1c",
+      "bytes": 1808876,
+      "skin_joint_count": 46,
+      "animation_names": [
+        "Walk",
+        "StartWalk",
+        "StopWalk",
+        "TurnLeft",
+        "TurnRight",
+        "Idle",
+        "LookAround",
+        "Talk",
+        "Interact"
+      ],
+      "minimum_evaluated_sole_m": 0.0002444325655233115,
+      "loop_max_joint_position_difference_m": 0.0,
+      "loop_max_joint_angle_difference_rad": 0.0,
+      "foot_ik_runtime_test": "parent integration responsibility; not claimed by this source-only check"
+    },
+    "carrier": {
+      "file": "models/jerusalem-pilot/carrier.glb",
+      "sha256": "a3c1f8061c4e2b26e524a1d855ccf8e95e59c2f3abc5cab6aa79e73bc7263851",
+      "bytes": 1798616,
+      "skin_joint_count": 38,
+      "animation_names": [
+        "Walk",
+        "StartWalk",
+        "StopWalk",
+        "TurnLeft",
+        "TurnRight",
+        "Idle",
+        "LookAround",
+        "Talk",
+        "Interact"
+      ],
+      "minimum_evaluated_sole_m": -0.0004899613559246063,
+      "loop_max_joint_position_difference_m": 0.0,
+      "loop_max_joint_angle_difference_rad": 0.0,
+      "foot_ik_runtime_test": "parent integration responsibility; not claimed by this source-only check"
+    },
+    "elder": {
+      "file": "models/jerusalem-pilot/elder.glb",
+      "sha256": "e648fd5257e31be46080db0deeebf4dbf0dd539325281eb07bbe2af7dfc14a81",
+      "bytes": 1770812,
+      "skin_joint_count": 46,
+      "animation_names": [
+        "Walk",
+        "StartWalk",
+        "StopWalk",
+        "TurnLeft",
+        "TurnRight",
+        "Idle",
+        "LookAround",
+        "Talk",
+        "Interact"
+      ],
+      "minimum_evaluated_sole_m": -1.5284866094589233e-05,
+      "loop_max_joint_position_difference_m": 0.0,
+      "loop_max_joint_angle_difference_rad": 0.0,
+      "foot_ik_runtime_test": "parent integration responsibility; not claimed by this source-only check"
+    }
+  },
+  "metadata_only_source_correction": {
+    "audit": "assets/blender/jerusalem-pilot/metadata-fix-audit.json",
+    "elder_capture_source": "CMU07_04",
+    "BIN_and_animations_unchanged": true,
+    "editable_source_sha256": "2d63bd83c769522cbc17125dbbf756ef9e207de1848923153a195a63a631e623",
+    "editable_source_bytes": 11673258,
+    "geometry_rig_keyframes_semantic_sha256": "8433a304c87e0e4185ea218b3ca8e660b6866f8e9078b8cd6e72f9e41edc2cf1"
+  }
+}

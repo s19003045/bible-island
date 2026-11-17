@@ -12,7 +12,7 @@ function footPoints(root,side){
  });return points;
 }
 test('all28 full foot geometries, including curved bare heels, clear and touch flat/up/down slopes from initial heel contact',async()=>{
- const definitions=Object.entries(blenderModels).filter(([,d])=>d.type==='character');assert.equal(definitions.length,28);
+ const definitions=Object.entries(blenderModels).filter(([,d])=>d.type==='character'&&d.motionVersion===2);assert.equal(definitions.length,28);
  for(const [id,definition]of definitions){
   assert.equal(definition.motionVersion,2,id);const bytes=await readFile(new URL('../public/'+definition.src,import.meta.url)),gltf=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');
   for(const slope of [0,.3,-.3]){

@@ -81,7 +81,7 @@ test('Jerusalem replaces carrier and four authored child silhouettes while prese
   const carrier=city.people.find(p=>p.id==='water-carrier'),p=[...carrier.state.position],seeds=city.npcSystem.agents.map(a=>a.seed);
   assert.equal(city.npcSystem.agents.find(a=>a.actor===carrier).radius,.49);
   city.converse('water-carrier');city.animate(0,[p[0]+1,p[1]+1.6,p[2]+3]);
-  const instance=city.detailedResidents.visible.get(carrier);assert.ok(instance);assert.equal(instance.root.userData.modelId,'resident-carrier');
+  const instance=city.detailedResidents.visible.get(carrier);assert.ok(instance);assert.equal(instance.root.userData.modelId,'jerusalem-carrier');
   city.animate(.2,[p[0]+1,p[1]+1.6,p[2]+3]);assert.deepEqual(carrier.state.position,p);assert.deepEqual(city.npcSystem.agents.map(a=>a.seed),seeds);
   assert.ok(instance.actions.get('Talk').getEffectiveWeight()>.7,'conversation smoothly blends into its gesture');assert.ok(city.detailedResidents.visible.size<=8);assert.equal(city.people.length,3);
   city.dispose();assert.equal(carrier.blenderVisual,false);

@@ -1,5 +1,7 @@
 // Local exports from scripts/blender/build-assets.py. No remote model services.
+import {jerusalemMotionAssets} from './jerusalem-motion-assets.js';
 export const blenderModels = {
+  ...jerusalemMotionAssets,
   'letters-materials':{type:'object',src:'models/letters-materials.glb',height:.075,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.5,1.9],articulation:{part:'letters-materials-modern-upper-fiber-layer',offset:[0,.10,0],openLabel:'抬起現代紙草上層',closeLabel:'還原紙草層次比較',note:'正交黏合、非編織 · 每層6mm為現代誇示，懸置只供剖示，非原紙厚或古代剝紙機構'}},
   'letters-delivery':{type:'object',src:'models/letters-delivery.glb',height:.08,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.8,1.9]},
   'letters-reading':{type:'object',src:'models/letters-reading.glb',height:.21,triangleBudget:30000,byteBudget:1600000,inspectionView:[1.4,2.2,1.9]},

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "07_01",
+    "originalAmcFrames": 316,
+    "bvhFramesIncludingAddedTPose": 317,
+    "rootTranslationMaxDifferenceSourceUnits": 5.0000000000105516e-05,
+    "inputHashesVerified": true
+  },
+  {
+    "id": "07_04",
+    "originalAmcFrames": 449,
+    "bvhFramesIncludingAddedTPose": 450,
+    "rootTranslationMaxDifferenceSourceUnits": 4.999999999988347e-05,
+    "inputHashesVerified": true
+  }
+]

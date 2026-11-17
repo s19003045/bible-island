@@ -618,7 +618,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     // Asset completion and camera changes already invalidate dirty; idle paused
     // scenes still avoid continuous rendering or NPC decisions.
     if(activeHistorical&&paused&&dirty)updateHistorical(0);
-    if(activeHistorical&&dirty)activeHistorical.pose(paused?0:dt,camera.position.toArray());
+    if(activeHistorical&&dirty)activeHistorical.pose(paused?0:dt,camera.position.toArray(),camera.getWorldDirection(new THREE.Vector3()).toArray());
     if(activeHistorical?.exploration)audio?.update(camera,activeHistorical?.people||[],now);
     if(activeHistorical && !walk.active) { const floor=activeHistorical.groundHeight(camera.position.x,camera.position.z)+.3; if(camera.position.y<floor) {camera.position.y=floor;dirty=true;} }
     // Lower DPR only after sustained slow frames. No promise of a particular frame rate.

@@ -438,7 +438,7 @@ function updateWalkHUD(info) {
   if($('#walk-nav-state'))$('#walk-nav-state').textContent=info.navigating?'沿路行走中 · 按 WASD 或「停止」可接手':'WASD 移動 · 拖曳環顧 · 點地沿路前往';
 }
 async function openMotionComparison(){
-  openModal('<h2 id="modal-title">讓腳步更像生活<span>同一路徑與速度，觀察起步、步幅與轉身</span></h2><div id="motion-viewer" class="motion-viewer"></div><p class="modal-small">兩側共用相同移動路徑。拖曳可換角度，暫停可檢查腳跟與腳尖；此為教學人物動畫，並非歷史人物的真實影像。</p>');
+  openModal('<h2 id="modal-title">讓腳步更像生活<span>耶路撒冷三位人物 · 同一路線比較</span></h2><div id="motion-viewer" class="motion-viewer"></div><p class="modal-small">兩側共用移動路線與速度。可切換樓梯、避讓與交談，拖曳換角度、暫停看腳掌。新版以 <a href="https://mocap.cs.cmu.edu/" target="_blank" rel="noopener">CMU 真人步行資料</a>為基礎；提水與長者為教學改編，衣裝與動作皆屬歷史情境重建。</p>');
   $('#modal').classList.add('motion-modal');
   const container=$('#motion-viewer');try{const {mountMotionPreview}=await import('./motion-preview.js');if(!container.isConnected||!$('#modal').open)return;const viewer=mountMotionPreview(container);modalCleanup=()=>viewer.dispose();}catch{if(container.isConnected)container.textContent='此裝置暫時無法開啟步態比較；可以回到場景觀察人物。';}
 }
