@@ -478,3 +478,15 @@
 - 封裝 `.qa/npc-appearance-release.tar.gz`，壓縮檔 141,424,731 bytes，SHA256 `b5c7dcb03eecb0e5f487f6c51df1b15e6cec40ca086df6536c3808d684cdd805`。平台解包 tar 為 284 檔／194,478,080 bytes，內容 hash `9278515dfd2e6560cb056e1d12b517d07707f41bdff66aba798975a266a1c961`。
 - 正式建置 145 模組，入口 `index-CYurox8_.js`、world `world-DfPis9-j.js`、人物 `blender-assets-b_XeHyyz.js`；簡化器獨立 chunk 約 14.56 kB gzip。既有大型 chunk 提示仍在。
 - [正式耶路撒冷](https://bible-island.starryswift8.chatgpt.site/#island=jerusalem) 已明確重新載入並核對新入口，實際開啟提水居民對話及檢查人物衣裝，warning／error=[]。正式畫面 `.qa/npc-wardrobe-live.png`，固定鏡頭遠景比較 `.qa/npc-wardrobe-distant.png`。本機預覽分頁已關閉，原本的 dev server 保留。
+
+## 2026-11-17：耶路撒冷三位人物的真人參考步態（第44版）
+
+- 應用程式來源：GitHub `develop` 的 `f7b9b94ea260cfb75eba9bbd970d50addc083a79`；Sites source：`a6b5a748de5d853548a809ad0e46813c8378521c`。692 個來源檔逐檔核對；Sites 另保留既有的共用大型 Blender 編輯檔排除規則與 GitHub 來源紀錄，新 11.7 MB pilot 編輯檔則完整包含。
+- Saved version 44：`appgprj_6af95ea0dac4819182957156725483aa~appgver_22e3e11831c08191ba15fa89999a60b3`；deployment：`appgdep_6afc1aa493d481919028f5afbbad11db`。平台於 `2026-11-17T09:13:26.152497+00:00` 回傳 `succeeded`；版本回讀的 source SHA 相符。終態後沒有再輪詢或重複部署。原 owner/custom 一位使用者、零群組、零外部訪客不變。
+- 僅耶路撒冷住戶、提水居民、年長街邊商販改用三個獨立 GLB。實際 CMU 成人步行／慢走資料，新增有效脊柱、鎖骨、腳趾、自由手指及視線關節；距離對應步態、有界步幅、平順路線／起停、腳趾貼地、獨立注意與眨眼、衣物阻尼反應。一般居民、提水與長者分別調整速度與姿態；提水及高齡姿態為作者改編，未宣稱捕捉者本身提水或高齡。原 101 份資產報告條目與 28 個人物 GLB 均保持。
+- 新舊比較共用同一個 NPC 移動控制器，可切三角色、六路線，支援暫停／重播／正面／側面／拖曳。分隔繪製區避免側面與樓梯遮擋；遠近衣裝仍一致。詳 [試點實作與限制](JERUSALEM-HUMAN-MOTION.md)。
+- 60 個測試檔／352 項通過；其中 59 檔／351 項完整回歸約 304 秒，本機 Vite 模型監聽測試首次受沙箱 localhost 埠限制，允許本機埠後原樣重跑通過。最後僅修正來源編號 metadata 後，另重跑 4 個相關檔／21 項通過；內容與語法、差異檢查、正式建置均通過。
+- 封裝 `.qa/jerusalem-human-motion-release.tar.gz`，143,702,779 bytes，SHA256 `33feb553dfe4c517a0150bcd5c37ea5404c57e317f0f50a924f29ef91afbe697`。平台 tar 內容為 287 檔／199,884,800 bytes，內容 hash `492c84b8f2940b54c410d253d838814bbbe73bf92e73a9d8c38af6d017e81158`。
+- 同源正式建置 150 模組，入口 `index-BowG6-nn.js`、人物 `blender-assets-BlJWlKyT.js`、比較工具 `motion-preview-BjA6LxEn.js`、world `world-81M-g_Kg.js`；保留既有大型 chunk 提示。
+- [正式耶路撒冷](https://bible-island.starryswift8.chatgpt.site/#island=jerusalem) 已明確重新載入並開啟三角色／六路線比較，操作提水、階梯、側面、直行、暫停，warning／error=[]。正式畫面 `.qa/jerusalem-human-motion-live.png`。本機另已操作三角色切換、實際提水人物問答與近景姿態；未把所有地形、實體手機效能或寫實臉部列為通過。
+- 發佈前自動審核曾將舊來源開啟基準判為錯版風險而拒絕；在 Sites 本機先記錄已核對內容為新提交、刷新官方開啟結果後，封裝與原生發佈皆通過。GitHub 與 Sites 各自的提交 SHA 已明確區分，未更改分享範圍。
