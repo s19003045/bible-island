@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {build} from 'esbuild';
 import {PerspectiveCamera} from 'three';
+import {themes} from '../src/content.js';
+import {narrativeChapters,narrativePhasesFor} from '../src/narrative-chapters.js';
+import {scoreForScene} from '../src/soundtrack.js';
 const bundle=await build({entryPoints:[new URL('../src/scene-audio.js',import.meta.url).pathname],bundle:true,format:'esm',platform:'node',write:false,logLevel:'silent'});
 const {createSceneAudio}=await import('data:text/javascript;base64,'+Buffer.from(bundle.outputFiles[0].text).toString('base64'));
 function fixture(){
@@ -116,4 +119,16 @@ test('recorded Jerusalem score and physical effects use four independent buses a
  audio.setHidden(true);assert.ok([environment,voice,music,effects].every(bus=>bus.gain.value===0));assert.ok(physical.every(s=>s.stopped));
  audio.setHidden(false);audio.setVolume('effects',0);count=f.context.sources.length;audio.footstep([21,8,-4],{isGrounded:true});assert.equal(f.context.sources.length,count);
  assert.ok(events.some(s=>s.soundtrack.status==='playing'));audio.dispose();assert.equal(score.stopped,true);
+});
+
+test('all 24 islands and every chapter moment play their score, ground effects, jump and landing through the actual audio mixer',async()=>{
+ const f=fixture(),audio=createSceneAudio();await audio.enable();audio.setActive(true);let checked=0;
+ for(const theme of themes)for(const chapter of narrativeChapters[theme.id]||[{id:null}])for(const phase of narrativePhasesFor(theme.id,chapter.id).length?narrativePhasesFor(theme.id,chapter.id):[{id:null}]){
+  audio.setScene(theme.id,chapter.id,phase.id);await audio.whenReady();
+  const score=scoreForScene([theme.id,chapter.id,phase.id].filter(Boolean).join(':'));assert.equal(audio.soundtrack.status,'playing',theme.id);assert.equal(audio.soundtrack.title,score.title);
+  const count=f.context.sources.length;audio.footstep([0,0,0],{isGrounded:true});audio.playerMotion('jump',[0,0,0]);audio.playerMotion('land',[0,0,0]);assert.equal(f.context.sources.length,count+3,theme.id+'/'+chapter.id+'/'+phase.id+' physical event routing');
+  audio.footstep([0,0,0],{isGrounded:false});assert.equal(f.context.sources.length,count+3,'airborne footfalls suppressed');
+  assert.equal(audio.volumes.voice,.9);assert.equal(audio.volumes.effects,.7);checked++;
+ }
+ assert.equal(checked,117,'checks every authored narrative window');audio.dispose();
 });

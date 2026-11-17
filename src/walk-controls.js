@@ -33,6 +33,19 @@ export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{
   // Release keys and touch input on focus loss. A chosen automatic route survives
   // switching windows; the world pauses simulation while the document is hidden.
   const blur=()=>{clear();};
+  function planRoute(to,obstacles=navigationObstacles()) {
+    let next=model.path(position,to,{avoid:obstacles});
+    // A temporarily occupied doorway keeps the goal while swept collision yields.
+    if(!next.length&&obstacles.length)next=model.path(position,to);
+    // A rounded start node must not pull a slowly moving player backwards.
+    if(next.length>1){const target=next[1],end=model.move(position,target[0]-position[0],target[2]-position[2]);if(Math.hypot(end[0]-target[0],end[2]-target[2])<.001)next.shift();}
+    // The nearest unoccupied grid node may be short of the requested goal.
+    // Keep its exact final leg when statically clear; dynamic collision still
+    // yields/replans until the person occupying it has moved away.
+    const last=next.at(-1);
+    if(last&&Math.hypot(last[0]-to[0],last[2]-to[2])>.001){const end=model.move(last,to[0]-last[0],to[2]-last[2]);if(Math.hypot(end[0]-to[0],end[2]-to[2])<.001)next.push([...to]);}
+    return next;
+  }
   document.addEventListener('keydown',keydown);document.addEventListener('keyup',keyup);window.addEventListener('blur',blur);document.addEventListener('visibilitychange',blur);
   canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',pointer);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);
   return {
@@ -47,12 +60,7 @@ export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{
     lookAt(p){const dx=p[0]-position[0],dz=p[2]-position[2];yaw=Math.atan2(-dx,-dz);pitch=THREE.MathUtils.clamp(Math.atan2(p[1]-camera.position.y,Math.hypot(dx,dz)),-1.15,1.15);apply();},
     async lock(){if(!active||blocked)return;try{await canvas.requestPointerLock?.();if(document.pointerLockElement!==canvas)onMessage('可拖曳畫面環顧，或使用方向鍵。');}catch{onMessage('這個瀏覽器可用拖曳畫面環顧。');}},
     navigate(to){
-      if(!active||blocked)return false;destination=[...to];blockedTime=0;const obstacles=navigationObstacles();route=model.path(position,to,{avoid:obstacles});
-      // A temporarily occupied doorway keeps the destination active while swept collision yields.
-      if(!route.length&&obstacles.length)route=model.path(position,to);
-      // Replanning must not pull a slowly moving player back to the nearest grid node.
-      // Skip that node only if swept movement can safely reach its successor.
-      if(route.length>1){const next=route[1],end=model.move(position,next[0]-position[0],next[2]-position[2]);if(Math.hypot(end[0]-next[0],end[2]-next[2])<.001)route.shift();}
+      if(!active||blocked)return false;destination=[...to];blockedTime=0;route=planRoute(to);
       if(!route.length){onMessage('這裡沒有可步行路線，請選擇可探索的地面或入口。');return false;}return true;
     },
     cancelRoute(){route=[];destination=null;blockedTime=0;velocity=[0,0];},setAxis(x,z){axis=[x,z];route=[];},setTurn(n){turn=n;},
@@ -88,7 +96,7 @@ export function createWalkControls(camera,canvas,{onInteract=()=>{},onStep=()=>{
         const attempted=Math.hypot(dx,dz),blockedDistance=Math.min(.0001,attempted*.1);
         if(attempted>.000001&&d<blockedDistance&&route.length){const staticNext=model.move(before,dx,dz);if(Math.hypot(staticNext[0]-before[0],staticNext[2]-before[2])<blockedDistance){route=[];onMessage('前方有障礙，請換個方向。');}}
         // Yield briefly to crossing traffic, then route around someone who remains in the way.
-        if(blockedTime>.9&&route.length&&destination){const avoid=navigationObstacles();if(avoid.length){const next=model.path(position,destination,{avoid});if(next.length)route=next;}blockedTime=0;}
+        if(blockedTime>.9&&route.length&&destination){const avoid=navigationObstacles();if(avoid.length){const next=planRoute(destination,avoid);if(next.length)route=next;}blockedTime=0;}
         if(motor.state.isGrounded){distance+=d;const stride=motor.state.isClimbingStairs?.68:running?.95:.78;if(distance>stride){distance%=stride;onStep(position,{...motor.state,running,speed:movingSpeed});}}}
       changed ||=physicalChange;
       if(changed||dx||dz)apply();return changed||!!dx||!!dz;

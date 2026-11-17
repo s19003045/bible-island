@@ -1,3 +1,4 @@
+import {upgradedModelFor} from '../src/human-motion-data.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -6,6 +7,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {createHistoricalScene} from '../src/historical-scenes.js';
 import {createCharacterController} from '../src/character-controller.js';
 import {createResidentInstance} from '../src/blender-assets.js';
+import {blenderModels} from '../src/blender-manifest.js';
 import {jordanFloor,jordanSpawn,jordanObjects,jordanPOIs} from '../src/jordan-exploration.js';
 import {jordanLearning,jordanHistorical} from '../src/jordan-content.js';
 import {freshLearning,learningEvent,learningRecord} from '../src/learning-model.js';
@@ -15,7 +17,7 @@ import {peopleByIsland} from '../src/people-data.js';
 import {personForMode} from '../src/learning-model.js';
 const ctx=new Proxy({},{get:()=>()=>{},set:()=>true});globalThis.document={createElement:()=>({getContext:()=>ctx})};
 const distance=(a,b)=>Math.hypot(a[0]-b[0],a[2]-b[2]);
-const load=async id=>{const file=id==='priest-bearer'?'priest-bearer':id;const b=await readFile(new URL('../public/models/'+file+'.glb',import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');};
+const load=async id=>{const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');};
 
 test('Jordan has a continuous walkable bank, three reachable objects and a permanently closed Ark precinct',()=>{
  const s=createHistoricalScene('jordan',null),m=s.walkModel;assert.equal(s.config.cutaway,false);assert.equal(s.roof.children.length,0);
@@ -82,7 +84,7 @@ test('real Jordan GLBs show twelve separate grounded stones, a lower bed and a c
 });
 
 test('standing bearer right hands stay at the actual shared pole and bank interlocutors keep their own detailed models',async()=>{
- const s=createHistoricalScene('jordan',null,{blenderAssets:true,assetLoader:async id=>{if(id==='ordinary-priest'||id.startsWith('wilderness')){const b=await readFile(new URL('../public/models/'+id+'.glb',import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');}return load(id);}});assert.equal(await s.detailedResidents.ready,true);
+ const s=createHistoricalScene('jordan',null,{blenderAssets:true,assetLoader:load});assert.equal(await s.detailedResidents.ready,true);
  const bearer=await load('priest-bearer');
  for(const side of [-1,1])for(const z of [-16.15,-13.85]){
   const a={modelId:'priest-bearer',scale:1.735/1.7,state:{position:[side*.635,.05,z],yaw:side<0?0:Math.PI,time:0,stride:0,idleAction:'Idle'}};const instance=createResidentInstance(bearer,a,0,{groundAt:()=>.05}),root=instance.root,vertices=[];
@@ -91,7 +93,7 @@ test('standing bearer right hands stay at the actual shared pole and bank interl
   instance.dispose();
  }
  for(const [id,modelId] of [['jordan-priest','ordinary-priest'],['jordan-parent','wilderness-woman'],['jordan-traveler','wilderness-resident']]){
-  const a=s.people.find(p=>p.id===id),p=[...a.state.position];s.converse(id);s.animate(.1,[p[0]+2,p[1]+1.6,p[2]+3]);assert.deepEqual(a.state.position,p);assert.equal(s.detailedResidents.visible.get(a)?.root.userData.modelId,modelId);
+  const a=s.people.find(p=>p.id===id),p=[...a.state.position];s.converse(id);s.animate(.1,[p[0]+2,p[1]+1.6,p[2]+3]);assert.deepEqual(a.state.position,p);assert.equal(s.detailedResidents.visible.get(a)?.root.userData.modelId,upgradedModelFor(modelId));
  }
  s.dispose();
 });

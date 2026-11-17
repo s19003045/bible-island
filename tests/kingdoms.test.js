@@ -1,3 +1,4 @@
+import {upgradedModelFor} from '../src/human-motion-data.js';
 import {createVessel} from '../src/vessels.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -68,7 +69,7 @@ test('GLB layers separate in world units and Amos8 extension can hide without hi
 });
 
 test('Kingdoms residents use explicitly mapped undated clothing with independent clocks, held dialogue and shared Blender detail',async()=>{
- for(const [i,c] of kingdomsSegments.entries()){const s=createHistoricalScene('kingdoms',null,{segment:c.id,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,i===0?'iron-woman':'iron-resident');assert.ok(s.npcSystem.agents.every(a=>['iron-resident','iron-woman','wilderness-child'].includes(a.actor.modelId)));s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);assert.equal(s.detailedResidents.visible.get(a)?.root.userData.modelId,a.modelId);const clocks=s.npcSystem.agents.map(a=>a.actor.state.time),positions=s.npcSystem.agents.map(a=>[...a.actor.state.position]);s.animate(0,[31,20,25]);assert.deepEqual(s.npcSystem.agents.map(a=>a.actor.state.time),clocks);assert.deepEqual(s.npcSystem.agents.map(a=>a.actor.state.position),positions);s.dispose();}
+ for(const [i,c] of kingdomsSegments.entries()){const s=createHistoricalScene('kingdoms',null,{segment:c.id,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,upgradedModelFor(i===0?'iron-woman':'iron-resident'));assert.ok(s.npcSystem.agents.every(a=>['iron-resident','iron-woman','wilderness-child'].map(upgradedModelFor).includes(a.actor.modelId)));s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);assert.equal(s.detailedResidents.visible.get(a)?.root.userData.modelId,a.modelId);const clocks=s.npcSystem.agents.map(a=>a.actor.state.time),positions=s.npcSystem.agents.map(a=>[...a.actor.state.position]);s.animate(0,[31,20,25]);assert.deepEqual(s.npcSystem.agents.map(a=>a.actor.state.time),clocks);assert.deepEqual(s.npcSystem.agents.map(a=>a.actor.state.position),positions);s.dispose();}
 });
 
 test('all 24 new dialogue cues match actual audio, mode text and returned character timestamps',async()=>{

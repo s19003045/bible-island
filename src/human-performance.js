@@ -13,7 +13,9 @@ export function createHumanPerformance(root,actor,definition) {
   const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
   const bone=name=>root.getObjectByName(name),head=bone('head'),neck=bone('neck'),chest=bone('chest')||bone('spineUpper')||bone('spine'),hips=bone('hips');
   const eyes=['L','R'].map(s=>bone('eye'+s)),lids=['L','R'].map(s=>bone('lid'+s));
-  const cloth=bones.filter(b=>/^(cloth|hem|overwrap|mantleTail)/i.test(b.name));
+  const excludedCloth=new Set(definition.secondaryCloth?.excludeBones||[]);
+  const cloth=bones.filter(b=>/^(cloth|hem|overwrap|mantleTail)/i.test(b.name)&&!excludedCloth.has(b.name));
+  const clothLimit=Math.min(profile.clothResponse,definition.secondaryCloth?.maxAngle??Infinity);
   const previous=new Map(),offsets=new Map(),identity=new THREE.Quaternion(),q=new THREE.Quaternion(),parentQ=new THREE.Quaternion();
   let lastClip=null,transitionAge=1,blinkWait=1.5+random()*3,blinkLeft=0,blinkDuration=.18;
   let glanceWait=2+random()*4,glanceLeft=0,glanceTarget=null,shiftWait=5+random()*6,shiftTarget=0,shift=0;
@@ -58,16 +60,17 @@ export function createHumanPerformance(root,actor,definition) {
       blinkWait-=elapsed;if(blinkWait<=0&&blinkLeft<=0){blinkDuration=.15+random()*.08;blinkLeft=blinkDuration;blinkWait=2.8+random()*4;}
       const closed=blinkLeft>0?Math.sin(Math.PI*(1-blinkLeft/blinkDuration))**2:0;blinkLeft=Math.max(0,blinkLeft-elapsed);
       for(const lid of lids)if(lid&&closed>0){
-        const world=lid.getWorldPosition(new THREE.Vector3());world.y-=closed*.008*(actor.scale||1);lid.position.copy(lid.parent.worldToLocal(world));
+        const travel=Math.abs(definition.attention?.lid_close_displacement_world_metres?.[1]??.008)*root.getWorldScale(new THREE.Vector3()).y;
+        const world=lid.getWorldPosition(new THREE.Vector3());world.y-=closed*travel;lid.position.copy(lid.parent.worldToLocal(world));
       }
       for(const eye of eyes)if(eye&&closed>0&&definition.attention?.eye_close_scale_bone_local){const scale=definition.attention.eye_close_scale_bone_local;eye.scale.multiply(new THREE.Vector3(...scale.map(v=>1+(v-1)*closed)));}
       // A brief posture adjustment while dwelling, without an extra destination.
       shiftWait-=elapsed;if(shiftWait<=0){shiftTarget=(random()-.5)*2;shiftWait=6+random()*9;}
       shift+=(shiftTarget*(motion.speed<.04?1:0)-shift)*(1-Math.exp(-2.4*elapsed));
-      if(hips){const world=hips.getWorldPosition(new THREE.Vector3());world.addScaledVector(new THREE.Vector3(Math.cos(state.yaw),0,-Math.sin(state.yaw)),shift*.006*(actor.scale||1));hips.position.copy(hips.parent.worldToLocal(world));}
+      if(hips){const world=hips.getWorldPosition(new THREE.Vector3());world.addScaledVector(new THREE.Vector3(Math.cos(state.yaw),0,-Math.sin(state.yaw)),shift*(profile.idleShift??.006)*(actor.scale||1));hips.position.copy(hips.parent.worldToLocal(world));}
       const angular=elapsed>0?angle(lastYaw,state.yaw)/elapsed:0,accel=elapsed>0?(motion.speed-lastSpeed)/elapsed:0;
-      const desiredCloth=clamp(-angular*.025-accel*.008,-profile.clothResponse,profile.clothResponse);
-      let left=Math.min(.25,elapsed);while(left>1e-8){const step=Math.min(left,1/60);clothVelocity+=(60*(desiredCloth-clothAngle)-14*clothVelocity)*step;clothAngle+=clothVelocity*step;left-=step;}
+      const desiredCloth=clamp(-angular*.025-accel*.008,-clothLimit,clothLimit);
+      let left=Math.min(.25,elapsed);while(left>1e-8){const step=Math.min(left,1/60);clothVelocity+=(60*(desiredCloth-clothAngle)-14*clothVelocity)*step;const next=clothAngle+clothVelocity*step;clothAngle=clamp(next,-clothLimit,clothLimit);if(next!==clothAngle)clothVelocity=0;left-=step;}
       for(const b of cloth)b.rotation.x+=clothAngle;
       lastYaw=state.yaw;lastSpeed=motion.speed;
       root.userData.humanPerformance={role:actor.motionProfile,attention:target.label,eyeYaw,headYaw,bodyYaw,blink:closed,cloth:clothAngle,strideScale:motion.strideScale,source:definition.motionSource||'CMU adapted motion'};

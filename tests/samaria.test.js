@@ -1,3 +1,4 @@
+import {upgradedModelFor} from '../src/human-motion-data.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -42,7 +43,7 @@ test('Samaria actual crowded paths reach all three objects without overlaps or c
 });
 
 test('Samaria ordinary detailed residents use independent models and stop for conversation',async()=>{
- for(const [i,c] of chapters.entries()){const s=createHistoricalScene('samaria',null,{segment:c.id,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,['roman-woman','resident','resident-worker'][i]);s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);assert.ok(Math.abs(p[1]-samariaFloor(c.id,p[0],p[2]))<.001);s.dispose();}
+ for(const [i,c] of chapters.entries()){const s=createHistoricalScene('samaria',null,{segment:c.id,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,upgradedModelFor(['roman-woman','resident','resident-worker'][i]));s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);assert.ok(Math.abs(p[1]-samariaFloor(c.id,p[0],p[2]))<.001);s.dispose();}
 });
 
 test('Samaria accepted GLBs remain visible and only the jar front translates, then restores',async()=>{

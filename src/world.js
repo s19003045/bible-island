@@ -1,3 +1,4 @@
+import {createSceneCache} from './scene-cache.js';
 import * as THREE from 'three';
 import {frameStepSeconds,frameSimulationSteps} from './frame-time.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -300,7 +301,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(atlasSkyColor(false)); scene.fog = new THREE.Fog(atlasSkyColor(false),180,600);
   const camera = new THREE.PerspectiveCamera(39, 1, .1, 1800);
-  const historicalCache = new Map(); let activeHistorical = null, environment = null, nightMode = false, activeView = 'overview';
+  const historicalCache = createSceneCache(3); let activeHistorical = null, environment = null, nightMode = false, activeView = 'overview';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 800 ? 1.35 : 1.75));
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -392,8 +393,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
         environment = pmrem.fromScene(room, .04).texture; room.dispose(); pmrem.dispose();
       }
       const key=segment?`${id}:${segment}${phase?`:${phase}`:''}`:id;
-      if (!historicalCache.has(key)) historicalCache.set(key, createHistoricalScene(id, environment,{segment:segment||'all',phase,blenderAssets:true,onAssetsReady:()=>{renderer.shadowMap.needsUpdate=true;dirty=true;}}));
-      activeHistorical = historicalCache.get(key); activeHistorical.roof.visible = !cutaway; activeHistorical.setTime(nightMode);
+      activeHistorical = historicalCache.get(key,()=>createHistoricalScene(id, environment,{segment:segment||'all',phase,blenderAssets:true,onAssetsReady:()=>{renderer.shadowMap.needsUpdate=true;dirty=true;}})); activeHistorical.roof.visible = !cutaway; activeHistorical.setTime(nightMode);
     }
     camera.fov = activeHistorical ? 48 : 39; camera.updateProjectionMatrix();
     controls.screenSpacePanning = !!activeHistorical;
@@ -619,7 +619,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     // scenes still avoid continuous rendering or NPC decisions.
     if(activeHistorical&&paused&&dirty)updateHistorical(0);
     if(activeHistorical&&dirty)activeHistorical.pose(paused?0:dt,camera.position.toArray(),camera.getWorldDirection(new THREE.Vector3()).toArray());
-    if(activeHistorical?.exploration)audio?.update(camera,activeHistorical?.people||[],now);
+    if(activeHistorical?.exploration)audio?.update(camera,activeHistorical.npcSystem?.agents.map(a=>a.actor)||activeHistorical.people||[],now);
     if(activeHistorical && !walk.active) { const floor=activeHistorical.groundHeight(camera.position.x,camera.position.z)+.3; if(camera.position.y<floor) {camera.position.y=floor;dirty=true;} }
     // Lower DPR only after sustained slow frames. No promise of a particular frame rate.
     if (dt > 0 && now > 6000) { frameSum += dt * 1000; frameCount++; }
@@ -647,6 +647,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     setAtlasJourney(id){focusJourney(id);dirty=true;},
     setAtlasRoute(id){cancelAtlasFlight();atlasRoute=id;const r=atlasRouteById.get(id);setAtlasFocus(r?.from||null);updateNetwork();dirty=true;},
     startWalk,exitWalk,canTalk,canInspect,
+    motionCharacters(){return (activeHistorical?.actors||[]).map(({id,modelId,motionProfile,role})=>({id,modelId,motionProfile,role}));},
     personPosition(id){return activeHistorical?.people.find(p=>p.id===id)?.state.position;},
     setWalkObjective(target){walkObjective=target;},
     guideWalk(target){if(!walk.active)return;interactionTarget=target;autoGoal=target;const p=goalPosition(target);if(p&&!walk.navigate(p))autoGoal=null;dirty=true;},
@@ -702,6 +703,6 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     zoom(amount) {cancelAtlasFlight();if(!activeHistorical)onAtlasInteract();fly = null; const off = camera.position.clone().sub(controls.target); const distance = THREE.MathUtils.clamp(off.length() * amount, controls.minDistance, controls.maxDistance); camera.position.copy(controls.target).add(off.setLength(distance)); controls.update(); dirty = true; },
     topView() { if (activeHistorical) { activeView='plan'; controls.maxPolarAngle=Math.PI/2-.018; const c = activeHistorical.config; focus(new THREE.Vector3(...c.target),new THREE.Vector3(.1,c.plan,.1)); return; } const target=selected?new THREE.Vector3(selected.position[0],.2,selected.position[1]):new THREE.Vector3(0,0,4);focus(target,new THREE.Vector3(.1,selected?18:120,4)); },
     getStats() { return { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, pixelRatio, selected: selected?.id, stop: selectedStop, historical: !!activeHistorical }; },
-    dispose() { cancelAnimationFrame(raf);walk.dispose();observer.disconnect();controls.dispose(); document.removeEventListener('visibilitychange', onVisibility);disposeVesselViewerResources();historicalCache.forEach(s => s.dispose());void disposeBlenderAssets();ocean.dispose();network.dispose();environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
+    dispose() { cancelAnimationFrame(raf);walk.dispose();observer.disconnect();controls.dispose(); document.removeEventListener('visibilitychange', onVisibility);disposeVesselViewerResources();historicalCache.dispose();void disposeBlenderAssets();ocean.dispose();network.dispose();environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
   };
 }

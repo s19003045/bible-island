@@ -1,4 +1,5 @@
 import {characterClips} from './helpers/character-clips.js';
+import {upgradedModelFor} from '../src/human-motion-data.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -75,7 +76,7 @@ test('Herod uses actual nearby adult meshes and role-specific clothing while beh
   const person=scene.people.find(a=>a.id==='stone-worker'),seeds=scene.npcSystem.agents.map(a=>a.seed),position=[...person.state.position];
   assert.equal(scene.npcSystem.agents.find(a=>a.actor===person).radius,.33);
   scene.converse('stone-worker');scene.animate(0,[position[0]+2,position[1]+1.7,position[2]+3]);
-  const instance=scene.detailedResidents.visible.get(person);assert.ok(instance);assert.equal(instance.root.userData.modelId,'resident-worker');assert.equal(residentModelFor(person),'resident-worker');
+  const instance=scene.detailedResidents.visible.get(person);assert.ok(instance);assert.equal(instance.root.userData.modelId,upgradedModelFor('resident-worker'));assert.equal(residentModelFor(person),upgradedModelFor('resident-worker'));
   assert.equal(instance.actions.get('Talk').getEffectiveWeight(),1);
   const gesture=instance.root.getObjectByName('forearmL').quaternion.clone();scene.animate(.15,[position[0]+2,position[1]+1.7,position[2]+3]);
   assert.ok(gesture.angleTo(instance.root.getObjectByName('forearmL').quaternion)>.001,'dialogue updates a real independent gesture');

@@ -1,3 +1,4 @@
+import {upgradedModelFor} from '../src/human-motion-data.js';
 import {characterClips} from './helpers/character-clips.js';
 import {residentFootContact} from '../src/resident-locomotion.js';
 import test from 'node:test';
@@ -86,7 +87,7 @@ test('all five actual scenes select period-specific nearby people without changi
   const s=createHistoricalScene(id,null,{blenderAssets:true,assetLoader:asset});assert.equal(await s.detailedResidents.ready,true);const seeds=s.npcSystem.agents.map(a=>a.seed);
   for(const [personId,modelId] of Object.entries(people)){
     const a=s.people.find(a=>a.id===personId),p=[...a.state.position],camera=[p[0]+2,p[1]+1.6,p[2]+3];s.converse(personId);s.animate(0,camera);s.animate(.3,camera);
-    const instance=s.detailedResidents.visible.get(a);assert.ok(instance,personId);assert.equal(instance.root.userData.modelId,modelId);assert.ok(instance.actions.get('Talk').getEffectiveWeight()>.85);assert.deepEqual(a.state.position,p);
+    const instance=s.detailedResidents.visible.get(a);assert.ok(instance,personId);assert.equal(instance.root.userData.modelId,upgradedModelFor(modelId));assert.ok(instance.actions.get('Talk').getEffectiveWeight()>.85);assert.deepEqual(a.state.position,p);
   }
   const women=s.npcSystem.agents.filter(a=>a.actor.modelId.endsWith('woman'));assert.ok(women.length);assert.ok(women.every(a=>Math.abs(a.actor.scale*1.7-1.64)<1e-6));
   const a=women[0].actor,p=a.state.position;s.converse(null);s.animate(0,[p[0]+1,p[1]+1.5,p[2]+2]);assert.equal(s.detailedResidents.visible.get(a)?.root.userData.modelId,a.modelId);
@@ -94,7 +95,7 @@ test('all five actual scenes select period-specific nearby people without changi
  }
  for(const segment of ['bricks','passover','crossing','all']){
   const s=createHistoricalScene('exodus',null,{segment,blenderAssets:true,assetLoader:asset});assert.equal(await s.detailedResidents.ready,true);
-  const allowed=new Set(['brick-laborer','wilderness-resident','wilderness-woman','wilderness-child']);assert.ok(s.npcSystem.agents.every(a=>allowed.has(a.actor.modelId)));
+  const allowed=new Set(['brick-laborer','wilderness-resident','wilderness-woman','wilderness-child'].map(upgradedModelFor));assert.ok(s.npcSystem.agents.every(a=>allowed.has(a.actor.modelId)));
   const a=s.people[0],p=[...a.state.position],camera=[p[0]+1,p[1]+1.6,p[2]+3];s.converse(a.id);s.animate(0,camera);s.animate(.2,camera);
   assert.equal(s.detailedResidents.visible.get(a)?.root.userData.modelId,a.modelId);assert.deepEqual(a.state.position,p);assert.ok(s.npcSystem.agents.every(a=>a.radius===a.actor.collisionRadius));s.dispose();
  }

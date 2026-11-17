@@ -1,0 +1,1059 @@
+{
+  "schema_version": 1,
+  "asset_review_pass": true,
+  "blender_version": "4.5.16",
+  "renderer": "Cycles, 20 samples, AgX, original materials, evaluated skin geometry, source never saved or re-exported",
+  "review_script": "scripts/blender/human-motion-review.py",
+  "review_script_sha256": "22b70b0ddd72cd54697102d6720f747d2dd67660c86ef6c221cee4afaa453903",
+  "build_report_file": "assets/blender/human-rollout/build-report.json",
+  "build_report_sha256": "7e912fc64a2186652b6d90a7060dd40fb024e45a16bca2c9e7966c944cefc7e2",
+  "independent_provenance_count": 28,
+  "independent_provenance": {
+    "asian-artisan": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "65bad523b7331fc2e861d86a60a502320a8059047a25d6ea67d5b3c41cfc1d09",
+      "source_sha256": "8c6e220c3afde005bd62a1c480a3a347a27479af114e27968a2554e0a41ac856",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "brick-laborer": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "745136ad0615d1de7e1bd9f71d28f8f09c4d2c06dc71198d40fe3d454ecda0a1",
+      "source_sha256": "17eeea988fb963b771bc61b982122d536ff5ef1f3499e2066c2c676535a52441",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "bronze-artisan": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "6870c9142ef627c3f1e7ab7d6232be61e377bb53e5d18e122b6b0add27b5e42b",
+      "source_sha256": "b325a3a4fc719805fee19f46e179445a759364447393872faa4c4e75d488648e",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "camp-host": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "7ba2ee453ce461a22d59e709923938ddc2ed4dccd816c6126298e4e766223cff",
+      "source_sha256": "a16ec121f627a685be0a05e4b84266c828857773d8966fa5c4592d5dc83a75de",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "caravan-traveler": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "8ed3f08f9e0314ed740c9840bb9e8be8535d42cc607f8f6fb98b13cec26c4b23",
+      "source_sha256": "813cfb078158097232a804587c1ed995a895bec9a7daa681d217f0ecf80124cd",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "egypt-grain-worker": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "ea730d7f572893a8a3fd9a55d0ac32681aee753ad7bfdb7adc604f60878191d4",
+      "source_sha256": "9689356d6ca1efb9f1004e507385ae6a11cffddf94a0305fc67b25099caf7a27",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "egypt-householder": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "bbabaf496e52ad388ea86c2d6b53f2861f6a064de98e9150d3943459c0bdb035",
+      "source_sha256": "5155f5335f3aedb3b04f2b086e5706d78c555cd73e6b6f9f7c072b8f5b33151e",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "iron-resident": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "5f2d930207ea29268e49f7af8bd862231ad1f83567bdf8eceb85b4b6dbd7d88b",
+      "source_sha256": "efa893c2e136ece20837aae63e358a6ac72b6d96c741c243bd55ca657811d8ed",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "iron-woman": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "879e9236ce6595892836a7ce71d117e9e49de24c290563d71fe5e1ab79d59fb1",
+      "source_sha256": "e199a336bd9bf0cb33b7575344926bddba96ec0f213df1af4eaf4c5a54c62e0a",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "ordinary-priest": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "e2d9b1fc034bab981380c7f06d52663e27853e232a97b2f3e402795157c42c8a",
+      "source_sha256": "cd5f36a45d39ef37828462bf36898b154e572cdafc0a6573823d4caaacc48f71",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "patriarch-traveler": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "18034475b8c3a9fc340eccd683799f381c832fe9e603b4d51f9d903281c93123",
+      "source_sha256": "ee697cfaeaf734f4cc7b93319756f733a068f719991639851a4c1fd10ca82192",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "paul-trader": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "c05a7c4bbcc87e97a96c59094f7b9e1ce0c49a03ccae68d1f0fa013535069b0e",
+      "source_sha256": "de38281232cccc7753eed7aa4f36908d89b8c16e8e7acdb7618c38e228aa494d",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "port-worker": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "3e4ce6e0ba5edb61ee8b5d382ae41c6cdd39607e332401260a9d152a1b964414",
+      "source_sha256": "66dbca9401447440ddd7bc76b3acbbb5def53fe2211975b88415d1d9ea00e43d",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "priest-bearer": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "d7f4bbb8342f0d50ceeaa9eaa66cc5b7292cf6de60a1dc677750711a86c512d2",
+      "source_sha256": "342dce5b6aa7996de0162fc7a01bfa7d12108cc32d8ff5b6a4d5a1bd71ccf363",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "resident": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "cf3b6b7df7aef882f9f8113e542bbacb926c55c0fe448bf55eaff4756cc9f8a0",
+      "source_sha256": "e6df1c77460f3c16f2bc7c0afbbadcaa8763c80ae4a2addcbc2f5d63085f0bae",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "resident-carrier": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "7b61cbc30d30537226da5b12eee0b8c6138692c66c734a6ca53dc4c94a576d55",
+      "source_sha256": "323cbd311af0604430a4c80fe23197d4811dec9f753b2379a9fa9503a322bdf2",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "resident-child": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "89b3f654fabe36fd93dee9d502afded14c7eb87aa0d856b9cdd2271e52761595",
+      "source_sha256": "c74cc217145dd91b1e17a1109e159935eb2156d7183700a855cd219dda4161de",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "resident-worker": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "74b434c483663b71bcc55758d8e8911dc28e042e11a16484ce9def50994e504e",
+      "source_sha256": "a9df944603d02febc46a1482ed4df18da83d828e8fa4fb2245a65e43489a90c7",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "return-child": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "2da23d0692fde83f4832db6d9d20a004dd9cd680d9fee85da2978d6c84ce0966",
+      "source_sha256": "60bdfdb8f82a0af0af6d1380ba9dfe4d2ee082fecb611b81784585290aa2510f",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "return-elder": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "c13e75a147b8411689d9fa062bb089ef5a4e3296d7c6e63e6cf59b0d8292a4fe",
+      "source_sha256": "671870dba05f251f7cd18f732860f62a50c5013f0539ac0b2bddc676a588c22e",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "return-mason": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "96314ad17f2ab10ad21921c52a213222c7a76d82c3e361bf71dce176d43ba302",
+      "source_sha256": "655b7a6ad2c6c4b012f95c1bb91cd17289435328a7790edd0db4b1fce4bafacc",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "return-woman": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "aa4fc309a4bc20042e6c77cc1504677dd78ddc0e3fcd50e49f3aa2a0ca73696f",
+      "source_sha256": "bb404c95e7d1177ba8e7593ac62c7ab297aee0b5f2180cba7659bce69f0f9308",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "roman-woman": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "a96706a07a52f971252c3b2cea3018fb28982cfe2e4a189426596d24e81578b8",
+      "source_sha256": "eedef89c26f2f8c142158466e096ba4b8f4204cf4c6b0477f5f91ca5d2aa6136",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "temple-singer": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "cdf6fcd0bc1b78b2480a4697a6963b74b5fef1b591cbaeb74d3e78618768705d",
+      "source_sha256": "f86f1bc4241a9ff2f188a6f323f38ef8e192c2d2e00d5f4a5cc731ceff287cd2",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "well-keeper": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "9fea8474dc12e1d9a58ce5e174dbabd77a70d21e2bb700a47b56df8f0b7e748f",
+      "source_sha256": "bb72a39d28fa1cfffcde459b3c5e485dcbb0a38e22c3a25332cd27c8c673ae65",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "wilderness-child": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "786279abc420cf7c4ebdaa9874758d3b0b34eed0ebd44ca2392f0287a996c504",
+      "source_sha256": "c649adede653e81d19df06d901b420d67b3b382aee1976a8b147cdb4db15cb31",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "wilderness-resident": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "b4a251b64863685f36913c312deba970af407fd4757e71a73879a4878b2b0a6f",
+      "source_sha256": "5965ebca54d39e2b4fc87020dfc9df188613e5481af2fa1eb8ab884e598622bd",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    },
+    "wilderness-woman": {
+      "checks": {
+        "source_sha256_matches_metadata": true,
+        "glb_sha256_matches_metadata": true,
+        "glb_bytes_match_metadata": true,
+        "one_rig_identity": true,
+        "base_model_id_matches": true,
+        "capture_source_matches": true,
+        "motion_profile_matches": true,
+        "nine_animation_names": true,
+        "editable_bones_match_metadata": true,
+        "editable_rig_identity_matches": true,
+        "editable_capture_source_matches": true
+      },
+      "pass": true,
+      "glb_sha256": "5d5385b9bdc582525b632d5a3fded42654a1c24d30de817ef60361a6cba4f3a5",
+      "source_sha256": "35cc962cf2940311dfa1dfc491c4ecf1ae2d90eafc67fefb45c1010798c8fbd6",
+      "original_glb_sha_matches": true,
+      "original_shared_source_sha_matches": true,
+      "source_unchanged_after_review": true
+    }
+  },
+  "visually_reviewed_model_count": 11,
+  "actual_reviewed_frame_count": 91,
+  "visually_reviewed_models": [
+    {
+      "model": "resident-child",
+      "glb_sha256": "89b3f654fabe36fd93dee9d502afded14c7eb87aa0d856b9cdd2271e52761595",
+      "source_sha256": "c74cc217145dd91b1e17a1109e159935eb2156d7183700a855cd219dda4161de",
+      "capture_source": "CMU07_01",
+      "cycle_seconds": 0.8583333333333333,
+      "cycle_distance_m": 0.8055321602300637,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "idle_phases": [],
+      "neutral_face_closeup": true,
+      "frame_count": 9,
+      "evidence": [
+        ".qa/human-rollout/review-final/resident-child/walk-front-0.png",
+        ".qa/human-rollout/review-final/resident-child/walk-front-25.png",
+        ".qa/human-rollout/review-final/resident-child/walk-front-50.png",
+        ".qa/human-rollout/review-final/resident-child/walk-front-75.png",
+        ".qa/human-rollout/review-final/resident-child/walk-side-0.png",
+        ".qa/human-rollout/review-final/resident-child/walk-side-25.png",
+        ".qa/human-rollout/review-final/resident-child/walk-side-50.png",
+        ".qa/human-rollout/review-final/resident-child/walk-side-75.png",
+        ".qa/human-rollout/review-final/resident-child/face-front-25.png"
+      ],
+      "findings": [
+        "All four front/side walk quartiles: corrected sleeve skin patch and leading-knee rectangle remain absent; original child proportions, garment and colors retained."
+      ],
+      "reported_covered_envelope_points": 1051,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    },
+    {
+      "model": "resident-carrier",
+      "glb_sha256": "7b61cbc30d30537226da5b12eee0b8c6138692c66c734a6ca53dc4c94a576d55",
+      "source_sha256": "323cbd311af0604430a4c80fe23197d4811dec9f753b2379a9fa9503a322bdf2",
+      "capture_source": "CMU07_01",
+      "cycle_seconds": 1.2,
+      "cycle_distance_m": 1.1285718655424566,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "idle_phases": [],
+      "neutral_face_closeup": true,
+      "frame_count": 9,
+      "evidence": [
+        ".qa/human-rollout/review-final/resident-carrier/walk-front-0.png",
+        ".qa/human-rollout/review-final/resident-carrier/walk-front-25.png",
+        ".qa/human-rollout/review-final/resident-carrier/walk-front-50.png",
+        ".qa/human-rollout/review-final/resident-carrier/walk-front-75.png",
+        ".qa/human-rollout/review-final/resident-carrier/walk-side-0.png",
+        ".qa/human-rollout/review-final/resident-carrier/walk-side-25.png",
+        ".qa/human-rollout/review-final/resident-carrier/walk-side-50.png",
+        ".qa/human-rollout/review-final/resident-carrier/walk-side-75.png",
+        ".qa/human-rollout/review-final/resident-carrier/face-front-25.png"
+      ],
+      "findings": [
+        "Right hand and jug remain attached through four walk quartiles; opposite free arm swings; short tunic hem follows leading knee without rectangular skin exposure."
+      ],
+      "reported_covered_envelope_points": 1109,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    },
+    {
+      "model": "roman-woman",
+      "glb_sha256": "a96706a07a52f971252c3b2cea3018fb28982cfe2e4a189426596d24e81578b8",
+      "source_sha256": "eedef89c26f2f8c142158466e096ba4b8f4204cf4c6b0477f5f91ca5d2aa6136",
+      "capture_source": "CMU07_01",
+      "cycle_seconds": 1.0916666666666666,
+      "cycle_distance_m": 0.9541689831668245,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "idle_phases": [],
+      "neutral_face_closeup": true,
+      "frame_count": 9,
+      "evidence": [
+        ".qa/human-rollout/review-fixed/roman-woman/walk-front-0.png",
+        ".qa/human-rollout/review-fixed/roman-woman/walk-front-25.png",
+        ".qa/human-rollout/review-fixed/roman-woman/walk-front-50.png",
+        ".qa/human-rollout/review-fixed/roman-woman/walk-front-75.png",
+        ".qa/human-rollout/review-fixed/roman-woman/walk-side-0.png",
+        ".qa/human-rollout/review-fixed/roman-woman/walk-side-25.png",
+        ".qa/human-rollout/review-fixed/roman-woman/walk-side-50.png",
+        ".qa/human-rollout/review-fixed/roman-woman/walk-side-75.png",
+        ".qa/human-rollout/review-fixed/roman-woman/face-front-25.png"
+      ],
+      "findings": [
+        "Long robe covers calf/knee at the four sampled walk phases; feet emerge under open/lifted hem; upper sleeves and neutral eye/lid mapping appear aligned."
+      ],
+      "reported_covered_envelope_points": 1271,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    },
+    {
+      "model": "priest-bearer",
+      "glb_sha256": "d7f4bbb8342f0d50ceeaa9eaa66cc5b7292cf6de60a1dc677750711a86c512d2",
+      "source_sha256": "342dce5b6aa7996de0162fc7a01bfa7d12108cc32d8ff5b6a4d5a1bd71ccf363",
+      "capture_source": "CMU07_01",
+      "cycle_seconds": 1.0916666666666666,
+      "cycle_distance_m": 1.0285718268235047,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "idle_phases": [
+        0
+      ],
+      "neutral_face_closeup": true,
+      "frame_count": 11,
+      "evidence": [
+        ".qa/human-rollout/review-fixed/priest-bearer/walk-front-0.png",
+        ".qa/human-rollout/review-fixed/priest-bearer/walk-front-25.png",
+        ".qa/human-rollout/review-fixed/priest-bearer/walk-front-50.png",
+        ".qa/human-rollout/review-fixed/priest-bearer/walk-front-75.png",
+        ".qa/human-rollout/review-fixed/priest-bearer/walk-side-0.png",
+        ".qa/human-rollout/review-fixed/priest-bearer/walk-side-25.png",
+        ".qa/human-rollout/review-fixed/priest-bearer/walk-side-50.png",
+        ".qa/human-rollout/review-fixed/priest-bearer/walk-side-75.png",
+        ".qa/human-rollout/review-fixed/priest-bearer/idle-front-0.png",
+        ".qa/human-rollout/review-fixed/priest-bearer/idle-side-0.png",
+        ".qa/human-rollout/review-fixed/priest-bearer/face-front-25.png"
+      ],
+      "findings": [
+        "Walk renders are anatomical review only, not permission to walk during historical standing scenes.",
+        "Original right shoulder grasp and lowered left arm remain bound to the chest; no invented left grip; front/side Idle retain historical standing bind.",
+        "No visible calf/knee penetration in four sampled walk phases."
+      ],
+      "reported_covered_envelope_points": 1271,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    },
+    {
+      "model": "brick-laborer",
+      "glb_sha256": "745136ad0615d1de7e1bd9f71d28f8f09c4d2c06dc71198d40fe3d454ecda0a1",
+      "source_sha256": "17eeea988fb963b771bc61b982122d536ff5ef1f3499e2066c2c676535a52441",
+      "capture_source": "CMU07_01",
+      "cycle_seconds": 1.0916666666666666,
+      "cycle_distance_m": 1.3142862231633672,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "idle_phases": [],
+      "neutral_face_closeup": true,
+      "frame_count": 9,
+      "evidence": [
+        ".qa/human-rollout/review-final/brick-laborer/walk-front-0.png",
+        ".qa/human-rollout/review-final/brick-laborer/walk-front-25.png",
+        ".qa/human-rollout/review-final/brick-laborer/walk-front-50.png",
+        ".qa/human-rollout/review-final/brick-laborer/walk-front-75.png",
+        ".qa/human-rollout/review-final/brick-laborer/walk-side-0.png",
+        ".qa/human-rollout/review-final/brick-laborer/walk-side-25.png",
+        ".qa/human-rollout/review-final/brick-laborer/walk-side-50.png",
+        ".qa/human-rollout/review-final/brick-laborer/walk-side-75.png",
+        ".qa/human-rollout/review-final/brick-laborer/face-front-25.png"
+      ],
+      "findings": [
+        "Barefoot heel pitch, toe-off and swing clearance visible; final short wrap follows leading knee without skin rectangle.",
+        "Bare upper arms preserve original shape and do not receive under-sleeve helpers."
+      ],
+      "reported_covered_envelope_points": 505,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    },
+    {
+      "model": "return-elder",
+      "glb_sha256": "c13e75a147b8411689d9fa062bb089ef5a4e3296d7c6e63e6cf59b0d8292a4fe",
+      "source_sha256": "671870dba05f251f7cd18f732860f62a50c5013f0539ac0b2bddc676a588c22e",
+      "capture_source": "CMU07_04",
+      "cycle_seconds": 1.425,
+      "cycle_distance_m": 0.9175649320800556,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "idle_phases": [],
+      "neutral_face_closeup": true,
+      "frame_count": 9,
+      "evidence": [
+        ".qa/human-rollout/review-final/return-elder/walk-front-0.png",
+        ".qa/human-rollout/review-final/return-elder/walk-front-25.png",
+        ".qa/human-rollout/review-final/return-elder/walk-front-50.png",
+        ".qa/human-rollout/review-final/return-elder/walk-front-75.png",
+        ".qa/human-rollout/review-final/return-elder/walk-side-0.png",
+        ".qa/human-rollout/review-final/return-elder/walk-side-25.png",
+        ".qa/human-rollout/review-final/return-elder/walk-side-50.png",
+        ".qa/human-rollout/review-final/return-elder/walk-side-75.png",
+        ".qa/human-rollout/review-final/return-elder/face-front-25.png"
+      ],
+      "findings": [
+        "Slower/shorter CMU07_04-derived cycle; four sampled long-robe poses show covered calf/knee; neutral eye/lid mapping aligned with original wrinkle geometry."
+      ],
+      "reported_covered_envelope_points": 1271,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    },
+    {
+      "model": "wilderness-child",
+      "glb_sha256": "786279abc420cf7c4ebdaa9874758d3b0b34eed0ebd44ca2392f0287a996c504",
+      "source_sha256": "c649adede653e81d19df06d901b420d67b3b382aee1976a8b147cdb4db15cb31",
+      "capture_source": "CMU07_01",
+      "cycle_seconds": 0.8583333333333333,
+      "cycle_distance_m": 0.8055321602300637,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "idle_phases": [],
+      "neutral_face_closeup": true,
+      "frame_count": 9,
+      "evidence": [
+        ".qa/human-rollout/review-final/wilderness-child/walk-front-0.png",
+        ".qa/human-rollout/review-final/wilderness-child/walk-front-25.png",
+        ".qa/human-rollout/review-final/wilderness-child/walk-front-50.png",
+        ".qa/human-rollout/review-final/wilderness-child/walk-front-75.png",
+        ".qa/human-rollout/review-final/wilderness-child/walk-side-0.png",
+        ".qa/human-rollout/review-final/wilderness-child/walk-side-25.png",
+        ".qa/human-rollout/review-final/wilderness-child/walk-side-50.png",
+        ".qa/human-rollout/review-final/wilderness-child/walk-side-75.png",
+        ".qa/human-rollout/review-final/wilderness-child/face-front-25.png"
+      ],
+      "findings": [
+        "Corrected short-tunic knee opening and clean sleeves at all four front/side walk quartiles; original layered wrap retained."
+      ],
+      "reported_covered_envelope_points": 1051,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    },
+    {
+      "model": "asian-artisan",
+      "glb_sha256": "65bad523b7331fc2e861d86a60a502320a8059047a25d6ea67d5b3c41cfc1d09",
+      "source_sha256": "8c6e220c3afde005bd62a1c480a3a347a27479af114e27968a2554e0a41ac856",
+      "capture_source": "CMU07_01",
+      "cycle_seconds": 1.0916666666666666,
+      "cycle_distance_m": 1.3142862231633672,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "idle_phases": [],
+      "neutral_face_closeup": true,
+      "frame_count": 9,
+      "evidence": [
+        ".qa/human-rollout/review-final/asian-artisan/walk-front-0.png",
+        ".qa/human-rollout/review-final/asian-artisan/walk-front-25.png",
+        ".qa/human-rollout/review-final/asian-artisan/walk-front-50.png",
+        ".qa/human-rollout/review-final/asian-artisan/walk-front-75.png",
+        ".qa/human-rollout/review-final/asian-artisan/walk-side-0.png",
+        ".qa/human-rollout/review-final/asian-artisan/walk-side-25.png",
+        ".qa/human-rollout/review-final/asian-artisan/walk-side-50.png",
+        ".qa/human-rollout/review-final/asian-artisan/walk-side-75.png",
+        ".qa/human-rollout/review-final/asian-artisan/face-front-25.png"
+      ],
+      "findings": [
+        "Reviewed restored full-stride cycle (stride factor .92; distance 1.3142862231633672 m), not the rejected audit-driven shortened export.",
+        "Front apron and underlying tunic are separate forward-facing layers; no visible leading-knee rectangle or sleeve patch in four sampled walk phases; neutral eyes/lids aligned."
+      ],
+      "reported_covered_envelope_points": 881,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    },
+    {
+      "model": "egypt-householder",
+      "glb_sha256": "bbabaf496e52ad388ea86c2d6b53f2861f6a064de98e9150d3943459c0bdb035",
+      "source_sha256": "5155f5335f3aedb3b04f2b086e5706d78c555cd73e6b6f9f7c072b8f5b33151e",
+      "capture_source": "CMU07_01",
+      "cycle_seconds": 1.0916666666666666,
+      "cycle_distance_m": 0.8015019458601326,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "idle_phases": [],
+      "neutral_face_closeup": true,
+      "frame_count": 9,
+      "evidence": [
+        ".qa/human-rollout/review-final/egypt-householder/walk-front-0.png",
+        ".qa/human-rollout/review-final/egypt-householder/walk-front-25.png",
+        ".qa/human-rollout/review-final/egypt-householder/walk-front-50.png",
+        ".qa/human-rollout/review-final/egypt-householder/walk-front-75.png",
+        ".qa/human-rollout/review-final/egypt-householder/walk-side-0.png",
+        ".qa/human-rollout/review-final/egypt-householder/walk-side-25.png",
+        ".qa/human-rollout/review-final/egypt-householder/walk-side-50.png",
+        ".qa/human-rollout/review-final/egypt-householder/walk-side-75.png",
+        ".qa/human-rollout/review-final/egypt-householder/face-front-25.png"
+      ],
+      "findings": [
+        "Bare shoulders/arms and original straps retained; no visible calf/knee penetration through long garment at four sampled phases; neutral eyes/lids aligned."
+      ],
+      "reported_covered_envelope_points": 1271,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    },
+    {
+      "model": "port-worker",
+      "glb_sha256": "3e4ce6e0ba5edb61ee8b5d382ae41c6cdd39607e332401260a9d152a1b964414",
+      "source_sha256": "66dbca9401447440ddd7bc76b3acbbb5def53fe2211975b88415d1d9ea00e43d",
+      "capture_source": "CMU07_01",
+      "cycle_seconds": 1.0916666666666666,
+      "cycle_distance_m": 1.3142862231633672,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.5
+      ],
+      "idle_phases": [],
+      "neutral_face_closeup": false,
+      "frame_count": 4,
+      "evidence": [
+        ".qa/human-rollout/review-final/port-worker/walk-front-0.png",
+        ".qa/human-rollout/review-final/port-worker/walk-front-50.png",
+        ".qa/human-rollout/review-final/port-worker/walk-side-0.png",
+        ".qa/human-rollout/review-final/port-worker/walk-side-50.png"
+      ],
+      "findings": [
+        "Actual front/side phases 0 and .5: knees emerge through lifted/open hem, no skin rectangle through fabric, original diagonal strap retained.",
+        "Reported covered-envelope point count is zero. These four rendered poses are visual sampling, not full-cycle numerical garment coverage."
+      ],
+      "reported_covered_envelope_points": 0,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    },
+    {
+      "model": "bronze-artisan",
+      "glb_sha256": "6870c9142ef627c3f1e7ab7d6232be61e377bb53e5d18e122b6b0add27b5e42b",
+      "source_sha256": "b325a3a4fc719805fee19f46e179445a759364447393872faa4c4e75d488648e",
+      "capture_source": "CMU07_01",
+      "cycle_seconds": 1.0916666666666666,
+      "cycle_distance_m": 1.3142862231633672,
+      "views": [
+        "front",
+        "side"
+      ],
+      "walk_phases": [
+        0,
+        0.5
+      ],
+      "idle_phases": [],
+      "neutral_face_closeup": false,
+      "frame_count": 4,
+      "evidence": [
+        ".qa/human-rollout/review-final/bronze-artisan/walk-front-0.png",
+        ".qa/human-rollout/review-final/bronze-artisan/walk-front-50.png",
+        ".qa/human-rollout/review-final/bronze-artisan/walk-side-0.png",
+        ".qa/human-rollout/review-final/bronze-artisan/walk-side-50.png"
+      ],
+      "findings": [
+        "Actual front/side phases 0 and .5: knees emerge through lifted/open hem; no visible leading-knee rectangle or sleeve skin patch.",
+        "Reported covered-envelope point count is zero. These four rendered poses are visual sampling, not full-cycle numerical garment coverage."
+      ],
+      "reported_covered_envelope_points": 0,
+      "reported_maximum_envelope_protrusion_m": 0,
+      "sampled_pose_visual_review_pass": true
+    }
+  ],
+  "curated_contact_sheets": [
+    {
+      "file": "assets/blender/human-rollout/review/barefoot-worker.png",
+      "bytes": 858660,
+      "sha256": "0189bef25044f739b14efbda9f30070e9f5894467a1be6c6efc99089549129a6"
+    },
+    {
+      "file": "assets/blender/human-rollout/review/carrier.png",
+      "bytes": 920697,
+      "sha256": "7835f38836439e22965cba04063640a6ffb87336fb31c64099e84e756b717ef9"
+    },
+    {
+      "file": "assets/blender/human-rollout/review/child.png",
+      "bytes": 910979,
+      "sha256": "d5785c17ad0ee7212a13111836e80ea2bfc64b81ad67fdf84d2a25c0d1f894f1"
+    },
+    {
+      "file": "assets/blender/human-rollout/review/priest-bearer.png",
+      "bytes": 1156234,
+      "sha256": "88dfae8e46af3dd19dc4e230886a6a621ed51675fce47d76867842aefe7a770c"
+    },
+    {
+      "file": "assets/blender/human-rollout/review/roman-long-robe.png",
+      "bytes": 888540,
+      "sha256": "c9e8498401f8793d3270d8848dfb25725fa6b6f221f374a58d54132752026afc"
+    }
+  ],
+  "corrected_findings": [
+    "Original V2 upper-sleeve skin patch was detected by actual side renders and original/new comparison, then corrected using under-sleeve helper deformation without changing garment geometry/colors.",
+    "New short-tunic leading-knee rectangle was detected by actual front renders and original/new comparison, then corrected by garment-to-thigh weight transfer, preserving full stride.",
+    "Asian artisan false-positive garment audit treated two front-facing layers as enclosing walls; opposing outward-normal validation corrected the test and the final model was rebuilt to full stride."
+  ],
+  "limits": [
+    "Static sampled poses do not establish perceived naturalness of a complete moving cycle or runtime performance.",
+    "Original stylized teaching meshes, rigid/angular hair/cloth components and simplified hands/feet remain; this is not a photorealistic model replacement or cloth simulation.",
+    "Neutral eye/lid alignment was inspected. Runtime gaze/blink, animation blending, terrain IK, collision and actual scene integration require separate runtime validation.",
+    "Adult CMU walk/slow-walk data are adapted to child, loaded and elder bodies; they are not recordings of children, water carriers or elderly performers.",
+    "Port-worker and bronze-artisan have zero covered-envelope points; their actual four-pose visual reviews do not imply full-cycle numerical garment coverage.",
+    "Only five selected contact sheets are copied into source assets; raw source renders and audits remain under ignored .qa/human-rollout/."
+  ]
+}

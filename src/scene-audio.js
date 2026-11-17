@@ -2,6 +2,7 @@ import voices from './voice-manifest.json';
 import {Vector3} from 'three';
 import {createSoundtrack,createRecordedEffects,scoreForScene} from './soundtrack.js';
 import {mobilityFor} from './mobility.js';
+import {createNPCFootsteps} from './npc-footsteps.js';
 
 // Original synthesized ambience; no claim to reproduce the sound of an ancient city.
 export function createSceneAudio(onState=()=>{},preferences={}) {
@@ -13,6 +14,7 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
   const report=(status=voiceStatus,text=voiceText)=>{voiceStatus=status;voiceText=text;onState({enabled,status,text,soundtrack:{...soundtrack},volume:{...volume}});};
   const upgraded=()=>mobilityFor(island.split(':')[0]);
   const materialAt=position=>island.split(':')[0]==='jerusalem'&&position[0]>16.9&&position[0]<25.4&&position[2]>-9.7&&position[2]<-.9?'stone':(profiles[island]||profiles[island.split(':')[0]]||profiles.jerusalem).ground;
+  const npcSteps=createNPCFootsteps((position,actor,{gain})=>recorded?.play('footstep:'+materialAt(position),position,{gain,rate:actor.motionProfile==='child'?1.08:1}));
   function updateMusic(){
     const score=scoreForScene(island);
     if(score){if(music){try{music.stop();}catch{}music=null;}ready=scorePlayer.select(score);}
@@ -36,7 +38,7 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
   function rebuildAmbience() {
     stopTransients();
     for(const n of ambientNodes){try{n.stop?.();}catch{}n.disconnect();}ambientNodes=[];
-    const profile=profiles[island]||profiles.jerusalem;
+    const profile=profiles[island]||profiles[island.split(':')[0]]||profiles.jerusalem;
     function loop(position,frequency,gain) {
       const source=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),level=ctx.createGain();
       source.buffer=noise;source.loop=true;filter.type='bandpass';filter.frequency.value=frequency;filter.Q.value=.5;level.gain.value=gain;
@@ -61,7 +63,7 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
   function stopVoice() {token++;if(source){try{source.stop();}catch{}source=null;}playing=null;voicePosition=null;mix();report(enabled?'ready':'off');}
   async function enable(value=true) {
     enabled=value;
-    if(!value){stopVoice();recorded?.stop();mix();return false;}
+    if(!value){stopVoice();recorded?.stop();npcSteps.reset();mix();return false;}
     try{build();await ctx.resume();if(ctx.state!=='running')throw new Error('點一下聲音按鈕以繼續播放。');mix();report('ready');return true;}
     catch(e){enabled=false;mix();report('unavailable',e.message);return false;}
   }
@@ -73,9 +75,9 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
   }
   return {
     get volumes(){return {...volume};},get enabled(){return enabled;},get playing(){return playing;},get soundtrack(){return {...soundtrack};},whenReady:()=>ready,enable,stopVoice,
-    setScene(id,segment=null,phase=null){const key=segment?`${id}:${segment}${phase?`:${phase}`:''}`:id;if(key===island)return;stopVoice();recorded?.stop();island=key;if(ctx){rebuildAmbience();updateMusic();}},
-    setActive(value){active=value;mix();if(!value){stopVoice();recorded?.stop();}},
-    setHidden(value){hidden=value;if(value){stopVoice();recorded?.stop();}mix();},
+    setScene(id,segment=null,phase=null){const key=segment?`${id}:${segment}${phase?`:${phase}`:''}`:id;if(key===island)return;stopVoice();recorded?.stop();npcSteps.reset();island=key;if(ctx){rebuildAmbience();updateMusic();}},
+    setActive(value){active=value;mix();if(!value){stopVoice();recorded?.stop();npcSteps.reset();}},
+    setHidden(value){hidden=value;if(value){stopVoice();recorded?.stop();npcSteps.reset();}mix();},
     setVolume(kind,value){if(!(kind in volume))return;volume[kind]=Math.max(0,Math.min(1,Number(value)));if(kind==='voice'&&volume.voice===0)stopVoice();mix();report(enabled?'ready':'off');},
     async speak(person,key,position) {
       stopVoice();const cue=voices[person]?.clips[key];if(!enabled||!cue||!volume.voice)return;
@@ -92,8 +94,9 @@ export function createSceneAudio(onState=()=>{},preferences={}) {
       const l=ctx.listener,direction=camera.getWorldDirection(_direction);l.positionX.value=camera.position.x;l.positionY.value=camera.position.y;l.positionZ.value=camera.position.z;
       l.forwardX.value=direction.x;l.forwardY.value=direction.y;l.forwardZ.value=direction.z;l.upX.value=0;l.upY.value=1;l.upZ.value=0;
       if(voicePosition&&playing){const p=people.find(p=>p.id===playing.person)?.state.position;if(p){voicePosition.positionX.value=p[0];voicePosition.positionY.value=p[1]+1.5;voicePosition.positionZ.value=p[2];}}
+      if(recorded&&upgraded()&&active)npcSteps.update(people,camera.position.toArray(),{enabled:volume.effects>0&&ctx.state==='running'});
       if(active&&now>nextEffect){
-        const profile=profiles[island]||profiles.jerusalem;nextEffect=now+(profile.effect==='work'?1800+Math.random()*3200:4000+Math.random()*5000);
+        const profile=profiles[island]||profiles[island.split(':')[0]]||profiles.jerusalem;nextEffect=now+(profile.effect==='work'?1800+Math.random()*3200:4000+Math.random()*5000);
         if(profile.effect){
           const source=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),g=ctx.createGain(),t=ctx.currentTime,water=profile.effect==='water',duration=water?1.4:.14;
           source.buffer=noise;filter.type='bandpass';filter.frequency.value=water?420:profile.effect==='work'?680:1450;filter.Q.value=water?.35:1.3;

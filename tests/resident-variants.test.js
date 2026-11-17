@@ -1,3 +1,4 @@
+import {upgradedModelFor} from '../src/human-motion-data.js';
 import {characterClips} from './helpers/character-clips.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -77,7 +78,7 @@ test('actual carrier fingers maintain handle contact and the hollow jug stays up
 test('Jerusalem replaces carrier and four authored child silhouettes while preserving named dialogue and independent behaviour',async()=>{
   const city=createHistoricalScene('jerusalem',null,{blenderAssets:true,assetLoader:asset});assert.equal(await city.detailedResidents.ready,true);
   const children=city.npcSystem.agents.filter(a=>a.actor.scale<.9);assert.equal(children.length,4);
-  for(const child of children){const p=child.actor.state.position;city.animate(0,[p[0],p[1]+1.4,p[2]+2]);const instance=city.detailedResidents.visible.get(child.actor);assert.ok(instance);assert.equal(instance.root.userData.modelId,'resident-child');}
+  for(const child of children){const p=child.actor.state.position;city.animate(0,[p[0],p[1]+1.4,p[2]+2]);const instance=city.detailedResidents.visible.get(child.actor);assert.ok(instance);assert.equal(instance.root.userData.modelId,upgradedModelFor('resident-child'));}
   const carrier=city.people.find(p=>p.id==='water-carrier'),p=[...carrier.state.position],seeds=city.npcSystem.agents.map(a=>a.seed);
   assert.equal(city.npcSystem.agents.find(a=>a.actor===carrier).radius,.49);
   city.converse('water-carrier');city.animate(0,[p[0]+1,p[1]+1.6,p[2]+3]);

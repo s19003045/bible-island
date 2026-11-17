@@ -52,6 +52,17 @@ test('movement uses eye height, blocks during conversation, and releases held ke
   control.dispose();
 });
 
+test('automatic walking completes the exact goal after its initially occupied grid cell clears',()=>{
+ for(const mobility of [false,true]){
+  const target=[3.2,0,1.6],model=createWalkModel([],[{x1:-5,x2:5,z1:-4,z2:4}],()=>0),canvas=Object.assign(new EventTarget(),{focus(){}});let occupied=true;
+  const gap=p=>Math.hypot(p[0]-target[0],p[2]-target[2]);
+  const control=createWalkControls(new THREE.PerspectiveCamera(),canvas,{navigationObstacles:()=>occupied?[{position:target,radius:.9}]:[],constrainMove:(from,to)=>occupied&&gap(to)<.7?from:to});
+  control.start(model,[-3,0,0],{mobility});assert.ok(control.navigate(target));
+  for(let i=0;i<600;i++){occupied=i<240;control.update(1/60);if(occupied)assert.ok(gap(control.position)>=.7,'waits at safe distance');}
+  assert.ok(gap(control.position)<.16,'reaches the requested goal rather than a nearby free cell');control.dispose();
+ }
+});
+
 test('the short journey requires listening, both distinct objects, follow-up and a correct reflection',()=>{
   let m=freshMission();assert.equal(missionStage(m),0);assert.equal(missionEvent(m,{type:'reflect',correct:true}).complete,false);
   m=missionEvent(m,{type:'answer',person:'water-carrier',topic:'water'});assert.equal(m.listen,false);

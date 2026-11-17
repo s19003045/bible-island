@@ -1,3 +1,4 @@
+import {upgradedModelFor} from '../src/human-motion-data.js';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
 import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
@@ -27,7 +28,7 @@ test('Passion all 24 cues match actual personForMode, returned characters and ca
 
 test('Passion detailed residents and objects follow every distinct space, stop in dialogue and remain visible',async()=>{
  for(const [segment,phase,modelId]of [['table','preparation','roman-woman'],['garden','prayer','resident-worker'],['garden','council','resident-worker'],['garden','governor','resident-worker'],['garden','cross','resident-worker'],['tomb','burial','resident'],['tomb','spices','resident']]){
-  const s=createHistoricalScene('passion',null,{segment,phase,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;assert.ok(s.objects[0].root.userData.assetReady);await s.objects[0].root.userData.assetReady;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,modelId);s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);
+  const s=createHistoricalScene('passion',null,{segment,phase,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;assert.ok(s.objects[0].root.userData.assetReady);await s.objects[0].root.userData.assetReady;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,upgradedModelFor(modelId));s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);
   s.scene.updateMatrixWorld(true);const o=s.objects[0],eye=new THREE.Vector3(...o.approach).add(new THREE.Vector3(0,1.62,0)),delta=new THREE.Vector3(...o.lookAt).sub(eye),blockers=s.occluders.filter(m=>{for(let n=m;n;n=n.parent)if(n===o.root)return false;return true;});assert.equal(new THREE.Raycaster(eye,delta.clone().normalize(),.08,delta.length()).intersectObjects(blockers,false).length,0);s.dispose();
  }
 });

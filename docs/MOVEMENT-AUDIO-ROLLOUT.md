@@ -1,5 +1,7 @@
 # 人物、聲景與自由移動：三階段實作
 
+此文件保留先前 v2 全島實作紀錄；後續 v3 真人參考步態延伸見 [ALL-ISLAND-HUMAN-MOTION.md](ALL-ISLAND-HUMAN-MOTION.md)。
+
 2026-11-17。三階段已整合；程式碼使用 develop，發佈沿用既有 Sites 與分享範圍。
 
 ## 第一階段：耶路撒冷完整示範

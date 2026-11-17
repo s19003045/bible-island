@@ -124,11 +124,12 @@ export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.st
       for(const p of bones){p.position.copy(p.bone.position);p.quaternion.copy(p.bone.quaternion);p.scale.copy(p.bone.scale);}
       performance?.apply(poseDt,motion,{camera});
       if(natural){root.userData.locomotion=target;root.userData.gaitPhase=motion.phase;}
+      if(human)actor.visualFootsteps={left:locomotion.contact(target,motion.time,'L',motion.phase),right:locomotion.contact(target,motion.time,'R',motion.phase),clip:target,speed:motion.speed};
       if(natural&&detailed)groundFeet({position:state.position,clip:target,time:motion.time,phase:motion.phase,strideScale:motion.strideScale??1,dt:poseDt,reset:first||root.userData.detailLevel!=='near'});
       else groundDistantFeet({position:state.position,phase:motion?.phase??gaitTime%1,walkWeight:weights.get('Walk')||0});
       performance?.remember();root.userData.detailLevel=detailed?'near':'distant';first=false;
     },
-    dispose(){mixer.stopAllAction();mixer.uncacheRoot(root);root.removeFromParent();const skeletons=new Set();root.traverse(o=>{if(o.isSkinnedMesh)skeletons.add(o.skeleton);});for(const s of skeletons)s.dispose();for(const m of materials)m.dispose();},
+    dispose(){if(human)delete actor.visualFootsteps;mixer.stopAllAction();mixer.uncacheRoot(root);root.removeFromParent();const skeletons=new Set();root.traverse(o=>{if(o.isSkinnedMesh)skeletons.add(o.skeleton);});for(const s of skeletons)s.dispose();for(const m of materials)m.dispose();},
   };
 }
 

@@ -1,3 +1,4 @@
+import {upgradedModelFor} from '../src/human-motion-data.js';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
 import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
@@ -27,7 +28,7 @@ test('Church all 24 cues match actual personForMode, returned characters and can
 
 test('Church detailed residents and objects follow every distinct space, stop in dialogue and remain visible',async()=>{
  for(const [segment,phase,modelId]of [['gathering','hear','resident'],['table','need','roman-woman'],['road','aid','resident-worker']]){
-  const s=createHistoricalScene('church',null,{segment,phase,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;assert.ok(s.objects[0].root.userData.assetReady);await s.objects[0].root.userData.assetReady;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,modelId);s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);
+  const s=createHistoricalScene('church',null,{segment,phase,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;assert.ok(s.objects[0].root.userData.assetReady);await s.objects[0].root.userData.assetReady;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,upgradedModelFor(modelId));s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);
   s.scene.updateMatrixWorld(true);const o=s.objects[0],eye=new THREE.Vector3(...o.approach).add(new THREE.Vector3(0,1.62,0)),delta=new THREE.Vector3(...o.lookAt).sub(eye),blockers=s.occluders.filter(m=>{for(let n=m;n;n=n.parent)if(n===o.root)return false;return true;});assert.equal(new THREE.Raycaster(eye,delta.clone().normalize(),.08,delta.length()).intersectObjects(blockers,false).length,0);s.dispose();
  }
 });

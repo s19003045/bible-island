@@ -4,10 +4,12 @@ import {createResidentInstance,loadBlenderAsset} from './blender-assets.js';
 import {blenderModels} from './blender-manifest.js';
 import {createMotionCourse,motionScenarios} from './motion-course.js';
 import {frameStepSeconds,frameSimulationSteps} from './frame-time.js';
+import {motionRolesForActors} from './motion-preview-data.js';
 
-const roles={resident:{before:'resident',after:'jerusalem-resident',profile:'resident',label:'一般居民'},carrier:{before:'resident-carrier',after:'jerusalem-carrier',profile:'carrier',label:'提水居民'},elder:{before:'resident-worker',after:'jerusalem-elder',profile:'elder',label:'年長商販'}};
 const names={Idle:'駐足',Walk:'行走',StartWalk:'起步',StopWalk:'收步',TurnLeft:'向左轉身',TurnRight:'向右轉身',LookAround:'環顧',Interact:'互動',Talk:'交談'};
-export function mountMotionPreview(container){
+export function mountMotionPreview(container,{characters=[]}={}){
+  const roles=motionRolesForActors(characters);
+  if(!Object.keys(roles).length){container.textContent='此場景人物仍在載入，請稍後重新開啟比較。';return {dispose(){}};}
   container.innerHTML=`<div class="motion-preview-labels" role="group" aria-label="比較方式"><button data-motion-show="before">先前步態</button><button data-motion-show="after">真人參考步態</button><button data-motion-show="both">並排比較</button></div><div class="motion-preview-stage"><div class="motion-lane-labels" aria-hidden="true"><span>先前步態</span><span>真人參考步態</span></div></div><div class="motion-preview-tools"><label>觀察人物<select id="motion-role" aria-label="觀察人物">${Object.entries(roles).map(([id,r])=>`<option value="${id}">${r.label}</option>`).join('')}</select></label><label>測試路線<select id="motion-course" aria-label="測試路線">${Object.entries(motionScenarios).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select></label><button id="motion-play" aria-pressed="true">暫停</button><button id="motion-repeat">重新觀察</button><button id="motion-front">正面</button><button id="motion-side">側面</button><span id="motion-phase" role="status">正在載入人物…</span></div>`;
   const stage=container.querySelector('.motion-preview-stage'),renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
   renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;stage.append(renderer.domElement);
@@ -18,7 +20,7 @@ export function mountMotionPreview(container){
   const grid=new THREE.GridHelper(40,80,'#7a806f','#a0a18e');grid.position.y=.001;scene.add(grid);
   const camera=new THREE.PerspectiveCamera(38,1,.1,70),controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.9,0);controls.enableDamping=true;controls.enablePan=false;controls.minDistance=2.6;controls.maxDistance=18;controls.maxPolarAngle=Math.PI*.48;
   const left=new THREE.Group(),right=new THREE.Group();scene.add(left,right);
-  let instances=[],fixtures=[],course=null,actor=null,playing=true,disposed=false,ticket=0,raf=0,last=0,currentId='resident',scenario='straight',comparison=window.innerWidth<640?'after':'both',sideView=false;
+  let instances=[],fixtures=[],course=null,actor=null,playing=true,disposed=false,ticket=0,raf=0,last=0,currentId=Object.keys(roles)[0],scenario='straight',comparison=window.innerWidth<640?'after':'both',sideView=false;
   const status=container.querySelector('#motion-phase'),play=container.querySelector('#motion-play');
   function view(side=sideView){sideView=side;const center=actor?.state.position[0]||0,z=actor?.state.position[2]||0,y=actor?.state.position[1]||0,distance=3.8;const angle=(actor?.state.yaw||0)+(side?Math.PI/2:0);camera.position.set(center+Math.sin(angle)*distance,y+1.8,z+Math.cos(angle)*distance);controls.target.set(center,y+.85,z);controls.update();}
   function show(mode){comparison=mode;container.dataset.comparison=mode;left.visible=mode!=='after';right.visible=mode!=='before';container.querySelectorAll('[data-motion-show]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.motionShow===mode));view();}

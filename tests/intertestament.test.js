@@ -1,3 +1,4 @@
+import {upgradedModelFor} from '../src/human-motion-data.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -76,7 +77,7 @@ test('actual circular teaching disc has two relief faces, a true thick edge and 
 });
 
 test('first-century resident models hold dialogue and keep a frozen frame without shared clocks',async()=>{
- for(const [i,c] of chapters.entries()){const s=createHistoricalScene('intertestament',null,{segment:c.id,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,['resident-worker','roman-woman','resident'][i]);assert.ok(s.npcSystem.agents.every(a=>['resident-worker','roman-woman','resident','resident-child'].includes(a.actor.modelId)));s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);const clocks=s.npcSystem.agents.map(a=>a.actor.state.time),positions=s.npcSystem.agents.map(a=>[...a.actor.state.position]);s.animate(0,[31,20,25]);assert.deepEqual(s.npcSystem.agents.map(a=>a.actor.state.time),clocks);assert.deepEqual(s.npcSystem.agents.map(a=>a.actor.state.position),positions);s.dispose();}
+ for(const [i,c] of chapters.entries()){const s=createHistoricalScene('intertestament',null,{segment:c.id,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,upgradedModelFor(['resident-worker','roman-woman','resident'][i]));assert.ok(s.npcSystem.agents.every(a=>['resident-worker','roman-woman','resident','resident-child'].map(upgradedModelFor).includes(a.actor.modelId)));s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);const clocks=s.npcSystem.agents.map(a=>a.actor.state.time),positions=s.npcSystem.agents.map(a=>[...a.actor.state.position]);s.animate(0,[31,20,25]);assert.deepEqual(s.npcSystem.agents.map(a=>a.actor.state.time),clocks);assert.deepEqual(s.npcSystem.agents.map(a=>a.actor.state.position),positions);s.dispose();}
 });
 
 test('all 24 recorded cues match authored and child-derived text, actual audio duration and source hashes',async()=>{

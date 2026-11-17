@@ -1,3 +1,4 @@
+import {upgradedModelFor} from '../src/human-motion-data.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -73,7 +74,7 @@ test('loaded Sinai bowls have real inner bottoms, the water is exposed, and the 
 });
 
 test('Sinai residents use the undated wilderness rigs, and mountain clouds move without changing frozen NPC clocks',async()=>{
- for(const [i,c] of sinaiSegments.entries()){const s=createHistoricalScene('sinai',null,{segment:c.id,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,i===2?'wilderness-woman':'wilderness-resident');assert.ok(s.npcSystem.agents.every(a=>['wilderness-resident','wilderness-woman','wilderness-child'].includes(a.actor.modelId)));s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);assert.equal(s.detailedResidents.visible.get(a)?.root.userData.modelId,a.modelId);
+ for(const [i,c] of sinaiSegments.entries()){const s=createHistoricalScene('sinai',null,{segment:c.id,blenderAssets:true,assetLoader:load});await s.detailedResidents.ready;const a=s.people[0],p=[...a.state.position];assert.equal(a.modelId,upgradedModelFor(i===2?'wilderness-woman':'wilderness-resident'));assert.ok(s.npcSystem.agents.every(a=>['wilderness-resident','wilderness-woman','wilderness-child'].map(upgradedModelFor).includes(a.actor.modelId)));s.converse(a.id);s.animate(.05,[p[0]+2,p[1]+2,p[2]+3]);assert.deepEqual(a.state.position,p);assert.equal(s.detailedResidents.visible.get(a)?.root.userData.modelId,a.modelId);
   if(c.id==='mountain'){const cloud=s.scene.getObjectByName('sinai-unidentified-mountain-cloud-0'),before=cloud.position.clone();s.animate(2,[41,29,45]);assert.ok(cloud.position.distanceTo(before)>.01);const held=cloud.position.clone(),clock=a.state.time;s.animate(0,[31,20,25]);assert.deepEqual(cloud.position,held);assert.equal(a.state.time,clock);}
   s.dispose();
  }

@@ -1,5 +1,7 @@
 import {npcSeed,seededNPC,constrainAirAgainstAgents} from './npc-system.js';
 import {angleDelta} from './people-motion.js';
+import {humanProfileFor} from './human-motion-data.js';
+import {humanSteering,turnHumanBody} from './human-navigation.js';
 const distance=(a,b)=>Math.hypot(a[0]-b[0],a[2]-b[2]);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const turn=(state,yaw,dt)=>state.yaw+=clamp(angleDelta(state.yaw,yaw)*(1-Math.exp(-5*dt)),-2.2*dt,2.2*dt);
@@ -9,7 +11,8 @@ export function createConvoySystem({actors,pois,model,playerModel,spawn=[4,.03,-
  const reservations=new Map(pois.map(p=>[p.id,new Map()]));
  const agents=actors.map((actor,index)=>{
   const key=actor.id||`crossing-person-${index}`,individualSeed=npcSeed(`${seed}:${key}`),random=seededNPC(individualSeed),speedFactor=.85+random()*.3;
-  const a={key,actor,seed:individualSeed,random,speedFactor,speed:.8*speedFactor,radius:actor.collisionRadius??.29*(actor.scale||1),role:'convoy',
+  const humanProfile=humanProfileFor(actor);
+  const a={key,actor,humanProfile,seed:individualSeed,random,speedFactor,speed:(humanProfile?.speed??.8)*speedFactor,radius:actor.collisionRadius??.29*(actor.scale||1),role:'convoy',
    state:'rest',action:'LookAround',timer:.35+(index+random())/actors.length*4.5,age:0,cooldown:0,partner:null,poi:null,slot:null,lastPOI:null,
    velocity:[0,0],blockedFor:0,held:false,wasAttending:false,attentionLeft:0,visits:new Map(),lap:0,hidden:false,entryDelay:0,maxProgress:actor.id?80:520,lateralBias:random()<.5?-1:1};
   Object.assign(actor.state,{autonomous:true,animationSpeed:speedFactor,time:random()*80,walkDistance:0,behavior:a,visible:true});return a;
@@ -66,7 +69,7 @@ export function createConvoySystem({actors,pois,model,playerModel,spawn=[4,.03,-
    if(a.held){a.velocity=[0,0];m.stride=Math.max(0,m.stride-dt*5);m.idleAction='Idle';if(camera)turn(m,Math.atan2(camera[0]-m.position[0],camera[2]-m.position[2]),dt);continue;}
    if(a.state==='rest'){a.timer-=dt;if(a.timer<=0)choose(a,player);}
    if(a.state!=='travel'){m.idleAction=a.action;m.stride=Math.max(0,m.stride-dt*5);turn(m,Math.PI/2,dt);hideAtExit(a,camera,isVisible);continue;}
-   const p=m.position,target=a.slot.position,dx=target[0]-p[0],dz=target[2]-p[2],length=Math.hypot(dx,dz);
+   const p=m.position,target=a.slot.position,dx=target[0]-p[0],dz=target[2]-p[2],length=Math.hypot(dx,dz);a.intentTarget=target;
    if(length<.18){a.state='rest';a.action='LookAround';a.lastPOI=a.poi.id;m.idleAction=a.action;a.timer=range(a,...a.poi.dwell);a.visits.set(a.poi.id,(a.visits.get(a.poi.id)||0)+1);a.velocity=[0,0];emit(a,'arrive',{poi:a.poi.id});continue;}
    let vx=Math.max(0,dx/length*a.speed),vz=dz/length*a.speed;
    const neighbors=agents.filter(b=>b!==a&&!b.hidden).map(b=>({position:b.actor.state.position,velocity:b.velocity,radius:b.radius}));if(player)neighbors.push({position:player,velocity:[0,0],radius:.32});
@@ -78,9 +81,11 @@ export function createConvoySystem({actors,pois,model,playerModel,spawn=[4,.03,-
     if(ox<0&&(d<safe+.35||horizon>0&&predicted<safe+.2)){const side=oz>.08?1:oz<-.08?-1:a.lateralBias;vz+=side*(1-d/R)*.8;vx*=clamp((d-safe)/.65,0,1);}
    }
    vx=Math.max(0,vx);const magnitude=Math.hypot(vx,vz);if(magnitude>a.speed){vx*=a.speed/magnitude;vz*=a.speed/magnitude;}
-   const blend=1-Math.exp(-4*dt);vx=a.velocity[0]+(vx-a.velocity[0])*blend;vz=a.velocity[1]+(vz-a.velocity[1])*blend;
+   if(a.humanProfile)[vx,vz]=humanSteering(a,vx,vz,dt);
+   else {const blend=1-Math.exp(-4*dt);vx=a.velocity[0]+(vx-a.velocity[0])*blend;vz=a.velocity[1]+(vz-a.velocity[1])*blend;}
    const next=swept(p,Math.min(Math.max(0,dx),Math.max(0,vx)*dt),vz*dt,a.radius,a,player),moved=distance(next,p);a.velocity=[(next[0]-p[0])/dt,(next[2]-p[2])/dt];m.position=next;m.walkDistance+=moved;
-   if(moved>.00001)turn(m,Math.atan2(a.velocity[0],a.velocity[1]),dt);a.blockedFor=moved<.002?a.blockedFor+dt:0;
+   if(a.humanProfile&&Number.isFinite(a.desiredYaw))turnHumanBody(a,dt);
+   else if(moved>.00001)turn(m,Math.atan2(a.velocity[0],a.velocity[1]),dt);a.blockedFor=moved<.002?a.blockedFor+dt:0;
    if(a.blockedFor>2.5+(a.seed%1500)/1000){a.lastPOI=a.poi.id;release(a);a.state='rest';a.action='LookAround';a.velocity=[0,0];a.timer=range(a,.4,1.4);a.blockedFor=0;}
    m.stride+=(clamp(moved/dt/a.speed,0,1)-m.stride)*(1-Math.exp(-8*dt));m.idleAction=a.action;m.socialTalking=false;hideAtExit(a,camera,isVisible);
   }
