@@ -12,11 +12,11 @@ async function asset(id){const b=await readFile(new URL('../public/'+blenderMode
 const resident=await asset('resident');
 const actor=(id,x=0,time=0)=>({id,scale:1,state:{position:[x,0,0],yaw:0,time,stride:0,visible:true,idleAction:'Idle'}});
 
-test('paused camera changes load and retire detailed residents without advancing their pose clocks',async()=>{
+test('paused camera changes retain one wardrobe and rig while changing animation detail, without advancing NPC clocks',async()=>{
   const scene=new THREE.Scene(),person=actor('paused-resident',0,.65),position=[...person.state.position],details=mountBlenderResidents(scene,[person],()=>{},{assetLoader:async()=>resident});
   await details.ready;details.update([0,1.62,4],0);const first=details.visible.get(person);assert.ok(first);assert.equal(person.blenderVisual,true);
-  details.update([100,1.62,100],0);assert.equal(details.visible.size,0);assert.equal(person.blenderVisual,false);
-  details.update([0,1.62,4],0);assert.ok(details.visible.has(person));assert.notEqual(details.visible.get(person),first);assert.deepEqual(person.state.position,position);assert.equal(person.state.time,.65);details.dispose();
+  details.update([100,1.62,100],0);assert.equal(details.visible.size,0);assert.equal(person.blenderVisual,true);assert.equal(first.root.visible,false);
+  details.update([0,1.62,4],0);assert.ok(details.visible.has(person));assert.equal(details.visible.get(person),first);assert.deepEqual(person.state.position,position);assert.equal(person.state.time,.65);details.dispose();assert.equal(person.blenderVisual,false);
 });
 
 test('actual Blender exports match their recorded hashes, metre scales, geometry budgets and their declared animation clips',async()=>{
