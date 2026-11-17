@@ -465,3 +465,16 @@
 - 正式頁已開啟，顯示「比較人物步態」、快跑／跳躍及新版探索介面；截圖 `.qa/movement-audio-live.png`。完整人耳聽驗及實體手機效能不列為已驗收。
 - Sites 單一 Git object 上限 32 MiB；本次完整 Blender 編輯檔為 38,456,726 bytes，已完整保留於上述 GitHub 提交。Sites 部署來源不包含此編輯專用二進位檔，以 `.openai/source-origin.json` 記錄其 GitHub 提交、下載位置與 SHA256，並保留全部網站程式、GLB、音檔與生成腳本。重新編輯／生成 Blender 資產前，需從該提交還原完整來源檔。
 - 分享範圍維持擁有者一人、零群組與零外部訪客，未擴大網站存取。
+
+
+## 2026-11-17：修正 NPC 遠近切換時的服裝改變（第43版）
+
+- 應用程式來源：GitHub `develop` 的 `3270fd874656cba8f6c1d4fa966193117e5d4572`；Sites source commit：`0a0c64037c58d87ec7af63b7a89d5246d5565991`。
+- Saved version 43：`appgprj_6af95ea0dac4819182957156725483aa~appgver_64a7c5e36e888191b3eb74e046a053ee`；deployment：`appgdep_6afbf2ec04b88191bb131275a1d7a17f`。
+- 平台於 `2026-11-17T06:23:55.862792+00:00` 回傳 `succeeded`，版本回讀的來源 SHA 相符；沒有在終態後重複部署或輪詢。原擁有者一人的存取範圍維持不變。
+- 同一 NPC 保留同一個人物、服裝材質與配件；遠近改變只調整幾何／動畫精細度，不再切回不同衣裝的通用模型。保留八位精細動作預算、對話優先與切換遲滯。28 種原始 GLB 及 Blender 編輯檔未改；詳見 [NPC 衣裝一致性](NPC-APPEARANCE.md)。
+- 全站 59 檔／345 項測試、內容／語法及正式建置通過。本機伺服器測試原受沙箱 localhost 監聽限制，使用同一測試在允許本機埠的環境重跑通過，原始及重跑紀錄皆保留。最後兩項動畫計時／取消保護調整後，七個相關測試檔再次通過。
+- 原創居民、一般祭司、婦女、提水者的固定鏡頭近遠比較，四人含地板由 130,498 降至 50,782 三角形；服裝、覆布、頭巾及器皿維持一致。這不是特定硬體的 FPS 量測。
+- 封裝 `.qa/npc-appearance-release.tar.gz`，壓縮檔 141,424,731 bytes，SHA256 `b5c7dcb03eecb0e5f487f6c51df1b15e6cec40ca086df6536c3808d684cdd805`。平台解包 tar 為 284 檔／194,478,080 bytes，內容 hash `9278515dfd2e6560cb056e1d12b517d07707f41bdff66aba798975a266a1c961`。
+- 正式建置 145 模組，入口 `index-CYurox8_.js`、world `world-DfPis9-j.js`、人物 `blender-assets-b_XeHyyz.js`；簡化器獨立 chunk 約 14.56 kB gzip。既有大型 chunk 提示仍在。
+- [正式耶路撒冷](https://bible-island.starryswift8.chatgpt.site/#island=jerusalem) 已明確重新載入並核對新入口，實際開啟提水居民對話及檢查人物衣裝，warning／error=[]。正式畫面 `.qa/npc-wardrobe-live.png`，固定鏡頭遠景比較 `.qa/npc-wardrobe-distant.png`。本機預覽分頁已關閉，原本的 dev server 保留。
