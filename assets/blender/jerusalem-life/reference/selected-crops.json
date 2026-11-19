@@ -1,0 +1,486 @@
+{
+  "schema_version": 1,
+  "source": "CMU Graphics Lab Motion Capture Database; pinned Bruce Hahne BVH conversion",
+  "rights_source": "https://mocap.cs.cmu.edu/faqs.php",
+  "permission_summary": "CMU permits copying/modification/redistribution; converter adds no restriction. This is a permission notice, not CC0 or a named SPDX license.",
+  "credit": "CMU Graphics Lab; mocap.cs.cmu.edu; NSF EIA-0196217; BVH conversion Bruce Hahne (2010).",
+  "first_frame_note": "BVH index0 is an added T-pose. Native AMC frame1 maps to BVH zero-based index1. Crops exclude index0.",
+  "existing_walk_references_read_only": [
+    {
+      "file": "assets/blender/jerusalem-pilot/reference/07_01.bvh",
+      "sha256": "f8d82ea6ed1aab0cb7d9ee680f476b65471e2322e1da84add8a8527a2cb0b9a2",
+      "role": "ordinary walking reference"
+    },
+    {
+      "file": "assets/blender/jerusalem-pilot/reference/07_04.bvh",
+      "sha256": "320fceb9f8269b8d44f5142385e98e236eccc24cee3728d8227a4933abb82564",
+      "role": "slow walking reference, not elderly capture"
+    }
+  ],
+  "selected_crops": [
+    {
+      "id": "turn-left-45-partial",
+      "source_clip": "16_17",
+      "official_label": "walk, 90-degree left turn",
+      "bvh_file": "assets/blender/jerusalem-life/reference/16_17.bvh",
+      "bvh_sha256": "91f57b476b9c678239b1d1353bb752acbfc91fa9e564082ccd57b5ab40124619",
+      "native_amc_sha256": "a59f9c90eb2af8197c6390edddbcf761bbec1cf03b6907128212102fe2123a2c",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=16",
+      "bvh_zero_based_inclusive": [
+        148,
+        296
+      ],
+      "native_amc_one_based_inclusive": [
+        148,
+        296
+      ],
+      "effective_fps": 120,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": false,
+      "time_s": [
+        1.225,
+        2.4583333333333335
+      ],
+      "duration_s": 1.2333333333333334,
+      "root_horizontal_path_m": 1.0303944515895567,
+      "root_net_horizontal_m": 1.0270613944002331,
+      "root_vertical_change_m": 0.011553525924682617,
+      "pelvis_heading_change_deg": -45.4654913395145,
+      "contact_at_start": {
+        "L": false,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": false,
+        "R": true
+      },
+      "interpretation": "Partial interval of an officially labelled 90-degree turn, measured about 45 degrees. Not a separate native 45-degree capture."
+    },
+    {
+      "id": "turn-left-90",
+      "source_clip": "16_17",
+      "official_label": "walk, 90-degree left turn",
+      "bvh_file": "assets/blender/jerusalem-life/reference/16_17.bvh",
+      "bvh_sha256": "91f57b476b9c678239b1d1353bb752acbfc91fa9e564082ccd57b5ab40124619",
+      "native_amc_sha256": "a59f9c90eb2af8197c6390edddbcf761bbec1cf03b6907128212102fe2123a2c",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=16",
+      "bvh_zero_based_inclusive": [
+        148,
+        451
+      ],
+      "native_amc_one_based_inclusive": [
+        148,
+        451
+      ],
+      "effective_fps": 120,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": false,
+      "time_s": [
+        1.225,
+        3.75
+      ],
+      "duration_s": 2.525,
+      "root_horizontal_path_m": 2.076756695443312,
+      "root_net_horizontal_m": 1.6434191137723462,
+      "root_vertical_change_m": 0.012951493263244629,
+      "pelvis_heading_change_deg": -92.77868163240488,
+      "contact_at_start": {
+        "L": false,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": false,
+        "R": true
+      },
+      "interpretation": "Moving left turn. Retain or deliberately remap root path and foot contacts."
+    },
+    {
+      "id": "turn-right-90",
+      "source_clip": "16_19",
+      "official_label": "walk, 90-degree right turn",
+      "bvh_file": "assets/blender/jerusalem-life/reference/16_19.bvh",
+      "bvh_sha256": "bd5f6f56d52d0b5cd13e657f8cebfc15d70f07f063f6fd1b540ca8778efbce80",
+      "native_amc_sha256": "691d578a676bf9e091dac59001a6cb78daa7141ad5639f943c684dee7f4e64e6",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=16",
+      "bvh_zero_based_inclusive": [
+        1,
+        410
+      ],
+      "native_amc_one_based_inclusive": [
+        1,
+        410
+      ],
+      "effective_fps": 120,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": false,
+      "time_s": [
+        0.0,
+        3.408333333333333
+      ],
+      "duration_s": 3.408333333333333,
+      "root_horizontal_path_m": 2.990549143520378,
+      "root_net_horizontal_m": 2.2737425293391835,
+      "root_vertical_change_m": 0.01568591594696045,
+      "pelvis_heading_change_deg": 91.5954727401916,
+      "contact_at_start": {
+        "L": false,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": false,
+        "R": true
+      },
+      "interpretation": "Moving right turn, not in-place rotation."
+    },
+    {
+      "id": "turn-around-180",
+      "source_clip": "36_02",
+      "official_label": "walk forward, turn around, walk back",
+      "bvh_file": "assets/blender/jerusalem-life/reference/36_02.bvh",
+      "bvh_sha256": "2a6e9f62ee04428f9542f00f41439acc01a71b06acc24717c1b4a07e5d6ddf6a",
+      "native_amc_sha256": "bbbf8ebb9b7e7c96a114169169d7200c3bd2c77e3d4673427de446bee80f7bfa",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=36",
+      "bvh_zero_based_inclusive": [
+        1139,
+        1441
+      ],
+      "native_amc_one_based_inclusive": [
+        1139,
+        1441
+      ],
+      "effective_fps": 120,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": false,
+      "time_s": [
+        9.483333333333333,
+        12.0
+      ],
+      "duration_s": 2.5166666666666666,
+      "root_horizontal_path_m": 0.8555248998479023,
+      "root_net_horizontal_m": 0.6998196800798301,
+      "root_vertical_change_m": -0.0072512030601501465,
+      "pelvis_heading_change_deg": -178.3287049418099,
+      "contact_at_start": {
+        "L": true,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": true,
+        "R": true
+      },
+      "interpretation": "Compact stepping turn, no jumping; both-foot contact candidates at endpoints."
+    },
+    {
+      "id": "walk-stop-right-support",
+      "source_clip": "16_33",
+      "official_label": "slow walk, stop",
+      "bvh_file": "assets/blender/jerusalem-life/reference/16_33.bvh",
+      "bvh_sha256": "e4600cd3ab9bc61ce24d15fd40d07bcd1e8782c0bccc5899a4e8bdc12c97d240",
+      "native_amc_sha256": "03644f38e30d839a005334a6358f97093da05a65da53a73a51bd8136c5cd63ea",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=16",
+      "bvh_zero_based_inclusive": [
+        170,
+        285
+      ],
+      "native_amc_one_based_inclusive": [
+        170,
+        285
+      ],
+      "effective_fps": 120,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": false,
+      "time_s": [
+        1.4083333333333334,
+        2.3666666666666667
+      ],
+      "duration_s": 0.9583333333333334,
+      "root_horizontal_path_m": 0.22326969702761576,
+      "root_net_horizontal_m": 0.2204428989731607,
+      "root_vertical_change_m": -0.010101914405822754,
+      "pelvis_heading_change_deg": 7.880137020267788,
+      "contact_at_start": {
+        "L": false,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": true,
+        "R": true
+      },
+      "interpretation": "Captured walking deceleration into rest; not a captured start."
+    },
+    {
+      "id": "stairs-ascent",
+      "source_clip": "83_27",
+      "official_label": "walk forward stepping up stairs",
+      "bvh_file": "assets/blender/jerusalem-life/reference/83_27.bvh",
+      "bvh_sha256": "65239ea52f4aebc980ed613d4136049961c5f044614017571d68c0f6fce02cfd",
+      "native_amc_sha256": "e1b0cd9eefed91e870ac595e2a858a5cfef430e140b24f8ed3c49f12722ded00",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=83",
+      "bvh_zero_based_inclusive": [
+        541,
+        901
+      ],
+      "native_amc_one_based_inclusive": [
+        541,
+        901
+      ],
+      "effective_fps": 120,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": false,
+      "time_s": [
+        4.5,
+        7.5
+      ],
+      "duration_s": 3.0,
+      "root_horizontal_path_m": 0.885020856592584,
+      "root_net_horizontal_m": 0.8525769721752471,
+      "root_vertical_change_m": 0.34787529706954956,
+      "pelvis_heading_change_deg": -2.704158150196349,
+      "contact_at_start": {
+        "L": true,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": true,
+        "R": true
+      },
+      "interpretation": "Ascending stair section with changing ground level; not a fixed-floor walk cycle."
+    },
+    {
+      "id": "step-forward-down",
+      "source_clip": "83_08",
+      "official_label": "medium step forward and down",
+      "bvh_file": "assets/blender/jerusalem-life/reference/83_08.bvh",
+      "bvh_sha256": "6d145f3920b8e0217735674131b6f82320381bc61b0ad6431f230b2464504407",
+      "native_amc_sha256": "8789e5256b6986c8041fb7fc3d841fd8f778fb08dd2d6091eb474f6fd4bb6873",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=83",
+      "bvh_zero_based_inclusive": [
+        121,
+        361
+      ],
+      "native_amc_one_based_inclusive": [
+        121,
+        361
+      ],
+      "effective_fps": 120,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": false,
+      "time_s": [
+        1.0,
+        3.0
+      ],
+      "duration_s": 2.0,
+      "root_horizontal_path_m": 0.7631618209318732,
+      "root_net_horizontal_m": 0.7525791381630214,
+      "root_vertical_change_m": -0.13288646936416626,
+      "pelvis_heading_change_deg": -0.3158386400677671,
+      "contact_at_start": {
+        "L": true,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": true,
+        "R": true
+      },
+      "interpretation": "One medium forward step down; not a full stair-descent recording."
+    },
+    {
+      "id": "market-right-hand-reach",
+      "source_clip": "79_16",
+      "official_label": "buying something",
+      "bvh_file": "assets/blender/jerusalem-life/reference/79_16.bvh",
+      "bvh_sha256": "dae3edf7a552050bea87b7d564cf3f5628ac6635a5579b54d219c664107dc12e",
+      "native_amc_sha256": "5319a3a0fdf7b159288bddc0430debda7609f1f3aa7cecff1d19a43208f7e02a",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=79",
+      "bvh_zero_based_inclusive": [
+        301,
+        421
+      ],
+      "native_amc_one_based_inclusive": [
+        301,
+        421
+      ],
+      "effective_fps": 60,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": true,
+      "time_s": [
+        5.0,
+        7.0
+      ],
+      "duration_s": 2.0,
+      "root_horizontal_path_m": 0.04704777441203634,
+      "root_net_horizontal_m": 0.0049792121253263546,
+      "root_vertical_change_m": 0.0004628896713256836,
+      "pelvis_heading_change_deg": -3.8016396179654803,
+      "contact_at_start": {
+        "L": true,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": true,
+        "R": true
+      },
+      "interpretation": "Market-labelled body/right-hand reach and return. Object/coin/finger contacts must be authored."
+    },
+    {
+      "id": "waist-height-two-hand-transfer",
+      "source_clip": "79_25",
+      "official_label": "moving heavy box",
+      "bvh_file": "assets/blender/jerusalem-life/reference/79_25.bvh",
+      "bvh_sha256": "e65b0aeddcf40f01bb82868655fadfccfdcaa1e5e32063155c6fc65d36e0014e",
+      "native_amc_sha256": "6826fad12ae62b692e7852b0bf27b74692d3e2987bccca921cf907ec67e4a1a4",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=79",
+      "bvh_zero_based_inclusive": [
+        121,
+        421
+      ],
+      "native_amc_one_based_inclusive": [
+        121,
+        421
+      ],
+      "effective_fps": 60,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": true,
+      "time_s": [
+        2.0,
+        7.0
+      ],
+      "duration_s": 5.0,
+      "root_horizontal_path_m": 0.2271898915913518,
+      "root_net_horizontal_m": 0.07694396308846434,
+      "root_vertical_change_m": 0.009653091430664062,
+      "pelvis_heading_change_deg": -21.40613144771593,
+      "contact_at_start": {
+        "L": true,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": true,
+        "R": true
+      },
+      "interpretation": "Mostly stationary waist-height two-hand body reference; no verified mass or ground pickup."
+    },
+    {
+      "id": "walk-into-left-hand-pickup",
+      "source_clip": "143_10",
+      "official_label": "Walk And Pick up Tool Box",
+      "bvh_file": "assets/blender/jerusalem-life/reference/143_10.bvh",
+      "bvh_sha256": "8376ccfadecaf16225275a706a78be83d8940b53f305f8197ddb32583b216cb6",
+      "native_amc_sha256": "8d98200eb9b4530d9bbb344ca0ac04a51e25d71b1bc7ba82883da11f00ed6034",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=143",
+      "bvh_zero_based_inclusive": [
+        121,
+        241
+      ],
+      "native_amc_one_based_inclusive": [
+        121,
+        241
+      ],
+      "effective_fps": 120,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": false,
+      "time_s": [
+        1.0,
+        2.0
+      ],
+      "duration_s": 1.0,
+      "root_horizontal_path_m": 0.8405634636865781,
+      "root_net_horizontal_m": 0.8330137104625728,
+      "root_vertical_change_m": 0.023060739040374756,
+      "pelvis_heading_change_deg": 99.41009376359914,
+      "contact_at_start": {
+        "L": false,
+        "R": false
+      },
+      "contact_at_end": {
+        "L": true,
+        "R": false
+      },
+      "interpretation": "Walking pickup body motion includes substantial heading/root change; left-side reach, not the existing right-hand jug grasp."
+    },
+    {
+      "id": "second-lower-and-rise",
+      "source_clip": "143_10",
+      "official_label": "Walk And Pick up Tool Box",
+      "bvh_file": "assets/blender/jerusalem-life/reference/143_10.bvh",
+      "bvh_sha256": "8376ccfadecaf16225275a706a78be83d8940b53f305f8197ddb32583b216cb6",
+      "native_amc_sha256": "8d98200eb9b4530d9bbb344ca0ac04a51e25d71b1bc7ba82883da11f00ed6034",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=143",
+      "bvh_zero_based_inclusive": [
+        341,
+        471
+      ],
+      "native_amc_one_based_inclusive": [
+        341,
+        471
+      ],
+      "effective_fps": 120,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": false,
+      "time_s": [
+        2.8333333333333335,
+        3.9166666666666665
+      ],
+      "duration_s": 1.0833333333333333,
+      "root_horizontal_path_m": 0.48269127075159096,
+      "root_net_horizontal_m": 0.4277142571989294,
+      "root_vertical_change_m": 0.01535099744796753,
+      "pelvis_heading_change_deg": -17.576926897841844,
+      "contact_at_start": {
+        "L": false,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": true,
+        "R": true
+      },
+      "interpretation": "Second lower/recovery event; potential setdown adaptation seed. Catalog label does not establish this as captured setdown."
+    },
+    {
+      "id": "planted-lower-recovery-core",
+      "source_clip": "143_10",
+      "official_label": "Walk And Pick up Tool Box",
+      "bvh_file": "assets/blender/jerusalem-life/reference/143_10.bvh",
+      "bvh_sha256": "8376ccfadecaf16225275a706a78be83d8940b53f305f8197ddb32583b216cb6",
+      "native_amc_sha256": "8d98200eb9b4530d9bbb344ca0ac04a51e25d71b1bc7ba82883da11f00ed6034",
+      "official_index": "https://mocap.cs.cmu.edu/search.php?subjectnumber=143",
+      "bvh_zero_based_inclusive": [
+        375,
+        425
+      ],
+      "native_amc_one_based_inclusive": [
+        375,
+        425
+      ],
+      "effective_fps": 120,
+      "bvh_header_fps": 120.00048000192001,
+      "timing_override_required": false,
+      "time_s": [
+        3.1166666666666667,
+        3.533333333333333
+      ],
+      "duration_s": 0.4166666666666667,
+      "root_horizontal_path_m": 0.13944522378383736,
+      "root_net_horizontal_m": 0.13566593534339447,
+      "root_vertical_change_m": 0.04741019010543823,
+      "pelvis_heading_change_deg": -7.98419807450648,
+      "contact_at_start": {
+        "L": true,
+        "R": true
+      },
+      "contact_at_end": {
+        "L": true,
+        "R": true
+      },
+      "interpretation": "Short core with both-foot kinematic contact candidates; blend into authored stationary action, do not reverse whole walking capture."
+    }
+  ],
+  "authored_adaptation_required": [
+    "Fingers/thumb rotations are synthetic editing joints, not captured; author every grasp and prop attachment.",
+    "Use original CMU79 index60Hz instead of converter120Hz header; do not rewrite original reference files.",
+    "There is no verified elderly performer, historical Jerusalem actor, jug load, receiving coin or period wardrobe capture here.",
+    "A dedicated ordinary StartWalk is not established by these references; any blend from stance into locomotion remains authored.",
+    "Reverse only an intentionally isolated/reconstrained reach for setdown; reversing full pickup reverses its walking/root turn.",
+    "Modern toolbox/market body motions require authored historical prop and workspace contacts; source label does not establish historical authenticity."
+  ]
+}

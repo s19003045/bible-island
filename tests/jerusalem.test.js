@@ -42,7 +42,7 @@ test('Jerusalem keeps its four-stage general mission and gives child/study the s
 });
 
 test('guided courtyard approach still passes through 50 mature POI people while staying grounded and separated',()=>{
- for(const warmup of [0,60]){const scene=createHistoricalScene('jerusalem',null),system=scene.npcSystem;assert.equal(system.agents.length,50);assert.equal(system.pois.length,24);assert.equal(system.pois.reduce((n,p)=>n+p.capacity,0),57);for(let i=0;i<warmup*20;i++)system.update(.05);
+ for(const warmup of [0,60]){const scene=createHistoricalScene('jerusalem',null),system=scene.npcSystem;assert.equal(system.agents.length,50);assert.equal(system.pois.length,28);assert.equal(system.pois.reduce((n,p)=>n+p.capacity,0),61);for(let i=0;i<warmup*20;i++)system.update(.05);
  const canvas=Object.assign(new EventTarget(),{focus(){}}),walk=createWalkControls(new PerspectiveCamera(),canvas,{constrainMove:(a,b)=>system.constrainPlayer(a,b),navigationObstacles:()=>system.agents.map(a=>({position:a.actor.state.position,radius:a.radius+.32+.07}))});
  const spawn=system.safePlayerSpawn(walkSpawn),target=vesselDefinitions[0].approach;assert.ok(spawn);walk.start(scene.walkModel,spawn);assert.equal(walk.navigate(target),true);
  for(let i=0;i<4800&&distance(walk.position,target)>.65;i++){system.update(.05,{player:walk.position});walk.update(.05);assert.equal(walk.groundState.isGrounded,true);for(const a of system.agents){const p=a.actor.state.position;assert.ok(distance(walk.position,p)>=a.radius+.32+.024);assert.ok(Math.abs(p[1]-scene.walkModel.heightAt(p[0],p[2]))<.06,'separation must not push street people up exterior stair edges');}}

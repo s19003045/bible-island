@@ -4,11 +4,12 @@ import assert from 'node:assert/strict';
 import {readFile,stat} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {geometryLoader} from './helpers/load-gltf-geometry.js';
 import * as THREE from 'three';
 import {blenderModels} from '../src/blender-manifest.js';
 import {createResidentInstance,selectDetailedResidents,residentAction,attachBlenderObject,mountBlenderResidents} from '../src/blender-assets.js';
 
-async function asset(id){const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');}
+async function asset(id){const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return geometryLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');}
 const resident=await asset('resident');
 const actor=(id,x=0,time=0)=>({id,scale:1,state:{position:[x,0,0],yaw:0,time,stride:0,visible:true,idleAction:'Idle'}});
 
@@ -26,7 +27,12 @@ test('actual Blender exports match their recorded hashes, metre scales, geometry
     const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));
     assert.equal(b.readUInt32LE(0),0x46546c67);assert.equal(b.readUInt32LE(4),2);assert.equal(b.readUInt32LE(8),b.length);
     const json=JSON.parse(b.subarray(20,20+b.readUInt32LE(12)).toString());
-    assert.match(json.asset.generator,/Blender/);assert.ok(json.buffers.every(v=>!v.uri));assert.ok(!json.images?.length,'no hidden texture/network dependencies');
+    assert.match(json.asset.generator,/Blender/);assert.ok(json.buffers.every(v=>!v.uri));
+    for(const image of json.images||[]){
+      assert.equal(image.uri,undefined,'no external image dependencies');assert.equal(image.mimeType,'image/png');
+      const view=json.bufferViews[image.bufferView],offset=28+b.readUInt32LE(12)+(view.byteOffset||0),png=b.subarray(offset,offset+view.byteLength);
+      assert.equal(png.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.ok(png.readUInt32BE(16)>0&&png.readUInt32BE(16)<=2048);assert.ok(png.readUInt32BE(20)>0&&png.readUInt32BE(20)<=2048);
+    }
     assert.equal(json.scenes.length,1,'each export contains only its own scene');
     assert.equal(createHash('sha256').update(b).digest('hex'),report.assets[id].sha256);assert.equal(b.length,report.assets[id].bytes);assert.ok(b.length<(blenderModels[id].byteBudget||750000));
     const gltf=id==='resident'?resident:await asset(id);gltf.scene.updateMatrixWorld(true);

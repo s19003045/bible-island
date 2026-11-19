@@ -5,7 +5,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import * as THREE from 'three';
-import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {geometryLoader} from './helpers/load-gltf-geometry.js';
 import {blenderModels} from '../src/blender-manifest.js';
 import {createResidentInstance} from '../src/blender-assets.js';
 import {createHistoricalScene} from '../src/historical-scenes.js';
@@ -13,7 +13,7 @@ import {historicalScenes} from '../src/historical-data.js';
 
 const ctx=new Proxy({},{get:()=>()=>{},set:()=>true});globalThis.document={createElement:()=>({getContext:()=>ctx})};
 const ids=['roman-woman','wilderness-resident','wilderness-woman','wilderness-child','ordinary-priest','iron-resident','iron-woman','temple-singer','bronze-artisan','brick-laborer'],cache=new Map();
-function asset(id){if(!cache.has(id))cache.set(id,(async()=>{const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');})());return cache.get(id);}
+function asset(id){if(!cache.has(id))cache.set(id,(async()=>{const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return geometryLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');})());return cache.get(id);}
 function person(modelId){const height=modelId.endsWith('woman')?1.64:modelId==='wilderness-child'?1.12:modelId==='ordinary-priest'?1.725:1.7;return {id:'review-person',modelId,scale:height/1.7,state:{position:[0,0,0],yaw:0,time:0,stride:0,idleAction:'Idle',visible:true}};}
 function points(root,material,bone=null){const result=[];root.traverse(m=>{if(!m.isSkinnedMesh||!material(m.material.name))return;const p=m.geometry.attributes.position,si=m.geometry.attributes.skinIndex,sw=m.geometry.attributes.skinWeight,index=bone?m.skeleton.bones.findIndex(b=>b.name===bone):-1;for(let i=0;i<p.count;i++)if(!bone||[0,1,2,3].some(k=>si.getComponent(i,k)===index&&sw.getComponent(i,k)>.99))result.push([m,i]);});return result;}
 function sample(root,vertices){root.updateMatrixWorld(true);root.traverse(m=>{if(m.isSkinnedMesh)m.skeleton.update();});return vertices.map(([m,i])=>m.localToWorld(m.getVertexPosition(i,new THREE.Vector3())));}
@@ -82,7 +82,7 @@ test('every new body keeps its actual support foot on ascending and descending g
 });
 
 test('all five actual scenes select period-specific nearby people without changing dialogue IDs or navigation control',async()=>{
- const expected={tabernacle:{weaver:'wilderness-resident',priest:'ordinary-priest','camp-parent':'wilderness-resident'},solomon:{'bronze-worker':'bronze-artisan',singer:'temple-singer','temple-visitor':'iron-resident'},herod:{pilgrim:'resident','stone-worker':'resident-worker',listener:'resident'},jerusalem:{householder:'jerusalem-resident','water-carrier':'jerusalem-carrier','street-vendor':'jerusalem-elder'}};
+ const expected={tabernacle:{weaver:'wilderness-resident',priest:'ordinary-priest','camp-parent':'wilderness-resident'},solomon:{'bronze-worker':'bronze-artisan',singer:'temple-singer','temple-visitor':'iron-resident'},herod:{pilgrim:'resident','stone-worker':'resident-worker',listener:'resident'},jerusalem:{householder:'jerusalem-life-resident','water-carrier':'jerusalem-life-carrier','street-vendor':'jerusalem-life-elder'}};
  for(const [id,people] of Object.entries(expected)){
   const s=createHistoricalScene(id,null,{blenderAssets:true,assetLoader:asset});assert.equal(await s.detailedResidents.ready,true);const seeds=s.npcSystem.agents.map(a=>a.seed);
   for(const [personId,modelId] of Object.entries(people)){

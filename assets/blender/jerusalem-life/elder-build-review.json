@@ -1,0 +1,332 @@
+{
+  "status": "candidate-needs-runtime-qa",
+  "checks": {
+    "glb_header": true,
+    "metadata_glb_sha": true,
+    "metadata_glb_bytes": true,
+    "candidate_status": true,
+    "actual_animation_names": true,
+    "metadata_animation_names": true,
+    "metadata_clips": true,
+    "one_role_rig": true,
+    "actual_rig_status": true,
+    "actual_capture_source": true,
+    "editable_source_sha": true,
+    "editable_source_bytes": true,
+    "geometry_sha": true,
+    "original_pilot_unchanged": true,
+    "frozen_inputs_unchanged": true,
+    "actual_timelines": true,
+    "vendor_static_sha": true,
+    "vendor_static_bytes": true,
+    "size_limits": true,
+    "actual_glb_yoke_weights": true,
+    "actual_tunic_cap_revision2": true,
+    "turn_end_foot_orientations_match_idle_within_1degree": true
+  },
+  "pass": true,
+  "frozen_inputs": {
+    "scripts/blender/jerusalem-life.py": true,
+    "scripts/blender/jerusalem-life-motion.py": true,
+    "scripts/blender/jerusalem-life-export.py": true,
+    ".qa/jerusalem-life/elder-geometry.blend": true,
+    "assets/blender/jerusalem-pilot.blend": true
+  },
+  "outputs": {
+    "glb": {
+      "file": "public/models/jerusalem-life/elder.glb",
+      "bytes": 5924412,
+      "sha256": "6b241f61b776577a832e04ebb00bb252633ed00f471633c2b4103726e7d14654"
+    },
+    "editable_source": {
+      "file": "assets/blender/jerusalem-life/elder.blend",
+      "bytes": 8273101,
+      "sha256": "fa7614d6539b439c7048260ae1c85c032e3676cfacdbd56a3633827d10083957"
+    },
+    "metadata_bytes": 3394455,
+    "static_goods": {
+      "file": "models/jerusalem-life/vendor-rest.glb",
+      "bytes": 35008,
+      "sha256": "414fe9968e9a15eab3ea31f86b7447f7fbf8f72bc869cbf50b59bf35d9183e73",
+      "sourceMesh": "vendor-small-goods",
+      "actorLocalBounds": {
+        "minimum": [
+          -0.054999999701976776,
+          0.75,
+          0.41499999165534973
+        ],
+        "maximum": [
+          0.054999999701976776,
+          0.7940000295639038,
+          0.48499998450279236
+        ]
+      },
+      "surfaceMinimumY": 0.75
+    }
+  },
+  "actual_glb_timelines": {
+    "Idle": {
+      "start_seconds": 0.0,
+      "end_seconds": 5.400000095367432,
+      "expected_duration_seconds": 5.4,
+      "duration_matches": true
+    },
+    "Walk": {
+      "start_seconds": 0.0,
+      "end_seconds": 1.4166666269302368,
+      "expected_duration_seconds": 1.4166666666666667,
+      "duration_matches": true
+    },
+    "StartWalk": {
+      "start_seconds": 0.0,
+      "end_seconds": 0.800000011920929,
+      "expected_duration_seconds": 0.8,
+      "duration_matches": true
+    },
+    "StopWalk": {
+      "start_seconds": 0.0,
+      "end_seconds": 0.8999999761581421,
+      "expected_duration_seconds": 0.9,
+      "duration_matches": true
+    },
+    "LookAround": {
+      "start_seconds": 0.0,
+      "end_seconds": 6.199999809265137,
+      "expected_duration_seconds": 6.2,
+      "duration_matches": true
+    },
+    "Talk": {
+      "start_seconds": 0.0,
+      "end_seconds": 4.599999904632568,
+      "expected_duration_seconds": 4.6,
+      "duration_matches": true
+    },
+    "Interact": {
+      "start_seconds": 0.0,
+      "end_seconds": 3.4000000953674316,
+      "expected_duration_seconds": 3.4,
+      "duration_matches": true
+    },
+    "Listen": {
+      "start_seconds": 0.0,
+      "end_seconds": 4.800000190734863,
+      "expected_duration_seconds": 4.8,
+      "duration_matches": true
+    },
+    "StartWalkL": {
+      "start_seconds": 0.0,
+      "end_seconds": 0.800000011920929,
+      "expected_duration_seconds": 0.8,
+      "duration_matches": true
+    },
+    "StartWalkR": {
+      "start_seconds": 0.0,
+      "end_seconds": 0.800000011920929,
+      "expected_duration_seconds": 0.8,
+      "duration_matches": true
+    },
+    "StopWalkL": {
+      "start_seconds": 0.0,
+      "end_seconds": 0.8999999761581421,
+      "expected_duration_seconds": 0.9,
+      "duration_matches": true
+    },
+    "StopWalkR": {
+      "start_seconds": 0.0,
+      "end_seconds": 0.8999999761581421,
+      "expected_duration_seconds": 0.9,
+      "duration_matches": true
+    },
+    "StairUp": {
+      "start_seconds": 0.0,
+      "end_seconds": 1.850000023841858,
+      "expected_duration_seconds": 1.85,
+      "duration_matches": true
+    },
+    "StairDown": {
+      "start_seconds": 0.0,
+      "end_seconds": 1.850000023841858,
+      "expected_duration_seconds": 1.85,
+      "duration_matches": true
+    },
+    "Arrange": {
+      "start_seconds": 0.0,
+      "end_seconds": 4.599999904632568,
+      "expected_duration_seconds": 4.6,
+      "duration_matches": true
+    },
+    "Offer": {
+      "start_seconds": 0.0,
+      "end_seconds": 3.4000000953674316,
+      "expected_duration_seconds": 3.4,
+      "duration_matches": true
+    },
+    "TurnLeft": {
+      "start_seconds": 0.0,
+      "end_seconds": 1.4500000476837158,
+      "expected_duration_seconds": 1.45,
+      "duration_matches": true
+    },
+    "TurnRight": {
+      "start_seconds": 0.0,
+      "end_seconds": 1.4500000476837158,
+      "expected_duration_seconds": 1.45,
+      "duration_matches": true
+    },
+    "TurnLeft45": {
+      "start_seconds": 0.0,
+      "end_seconds": 1.2000000476837158,
+      "expected_duration_seconds": 1.2,
+      "duration_matches": true
+    },
+    "TurnRight45": {
+      "start_seconds": 0.0,
+      "end_seconds": 1.2000000476837158,
+      "expected_duration_seconds": 1.2,
+      "duration_matches": true
+    },
+    "TurnLeft90": {
+      "start_seconds": 0.0,
+      "end_seconds": 1.4500000476837158,
+      "expected_duration_seconds": 1.45,
+      "duration_matches": true
+    },
+    "TurnRight90": {
+      "start_seconds": 0.0,
+      "end_seconds": 1.4500000476837158,
+      "expected_duration_seconds": 1.45,
+      "duration_matches": true
+    },
+    "TurnLeft180": {
+      "start_seconds": 0.0,
+      "end_seconds": 2.4000000953674316,
+      "expected_duration_seconds": 2.4,
+      "duration_matches": true
+    },
+    "TurnRight180": {
+      "start_seconds": 0.0,
+      "end_seconds": 2.4000000953674316,
+      "expected_duration_seconds": 2.4,
+      "duration_matches": true
+    }
+  },
+  "actual_glb_yoke_weights": {
+    "clavicleL": {
+      "vertices": 1778,
+      "maximum_weight": 0.16000883281230927
+    },
+    "clavicleR": {
+      "vertices": 1622,
+      "maximum_weight": 0.16000327467918396
+    }
+  },
+  "actual_turn_end_foot_transforms_vs_idle": {
+    "TurnLeft": {
+      "footL": {
+        "world_position_difference_m": 6.280928082261484e-08,
+        "world_orientation_difference_degrees": 0.03956468150618047
+      },
+      "footR": {
+        "world_position_difference_m": 3.118612365742574e-08,
+        "world_orientation_difference_degrees": 0.034264019713107705
+      }
+    },
+    "TurnRight": {
+      "footL": {
+        "world_position_difference_m": 6.280928082261484e-08,
+        "world_orientation_difference_degrees": 0.03956468150618047
+      },
+      "footR": {
+        "world_position_difference_m": 3.118612365742574e-08,
+        "world_orientation_difference_degrees": 0.034264019713107705
+      }
+    },
+    "TurnLeft45": {
+      "footL": {
+        "world_position_difference_m": 6.625605459366087e-08,
+        "world_orientation_difference_degrees": 0.05233915379539985
+      },
+      "footR": {
+        "world_position_difference_m": 2.981226813813623e-08,
+        "world_orientation_difference_degrees": 0.04423465855987681
+      }
+    },
+    "TurnRight45": {
+      "footL": {
+        "world_position_difference_m": 2.981226813813623e-08,
+        "world_orientation_difference_degrees": 0.04423465855987681
+      },
+      "footR": {
+        "world_position_difference_m": 6.625605459366087e-08,
+        "world_orientation_difference_degrees": 0.05233915379539985
+      }
+    },
+    "TurnLeft90": {
+      "footL": {
+        "world_position_difference_m": 6.280928082261484e-08,
+        "world_orientation_difference_degrees": 0.03956468150618047
+      },
+      "footR": {
+        "world_position_difference_m": 3.118612365742574e-08,
+        "world_orientation_difference_degrees": 0.034264019713107705
+      }
+    },
+    "TurnRight90": {
+      "footL": {
+        "world_position_difference_m": 6.280928082261484e-08,
+        "world_orientation_difference_degrees": 0.03956468150618047
+      },
+      "footR": {
+        "world_position_difference_m": 3.118612365742574e-08,
+        "world_orientation_difference_degrees": 0.034264019713107705
+      }
+    },
+    "TurnLeft180": {
+      "footL": {
+        "world_position_difference_m": 6.112876732211917e-08,
+        "world_orientation_difference_degrees": 0.03956468150618047
+      },
+      "footR": {
+        "world_position_difference_m": 3.6073267970574864e-08,
+        "world_orientation_difference_degrees": 0.034264019713107705
+      }
+    },
+    "TurnRight180": {
+      "footL": {
+        "world_position_difference_m": 6.112876732211917e-08,
+        "world_orientation_difference_degrees": 0.03956468150618047
+      },
+      "footR": {
+        "world_position_difference_m": 3.6073267970574864e-08,
+        "world_orientation_difference_degrees": 0.034264019713107705
+      }
+    }
+  },
+  "rig_extras": [
+    {
+      "motion_version": 4,
+      "cycle_distance_m": 1.131821344791807,
+      "pilot_role": "elder",
+      "cycle_seconds": 1.4166666666666667,
+      "capture_source": "CMU07_04",
+      "role": "elder",
+      "base_model_id": "jerusalem-elder",
+      "authoring": "New near-view anatomy/wardrobe meshes; actual capture plus authored role adjustments",
+      "asset_status": "candidate-needs-runtime-qa"
+    }
+  ],
+  "scope": "Build/export/provenance, actual GLB timelines/yoke weights and repaired turn-foot endpoints only. No human motion/continuous contact/cloth/runtime approval.",
+  "recorded_packaging_inputs_sha256": {
+    "scripts/blender/jerusalem-life.py": "084c5080e52bcf33bd24c644355a24d832ad76fc3365457e800fa84a1b8a58bf",
+    "scripts/blender/jerusalem-life-motion.py": "96512c38dfc2bb95a24c34a70e4c630f5d44733a89710f6a3b45aaeb7e623210",
+    "scripts/blender/jerusalem-life-export.py": "32d865eb495b6af5e11c47613e5cfa114a82f709c399f94eb7cf33ff0276cf49",
+    ".qa/jerusalem-life/elder-geometry.blend": "8a46e4670e9228abf299e62de06bcc22d0d1ed2c54e91beed00e61699bb3f443",
+    "assets/blender/jerusalem-pilot.blend": "2d63bd83c769522cbc17125dbbf756ef9e207de1848923153a195a63a631e623"
+  },
+  "bake_code_provenance": {
+    "initial24_motion_sha256": "58e1961626d1eb1a2389c45daf745b532beb870689426443b2c9e1245098d084",
+    "replacement8_turn_motion_sha256": "f7a112cec038025e3a5e376d54cc47385faaccb6a046008c151cbd36cc65c527",
+    "packaging_motion_sha256": "96512c38dfc2bb95a24c34a70e4c630f5d44733a89710f6a3b45aaeb7e623210",
+    "note": "Common code received necessary authorized revisions during task; eight turns were replaced and the other16 baked data were preserved. This is not a claim all24 were rebaked under the later packaging script."
+  }
+}

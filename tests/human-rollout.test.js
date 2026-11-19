@@ -71,8 +71,8 @@ test('every island and chapter use their own upgraded wardrobes, individual cont
  let configurations=0;
  for(const theme of themes)for(const chapter of narrativeChapters[theme.id]||[{id:null}]){
   const scene=createHistoricalScene(theme.id,null,{segment:chapter.id}),actors=scene.actors;assert.ok(actors.length,theme.id+' actors');
-  for(const a of actors){assert.equal(blenderModels[a.modelId].motionVersion,3,theme.id+' '+a.modelId);assert.ok(a.motionProfile);}
-  const roles=motionRolesForActors(actors);assert.ok(Object.keys(roles).length,theme.id+' comparison');for(const r of Object.values(roles)){assert.equal(blenderModels[r.before].motionVersion,2);assert.equal(blenderModels[r.after].motionVersion,3);}
+  for(const a of actors){assert.equal(blenderModels[a.modelId].motionVersion,theme.id==='jerusalem'&&['householder','water-carrier','street-vendor'].includes(a.id)?4:3,theme.id+' '+a.modelId);assert.ok(a.motionProfile);}
+  const roles=motionRolesForActors(actors);assert.ok(Object.keys(roles).length,theme.id+' comparison');for(const r of Object.values(roles)){const life=r.after.startsWith('jerusalem-life-');assert.equal(blenderModels[r.before].motionVersion,life?3:2);assert.equal(blenderModels[r.after].motionVersion,life?4:3);if(life)assert.equal(theme.id,'jerusalem','pilot must not leak into other islands');}
   const seeds=scene.npcSystem.agents.map(a=>a.seed);assert.equal(new Set(seeds).size,seeds.length);
   for(const a of scene.npcSystem.agents){assert.ok(a.humanProfile,theme.id+' independent human controller');assert.ok(a.speedFactor>=.85&&a.speedFactor<=1.15);}
   const p=scene.people[0],position=[...p.state.position];scene.converse(p.id);scene.simulate(.2,[position[0]+2,position[1]+1.6,position[2]+3]);assert.deepEqual(p.state.position,position,'dialogue holds controller');assert.deepEqual(scene.npcSystem.agents.map(a=>a.seed),seeds);

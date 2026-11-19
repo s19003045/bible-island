@@ -1,0 +1,264 @@
+{
+  "scope": "Authored static hypothetical grip; exact digit lengths, conservative centerline capsule clearance and actual evaluated LBS tube vertices. No continuous-motion claim.",
+  "loaded_builder_sha256": "5b3c3edcb9968c121ab5e73b15576a09fa1db9a3bf9bccce84a51c271d81b900",
+  "builder_unchanged_during_study": true,
+  "shoulder": [
+    0.205,
+    0.0,
+    1.35
+  ],
+  "wrist": [
+    0.3,
+    -0.16,
+    1.005
+  ],
+  "elbow": [
+    0.2538104877106801,
+    0.06251980979597892,
+    1.0834315102177854
+  ],
+  "forearm_direction": [
+    0.1921229791522166,
+    -0.9255600819208724,
+    -0.3262319659939917
+  ],
+  "source_arm_segment_lengths_m": [
+    0.27811858994366145,
+    0.24041638586462122
+  ],
+  "handle": {
+    "center": [
+      0.315,
+      -0.24,
+      0.875
+    ],
+    "radius_x": 0.07,
+    "radius_z": 0.068,
+    "tube_radius": 0.01
+  },
+  "seed": 20261119,
+  "digit_segment_length_ratios": [
+    0.43,
+    0.32,
+    0.25
+  ],
+  "digits": [
+    {
+      "coordinates": [
+        [
+          0.2930434693947207,
+          -0.23126812630790716,
+          0.9798801386184626
+        ],
+        [
+          0.2930434693947207,
+          -0.25268217076350674,
+          0.9573089691720558
+        ],
+        [
+          0.2930434693947207,
+          -0.25926172931306973,
+          0.9351096271504392
+        ],
+        [
+          0.2930434693947207,
+          -0.24662284086836586,
+          0.9221686530011896
+        ]
+      ],
+      "segment_lengths_m": [
+        0.03111300355357551,
+        0.02315386310963759,
+        0.018088955554404366
+      ],
+      "segment_length_sum_m": 0.07235582221761747,
+      "joint_angles_degrees": [
+        46.506940276946004,
+        26.9840107086305,
+        60.832445248596784
+      ],
+      "absolute_YZ_angles_degrees": [
+        46.506940276946004,
+        73.4909509855765,
+        134.3233962341733
+      ],
+      "conservative_centerline_clearance_min_m": 0.0006498285949517119,
+      "fitness": 1.8775289095732512
+    },
+    {
+      "coordinates": [
+        [
+          0.3075434693947207,
+          -0.23126812630790716,
+          0.9798801386184626
+        ],
+        [
+          0.3075434693947207,
+          -0.25925652661969784,
+          0.9576520916981468
+        ],
+        [
+          0.3075434693947207,
+          -0.25611015493505945,
+          0.9312407079901587
+        ],
+        [
+          0.3075434693947207,
+          -0.23703268755988832,
+          0.9230035925859126
+        ]
+      ],
+      "segment_lengths_m": [
+        0.03574124538827382,
+        0.02659813610290145,
+        0.020779793830391757
+      ],
+      "segment_length_sum_m": 0.08311917532156703,
+      "joint_angles_degrees": [
+        38.45617519006316,
+        58.33741825999,
+        59.85307402291006
+      ],
+      "absolute_YZ_angles_degrees": [
+        38.45617519006316,
+        96.79359345005317,
+        156.64666747296323
+      ],
+      "conservative_centerline_clearance_min_m": 0.0007494137393998556,
+      "fitness": 0.0014521949113124267
+    },
+    {
+      "coordinates": [
+        [
+          0.32204346939472067,
+          -0.23126812630790716,
+          0.9798801386184626
+        ],
+        [
+          0.32204346939472067,
+          -0.2569186271298519,
+          0.957137533537028
+        ],
+        [
+          0.32204346939472067,
+          -0.2569155865155933,
+          0.9316262295186962
+        ],
+        [
+          0.32204346939472067,
+          -0.2382974225383833,
+          0.9245130707298532
+        ]
+      ],
+      "segment_lengths_m": [
+        0.03428081501812177,
+        0.02551130419953248,
+        0.01993070640588475
+      ],
+      "segment_length_sum_m": 0.079722825623539,
+      "joint_angles_degrees": [
+        41.561285800783295,
+        48.445543107813265,
+        69.08357460732678
+      ],
+      "absolute_YZ_angles_degrees": [
+        41.561285800783295,
+        90.00682890859656,
+        159.09040351592336
+      ],
+      "conservative_centerline_clearance_min_m": 0.0007241417539436646,
+      "fitness": 0.03767666922766729
+    },
+    {
+      "coordinates": [
+        [
+          0.3365434693947207,
+          -0.23126812630790716,
+          0.9798801386184626
+        ],
+        [
+          0.3365434693947207,
+          -0.2500720910932828,
+          0.9589081997781784
+        ],
+        [
+          0.3365434693947207,
+          -0.2578839023843448,
+          0.9394562846877424
+        ],
+        [
+          0.3365434693947207,
+          -0.24962028586712479,
+          0.9253176153418432
+        ]
+      ],
+      "segment_lengths_m": [
+        0.028167557763680268,
+        0.020961903452041127,
+        0.01637648707190713
+      ],
+      "segment_length_sum_m": 0.06550594828762853,
+      "joint_angles_degrees": [
+        48.119802838034055,
+        20.0,
+        52.1851669538283
+      ],
+      "absolute_YZ_angles_degrees": [
+        48.119802838034055,
+        68.11980283803405,
+        120.30496979186235
+      ],
+      "conservative_centerline_clearance_min_m": 0.000649943373580421,
+      "fitness": 1.1879675425641503
+    }
+  ],
+  "actual_weighted_mesh_audit": {
+    "scope": "Actual evaluated digit-surface vertex samples against actual evaluated handle BVH; not full triangle intersections or continuous sweep.",
+    "inside_count_and_thresholded_max_tolerance_m": 0.0005,
+    "handle_closed_two_faces_per_edge": true,
+    "handle_signed_volume_m3": 0.00013379077558776483,
+    "handle_outward_winding_multiplier": 1,
+    "digits": {
+      "fingerR0": {
+        "sampled_vertices": 620,
+        "nearest_surface_distance_m": 0.0007620498072355986,
+        "vertices_within_2mm": 36,
+        "inside_vertices_if_closed": 0,
+        "maximum_penetration_m_if_closed": 0,
+        "maximum_penetration_m_unthresholded_if_closed": 0
+      },
+      "fingerR1": {
+        "sampled_vertices": 620,
+        "nearest_surface_distance_m": 0.0007871349807828665,
+        "vertices_within_2mm": 30,
+        "inside_vertices_if_closed": 0,
+        "maximum_penetration_m_if_closed": 0,
+        "maximum_penetration_m_unthresholded_if_closed": 0
+      },
+      "fingerR2": {
+        "sampled_vertices": 620,
+        "nearest_surface_distance_m": 0.0007376106805168092,
+        "vertices_within_2mm": 32,
+        "inside_vertices_if_closed": 0,
+        "maximum_penetration_m_if_closed": 0,
+        "maximum_penetration_m_unthresholded_if_closed": 0
+      },
+      "fingerR3": {
+        "sampled_vertices": 620,
+        "nearest_surface_distance_m": 0.0006832862854935229,
+        "vertices_within_2mm": 40,
+        "inside_vertices_if_closed": 0,
+        "maximum_penetration_m_if_closed": 0,
+        "maximum_penetration_m_unthresholded_if_closed": 0
+      }
+    }
+  },
+  "thumb_scope": "Not solved by the four-digit optimizer; thumb must remain on opposing +Y side of handle and receive its own actual surface audit. Do not reuse old-world thumb coordinates after moving wrist.",
+  "not_validated": [
+    "Thumb surface contact",
+    "Palm/handle overlap",
+    "Full triangle intersection",
+    "Motion and skinning away from the authored rest pose"
+  ],
+  "four_digit_vertex_gate_pass": true
+}

@@ -2,14 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import * as THREE from 'three';
-import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {geometryLoader} from './helpers/load-gltf-geometry.js';
 import {blenderModels} from '../src/blender-manifest.js';
 import {createResidentInstance,mountBlenderResidents,selectDetailedResidents} from '../src/blender-assets.js';
 import {prepareResidentGeometry,disposeResidentGeometry} from '../src/resident-geometry.js';
 import {createHistoricalScene} from '../src/historical-scenes.js';
 
 const cache=new Map();
-function asset(id){if(!cache.has(id))cache.set(id,(async()=>{const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');})());return cache.get(id);}
+function asset(id){if(!cache.has(id))cache.set(id,(async()=>{const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return geometryLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');})());return cache.get(id);}
 const actor=(id,x=0)=>({id,modelId:'resident',scale:1,state:{position:[x,0,0],yaw:0,time:.23,stride:0,walkDistance:0,visible:true,idleAction:'Idle'}});
 function wardrobe(root){const result=[];root.traverse(m=>{if(m.isMesh)result.push([m.name,m.material.uuid,m.material.name,m.material.color.toArray()]);});return result;}
 

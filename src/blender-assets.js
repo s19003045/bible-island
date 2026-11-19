@@ -8,6 +8,9 @@ import {createPlantedFootGrounding} from './resident-foot-plant.js';
 import {prepareResidentGeometry,disposeResidentGeometry} from './resident-geometry.js';
 import {createHumanLocomotion} from './human-locomotion.js';
 import {createHumanPerformance} from './human-performance.js';
+import {createLifeLocomotion} from './human-life-locomotion.js';
+import {createHandContacts} from './human-hand-contact.js';
+import {createPoseOverlay} from './human-pose-overlay.js';
 
 const cache=new Map();
 const loader=new GLTFLoader();
@@ -65,10 +68,10 @@ export function residentAction(state) {
 export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.state.position[1],motionVersion=null,metrics={},distantGeometry=new Map()}={}) {
   const appearance=residentVisualAppearance(actor,index);
   const definition={...blenderModels[residentModelFor(actor)],...metrics};
-  const version=motionVersion??definition.motionVersion,natural=version>=2&&gltf.animations.some(c=>c.name==='StartWalk'),human=natural&&version>=3;
+  const version=motionVersion??definition.motionVersion,natural=version>=2&&gltf.animations.some(c=>c.name.startsWith('StartWalk')),human=natural&&version>=3,life=human&&version>=4;
   if(human)actor.motionProfile??=definition.motionProfile;
   const root=clone(gltf.scene),materials=new Set(),mixer=new THREE.AnimationMixer(root);
-  root.userData.motionVersion=human?3:natural?2:1;
+  root.userData.motionVersion=life?4:human?3:natural?2:1;
   root.userData.appearance=appearance;
   const actions=new Map(gltf.animations.map(clip=>{const a=mixer.clipAction(clip);a.play();a.paused=true;a.setEffectiveWeight(0);return [clip.name,a];}));
   const weights=new Map([...actions.keys()].map(n=>[n,n==='Idle'?1:0]));
@@ -90,16 +93,22 @@ export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.st
     }
   });
   root.scale.setScalar((actor.scale??1)*1.70/definition.height);
-  const locomotion=human?createHumanLocomotion(actor,definition,{scale:root.scale.x}):natural?createResidentLocomotion(actor,{cycleDistance:definition.cycleDistance??.9,cycleSeconds:1.2,scale:root.scale.x}):null;
+  const locomotion=life?createLifeLocomotion(actor,definition,{scale:root.scale.x}):human?createHumanLocomotion(actor,definition,{scale:root.scale.x}):natural?createResidentLocomotion(actor,{cycleDistance:definition.cycleDistance??.9,cycleSeconds:1.2,scale:root.scale.x}):null;
   const groundFeet=natural?createPlantedFootGrounding(root,groundAt,human?{articulated:true,contactFor:locomotion.contact}:{}):null;
   const groundDistantFeet=createResidentGrounding(root,groundAt,{ankleHeight:definition.ankleHeight??.105,liftHeight:definition.liftHeight??.075}),lastPosition=[...actor.state.position];
   const performance=human?createHumanPerformance(root,actor,definition):null,clocks=new Map();
-  if(natural)for(const name of ['StartWalk','StopWalk','TurnLeft','TurnRight']){const a=actions.get(name);if(a){a.setLoop(THREE.LoopOnce,1);a.clampWhenFinished=true;}}
+  const handContacts=life?createHandContacts(root,definition):null;
+  const carryPose=life?createPoseOverlay(root,gltf.animations.find(c=>c.name==='CarrySmall'),definition.carryBones):null;
+  const speechPose=life?createPoseOverlay(root,gltf.animations.find(c=>c.name==='Talk'),['jaw']):null;
+  const jaw=life?root.getObjectByName('jaw'):null,jawRest=jaw?.quaternion.clone();
+  const oneShot=name=>life?definition.lifeClips?.[name]?.loop===false:['StartWalk','StopWalk','TurnLeft','TurnRight'].includes(name);
+  if(natural)for(const [name,a] of actions)if(oneShot(name)){a.setLoop(THREE.LoopOnce,1);a.clampWhenFinished=true;}
   const bones=[];root.traverse(o=>{if(o.isBone)bones.push({bone:o,position:o.position.clone(),quaternion:o.quaternion.clone(),scale:o.scale.clone()});});
   let first=true,gaitTime=actor.state.time%1,poseElapsed=(index*.037)%(.1),previousDetail=null,previousTarget=null;
   return {root,actions,mixer,
     update(dt=0,{detailed=true,poseInterval=0,culled=false,camera=null}={}){
       const state=actor.state,motion=locomotion?.update(dt),target=motion?.clip||residentAction(state);
+      if(life)updateLifePropVisibility(root,actor);
       root.position.fromArray(state.position);root.rotation.y=state.yaw;root.visible=!culled&&state.visible!==false;
       if(detailed!==previousDetail)for(const surface of surfaces)surface.mesh.geometry=detailed?surface.near:surface.distant;
       if(!first&&dt>0)gaitTime+=Math.hypot(state.position[0]-lastPosition[0],state.position[2]-lastPosition[2])/((definition.cycleDistance??.8)*root.scale.x);
@@ -109,24 +118,30 @@ export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.st
       // Distant residents still follow their real controller every frame. Only
       // skeleton sampling is staggered; there is no second wardrobe or model.
       if(!first&&dt>0&&detailed===previousDetail&&target===previousTarget&&poseElapsed<poseInterval)return;
-      const poseDt=Math.max(0,poseElapsed),blend=first?1:1-Math.exp(-poseDt*7);
+      const poseDt=Math.max(0,poseElapsed),workPose=life&&state.activity&&!state.activity.aligning,blend=first||workPose?1:1-Math.exp(-poseDt*7);
       poseElapsed=detailed||!poseInterval?0:first?-((index*.037)%.05):Math.max(0,poseElapsed%poseInterval);previousDetail=detailed;previousTarget=target;
       for(const [name,action] of actions){
         const weight=weights.get(name)+((name===target?1:0)-weights.get(name))*blend;weights.set(name,weight);
         const duration=action.getClip().duration;
-        const clock=motion&&name===motion.clip?motion.time:name==='Walk'?(human?motion.phase:gaitTime)*duration:human&&['StartWalk','StopWalk','TurnLeft','TurnRight'].includes(name)?clocks.get(name)??0:state.time;
+        const clock=motion&&name===motion.clip?motion.time:name==='Walk'?(human?motion.phase:gaitTime)*duration:human&&oneShot(name)?clocks.get(name)??0:state.time;
         clocks.set(name,clock);
-        action.setEffectiveWeight(weight);action.time=natural&&['StartWalk','StopWalk','TurnLeft','TurnRight'].includes(name)?Math.min(duration-.000001,Math.max(0,clock)):(clock%duration+duration)%duration;
+        action.setEffectiveWeight(weight);action.time=natural&&oneShot(name)?Math.min(duration-.000001,Math.max(0,clock)):(clock%duration+duration)%duration;
       }
       // Restore the pre-IK pose: AnimationMixer may skip unchanged properties.
       for(const p of bones){p.bone.position.copy(p.position);p.bone.quaternion.copy(p.quaternion);p.bone.scale.copy(p.scale);}
       mixer.update(0);
       for(const p of bones){p.position.copy(p.bone.position);p.quaternion.copy(p.bone.quaternion);p.scale.copy(p.bone.scale);}
+      if(state.carriedItem&&!state.activity)carryPose?.(state.time);
       performance?.apply(poseDt,motion,{camera});
+      // A muted text response may gesture, but only actual recorded / browser
+      // speech opens the jaw. Work can keep its arms and props paused while the
+      // authored speaking jaw responds independently; this is not phoneme sync.
+      if(jaw){if(!state.dialogueCue?.vocal)jaw.quaternion.copy(jawRest);else if(workPose)speechPose?.(state.time);}
       if(natural){root.userData.locomotion=target;root.userData.gaitPhase=motion.phase;}
       if(human)actor.visualFootsteps={left:locomotion.contact(target,motion.time,'L',motion.phase),right:locomotion.contact(target,motion.time,'R',motion.phase),clip:target,speed:motion.speed};
       if(natural&&detailed)groundFeet({position:state.position,clip:target,time:motion.time,phase:motion.phase,strideScale:motion.strideScale??1,dt:poseDt,reset:first||root.userData.detailLevel!=='near'});
       else groundDistantFeet({position:state.position,phase:motion?.phase??gaitTime%1,walkWeight:weights.get('Walk')||0});
+      handContacts?.({clip:state.carriedItem&&!state.activity?'CarrySmall':target,time:state.carriedItem&&!state.activity?state.time:motion.time});
       performance?.remember();root.userData.detailLevel=detailed?'near':'distant';first=false;
     },
     dispose(){if(human)delete actor.visualFootsteps;mixer.stopAllAction();mixer.uncacheRoot(root);root.removeFromParent();const skeletons=new Set();root.traverse(o=>{if(o.isSkinnedMesh)skeletons.add(o.skeleton);});for(const s of skeletons)s.dispose();for(const m of materials)m.dispose();},
@@ -176,4 +191,14 @@ export async function disposeBlenderAssets() {
   const geometry=new Set(),materials=new Set(),textures=new Set();
   for(const result of loaded)if(result.status==='fulfilled')result.value.scene.traverse(o=>{if(o.isMesh){geometry.add(o.geometry);for(const m of [].concat(o.material)){materials.add(m);for(const value of Object.values(m))if(value?.isTexture)textures.add(value);}}});
   for(const g of geometry)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();
+}
+
+export function updateLifePropVisibility(root,actor){
+  const work=actor.state.activity&&!actor.state.activity.aligning;
+  root.traverse(o=>{
+    if(!o.isMesh)return;
+    if(o.name.startsWith('household-parcel'))o.visible=!!work||!!actor.state.carriedItem;
+    if(o.name.startsWith('vendor-small-goods'))o.visible=!!work;
+    if(o.name.startsWith('carrier-dipper'))o.visible=!!work&&actor.state.activity.clip==='Fill';
+  });
 }

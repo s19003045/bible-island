@@ -24,9 +24,13 @@ export function createWalkModel(boxes=[],surfaces=walkSurfaces,floor=walkFloor,o
       const e=.025;
       // At a discrete ledge use the top-face tangent, not a fictitious vertical ramp normal.
       const derivative=(a,b)=>Math.abs(a-b)>.05?(Math.min(Math.abs(a),Math.abs(b))<.00001?0:Math.abs(a)>Math.abs(b)?a:b):(a+b)/2;
-      const xm=floor(x-e,z),xp=floor(x+e,z),zm=floor(x,z-e),zp=floor(x,z+e);
-      dx=Number.isFinite(xm)&&Number.isFinite(xp)?derivative((height-xm)/e,(xp-height)/e):0;
-      dz=Number.isFinite(zm)&&Number.isFinite(zp)?derivative((height-zm)/e,(zp-height)/e):0;
+      // Explicit raised landing proxies own their top normal. Immediately
+      // outside, sample the underlying surface rather than differentiate
+      // through a discrete step and invent a steep wall ahead of the feet.
+      const normalFloor=options.normalFloor||floor,center=normalFloor(x,z);
+      const xm=normalFloor(x-e,z),xp=normalFloor(x+e,z),zm=normalFloor(x,z-e),zp=normalFloor(x,z+e);
+      dx=Number.isFinite(xm)&&Number.isFinite(xp)?derivative((center-xm)/e,(xp-center)/e):0;
+      dz=Number.isFinite(zm)&&Number.isFinite(zp)?derivative((center-zm)/e,(zp-center)/e):0;
     }
     const length=Math.hypot(dx,1,dz),normal=[-dx/length,1/length,-dz/length];
     return {height,normal,slopeAngle:Math.acos(clamp(normal[1],-1,1))*180/Math.PI,kind:proxy?.kind||'ground',proxyId:proxy?.id||null,riserHeight:proxy?.riserHeight||0};

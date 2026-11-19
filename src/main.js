@@ -1,4 +1,5 @@
 import './style.css';
+import {lifeObservationMarkup,updateLifeObservation} from './jerusalem-life-ui.js';
 import {exodusSegmentById} from './exodus-exploration.js';
 import {narrativeChapters,chapterById,stateChapter,setNarrativeChapter,chapterForPerson,stateNarrativePhase,setNarrativePhase,narrativePhasesFor} from './narrative-chapters.js';
 import {atlasPanel,atlasJourneyOptions} from './atlas-ui.js';
@@ -191,7 +192,7 @@ function renderDetail() {
   $('#detail').innerHTML = `
     <div class="detail-sticky"><div class="detail-top"><span class="eyebrow">ISLAND ${number(t.number)} <i>/</i> ${oldNew(t)}</span><div><button class="icon-button ${saved ? 'saved' : ''}" id="save-theme" aria-label="${saved ? '取消收藏' : '收藏主題'}" aria-pressed="${saved}">${icon('bookmark', 18)}</button><button class="icon-button" id="close-detail" aria-label="${state.walking?'結束交談':'返回群島全景'}">${icon('close', 20)}</button></div></div>
     <p class="detail-english">${t.english}</p><h2>${t.name}</h2><p class="detail-subtitle">${t.subtitle}</p><div class="detail-meta"><span>${icon('clock', 13)}${t.period}</span><span>${icon('compass', 13)}${t.stops.length} 個探索點</span></div>${modeStatus(state.mode)}</div>
-    <div class="detail-scroll">${learningPanel(state,t)}${explorationFor(t.id)&&!state.walking&&!state.actor?walkEntry(state.worldReady,t.id,stateChapter(state,t.id),stateNarrativePhase(state,t.id)):''}${peopleMarkup(state)}${sceneInfo ? `<section class="reconstruction-card"><span>詳細場景 · 復原預覽</span><strong>${sceneInfo.scale}</strong><button id="scene-evidence">查看尺度與復原取捨 ${icon('arrow',13)}</button>${mobilityFor(t.id)?'<button id="scene-motion-preview">比較人物步態</button>':''}</section>` : ''}<p class="detail-intro">${t.intro}</p>${scriptureReading(t.book, t.reference)}
+    <div class="detail-scroll">${learningPanel(state,t)}${explorationFor(t.id)&&!state.walking&&!state.actor?walkEntry(state.worldReady,t.id,stateChapter(state,t.id),stateNarrativePhase(state,t.id)):''}${peopleMarkup(state)}${!state.actor?lifeObservationMarkup(t.id):''}${sceneInfo ? `<section class="reconstruction-card"><span>詳細場景 · 復原預覽</span><strong>${sceneInfo.scale}</strong><button id="scene-evidence">查看尺度與復原取捨 ${icon('arrow',13)}</button>${mobilityFor(t.id)?'<button id="scene-motion-preview">比較人物步態</button>':''}</section>` : ''}<p class="detail-intro">${t.intro}</p>${scriptureReading(t.book, t.reference)}
     <div class="detail-actions"><button class="primary-button" id="start-tour">${icon(state.tour ? 'compass' : 'play', 15)}${learningIslands[t.id]?readingModes[state.mode].action:state.tour ? '重新開始導覽' : '跟著導覽走一趟'}<small>${learningIslands[t.id]?(state.mode==='general'?`${t.stops.length} 幕故事`:state.mode==='child'?'3 個觀察任務':'3 項資料對讀'):`約 ${t.stops.length} 分鐘`}</small></button>${canCut ? '<button class="secondary-button" id="cutaway-button" aria-pressed="false"></button>' : ''}</div>
     ${current ? `<section class="stop-card" aria-labelledby="stop-heading"><div class="stop-card-top"><span>${state.tour ? '跟著導覽' : '正在探索'} ${number(index + 1)} / ${number(t.stops.length)}</span><button id="close-stop" aria-label="收合探索點">${icon('close', 15)}</button></div><h3 id="stop-heading" tabindex="-1">${icon(current.icon, 21)}${current.name}</h3><p class="stop-question">${current.question}</p><p>${state.mode === 'child' ? current.child : current.summary}</p>${state.mode === 'study' ? `<div class="study-note"><span>進一步觀察</span><p>${current.study}</p></div>` : ''}${scriptureReferences(current.reference)}<button class="evidence-chip" id="stop-evidence">${icon('info', 12)}${evidenceLabels[current.evidence]}</button><div class="tour-navigation"><button id="previous-stop" ${index === 0 ? 'disabled' : ''}>上一站</button><span>${index + 1} / ${t.stops.length}</span><button id="next-stop">${index === t.stops.length - 1 ? '完成探索' : '下一站'}${icon(index === t.stops.length - 1 ? 'check' : 'arrow', 15)}</button></div></section>` : `<div class="guiding-question"><span>帶著一個問題出發</span><p>${t.question}</p></div>`}
     <div class="section-heading"><h3>這座島的探索點</h3><span>${done} / ${t.stops.length}</span></div><div class="stop-progress"><i style="width:${done / t.stops.length * 100}%"></i></div><div class="stop-list">${t.stops.map((s,i) => `<button data-stop="${s.id}" class="stop-row ${s.id === state.stop ? 'active' : ''}"><span>${state.progress.stops.includes(`${t.id}/${s.id}`) ? icon('check', 13) : number(i+1)}</span><strong>${s.name}<small>${s.reference}</small></strong>${icon('chevron', 14)}</button>`).join('')}</div>
@@ -201,7 +202,7 @@ function renderDetail() {
   $('#enter-walk-sound')?.addEventListener('click',()=>startWalk(true));$('#enter-walk-quiet')?.addEventListener('click',()=>startWalk(false));
   updateCutawayButton();
   $('#scene-evidence')?.addEventListener('click',()=>openContext(t));
-  $('#scene-motion-preview')?.addEventListener('click',openMotionComparison);
+  $('#scene-motion-preview')?.addEventListener('click',openMotionComparison);bindLifeObservation();
   $('#save-theme').onclick = () => { state.progress.saved = saved ? state.progress.saved.filter(id => id !== t.id) : [...state.progress.saved, t.id]; persist(); renderDetail(); toast(saved ? '已取消收藏' : `已收藏「${t.name}」`); };
   $('#close-detail').onclick = ()=>state.walking?endConversation():overview();
   $('#start-tour').onclick = () => { if(learningIslands[t.id])beginLearning();else{state.tour = true; selectStop(t.stops[0].id);} };
@@ -231,7 +232,7 @@ function selectActor(id) {
   state.actor=id;state.dialogue=[];state.stop=null;state.tour=false;
   document.body.classList.add('in-conversation');
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',false));
-  renderDetail();world?.converse(id);$('#conversation-heading')?.focus({preventScroll:true});
+  renderDetail();world?.converse(id);world?.dialogueLine(id,personForMode(personById(state.selected,id),state.selected,state.mode).greeting,'greeting');$('#conversation-heading')?.focus({preventScroll:true});
   if(currentExploration())playVoice('greeting');
 }
 function endConversation(render=true) {
@@ -247,6 +248,7 @@ function bindPeople() {
     readingSpeech.stop();
     state.dialogue.push({...topic,...line,topic:topicId,isFollowup:followup});
     state.dialogue=state.dialogue.slice(-8);
+    world?.dialogueLine(actor.id,line.answer,topicId);
     recordMission({type:'answer',person:actor.id,topic:topicId,followup});
     const panel=$('.people-panel');panel.outerHTML=peopleMarkup(state);bindPeople();
     $('#latest-answer')?.focus({preventScroll:true});const log=$('.conversation-log');log.scrollTop=log.scrollHeight;
@@ -258,7 +260,7 @@ function bindPeople() {
   document.querySelectorAll('[data-followup]').forEach(b=>b.onclick=()=>answer(b.dataset.followup,true));
   document.querySelector('[data-dialogue-stop]')?.addEventListener('click',e=>selectStop(e.currentTarget.dataset.dialogueStop));
   $('#end-conversation').onclick=()=>endConversation();$('#choose-person').onclick=()=>endConversation();
-  $('#restart-conversation').onclick=()=>{state.dialogue=[];renderDetail();$('#conversation-heading')?.focus({preventScroll:true});if(currentExploration())playVoice('greeting');};
+  $('#restart-conversation').onclick=()=>{state.dialogue=[];world?.dialogueLine(actor.id,actor.greeting,'greeting');renderDetail();$('#conversation-heading')?.focus({preventScroll:true});if(currentExploration())playVoice('greeting');};
   $('#replay-voice')?.addEventListener('click',async()=>{if(!sceneAudio.enabled)await sceneAudio.enable();const last=state.dialogue.at(-1);playVoice(last?last.topic+(last.isFollowup?'-followup':''):'greeting');});
   $('#stop-voice')?.addEventListener('click',()=>sceneAudio.stopVoice());
   document.querySelector('[data-learning-return]')?.addEventListener('click',returnToLearning);
@@ -325,6 +327,7 @@ function bindLearning() {
   $('#stop-learning-speech')?.addEventListener('click',()=>{readingSpeech.stop();sceneAudio.stopVoice();});
 }
 function updateReadingSpeech(info) {
+  if(state.actor)world?.dialogueVoice(state.actor,'reading',info.status==='speaking');
   document.querySelectorAll('#learning-speech-status,[data-reading-status]').forEach(el=>el.textContent=info.message);
   const button=$('#stop-learning-speech');if(button)button.hidden=info.status!=='speaking';
 }
@@ -357,6 +360,7 @@ function changeReadingMode(mode) {
 document.addEventListener('visibilitychange',()=>{if(document.hidden)readingSpeech.stop();});
 window.addEventListener('pagehide',()=>readingSpeech.stop());
 function updateSoundState(info) {
+  if(state.actor)world?.dialogueVoice(state.actor,'recorded',sceneAudio.playing?.person===state.actor);
   state.soundEnabled=info.enabled;state.audioVolumes=info.volume;state.soundtrack=info.soundtrack;
   try{storage?.setItem('bible-island:audio:v1',JSON.stringify(info.volume));}catch{}
   if(currentExploration()?.recordedChild&&state.mode==='child'&&state.actor){
@@ -410,7 +414,7 @@ function renderWalk() {
   $('#walk-interact').onclick=()=>world?.interactWalk();$('#walk-stop').onclick=()=>world?.stopWalkRoute();
   $('#walk-run')?.addEventListener('click',()=>{world?.toggleWalkRun();$('#stage canvas')?.focus({preventScroll:true});});
   $('#walk-jump')?.addEventListener('click',()=>{world?.walkJump();$('#stage canvas')?.focus({preventScroll:true});});
-  $('#walk-motion-preview')?.addEventListener('click',openMotionComparison);
+  $('#walk-motion-preview')?.addEventListener('click',openMotionComparison);bindLifeObservation();
   $('#walk-yard')?.addEventListener('click',()=>{world?.lookAtWalk([21,8.5,-5]);walkFeedback('這處原創公共院落可跨越矮牆進出。朝矮牆移動並按 Space，或點跳躍。');});
   root.querySelectorAll('[data-fast-travel]').forEach(b=>b.onclick=()=>{
     const id=b.dataset.fastTravel;if(!(state.explorationSeen?.[state.selected]||[]).includes(id))return;
@@ -438,8 +442,20 @@ function updateWalkHUD(info) {
   if($('#walk-stop'))$('#walk-stop').hidden=!info.navigating;
   if($('#walk-nav-state'))$('#walk-nav-state').textContent=info.navigating?'沿路行走中 · 按 WASD 或「停止」可接手':'WASD 移動 · 拖曳環顧 · 點地沿路前往';
 }
+
+let lifeObservation=null;
+function bindLifeObservation(){
+  document.querySelectorAll('[data-life-observe]').forEach(button=>button.onclick=()=>{
+    const id=button.dataset.lifeObserve,scroll=$('.detail-scroll')?.scrollTop||0;if(state.walking)exitWalk(false);endConversation(false);state.stop=null;state.tour=false;renderDetail();
+    document.querySelectorAll('.life-observation').forEach(panel=>{panel.open=true;});if($('.detail-scroll'))$('.detail-scroll').scrollTop=scroll;
+    document.querySelectorAll('[data-view]').forEach(button=>button.setAttribute('aria-pressed',false));world?.observeLife(id);
+  });
+  document.querySelectorAll('[data-life-observe-stop]').forEach(button=>button.onclick=()=>world?.stopLifeObservation());
+  updateLifeObservation(lifeObservation);
+}
+
 async function openMotionComparison(){
-  openModal('<h2 id="modal-title">讓腳步更像生活<span>此島人物 · 同一路線比較</span></h2><div id="motion-viewer" class="motion-viewer"></div><p class="modal-small">兩側共用移動路線與速度。可切換樓梯、避讓與交談，拖曳換角度、暫停看腳掌。新版以 <a href="https://mocap.cs.cmu.edu/" target="_blank" rel="noopener">CMU 真人步行資料</a>為基礎；兒童、提水、長者與長衣步態為教學改編，衣裝與動作皆屬歷史情境重建。</p>');
+  openModal('<h2 id="modal-title">讓人物更像生活<span>此島人物 · 同一路線比較</span></h2><div id="motion-viewer" class="motion-viewer"></div><p class="modal-small">兩側共用移動路線與速度。可切換樓梯、避讓與交談，拖曳換角度、暫停看腳掌，或切換「站姿與雙手」近看手掌與手腕。新版以 <a href="https://mocap.cs.cmu.edu/" target="_blank" rel="noopener">CMU 真人步行資料</a>為基礎；兒童、提水、長者與長衣步態為教學改編，衣裝與動作皆屬歷史情境重建。</p>');
   $('#modal').classList.add('motion-modal');
   const container=$('#motion-viewer');try{const {mountMotionPreview}=await import('./motion-preview.js');if(!container.isConnected||!$('#modal').open)return;const viewer=mountMotionPreview(container,{characters:world?.motionCharacters()||[]});modalCleanup=()=>viewer.dispose();}catch{if(container.isConnected)container.textContent='此裝置暫時無法開啟步態比較；可以回到場景觀察人物。';}
 }
@@ -527,7 +543,7 @@ function worldError() {
 // Content is available before WebGL loads, so a GPU/import failure never removes the reading experience.
 import('./world.js').then(({ createWorld }) => {
   world = createWorld($('#stage'), {
-    onSelect: selectTheme,onRoute:chooseAtlasRoute,onAtlasInteract:engageAtlas,onAtlasTravelEnd:()=>{$('#atlas-travel-status').hidden=true;const b=$('#atlas-travel');if(b)b.disabled=false;}, onStop: selectStop, onActor: selectActor, onInspect:openVessel,onWalkUpdate:updateWalkHUD,onWalkMessage:walkFeedback,audio:sceneAudio,icon,
+    onSelect: selectTheme,onRoute:chooseAtlasRoute,onAtlasInteract:engageAtlas,onAtlasTravelEnd:()=>{$('#atlas-travel-status').hidden=true;const b=$('#atlas-travel');if(b)b.disabled=false;}, onStop: selectStop, onActor: selectActor, onInspect:openVessel,onWalkUpdate:updateWalkHUD,onLifeUpdate:info=>{lifeObservation=info;updateLifeObservation(info);},onWalkMessage:walkFeedback,audio:sceneAudio,icon,
     onReady() { state.worldReady = true; $('#loading').classList.add('loaded'); setTimeout(() => $('#loading')?.remove(), 550); }, onError: worldError,
   });
   if (!world) return;

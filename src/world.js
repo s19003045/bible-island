@@ -294,7 +294,7 @@ function makeScene(theme, root, scene, boats) {
   return roofGroup;
 }
 
-export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{},onAtlasInteract=()=>{},onAtlasTravelEnd=()=>{},onInspect,onWalkUpdate,onWalkMessage,audio,onReady,onError,icon }) {
+export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{},onAtlasInteract=()=>{},onAtlasTravelEnd=()=>{},onInspect,onWalkUpdate,onLifeUpdate=()=>{},onWalkMessage,audio,onReady,onError,icon }) {
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' }); }
   catch (error) { onError(error); return null; }
@@ -352,6 +352,8 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   selectedRing.visible = false; scene.add(selectedRing);
   const hotspotLayer = document.createElement('div'); hotspotLayer.className = 'world-hotspots'; container.appendChild(hotspotLayer);
   let actorMarkers = [], emotes=[], conversationId = null;
+  let lifeObservationId=null,lastLifeUI=0;
+  function stopLifeObservation(){lifeObservationId=null;onLifeUpdate(null);}
   let hotspots = [], selected = null, selectedStop = null, cutaway = false, showLabels = true, showConnections = true, paused = reduced.matches;
   let atlasJourney='all',atlasFocus=null,atlasRoute=null,atlasFlight=null;
   let visibleIds = new Set(themes.map(t => t.id)), fly = null, raf, elapsed = 0, last = 0, dirty = true, hidden = false;
@@ -381,7 +383,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     cancelAtlasFlight();
     if(walk.active)exitWalk();
     activeHistorical?.npcSystem?.suspend();
-    activeHistorical?.converse(null);activeHistorical?.attend(null);conversationId=null;actorMarkers=[];emotes=[];
+    stopLifeObservation();activeHistorical?.converse(null);activeHistorical?.attend(null);conversationId=null;actorMarkers=[];emotes=[];
     selected = id ? themeById.get(id) : null; selectedStop = null;
     hotspotLayer.replaceChildren(); hotspots = []; clearConnections();
     for (const [id, roof] of roofs) roof.visible = !(cutaway && selected?.id === id);
@@ -443,6 +445,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     connectionGroup.visible = showConnections; dirty = true;
   }
   function focusStop(id) {
+    stopLifeObservation();
     if (!selected) return; const s = selected.stops.find(s => s.id === id); if (!s) return;
     activeHistorical?.converse(null);conversationId=null;
     selectedStop = id; activeView = 'stop'; if(activeHistorical) controls.maxPolarAngle = Math.PI/2-.018; const [x,z] = selected.position;
@@ -543,6 +546,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
   const onVisibility = () => { hidden = document.hidden;if(hidden)cancelAtlasFlight();audio?.setHidden(hidden);last = performance.now();dirty = true; };
   document.addEventListener('visibilitychange', onVisibility);
   function startWalk() {
+    stopLifeObservation();
     if(!activeHistorical?.walkModel)return false;
     const origin=activeHistorical.exploration?.spawn||walkSpawn;
     const spawn=activeHistorical.npcSystem?activeHistorical.npcSystem.safePlayerSpawn(origin):origin;
@@ -597,6 +601,16 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
       if(walk.active&&walk.update(step))dirty=true;
     }
     if(atlasFlight){const flight=atlasFlight,t=Math.min(1,(now-flight.start)/flight.duration),ease=t*t*(3-2*t),p=flight.curve.getPoint(ease),dest=p.clone().add(new THREE.Vector3(9,13,14)),blend=Math.min(1,t*4);camera.position.lerpVectors(flight.from,dest,blend);controls.target.lerpVectors(flight.oldTarget,p,blend);camera.lookAt(controls.target);dirty=true;if(t===1){const done=flight.done;cancelAtlasFlight();done();}}
+    if(lifeObservationId&&!walk.active&&activeHistorical){
+      const actor=activeHistorical.people.find(a=>a.id===lifeObservationId);
+      if(actor){
+        const p=actor.state.position,target=new THREE.Vector3(p[0],p[1]+.95,p[2]);
+        if(fly){const delta=target.clone().sub(fly.target);fly.to.add(delta);fly.target.copy(target);}
+        else{camera.position.add(target.clone().sub(controls.target));controls.target.copy(target);}
+        if(now-lastLifeUI>250){lastLifeUI=now;onLifeUpdate({id:actor.id,label:paused?'已暫停 · 可用播放按鈕繼續':actor.state.activity?.label|| (actor.state.behavior?.state==='travel'?'沿路前往下一項工作':'留意周圍'),phase:actor.state.activity?.phase||null});}
+        dirty=true;
+      }
+    }
     if (fly) {
       const t = fly.duration ? Math.min(1, (now - fly.start) / fly.duration) : 1, ease = 1 - (1 - t) ** 3;
       camera.position.lerpVectors(fly.from, fly.to, ease); controls.target.lerpVectors(fly.old, fly.target, ease); if (t === 1) fly = null; dirty = true;
@@ -649,6 +663,15 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     startWalk,exitWalk,canTalk,canInspect,
     motionCharacters(){return (activeHistorical?.actors||[]).map(({id,modelId,motionProfile,role})=>({id,modelId,motionProfile,role}));},
     personPosition(id){return activeHistorical?.people.find(p=>p.id===id)?.state.position;},
+    stopLifeObservation,
+    observeLife(id){
+      if(selected?.id!=='jerusalem'||walk.active||!['householder','water-carrier','street-vendor'].includes(id))return false;
+      const actor=activeHistorical?.people.find(a=>a.id===id);if(!actor)return false;
+      activeHistorical.converse(null);activeHistorical.attend(null);conversationId=null;lifeObservationId=id;selectedStop=null;activeView='person';
+      controls.maxPolarAngle=Math.PI*.6;const p=actor.state.position;
+      focus(new THREE.Vector3(p[0],p[1]+.95,p[2]),activeHistorical.conversationOffset(actor),850,true,false);
+      onLifeUpdate({id,label:actor.state.activity?.label||'觀察日常活動'});dirty=true;return true;
+    },
     setWalkObjective(target){walkObjective=target;},
     guideWalk(target){if(!walk.active)return;interactionTarget=target;autoGoal=target;const p=goalPosition(target);if(p&&!walk.navigate(p))autoGoal=null;dirty=true;},
     interactWalk,
@@ -671,7 +694,10 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
       autoGoal=null;interactionTarget=null;walk.lookAt(object.lookAt||[object.position[0],object.position[1]+.3,object.position[2]]);dirty=true;return true;
     },
     lockWalk(){walk.lock();},
+    dialogueLine(id,text,topic){activeHistorical?.dialogueLine(id,text,topic);},
+    dialogueVoice(id,channel,active){activeHistorical?.dialogueVoice(id,channel,active);},
     converse(id) {
+      stopLifeObservation();
       if(!activeHistorical)return;
       activeHistorical.converse(id);conversationId=id;
       if(walk.active){autoGoal=null;walk.block(!!id||!!document.querySelector('dialog[open]'));const p=activeHistorical.people.find(a=>a.id===id)?.state.position;if(p)walk.lookAt([p[0],p[1]+1.45,p[2]]);dirty=true;return;}
@@ -682,6 +708,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
       hotspots.forEach(h=>h.el.classList.remove('active'));dirty=true;
     },
     sceneView(view) {
+      stopLifeObservation();
       if (!activeHistorical) return; const c = activeHistorical.config;
       activeView = view; controls.maxPolarAngle = view==='human' ? Math.PI*.6 : Math.PI/2-.018; selectedStop = null; hotspots.forEach(h => h.el.classList.remove('active'));
       if (view === 'human') focus(new THREE.Vector3(...c.human.target), new THREE.Vector3(...c.human.offset), 850, true);
@@ -701,7 +728,7 @@ export function createWorld(container, { onSelect, onStop, onActor,onRoute=()=>{
     },
     setVisible(ids) {cancelAtlasFlight();visibleIds = new Set(ids); for (const [id, root] of roots) root.visible = visibleIds.has(id); boats.forEach(b => { const id = b.children.find(c => c.userData.themeId)?.userData.themeId; b.visible = !id || visibleIds.has(id); }); updateNetwork();dirty = true; },
     zoom(amount) {cancelAtlasFlight();if(!activeHistorical)onAtlasInteract();fly = null; const off = camera.position.clone().sub(controls.target); const distance = THREE.MathUtils.clamp(off.length() * amount, controls.minDistance, controls.maxDistance); camera.position.copy(controls.target).add(off.setLength(distance)); controls.update(); dirty = true; },
-    topView() { if (activeHistorical) { activeView='plan'; controls.maxPolarAngle=Math.PI/2-.018; const c = activeHistorical.config; focus(new THREE.Vector3(...c.target),new THREE.Vector3(.1,c.plan,.1)); return; } const target=selected?new THREE.Vector3(selected.position[0],.2,selected.position[1]):new THREE.Vector3(0,0,4);focus(target,new THREE.Vector3(.1,selected?18:120,4)); },
+    topView() { stopLifeObservation(); if (activeHistorical) { activeView='plan'; controls.maxPolarAngle=Math.PI/2-.018; const c = activeHistorical.config; focus(new THREE.Vector3(...c.target),new THREE.Vector3(.1,c.plan,.1)); return; } const target=selected?new THREE.Vector3(selected.position[0],.2,selected.position[1]):new THREE.Vector3(0,0,4);focus(target,new THREE.Vector3(.1,selected?18:120,4)); },
     getStats() { return { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, pixelRatio, selected: selected?.id, stop: selectedStop, historical: !!activeHistorical }; },
     dispose() { cancelAnimationFrame(raf);walk.dispose();observer.disconnect();controls.dispose(); document.removeEventListener('visibilitychange', onVisibility);disposeVesselViewerResources();historicalCache.dispose();void disposeBlenderAssets();ocean.dispose();network.dispose();environment?.dispose(); renderer.dispose(); labelsLayer.remove(); hotspotLayer.remove(); renderer.domElement.remove(); },
   };

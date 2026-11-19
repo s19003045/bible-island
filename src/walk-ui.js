@@ -1,3 +1,4 @@
+import {lifeObservationMarkup} from './jerusalem-life-ui.js';
 import {narrativeChapterPicker,stateChapter,stateNarrativePhase} from './narrative-chapters.js';
 import {icon} from './icons.js';
 import {missionStage,missionSteps} from './walk-data.js';
@@ -12,7 +13,7 @@ export const walkEntry = (ready,island='jerusalem',segment=null,phase=null) => {
 function mobilityTools(state,config){
   if(!mobilityFor(state.selected||'jerusalem'))return '';
   const seen=state.explorationSeen?.[state.selected]||[],destinations=config.objects.filter(o=>seen.includes(o.id));
-  return `<section class="walk-mobility-tools" aria-label="快速移動與跳躍"><div class="walk-mobility-buttons"><button id="walk-run" aria-pressed="false"><kbd>Shift</kbd>快跑</button><button id="walk-jump"><kbd>Space</kbd>跳躍</button></div><small id="walk-speed-status">步行 · 按 Shift 或切換快跑</small>${state.selected==='jerusalem'?'<button id="walk-yard" class="walk-yard-look">看入口矮牆院落</button>':''}${mobilityFor(state.selected||'jerusalem')?'<button id="walk-motion-preview">比較人物步態</button>':''}<details class="walk-fast-travel"><summary>快速前往</summary>${destinations.length?destinations.map(o=>`<button data-fast-travel="${o.id}">${o.name}</button>`).join(''):'<p>觀察過教具後，可快速回到該處。</p>'}<small>只移動位置，不增加閱讀完成度。</small></details></section>`;
+  return `<section class="walk-mobility-tools" aria-label="快速移動與跳躍"><div class="walk-mobility-buttons"><button id="walk-run" aria-pressed="false"><kbd>Shift</kbd>快跑</button><button id="walk-jump"><kbd>Space</kbd>跳躍</button></div><small id="walk-speed-status">步行 · 按 Shift 或切換快跑</small>${state.selected==='jerusalem'?'<button id="walk-yard" class="walk-yard-look">看入口矮牆院落</button>':''}${mobilityFor(state.selected||'jerusalem')?'<button id="walk-motion-preview">比較人物步態</button>':''}${lifeObservationMarkup(state.selected)}<details class="walk-fast-travel"><summary>快速前往</summary>${destinations.length?destinations.map(o=>`<button data-fast-travel="${o.id}">${o.name}</button>`).join(''):'<p>觀察過教具後，可快速回到該處。</p>'}<small>只移動位置，不增加閱讀完成度。</small></details></section>`;
 }
 function freeExploration(state,config){
   const island=state.selected||'jerusalem',mode=readingModes[state.mode||'general'],seen=(state.explorationSeen?.[island]||[]).filter(id=>config.objects.some(o=>o.id===id));

@@ -1,0 +1,1045 @@
+{
+  "schema_version": 1,
+  "status": "runtime-verified-pilot",
+  "frozen": true,
+  "scope": "Three Jerusalem roles only; user visual acceptance precedes any all-island rollout.",
+  "assets": {
+    "resident": {
+      "id": "jerusalem-life-resident",
+      "baseModelId": "jerusalem-resident",
+      "file": "models/jerusalem-life/resident.glb",
+      "bytes": 6460020,
+      "sha256": "163db386541e169abd73155b1098d0ffb4b8bc22b5f00f2b7e53278c44679dae",
+      "height_m": 1.71,
+      "motionProfile": "resident",
+      "cycle_distance_m": 1.3142862231633672,
+      "cycle_seconds": 1.0833333333333333,
+      "editable_source": {
+        "file": "assets/blender/jerusalem-life/resident.blend",
+        "bytes": 8957223,
+        "sha256": "51f51f4baaf3f1db082137052b8ca1271731eca8a05a66c3b1c812264f648f3d"
+      },
+      "attention": {
+        "eyes": [
+          "eyeL",
+          "eyeR"
+        ],
+        "lids": [
+          "lidL",
+          "lidR"
+        ],
+        "lowerLids": [
+          "lidLowerL",
+          "lidLowerR"
+        ],
+        "jaw": "jaw",
+        "jawMaximumOpenRadians": 0.055,
+        "jawNotes": "Small weighted jaw opening; no phoneme lip synchronization. Runtime speech state owns playback.",
+        "lid_close_displacement_bone_local": {
+          "L": [
+            -6.993822188050558e-10,
+            0.0,
+            -0.00800000037997961
+          ],
+          "R": [
+            -6.993822188050558e-10,
+            0.0,
+            -0.00800000037997961
+          ]
+        },
+        "eye_close_scale_bone_local": [
+          1,
+          1,
+          0.07
+        ],
+        "notes": "No baked blink cycle; runtime owns gaze/blink timing."
+      },
+      "staticProps": {
+        "parcel": {
+          "file": "models/jerusalem-life/parcel-rest.glb",
+          "bytes": 35012,
+          "sha256": "48121d25c2df63de0e37334dab9a0558bf9c745936d627648aaff962d232ecec",
+          "sourceMesh": "household-parcel",
+          "actorLocalBounds": {
+            "minimum": [
+              -0.054999999701976776,
+              0.75,
+              0.41499999165534973
+            ],
+            "maximum": [
+              0.054999999701976776,
+              0.7940000295639038,
+              0.48499998450279236
+            ]
+          },
+          "surfaceMinimumY": 0.75
+        }
+      },
+      "continuity": [
+        {
+          "from": "Receive",
+          "to": "CarrySmall",
+          "maximum_joint_position_difference_m": 0.0,
+          "maximum_joint_angle_difference_rad": 0.0,
+          "scope": "Primary body, hands, jug and parcel; hidden station-proxy/stream helpers listed separately",
+          "excludedVisibilityHandoffs": {
+            "waterStream": "Invisible when not actively pouring; handoff has no rendered stream",
+            "propDipper": "Actor work prop / stationary scene proxy visibility handoff",
+            "dipperGripL": "Child marker of the same hidden dipper handoff"
+          }
+        },
+        {
+          "from": "CarrySmall",
+          "to": "PlaceSmall",
+          "maximum_joint_position_difference_m": 0.0,
+          "maximum_joint_angle_difference_rad": 0.0,
+          "scope": "Primary body, hands, jug and parcel; hidden station-proxy/stream helpers listed separately",
+          "excludedVisibilityHandoffs": {
+            "waterStream": "Invisible when not actively pouring; handoff has no rendered stream",
+            "propDipper": "Actor work prop / stationary scene proxy visibility handoff",
+            "dipperGripL": "Child marker of the same hidden dipper handoff"
+          }
+        }
+      ],
+      "animations": [
+        "Idle",
+        "Walk",
+        "StartWalk",
+        "StopWalk",
+        "LookAround",
+        "Talk",
+        "Interact",
+        "Listen",
+        "StartWalkL",
+        "StartWalkR",
+        "StopWalkL",
+        "StopWalkR",
+        "StairUp",
+        "StairDown",
+        "Inspect",
+        "Receive",
+        "CarrySmall",
+        "PlaceSmall",
+        "TurnLeft",
+        "TurnRight",
+        "TurnLeft45",
+        "TurnRight45",
+        "TurnLeft90",
+        "TurnRight90",
+        "TurnLeft180",
+        "TurnRight180"
+      ],
+      "actualTriangles": 113798,
+      "actualVertices": 57846,
+      "actualWeightedVertices": {
+        "propParcel": 608,
+        "footL": 499,
+        "toeL": 693,
+        "footR": 499,
+        "toeR": 693,
+        "thighL": 5732,
+        "shinL": 480,
+        "thighR": 5832,
+        "shinR": 480,
+        "armL": 3418,
+        "forearmL": 832,
+        "handL": 1304,
+        "fingerL0A": 278,
+        "fingerL0B": 318,
+        "fingerL0C": 484,
+        "fingerL1A": 278,
+        "fingerL1B": 318,
+        "fingerL1C": 484,
+        "fingerL2A": 278,
+        "fingerL2B": 318,
+        "fingerL2C": 484,
+        "fingerL3A": 278,
+        "fingerL3B": 318,
+        "fingerL3C": 484,
+        "thumbLA": 278,
+        "thumbLB": 318,
+        "thumbLC": 484,
+        "armR": 3394,
+        "forearmR": 832,
+        "handR": 1304,
+        "fingerR0A": 278,
+        "fingerR0B": 318,
+        "fingerR0C": 484,
+        "fingerR1A": 278,
+        "fingerR1B": 318,
+        "fingerR1C": 484,
+        "fingerR2A": 278,
+        "fingerR2B": 318,
+        "fingerR2C": 484,
+        "fingerR3A": 278,
+        "fingerR3B": 318,
+        "fingerR3C": 484,
+        "thumbRA": 278,
+        "thumbRB": 318,
+        "thumbRC": 484,
+        "hips": 2738,
+        "browL": 200,
+        "browR": 200,
+        "head": 7993,
+        "lidL": 330,
+        "lidLowerL": 330,
+        "lidR": 330,
+        "lidLowerR": 330,
+        "eyeL": 1285,
+        "eyeR": 1285,
+        "jaw": 1325,
+        "lipCornerL": 120,
+        "lipCornerR": 120,
+        "chest": 5400,
+        "neck": 200,
+        "spineUpper": 6720,
+        "spine": 5176,
+        "clavicleR": 1622,
+        "clavicleL": 1778,
+        "mantleTail": 2758
+      },
+      "maximumSkinWeightSumError": 1.2200325727462769e-07,
+      "maximumDurationError": 1.9073486345888568e-07,
+      "metadataFile": "assets/blender/jerusalem-life/resident-motion.json"
+    },
+    "carrier": {
+      "id": "jerusalem-life-carrier",
+      "baseModelId": "jerusalem-carrier",
+      "file": "models/jerusalem-life/carrier.glb",
+      "bytes": 6622196,
+      "sha256": "aba81a142cbffdfb6e998273c10f1c1497e16d1d1de395c9560f666204245818",
+      "height_m": 1.71,
+      "motionProfile": "carrier",
+      "cycle_distance_m": 1.1285718655424566,
+      "cycle_seconds": 1.2,
+      "editable_source": {
+        "file": "assets/blender/jerusalem-life/carrier.blend",
+        "bytes": 9413416,
+        "sha256": "b7fd70c4aa4f7fea21cd78956b62249d2bddf5f01d32dbad0427c867b6a13fc8"
+      },
+      "attention": {
+        "eyes": [
+          "eyeL",
+          "eyeR"
+        ],
+        "lids": [
+          "lidL",
+          "lidR"
+        ],
+        "lowerLids": [
+          "lidLowerL",
+          "lidLowerR"
+        ],
+        "jaw": "jaw",
+        "jawMaximumOpenRadians": 0.055,
+        "jawNotes": "Small weighted jaw opening; no phoneme lip synchronization. Runtime speech state owns playback.",
+        "lid_close_displacement_bone_local": {
+          "L": [
+            -6.993822188050558e-10,
+            0.0,
+            -0.00800000037997961
+          ],
+          "R": [
+            -6.993822188050558e-10,
+            0.0,
+            -0.00800000037997961
+          ]
+        },
+        "eye_close_scale_bone_local": [
+          1,
+          1,
+          0.07
+        ],
+        "notes": "No baked blink cycle; runtime owns gaze/blink timing."
+      },
+      "staticProps": {
+        "dipper": {
+          "file": "models/jerusalem-life/dipper-rest.glb",
+          "bytes": 55468,
+          "sha256": "72794e1eef70bc101ed8be5efcbff69222741481d1acd634de91c8d57dd72ab3",
+          "sourceMesh": "carrier-dipper",
+          "actorLocalBounds": {
+            "minimum": [
+              -0.271791934967041,
+              0.5600000023841858,
+              0.35899999737739563
+            ],
+            "maximum": [
+              -0.1589999943971634,
+              0.6600000262260437,
+              0.4410000145435333
+            ]
+          },
+          "surfaceMinimumY": 0.5600000023841858
+        }
+      },
+      "continuity": [
+        {
+          "from": "SetDown",
+          "to": "Fill",
+          "maximum_joint_position_difference_m": 2.9690353341655844e-07,
+          "maximum_joint_angle_difference_rad": 0.0006905339694324072,
+          "scope": "Primary body, hands, jug and parcel; hidden station-proxy/stream helpers listed separately",
+          "excludedVisibilityHandoffs": {
+            "waterStream": "Invisible when not actively pouring; handoff has no rendered stream",
+            "propDipper": "Actor work prop / stationary scene proxy visibility handoff",
+            "dipperGripL": "Child marker of the same hidden dipper handoff"
+          }
+        },
+        {
+          "from": "Fill",
+          "to": "PickUp",
+          "maximum_joint_position_difference_m": 2.9690353341655844e-07,
+          "maximum_joint_angle_difference_rad": 0.0006905339694324072,
+          "scope": "Primary body, hands, jug and parcel; hidden station-proxy/stream helpers listed separately",
+          "excludedVisibilityHandoffs": {
+            "waterStream": "Invisible when not actively pouring; handoff has no rendered stream",
+            "propDipper": "Actor work prop / stationary scene proxy visibility handoff",
+            "dipperGripL": "Child marker of the same hidden dipper handoff"
+          }
+        },
+        {
+          "from": "PickUp",
+          "to": "Idle",
+          "maximum_joint_position_difference_m": 0.0030947923282884787,
+          "maximum_joint_angle_difference_rad": 0.012714100086478957,
+          "scope": "Primary body, hands, jug and parcel; hidden station-proxy/stream helpers listed separately",
+          "excludedVisibilityHandoffs": {
+            "waterStream": "Invisible when not actively pouring; handoff has no rendered stream",
+            "propDipper": "Actor work prop / stationary scene proxy visibility handoff",
+            "dipperGripL": "Child marker of the same hidden dipper handoff"
+          }
+        }
+      ],
+      "animations": [
+        "Idle",
+        "Walk",
+        "StartWalk",
+        "StopWalk",
+        "LookAround",
+        "Talk",
+        "Interact",
+        "Listen",
+        "StartWalkL",
+        "StartWalkR",
+        "StopWalkL",
+        "StopWalkR",
+        "StairUp",
+        "StairDown",
+        "TurnLeft",
+        "TurnRight",
+        "TurnLeft45",
+        "TurnRight45",
+        "TurnLeft90",
+        "TurnRight90",
+        "TurnLeft180",
+        "TurnRight180",
+        "SetDown",
+        "Fill",
+        "PickUp",
+        "Pour"
+      ],
+      "actualTriangles": 114942,
+      "actualVertices": 58505,
+      "actualWeightedVertices": {
+        "armL": 3352,
+        "forearmL": 832,
+        "handL": 1304,
+        "fingerL0A": 278,
+        "fingerL0B": 318,
+        "fingerL0C": 484,
+        "fingerL1A": 278,
+        "fingerL1B": 318,
+        "fingerL1C": 484,
+        "fingerL2A": 278,
+        "fingerL2B": 318,
+        "fingerL2C": 484,
+        "fingerL3A": 278,
+        "fingerL3B": 318,
+        "fingerL3C": 484,
+        "thumbLA": 278,
+        "thumbLB": 318,
+        "thumbLC": 484,
+        "armR": 3784,
+        "forearmR": 832,
+        "handR": 1304,
+        "fingerR0A": 278,
+        "fingerR0B": 318,
+        "fingerR0C": 484,
+        "fingerR1A": 278,
+        "fingerR1B": 318,
+        "fingerR1C": 484,
+        "fingerR2A": 278,
+        "fingerR2B": 318,
+        "fingerR2C": 484,
+        "fingerR3A": 278,
+        "fingerR3B": 318,
+        "fingerR3C": 484,
+        "thumbRA": 278,
+        "thumbRB": 318,
+        "thumbRC": 484,
+        "hips": 2482,
+        "browL": 200,
+        "browR": 200,
+        "propDipper": 972,
+        "head": 7993,
+        "lidL": 330,
+        "lidLowerL": 330,
+        "lidR": 330,
+        "lidLowerR": 330,
+        "eyeL": 1285,
+        "eyeR": 1285,
+        "jaw": 1325,
+        "propJug": 2565,
+        "lipCornerL": 120,
+        "lipCornerR": 120,
+        "chest": 4636,
+        "neck": 200,
+        "thighR": 5718,
+        "clavicleR": 1637,
+        "spineUpper": 5678,
+        "spine": 4350,
+        "thighL": 5620,
+        "clavicleL": 1727,
+        "waterStream": 72,
+        "footL": 499,
+        "toeL": 693,
+        "footR": 499,
+        "toeR": 693,
+        "shinL": 480,
+        "shinR": 480,
+        "propParcel": 608
+      },
+      "maximumSkinWeightSumError": 1.210719347000122e-07,
+      "maximumDurationError": 1.9073486345888568e-07,
+      "metadataFile": "assets/blender/jerusalem-life/carrier-motion.json"
+    },
+    "elder": {
+      "id": "jerusalem-life-elder",
+      "baseModelId": "jerusalem-elder",
+      "file": "models/jerusalem-life/elder.glb",
+      "bytes": 5924412,
+      "sha256": "6b241f61b776577a832e04ebb00bb252633ed00f471633c2b4103726e7d14654",
+      "height_m": 1.71,
+      "motionProfile": "elder",
+      "cycle_distance_m": 1.131821344791807,
+      "cycle_seconds": 1.4166666666666667,
+      "editable_source": {
+        "file": "assets/blender/jerusalem-life/elder.blend",
+        "bytes": 8273101,
+        "sha256": "fa7614d6539b439c7048260ae1c85c032e3676cfacdbd56a3633827d10083957"
+      },
+      "attention": {
+        "eyes": [
+          "eyeL",
+          "eyeR"
+        ],
+        "lids": [
+          "lidL",
+          "lidR"
+        ],
+        "lowerLids": [
+          "lidLowerL",
+          "lidLowerR"
+        ],
+        "jaw": "jaw",
+        "jawMaximumOpenRadians": 0.055,
+        "jawNotes": "Small weighted jaw opening; no phoneme lip synchronization. Runtime speech state owns playback.",
+        "lid_close_displacement_bone_local": {
+          "L": [
+            -6.993822188050558e-10,
+            0.0,
+            -0.00800000037997961
+          ],
+          "R": [
+            -6.993822188050558e-10,
+            0.0,
+            -0.00800000037997961
+          ]
+        },
+        "eye_close_scale_bone_local": [
+          1,
+          1,
+          0.07
+        ],
+        "notes": "No baked blink cycle; runtime owns gaze/blink timing."
+      },
+      "staticProps": {
+        "goods": {
+          "file": "models/jerusalem-life/vendor-rest.glb",
+          "bytes": 35008,
+          "sha256": "414fe9968e9a15eab3ea31f86b7447f7fbf8f72bc869cbf50b59bf35d9183e73",
+          "sourceMesh": "vendor-small-goods",
+          "actorLocalBounds": {
+            "minimum": [
+              -0.054999999701976776,
+              0.75,
+              0.41499999165534973
+            ],
+            "maximum": [
+              0.054999999701976776,
+              0.7940000295639038,
+              0.48499998450279236
+            ]
+          },
+          "surfaceMinimumY": 0.75
+        }
+      },
+      "continuity": [],
+      "animations": [
+        "Idle",
+        "Walk",
+        "StartWalk",
+        "StopWalk",
+        "LookAround",
+        "Talk",
+        "Interact",
+        "Listen",
+        "StartWalkL",
+        "StartWalkR",
+        "StopWalkL",
+        "StopWalkR",
+        "StairUp",
+        "StairDown",
+        "Arrange",
+        "Offer",
+        "TurnLeft",
+        "TurnRight",
+        "TurnLeft45",
+        "TurnRight45",
+        "TurnLeft90",
+        "TurnRight90",
+        "TurnLeft180",
+        "TurnRight180"
+      ],
+      "actualTriangles": 109798,
+      "actualVertices": 55856,
+      "actualWeightedVertices": {
+        "armL": 3418,
+        "forearmL": 832,
+        "handL": 1304,
+        "fingerL0A": 278,
+        "fingerL0B": 318,
+        "fingerL0C": 484,
+        "fingerL1A": 278,
+        "fingerL1B": 318,
+        "fingerL1C": 484,
+        "fingerL2A": 278,
+        "fingerL2B": 318,
+        "fingerL2C": 484,
+        "fingerL3A": 278,
+        "fingerL3B": 318,
+        "fingerL3C": 484,
+        "thumbLA": 278,
+        "thumbLB": 318,
+        "thumbLC": 484,
+        "armR": 3394,
+        "forearmR": 832,
+        "handR": 1304,
+        "fingerR0A": 278,
+        "fingerR0B": 318,
+        "fingerR0C": 484,
+        "fingerR1A": 278,
+        "fingerR1B": 318,
+        "fingerR1C": 484,
+        "fingerR2A": 278,
+        "fingerR2B": 318,
+        "fingerR2C": 484,
+        "fingerR3A": 278,
+        "fingerR3B": 318,
+        "fingerR3C": 484,
+        "thumbRA": 278,
+        "thumbRB": 318,
+        "thumbRC": 484,
+        "hips": 2536,
+        "browL": 200,
+        "browR": 200,
+        "head": 9037,
+        "lidL": 330,
+        "lidLowerL": 330,
+        "lidR": 330,
+        "lidLowerR": 330,
+        "eyeL": 1285,
+        "eyeR": 1285,
+        "jaw": 1325,
+        "lipCornerL": 120,
+        "lipCornerR": 120,
+        "chest": 4664,
+        "neck": 200,
+        "spineUpper": 5600,
+        "thighR": 5832,
+        "spine": 4428,
+        "clavicleR": 1622,
+        "thighL": 5732,
+        "clavicleL": 1778,
+        "footL": 499,
+        "toeL": 693,
+        "footR": 499,
+        "toeR": 693,
+        "shinL": 480,
+        "shinR": 480,
+        "propParcel": 608
+      },
+      "maximumSkinWeightSumError": 1.2200325727462769e-07,
+      "maximumDurationError": 1.9073486345888568e-07,
+      "metadataFile": "assets/blender/jerusalem-life/elder-motion.json"
+    }
+  },
+  "checks": [
+    {
+      "pass": true,
+      "check": "resident actual GLB SHA"
+    },
+    {
+      "pass": true,
+      "check": "resident editable source SHA"
+    },
+    {
+      "pass": true,
+      "check": "resident each object below32MiB"
+    },
+    {
+      "pass": true,
+      "check": "resident near-view130k triangle budget"
+    },
+    {
+      "pass": true,
+      "check": "resident real skin weights normalized"
+    },
+    {
+      "pass": true,
+      "check": "resident repaired sleeve opening revision2"
+    },
+    {
+      "pass": true,
+      "check": "resident actual weighted anatomy and face joints"
+    },
+    {
+      "pass": true,
+      "check": "resident actual clip names match metadata"
+    },
+    {
+      "pass": true,
+      "check": "resident actual clip durations match"
+    },
+    {
+      "pass": true,
+      "check": "resident parcel static prop SHA"
+    },
+    {
+      "pass": true,
+      "check": "carrier actual GLB SHA"
+    },
+    {
+      "pass": true,
+      "check": "carrier editable source SHA"
+    },
+    {
+      "pass": true,
+      "check": "carrier each object below32MiB"
+    },
+    {
+      "pass": true,
+      "check": "carrier near-view130k triangle budget"
+    },
+    {
+      "pass": true,
+      "check": "carrier real skin weights normalized"
+    },
+    {
+      "pass": true,
+      "check": "carrier repaired sleeve opening revision2"
+    },
+    {
+      "pass": true,
+      "check": "carrier actual weighted anatomy and face joints"
+    },
+    {
+      "pass": true,
+      "check": "carrier actual clip names match metadata"
+    },
+    {
+      "pass": true,
+      "check": "carrier actual clip durations match"
+    },
+    {
+      "pass": true,
+      "check": "carrier dipper static prop SHA"
+    },
+    {
+      "pass": true,
+      "check": "elder actual GLB SHA"
+    },
+    {
+      "pass": true,
+      "check": "elder editable source SHA"
+    },
+    {
+      "pass": true,
+      "check": "elder each object below32MiB"
+    },
+    {
+      "pass": true,
+      "check": "elder near-view130k triangle budget"
+    },
+    {
+      "pass": true,
+      "check": "elder real skin weights normalized"
+    },
+    {
+      "pass": true,
+      "check": "elder repaired sleeve opening revision2"
+    },
+    {
+      "pass": true,
+      "check": "elder actual weighted anatomy and face joints"
+    },
+    {
+      "pass": true,
+      "check": "elder actual clip names match metadata"
+    },
+    {
+      "pass": true,
+      "check": "elder actual clip durations match"
+    },
+    {
+      "pass": true,
+      "check": "elder goods static prop SHA"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/caravan-traveler.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/caravan-traveler.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/egypt-grain-worker.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/egypt-grain-worker.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/egypt-householder.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/egypt-householder.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/patriarch-traveler.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/patriarch-traveler.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/camp-host.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/camp-host.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/well-keeper.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/well-keeper.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/port-worker.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/port-worker.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/paul-trader.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/paul-trader.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/asian-artisan.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/asian-artisan.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/return-mason.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/return-mason.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/return-elder.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/return-elder.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/return-woman.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/return-woman.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/return-child.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/return-child.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/priest-bearer.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/priest-bearer.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/resident.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/judean-resident.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/resident-worker.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/judean-worker.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/resident-child.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/judean-child.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/resident-carrier.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/judean-carrier.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/roman-woman.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/roman-woman.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/wilderness-resident.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/wilderness-resident.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/wilderness-woman.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/wilderness-woman.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/wilderness-child.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/wilderness-child.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/ordinary-priest.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/ordinary-priest.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/iron-resident.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/iron-resident.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/iron-woman.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/iron-woman.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/temple-singer.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/temple-singer.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/bronze-artisan.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/bronze-artisan.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/human-rollout/brick-laborer.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/brick-laborer.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/jerusalem-pilot/resident.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/jerusalem-pilot/carrier.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved models/jerusalem-pilot/elder.glb"
+    },
+    {
+      "pass": true,
+      "check": "preserved assets/blender/bible-assets.blend"
+    },
+    {
+      "pass": true,
+      "check": "preserved assets/blender/jerusalem-pilot.blend"
+    }
+  ],
+  "allStructuralChecksPass": true,
+  "preservedInputs": {
+    "public/models/human-rollout/caravan-traveler.glb": "8ed3f08f9e0314ed740c9840bb9e8be8535d42cc607f8f6fb98b13cec26c4b23",
+    "public/models/caravan-traveler.glb": "941a10f21139450c4e138ae253c3dd154ad954ae97ec36e3cc3756cdf7c0b5bc",
+    "public/models/human-rollout/egypt-grain-worker.glb": "ea730d7f572893a8a3fd9a55d0ac32681aee753ad7bfdb7adc604f60878191d4",
+    "public/models/egypt-grain-worker.glb": "bdb646a2d7bb6916640a5a9887e555b210972d664c2aa0c5f9fcf42a1ec7e654",
+    "public/models/human-rollout/egypt-householder.glb": "bbabaf496e52ad388ea86c2d6b53f2861f6a064de98e9150d3943459c0bdb035",
+    "public/models/egypt-householder.glb": "392551c1db7625fed1a53a0c14a9b48ba616174d80c6c0eac0f1f7f08828b981",
+    "public/models/human-rollout/patriarch-traveler.glb": "18034475b8c3a9fc340eccd683799f381c832fe9e603b4d51f9d903281c93123",
+    "public/models/patriarch-traveler.glb": "45347745e23946ddfa1c35dc5ca91a9a142f8e8752af06fe8602e13f18d46fcf",
+    "public/models/human-rollout/camp-host.glb": "7ba2ee453ce461a22d59e709923938ddc2ed4dccd816c6126298e4e766223cff",
+    "public/models/camp-host.glb": "e21707fd7e6d299778f69793657f8ccf70f1f6c9923aa606cc258d7da78d1a34",
+    "public/models/human-rollout/well-keeper.glb": "9fea8474dc12e1d9a58ce5e174dbabd77a70d21e2bb700a47b56df8f0b7e748f",
+    "public/models/well-keeper.glb": "e82c0c13a8d04105b0598ef1a6c3d07357e929e45f1291c3d17e8ae5b5d73652",
+    "public/models/human-rollout/port-worker.glb": "3e4ce6e0ba5edb61ee8b5d382ae41c6cdd39607e332401260a9d152a1b964414",
+    "public/models/port-worker.glb": "271c0b73ba2212e0379f2bdb08a0cb9590a470f3e600153aa3bfb6ac9aabdd8a",
+    "public/models/human-rollout/paul-trader.glb": "c05a7c4bbcc87e97a96c59094f7b9e1ce0c49a03ccae68d1f0fa013535069b0e",
+    "public/models/paul-trader.glb": "9f8c59dc0e8af6d24cc657e4c582d804eeca10c9765354794aea1ba18209c34b",
+    "public/models/human-rollout/asian-artisan.glb": "65bad523b7331fc2e861d86a60a502320a8059047a25d6ea67d5b3c41cfc1d09",
+    "public/models/asian-artisan.glb": "0daf226314460887e2207a5ff3405b63bbfc68c26a70348fd113dcfccebb4df0",
+    "public/models/human-rollout/return-mason.glb": "96314ad17f2ab10ad21921c52a213222c7a76d82c3e361bf71dce176d43ba302",
+    "public/models/return-mason.glb": "78ddf51178bdc5d83fe92b245fbc7b5bfbd60b32fd6ed0762dc95bff4c735353",
+    "public/models/human-rollout/return-elder.glb": "c13e75a147b8411689d9fa062bb089ef5a4e3296d7c6e63e6cf59b0d8292a4fe",
+    "public/models/return-elder.glb": "7671ccb01bb77a6bf359a296b32118de9406c995841e3de8d00583b97d2f7349",
+    "public/models/human-rollout/return-woman.glb": "aa4fc309a4bc20042e6c77cc1504677dd78ddc0e3fcd50e49f3aa2a0ca73696f",
+    "public/models/return-woman.glb": "f0b94d0dcf6c48748158268db0121f0605e9a3edb0080ff3684462cfd8767997",
+    "public/models/human-rollout/return-child.glb": "2da23d0692fde83f4832db6d9d20a004dd9cd680d9fee85da2978d6c84ce0966",
+    "public/models/return-child.glb": "24de7577cb1f54b4da137aa895bb6a67391ad57e99b9344160d315c220215459",
+    "public/models/human-rollout/priest-bearer.glb": "d7f4bbb8342f0d50ceeaa9eaa66cc5b7292cf6de60a1dc677750711a86c512d2",
+    "public/models/priest-bearer.glb": "3043b15bafe8fca807b4007d87632bdbbeebb3fab01be126b8047d25aa4f9484",
+    "public/models/human-rollout/resident.glb": "cf3b6b7df7aef882f9f8113e542bbacb926c55c0fe448bf55eaff4756cc9f8a0",
+    "public/models/judean-resident.glb": "23f1c9c588b3a0cebf74352213cd0acbb615466bcb29426a0acbe1f427abc98b",
+    "public/models/human-rollout/resident-worker.glb": "74b434c483663b71bcc55758d8e8911dc28e042e11a16484ce9def50994e504e",
+    "public/models/judean-worker.glb": "db42ff9a2b7698b07f25c7f4a6e46d80be46a3fe24103e1bc95b4ba035c47dff",
+    "public/models/human-rollout/resident-child.glb": "89b3f654fabe36fd93dee9d502afded14c7eb87aa0d856b9cdd2271e52761595",
+    "public/models/judean-child.glb": "107b9e06c88c9b59d1398631e0f4f99fbc8c1fefc79169ed8cfae1433d5c14cb",
+    "public/models/human-rollout/resident-carrier.glb": "7b61cbc30d30537226da5b12eee0b8c6138692c66c734a6ca53dc4c94a576d55",
+    "public/models/judean-carrier.glb": "3ef586e79064b0bdf69e2a7506b28a8575af7753980be4da8c0231f3d10d47d2",
+    "public/models/human-rollout/roman-woman.glb": "a96706a07a52f971252c3b2cea3018fb28982cfe2e4a189426596d24e81578b8",
+    "public/models/roman-woman.glb": "0b318664ce0fed8238690da9c3670de8db27ed9023364bd0bc8cbcbb86954967",
+    "public/models/human-rollout/wilderness-resident.glb": "b4a251b64863685f36913c312deba970af407fd4757e71a73879a4878b2b0a6f",
+    "public/models/wilderness-resident.glb": "40e575972f5af6ac54c95df9b805f5b60d035b28b64d02bac9e3441369190158",
+    "public/models/human-rollout/wilderness-woman.glb": "5d5385b9bdc582525b632d5a3fded42654a1c24d30de817ef60361a6cba4f3a5",
+    "public/models/wilderness-woman.glb": "f5b7b3f1678261cbd61a7b77bda2b4de6312955006a796a31f7a949de1beb355",
+    "public/models/human-rollout/wilderness-child.glb": "786279abc420cf7c4ebdaa9874758d3b0b34eed0ebd44ca2392f0287a996c504",
+    "public/models/wilderness-child.glb": "6b3afb62c7843174e82f3cd33d595df5cadeeead314bfa926523172f7f2c4153",
+    "public/models/human-rollout/ordinary-priest.glb": "e2d9b1fc034bab981380c7f06d52663e27853e232a97b2f3e402795157c42c8a",
+    "public/models/ordinary-priest.glb": "155d0b6e244fdfcfc5cfba79baa9a2edcebc602582f173056b7b34514e4998cc",
+    "public/models/human-rollout/iron-resident.glb": "5f2d930207ea29268e49f7af8bd862231ad1f83567bdf8eceb85b4b6dbd7d88b",
+    "public/models/iron-resident.glb": "676e5ec9352bcdf7e67130920e87dca5d5580bdb82d2414e1a74abe5a9ec828b",
+    "public/models/human-rollout/iron-woman.glb": "879e9236ce6595892836a7ce71d117e9e49de24c290563d71fe5e1ab79d59fb1",
+    "public/models/iron-woman.glb": "7140e5613c2ce96a17f356e651d2b90bcfb645f77cd932f080bcd443bd2e1a5f",
+    "public/models/human-rollout/temple-singer.glb": "cdf6fcd0bc1b78b2480a4697a6963b74b5fef1b591cbaeb74d3e78618768705d",
+    "public/models/temple-singer.glb": "09ba2b0db8d6ad3d8411bc8b083ce8722102b34baf1a1230c8cef561cfc2c35d",
+    "public/models/human-rollout/bronze-artisan.glb": "6870c9142ef627c3f1e7ab7d6232be61e377bb53e5d18e122b6b0add27b5e42b",
+    "public/models/bronze-artisan.glb": "3d348d31cbed1ca8cab9f854c8b5714f1825c9e3bf903d087cba0af6511aa889",
+    "public/models/human-rollout/brick-laborer.glb": "745136ad0615d1de7e1bd9f71d28f8f09c4d2c06dc71198d40fe3d454ecda0a1",
+    "public/models/brick-laborer.glb": "aa1746d135d75c864de90f32a5bd31e54926bc2bc4572b5b694840cda3920d88",
+    "public/models/jerusalem-pilot/resident.glb": "280033c0f2104dce52d22f9062c8a5790bc988ac1444d6a4035b8d993cebab1c",
+    "public/models/jerusalem-pilot/carrier.glb": "a3c1f8061c4e2b26e524a1d855ccf8e95e59c2f3abc5cab6aa79e73bc7263851",
+    "public/models/jerusalem-pilot/elder.glb": "e648fd5257e31be46080db0deeebf4dbf0dd539325281eb07bbe2af7dfc14a81",
+    "assets/blender/bible-assets.blend": "9c94dd97306343939adcb22bb3de0795550644c7a1e1653d6daac9942cca09eb",
+    "assets/blender/jerusalem-pilot.blend": "2d63bd83c769522cbc17125dbbf756ef9e207de1848923153a195a63a631e623"
+  },
+  "sourceScripts": {
+    "scripts/blender/jerusalem-life-anatomy-review.py": "5c816c8ccce34274a4692f64bd32d62457b252435af9879d851f0ea06cdb8a94",
+    "scripts/blender/jerusalem-life-carrier-contact-review.py": "7132bef2e6156ed2124bb53650fa3ae7a4e041256a8ff1e5a0b8d0d9fd2fa1c1",
+    "scripts/blender/jerusalem-life-carrier-grip-calibration.py": "7335288452e790a5106d4774a8ccd39c3ad7fb65fb1e9f7a0b14e97c50cfb172",
+    "scripts/blender/jerusalem-life-export.py": "b522e03a7a5ebd8ddc66b5afb38b4d3f3ea8ecc8a9cf6da0ed7b2e6690e5170a",
+    "scripts/blender/jerusalem-life-grip-study.py": "c9251e2c0e15fa6fdd70cdeb0072e1eb41c264e8bff1af8f6a602ed6893e75a5",
+    "scripts/blender/jerusalem-life-motion.py": "f50406a5c37fa9c4f3d0f08124e28e3f0272e6ae0f43b3074e68a6cb02d1ad95",
+    "scripts/blender/jerusalem-life-preview.py": "7924145a1c843dc212e123b21e355a70f2f0b992b56c15a49148ec2abc665edd",
+    "scripts/blender/jerusalem-life-reference-research.py": "6dfff4ca8c777a51c1ed3029c6405a87acb7372914c66e098129ddbf9d335387",
+    "scripts/blender/jerusalem-life-verify.py": "2fdba416a2453a554ceda6daacf52992b4dae565b9980e49225f0b50219b1cc3",
+    "scripts/blender/jerusalem-life.py": "084c5080e52bcf33bd24c644355a24d832ad76fc3365457e800fa84a1b8a58bf"
+  },
+  "integrationEvidence": {
+    "owner": "root integration agent",
+    "testsFile": "tests/jerusalem-life-assets.test.js",
+    "assetScenariosPassed": 6,
+    "runtimeReviewFile": "assets/blender/jerusalem-life/runtime-review.json",
+    "limits": "Finite sampled CPU skinning and runtime routes plus WebGL review; no continuous intersection proof for every mesh triangle.",
+    "finalFreeHandVerified": true
+  },
+  "authoringLimits": [
+    "Actual CMU07 adult walk/slow-walk retargets; role/age are authored adaptations, not recorded carriers or elders.",
+    "Turn yaw timing is recorded reference; planted feet are authored. Starts/stops and work contacts are authored from the documented references.",
+    "Stairs use CMU83 swing envelope with07gait and explicit9cm/.225 two-step normalization, not an unmodified recorded stair sequence.",
+    "Cloth has real thickness and skinned folds, not fabric simulation. Jaw is small speech-state motion, not phoneme lip synchronization."
+  ],
+  "finalScopeNote": "The final carrier update changes only work animation channels; recorded structural mesh/weight/triangle metrics are unchanged. Root owns final runtime/hash/build acceptance."
+}

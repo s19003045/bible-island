@@ -9,6 +9,7 @@ const up=new THREE.Vector3(0,1,0);
 // consume the behaviour PRNG, choose a POI, or move the collision controller.
 export function createHumanPerformance(root,actor,definition) {
   const profile=humanProfileFor(actor),bones=[];root.traverse(b=>{if(b.isBone)bones.push(b);});
+  const life=definition.motionVersion>=4;
   let seed=(actor.state.behavior?.seed??Array.from(actor.id||'pilot').reduce((h,c)=>Math.imul(h^c.charCodeAt(0),16777619),2166136261))^0x41c6ce57;
   const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
   const bone=name=>root.getObjectByName(name),head=bone('head'),neck=bone('neck'),chest=bone('chest')||bone('spineUpper')||bone('spine'),hips=bone('hips');
@@ -16,6 +17,7 @@ export function createHumanPerformance(root,actor,definition) {
   const excludedCloth=new Set(definition.secondaryCloth?.excludeBones||[]);
   const cloth=bones.filter(b=>/^(cloth|hem|overwrap|mantleTail)/i.test(b.name)&&!excludedCloth.has(b.name));
   const clothLimit=Math.min(profile.clothResponse,definition.secondaryCloth?.maxAngle??Infinity);
+  const attachedToProp=bone=>{for(let p=bone;p;p=p.parent)if(/^(prop|waterStream)/.test(p.name))return true;return false;};
   const previous=new Map(),offsets=new Map(),identity=new THREE.Quaternion(),q=new THREE.Quaternion(),parentQ=new THREE.Quaternion();
   let lastClip=null,transitionAge=1,blinkWait=1.5+random()*3,blinkLeft=0,blinkDuration=.18;
   let glanceWait=2+random()*4,glanceLeft=0,glanceTarget=null,shiftWait=5+random()*6,shiftTarget=0,shift=0;
@@ -30,6 +32,7 @@ export function createHumanPerformance(root,actor,definition) {
     const state=actor.state,agent=state.behavior,p=state.position;
     if((state.talking||agent?.held)&&camera)return {position:camera,label:'交談對象',world:true};
     if(agent?.partner){const other=agent.partner.actor;return {position:[other.state.position[0],other.state.position[1]+1.52*(other.scale||1),other.state.position[2]],label:'身旁居民'};}
+    if(life&&state.activity?.target)return {position:state.activity.target,label:state.activity.label};
     glanceWait-=dt;glanceLeft-=dt;
     if(camera&&Math.hypot(camera[0]-p[0],camera[2]-p[2])<4&&glanceWait<=0){glanceTarget=[...camera];glanceLeft=.65+random()*.65;glanceWait=5+random()*5;}
     if(glanceTarget&&glanceLeft>0)return {position:glanceTarget,label:'短暫注意旅人',world:true};
@@ -41,21 +44,31 @@ export function createHumanPerformance(root,actor,definition) {
   return {
     apply(dt,motion,{camera=null}={}) {
       const state=actor.state,p=state.position,elapsed=Math.max(0,dt);
+      const contactClip=state.carriedItem&&!state.activity?'CarrySmall':motion.clip;
+      const metric=definition.lifeClips?.[contactClip],contactTime=contactClip==='CarrySmall'?state.time:motion.time;
+      const progress=metric?.duration?(metric.loop?((contactTime/metric.duration)%1+1)%1:clamp(contactTime/metric.duration,0,1)):0;
+      const heldSides=new Set((definition.handContacts?.[contactClip]||[]).filter(c=>progress>=(c.window?.[0]??0)&&progress<=(c.window?.[1]??1)).map(c=>c.side));
+      const constrainedHand=b=>{const match=/^(?:hand(?:Grip)?|finger|thumb)([LR])/.exec(b.name);return life&&match&&heldSides.has(match[1]);};
       // Preserve the outgoing pose when a clip is interrupted at either foot's
       // phase. The offset decays; continuous movement does not gain extra lag.
       if(lastClip!==motion.clip){
-        for(const b of bones){const old=previous.get(b);if(old)offsets.set(b,{q:old.q.clone().multiply(b.quaternion.clone().invert()),p:old.p.clone().sub(b.position)});}
+        for(const b of bones){if(life&&(attachedToProp(b)||constrainedHand(b))){offsets.delete(b);continue;}const old=previous.get(b);if(old)offsets.set(b,{q:old.q.clone().multiply(b.quaternion.clone().invert()),p:old.p.clone().sub(b.position)});}
         transitionAge=0;lastClip=motion.clip;
       }
       transitionAge+=elapsed;const remaining=Math.exp(-transitionAge/.085);
-      if(remaining>.001)for(const [b,offset] of offsets){b.quaternion.premultiply(q.copy(identity).slerp(offset.q,remaining));b.position.addScaledVector(offset.p,remaining);}
+      // A held hand's authored fingers must follow its solved wrist immediately;
+      // blending the previous free-hand curl through a handle causes penetration.
+      if(remaining>.001)for(const [b,offset] of offsets){if(constrainedHand(b))continue;b.quaternion.premultiply(q.copy(identity).slerp(offset.q,remaining));b.position.addScaledVector(offset.p,remaining);}
       const target=targetFor(camera,elapsed),headPosition=head?.getWorldPosition(new THREE.Vector3())||new THREE.Vector3(p[0],p[1]+1.5,p[2]);
       const point=new THREE.Vector3(...target.position);if(!target.world)point.add(root.getWorldPosition(new THREE.Vector3()).sub(new THREE.Vector3(...p)));
       const dx=point.x-headPosition.x,dz=point.z-headPosition.z;
       const desiredYaw=clamp(angle(state.yaw,Math.atan2(dx,dz)),-profile.headLimit,profile.headLimit),desiredPitch=clamp(-Math.atan2(point.y-headPosition.y,Math.hypot(dx,dz)),-.22,.22);
       eyeYaw+=(desiredYaw-eyeYaw)*(1-Math.exp(-18*elapsed));headYaw+=(desiredYaw-headYaw)*(1-Math.exp(-7*elapsed));bodyYaw+=(clamp(desiredYaw,-profile.torsoLimit,profile.torsoLimit)-bodyYaw)*(1-Math.exp(-2.5*elapsed));
       eyePitch+=(desiredPitch-eyePitch)*(1-Math.exp(-16*elapsed));headPitch+=(desiredPitch*.55-headPitch)*(1-Math.exp(-6*elapsed));
-      yawBone(chest,bodyYaw);yawBone(neck,headYaw*.22,headPitch*.25);yawBone(head,headYaw*.65,headPitch*.75);
+      const working=life&&state.activity&&!state.activity.aligning;
+      // Working hands are constrained to authored objects. Idle torso sway must
+      // not compete with a reach, particularly while a grounded jug is paused.
+      yawBone(chest,working?0:bodyYaw);yawBone(neck,headYaw*.22,headPitch*.25);yawBone(head,headYaw*.65,headPitch*.75);
       for(const eye of eyes)yawBone(eye,clamp(eyeYaw-headYaw*.87-bodyYaw,-.20,.20),eyePitch-headPitch);
       blinkWait-=elapsed;if(blinkWait<=0&&blinkLeft<=0){blinkDuration=.15+random()*.08;blinkLeft=blinkDuration;blinkWait=2.8+random()*4;}
       const closed=blinkLeft>0?Math.sin(Math.PI*(1-blinkLeft/blinkDuration))**2:0;blinkLeft=Math.max(0,blinkLeft-elapsed);
@@ -67,7 +80,7 @@ export function createHumanPerformance(root,actor,definition) {
       // A brief posture adjustment while dwelling, without an extra destination.
       shiftWait-=elapsed;if(shiftWait<=0){shiftTarget=(random()-.5)*2;shiftWait=6+random()*9;}
       shift+=(shiftTarget*(motion.speed<.04?1:0)-shift)*(1-Math.exp(-2.4*elapsed));
-      if(hips){const world=hips.getWorldPosition(new THREE.Vector3());world.addScaledVector(new THREE.Vector3(Math.cos(state.yaw),0,-Math.sin(state.yaw)),shift*(profile.idleShift??.006)*(actor.scale||1));hips.position.copy(hips.parent.worldToLocal(world));}
+      if(hips&&!working){const world=hips.getWorldPosition(new THREE.Vector3());world.addScaledVector(new THREE.Vector3(Math.cos(state.yaw),0,-Math.sin(state.yaw)),shift*(profile.idleShift??.006)*(actor.scale||1));hips.position.copy(hips.parent.worldToLocal(world));}
       const angular=elapsed>0?angle(lastYaw,state.yaw)/elapsed:0,accel=elapsed>0?(motion.speed-lastSpeed)/elapsed:0;
       const desiredCloth=clamp(-angular*.025-accel*.008,-clothLimit,clothLimit);
       let left=Math.min(.25,elapsed);while(left>1e-8){const step=Math.min(left,1/60);clothVelocity+=(60*(desiredCloth-clothAngle)-14*clothVelocity)*step;const next=clothAngle+clothVelocity*step;clothAngle=clamp(next,-clothLimit,clothLimit);if(next!==clothAngle)clothVelocity=0;left-=step;}

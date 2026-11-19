@@ -45,12 +45,16 @@ import { createWalkModel } from './walk-model.js';
 import {buildExodusScene,attachExodusExploration} from './exodus-scenes.js';
 import {exodusSegmentById,exodusSegments} from './exodus-exploration.js';
 import {createNPCSystem} from './npc-system.js';
-import {jerusalemPOIs,prepareJerusalemResidents,jerusalemAllowed} from './npc-pois.js';
+import {beginDialogueLine,setDialogueVoice,advanceDialogue} from './dialogue-performance.js';
+import {prepareJerusalemResidents,jerusalemAllowed} from './npc-pois.js';
 import {tabernacleSurfaces,tabernacleFloor,tabernaclePOIs,tabernacleAllowed,tabernacleSpawnCandidates,tabernacleObjects} from './tabernacle-exploration.js';
 import {herodSurfaces,herodFloor,herodProxies,herodPOIs,herodAllowed,herodSpawnCandidates,herodObjects,herodSpawn} from './herod-exploration.js';
 import {solomonSurfaces,solomonFloor,solomonProxies,solomonPOIs,solomonAllowed,solomonSpawnCandidates,solomonObjects,solomonSpawn} from './solomon-exploration.js';
 import {explorationFor} from './exploration-data.js';
 import {mountBlenderResidents} from './blender-assets.js';
+import {mountLifeProps} from './jerusalem-life-props.js';
+import {buildLifeStations,lifeFloor,lifeGroundProxies,lifePOIs,lifeStations,createJerusalemActivities} from './jerusalem-life-stations.js';
+import {blenderModels} from './blender-manifest.js';
 import {residentAppearance,residentClearance} from './resident-appearance.js';
 import {exodusFloor} from './exodus-exploration.js';
 import {buildJordanScene,attachJordanExploration} from './jordan-scenes.js';
@@ -647,7 +651,7 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
   for(const person of peopleByIsland[id].filter(p=>!section||p.id===section.person)) k.person(...(id==='letters'?lettersPosition(section.space,3,13):id==='church'?churchPosition(section.space,3,13):id==='passion'?passionPosition(section.space,3,13):person.position),person.style,0,HUMAN_HEIGHT,{...person,role:id==='letters'?'letters-resident':id==='church'?'church-resident':id==='passion'?'passion-resident':id==='parables'?'parables-resident':id==='samaria'?'samaria-resident':id==='galilee'?'galilee-resident':id==='nativity'?'nativity-resident':id==='intertestament'?'intertestament-resident':id==='nehemiah'?'nehemiah-resident':id==='exile'?'exile-resident':id==='kingdoms'?'kingdoms-resident':id==='david'?'david-resident':id==='judges'?'ruth-resident':id==='sinai'?'sinai-resident':id==='joseph'?'joseph-resident':id==='abraham'?'abraham-resident':id==='paul'?'paul-resident':id==='second-temple'?'return-resident':id==='jordan'?(person.id==='jordan-parent'?'west-resident':'east-resident'):roles[person.id]});
   k.finish();roof.finish();
   const people=k.actors.filter(a=>a.id);
-  let walkModel=null;const objects=[];
+  let walkModel=null,lifeWorkstations=null;const objects=[];
   if(id==='jerusalem') {
     k.collisionBoxes.push(...roof.collisionBoxes);
     // A small public stone stair, separate render treads and a smooth walk collision proxy.
@@ -673,7 +677,8 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
     const table=new THREE.Mesh(new THREE.BoxGeometry(1.1,.08,.6),p.wood);table.position.set(-33.4,10.92,25.6);table.castShadow=true;scene.add(table);
     for(const x of [-33.85,-32.95]) {const leg=new THREE.Mesh(new THREE.BoxGeometry(.07,.7,.45),p.wood);leg.position.set(x,10.56,25.6);scene.add(leg);}
     k.collisionBoxes.push({min:[-33.98,10.21,25.27],max:[-32.82,11.5,25.93]});
-    walkModel=createWalkModel(k.collisionBoxes);
+    lifeWorkstations=buildLifeStations(scene,p);k.collisionBoxes.push(...lifeWorkstations.boxes);
+    walkModel=createWalkModel(k.collisionBoxes,undefined,lifeFloor,{proxies:lifeGroundProxies,normalFloor:walkFloor});
   }
   if(id==='tabernacle') {
     // Solid tent footprints and court screens are navigation obstacles even when fabric is thin.
@@ -723,9 +728,17 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
   // Separation may push a city NPC sideways against decorative exterior stairs.
   // Keep authored street journeys on their navigation surface, rather than climbing
   // successive stair edges and blocking the alley at unintended heights.
-  if(id==='jerusalem')prepareJerusalemResidents(k.actors,walkModel);
+  if(id==='jerusalem'){
+    prepareJerusalemResidents(k.actors,walkModel);
+    // Begin the merchant's day in his own market block. The former dialogue
+    // position was across an architectural barrier and required a long detour
+    // through two other neighbourhoods before any work could be observed.
+    const merchant=k.actors.find(a=>a.id==='street-vendor'),station=lifeStations.find(s=>s.id==='life-market-display');
+    merchant.state.position=[station.x,walkModel.heightAt(station.x,station.z-.6),station.z-.6];
+  }
   // Body clearance is independent of the camera's LOD selection.
-  const npcOptions=id==='jerusalem'?{pois:jerusalemPOIs,allowRetreat:true,naturalMotion:true,allowedPosition:(a,p)=>jerusalemAllowed(a,p,walkModel)}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
+  const activities=id==='jerusalem'?createJerusalemActivities({clipDuration:(actor,clip)=>blenderModels[actor.modelId]?.lifeClips?.[clip]?.duration}):null;
+  const npcOptions=id==='jerusalem'?{pois:lifePOIs(),activities,allowRetreat:true,naturalMotion:true,anticipation:true,allowedPosition:(a,p)=>jerusalemAllowed(a,p,walkModel)}:id==='tabernacle'?{pois:tabernaclePOIs,seed:35026,spawnCandidates:tabernacleSpawnCandidates,allowedPosition:tabernacleAllowed,spawnExclusion:[26,0,0]}:id==='solomon'?{pois:solomonPOIs,seed:10726,spawnCandidates:solomonSpawnCandidates,allowedPosition:solomonAllowed,spawnExclusion:solomonSpawn}:id==='herod'?{pois:herodPOIs,seed:55026,spawnCandidates:herodSpawnCandidates,allowedPosition:herodAllowed,spawnExclusion:herodSpawn}:null;
   let npcSystem=npcOptions?createNPCSystem({actors:k.actors,model:walkModel,...npcOptions}):null;
   if(id==='exodus'){const exploration=attachExodusExploration(scene,k,roof,segment,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='jordan'){const exploration=attachJordanExploration(scene,k,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
@@ -748,6 +761,7 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
   if(id==='abraham'){const exploration=attachAbrahamExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   if(id==='paul'){const exploration=attachPaulExploration(scene,k,section.id,{blenderAssets,onReady:assetsChanged,assetLoader});walkModel=exploration.walkModel;npcSystem=exploration.npcSystem;objects.push(...exploration.objects);}
   const detailedResidents=blenderAssets?mountBlenderResidents(scene,k.actors,onAssetsReady,{assetLoader,groundAt:id==='exodus'?exodusFloor:(x,z)=>walkModel.heightAt(x,z)}):null;
+  const lifeProps=lifeWorkstations&&blenderAssets?mountLifeProps(lifeWorkstations,k.actors,{assetLoader,onReady:assetsChanged}):null;
   // Moving contact shadows are separate from the cached architectural shadow map.
   k.animate(0,null);
   const occluders=[];
@@ -770,17 +784,19 @@ export function createHistoricalScene(id, environment,{segment='all',phase=null,
   }
   if(passionScene?.night||parablesScene?.night||nehemiahScene?.night||nativityScene?.night||galileeScene?.night){ambient.intensity=.55;sun.intensity=.75;sun.color.set('#a9bdd5');scene.environmentIntensity=.2;scene.background.set('#394650');scene.fog.color.copy(scene.background);}
   return {
-    scene,roof:roofGroup,config,people,actors:k.actors,conversationOffset,walkModel,objects,occluders,npcSystem,detailedResidents,segment:section?.id||null,phase:id==='letters'?normalizeLettersPhase(section.id,phase):id==='church'?normalizeChurchPhase(section.id,phase):id==='passion'?normalizePassionPhase(section.id,phase):id==='parables'?normalizeParablesPhase(section.id,phase):id==='samaria'?normalizeSamariaPhase(section.id,phase):id==='galilee'?normalizeGalileePhase(section.id,phase):id==='nativity'?normalizeNativityPhase(section.id,phase):id==='nehemiah'?normalizeNehemiahPhase(section.id,phase):id==='david'&&section.id==='ark'?normalizeDavidPhase(phase):null,flock:parablesScene?.flock||nativityScene?.flock||davidScene?.flock,exploration:explorationFor(id,section?.id,phase),
+    scene,roof:roofGroup,config,people,actors:k.actors,conversationOffset,walkModel,objects,occluders,npcSystem,detailedResidents,lifeWorkstations,lifeProps,activities,segment:section?.id||null,phase:id==='letters'?normalizeLettersPhase(section.id,phase):id==='church'?normalizeChurchPhase(section.id,phase):id==='passion'?normalizePassionPhase(section.id,phase):id==='parables'?normalizeParablesPhase(section.id,phase):id==='samaria'?normalizeSamariaPhase(section.id,phase):id==='galilee'?normalizeGalileePhase(section.id,phase):id==='nativity'?normalizeNativityPhase(section.id,phase):id==='nehemiah'?normalizeNehemiahPhase(section.id,phase):id==='david'&&section.id==='ark'?normalizeDavidPhase(phase):null,flock:parablesScene?.flock||nativityScene?.flock||davidScene?.flock,exploration:explorationFor(id,section?.id,phase),
     // Small collision/behaviour steps do not rebake skeletons and GPU instance
     // matrices. The world commits those visual poses once after the frame's steps.
-    simulate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {parablesScene?.flock?.update(dt);galileeScene?.animate(dt);nativityScene?.flock?.update(dt);exileScene?.animate(dt);davidScene?.flock?.update(dt);if(sinaiScene)sinaiScene.animate(dt,cameraPosition);if(abrahamScene)animateAbrahamAnimals(abrahamScene.animals,dt);npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});k.simulate(dt,cameraPosition);},
-    pose(dt,cameraPosition,viewDirection=null) {detailedResidents?.update(cameraPosition,dt,{viewDirection});k.animate(0,cameraPosition,{advance:false});},
+    simulate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {if(id==='jerusalem')for(const actor of people)advanceDialogue(actor,dt);parablesScene?.flock?.update(dt);galileeScene?.animate(dt);nativityScene?.flock?.update(dt);exileScene?.animate(dt);davidScene?.flock?.update(dt);if(sinaiScene)sinaiScene.animate(dt,cameraPosition);if(abrahamScene)animateAbrahamAnimals(abrahamScene.animals,dt);npcSystem?.update(dt,{camera:cameraPosition,player:playerPosition,isVisible});k.simulate(dt,cameraPosition);},
+    pose(dt,cameraPosition,viewDirection=null) {lifeProps?.update();detailedResidents?.update(cameraPosition,dt,{viewDirection});k.animate(0,cameraPosition,{advance:false});},
     animate(dt,cameraPosition,playerPosition=null,isVisible=()=>true) {this.simulate(dt,cameraPosition,playerPosition,isVisible);this.pose(dt,cameraPosition);},
     updateRaycastBounds(){scene.traverse(o=>{if(o.isInstancedMesh&&o.userData.people)o.computeBoundingSphere();});},
-    converse(personId) { people.forEach(a=>a.state.talking=a.id===personId); },
+    converse(personId) { people.forEach(a=>{a.state.talking=a.id===personId;if(!a.state.talking)delete a.state.dialogueCue;}); },
+    dialogueLine(personId,text,topic){if(id==='jerusalem'){const actor=people.find(a=>a.id===personId);if(actor)beginDialogueLine(actor,text,topic);}},
+    dialogueVoice(personId,channel,active){if(id==='jerusalem'){const actor=people.find(a=>a.id===personId);if(actor)setDialogueVoice(actor,channel,active);}},
     attend(personId) {people.forEach(a=>a.state.attending=a.id===personId);},
     groundHeight(x,z) { return Math.max(height(x,z),id==='herod' && Math.abs(x)<121 && Math.abs(z)<101 ? 8 : -.14); },
     setTime(night) {if(lettersScene){night=false;scene.environmentIntensity=.4;}if(churchScene){night=false;scene.environmentIntensity=.4;}if(passionScene){night=passionScene.night;scene.environmentIntensity=night?.2:.4;}if(parablesScene&&parablesScene.night!==null){night=parablesScene.night;scene.environmentIntensity=night?.2:.4;}if(galileeScene&&galileeScene.night!==null){night=galileeScene.night;scene.environmentIntensity=night?.2:.4;}if(nativityScene&&nativityScene.night!==null){night=nativityScene.night;scene.environmentIntensity=night?.2:.4;}if(nehemiahScene){night=nehemiahScene.night;scene.environmentIntensity=night?.2:.4;}ambient.intensity=night?.55:1.1;sun.intensity=night?.75:2.65;sun.color.set(night?'#a9bdd5':'#fff0d9');scene.background.set(night?'#394650':sky);scene.fog.color.copy(scene.background);},
-    dispose() {lettersScene?.dispose();churchScene?.dispose();passionScene?.dispose();parablesScene?.dispose();samariaScene?.dispose();galileeScene?.dispose();nativityScene?.dispose();intertestamentScene?.dispose();nehemiahScene?.dispose();exileScene?.dispose();davidScene?.flock?.dispose();npcSystem?.dispose();detailedResidents?.dispose();scene.traverse(o=>{o.userData.releaseBlender?.();if(o.isInstancedMesh)o.dispose();if(o.geometry&&!o.userData.blenderShared&&!Object.values(G).includes(o.geometry))o.geometry.dispose();});sun.shadow.dispose();},
+    dispose() {lifeProps?.dispose();lettersScene?.dispose();churchScene?.dispose();passionScene?.dispose();parablesScene?.dispose();samariaScene?.dispose();galileeScene?.dispose();nativityScene?.dispose();intertestamentScene?.dispose();nehemiahScene?.dispose();exileScene?.dispose();davidScene?.flock?.dispose();npcSystem?.dispose();detailedResidents?.dispose();scene.traverse(o=>{o.userData.releaseBlender?.();if(o.isInstancedMesh)o.dispose();if(o.geometry&&!o.userData.blenderShared&&!Object.values(G).includes(o.geometry))o.geometry.dispose();});sun.shadow.dispose();},
   };
 }

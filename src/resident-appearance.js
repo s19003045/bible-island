@@ -6,7 +6,7 @@ export function residentAppearance(island,options,index,height=1.7) {
 }
 function periodAppearance(island,options,index,height=1.7) {
   const child=height<1.4,woman=!options.id&&index%4===1;
-  if(island==='jerusalem'&&jerusalemPilotRoles[options.id])return {...jerusalemPilotRoles[options.id],height};
+  if(island==='jerusalem'&&jerusalemPilotRoles[options.id])return {...jerusalemPilotRoles[options.id],height:jerusalemPilotRoles[options.id].height??height};
   if(['jerusalem','herod'].includes(island)) {
     const modelId=options.id==='water-carrier'?'resident-carrier':child?'resident-child':woman?'roman-woman':['stone-worker','street-vendor'].includes(options.id)?'resident-worker':'resident';
     return {modelId,height:!child&&woman?1.64:height};
@@ -39,4 +39,4 @@ function periodAppearance(island,options,index,height=1.7) {
   }
   return {modelId:'resident',height};
 }
-export const residentClearance=actor=>((['resident-carrier','jerusalem-carrier','human-resident-carrier'].includes(actor.modelId)||actor.id==='water-carrier')?.49:.33)*(actor.scale??1);
+export const residentClearance=actor=>((['resident-carrier','jerusalem-carrier','jerusalem-life-carrier','human-resident-carrier'].includes(actor.modelId)||actor.id==='water-carrier')?.49:.33)*(actor.scale??1);

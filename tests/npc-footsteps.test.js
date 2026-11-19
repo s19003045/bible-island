@@ -8,6 +8,13 @@ test('individual foot contact transitions create spatial footfalls without a sha
  assert.equal(steps.update([a,b],[0,0,0]),0,'unchanged pose does not repeat a footfall');
  b.state.walkDistance=.4;b.visualFootsteps.left='heel';assert.equal(steps.update([a,b],[0,0,0]),1);assert.deepEqual(heard,[a,b]);
 });
+test('life pilot starts, stops and stair clips retain contact-triggered footstep audio',()=>{
+ for(const clip of ['StartWalkL','StartWalkR','StopWalkL','StopWalkR','StairUp','StairDown']){
+  const steps=createNPCFootsteps(()=>{}),a=person();a.visualFootsteps.clip=clip;steps.update([a],[0,0,0]);
+  a.state.walkDistance=.25;a.visualFootsteps.left='flat';assert.equal(steps.update([a],[0,0,0]),1,clip);
+  assert.equal(steps.update([a],[0,0,0]),0,'paused contact must stay silent');
+ }
+});
 test('far, paused, hidden, speaking and budget-dropped contacts are never replayed later',()=>{
  const heard=[],steps=createNPCFootsteps((p,a)=>heard.push(a)),actors=Array.from({length:6},(_,i)=>person(1+i));steps.update(actors,[0,0,0]);
  for(const a of actors){a.state.walkDistance=.3;a.visualFootsteps.left='heel';}assert.equal(steps.update(actors,[0,0,0],{limit:2}),2);assert.equal(steps.update(actors,[0,0,0]),0);

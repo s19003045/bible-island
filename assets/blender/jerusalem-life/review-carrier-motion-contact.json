@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "status": "corrected-and-runtime-verified-pilot",
+  "current_source_sha256": "b7fd70c4aa4f7fea21cd78956b62249d2bddf5f01d32dbad0427c867b6a13fc8",
+  "current_glb_sha256": "aba81a142cbffdfb6e998273c10f1c1497e16d1d1de395c9560f666204245818",
+  "evidence": "assets/blender/jerusalem-life/runtime-review.json",
+  "previous_source_sha256": "fac5913b1a44c91e956632a86ea639517241600342aa22eeb202d2075707cfd1",
+  "previous_findings": "Earlier actual working-pose handle penetrations motivated the bounded SetDown/PickUp/Fill correction. That source is superseded.",
+  "current_raw_closed_handle_samples": {
+    "poses": [
+      [
+        "SetDown",
+        0.4
+      ],
+      [
+        "SetDown",
+        0.7
+      ],
+      [
+        "PickUp",
+        0.3
+      ],
+      [
+        "PickUp",
+        0.6
+      ],
+      [
+        "Fill",
+        0.2
+      ],
+      [
+        "Fill",
+        0.6
+      ],
+      [
+        "Fill",
+        0.8
+      ],
+      [
+        "Pour",
+        0.4
+      ],
+      [
+        "Pour",
+        0.6
+      ]
+    ],
+    "maximumInsidePenetration_m": 0,
+    "reportedBy": "Root integration agent; closed-solid winding classifier and real transformed skinned GLB vertices."
+  },
+  "current_runtime_scenarios_passed": 6,
+  "limits": [
+    "The hollow jug/dipper bowl is an open surface; local-normal candidates alone are not a solid-inside verdict.",
+    "The listed poses and runtime routes are sampled evidence; an exhaustive continuous collision proof was not performed."
+  ]
+}

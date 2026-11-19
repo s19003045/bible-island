@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "status": "runtime-verified-pilot",
+  "frozen": true,
+  "scope": "Three Jerusalem adults only. Finite evaluated vertex/closed-handle and controller-route samples; no continuous all-triangle intersection guarantee.",
+  "assets": {
+    "resident": {
+      "file": "models/jerusalem-life/resident.glb",
+      "sha256": "163db386541e169abd73155b1098d0ffb4b8bc22b5f00f2b7e53278c44679dae",
+      "editableSource": {
+        "file": "assets/blender/jerusalem-life/resident.blend",
+        "bytes": 8957223,
+        "sha256": "51f51f4baaf3f1db082137052b8ca1271731eca8a05a66c3b1c812264f648f3d"
+      }
+    },
+    "carrier": {
+      "file": "models/jerusalem-life/carrier.glb",
+      "sha256": "aba81a142cbffdfb6e998273c10f1c1497e16d1d1de395c9560f666204245818",
+      "editableSource": {
+        "file": "assets/blender/jerusalem-life/carrier.blend",
+        "bytes": 9413416,
+        "sha256": "b7fd70c4aa4f7fea21cd78956b62249d2bddf5f01d32dbad0427c867b6a13fc8"
+      }
+    },
+    "elder": {
+      "file": "models/jerusalem-life/elder.glb",
+      "sha256": "6b241f61b776577a832e04ebb00bb252633ed00f471633c2b4103726e7d14654",
+      "editableSource": {
+        "file": "assets/blender/jerusalem-life/elder.blend",
+        "bytes": 8273101,
+        "sha256": "fa7614d6539b439c7048260ae1c85c032e3676cfacdbd56a3633827d10083957"
+      }
+    }
+  },
+  "carrier": {
+    "replacedBlockerSourceSha256": "fac5913b1a44c91e956632a86ea639517241600342aa22eeb202d2075707cfd1",
+    "correctedWorkClips": [
+      "SetDown",
+      "PickUp",
+      "Fill"
+    ],
+    "rawGLBClosedHandleSamples": {
+      "poses": [
+        [
+          "SetDown",
+          0.4
+        ],
+        [
+          "SetDown",
+          0.7
+        ],
+        [
+          "PickUp",
+          0.3
+        ],
+        [
+          "PickUp",
+          0.6
+        ],
+        [
+          "Fill",
+          0.2
+        ],
+        [
+          "Fill",
+          0.6
+        ],
+        [
+          "Fill",
+          0.8
+        ],
+        [
+          "Pour",
+          0.4
+        ],
+        [
+          "Pour",
+          0.6
+        ]
+      ],
+      "maximumInsidePenetration_m": 0,
+      "reportedBy": "Root integration agent; closed-solid winding classifier and real transformed skinned GLB vertices."
+    },
+    "runtimeScenariosPassed": 6,
+    "runtimeOwnership": "Root integration agent",
+    "fixes": [
+      "Per-phase right finger flexion preserves jug grip during lowered posture.",
+      "Left finger flexion uses each joint direction and palm normal rather than a shared local-X axis; left palm and moving target socket calibrated together.",
+      "Runtime keeps authored fingers of physically contacting hands while retaining free-hand inertial transitions.",
+      "Closed-solid winding distinguishes true handle interior from misleading nearest-triangle normal signs on concave ring surfaces."
+    ],
+    "sourceVsGLB": {
+      "maximumHandSkinCloudDifference_m": 4.2e-07,
+      "maximumDipperCloudDifference_m": 1.6e-08,
+      "comparison": "Root bidirectional nearest-cloud comparison for actual Fill .2 source/GLB; all listed bone world transforms matched float quantization."
+    },
+    "limits": [
+      "The hollow jug/dipper bowl is an open surface; local-normal candidates alone are not a solid-inside verdict.",
+      "The listed poses and runtime routes are sampled evidence; an exhaustive continuous collision proof was not performed."
+    ],
+    "freeRightHand": {
+      "clip": "Fill",
+      "elbowFlexionRadiansAtPhase0_5972": 0.5818257927894592,
+      "wristAngleRadiansAtPhase0_5972": 0,
+      "method": "Shoulder/wrist reach .497m for the actual .518m chain, palm toward the same-side thigh, relaxed fingers; smooth entry/exit preserves neighbouring work endpoints.",
+      "browserVerified": true
+    }
+  },
+  "residentParcel": {
+    "runtimeControllerPoses": 6,
+    "maximumLocalNormalDepth_m": 0.00044191357915637975,
+    "verticesOver0_5mm": 0,
+    "minimumThumbGap_m": 0.0010286016607881161,
+    "requiredCarryTracks": [
+      "propParcel",
+      "parcelGripL",
+      "parcelGripR"
+    ],
+    "proof": ".qa/jerusalem-life/probe-runtime-parcel-all.mjs"
+  },
+  "runtimeGate": {
+    "testsFile": "tests/jerusalem-life-assets.test.js",
+    "scenariosPassed": 6,
+    "rootReportedDurationSeconds": 8.061,
+    "covered": [
+      "Skeleton, actual weights and clip contract",
+      "Work interruption/grounding hand contacts",
+      "Flat and plus/minus0.2 slope sole support",
+      "Six30-second carried-object controller routes",
+      "Actual palm/digit parcel surface samples",
+      "Carrier work-handle true interior and grip proximity"
+    ],
+    "finalSourceVerified": true
+  }
+}

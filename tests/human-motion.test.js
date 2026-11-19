@@ -44,11 +44,11 @@ test('three pilot gaits keep complete deforming toes above flat and both slope d
  }
 });
 
-test('all six comparison courses use real POIs and preserve turning clearance, stair descent and personal space',()=>{
+test('comparison courses preserve real movement, turning clearance and a stationary hand-inspection pose',()=>{
  for(const scenario of Object.keys(motionScenarios)){
   const actor=person(),course=createMotionCourse(actor,scenario);let maxY=0,maxX=0,minGap=Infinity,talk=0,maxFrameTurn=0,descended=false;
   for(let i=0;i<3600;i++){const yaw=actor.state.yaw;course.update(1/60);const p=actor.state.position;maxY=Math.max(maxY,p[1]);if(maxY===.54&&p[1]<.01)descended=true;maxX=Math.max(maxX,Math.abs(p[0]));maxFrameTurn=Math.max(maxFrameTurn,Math.abs(actor.state.yaw-yaw));if(actor.state.talking)talk++;if(course.extra)minGap=Math.min(minGap,Math.hypot(p[0]-course.extra.state.position[0],p[2]-course.extra.state.position[2]));}
-  assert.equal(course.system.agents[0].visits.size,2,scenario+' reaches both POIs');assert.ok(maxFrameTurn<.04,scenario+' smooth heading');
+  if(scenario==='hands'){assert.equal(course.system.agents[0].visits.size,0);assert.deepEqual(actor.state.position,[0,0,-2.6]);assert.equal(actor.state.stride,0);}else assert.equal(course.system.agents[0].visits.size,2,scenario+' reaches both POIs');assert.ok(maxFrameTurn<.04,scenario+' smooth heading');
   if(scenario==='stairs'){assert.equal(maxY,.54);assert.ok(descended,'descends again after reaching upper landing');}
   if(scenario==='curve')assert.ok(maxX>1.1,'actually rounds collision box');
   if(scenario==='avoid')assert.ok(minGap>=course.system.agents.reduce((n,a)=>n+a.radius,.025)-.00001,'actual swept separation');

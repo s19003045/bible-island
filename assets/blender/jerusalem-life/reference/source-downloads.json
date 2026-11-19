@@ -1,0 +1,259 @@
+{
+  "retrieved_utc": "2026-11-18T23:55:43.649405+00:00",
+  "pinned_bvh_revision": "09a07f54f3bbb58797325f009282d0b2048a2871",
+  "transport_note": "Official CMU HTTP endpoint because its HTTPS certificate fails validation; pinned BVH mirror verified HTTPS. No TLS verification disabled.",
+  "files": [
+    {
+      "file": "143.asf",
+      "url": "http://mocap.cs.cmu.edu/subjects/143/143.asf",
+      "kind": "official original skeleton",
+      "bytes": 7264,
+      "sha256": "6d7207da3bb9eceeaa32f23fb641b69f5836d11242b00c052e7d64f0cbe20a35"
+    },
+    {
+      "file": "143_10.amc",
+      "url": "http://mocap.cs.cmu.edu/subjects/143/143_10.amc",
+      "kind": "official original motion",
+      "bytes": 457805,
+      "sha256": "8d98200eb9b4530d9bbb344ca0ac04a51e25d71b1bc7ba82883da11f00ed6034"
+    },
+    {
+      "file": "143_10.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/143/143_10.bvh",
+      "kind": "pinned BVH conversion",
+      "bytes": 436224,
+      "sha256": "8376ccfadecaf16225275a706a78be83d8940b53f305f8197ddb32583b216cb6"
+    },
+    {
+      "file": "16.asf",
+      "url": "http://mocap.cs.cmu.edu/subjects/16/16.asf",
+      "kind": "official original skeleton",
+      "bytes": 7257,
+      "sha256": "2323f876564610f84bfbec9b90b8ebffb57515673b7f4a45b0fb0849af465bdb"
+    },
+    {
+      "file": "16_11.amc",
+      "url": "http://mocap.cs.cmu.edu/subjects/16/16_11.amc",
+      "kind": "official original motion",
+      "bytes": 425369,
+      "sha256": "b14b55c999b19e573e9f7279bc8c75eeeb1761b30c4a6491b3c753ed50e5ba91"
+    },
+    {
+      "file": "16_11.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/016/16_11.bvh",
+      "kind": "pinned BVH conversion",
+      "bytes": 401781,
+      "sha256": "efeb0ebb07ab6491f4e51c32561b54a1643451e6e9a269bcf55799268f9c404a"
+    },
+    {
+      "file": "16_17.amc",
+      "url": "http://mocap.cs.cmu.edu/subjects/16/16_17.amc",
+      "kind": "official original motion",
+      "bytes": 413355,
+      "sha256": "a59f9c90eb2af8197c6390edddbcf761bbec1cf03b6907128212102fe2123a2c"
+    },
+    {
+      "file": "16_17.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/016/16_17.bvh",
+      "kind": "pinned BVH conversion",
+      "bytes": 390154,
+      "sha256": "91f57b476b9c678239b1d1353bb752acbfc91fa9e564082ccd57b5ab40124619"
+    },
+    {
+      "file": "16_19.amc",
+      "url": "http://mocap.cs.cmu.edu/subjects/16/16_19.amc",
+      "kind": "official original motion",
+      "bytes": 326604,
+      "sha256": "691d578a676bf9e091dac59001a6cb78daa7141ad5639f943c684dee7f4e64e6"
+    },
+    {
+      "file": "16_19.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/016/16_19.bvh",
+      "kind": "pinned BVH conversion",
+      "bytes": 310169,
+      "sha256": "bd5f6f56d52d0b5cd13e657f8cebfc15d70f07f063f6fd1b540ca8778efbce80"
+    },
+    {
+      "file": "16_33.amc",
+      "url": "http://mocap.cs.cmu.edu/subjects/16/16_33.amc",
+      "kind": "official original motion",
+      "bytes": 227319,
+      "sha256": "03644f38e30d839a005334a6358f97093da05a65da53a73a51bd8136c5cd63ea"
+    },
+    {
+      "file": "16_33.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/016/16_33.bvh",
+      "kind": "pinned BVH conversion",
+      "bytes": 216222,
+      "sha256": "e4600cd3ab9bc61ce24d15fd40d07bcd1e8782c0bccc5899a4e8bdc12c97d240"
+    },
+    {
+      "file": "36.asf",
+      "url": "http://mocap.cs.cmu.edu/subjects/36/36.asf",
+      "kind": "official original skeleton",
+      "bytes": 7264,
+      "sha256": "05e190867ead216b5dcdc94b210aa19b2eaaf383df44f1d9bb247e64fbf1c02b"
+    },
+    {
+      "file": "36_02.amc",
+      "url": "http://mocap.cs.cmu.edu/subjects/36/36_02.amc",
+      "kind": "official original motion",
+      "bytes": 3402377,
+      "sha256": "bbbf8ebb9b7e7c96a114169169d7200c3bd2c77e3d4673427de446bee80f7bfa"
+    },
+    {
+      "file": "36_02.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/036/36_02.bvh",
+      "kind": "pinned BVH conversion",
+      "bytes": 3205047,
+      "sha256": "2a6e9f62ee04428f9542f00f41439acc01a71b06acc24717c1b4a07e5d6ddf6a"
+    },
+    {
+      "file": "79.asf",
+      "url": "http://mocap.cs.cmu.edu/subjects/79/79.asf",
+      "kind": "official original skeleton",
+      "bytes": 7257,
+      "sha256": "aa7fb254b0e7b9155df59e0f0cf76cbe34c476c6f4b3f015e63d5ae170d2fe2d"
+    },
+    {
+      "file": "79_16.amc",
+      "url": "http://mocap.cs.cmu.edu/subjects/79/79_16.amc",
+      "kind": "official original motion",
+      "bytes": 544817,
+      "sha256": "5319a3a0fdf7b159288bddc0430debda7609f1f3aa7cecff1d19a43208f7e02a"
+    },
+    {
+      "file": "79_16.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/079/79_16.bvh",
+      "kind": "pinned BVH conversion",
+      "bytes": 542482,
+      "sha256": "dae3edf7a552050bea87b7d564cf3f5628ac6635a5579b54d219c664107dc12e"
+    },
+    {
+      "file": "79_25.amc",
+      "url": "http://mocap.cs.cmu.edu/subjects/79/79_25.amc",
+      "kind": "official original motion",
+      "bytes": 486332,
+      "sha256": "6826fad12ae62b692e7852b0bf27b74692d3e2987bccca921cf907ec67e4a1a4"
+    },
+    {
+      "file": "79_25.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/079/79_25.bvh",
+      "kind": "pinned BVH conversion",
+      "bytes": 461536,
+      "sha256": "e65b0aeddcf40f01bb82868655fadfccfdcaa1e5e32063155c6fc65d36e0014e"
+    },
+    {
+      "file": "83.asf",
+      "url": "http://mocap.cs.cmu.edu/subjects/83/83.asf",
+      "kind": "official original skeleton",
+      "bytes": 7273,
+      "sha256": "b4eabfbcaeadf39faba73e6a5b2857830da73a8549266c95370863155e177093"
+    },
+    {
+      "file": "83_08.amc",
+      "url": "http://mocap.cs.cmu.edu/subjects/83/83_08.amc",
+      "kind": "official original motion",
+      "bytes": 372786,
+      "sha256": "8789e5256b6986c8041fb7fc3d841fd8f778fb08dd2d6091eb474f6fd4bb6873"
+    },
+    {
+      "file": "83_08.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/083/83_08.bvh",
+      "kind": "pinned BVH conversion",
+      "bytes": 355753,
+      "sha256": "6d145f3920b8e0217735674131b6f82320381bc61b0ad6431f230b2464504407"
+    },
+    {
+      "file": "83_27.amc",
+      "url": "http://mocap.cs.cmu.edu/subjects/83/83_27.amc",
+      "kind": "official original motion",
+      "bytes": 790681,
+      "sha256": "e1b0cd9eefed91e870ac595e2a858a5cfef430e140b24f8ed3c49f12722ded00"
+    },
+    {
+      "file": "83_27.bvh",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/data/083/83_27.bvh",
+      "kind": "pinned BVH conversion",
+      "bytes": 751993,
+      "sha256": "65239ea52f4aebc980ed613d4136049961c5f044614017571d68c0f6fce02cfd"
+    },
+    {
+      "file": "READMEFIRST.txt",
+      "url": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/09a07f54f3bbb58797325f009282d0b2048a2871/READMEFIRST.txt",
+      "kind": "BVH converter permission",
+      "bytes": 13248,
+      "sha256": "8e6fe2e640b3728ef2e43e722cb5ae9cdf0010028c0517c4226ed165f9037930"
+    },
+    {
+      "file": "cmu-faq.html",
+      "url": "http://mocap.cs.cmu.edu/faqs.php",
+      "kind": "official permission",
+      "bytes": 8654,
+      "sha256": "518f04f07d7b0e0e8b605089f1033320d3ad5aa092f9d164f2c76c484a3f4f4e"
+    },
+    {
+      "file": "cmu-info.html",
+      "url": "http://mocap.cs.cmu.edu/info.php",
+      "kind": "official units and method",
+      "bytes": 13105,
+      "sha256": "61a09feeb4424de2273189806f19c8fc54f22fcf8cb94071740633da42d9bada"
+    },
+    {
+      "file": "cmu-subject106.html",
+      "url": "http://mocap.cs.cmu.edu/search.php?subjectnumber=106",
+      "kind": "official clip index",
+      "bytes": 14640,
+      "sha256": "9a7b1c5acba5e9f34dd86af1d5aace7f9eb6e001b0eafb6acb6a109f65738091"
+    },
+    {
+      "file": "cmu-subject13.html",
+      "url": "http://mocap.cs.cmu.edu/search.php?subjectnumber=13",
+      "kind": "official clip index",
+      "bytes": 20967,
+      "sha256": "0966b450754cbe85cff17160db2071c9254a43ca5c541e85d613beee135d8c95"
+    },
+    {
+      "file": "cmu-subject143.html",
+      "url": "http://mocap.cs.cmu.edu/search.php?subjectnumber=143",
+      "kind": "official clip index",
+      "bytes": 19461,
+      "sha256": "6c197e6a55da2e10167de85b755b2f20b3e79c17ce61751921815e0e2c136b11"
+    },
+    {
+      "file": "cmu-subject16.html",
+      "url": "http://mocap.cs.cmu.edu/search.php?subjectnumber=16",
+      "kind": "official clip index",
+      "bytes": 27218,
+      "sha256": "ee512070404137efe79b24dcf56213e45d91afebd9fdf89995b1cf7f70d2531d"
+    },
+    {
+      "file": "cmu-subject36.html",
+      "url": "http://mocap.cs.cmu.edu/search.php?subjectnumber=36",
+      "kind": "official clip index",
+      "bytes": 19034,
+      "sha256": "ad638c87867f14a74ef320463c30a4ff6939db13e1db8106a84ce4a0ac56728f"
+    },
+    {
+      "file": "cmu-subject79.html",
+      "url": "http://mocap.cs.cmu.edu/search.php?subjectnumber=79",
+      "kind": "official clip index",
+      "bytes": 42202,
+      "sha256": "091f5700f8511d8f91d1be241a6f70b634ded937aa5fd8c446a87a4a869a51d5"
+    },
+    {
+      "file": "cmu-subject83.html",
+      "url": "http://mocap.cs.cmu.edu/search.php?subjectnumber=83",
+      "kind": "official clip index",
+      "bytes": 29364,
+      "sha256": "87b09b7fcdc0768688813ef255b1cf2854867c0d547cee8d45ecb1303a40afeb"
+    },
+    {
+      "file": "cmu-subject91.html",
+      "url": "http://mocap.cs.cmu.edu/search.php?subjectnumber=91",
+      "kind": "official clip index",
+      "bytes": 26154,
+      "sha256": "f5c1b8814ba8eaf4678b5273969adee05b6b6937873989082c1318fbaa5fba05"
+    }
+  ]
+}

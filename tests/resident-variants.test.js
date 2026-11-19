@@ -4,7 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import * as THREE from 'three';
-import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {geometryLoader} from './helpers/load-gltf-geometry.js';
 import {createResidentInstance,residentModelFor} from '../src/blender-assets.js';
 import {residentFootContact} from '../src/resident-locomotion.js';
 import {blenderModels} from '../src/blender-manifest.js';
@@ -12,7 +12,7 @@ import {createHistoricalScene} from '../src/historical-scenes.js';
 
 const ctx=new Proxy({},{get:()=>()=>{},set:()=>true});globalThis.document={createElement:()=>({getContext:()=>ctx})};
 const loaded=new Map();
-function asset(id){if(!loaded.has(id))loaded.set(id,(async()=>{const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');})());return loaded.get(id);}
+function asset(id){if(!loaded.has(id))loaded.set(id,(async()=>{const b=await readFile(new URL('../public/'+blenderModels[id].src,import.meta.url));return geometryLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');})());return loaded.get(id);}
 function actor(id,scale=1){return {id,scale,state:{position:[0,0,0],yaw:0,time:.1,stride:0,visible:true,idleAction:'Idle'}};}
 function vertices(root,filter){const result=[];root.traverse(m=>{if(m.isSkinnedMesh&&filter(m))for(let i=0;i<m.geometry.attributes.position.count;i++)result.push([m,i]);});return result;}
 function sample(root,points){root.updateMatrixWorld(true);root.traverse(m=>{if(m.isSkinnedMesh)m.skeleton.update();});return points.map(([m,i])=>m.localToWorld(m.getVertexPosition(i,new THREE.Vector3())));}
@@ -80,9 +80,9 @@ test('Jerusalem replaces carrier and four authored child silhouettes while prese
   const children=city.npcSystem.agents.filter(a=>a.actor.scale<.9);assert.equal(children.length,4);
   for(const child of children){const p=child.actor.state.position;city.animate(0,[p[0],p[1]+1.4,p[2]+2]);const instance=city.detailedResidents.visible.get(child.actor);assert.ok(instance);assert.equal(instance.root.userData.modelId,upgradedModelFor('resident-child'));}
   const carrier=city.people.find(p=>p.id==='water-carrier'),p=[...carrier.state.position],seeds=city.npcSystem.agents.map(a=>a.seed);
-  assert.equal(city.npcSystem.agents.find(a=>a.actor===carrier).radius,.49);
+  assert.equal(city.npcSystem.agents.find(a=>a.actor===carrier).radius,.49*carrier.scale);
   city.converse('water-carrier');city.animate(0,[p[0]+1,p[1]+1.6,p[2]+3]);
-  const instance=city.detailedResidents.visible.get(carrier);assert.ok(instance);assert.equal(instance.root.userData.modelId,'jerusalem-carrier');
+  const instance=city.detailedResidents.visible.get(carrier);assert.ok(instance);assert.equal(instance.root.userData.modelId,'jerusalem-life-carrier');
   city.animate(.2,[p[0]+1,p[1]+1.6,p[2]+3]);assert.deepEqual(carrier.state.position,p);assert.deepEqual(city.npcSystem.agents.map(a=>a.seed),seeds);
   assert.ok(instance.actions.get('Talk').getEffectiveWeight()>.7,'conversation smoothly blends into its gesture');assert.ok(city.detailedResidents.visible.size<=8);assert.equal(city.people.length,3);
   city.dispose();assert.equal(carrier.blenderVisual,false);
