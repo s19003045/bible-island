@@ -41,3 +41,5 @@ CarrySmall 使用上半身骨骼白名單，保留步行腿部動作；白名單
 可編輯資產：`assets/blender/jerusalem-life/`；執行資產：`public/models/jerusalem-life/`；生成器：`scripts/blender/jerusalem-life*.py`。`scripts/prepare-life-motion.mjs` 從實際 GLB、metadata 與 SHA 生成 runtime manifest／build report。
 
 開工基準：GitHub develop `91f83b9d24e059a95858b144336a940f36c34f24`；Sites v45 source `35759098495f6d864a68d3705f856ddbe8f85381`。本輪發佈由既有私有 Sites workflow 執行，保留原存取設定；部署結果以工具回傳版本為準。
+
+部署大小修正：四份已無 runtime 引用的舊 `motion-baseline` GLB 移至 `assets/blender/motion-baseline/`，保留原位元組與 SHA；正式 public 輸出減少 4,938,720 bytes，以符合 Sites 256 MiB 展開上限。現行 A/B 對照仍使用既有 v3，未移除。

@@ -1,27 +1,27 @@
 {
   "sourceCommit": "219e59728fea520821f175f17726081049092d38",
-  "purpose": "Motion comparison only; prior accepted geometry and animation bytes preserved.",
+  "purpose": "Archived motion comparison baseline; no longer referenced by the runtime. Prior accepted geometry and animation bytes preserved outside the deployable public directory.",
   "models": {
     "resident": {
-      "src": "models/motion-baseline/judean-resident.glb",
+      "src": "assets/blender/motion-baseline/judean-resident.glb",
       "sha256": "03184317784f2020235ba31f7533a2056053cd0c2788e54b0ed09c28b0c15eaa",
       "cycleDistance": 0.8,
       "height": 1.71
     },
     "resident-worker": {
-      "src": "models/motion-baseline/judean-worker.glb",
+      "src": "assets/blender/motion-baseline/judean-worker.glb",
       "sha256": "fdb1eb98aef4f47545b1260370d58805d8b5b41a60738df0ed9f6d8f0be3dd40",
       "cycleDistance": 0.8,
       "height": 1.71
     },
     "resident-child": {
-      "src": "models/motion-baseline/judean-child.glb",
+      "src": "assets/blender/motion-baseline/judean-child.glb",
       "sha256": "a142bc5cc3f874a3fbc8d67ed2c69dc7b8b8a0a220298b1031cc1685c82712be",
       "cycleDistance": 0.4903,
       "height": 1.1
     },
     "resident-carrier": {
-      "src": "models/motion-baseline/judean-carrier.glb",
+      "src": "assets/blender/motion-baseline/judean-carrier.glb",
       "sha256": "9325a964db22aa86ae08735540c032cf820732040b49550d8d31f1a454641030",
       "cycleDistance": 0.8,
       "height": 1.71
