@@ -11,6 +11,7 @@ import {createHumanPerformance} from './human-performance.js';
 import {createLifeLocomotion} from './human-life-locomotion.js';
 import {createHandContacts} from './human-hand-contact.js';
 import {createPoseOverlay} from './human-pose-overlay.js';
+import {createArmPosture} from './human-arm-posture.js';
 
 const cache=new Map();
 const loader=new GLTFLoader();
@@ -65,7 +66,7 @@ export function residentAction(state) {
   return state.idleAction==='LookAround'?'LookAround':'Idle';
 }
 
-export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.state.position[1],motionVersion=null,metrics={},distantGeometry=new Map()}={}) {
+export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.state.position[1],motionVersion=null,metrics={},distantGeometry=new Map(),armPosture=true}={}) {
   const appearance=residentVisualAppearance(actor,index);
   const definition={...blenderModels[residentModelFor(actor)],...metrics};
   const version=motionVersion??definition.motionVersion,natural=version>=2&&gltf.animations.some(c=>c.name.startsWith('StartWalk')),human=natural&&version>=3,life=human&&version>=4;
@@ -98,6 +99,7 @@ export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.st
   const groundDistantFeet=createResidentGrounding(root,groundAt,{ankleHeight:definition.ankleHeight??.105,liftHeight:definition.liftHeight??.075}),lastPosition=[...actor.state.position];
   const performance=human?createHumanPerformance(root,actor,definition):null,clocks=new Map();
   const handContacts=life?createHandContacts(root,definition):null;
+  const armCorrection=human&&armPosture?createArmPosture(root,definition):null;
   const carryPose=life?createPoseOverlay(root,gltf.animations.find(c=>c.name==='CarrySmall'),definition.carryBones):null;
   const speechPose=life?createPoseOverlay(root,gltf.animations.find(c=>c.name==='Talk'),['jaw']):null;
   const jaw=life?root.getObjectByName('jaw'):null,jawRest=jaw?.quaternion.clone();
@@ -141,6 +143,7 @@ export function createResidentInstance(gltf,actor,index=0,{groundAt=()=>actor.st
       if(human)actor.visualFootsteps={left:locomotion.contact(target,motion.time,'L',motion.phase),right:locomotion.contact(target,motion.time,'R',motion.phase),clip:target,speed:motion.speed};
       if(natural&&detailed)groundFeet({position:state.position,clip:target,time:motion.time,phase:motion.phase,strideScale:motion.strideScale??1,dt:poseDt,reset:first||root.userData.detailLevel!=='near'});
       else groundDistantFeet({position:state.position,phase:motion?.phase??gaitTime%1,walkWeight:weights.get('Walk')||0});
+      armCorrection?.(poseDt,motion);
       handContacts?.({clip:state.carriedItem&&!state.activity?'CarrySmall':target,time:state.carriedItem&&!state.activity?state.time:motion.time});
       performance?.remember();root.userData.detailLevel=detailed?'near':'distant';first=false;
     },

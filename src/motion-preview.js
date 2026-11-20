@@ -40,7 +40,7 @@ export function mountMotionPreview(container,{characters=[]}={}){
       // Separate visual clocks observe a common motor, without sharing gait phase.
       const beforeActor={...actor,modelId:role.before,motionProfile:undefined},afterActor={...actor};
       const groundFor=group=>(x,z)=>course.footFloor(x-group.position.x,z-group.position.z);
-      instances=[createResidentInstance(before,beforeActor,0,{motionVersion:blenderModels[role.before].motionVersion,metrics:blenderModels[role.before],groundAt:groundFor(left)}),createResidentInstance(after,afterActor,0,{groundAt:groundFor(right)})];
+      instances=[createResidentInstance(before,beforeActor,0,{motionVersion:blenderModels[role.before].motionVersion,metrics:blenderModels[role.before],armPosture:false,groundAt:groundFor(left)}),createResidentInstance(after,afterActor,0,{groundAt:groundFor(right)})];
       left.add(instances[0].root);right.add(instances[1].root);
       if(neighbour)for(const group of [left,right]){const instance=createResidentInstance(neighbour,{...course.extra},0,{groundAt:groundFor(group)});instances.push(instance);group.add(instance.root);}
       buildFixtures();for(const instance of instances)instance.update(0);container.dataset.model=role.after;container.dataset.course=scenario;view();last=0;
