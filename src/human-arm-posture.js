@@ -17,12 +17,13 @@ export function createArmPosture(root,definition){
     const fingers=[];
     hand.traverse(b=>{if(!/^finger[LR]\d[AB]$/.test(b.name))return;
       // Local +Y follows each exported finger bone. Curl toward the original
-      // palm (+Z in model space); mirrored hands must not curl on a guessed X.
-      const palm=v().set(0,0,1).applyQuaternion(root.getWorldQuaternion(q())).applyQuaternion(b.getWorldQuaternion(q()).invert());
+      // palm (-Z in model space). The neutral thumbs are medial: +Z is
+      // the BACK of these hands, despite being the character's forward axis.
+      const palm=v().set(0,0,-1).applyQuaternion(root.getWorldQuaternion(q())).applyQuaternion(b.getWorldQuaternion(q()).invert());
       const digit=Number(b.name.at(-2)),towardPinky=side==='L'?3-digit:digit;
       fingers.push({bone:b,rest:b.quaternion.clone(),axis:v().set(0,1,0).cross(palm).normalize(),angle:(b.name.endsWith('A')?14:28)+towardPinky*2});
     });
-    return {side,arm,forearm,hand,fingers,palmLocal:v().set(0,0,1).applyQuaternion(root.getWorldQuaternion(q())).applyQuaternion(inverse),last:new Map()};
+    return {side,arm,forearm,hand,fingers,palmLocal:v().set(0,0,-1).applyQuaternion(root.getWorldQuaternion(q())).applyQuaternion(inverse),last:new Map()};
   }).filter(Boolean);
   let gesture=0;
   function aim(bone,child,direction){
@@ -50,7 +51,9 @@ export function createArmPosture(root,definition){
       const down=c.hand.getWorldPosition(v()).sub(c.forearm.getWorldPosition(v())).normalize();
       const palm=v().set(-sign,0,.55*gesture).normalize().applyQuaternion(worldQ);
       palm.addScaledVector(down,-palm.dot(down)).normalize();
-      const z=palm.clone().negate(),x=down.clone().cross(z).normalize();z.crossVectors(x,down).normalize();
+      // Hand-local +Z is the palm normal (the bind bone rotates model -Z
+      // into local +Z). This also turns BOTH medial thumbs toward the front.
+      const z=palm.clone(),x=down.clone().cross(z).normalize();z.crossVectors(x,down).normalize();
       const handWorld=q().setFromRotationMatrix(new THREE.Matrix4().makeBasis(x,down,z));
       c.hand.quaternion.copy(c.hand.parent.getWorldQuaternion(q()).invert().multiply(handWorld));
       // Spread the axial twist through the forearm instead of a single sharply
@@ -66,6 +69,6 @@ export function createArmPosture(root,definition){
       root.updateWorldMatrix(true,true);
       diagnostics.push({side:c.side,palm:c.palmLocal.clone().applyQuaternion(c.hand.getWorldQuaternion(q())).toArray()});
     }
-    root.userData.armPosture={version:1,freeSides:chains.map(c=>c.side),protectedSides:[...locked],hands:diagnostics};
+    root.userData.armPosture={version:2,freeSides:chains.map(c=>c.side),protectedSides:[...locked],hands:diagnostics};
   };
 }
